@@ -32,7 +32,7 @@ backbone:
   name: dinov3_vith16plus
   frozen: true
   checkpoint_sha256: 7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488
-  python_source_tree_sha256: 98e2b6ff6adc14d31995081657c03128a1153c954f0ea2ce50b3a61cc3fce3b3
+  python_source_tree_sha256: dde435450cdc79eaddcd11039ab90d942f6fb08770b5ee3998a81240d8cf1bf8
   python_source_file_count: 151
   parameter_count: 840633600
   patch_size: 16
