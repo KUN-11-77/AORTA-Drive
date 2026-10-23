@@ -363,3 +363,55 @@ meaningful non-inclusion 必须使用连续 footprints \(F_j\setminus F_0\) 与 
 - Gate B 验证 tail residual、\(S_{better}\)、\(R_{cert|better}\)、\(R_{opportunity}\)；
 - Gate A/B 失败则不进入完整 NAVSIM 训练；
 - local edge 不优于 exact global-gauge/具体 joint-field，或证书近乎全空，则停止方法原创路线。
+
+## 12. AORTA-v8.4 candidate amendment after R004E-G
+
+本节不删除 V0 fixed-scale control，而是定义下一项可证伪候选。完整 R004H 注册前不得执行。
+
+### 12.1 Architecture
+
+Stage P 仅用冻结的 42 fit groups 重新训练既有 node-potential/trunk，并在 8 selection
+groups 选择一次 checkpoint。随后永久冻结 DINO、projection、trunk 与 potential。Stage S
+只训练一个输出 canonical right/down 8064 edges 的 bounded positive scale head：
+
+\[
+s_e(X)=2^{-10}\mathrm m+(2^4-2^{-10})\mathrm m\,\sigma(a_e(X)).
+\]
+
+Stage S 只最小化 bounded Laplace loss
+
+\[
+\mathcal L_{scale}=\mathbb E\left[
+\frac{|(Du-D\widetilde d)_e|}{s_e(X)}+
+\log\frac{s_e(X)}{1\mathrm m}
+\right].
+\]
+
+不得把 group maximum surrogate、candidate、planner score 或 certificate outcome 反传到
+scale head。旧 66-group checkpoint 不具备 proxy/official calibration 独立性，只可作历史
+诊断。
+
+### 12.2 Data roles and coverage boundary
+
+66 个旧 train groups 以注册 SHA-256 顺序固定为 42 fit、8 selection、16 proxy-cal。
+proxy-cal 全部带历史曝光标签，只用于一次内部流程排练，不产生 coverage claim。正式
+split-conformal 只允许在最终模型、score 和决策规则冻结后首次读取 official calibration；
+其 calibration 与 future source session 必须条件联合可交换。任一 calibration group
+无效则整个 variant calibration 失败，不允许过滤。
+
+### 12.3 Required controls and primary endpoint
+
+所有控制共享同一冻结 potential 并分别校准：learned edge scale、把 learned scale 每帧
+几何平均后广播的 pooled scale、uniform 1 m scale、evidence-only scale；zero field 单独
+作为历史参考。主终点使用独立于方法的共同 opportunity set：冻结候选同时满足 geometry
+资格、meaningful continuous non-inclusion 与 teacher improvement \(\ge\delta_M\)。报告
+同一分母上的 \(R_{cert|better}\)，invalid/fallback 留在分母且记未认证。
+
+learned 只优于 uniform 支持一般 scale adaptation；同时优于 pooled 才支持 edge-wise
+allocation。两者均不自动证明正式 coverage、OOD robustness 或算法原创性。
+
+### 12.4 Qualification status
+
+R004E-G 已通过 role、four-term interval residual、outward division/multiplication、joint-rank
+oracle、scale gauge 与 heterogeneous graph readout。该结果只允许冻结 R004H；真实训练、
+development one-read 和 official calibration 仍由后续独立门禁控制。

@@ -14,4 +14,5 @@
 - **Interpretation:** passing qualifies primitives and the protocol only. It does not prove
   learned uncertainty, historical proxy coverage, Gate B, real certificate utility, OOD
   robustness, or algorithmic novelty.
-- **Status:** REGISTERED, not yet executed.
+- **Status:** COMPLETED — PASS for primitive/protocol qualification. See
+  `experiments/results/R004EG.md`. R004H still requires a separate registration.

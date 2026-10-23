@@ -1,0 +1,39 @@
+{
+  "experiment_id": "R004E-G-heterogeneous-envelope-oracle-v1",
+  "status": "COMPLETED",
+  "decision": "PASS",
+  "implementation_revision": "69623ab47c41a870776a804cdc9b074efbddc44e",
+  "config_sha256": "b99a6a5a33bf54942fddebce46ce18ae7b2be1916ad032f42903416618dd2949",
+  "raw_result_sha256": "5fcbb172160039b77b2c43bc3d2cb15650d20511e28a8859d7f2c2444fe542bb",
+  "evidence_manifest_sha256": "f89c5e3031cc1d7b41e50b514faa275a8c29669005b5ca316be0dcd954208bdd",
+  "role_counts": {
+    "fit": 42,
+    "selection": 8,
+    "proxy_cal": 16
+  },
+  "checks": {
+    "registered_unit_tests_passed": 19,
+    "full_repository_tests_passed": 131,
+    "mypy_source_files_passed": 32,
+    "randomized_four_term_cases_passed": 1000,
+    "randomized_budget_cases_passed": 1000,
+    "joint_rank_successes": 16,
+    "joint_rank_total": 17,
+    "gauge_max_ulp_difference": 0.0,
+    "graph_computed_lower_bound": -1.3750000000000009,
+    "graph_exact_lower_bound": -1.3750000000000004
+  },
+  "cancellation_counterexample": {
+    "exact_residual": 1.1102230246251565e-16,
+    "naive_residual": 0.0,
+    "outward_residual_upper": 3.33066907387547e-16
+  },
+  "claims": {
+    "primitive_protocol_qualified": true,
+    "learned_uncertainty_established": false,
+    "historical_proxy_coverage_established": false,
+    "gate_b_passed": false,
+    "algorithmic_novelty_established": false,
+    "r004h_may_be_registered": true
+  }
+}

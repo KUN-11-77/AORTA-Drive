@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E 排除了当前 predictor 的 calibration 资格、gradient projection 与二值观测 mask。R004E-F 又在 24/24 development groups 上证明视觉场平均 edge MAE 优于零场（0.4944 vs 0.5543 m），但 group maximum 全部更差；问题已收敛为稀疏 tail 与统一全图极值接口失配，而非全局符号错误或完全无视觉信号。calibration 仍未读取，Gate B 未通过。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E 排除了当前 predictor 的 calibration 资格、gradient projection 与二值观测 mask；R004E-F 将失败收敛为稀疏 tail 与统一全图极值接口失配。AORTA-v8.4 经三轮独立审查后，R004E-G 已通过四项 residual interval、outward score/budget、角色拆分、rank、尺度 gauge 与异质 graph oracle。该结果只授权注册 R004H；learned uncertainty、正式 coverage、Gate B、OOD 与创新性仍未成立，官方 calibration 未读取。
 
 ## 1. 问题锚点
 
@@ -22,7 +22,7 @@ AORTA-Drive 研究 NAVSIM v1/v2 上的 source-only appearance robustness。对�
 - frozen DINOv3-H+ 与被审计 planner；
 - source-only train/development/calibration；
 - 一个具有冻结多相机节点投影/缺失证据协议的 candidate-free node-potential decoder；
-- fixed physical edge scale、single native、exact multi-source solver；
+- V0 fixed physical scale control 与 v8.4 candidate-independent observation-and-edge scale candidate、single native、exact multi-source solver；
 - 预注册 ego-centric ROI、grid、continuous teacher/map error ledger、geometry checker、candidate provider、资格层与 session time set；
 - 默认保留 native，仅认证 relative nominal-road non-degradation。
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：R004E-G 先冻结 candidate-independent heterogeneous edge uncertainty 的标准化 session event、coverage 定理、scale anti-inflation 约束、group-aligned loss 与 exact min-plus readout，再做 synthetic oracle。理论与 falsification gates 通过前不得重训或读取 calibration。
+- 下一阶段：先冻结 R004H 的 fresh fit-only potential replay 与 scale-only probe。Scale head 只用 bounded Laplace proper loss；learned、per-observation pooled、uniform 与 evidence-only scale 在同一 frozen potential 上分别排练阈值，并使用共同 teacher opportunity 分母评估 continuous-corrected certificate recall。真实训练前必须提交完整配置、checkpoint rule、无效样本合同、算力预算和 stop rule；官方 calibration 继续封存。

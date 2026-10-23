@@ -420,34 +420,63 @@ L_G\ge\widehat L_G-\varepsilon_{num},
 
 因此该特定实现相对于“以输入 binary64 数值作为精确实数”的数学问题没有乐观误差，可取 \(\varepsilon_{num}=0\)。证明由每次上舍入保持 path-length upper bound、minimum 保持 upper bound，以及最终下舍入保持 lower bound 直接得到。此结论不覆盖输入量化、坐标误差、编译器违反 IEEE-754 语义或其他 solver；这些误差必须另行记账。
 
-## 5. Source-session calibration
+### Lemma 4b — outward-safe heterogeneous score construction
 
-对独立 source calibration sessions \(Z_1,\ldots,Z_n\)：
+对 oriented edge \(i\to j\)，不能先普通浮点计算两个 gradients。以 represented node
+values 作为精确实数，先构造
 
 \[
-E_i=\max_{t\in T(Z_i)}\max_{e\in E}
-\frac{|(Du_{it}-D\widetilde d_{it})_e|}{s_e}.
+g_u^-\le u_j-u_i\le g_u^+,
+\qquad
+g_d^-\le\widetilde d_j-\widetilde d_i\le g_d^+,
+\]
+
+其中每个端点分别向 \(-\infty\) 或 \(+\infty\) 外舍入。再令
+
+\[
+a_e^+=\max\{\operatorname{up}(g_u^+-g_d^-),
+\operatorname{up}(g_d^+-g_u^-),0\}.
+\]
+
+则 \(|(Du-D\widetilde d)_e|\le a_e^+\)。若
+\(s_e(X)\in[s_{min},s_{max}]\) 有限且严格为正，进一步向上计算
+\(z_e^+=\operatorname{up}(a_e^+/s_e)\) 与
+\(w_e=\operatorname{up}(q_\alpha s_e)\)，即可保持 score 与 edge budget 的保守方向。
+任何中间溢出、非有限或越界 scale 均拒绝整个 calibration variant，不能删除对应 group。
+map/geometry error 仍在 continuous lifting 单独扣除，不重复混入 \(w\)。
+
+## 5. Source-session calibration
+
+在 predictor、scale、score、graph 与时间协议均由外部训练/选择信息冻结后，对 source
+calibration sessions \(Z_1,\ldots,Z_n\) 定义：
+
+\[
+E_i^+=\max_{t\in T(Z_i)}\max_{e\in E}z_{it,e}^+.
 \]
 
 取
 
 \[
 k=\lceil(n+1)(1-\alpha)\rceil,
-\qquad q_\alpha=E_{(k)}.
+\qquad q_\alpha=E^+_{(k)}.
 \]
 
 ### Theorem 3
 
-若 \(Z_1,\ldots,Z_n,Z_{n+1}\) 交换，且 \(k\le n\)，则
+若条件于全部冻结外部信息，\(Z_1,\ldots,Z_n,Z_{n+1}\) 联合交换，同一确定性
+upper-score 映射作用于 calibration 与新 session，且 \(k\le n\)，则
 
 \[
 P\left(
 \forall t\in T(Z_{n+1}),e\in E:
-|(Du-D\widetilde d)_e|\le q_\alpha s_e
+|(Du-D\widetilde d)_e|\le q_\alpha s_e(X_t)
 \right)\ge1-\alpha.
 \]
 
-这是 calibration sessions 与新 source session 联合随机性的边际保证。
+证明先由 rank argument 得 \(P(E_{n+1}^+\le q_\alpha)\ge k/(n+1)\)，再由
+Lemma 4b 的 exact residual 不大于 upper score 得到 field event。这是 calibration sessions
+与新 source session 联合随机性的边际保证；仅 calibration 内部交换不足。历史上已暴露的
+proxy-cal groups 不能被重新命名为正式 calibration。
 
 ### Lemma 5 — finite-threshold sample size
 
@@ -515,22 +544,24 @@ P(R_\gamma=1)
 
 ## 7. Paired appearance diagnostic
 
-对共享同一 teacher 的 paired observations \(X,X'\)，定义
+对共享同一 teacher 的 paired observations \(X,X'\) 与 input-dependent scale，定义
 
 \[
-r_e(X)=\frac{(Du(X)-D\widetilde d)_e}{s_e},
+r_e(X)=\frac{(Du(X)-D\widetilde d)_e}{s_e(X)},
 \]
 
 \[
 \rho(X,X')
-=\max_e\frac{|D[u(X')-u(X)]_e|}{s_e}.
+=\max_e\frac{|D[u(X')-u(X)]_e|}{s_e(X')},
+\qquad
+\kappa(X,X')=\max_e\frac{s_e(X)}{s_e(X')}.
 \]
 
 ### Lemma 6
 
 \[
 \|r(X')\|_\infty
-\le\|r(X)\|_\infty+\rho(X,X').
+\le\kappa(X,X')\|r(X)\|_\infty+\rho(X,X').
 \]
 
 证明是逐边三角不等式。对 session 时刻再取 maximum 得到 session 版本。
