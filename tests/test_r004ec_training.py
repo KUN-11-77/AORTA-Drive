@@ -10,6 +10,7 @@ import torch
 from aorta_drive.training.r004ec import (
     JoinedAnchor,
     deterministic_interleaved_epoch,
+    learning_rate_at_update,
     load_joined_anchors,
     qualifies_single_group_overfit,
     sample_dense_features_torch,
@@ -172,3 +173,18 @@ def test_single_group_overfit_gate_uses_both_preregistered_ratios() -> None:
         initial_group_max_residual=2.0,
         evaluated_group_max_residuals=(1.0,),
     )
+
+
+def test_learning_rate_schedule_has_frozen_warmup_and_cosine_endpoints() -> None:
+    assert learning_rate_at_update(
+        0, total_updates=100, warmup_updates=10, base_learning_rate=3e-4
+    ) == pytest.approx(3e-5)
+    assert learning_rate_at_update(
+        9, total_updates=100, warmup_updates=10, base_learning_rate=3e-4
+    ) == pytest.approx(3e-4)
+    assert learning_rate_at_update(
+        10, total_updates=100, warmup_updates=10, base_learning_rate=3e-4
+    ) == pytest.approx(3e-4)
+    assert learning_rate_at_update(
+        100, total_updates=100, warmup_updates=10, base_learning_rate=3e-4
+    ) == pytest.approx(0.0)

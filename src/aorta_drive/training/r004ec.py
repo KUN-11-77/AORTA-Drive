@@ -315,3 +315,24 @@ def qualifies_single_group_overfit(
     mean_ratio = final_mean_objective / initial_mean_objective
     best_max_ratio = min(evaluated_group_max_residuals) / initial_group_max_residual
     return mean_ratio <= maximum_mean_ratio and best_max_ratio <= maximum_best_max_ratio
+
+
+def learning_rate_at_update(
+    update_index: int,
+    *,
+    total_updates: int,
+    warmup_updates: int,
+    base_learning_rate: float,
+) -> float:
+    """Return the frozen linear-warmup/cosine learning rate for one update."""
+
+    if total_updates <= 0 or not 0 <= update_index <= total_updates:
+        raise ValueError("update_index must lie in [0, total_updates]")
+    if not 0 < warmup_updates < total_updates:
+        raise ValueError("warmup_updates must lie in (0, total_updates)")
+    if not math.isfinite(base_learning_rate) or base_learning_rate <= 0.0:
+        raise ValueError("base_learning_rate must be finite and positive")
+    if update_index < warmup_updates:
+        return base_learning_rate * (update_index + 1) / warmup_updates
+    progress = (update_index - warmup_updates) / (total_updates - warmup_updates)
+    return base_learning_rate * 0.5 * (1.0 + math.cos(math.pi * progress))

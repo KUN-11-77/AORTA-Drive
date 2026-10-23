@@ -1,0 +1,24 @@
+{
+  "artifact_ref": "F:/AORTA-Drive-artifacts/gate-b/R004E/r004ec_c1_evidence.tar.gz",
+  "artifact_sha256": "1abff83063ee1fcb06ef585a627e9aba39e12ecfc5c104ae8e43bf3ba05fb185",
+  "calibration_test_or_target_accessed": false,
+  "claim_boundary": "Single fitted-group optimization sanity only; no generalization or performance claim.",
+  "experiment_id": "R004E-C1-single-group-overfit",
+  "implementation_revision": "256a8b1ca11fe6c48598bfdec63ed4415ddd4a6c",
+  "integrity_audit": {
+    "external_cross_model_review": "UNAVAILABLE",
+    "reason": "The required external reviewer backend is not exposed; no self-acquittal was substituted."
+  },
+  "result": {
+    "all_steps_and_gradients_finite": true,
+    "best_exact_group_max_residual_ratio": 0.8004266845714713,
+    "elapsed_seconds": 12.65548252291046,
+    "epochs": 4,
+    "final_mean_objective_ratio": 0.8807261798755714,
+    "independent_group_count": 1,
+    "nested_anchor_count": 16,
+    "optimizer_updates": 64,
+    "peak_cuda_bytes": 1617075200
+  },
+  "status": "PASS"
+}

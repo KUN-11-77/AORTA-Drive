@@ -1,0 +1,91 @@
+experiment_id: R004E-C2-full-source-only-quotient-training-v1
+date: 2026-10-24
+scope: train_exactly_one_registered_probe_and_freeze_development_checkpoint
+parent_protocol:
+  path: configs/experiment/r004ec_training.yaml
+  sha256: 3cf2e46dcfc565518725ad36d06c9cff79e1feca17fb2babe5010306178290cb
+
+inputs:
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  allowed_splits: [train, development]
+  prohibited_splits: [calibration, test, target_domain]
+  train_groups: 66
+  development_groups: 24
+  anchors_per_group: 16
+  independent_unit: recording_group
+
+model:
+  class: QuotientFieldPredictor
+  parameter_count: 4000225
+  initialization_seed: 20261023
+  input_shape_per_anchor: [4096, 12, 1280]
+  output_shape_per_anchor: [64, 64]
+  candidate_conditioned: false
+  output_gauge: subtract_exact_spatial_mean
+
+objective:
+  edge_order: all_rightward_then_all_downward
+  edge_count: 8064
+  edge_scale_m: 1.0
+  huber_delta_m: 0.25
+  tail_temperature_m: 0.10
+  tail_weight: 0.25
+
+optimization:
+  seed: 20261023
+  maximum_epochs: 20
+  batch_size: 1
+  gradient_accumulation: 1
+  anchors_per_epoch: 1056
+  anchor_schedule: seeded_group_interleave_then_within_group_permutation
+  optimizer: adamw
+  base_learning_rate: 0.0003
+  betas: [0.9, 0.95]
+  weight_decay: 0.0001
+  gradient_clip_global_norm: 1.0
+  warmup_epochs: 1
+  learning_rate_formula:
+    update_index: zero_based
+    warmup: base_lr_times_update_index_plus_1_divided_by_warmup_updates
+    cosine: base_lr_times_half_times_1_plus_cos_pi_progress
+    cosine_progress: update_index_minus_warmup_updates_divided_by_total_minus_warmup
+  augmentation: none
+  hyperparameter_search: prohibited
+
+development_checkpoint:
+  evaluate_after_every_epoch: true
+  per_group: max_over_16_anchors_and_8064_edges
+  primary: mean_of_largest_5_group_maxima
+  secondary: mean_of_all_24_group_maxima
+  tie_break: earliest_epoch
+  candidate_certificate_planner_or_calibration_metric_used: false
+
+persistence:
+  progress_json_written_after_each_completed_epoch: true
+  latest_checkpoint_contains_model_optimizer_and_completed_epoch: true
+  best_checkpoint_contains_selected_model_and_selection_key: true
+  resume: prohibited_interrupted_run_restarts_from_seed
+
+qualification:
+  required_predecessors: [R004E-C0_PASS, R004E-C1_PASS]
+  success:
+    completed_epochs: 20
+    every_train_anchor_once_per_epoch: true
+    every_development_group_complete_per_epoch: true
+    all_losses_gradients_and_group_statistics_finite: true
+    checkpoint_selected_by_frozen_lexicographic_rule: true
+
+stop_rules:
+  - any_calibration_test_or_target_artifact_is_read
+  - any_anchor_or_group_is_missing_duplicated_or_misclassified
+  - any_nonfinite_loss_gradient_or_development_statistic
+  - any_schedule_optimizer_objective_or_checkpoint_rule_changes
+  - any_C1_weight_is_loaded
+
+claims:
+  may_close_training_and_development_checkpoint_qualification_only: true
+  held_out_test_accuracy_established: false
+  calibration_coverage_established: false
+  certificate_nontriviality_established: false
+  gate_b_passed: false

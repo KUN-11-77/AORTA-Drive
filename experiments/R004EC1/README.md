@@ -5,5 +5,5 @@
 - **Scope:** lexicographically first train recording group; 16 anchors are nested measurements, not independent replicates.
 - **Frozen budget:** four epochs, 16 updates/epoch, AdamW at `3e-4`, no development/calibration/test/target access.
 - **Acceptance:** final 16-anchor mean objective `<=0.90` of its pre-update value; best post-epoch exact group maximum residual `<=0.98` of its pre-update value; every loss and gradient finite.
-- **Status:** REGISTERED after R004E-C0 PASS; not yet executed.
+- **Status:** PASS. Both preregistered ratios passed with finite values; see `experiments/results/R004EC1.md`.
 - **Claim boundary:** optimization and real-data signal sanity only. The same group is fitted and evaluated; no generalization or performance claim is permitted, and its weights cannot seed C2.

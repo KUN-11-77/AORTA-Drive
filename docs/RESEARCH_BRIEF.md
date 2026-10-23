@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 定理、算子和 R002G 标签生成器已通过；R004E-A/B 已在冻结的 90 个 train/development recording groups、1440 个 anchors 上完成 teacher 与视觉证据实例化、逐文件审计及 exact feature-label join。R004E-C0 已用一个真实 anchor 闭合 runtime sampling、loss 与 backward 合同；尚无 learned checkpoint，Gate B 校准仍未开始。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 定理、算子和 R002G 标签生成器已通过；R004E-A/B 已在冻结的 90 个 train/development recording groups、1440 个 anchors 上完成 teacher 与视觉证据实例化、逐文件审计及 exact feature-label join。R004E-C0 real-input 合同与 C1 单组优化 sanity 已通过；C1 的 exact tail 非单调，支持保留 group-tail checkpoint 规则。尚无 development-selected learned checkpoint，Gate B 校准仍未开始。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：执行已注册的 R004E-C1 单组 overfit sanity gate；只有平均目标和 exact group maximum 同时按预注册比例下降，才训练唯一注册的 C2 quotient-field probe。仅在 checkpoint 哈希和完整训练 ledger 冻结后，才允许读取 calibration residual。
+- 下一阶段：执行唯一注册的 R004E-C2：从原始 seed 重新初始化，在 66 个 train groups 上完成 20 epochs，并仅用 24 个 development groups 的 exact group-tail 规则冻结 checkpoint。仅在 checkpoint 哈希和完整训练 ledger 冻结后，才允许读取 calibration residual。
