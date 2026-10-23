@@ -1,0 +1,110 @@
+experiment_id: R004H2-scale-only-proper-fit-v1
+date: 2026-10-24
+scope: fit_and_select_one_bounded_scale_head_on_frozen_stage_p
+
+predecessor:
+  experiment: R004H1-fresh-fit-potential-v1
+  raw_result_sha256: 7834fca5c0085545f5525d4961cc3df6d9ceb2611e8b41d2e848f3cf1b33c5fd
+  decision: PASS
+  h1_config_sha256: 1cebf499f7997f0190354b94df5b8982508912ba718c61c33946940db7bcee9d
+  selected_checkpoint_sha256: 8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b
+
+inputs:
+  recording_group_manifest_sha256: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  allowed_payload_roles: [fit, selection]
+  prohibited_payload_roles: [proxy_cal, development, calibration, test, target_domain]
+  fit_groups: 42
+  selection_groups: 8
+  anchors_per_group: 16
+
+model:
+  stage_p_class: QuotientFieldPredictor
+  stage_p_checkpoint_load: strict
+  stage_p_trainable_parameters: 0
+  scale_head_class: BoundedEdgeScaleHead
+  scale_head_operator: Conv2d_96_to_2_kernel_1
+  scale_head_trainable_parameters: 194
+  scale_min_m: 0.0009765625
+  scale_max_m: 16.0
+  initial_scale_m: 1.0
+  edge_count: 8064
+  edge_order: all_rightward_then_all_downward
+  candidate_or_planner_input: prohibited
+
+objective:
+  name: bounded_laplace_proper_scale_only
+  formula: mean_absolute_residual_over_scale_plus_mean_log_scale_metres
+  group_tail_term: prohibited
+  candidate_certificate_or_planner_term: prohibited
+
+optimization:
+  seed: 20261024
+  maximum_epochs: 10
+  batch_size: 1
+  fit_anchors_per_epoch: 672
+  selection_anchors_per_epoch: 128
+  anchor_schedule: seeded_group_interleave_then_within_group_permutation
+  optimizer: adamw
+  base_learning_rate: 0.0003
+  betas: [0.9, 0.95]
+  weight_decay: 0.0001
+  gradient_clip_global_norm: 1.0
+  warmup_epochs: 1
+  learning_rate_schedule: linear_warmup_then_cosine
+  augmentation: none
+  hyperparameter_search: prohibited
+  early_stopping_on_metric: prohibited
+
+selection_checkpoint:
+  evaluate_after_every_epoch: true
+  primary: macro_mean_of_8_group_mean_bounded_laplace_proper_loss
+  tie_break: earliest_epoch
+  fit_gate: selected_primary_strictly_below_uniform_1m_primary
+
+cap_collapse:
+  position: scale_minus_min_divided_by_max_minus_min
+  cap_position_tolerance: 0.0001
+  collapse_fraction: 0.95
+  pass: both_lower_and_upper_fractions_strictly_below_collapse_fraction
+
+controls:
+  learned: selected_bounded_edge_scale
+  pooled: per_observation_geometric_mean_of_learned_broadcast_to_all_edges
+  uniform: one_metre_all_edges
+  evidence_only:
+    node_reliability: valid_slot_fraction
+    edge_reliability: mean_of_endpoint_node_reliabilities
+    floor: one_over_12
+    shape: inverse_square_root_reliability
+    gauge: per_observation_geometric_mean_one
+    final_bounds: [0.0009765625, 16.0]
+  proxy_threshold_or_task_metric_used: false
+
+persistence:
+  progress_json_written_after_each_completed_epoch: true
+  latest_checkpoint_contains_scale_optimizer_and_completed_epoch: true
+  best_checkpoint_contains_selected_scale_head_and_selection_key: true
+  stage_p_weights_duplicated_in_scale_checkpoint: false
+  resume: prohibited_interrupted_run_restarts_from_seed
+
+resources:
+  device: cuda:0
+  maximum_peak_gpu_gib: 4.0
+  maximum_wall_minutes: 25
+  maximum_output_gib: 0.5
+
+decision:
+  pass_requires:
+    - 10_legal_epochs
+    - selected_proper_loss_strictly_below_uniform_1m
+    - no_scale_cap_collapse
+    - frozen_stage_p_zero_gradients
+    - deterministic_control_replay
+  r004h3_registration_authorized_by_pass: true
+  calibrated_scale_established: false
+  coverage_established: false
+  gate_b_passed: false
+  official_calibration_access_authorized: false

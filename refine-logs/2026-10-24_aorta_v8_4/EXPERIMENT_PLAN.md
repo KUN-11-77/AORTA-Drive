@@ -70,8 +70,13 @@ are historically exposed.
   epoch, base lr `3e-4`, betas `(0.9,0.95)`, weight decay `1e-4`, clip `1.0`, one-epoch
   warmup and cosine decay; no augmentation or search.
 - **Checkpoint key:** selection macro mean proper loss, then earliest epoch.
+- **Fit gate:** selected macro proper loss must be strictly below the uniform 1 m proper
+  loss on the same frozen potential and selection labels.
+- **Cap gate:** fewer than 95% of selection outputs may lie within sigmoid position
+  `1e-4` of either bound; lower and upper collapse are checked separately.
 - **Controls generated from the final frozen Stage P/S pair:** learned, geometric pooled,
-  uniform 1 m, deterministic evidence-only, zero-field reference.
+  uniform 1 m, deterministic inverse-square-root evidence-only with per-observation unit
+  geometric gauge, and zero-field reference.
 - **Pass:** one legal frozen scale checkpoint and all controls replay deterministically.
 - **Fail:** nonfinite/cap collapse/order mismatch/gradient leakage stops before proxy read.
 
