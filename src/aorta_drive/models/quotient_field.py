@@ -97,6 +97,7 @@ class QuotientFieldPredictor(nn.Module):
         self.fused_norm = nn.LayerNorm(token_dimension)
 
         width0, width1, width2 = (int(width) for width in spatial_widths)
+        self.spatial_output_channels = width0
         self.spatial_stem = nn.Conv2d(token_dimension, width0, kernel_size=3, padding=1)
         self.encoder0 = nn.Sequential(_ResidualBlock(width0), _ResidualBlock(width0))
         self.down1 = nn.Conv2d(width0, width1, kernel_size=3, stride=2, padding=1)
@@ -152,7 +153,9 @@ class QuotientFieldPredictor(nn.Module):
         denominator = unnormalized.sum(dim=-1, keepdim=True)
         return unnormalized / denominator.clamp_min(torch.finfo(logits.dtype).tiny)
 
-    def forward(self, node_slot_features: Tensor, node_slot_mask: Tensor) -> Tensor:
+    def spatial_features(self, node_slot_features: Tensor, node_slot_mask: Tensor) -> Tensor:
+        """Return the final spatial decoder map before the potential head."""
+
         expected_nodes = self.grid_size * self.grid_size
         expected_features = (
             node_slot_features.ndim == 4
@@ -213,8 +216,25 @@ class QuotientFieldPredictor(nn.Module):
             decoded1, size=level0.shape[-2:], mode="bilinear", align_corners=False
         )
         decoded0 = self.decoder0(self.up0(decoded0) + level0)
-        potential = self.output_head(decoded0).squeeze(1)
+        return cast(Tensor, decoded0)
+
+    def potential_from_spatial_features(self, spatial_features: Tensor) -> Tensor:
+        """Map a validated final decoder map to the zero-gauge node potential."""
+
+        expected = (self.spatial_output_channels, self.grid_size, self.grid_size)
+        if spatial_features.ndim != 4 or spatial_features.shape[1:] != expected:
+            raise ValueError(
+                "spatial_features must have shape "
+                f"[batch, {self.spatial_output_channels}, {self.grid_size}, {self.grid_size}]"
+            )
+        if not torch.isfinite(spatial_features).all():
+            raise ValueError("spatial_features must be finite")
+        potential = self.output_head(spatial_features).squeeze(1)
         return cast(Tensor, potential - potential.mean(dim=(-2, -1), keepdim=True))
+
+    def forward(self, node_slot_features: Tensor, node_slot_mask: Tensor) -> Tensor:
+        spatial = self.spatial_features(node_slot_features, node_slot_mask)
+        return self.potential_from_spatial_features(spatial)
 
 
 def oriented_grid_gradients(potential: Tensor) -> Tensor:

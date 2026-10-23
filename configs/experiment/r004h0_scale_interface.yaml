@@ -1,0 +1,67 @@
+experiment_id: R004H0-scale-interface-structural-v1
+date: 2026-10-24
+scope: qualify_role_ledger_trunk_interface_and_scale_only_gradient_path
+
+predecessor:
+  experiment: R004E-G-heterogeneous-envelope-oracle-v1
+  result_sha256: 5fcbb172160039b77b2c43bc3d2cb15650d20511e28a8859d7f2c2444fe542bb
+  decision: PASS
+
+frozen_inputs:
+  recording_group_manifest_sha256: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  structural_checkpoint_sha256: 94d3e77e0d16e6649706e4fad94f8b5e88fd3857165286c295e133297299fc2d
+  structural_checkpoint_scope: replay_only_never_initialize_R004H1
+  anchor_selection: first_fit_row_in_role_manifest_then_lowest_anchor_index
+  allowed_payload_count: 1
+  allowed_payload_role: fit
+  prohibited_payload_roles: [selection, proxy_cal, development, calibration, test, target_domain]
+
+roles:
+  namespace: AORTA-R004EG-roles-v1
+  counts: {fit: 42, selection: 8, proxy_cal: 16}
+  historical_exposure_value: previously_used_by_v8_3_training_or_method_development
+  proxy_coverage_claim: prohibited
+
+architecture:
+  potential_class: QuotientFieldPredictor
+  potential_state_dict_must_load_strictly: true
+  potential_refactor_replay_max_abs_m: 0.0
+  scale_head_class: BoundedEdgeScaleHead
+  scale_head_operator: Conv2d_96_to_2_kernel_1
+  scale_head_trainable_parameter_count: 194
+  scale_min_m: 0.0009765625
+  scale_max_m: 16.0
+  initial_scale_m: 1.0
+  initial_scale_max_abs_tolerance_m: 1.0e-6
+  edge_order: all_rightward_then_all_downward
+  edge_count: 8064
+  candidate_or_planner_input: prohibited
+
+gradient_contract:
+  loss: bounded_laplace_proper_scale_only
+  group_tail_term: prohibited
+  optimizer_step: prohibited
+  potential_requires_grad: false
+  potential_gradient: none
+  scale_head_gradient: finite_and_nonzero
+
+resources:
+  device: cuda:0
+  maximum_peak_gpu_gib: 4.0
+  maximum_wall_minutes: 30
+
+decision:
+  every_check_must_pass: true
+  any_prohibited_payload_read: fail
+  any_role_or_hash_mismatch: fail
+  any_potential_replay_difference: fail
+  any_scale_shape_order_bound_or_initialization_failure: fail
+  any_potential_gradient_or_missing_scale_gradient: fail
+  any_optimizer_update: fail
+  r004h1_training_authorized_by_pass: true
+  learned_uncertainty_established: false
+  gate_b_passed: false
+  official_calibration_access_authorized: false
