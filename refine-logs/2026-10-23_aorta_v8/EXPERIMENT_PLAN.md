@@ -6,7 +6,7 @@
 
 > 本计划用于验证、否证并修正当前条件规范，不预设方法成立。Gate A/B 通过前禁止正式长跑和目标域结论。
 
-**2026-10-23 execution status:** R001–R003 synthetic qualification completed on clean revision `821b060`; R002C asymmetric sweep-cover qualification completed on clean revision `943e7bb`. Mathematical core and synthetic geometry construction passed. Full Gate A remains blocked by the NAVSIM continuous-teacher/map/transform and geometry-arithmetic ledger. See [`experiments/results/GATE_A_SYNTHETIC_SUMMARY.md`](../../experiments/results/GATE_A_SYNTHETIC_SUMMARY.md).
+**2026-10-23 execution status:** R001–R003 synthetic qualification completed on clean revision `821b060`; R002C asymmetric sweep cover passed on `943e7bb`; R002D exact polygon-teacher ledger passed on `497b77b`. Mathematical core and synthetic geometry/teacher constructions passed. Full Gate A remains blocked by the actual NAVSIM preprocessing, transform/protocol hashes, and geometry-arithmetic ledger. See [`experiments/results/GATE_A_SYNTHETIC_SUMMARY.md`](../../experiments/results/GATE_A_SYNTHETIC_SUMMARY.md).
 
 ## Claim Map
 

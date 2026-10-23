@@ -16,6 +16,12 @@ asymmetric analytic sweep-cover construction on synthetic geometry. It does not
 close the NAVSIM polygon teacher, coordinate-transform, or geometry floating
 arithmetic error ledger.
 
+R002D completed on clean revision
+`497b77bf35ed9badb3a595ecfe2f3454dfece486`. It validates exact-rational
+polygon boundary-distance intervals, certified node-label error, and outward-safe
+map-error summation on synthetic canonical polygons. It does not validate the
+actual NAVSIM polygon union or coordinate preprocessing.
+
 ## Evidence
 
 | Run | Controlled question | Evidence | Result |
@@ -24,11 +30,12 @@ arithmetic error ledger.
 | R002 | Does the continuous correction remain a lower bound? | exact Cartesian internal-net radius, invalid-grid rejection, and 500 adversarial 1-Lipschitz linear teachers with bounded map error | PASS; 4 tests; 0 observed false acceptances |
 | R002B | Can legacy corner/discrete-pose/raster shortcuts certify the theorem? | constructive footprint-interior, between-pose sweep, and half-pixel EDT counterexamples | FALSIFIED as certificate route; 3 counterexamples reproduced |
 | R002C | Does the asymmetric analytic cover include continuous challenger sweeps while keeping native nodes internal? | straight, rotating and mixed sweeps; analytic inflation; 500 linear teachers; ROI/yaw/empty-set rejection | PASS; 5 tests; 0 observed false acceptances |
+| R002D | Does the continuous polygon teacher enclose exact signed distance and sum map-error terms conservatively? | rectangles, concavity, holes, disjoint unions, 500 random labels, exact rational oracle and Lipschitz checks | PASS; 7 tests; all registered intervals/ledgers enclosed |
 | R003 | Are calibration, risk, and numerical directions correct? | finite-threshold sample sizes, session maxima, relative event tests, and 500 exact-fraction numerical comparisons | PASS; 9 tests; 0 optimistic bounds |
 
 Machine-readable records: [`R001.json`](R001.json), [`R002.json`](R002.json),
-[`R002B.json`](R002B.json), [`R002C.json`](R002C.json), and
-[`R003.json`](R003.json).
+[`R002B.json`](R002B.json), [`R002C.json`](R002C.json),
+[`R002D.json`](R002D.json), and [`R003.json`](R003.json).
 
 ## Theory optimization accepted
 
@@ -50,8 +57,8 @@ expectation. Formal clean-revision runs were executed only afterward.
 
 ## Remaining blockers
 
-1. Establish a deterministic continuous-teacher/node-label map-error budget on
-   the actual NAVSIM preprocessing path.
+1. Audit the actual NAVSIM polygon union and coordinate preprocessing to bound
+   `epsilon_transform` and `epsilon_polygon`; synthetic R002D does not discharge them.
 2. Add outward-safe geometry arithmetic or an explicit geometry numerical budget,
    then audit vehicle/pose/grid/transform protocol hashes on NAVSIM preprocessing.
 3. Freeze the source session manifest, token-to-node projection, missing-evidence

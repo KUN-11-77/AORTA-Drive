@@ -30,6 +30,7 @@
 - [x] common-shift、nonzero-label、zero-edge、chain、cycle、grid tests
 - [x] equality/inclusion set cases
 - [x] analytic sweep-cover property tests（R002C clean revision 通过）
+- [x] exact polygon teacher 与 map-error ledger synthetic tests（R002D clean revision 通过）
 - [ ] NAVSIM preprocessing、transform hash 与 geometry arithmetic error audit
 
 ## Gate B/C qualification

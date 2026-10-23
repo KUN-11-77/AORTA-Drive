@@ -1,0 +1,20 @@
+{
+  "run_id": "R002D",
+  "status": "completed",
+  "timestamp_utc": "2026-10-23T14:00:56.118844+00:00",
+  "git_revision": "497b77bf35ed9badb3a595ecfe2f3454dfece486",
+  "implementation_tree_dirty": false,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "command": [
+    "D:\\Anaconda3\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests\\gate_a\\test_r002d_polygon_teacher.py"
+  ],
+  "duration_seconds": 2.279671,
+  "return_code": 0,
+  "stdout": ".......                                                                  [100%]\n7 passed in 0.54s\n",
+  "stderr": ""
+}
