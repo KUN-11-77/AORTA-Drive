@@ -1,10 +1,16 @@
-experiment_id: T0-operator-qualification
-claim_ids: []
-stage: unit_test
+experiment_id: T0-cmfe-gate-a
+claim_ids: [C2, C3]
+stage: pre_experiment_contract
+requires_frozen_values:
+  - method.roi
+  - method.resolution_m
 tests:
-  - affine_reconstruction
-  - weighted_standardization
-  - degenerate_panel_flag
-  - malformed_input_rejection
-  - native_preserving_arbitration
+  - robust_bound_matches_lp_oracle
+  - common_shift_invariance
+  - nonzero_super_source_label_recovery
+  - equality_and_inclusion_sets
+  - zero_weight_edge
+  - chain_and_cycle_graphs
+  - geometry_certificate_soundness
+  - numerical_optimism_budget
 success_criterion: all_tests_pass

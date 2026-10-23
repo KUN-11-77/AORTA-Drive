@@ -1,172 +1,160 @@
-# AORTA-Drive Method Specification v0.1
+# AORTA-Drive Method Specification v0.2
 
-## 1. Objects and task quantity
+## 1. Task graph and margin
 
-Let (S) denote the physical scene, (X\sim p(X\mid S,A)) an image under appearance (A), and \(\tau\) a candidate trajectory. Its swept footprint is \(\mathcal B(\tau)\). Given a signed scene-distance field \(d_S\), define the task margin
-
-\[
-M_S(\tau)=\inf_{x\in\mathcal B(\tau)} d_S(x).
-\]
-
-Positive margin means the swept trajectory remains within the modeled feasible region; negative margin indicates violation. This definition is only as complete as the modeled constraint field and must not be described as universal safety.
-
-For a probe distribution \(\nu\) over trajectories, two appearances of the same scene are task-equivalent when they induce the same margin operator almost everywhere under \(\nu\):
+令 (G=(\Omega,E)) 为有限、连通、无向的 4-neighbor ego-centric 图。GT signed-distance field 为 (d_S:\Omega\to\mathbb R)。冻结 tracker 将轨迹转为非空 swept-node set (A(\tau))。
 
 \[
-X_1\sim_S X_2 \iff M_{S,X_1}(\tau)=M_{S,X_2}(\tau)\quad \nu\text{-a.e.}
+M_S^\Omega(\tau)=\min_{q\in A(\tau)}d_S(q)-m_{buf}.
 \]
 
-The learned object is therefore an operator over candidate decisions, not a globally invariant feature vector.
+该 margin 只表示建模的 nominal road constraint，不等价于通用安全。
 
-## 2. Canonical candidate panel
+## 2. Candidate-free field model
 
-For scene intent \(c\), construct a deterministic ordered panel
+冻结 DINOv3-H+ 提供多尺度视觉 tokens。固定物理节点经部署可用的相机/ego geometry 投影并采样 tokens；一个共享 decoder 输出节点势 (u_\theta(X,q))。候选不进入 decoder，因此同一物理 cell 跨候选共享语义。
+
+V0 使用固定 edge scale
 
 \[
-\Pi(c)=\{\tau_1,\ldots,\tau_K\}
+s_e=\ell_e/\ell_{ref};
 \]
 
-with fixed semantics and source-defined weights \(w_i>0\), \(\sum_iw_i=1\). The corresponding margin panel is
+learned scale 不是 V0 依赖。
+
+## 3. Training
+
+令 (D) 为任意定向 incidence matrix：
 
 \[
-\mathbf m=[M_S(\tau_1),\ldots,M_S(\tau_K)]^\top.
+\mathcal L_{edge}
+=|E|^{-1}\sum_e
+\operatorname{Huber}
+\left(\frac{(Du_\theta-Dd_S)_e}{s_e}\right).
 \]
 
-Panel construction is part of the method specification. Changing it after observing target results changes the estimand and is prohibited without a new experiment registration.
+共同 offset 位于 (\ker D=\operatorname{span}\{\mathbf1\}) 中。可用 (\sum_q u_q=0) 作数值 gauge；它不改变 trajectory contrast。
 
-## 3. Affine task-operator factorization
+## 4. Source-session calibration
 
-Define
+对 calibration 前完全冻结的模型、图、尺度与时刻协议：
 
 \[
-b=\sum_iw_im_i,\qquad
-a=\sqrt{\sum_iw_i(m_i-b)^2},\qquad
-\rho_i=\frac{m_i-b}{a},
+E_i=\max_{t\in T(Z_i)}\max_{e\in E}
+\frac{|(Du_{it}-Dd_{it})_e|}{s_e}.
 \]
 
-when \(a>\epsilon\). Then
+令 (k=\lceil(n+1)(1-\alpha)\rceil)。若 (k>n)，返回不可部署；否则 (q_\alpha=E_{(k)})。交换性下：
 
 \[
-\mathbf m=a\boldsymbol\rho+b\mathbf 1,
-\quad a>0,
-\quad \sum_iw_i\rho_i=0,
-\quad \sum_iw_i\rho_i^2=1.
+P(\forall t\in T(Z),e\in E:
+|(Du-Dd)_e|\le q_\alpha s_e)
+\ge1-\alpha.
 \]
 
-The decomposition is unique under these constraints. Degenerate panels with \(a\le\epsilon\) are flagged rather than assigned arbitrary relative geometry.
+这是 source-session 边际保证，不覆盖任意 OOD。
 
-Interpretation:
+## 5. Uncertainty set and exact readout
 
-- \(\boldsymbol\rho\): relative candidate safety shape;
-- \(a\): separation or sensitivity scale;
-- \(b\): absolute safety anchor relative to the zero boundary.
-
-The primary hypothesis is not that this identity is novel—it is algebraic—but that assigning different statistical roles and prediction mechanisms to these terms yields a better robust decision interface.
-
-## 4. Identifiability and set-valued prediction
-
-Under appearance-only observation, distinct physical scenes may be observationally indistinguishable while having different absolute margins. Consequently, a universally correct point estimator of \(b\) is impossible without additional assumptions. AORTA-Drive therefore predicts a calibrated set
+令 (w_e=q_\alpha s_e)，
 
 \[
-(a,b)\in\mathcal C_\alpha(X,\Pi)
+\mathcal U(u,w)=\{d:|D(d-u)|_e\le w_e,\forall e\}.
 \]
 
-and induces a joint margin set
+对非空 challenger (A) 与 native (B)：
 
 \[
-\mathcal M_\alpha=
-\left\{a\hat{\boldsymbol\rho}+b\mathbf 1:(a,b)\in\mathcal C_\alpha\right\}.
+L_G(A,B)=\inf_{d\in\mathcal U}
+[\min_A d-\min_B d].
 \]
 
-Joint coverage is essential: independently calibrated per-candidate intervals do not automatically provide simultaneous panel coverage.
-
-## 5. Architecture
-
-### 5.1 Frozen visual encoder
-
-A frozen DINOv3-H+ encoder produces multi-scale image tokens. Freezing isolates the proposed operator-learning contribution from backbone adaptation.
-
-### 5.2 Execution-tube tokenizer
-
-Each candidate trajectory is converted into a swept-footprint tube with position, heading, time, footprint extent, and intent features. Tokens are sampled along the tube rather than only at centerline waypoints.
-
-### 5.3 Geometry-aligned cross-attention
-
-Candidate tokens query visual tokens at projected spatial support. The output is a candidate-conditioned evidence vector \(h_i\). This keeps the learned interface tied to where the candidate would execute.
-
-### 5.4 Permutation-equivariant panel reasoner
-
-A panel transformer processes \(\{h_i\}_{i=1}^K\) with shared parameters and candidate-semantic embeddings. Reordering the panel and its metadata must reorder candidate outputs consistently.
-
-### 5.5 Two-role prediction heads
-
-- **Relative-shape head:** predicts raw scores, then applies weighted centering and normalization to produce \(\hat{\boldsymbol\rho}\).
-- **Anchor-set head:** predicts a joint conditional distribution or nested regions for \((\log a,b)\).
-
-Composition is analytic: \(\hat{\mathbf m}=\hat a\hat{\boldsymbol\rho}+\hat b\mathbf1\). This prevents a hidden direct-margin shortcut in the primary model.
-
-## 6. Learning objective
-
-The relative term uses a weighted shape loss plus optional pairwise ranking:
+精确式为
 
 \[
-\mathcal L_{rel}=\sum_iw_i(\hat\rho_i-\rho_i)^2
-+\lambda_{rank}\mathcal L_{rank}.
+L_G(A,B)
+=\min_{a\in A}\max_{b\in B}
+[u_a-u_b-\operatorname{dist}_w(a,b)].
 \]
 
-The anchor term uses a proper multivariate scoring rule, initially the energy score, on \(z=(\log a,b)\):
+定义
 
 \[
-\mathcal L_{ES}=
-\mathbb E\|\hat z-z\|-
-\frac12\mathbb E\|\hat z-\hat z'\|.
+\psi_B(v)=\min_{b\in B}[u_b+\operatorname{dist}_w(v,b)],
 \]
 
-The total objective is
+则
 
 \[
-\mathcal L=\mathcal L_{rel}+\lambda_{anchor}\mathcal L_{ES}.
+L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
 \]
 
-Calibration is a separate source-only procedure and is never optimized on target labels.
+每个 native 一次 multi-source Dijkstra；Dijkstra/min-plus 是标准工具，不作为创新。若将初始标签统一减去 (c=\min_Bu)，最终 envelope 必须恢复 (+c)。
 
-## 7. Native-preserving arbitration
+## 6. Geometry certificate
 
-Let candidate \(n\) be the native planner output and let \([L_i,U_i]\) be simultaneous bounds induced by \(\mathcal M_\alpha\). The arbiter:
+V0 checker 只在以下条件可被确定性证明时返回 valid：
 
-1. keeps the native trajectory unless \(U_n<0\);
-2. if native violation is certified, selects the highest-priority alternative with \(L_i\ge\delta\);
-3. otherwise keeps the native output and raises an abstention/fallback signal.
+- native/challenger samples 都位于各自连续 nominal footprint 内；
+- challenger samples 是 footprint 的内部 (h_j)-net，(h_j) 是解析或保守上界；
+- 完整 footprints 在认证 ROI 内且集合非空；
+- footprint、pose interpolation、车辆膨胀、grid 和数值协议一致；
+- teacher signed distance 在 ROI 上为 1-Lipschitz。
 
-This asymmetric rule encodes a conservative intervention policy. It does not claim that a candidate with positive modeled margin is safe under unmodeled constraints.
+于是
 
-## 8. Theory obligations
+\[
+\Delta_{j0}^{cont}\ge L_G(A_j,A_0)-h_j.
+\]
 
-The paper must prove or state with exact assumptions:
+无法证明条件的 pair 拒绝。经验测试点最大误差不能替代证明半径。
 
-1. uniqueness of the weighted affine decomposition for non-degenerate panels;
-2. an observational non-identifiability result for absolute margin point prediction;
-3. correctness of joint-set composition when \((a,b)\) and relative-shape error are covered;
-4. monotonic widening of induced margin bounds as component uncertainty grows;
-5. a finite-panel approximation bound under an explicit Lipschitz and coverage assumption.
+## 7. Arbitration
 
-Only Item 1 is currently implemented and unit-tested. Items 2–5 are proof obligations, not established results.
+候选先通过冻结的动力学、意图、进度和偏离预算。只有当
 
-## 9. Minimal algorithmic baselines
+\[
+L_G-h_j\ge\gamma_{task}+\varepsilon_{num}
+\]
 
-- direct per-candidate margin regression;
-- direct margin regression with appearance-consistency loss;
-- factorized point prediction without sets;
-- factorized model with marginal rather than joint calibration;
-- full AORTA-Drive without arbitration;
-- full AORTA-Drive with native-preserving arbitration.
+时才可替换，其中 (\varepsilon_{num}) 上界最终 bound 的乐观数值误差。若无候选合格则保留 native；否则选择 deviation cost 最小者。
 
-## 10. Stop conditions
+## 8. Risk contract
 
-Stop or revise the main idea if controlled experiments show any of the following:
+令 (T(Z)) 为冻结 session 时刻集，
 
-- relative-shape prediction is not more stable than direct margins;
-- joint calibration fails on held-out source sessions before OOD evaluation;
-- arbitration gains vanish under matched candidate coverage;
-- improvement comes from panel expansion alone rather than the operator design;
-- target-domain tuning is required for the reported result.
+\[
+I(Z)=\max_{t\in T(Z)}\mathbf1\{\text{replace at }t\},
+\]
+
+\[
+H(Z)=\mathbf1\{\exists t\in T(Z):I_t=1,
+M_{0,t}^{cont}\ge0,M_{sel,t}^{cont}<0\}.
+\]
+
+若 geometry checker 对 nominal footprints 确定性 sound，则
+
+\[
+P_{D_{cal},Z}(H=1)\le\alpha.
+\]
+
+若未来采用概率 checker，(\beta) 必须上界整个 session 至少一次授权 pair 几何误接受事件，风险上界变为 (\min\{1,\alpha+\beta\})。
+
+## 9. V0 implementation contract
+
+- single native；connected 4-neighbor graph；fixed physical scale；
+- exact multi-source solver；one node-potential decoder；
+- deterministic internal geometry route；
+- frozen backbone/planners；source-only train/development/calibration；
+- target domain 禁止选模型、阈值或配置。
+
+首次运行前必须由 experiment-plan 冻结 ROI、resolution、(|\Omega|)、(|E|)、(T(Z))、checker 构造和数值误差预算。
+
+## 10. Qualification and stop rules
+
+- Gate A：theorem oracle、geometry checker、数值方向；
+- Gate B：合法 source-only predictor 的米制 bound 非平凡性；允许训练小型 probe，不得用 GT 自拟合替代；
+- Gate C：meaningful continuous non-inclusion；
+- Gate D：held-out candidate policy/planner。
+
+若 local graph 在 exact-readout 公平比较下不优于 global gauge/CDF，若证书几乎总为空，或收益只来自 geometry inclusion，则停止方法原创路线。

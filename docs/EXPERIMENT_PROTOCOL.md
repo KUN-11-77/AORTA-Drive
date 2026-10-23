@@ -1,59 +1,35 @@
-# Experiment Protocol
+# Experiment Protocol Boundary
 
-## 1. Gates
+> 本文件只定义进入实验前的顺序与禁止事项。具体样本量、run matrix、预算和命令必须由后续 `experiment-plan` 生成。
 
-Experiments progress in order. A later gate cannot rescue a failed earlier claim.
+## Required order
 
-1. **T0 — Algebra and implementation:** factorization reconstruction, degeneracy, equivariance, interval composition.
-2. **T1 — Synthetic identifiability:** construct indistinguishable observations with different anchors; verify point-estimator failure and set behavior.
-3. **T2 — GT-geometry panel study:** test whether relative shape is more stable under controlled margin perturbations.
-4. **T3 — Source-session calibration:** calibrate on source sessions and test joint coverage on disjoint source sessions.
-5. **T4 — Appearance OOD operator test:** freeze all choices; evaluate relative error, coverage, and sharpness.
-6. **T5 — Closed-loop decision test:** enable native-preserving arbitration and measure intervention utility.
-7. **T6 — Full benchmark comparison:** only after C1–C4 survive.
+1. **Configuration freeze:** ROI、resolution、(|\Omega|)、(|E|)、(T(Z))、edge scale、geometry checker、数值误差预算和 splits。
+2. **Gate A — theorem/geometry audit:** LP oracle、multi-source equivalence、shift/zero-edge/inclusion cases、proof-carrying geometry checks。
+3. **Gate B — source nontriviality:** 使用合法 source-only predictor；允许训练小型 probe，但禁止 GT 自拟合冒充视觉 residual。
+4. **Gate C — meaningful non-inclusion:** 连续 footprint 差异、严格 GT margin improvement、匹配资格和偏离预算。
+5. **Gate D — candidate/planner transfer:** 同一 field event 下测试 held-out candidate policy 与 frozen planner。
+6. 只有 Gate A/B 通过后，才能规划正式 decoder training 与完整 NAVSIM evaluation。
 
-## 2. Data partition policy
+## Baseline fairness
 
-- Split by scene/session before frame sampling.
-- Keep calibration and evaluation sessions disjoint.
-- Freeze target-domain data until all source-domain choices are committed.
-- Record dataset version, scene IDs, filters, and code commit in every run.
+- Layer 1：同一合法 absolute-trained predictor，只改变 uncertainty geometry；
+- Layer 2：各方法使用合法训练目标，匹配 backbone、capacity、source data 与 selection；
+- absolute、global gauge、local graph 与具体 CDF/joint field 均使用 exact 或方向正确的 conservative relative set-min readout；
+- 不得让 absolute baseline 使用任意 gauge 的 edge-only predictor；
+- 不得用 target labels 选模型、阈值、图或 checker。
 
-## 3. Primary metrics
+## Reporting units
 
-- relative-shape weighted error and rank agreement;
-- joint coverage and set sharpness for \((\log a,b)\);
-- simultaneous margin-panel coverage;
-- native false intervention rate;
-- certified-native-failure recall;
-- replacement success conditional on intervention;
-- downstream NAVSIM metrics with uncertainty intervals.
+- calibration/coverage 主单位：独立 session；
+- frame、corruption copy 和同 route 片段不得冒充独立 session；
+- 主失败事件：同一 (T(Z)) 上的 nominal continuous road failure (H)；
+- 同时报告 coverage、sharpness、intervention、meaningful non-inclusion、geometry rejection、数值误差与运行成本。
 
-## 4. Statistics
+## Prohibited claims before evidence
 
-- The unit of resampling is the independent scene/session, not the frame.
-- Report effect sizes and scene-clustered intervals, not only point estimates.
-- Aggregate across predeclared seeds; retain every seed.
-- A calibration result is incomplete without sharpness.
-- Multiple primary comparisons require a predeclared correction or hierarchical testing order.
-
-## 5. Run registration
-
-Before execution, add one row to `experiments/registry.csv` and commit:
-
-- immutable experiment ID;
-- exact claim ID;
-- hypothesis and primary endpoint;
-- data split and intervention;
-- config path, seed set, compute budget;
-- success and stop criteria.
-
-After execution, append status and artifact location without rewriting the original hypothesis.
-
-## 6. Integrity rules
-
-- Never report a dry run as an experiment.
-- Never infer unavailable ground truth from the model being evaluated.
-- Never normalize scores with target test statistics.
-- Failed and interrupted runs remain in the registry.
-- Figures and tables must be reproducible from stored machine-readable results.
+- 任意 OOD coverage；
+- 已验证实时；
+- 完整车辆安全；
+- 优于 CDF/DriveReferee/scalar referee；
+- 顶会原创或“首次”。

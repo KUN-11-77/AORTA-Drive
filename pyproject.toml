@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "aorta-drive"
 version = "0.1.0"
-description = "Affine-operator robust trajectory arbitration for appearance-robust driving"
+description = "Calibrated field envelopes for appearance-robust trajectory arbitration"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

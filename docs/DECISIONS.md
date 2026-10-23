@@ -1,24 +1,44 @@
 # Architecture Decision Log
 
-Record durable decisions here. Temporary observations belong in experiment result cards.
-
 ## ADR-0001 — Use a `src/` Python package layout
 
 - **Status:** accepted
-- **Reason:** prevents accidental imports from the repository root and matches packaging practice.
+- **Reason:** 防止 repository-root accidental imports，并支持可测试的研究包。
 
-## ADR-0002 — Separate task shape from scale and absolute anchor
+## ADR-0002 — Retire affine panel factorization as the main method
 
-- **Status:** proposed, under empirical qualification
-- **Reason:** appearance changes may preserve relative decision structure more reliably than absolute safety margin.
-- **Reversal condition:** C1 or C3 is falsified under controlled comparisons.
+- **Status:** superseded
+- **Reason:** 该分解是代数恒等式；固定候选 panel、anchor set 与 scalar contrast 未建立不可替代的方法贡献。
+- **Preservation:** 现有 reference code 保留为历史 baseline，不能代表当前 v8.3 方法已实现。
 
-## ADR-0003 — Preserve the native planner by default
+## ADR-0003 — Use a candidate-free graph-quotient field
 
-- **Status:** accepted as algorithm policy, empirical utility unverified
-- **Reason:** the learned module should intervene only when native violation is certified and a replacement is certified within the modeled constraints.
+- **Status:** accepted for V0 qualification
+- **Reason:** 共享物理 field 允许一次 source-session event 同时覆盖任意域内 swept-set pairs，并显式消除共同 offset。
+- **Reversal:** Gate B 证书空泛，或 exact global-gauge/CDF baseline 等价。
 
-## ADR-0004 — No license until the owner selects one
+## ADR-0004 — Fixed physical edge scale in V0
+
+- **Status:** accepted
+- **Reason:** learned scale 不是理论闭合所必需，且会混入额外的效率与校准问题。
+
+## ADR-0005 — Exact multi-source min-plus readout
+
+- **Status:** accepted
+- **Reason:** 它是 graph difference polytope 的标准精确读出，复杂度明确且保持证书方向。
+- **Non-claim:** Dijkstra/min-plus 不是项目原创贡献。
+
+## ADR-0006 — Native-preserving arbitration
+
+- **Status:** accepted
+- **Reason:** 只在 sound geometry gate 与 relative non-degradation bound 同时成立时干预。
+
+## ADR-0007 — Separate V0 correctness from paper novelty
+
+- **Status:** accepted
+- **Reason:** 条件理论闭合不证明系统有效、实时、OOD-calibrated 或顶会原创。
+
+## ADR-0008 — No license until the owner selects one
 
 - **Status:** pending user decision
-- **Reason:** a public repository without a license is visible but not generally reusable; choosing a license changes legal permissions and must not be inferred.
+- **Reason:** 许可改变法律权限，不应推断。

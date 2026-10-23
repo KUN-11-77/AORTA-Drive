@@ -2,53 +2,70 @@
 
 [![CI](https://github.com/KUN-11-77/AORTA-Drive/actions/workflows/ci.yml/badge.svg)](https://github.com/KUN-11-77/AORTA-Drive/actions/workflows/ci.yml)
 
-**AORTA — Affine-Operator Robust Trajectory Arbitration**
+**AORTA — Appearance-conditioned Operator for Robust Trajectory Arbitration**
 
-Research code for learning task-sufficient, set-valued feasibility operators for appearance-robust end-to-end driving.
+面向 NAVSIM v1/v2 的 source-only 外观鲁棒驾驶研究：学习 candidate-free 道路差分场，为冻结 planner 的 challenger 相对 native 提供 nominal road-margin non-degradation 证书。
 
-> **Research status:** theory and infrastructure stage. No experimental performance claim has been established yet.
+> **研究状态：** AORTA-v8.3 V0 条件理论规范已冻结；尚无实验性能、任意 OOD coverage、实时性或顶会原创性结论。
 
-## Core idea
+## 核心方法
 
-For a candidate trajectory panel with true feasibility margins
-
-\[
-\mathbf m = (m_1,\ldots,m_K)^\top,
-\]
-
-AORTA factorizes the task operator as
+网络在固定物理图 (G=(\Omega,E)) 上输出节点势 (u_\theta(X,q))，只学习 GT road-distance field 的局部差分：
 
 \[
-\mathbf m = a\boldsymbol\rho + b\mathbf 1,
-\qquad a>0,
+\mathcal L_{edge}
+=|E|^{-1}\sum_e
+\operatorname{Huber}
+\left(\frac{(Du_\theta-Dd_S)_e}{s_e}\right).
 \]
 
-where \(\boldsymbol\rho\) describes relative feasibility structure, while \((a,b)\) determine physical scale and the absolute safety anchor. The deployed system predicts a joint operator set and changes a frozen planner only when every compatible operator agrees that the native trajectory is infeasible and an alternative is feasible.
+source-session calibration 产生 edge budgets (w_e=q_\alpha s_e)。对 native swept set (B)，一次标准 multi-source min-plus transform
 
-The intended paper framing is:
+\[
+\psi_B(v)=\min_{b\in B}[u_b+\operatorname{dist}_w(v,b)]
+\]
 
-> **Learning What Is Safer Before Knowing What Is Safe: Affine Task Operators for Appearance-Robust Driving**
+即可为任意 challenger set (A) 给出精确最坏相对 margin：
+
+\[
+L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
+\]
+
+系统只在 proof-carrying nominal geometry gate 成立且 (L_G) 扣除连续离散化预算后非负时替换 native。
+
+## 理论边界
+
+当前已建立条件链：
+
+```text
+source-session edge event
+  -> all-pair discrete robust bounds
+  -> sound continuous correction
+  -> adaptive nominal-road non-degradation
+```
+
+Graph difference constraints、split conformal、Dijkstra 与 min-plus envelope 是标准工具，不单独构成创新。方法论文地位仍取决于 Gate A/B、两层公平 baseline、meaningful non-inclusion 结果和独立 novelty-check。
 
 ## Repository map
 
 ```text
 AORTA-Drive/
-├── configs/                  # Versioned experiment and model contracts
-├── docs/                     # Theory, claims, protocols, roadmap, decisions
-├── experiments/              # Lightweight registry and human-readable summaries
-├── paper/                    # Manuscript and figure specifications
-├── references/               # Literature index; no redistributed copyrighted PDFs
-├── scripts/                  # Reproducibility and repository checks
-├── src/aorta_drive/          # Installable research package
-├── tests/                    # Unit and contract tests
-└── .github/                  # CI, issue forms, and pull-request template
+├── configs/                  # 冻结前的配置合同
+├── docs/                     # 问题、方法、claims、协议与决策
+├── experiments/              # 实验注册表与可读摘要
+├── paper/                    # 稿件和图表规范
+├── references/               # 文献索引
+├── refine-logs/              # 完整理论细化与独立审稿轨迹
+├── scripts/                  # 仓库与可复现性检查
+├── src/aorta_drive/          # 研究包；当前仍含旧 affine baseline scaffold
+└── tests/                    # 单元与合同测试
 ```
 
-Large datasets, checkpoints, caches, and run artifacts do not belong in Git. They must live under `NAVSIM_EXP_ROOT` or another explicitly configured artifact root.
+数据、checkpoints、cache 和运行产物必须位于 `NAVSIM_EXP_ROOT`，不得提交 Git。
 
 ## Quick start
 
-Create a dedicated environment; do not modify the shared `dinov3` environment in place.
+不要原地修改共享 `dinov3` 环境。
 
 ```powershell
 conda env create -f environment.yml
@@ -58,28 +75,19 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-The package currently contains only reference implementations of the mathematical factorization and native-preserving arbitration. Training and evaluation entry points will be added only after their protocols are frozen.
+当前 source code 只包含早期 affine baseline 与 native-preserving scaffold；v8.3 尚未实现。下一步必须先用专门实验规划冻结 ROI、resolution、graph size、geometry checker 与数值误差预算。
 
-## Research discipline
+## 核心文档
 
-- All claims start as hypotheses in [`docs/CLAIM_EVIDENCE_MATRIX.md`](docs/CLAIM_EVIDENCE_MATRIX.md).
-- Every meaningful run receives a registered ID in [`experiments/registry.csv`](experiments/registry.csv).
-- Target-domain data cannot select models, thresholds, augmentations, or checkpoints.
-- Results must be traceable to a config, code revision, data manifest, seed, and artifact path.
-- Failed experiments are retained and interpreted; they are not silently overwritten.
-- Source-domain statistical guarantees are never presented as arbitrary-OOD guarantees.
-
-## Current documents
-
-- [Research brief](docs/RESEARCH_BRIEF.md)
-- [Method specification](docs/METHOD_SPEC.md)
-- [Claim–evidence matrix](docs/CLAIM_EVIDENCE_MATRIX.md)
-- [Experiment protocol](docs/EXPERIMENT_PROTOCOL.md)
-- [Reproducibility contract](docs/REPRODUCIBILITY.md)
-- [Roadmap](docs/ROADMAP.md)
-- [Release checklist](docs/RELEASE_CHECKLIST.md)
+- [研究问题](docs/RESEARCH_BRIEF.md)
+- [v8.3 方法规范](docs/METHOD_SPEC.md)
+- [Claim–Evidence Matrix](docs/CLAIM_EVIDENCE_MATRIX.md)
+- [实验协议边界](docs/EXPERIMENT_PROTOCOL.md)
+- [架构决策](docs/DECISIONS.md)
+- [完整最终提案](refine-logs/2026-10-23_aorta_v8/FINAL_PROPOSAL.md)
+- [五轮审查总结](refine-logs/2026-10-23_aorta_v8/REVIEW_SUMMARY.md)
 
 ## Citation and license
 
-Citation metadata and an open-source license will be added after the author list and release policy are explicitly approved. Until then, this repository should be treated as pre-release research material; absence of a license does not grant reuse rights.
+作者名单、引用信息与开源许可尚未获明确批准。当前仓库是 pre-release research material；没有许可证不代表授权复用。
 

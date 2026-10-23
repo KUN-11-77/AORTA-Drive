@@ -1,40 +1,42 @@
-# Roadmap
+# AORTA-Drive Roadmap
 
-## Milestone 0 — Repository qualification
+## Completed
 
-- [x] Package skeleton and minimal operator implementation
-- [x] Unit tests for affine factorization and arbitration
-- [x] Research brief, method specification, and claim matrix
-- [x] Experiment registry and CI definition
-- [ ] Select license and complete citation metadata
-- [ ] Establish initial tagged baseline after remote publication
+- [x] 建立顶会风格研究仓库与 CI
+- [x] 完成 AORTA-v8 五轮独立理论审查
+- [x] 冻结 v8.3 V0 条件理论规范
+- [x] 明确标准工具、风险量词、geometry contract 与公平 baseline
+- [x] 将 affine panel 路线降级为历史 baseline
 
-## Milestone 1 — Theory qualification
+## Next — experiment planning only
 
-- [ ] Formalize non-identifiability assumptions and proof
-- [ ] Define joint-set composition with relative-shape uncertainty
-- [ ] Prove finite-panel approximation statement
-- [ ] Construct executable counterexamples for each proposition
+- [ ] 使用 `experiment-plan` 冻结首次资格配置
+- [ ] 确定 NAVSIM ROI、resolution、graph size 与 (T(Z))
+- [ ] 设计 proof-carrying internal geometry checker
+- [ ] 定义 (\varepsilon_{num}) 的保守测量/证明方案
+- [ ] 指定 Gate B 的合法 source-only predictor 或最小 probe
+- [ ] 固定具体 CDF/joint-field 最近邻
 
-## Milestone 2 — T0/T1 qualification
+## Gate A implementation
 
-- [ ] Property-based tests for factorization
-- [ ] Synthetic ambiguity benchmark
-- [ ] Calibration and sharpness implementation
-- [ ] Pre-register T2 before any NAVSIM-scale run
+- [ ] graph uncertainty LP oracle
+- [ ] exact multi-source min-plus implementation
+- [ ] common-shift、nonzero-label、zero-edge、chain、cycle tests
+- [ ] equality/inclusion set cases
+- [ ] geometry certificate property tests
 
-## Milestone 3 — Method implementation
+## Gate B/C qualification
 
-- [ ] Candidate-panel generator
-- [ ] Execution-tube tokenizer
-- [ ] Geometry-aligned cross-attention
-- [ ] Equivariant panel reasoner
-- [ ] Relative and joint-anchor heads
-- [ ] Integrated native-preserving arbiter
+- [ ] held-out source 米制 bound sharpness
+- [ ] exact global-gauge 与 local graph uncertainty-only control
+- [ ] meaningful continuous non-inclusion definition and audit
+- [ ] stop/go decision before formal training
 
-## Milestone 4 — Evidence and paper
+## Only after Gate A/B pass
 
-- [ ] Complete gates T2–T6 in order
-- [ ] Audit experimental integrity
-- [ ] Freeze paper claims against raw evidence
-- [ ] Release reproducibility assets and model cards
+- [ ] minimal node-potential decoder
+- [ ] session calibration pipeline
+- [ ] end-to-end legal baseline layer
+- [ ] frozen planner/candidate transfer
+- [ ] full NAVSIM evaluation plan
+- [ ] experiment-integrity audit before claims

@@ -1,19 +1,22 @@
 # Claim–Evidence Matrix
 
-No row may be upgraded from `proposed` without a registered experiment and immutable result reference.
+任何数字或比较在没有注册实验与不可变结果引用前都保持 `proposed`。
 
 | ID | Intended claim | Required evidence | Falsifier | Status |
 |---|---|---|---|---|
-| C1 | Relative shape is more appearance-stable than direct absolute margins. | Paired same-scene appearance interventions; matched model capacity; confidence intervals across scenes and seeds. | No meaningful stability advantage or worse task error. | proposed |
-| C2 | Joint set prediction is calibrated on unseen source sessions. | Session-held-out empirical joint coverage at predeclared levels; sharpness reported beside coverage. | Undercoverage outside tolerance or vacuous sets. | proposed |
-| C3 | The affine split improves OOD decision quality beyond extra parameters. | Parameter-matched direct baseline and factorized ablations on frozen target domains. | Gain disappears under capacity control. | proposed |
-| C4 | Native-preserving arbitration reduces modeled violations without excessive intervention. | Native failure recall, false intervention rate, replacement success, downstream NAVSIM metrics. | Safety gain requires indiscriminate replacement. | proposed |
-| C5 | Candidate-conditioned tube features are necessary. | Centerline, global pooling, and swept-tube ablation with identical heads. | Equivalent result from simpler global features. | proposed |
-| C6 | Improvements are not caused only by better candidate coverage. | Fixed-panel comparison and oracle-panel coverage analysis. | Method advantage disappears at matched coverage. | proposed |
+| C1 | source-session edge event 可同时覆盖声明时刻的全图差分 residual | 独立 session calibration/validation；simultaneous coverage 与 sharpness | undercoverage 或阈值空泛 | proposed |
+| C2 | exact min-plus 实现与 robust set-min infimum 一致 | 小图枚举、LP/dual oracle、shift/zero-edge/inclusion cases | 任一方向错误或数值乐观 | proposed |
+| C3 | proof-carrying geometry gate 给出有效 continuous correction | 解析上界、property tests、协议 hash 与误差预算 | 存在通过 gate 的反例 | proposed |
+| C4 | local graph 在相同合法 predictor/coverage 下比 absolute/global gauge 更紧 | Layer-1 uncertainty-only control，exact readout | 优势消失或仅来自 baseline handicap | proposed |
+| C5 | 完整 edge-trained system 优于合法 absolute/global/CDF 最近邻 | Layer-2 matched-capacity/source comparison | 等价或更差 | proposed |
+| C6 | 仲裁产生 meaningful non-inclusion 干预且不新增 nominal road failure | session H、intervention、连续几何差异、GT strict improvement | 干预为空、只靠 inclusion 或新增失败 | proposed |
+| C7 | candidate-free event 迁移到未见 candidate policy/frozen planner | 同一校准事件下 held-out policy/planner test | coverage/utility 随候选机制崩溃 | proposed |
+| C8 | 运行代价可接受 | 冻结图规模上的 field 与 multi-source profiler | 不满足预注册资源门 | proposed |
 
 ## Claim language policy
 
-- Use **shows** only for registered empirical results.
-- Use **guarantees** only with an explicit theorem, assumptions, and proof.
-- Use **safe** only with the modeled constraint class attached.
-- Report null and negative results; do not silently redefine the primary endpoint.
+- `guarantees` 只用于完整陈述假设的定理；
+- `shows` 只用于已注册、可追溯结果；
+- `safe` 必须附带 nominal road constraint 范围；
+- source coverage 不写成 arbitrary-OOD coverage；
+- V0 规范冻结不写成系统已验证或论文原创性成立。

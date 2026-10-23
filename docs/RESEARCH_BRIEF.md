@@ -1,59 +1,68 @@
 # AORTA-Drive Research Brief
 
-> Status: theory-first research specification; no empirical performance claim is authorized yet.
+> 状态：AORTA-v8.3 V0 条件理论规范已冻结；尚无实验性能或论文原创性结论。
 
-## 1. Problem anchor
+## 1. 问题锚点
 
-AORTA-Drive studies **source-only appearance robustness for end-to-end driving**. For the same physical scene and driving intent, an appearance intervention may change pixels while leaving the feasible and safe decision structure unchanged. A robust system should preserve task-relevant decision properties, not necessarily reproduce an identical latent vector or a single reference trajectory.
+AORTA-Drive 研究 NAVSIM v1/v2 上的 source-only appearance robustness。对同一物理场景与驾驶意图，外观变化可能改变冻结端到端 planner 的输出，却不应改变道路可行结构。
 
-The central question is:
+核心问题是：
 
-> Can a model learn the scene-conditioned ordering and calibrated safety anchor of a canonical trajectory panel, then use uncertainty-aware arbitration to preserve a native planner unless a replacement is demonstrably safer?
+> 能否学习一个与候选无关的道路差分场，在绝对安全零点不可靠时，为任意冻结 planner 的 challenger 相对 native 提供 nominal road-margin non-degradation 证书，并只在证书成立时干预？
 
-## 2. Research hypothesis
+## 2. 核心假设
 
-For a canonical candidate panel, the signed safety-margin vector admits a useful affine decomposition into:
+完整道路 signed-distance field 的共同 offset 可能在视觉退化下不可辨识，但局部 clearance differences 可能仍可学习。若 source session 上的 graph-gradient residual 能被同时校准，则一个 field coverage event 可以覆盖任务图内所有自适应 swept-set pairs。
 
-1. a **relative shape** describing which candidates are safer than others;
-2. a **positive scale** measuring panel separation;
-3. an **absolute offset** anchoring the zero-safety boundary.
+该假设可能失败；遮挡、全局 calibration maximum、长路径累积和图错设都可能令证书失去非平凡性。
 
-Appearance robustness is expected to be easier to learn for relative shape than for an absolute safety value. Absolute safety must therefore remain set-valued and calibrated rather than collapsed to an unjustified point estimate.
+## 3. 冻结范围
 
-## 3. Frozen scope
-
-- Benchmark family: NAVSIM v1/v2.
-- Backbone baseline: frozen DINOv3-H+ unless a documented decision supersedes it.
-- Robustness setting: source-only training; target-domain labels, tuning, and threshold selection are forbidden.
-- Perturbation focus: appearance changes that should preserve scene geometry and task intent.
-- Decision interface: canonical candidate panel plus native-planner trajectory.
-- Primary goal: explain and reduce task-level failure, not maximize feature invariance.
+- NAVSIM v1/v2；
+- frozen DINOv3-H+ 与被审计 planner；
+- source-only train/development/calibration；
+- 一个 candidate-free node-potential decoder；
+- fixed physical edge scale、single native、exact multi-source solver；
+- 预注册 ego-centric ROI、grid、geometry checker、资格层与 session time set；
+- 默认保留 native，仅认证 relative nominal-road non-degradation。
 
 ## 4. Non-goals
 
-- Claiming universal safety from a finite candidate panel.
-- Treating CKA/RSA similarity as a sufficient robustness certificate.
-- Reconstructing a full HD map when a task operator is sufficient.
-- Replacing the native trajectory by default.
-- Using target-domain data for calibration while calling the method source-only.
-- Adding modules or losses without a claim they uniquely test.
+- 不恢复完整 HD map 或绝对道路安全零点；
+- 不联合训练或修改原 planner；
+- 不把道路 margin 等同于碰撞、规则、舒适性、真实执行或完整闭环安全；
+- 不把 source conformal coverage 写成任意 appearance OOD 保证；
+- 不把 DINO、SDF、split conformal、difference constraints、Dijkstra 或 min-plus transform 单独宣称为创新；
+- 不在理论/idea 阶段启动 pilot 或长跑实验。
 
-## 5. Evidence already motivating the project
+## 5. V0 条件理论链
 
-Previous project work found that appearance shifts can cause large planning changes even when global representations remain similar, and that geometry supplied at the decision interface can repair some trajectories. These observations motivate the task-operator hypothesis, but they do **not** establish the proposed factorization, calibration, or algorithmic advantage.
+\[
+\text{source-session edge event}
+\Rightarrow
+\text{all-pair discrete robust bounds}
+\Rightarrow
+\text{sound continuous correction}
+\Rightarrow
+\text{adaptive nominal-road non-degradation}.
+\]
 
-## 6. Unknowns that must remain explicit
+既有观察只支持继续研究任务空间接口，不证明 v8.3 的局部差分假设、校准锐度、系统收益或创新性。
 
-- Whether the affine factorization is statistically more stable under appearance shift.
-- Whether relative shape transfers better than direct margin regression.
-- Whether set-valued anchoring is calibrated on unseen source sessions and OOD appearances.
-- Whether the native-preserving arbiter improves safety without excessive intervention.
-- Whether gains remain after controlling candidate-panel coverage and trajectory diversity.
+## 6. 验收门
 
-## 7. Acceptance criterion
+1. **Gate A:** 数学 oracle、multi-source 实现、geometry checker 和数值误差方向全部通过；
+2. **Gate B:** 合法 source-only predictor 产生非平凡米制证书；
+3. **Gate C:** 收益存在于具有连续几何意义的 non-inclusion candidates；
+4. **Gate D:** 在同一 field event 下迁移到未见 candidate policy/frozen planner；
+5. 完成 uncertainty-only 与 end-to-end 两层公平 baseline；
+6. 完成独立 novelty-check。
 
-The method advances only if pre-registered tests support all three links:
+Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降级论文定位，不追加模块挽救主张。
 
-`factorization advantage -> calibrated joint operator -> beneficial arbitration`.
+## 7. 当前裁定
 
-Failure of any link triggers diagnosis or scope reduction rather than narrative substitution.
+- V0 条件理论规范：可冻结；
+- 实际系统：未验证；
+- 顶会方法原创性：未授权；
+- 下一阶段：使用 `experiment-plan` 冻结配置并规划 Gate A/B，不直接开始长跑。
