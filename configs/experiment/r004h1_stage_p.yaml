@@ -1,0 +1,90 @@
+experiment_id: R004H1-fresh-fit-potential-v1
+date: 2026-10-24
+scope: train_and_select_one_fresh_fit_only_stage_p_potential
+
+predecessor:
+  experiment: R004H0-scale-interface-structural-v1
+  raw_result_sha256: d3d009ac8e7be66b43593dc9698292cca852f78758bc50363066cb4511e8ef92
+  decision: PASS
+
+inputs:
+  recording_group_manifest_sha256: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  allowed_payload_roles: [fit, selection]
+  prohibited_payload_roles: [proxy_cal, development, calibration, test, target_domain]
+  fit_groups: 42
+  selection_groups: 8
+  proxy_cal_groups_unread: 16
+  anchors_per_group: 16
+  fit_anchors_per_epoch: 672
+  selection_anchors_per_epoch: 128
+  independent_unit: recording_group
+
+model:
+  class: QuotientFieldPredictor
+  parameter_count: 4000225
+  initialization: fresh_random_from_seed
+  initialization_seed: 20261023
+  external_checkpoint_load: prohibited
+  input_shape_per_anchor: [4096, 12, 1280]
+  output_shape_per_anchor: [64, 64]
+  candidate_conditioned: false
+  output_gauge: subtract_spatial_mean
+
+objective:
+  edge_order: all_rightward_then_all_downward
+  edge_count: 8064
+  edge_scale_m: 1.0
+  huber_delta_m: 0.25
+  tail_temperature_m: 0.10
+  tail_weight: 0.25
+  interpretation: unchanged_stage_p_optimization_surrogate_not_a_statistical_bound
+
+optimization:
+  seed: 20261023
+  maximum_epochs: 20
+  batch_size: 1
+  gradient_accumulation: 1
+  anchor_schedule: seeded_group_interleave_then_within_group_permutation
+  optimizer: adamw
+  base_learning_rate: 0.0003
+  betas: [0.9, 0.95]
+  weight_decay: 0.0001
+  gradient_clip_global_norm: 1.0
+  warmup_epochs: 1
+  learning_rate_schedule: linear_warmup_then_cosine
+  augmentation: none
+  hyperparameter_search: prohibited
+  early_stopping_on_metric: prohibited
+
+selection_checkpoint:
+  evaluate_after_every_epoch: true
+  primary: macro_mean_of_8_group_mean_edge_mae_m
+  secondary: mean_of_largest_2_exact_group_maxima_m
+  tertiary: earliest_epoch
+  zero_field_gate: selected_primary_strictly_below_same_selection_zero_field_primary
+  candidate_certificate_planner_proxy_or_development_metric_used: false
+
+persistence:
+  progress_json_written_after_each_completed_epoch: true
+  latest_checkpoint_contains_model_optimizer_and_completed_epoch: true
+  best_checkpoint_contains_selected_model_and_selection_key: true
+  resume: prohibited_interrupted_run_restarts_from_seed
+
+resources:
+  device: cuda:0
+  maximum_peak_gpu_gib: 4.0
+  maximum_wall_minutes: 45
+  maximum_output_gib: 2.0
+
+decision:
+  completion_requires: [20_epochs, legal_complete_roles, finite_updates, exact_checkpoint_rule]
+  pass_to_r004h2_requires: selected_primary_strictly_below_zero_field_primary
+  otherwise: stop_before_r004h2
+  r004h2_registration_authorized_by_pass: true
+  scale_learning_established: false
+  coverage_established: false
+  gate_b_passed: false
+  official_calibration_access_authorized: false

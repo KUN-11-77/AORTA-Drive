@@ -53,8 +53,10 @@ are historically exposed.
   R004E-C2, with anchor schedule regenerated only from fit group IDs.
 - **Checkpoint key:** macro mean of per-group mean edge MAE; secondary mean of the two worst
   exact group maxima; tertiary earliest epoch. This key must be frozen before execution.
-- **Pass:** all epochs/inputs legal and finite; select exactly one checkpoint. H1 does not
-  inspect proxy or development and has no performance pass threshold beyond legality.
+- **Completion:** all epochs/inputs legal and finite and exactly one checkpoint is selected.
+- **Pass to H2:** the selected checkpoint's macro mean of eight selection-group mean edge
+  MAEs is strictly below the zero-field value on the same selection labels. Otherwise H1
+  records `STOP` and no scale fitting is permitted. H1 never inspects proxy or development.
 - **Cost estimate:** 42/66 of the previous C2 run, measured wall-time used to update the
   remaining budget after epoch 1.
 
