@@ -1,0 +1,80 @@
+experiment_id: R004C-candidate-provider-v1
+date: 2026-10-24
+scope: deterministic_source_only_candidate_provider
+
+data_access:
+  permitted_splits:
+    - train
+    - development
+  prohibited_splits:
+    - calibration
+    - test
+    - target_domain
+  permitted_runtime_input:
+    - current_ego_velocity
+  prohibited_inputs:
+    - map
+    - road_or_trajectory_ground_truth
+    - paired_clean_target
+    - predictor_field
+    - certificate
+    - planner_score
+    - target_domain_data
+
+native:
+  included_separately_as_tau_0: true
+  provider_may_replace_or_drop_native: false
+  provider_conditioned_on_native_trajectory: false
+
+provider:
+  type: deterministic_constant_acceleration_curvature_v1
+  input_speed: euclidean_norm_of_current_ego_velocity_xy
+  horizon_s: 4.0
+  interval_s: 0.5
+  future_pose_count: 8
+  integration: exact_constant_curvature_arc_over_exact_constant_acceleration_distance
+  reverse_motion: prohibited
+  randomness: false
+  seed: none
+  duplicate_rule: first_control_wins_after_pose_rounding_to_12_decimals
+  maximum_raw_challenger_count: 35
+
+control_order:
+  accelerations_mps2: [0.0, -1.0, -2.0, -3.0, 1.0]
+  curvatures_per_m: [0.0, -0.01, 0.01, -0.02, 0.02, -0.04, 0.04]
+  enumeration: acceleration_outer_then_curvature_inner
+
+dynamic_envelope:
+  initial_and_terminal_speed_range_mps: [0.0, 20.0]
+  maximum_absolute_longitudinal_acceleration_mps2: 3.0
+  maximum_lateral_acceleration_mps2: 4.0
+  lateral_acceleration_test: max_initial_terminal_speed_squared_times_absolute_curvature
+  fail_closed_on_nonfinite_input: true
+
+downstream_eligibility:
+  require_frozen_asymmetric_geometry_checker: true
+  require_complete_footprint_inside_certificate_roi: true
+  reference_point_roi_check_is_geometry_certificate: false
+  require_meaningful_non_inclusion_for_gate_c_usefulness: true
+  require_same_candidates_for_all_compared_methods: true
+
+ordering_and_selection:
+  provider_order_is_not_a_quality_score: true
+  budget_truncation: prohibited
+  certified_selection_rule: minimum_frozen_deviation_cost_then_provider_order
+  native_fallback_if_no_authorized_challenger: true
+
+acceptance:
+  deterministic_replay: byte_exact_pose_arrays
+  minimum_candidates_per_source_anchor: 1
+  minimum_reference_point_roi_candidates_per_source_anchor: 1
+  all_pose_arrays_finite_and_shape: [8, 3]
+  all_controls_inside_dynamic_envelope: true
+
+claims:
+  closes_candidate_generation_protocol_only: true
+  full_vehicle_geometry_qualified_by_this_audit: false
+  candidate_better_than_native_established: false
+  meaningful_non_inclusion_established: false
+  planner_transfer_established: false
+  gate_b_passed: false
