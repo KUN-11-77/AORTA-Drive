@@ -16,10 +16,11 @@ NAVSIM swept-footprint geometry or provide driving-performance evidence.
 |---|---|---|---|
 | R001 | Does the min-plus implementation agree with an independent LP? | 280 randomized chain/cycle/grid comparisons plus shift, zero-edge, nonzero-source, equality and inclusion cases | PASS; 5 tests |
 | R002 | Does the continuous correction remain a lower bound? | exact Cartesian internal-net radius, invalid-grid rejection, and 500 adversarial 1-Lipschitz linear teachers with bounded map error | PASS; 4 tests; 0 observed false acceptances |
+| R002B | Can legacy corner/discrete-pose/raster shortcuts certify the theorem? | constructive footprint-interior, between-pose sweep, and half-pixel EDT counterexamples | FALSIFIED as certificate route; 3 counterexamples reproduced |
 | R003 | Are calibration, risk, and numerical directions correct? | finite-threshold sample sizes, session maxima, relative event tests, and 500 exact-fraction numerical comparisons | PASS; 9 tests; 0 optimistic bounds |
 
 Machine-readable records: [`R001.json`](R001.json), [`R002.json`](R002.json),
-and [`R003.json`](R003.json).
+[`R002B.json`](R002B.json), and [`R003.json`](R003.json).
 
 ## Theory optimization accepted
 

@@ -1,0 +1,20 @@
+{
+  "run_id": "R002B",
+  "status": "completed",
+  "timestamp_utc": "2026-10-23T13:31:36.618386+00:00",
+  "git_revision": "b8c63942e67ba115c5867aef8cc1acbceea865a5",
+  "implementation_tree_dirty": false,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "command": [
+    "D:\\Anaconda3\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests\\gate_a\\test_r002b_legacy_geometry_counterexamples.py"
+  ],
+  "duration_seconds": 2.498911,
+  "return_code": 0,
+  "stdout": "...                                                                      [100%]\n3 passed in 1.11s\n",
+  "stderr": ""
+}
