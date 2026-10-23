@@ -50,6 +50,14 @@ class LoadedAnchor:
     total_error_m: npt.NDArray[np.float64]
 
 
+@dataclass(frozen=True)
+class TeacherArrays:
+    """Validated teacher field and outward numerical ledger for one anchor."""
+
+    label_m: npt.NDArray[np.float64]
+    total_error_m: npt.NDArray[np.float64]
+
+
 def _inside(root: Path, relative: str) -> Path:
     candidate = (root / relative).resolve()
     if not candidate.is_relative_to(root.resolve()):
@@ -178,19 +186,9 @@ def _load_npy(path: Path) -> npt.NDArray[np.generic]:
     return cast(npt.NDArray[np.generic], array)
 
 
-def load_training_anchor(record: JoinedAnchor) -> LoadedAnchor:
-    """Reopen and validate every artifact required for one training anchor."""
+def load_teacher_arrays(record: JoinedAnchor) -> TeacherArrays:
+    """Load the exact float64 teacher field and validate its error ledger."""
 
-    dense = np.stack(
-        [
-            bfloat16_bits_to_float32(load_dense_bfloat16_bits(path))
-            for path in record.dense_feature_paths
-        ],
-        axis=0,
-    )
-    patch_xy, mask = validate_projection_arrays(
-        _load_npy(record.projection_xy_path), _load_npy(record.projection_mask_path)
-    )
     with np.load(record.label_path, allow_pickle=False) as archive:
         required = {
             "label_m",
@@ -212,13 +210,33 @@ def load_training_anchor(record: JoinedAnchor) -> LoadedAnchor:
         or np.any(total < arrays["distance_error_m"])
     ):
         raise ValueError("teacher error ledger is not outward-safe")
+    return TeacherArrays(
+        label_m=np.ascontiguousarray(arrays["label_m"]),
+        total_error_m=np.ascontiguousarray(total),
+    )
+
+
+def load_training_anchor(record: JoinedAnchor) -> LoadedAnchor:
+    """Reopen and validate every artifact required for one training anchor."""
+
+    dense = np.stack(
+        [
+            bfloat16_bits_to_float32(load_dense_bfloat16_bits(path))
+            for path in record.dense_feature_paths
+        ],
+        axis=0,
+    )
+    patch_xy, mask = validate_projection_arrays(
+        _load_npy(record.projection_xy_path), _load_npy(record.projection_mask_path)
+    )
+    teacher = load_teacher_arrays(record)
     return LoadedAnchor(
         record=record,
         dense_features=np.ascontiguousarray(dense, dtype=np.float32),
         patch_xy=patch_xy,
         mask=mask,
-        label_m=np.ascontiguousarray(arrays["label_m"]),
-        total_error_m=np.ascontiguousarray(total),
+        label_m=teacher.label_m,
+        total_error_m=teacher.total_error_m,
     )
 
 
@@ -336,3 +354,30 @@ def learning_rate_at_update(
         return base_learning_rate * (update_index + 1) / warmup_updates
     progress = (update_index - warmup_updates) / (total_updates - warmup_updates)
     return base_learning_rate * 0.5 * (1.0 + math.cos(math.pi * progress))
+
+
+def summarize_group_maxima(group_maxima: Sequence[float]) -> tuple[float, float]:
+    """Return the frozen worst-five mean and all-group mean."""
+
+    if len(group_maxima) != 24:
+        raise ValueError("exactly 24 development recording-group maxima are required")
+    if any(not math.isfinite(value) or value < 0.0 for value in group_maxima):
+        raise ValueError("group maxima must be finite and nonnegative")
+    ordered = sorted(group_maxima, reverse=True)
+    return sum(ordered[:5]) / 5, sum(ordered) / 24
+
+
+def qualifies_visual_necessity(
+    visual: tuple[float, float],
+    zero_field: tuple[float, float],
+    train_mean_prior: tuple[float, float],
+) -> bool:
+    """Require strict visual improvement on both frozen group-tail endpoints."""
+
+    values = (*visual, *zero_field, *train_mean_prior)
+    if any(not math.isfinite(value) or value < 0.0 for value in values):
+        return False
+    return all(
+        visual[index] < zero_field[index] and visual[index] < train_mean_prior[index]
+        for index in range(2)
+    )

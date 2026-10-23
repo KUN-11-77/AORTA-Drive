@@ -13,7 +13,9 @@ from aorta_drive.training.r004ec import (
     learning_rate_at_update,
     load_joined_anchors,
     qualifies_single_group_overfit,
+    qualifies_visual_necessity,
     sample_dense_features_torch,
+    summarize_group_maxima,
 )
 from aorta_drive.vision.feature_cache import bilinear_sample_dense_numpy
 
@@ -188,3 +190,16 @@ def test_learning_rate_schedule_has_frozen_warmup_and_cosine_endpoints() -> None
     assert learning_rate_at_update(
         100, total_updates=100, warmup_updates=10, base_learning_rate=3e-4
     ) == pytest.approx(0.0)
+
+
+def test_visual_necessity_requires_both_metrics_below_both_controls() -> None:
+    assert qualifies_visual_necessity((1.0, 0.8), (1.1, 0.9), (1.2, 0.85))
+    assert not qualifies_visual_necessity((1.0, 0.86), (1.1, 0.9), (1.2, 0.85))
+    assert not qualifies_visual_necessity((1.1, 0.8), (1.1, 0.9), (1.2, 0.85))
+
+
+def test_group_maximum_summary_uses_worst_five_of_24() -> None:
+    values = tuple(float(value) for value in range(24))
+    worst5, all24 = summarize_group_maxima(values)
+    assert worst5 == pytest.approx(sum((23, 22, 21, 20, 19)) / 5)
+    assert all24 == pytest.approx(sum(values) / 24)
