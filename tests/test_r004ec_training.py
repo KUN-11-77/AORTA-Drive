@@ -25,6 +25,7 @@ from aorta_drive.training.r004ee import (
     oriented_edge_endpoint_sums,
     oriented_edge_evidence_categories,
 )
+from aorta_drive.training.r004ef import decide_field_signal
 from aorta_drive.vision.feature_cache import bilinear_sample_dense_numpy
 
 
@@ -263,3 +264,33 @@ def test_attribution_decision_uses_20_of_24_groups_and_preserves_overlap() -> No
         }
     )
     assert mixed.recommendation == "mixed_mechanism_factorial_controls_before_redesign"
+
+
+def test_field_signal_decision_uses_group_counts_and_frozen_precedence() -> None:
+    tail = decide_field_signal(
+        {
+            "tail_objective_mismatch": 20,
+            "global_sign_inversion": 0,
+            "no_transferable_signal": 0,
+        }
+    )
+    assert tail.minimum_support_groups == 20
+    assert tail.verdict == "tail_objective_mismatch"
+
+    inversion = decide_field_signal(
+        {
+            "tail_objective_mismatch": 20,
+            "global_sign_inversion": 20,
+            "no_transferable_signal": 0,
+        }
+    )
+    assert inversion.verdict == "global_sign_inversion"
+
+    mixed = decide_field_signal(
+        {
+            "tail_objective_mismatch": 19,
+            "global_sign_inversion": 19,
+            "no_transferable_signal": 19,
+        }
+    )
+    assert mixed.verdict == "mixed_or_partial_signal"

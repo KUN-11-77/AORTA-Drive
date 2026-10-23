@@ -1,0 +1,46 @@
+experiment_id: R004E-F-field-signal-versus-tail-v1
+date: 2026-10-24
+scope: distinguish_average_visual_signal_from_tail_failure_or_global_sign_inversion
+
+frozen_inputs:
+  c2_result_sha256: 2fbfb9ba309dce569db2103b40b4a194ca02b22e36d14073f8a4410660075b39
+  c2_best_checkpoint_sha256: 94d3e77e0d16e6649706e4fad94f8b5e88fd3857165286c295e133297299fc2d
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  allowed_split: development
+  prohibited_splits: [calibration, test, target_domain]
+  visual_checkpoint_epoch: 1
+  further_fitting_or_threshold_search: prohibited
+
+systems:
+  - zero_field
+  - frozen_visual_checkpoint
+  - exact_sign_flipped_frozen_visual_checkpoint
+
+diagnostics:
+  independent_unit: development_recording_group
+  group_count: 24
+  anchors_per_group: 16
+  mean_endpoint: mean_absolute_edge_error_over_all_nested_anchors_and_edges_in_group
+  tail_endpoint: maximum_absolute_edge_error_over_all_nested_anchors_and_edges_in_group
+  field_alignment: cosine_over_all_nested_predicted_and_teacher_edges_in_group
+  high_label_gradient_m: 0.90
+
+decision:
+  group_support_fraction: 0.80
+  minimum_support_groups: 20
+  tail_objective_mismatch_event: visual_mean_below_zero_and_visual_max_above_zero_and_cosine_positive
+  global_sign_inversion_event: flipped_mean_and_max_below_both_visual_and_zero_and_visual_cosine_negative
+  no_transferable_signal_event: neither_visual_nor_sign_flipped_mean_beats_zero
+  precedence:
+    - global_sign_inversion
+    - tail_objective_mismatch
+    - no_transferable_visual_signal
+    - mixed_or_partial_signal
+
+claims:
+  mechanism_diagnostic_only: true
+  sign_flip_is_a_candidate_method: false
+  causal_mechanism_established: false
+  calibration_coverage_established: false
+  gate_b_passed: false

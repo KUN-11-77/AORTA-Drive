@@ -21,6 +21,13 @@ diagnostics. The next intervention is fixed by the outcome: integrable graph-Lip
 projection, a candidate-independent observable qualified subgraph with a revised
 theorem, representation/objective redesign, or factorial controls for a mixed result.
 
+R004E-E returned a mixed 0/9/15 attribution and independently ruled out projection-only
+and binary-observability repairs. R004E-F is therefore frozen before execution to
+compare group-mean edge MAE and exact group maxima for the visual, zero and sign-flipped
+fields. The joint group events distinguish useful central visual signal with a tail
+failure, a global sign inversion, and no transferable signal. Each conclusion requires
+20/24 independent recording groups; no weights or thresholds are fitted.
+
 ### Immediate qualification subplan — R004E-C
 
 R004E-C is sequential and cannot skip a stage. The independent unit is a complete
