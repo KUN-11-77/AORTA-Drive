@@ -30,3 +30,10 @@ registered convolution bias, and missing upstream typing for `Tensor.backward`. 
 removes the cast, explicitly enforces a bias, and scopes one type-ignore to the untyped
 third-party call. No tensor formula, parameter, threshold, payload access or experiment
 decision changed.
+
+The first remote audit invocation then stopped before loading any anchor because PyTorch
+2.7 rejected `reset_peak_memory_stats(cuda:0)` before a CUDA context existed. Independent
+runtime probes confirmed eight visible RTX 3090 devices and showed that the same call
+succeeds after context initialization. The repair explicitly initializes CUDA before the
+measured region. It does not read a payload, execute the model, change a formula or alter a
+registered threshold; the failed invocation remains part of the execution record.

@@ -148,6 +148,10 @@ def main() -> None:
     device = torch.device(args.device)
     if device.type != "cuda":
         raise ValueError("R004H0 requires the registered CUDA device")
+    # PyTorch 2.7 may reject peak-memory reset before the selected CUDA context
+    # has been initialized.  Initialize the runtime before starting the measured
+    # region; this does not load a payload or execute the model.
+    torch.cuda.init()  # type: ignore[no-untyped-call]
     torch.cuda.reset_peak_memory_stats(device)
     potential_predictor = QuotientFieldPredictor().to(device)
     checkpoint = _checkpoint(args.checkpoint)
