@@ -17,6 +17,14 @@ from aorta_drive.training.r004ec import (
     sample_dense_features_torch,
     summarize_group_maxima,
 )
+from aorta_drive.training.r004ee import (
+    EDGE_BOTH_MISSING,
+    EDGE_BOTH_OBSERVED,
+    EDGE_MIXED_MISSING,
+    decide_attribution,
+    oriented_edge_endpoint_sums,
+    oriented_edge_evidence_categories,
+)
 from aorta_drive.vision.feature_cache import bilinear_sample_dense_numpy
 
 
@@ -203,3 +211,55 @@ def test_group_maximum_summary_uses_worst_five_of_24() -> None:
     worst5, all24 = summarize_group_maxima(values)
     assert worst5 == pytest.approx(sum((23, 22, 21, 20, 19)) / 5)
     assert all24 == pytest.approx(sum(values) / 24)
+
+
+def test_edge_evidence_categories_follow_right_then_down_gradient_order() -> None:
+    evidence = torch.tensor([[True, False], [True, True]])
+    actual = oriented_edge_evidence_categories(evidence)
+    expected = torch.tensor(
+        [
+            EDGE_MIXED_MISSING,
+            EDGE_BOTH_OBSERVED,
+            EDGE_BOTH_OBSERVED,
+            EDGE_MIXED_MISSING,
+        ]
+    )
+    torch.testing.assert_close(actual, expected)
+    values = torch.tensor([[1.0, 2.0], [4.0, 8.0]])
+    torch.testing.assert_close(
+        oriented_edge_endpoint_sums(values), torch.tensor([3.0, 12.0, 5.0, 10.0])
+    )
+
+
+def test_edge_evidence_categories_include_both_missing() -> None:
+    evidence = torch.tensor([[False, False], [True, False]])
+    categories = oriented_edge_evidence_categories(evidence)
+    assert categories.tolist() == [
+        EDGE_BOTH_MISSING,
+        EDGE_MIXED_MISSING,
+        EDGE_MIXED_MISSING,
+        EDGE_BOTH_MISSING,
+    ]
+
+
+def test_attribution_decision_uses_20_of_24_groups_and_preserves_overlap() -> None:
+    decision = decide_attribution(
+        {
+            "gradient_overshoot": 20,
+            "missing_evidence_incident": 20,
+            "fully_observed_nonovershoot": 0,
+        }
+    )
+    assert decision.minimum_support_groups == 20
+    assert decision.gradient_overshoot_supported
+    assert decision.missing_evidence_supported
+    assert decision.recommendation == "factorial_projection_x_observable_subgraph_control"
+
+    mixed = decide_attribution(
+        {
+            "gradient_overshoot": 19,
+            "missing_evidence_incident": 19,
+            "fully_observed_nonovershoot": 19,
+        }
+    )
+    assert mixed.recommendation == "mixed_mechanism_factorial_controls_before_redesign"

@@ -1,0 +1,58 @@
+experiment_id: R004E-E-excess-residual-localization-v1
+date: 2026-10-24
+scope: diagnose_why_the_frozen_visual_field_loses_to_the_zero_field_before_redesign
+
+frozen_inputs:
+  c2_result_sha256: 2fbfb9ba309dce569db2103b40b4a194ca02b22e36d14073f8a4410660075b39
+  c2_best_checkpoint_sha256: 94d3e77e0d16e6649706e4fad94f8b5e88fd3857165286c295e133297299fc2d
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  allowed_split: development
+  prohibited_splits: [calibration, test, target_domain]
+  visual_checkpoint_epoch: 1
+  further_fitting_or_threshold_search: prohibited
+
+diagnostic:
+  independent_unit: development_recording_group
+  group_count: 24
+  anchors_per_group: 16
+  edge_order: horizontal_right_then_vertical_down
+  edge_length_m: 1.0
+  numeric_tolerance_m: 0.00001
+  group_support_fraction: 0.80
+  minimum_support_groups: 20
+  group_maximum_tie_rule: earliest_anchor_then_right_then_down_edge
+  evidence_categories:
+    - both_observed
+    - mixed_missing
+    - both_missing
+
+hypotheses:
+  gradient_overshoot:
+    event: group_global_maximum_has_abs_predicted_gradient_above_1m_plus_tolerance
+    supported_if: event_occurs_in_at_least_20_of_24_groups
+    next_control: euclidean_projection_of_node_potential_onto_abs_Du_le_1_convex_set
+  missing_evidence:
+    event: group_global_maximum_edge_has_at_least_one_all_missing_endpoint
+    supported_if: event_occurs_in_at_least_20_of_24_groups
+    next_control: fixed_observation_derived_qualified_subgraph_with_reproved_coverage_scope
+  fully_observed_nonovershoot:
+    event: group_global_maximum_is_both_observed_and_abs_predicted_gradient_at_most_1m_plus_tolerance
+    supported_if: event_occurs_in_at_least_20_of_24_groups
+    next_control: redesign_visual_representation_or_training_objective
+  mixed:
+    event: no_single_registered_explanation_reaches_20_groups
+    next_control: preregister_projection_x_observable_subgraph_factorial_diagnostic
+
+integrity:
+  teacher_check: abs_Dlabel_at_most_1m_plus_endpoint_error_ledgers_plus_tolerance
+  nested_edges_are_independent_replicates: false
+  calibration_test_or_target_access: prohibited
+  per_edge_clipping_counts_as_integrable_projection: false
+
+claims:
+  mechanism_localization_only: true
+  causal_mechanism_established: false
+  architecture_superiority_established: false
+  calibration_coverage_established: false
+  gate_b_passed: false

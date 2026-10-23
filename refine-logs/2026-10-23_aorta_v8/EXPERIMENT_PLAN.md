@@ -8,6 +8,19 @@
 
 **2026-10-24 execution status:** Gate A remains PASS within the frozen nominal-road contract. R004A–D froze the source split/time set, visual projection, candidate provider and legal quotient-field probe. R004E-A/B instantiated and audited exact teacher/visual artifacts for all 90 train/development groups. R004E-C completed one registered 20-epoch run and froze epoch 1, but showed train-objective improvement together with development group-tail degradation. Calibration/nontriviality evidence remains absent; R004E-D simple controls are now required first.
 
+### R004E-E registered mechanism localization
+
+R004E-D failed because the frozen visual field was worse than the deterministic
+1-Lipschitz zero-field control. R004E-E therefore performs no training and opens no
+new split. On the same 24 development recording groups it attributes each exact
+group-global maximum to three preregistered, possibly overlapping explanations:
+`|Du| > 1 + 1e-5 m`, incidence to at least one all-missing node, and the residual
+case where both endpoints are observed and the prediction does not overshoot.
+An explanation requires at least 20/24 group maxima; anchors and edges remain nested
+diagnostics. The next intervention is fixed by the outcome: integrable graph-Lipschitz
+projection, a candidate-independent observable qualified subgraph with a revised
+theorem, representation/objective redesign, or factorial controls for a mixed result.
+
 ### Immediate qualification subplan — R004E-C
 
 R004E-C is sequential and cannot skip a stage. The independent unit is a complete
