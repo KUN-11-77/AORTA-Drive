@@ -9,7 +9,7 @@
 
 - **Status:** superseded
 - **Reason:** 该分解是代数恒等式；固定候选 panel、anchor set 与 scalar contrast 未建立不可替代的方法贡献。
-- **Preservation:** 现有 reference code 保留为历史 baseline，不能代表当前 v8.3 方法已实现。
+- **Preservation:** 现有 reference code 保留为历史 baseline，不能代表当前 v8.3.1 方法已实现。
 
 ## ADR-0003 — Use a candidate-free graph-quotient field
 
@@ -42,3 +42,14 @@
 
 - **Status:** pending user decision
 - **Reason:** 许可改变法律权限，不应推断。
+
+## ADR-0009 — Freeze v8.3.1 as the Gate A/B specification
+
+- **Status:** accepted
+- **Reason:** v8.3.1 strengthens the primary theorem to every authorized relative intervention, adds map/geometry/numerical error accounting, and freezes visual-node and candidate-provider interfaces without adding trainable modules.
+- **Boundary:** this is not a paper-novelty or empirical-success decision.
+
+## ADR-0010 — Separate candidate supply, certification, and selection
+
+- **Status:** accepted
+- **Reason:** zero intervention can arise from no better candidate, a vacuous certificate, or the selection policy. Report \(S_{better}\)、\(R_{cert|better}\)、\(R_{opportunity}\) and \(R_{selected}\) on one predeclared session-time sampling unit.

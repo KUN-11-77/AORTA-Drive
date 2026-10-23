@@ -2,11 +2,18 @@
 
 ## Final decision
 
-- **V0 条件理论规范:** 可冻结。
+- **V0 条件理论规范:** v8.3.1 可冻结。
 - **已验证系统:** 尚未建立。
 - **顶会方法主张:** 不授权。
 - **最终 research-refine verdict:** REVISE，7.60/10。
 - **Problem drift:** NONE。
+
+## v8.3.1 amendment review
+
+- **Freeze decision:** YES。
+- **Resolved blockers:** usefulness 统一到预声明的 session-time 抽样单位，并拆分候选供给、证书召回、可认证机会和最终选择；non-inclusion 改为连续 footprint 双向差面积或方向正确的保守下界。
+- **Strengthened theory:** 主风险由 safe-to-unsafe 扩展为每个授权干预达到 \(\gamma_{task}\ge0\)；原事件成为推论。
+- **Unchanged limitations:** 尚无 Gate A/B 数据、OOD theorem、系统有效性或顶会原创性证据。
 
 ## Score evolution
 

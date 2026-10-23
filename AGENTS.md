@@ -3,7 +3,7 @@
 ## 项目上下文
 
 - 研究任务首先阅读 `docs/RESEARCH_BRIEF.md`、`docs/METHOD_SPEC.md` 与 `docs/CLAIM_EVIDENCE_MATRIX.md`。
-- 当前核心对象是候选轨迹面板上的仿射任务算子，而不是完整地图重建或独立轨迹分类器。
+- 当前核心对象是 AORTA-v8.3.1 的 candidate-free graph-gradient field、exact relative set-min certificate 与 frozen candidate arbitration；旧 affine panel 仅是历史 baseline。
 - 当前阶段以理论资格、最小实现和可证伪实验为主；不得提前写性能结论。
 
 ## 研究约束
@@ -30,4 +30,6 @@
 - 不把 source calibration 宣称为任意 OOD 安全保证。
 - 不把 no-op/fallback 宣称为安全动作。
 - 不把道路可行性证书扩展为碰撞、交通规则或闭环系统安全。
+- calibration set 不得用于 checkpoint、阈值、候选规则或架构选择；appearance target 只报告 empirical results。
+- AORTA 不学习 candidate generator；候选来源、数量、时域、预算与 provenance 必须在 calibration 前冻结。
 

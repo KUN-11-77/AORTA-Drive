@@ -7,3 +7,5 @@
 | 3 | 8 | 7 | 6 | 7 | 6 | 7 | 6 | 6.75 | REVISE |
 | 4 | 9 | 9 | 6 | 7 | 7 | 8 | 6 | 7.55 | REVISE |
 | 5 | 9 | 9 | 6 | 7 | 7 | 9 | 6 | 7.60 | REVISE |
+
+v8.3.1 amendment review did not assign a new venue-readiness score. It issued **Freeze YES** for the conditional V0 specification only; the 7.60/10 research-refine score and REVISE verdict remain unchanged.

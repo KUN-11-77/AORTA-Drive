@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3 V0 条件理论规范已冻结；尚无实验性能或论文原创性结论。
+> 状态：AORTA-v8.3.1 V0 条件理论规范已冻结；尚无实验性能或论文原创性结论。
 
 ## 1. 问题锚点
 
@@ -12,18 +12,18 @@ AORTA-Drive 研究 NAVSIM v1/v2 上的 source-only appearance robustness。对�
 
 ## 2. 核心假设
 
-完整道路 signed-distance field 的共同 offset 可能在视觉退化下不可辨识，但局部 clearance differences 可能仍可学习。若 source session 上的 graph-gradient residual 能被同时校准，则一个 field coverage event 可以覆盖任务图内所有自适应 swept-set pairs。
+完整道路 signed-distance field 的共同 offset 可能在视觉退化下不可辨识，但局部 clearance differences 可能仍可学习。若 source session 上的 graph-gradient residual 能被同时校准，则一个 field coverage event 可以覆盖任务图内所有自适应 swept-set pairs，并认证每次授权干预达到冻结的相对改进阈值 \(\gamma_{task}\ge0\)。
 
-该假设可能失败；遮挡、全局 calibration maximum、长路径累积和图错设都可能令证书失去非平凡性。
+该假设可能失败；遮挡、全局 calibration maximum、长路径累积和图错设都可能令证书失去非平凡性。即使证书有效，冻结 candidate provider 也可能没有提供更优候选；candidate supply 与 certificate recall 必须分别报告。
 
 ## 3. 冻结范围
 
 - NAVSIM v1/v2；
 - frozen DINOv3-H+ 与被审计 planner；
 - source-only train/development/calibration；
-- 一个 candidate-free node-potential decoder；
+- 一个具有冻结多相机节点投影/缺失证据协议的 candidate-free node-potential decoder；
 - fixed physical edge scale、single native、exact multi-source solver；
-- 预注册 ego-centric ROI、grid、geometry checker、资格层与 session time set；
+- 预注册 ego-centric ROI、grid、continuous teacher/map error ledger、geometry checker、candidate provider、资格层与 session time set；
 - 默认保留 native，仅认证 relative nominal-road non-degradation。
 
 ## 4. Non-goals
@@ -42,17 +42,17 @@ AORTA-Drive 研究 NAVSIM v1/v2 上的 source-only appearance robustness。对�
 \Rightarrow
 \text{all-pair discrete robust bounds}
 \Rightarrow
-\text{sound continuous correction}
+\text{map/geometry/numerical correction}
 \Rightarrow
-\text{adaptive nominal-road non-degradation}.
+\text{all authorized interventions reach }\gamma_{task}.
 \]
 
-既有观察只支持继续研究任务空间接口，不证明 v8.3 的局部差分假设、校准锐度、系统收益或创新性。
+既有观察只支持继续研究任务空间接口，不证明 v8.3.1 的局部差分假设、校准锐度、系统收益或创新性。
 
 ## 6. 验收门
 
 1. **Gate A:** 数学 oracle、multi-source 实现、geometry checker 和数值误差方向全部通过；
-2. **Gate B:** 合法 source-only predictor 产生非平凡米制证书；
+2. **Gate B:** 合法 source-only predictor 产生可接受的 session-tail residual 与非平凡米制证书，并分离 candidate supply、certificate recall 与 selection loss；
 3. **Gate C:** 收益存在于具有连续几何意义的 non-inclusion candidates；
 4. **Gate D:** 在同一 field event 下迁移到未见 candidate policy/frozen planner；
 5. 完成 uncertainty-only 与 end-to-end 两层公平 baseline；

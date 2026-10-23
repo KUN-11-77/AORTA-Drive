@@ -1,4 +1,4 @@
-name: aorta_cmfe_v0
+name: aorta_cmfe_v8_3_1_v0
 backbone:
   name: dinov3_h_plus
   frozen: true
@@ -6,6 +6,11 @@ field_decoder:
   output: node_potential
   candidate_conditioned: false
   train_target: graph_gradient_of_signed_distance
+  node_evidence:
+    projection: calibrated_reference_surface
+    sampling: bilinear_token_grid
+    invalid_projection: missing_evidence_token
+    visibility_semantics: frustum_only
 uncertainty:
   edge_scale: fixed_physical
 solver:
@@ -14,3 +19,4 @@ solver:
 arbitration:
   native_preserving: true
   require_continuous_geometry_certificate: true
+  require_relative_threshold_nonnegative: true

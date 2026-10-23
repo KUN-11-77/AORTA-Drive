@@ -4,6 +4,13 @@ stage: pre_experiment_contract
 requires_frozen_values:
   - method.roi
   - method.resolution_m
+  - method.gamma_task
+  - method.map_error_bound_m
+  - method.numerical_optimism_bound_m
+  - candidate_provider.type
+  - candidate_provider.max_candidates
+  - candidate_provider.horizon_s
+  - visual_evidence.reference_surface
 tests:
   - robust_bound_matches_lp_oracle
   - common_shift_invariance
@@ -12,5 +19,8 @@ tests:
   - zero_weight_edge
   - chain_and_cycle_graphs
   - geometry_certificate_soundness
+  - node_label_to_continuous_teacher_error
   - numerical_optimism_budget
+  - relative_intervention_event
+  - calibration_sample_size_eligibility
 success_criterion: all_tests_pass

@@ -3,24 +3,24 @@
 | Run ID | Milestone | Purpose | System / Variant | Split | Metrics | Priority | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
 | R001 | M0 | theorem oracle | closed form vs LP vs multi-source | synthetic graphs | bound error, shift invariance | MUST | TODO | CPU only |
-| R002 | M0 | geometry soundness | deterministic internal checker | synthetic footprints | false acceptance, (h_j) validity | MUST | TODO | CPU only |
-| R003 | M0 | numerical contract | super-source and float adversaries | synthetic graphs | optimism bound (\varepsilon_{num}) | MUST | TODO | CPU only |
-| R004 | M1 | data/split audit | source session manifest | source | leakage, independence counts | MUST | TODO | freeze before features |
-| R005 | M1 | legal predictor | existing (u_{abs}) audit or minimal probe | source train/dev | field error, held-out eligibility | MUST | TODO | no teacher-as-predictor |
-| R006 | M1 | calibration sanity | absolute predictor + session score | source cal/val | simultaneous coverage, sharpness | MUST | TODO | one seed first |
-| R007 | M2 | uncertainty-only control | absolute band | held-out source | exact bound, certification | MUST | TODO | same (u_{abs}) |
-| R008 | M2 | uncertainty-only control | global gauge exact | held-out source | exact bound, certification | MUST | TODO | same (u_{abs}) |
-| R009 | M2 | Gate B decisive test | local fixed graph exact | held-out source | meaningful non-inclusion, path strata | MUST | TODO | stop/go after this run |
+| R002 | M0 | continuous lifting soundness | teacher/node map + deterministic geometry checker | synthetic fields/footprints | \(h_j\), \(\varepsilon_{map}\), false acceptance | MUST | TODO | CPU only |
+| R003 | M0 | risk/numerical contract | relative-event and float adversaries | synthetic graphs/sessions | \(R_\gamma\), optimism bound \(\varepsilon_{num}\) | MUST | TODO | CPU only |
+| R004 | M1 | protocol freeze audit | source session manifest + projection/candidate specs | source | leakage, independence, deterministic replay | MUST | TODO | freeze before features |
+| R005 | M1 | legal predictor | existing \(u_{abs}\) audit or minimal probe | source train/dev | field error, held-out eligibility | MUST | TODO | no teacher-as-predictor |
+| R006 | M1 | calibration sanity | absolute predictor + session score | exclusive source cal/test | finite-threshold eligibility, simultaneous coverage, sharpness | MUST | TODO | no calibration reuse |
+| R007 | M2 | uncertainty-only control | absolute band | held-out source | exact bound, certification | MUST | TODO | same \(u_{abs}\) |
+| R008 | M2 | uncertainty-only control | global gauge exact | held-out source | exact bound, certification | MUST | TODO | same \(u_{abs}\) |
+| R009 | M2 | Gate B decisive test | local fixed graph exact | held-out source | \(S_{better}\), \(R_{cert|better}\), \(R_{opportunity}\), path strata | MUST | TODO | split supply from certificate |
 | R010 | M3 | scalar baseline | candidate contrast calibrated | source | coverage, transfer, latency | MUST | BLOCKED | requires Gate B |
 | R011 | M3 | absolute/global E2E | legal field baselines | source | coverage, sharpness, cost | MUST | BLOCKED | 3 seeds |
 | R012 | M3 | joint-field baseline | frozen CDF-style construction | source | conservative relative bound | MUST | BLOCKED | solver error budget |
 | R013 | M3 | main method | AORTA fixed-scale edge field | source | C1 metrics | MUST | BLOCKED | 3 seeds |
 | R014 | M3 | transfer | held-out policy/planner | held-out source | coverage/utility degradation | MUST | BLOCKED | no target tuning |
-| R015 | M4 | arbitration baseline | keep-native/geometry-only | frozen eval | H, intervention, NAVSIM parts | MUST | BLOCKED | matched candidates |
+| R015 | M4 | arbitration baseline | keep-native/geometry-only | frozen eval | \(R_\gamma\), supply/selection, NAVSIM parts | MUST | BLOCKED | matched candidates |
 | R016 | M4 | structured baseline | strongest prior system | frozen eval | C2 metrics | MUST | BLOCKED | matched selection |
-| R017 | M4 | main arbitration | AORTA | frozen eval | H, meaningful interventions | MUST | BLOCKED | 3 seeds |
-| R018 | M4 | empirical appearance test | frozen methods | frozen target suites | empirical robustness only | MUST | BLOCKED | no coverage claim |
-| R019 | M5 | failure atlas | global vs local | held-out outputs | q domination, path accumulation | NICE | BLOCKED | reuse main outputs |
+| R017 | M4 | main arbitration | AORTA | frozen eval | \(R_\gamma\), \(R_{selected}\), meaningful non-inclusion | MUST | BLOCKED | 3 seeds |
+| R018 | M4 | empirical appearance test | frozen methods | frozen target suites | empirical robustness, paired \(\rho\) | MUST | BLOCKED | no target coverage claim |
+| R019 | M5 | failure atlas | global vs local | held-out outputs | supply/certificate/selection, q domination, \(\rho\) | NICE | BLOCKED | reuse main outputs |
 | R020 | M5 | learned-scale check | optional scale head | source only | sharpness vs fixed scale | NICE | BLOCKED | run only if fixed V0 passes |
 
 ## Status rules

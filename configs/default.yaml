@@ -1,5 +1,5 @@
 project: aorta-drive
-method_version: aorta-v8.3-cmfe-v0
+method_version: aorta-v8.3.1-cmfe-v0
 seed: 20261023
 experiment_id: null
 claim_ids: []
@@ -14,15 +14,34 @@ method:
   edge_scale: fixed_physical
   robust_readout: exact_multi_source_min_plus
   geometry_route: deterministic_internal
+  gamma_task: null
   roi: null
   resolution_m: null
+  map_error_bound_m: null
+  numerical_optimism_bound_m: null
   require_geometry_certificate: true
+
+candidate_provider:
+  type: null
+  max_candidates: null
+  horizon_s: null
+  source_frozen: true
+  allow_ground_truth: false
+  allow_paired_clean_target: false
+
+visual_evidence:
+  reference_surface: null
+  history_frames: null
+  token_layers: []
+  frustum_mask_only: true
+  claims_occlusion_visibility: false
 
 calibration:
   alpha: 0.1
   unit: source_session
   score: max_time_max_edge_standardized_residual
   arbitrary_ood_guarantee: false
+  reuse_for_model_selection: false
 
 integrity:
   allow_target_tuning: false
@@ -30,3 +49,4 @@ integrity:
   require_config_freeze_before_run: true
   require_gate_a_before_gate_b: true
   require_gate_b_before_full_training: true
+  require_gamma_task_nonnegative: true

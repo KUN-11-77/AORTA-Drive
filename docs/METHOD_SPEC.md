@@ -1,75 +1,125 @@
-# AORTA-Drive Method Specification v0.2
+# AORTA-Drive Method Specification v0.3
 
-## 1. Task graph and margin
+> Canonical method version: AORTA-v8.3.1. Formal proofs and assumptions are in [`THEORY.md`](THEORY.md).
 
-令 (G=(\Omega,E)) 为有限、连通、无向的 4-neighbor ego-centric 图。GT signed-distance field 为 (d_S:\Omega\to\mathbb R)。冻结 tracker 将轨迹转为非空 swept-node set (A(\tau))。
+## 1. Task objects
 
-\[
-M_S^\Omega(\tau)=\min_{q\in A(\tau)}d_S(q)-m_{buf}.
-\]
-
-该 margin 只表示建模的 nominal road constraint，不等价于通用安全。
-
-## 2. Candidate-free field model
-
-冻结 DINOv3-H+ 提供多尺度视觉 tokens。固定物理节点经部署可用的相机/ego geometry 投影并采样 tokens；一个共享 decoder 输出节点势 (u_\theta(X,q))。候选不进入 decoder，因此同一物理 cell 跨候选共享语义。
-
-V0 使用固定 edge scale
+令 \(G=(\Omega,E)\) 为有限、连通、无向的 4-neighbor ego-centric graph。连续 nominal-road signed-distance teacher 为 \(\phi_S:\mathcal R\to\mathbb R\)，在认证 ROI 上为 1-Lipschitz。用于训练与校准的 node labels 为 \(\widetilde d_S(q)\)，并要求
 
 \[
-s_e=\ell_e/\ell_{ref};
+|\widetilde d_S(q)-\phi_S(q)|
+\le\varepsilon_{map}(q).
 \]
 
-learned scale 不是 V0 依赖。
+冻结 tracker 将轨迹变为非空 swept-node set \(A(\tau)\)。连续 nominal-road margin 为
 
-## 3. Training
+\[
+M_S^{cont}(\tau)
+=\inf_{x\in F(\tau)}\phi_S(x)-m_{buf}.
+\]
 
-令 (D) 为任意定向 incidence matrix：
+它不等价于 collision、traffic-rule、comfort、tracking 或完整闭环安全。
+
+## 2. Visual node evidence protocol
+
+冻结 DINOv3-H+ 产生多相机历史 token fields。对当前 ego-frame 节点 \(q=(x,y)\)：
+
+1. 使用预注册参考道路表面 \(z_{ref}(q)\) 将节点提升到三维；
+2. 使用冻结历史 ego poses 与 camera extrinsics 转换坐标；
+3. 使用 intrinsics 与实际 crop/resize transform 投影到 token grid；
+4. 仅对正深度、frustum-valid 投影做 bilinear sampling；
+5. 无有效投影时使用 missing-evidence token，并保留有效性 mask。
+
+frustum-valid 不代表已知 occlusion；V0 没有真实深度时不得声称知道遮挡。
+
+固定 evidence pack 为
+
+\[
+\mathcal F(X,q)
+=\operatorname{Pack}
+\{\operatorname{bilinear}(F_{c,k},\pi_{c,k}(q)),m_{c,k}(q)\}_{c,k}.
+\]
+
+唯一 trainable component 为共享 decoder
+
+\[
+u_\theta(X,q)
+=f_\theta(\mathcal F(X,q),\operatorname{PE}(q),m(q)).
+\]
+
+相机顺序、历史长度、token layers、reference surface、projection convention、missing token 和聚合方式在 calibration 前冻结。
+
+## 3. Graph-gradient training
+
+V0 使用固定物理 edge scale \(s_e=\ell_e/\ell_{ref}>0\)。令 \(D\) 为 incidence matrix：
 
 \[
 \mathcal L_{edge}
 =|E|^{-1}\sum_e
 \operatorname{Huber}
-\left(\frac{(Du_\theta-Dd_S)_e}{s_e}\right).
+\left(
+\frac{(Du_\theta-D\widetilde d_S)_e}{s_e}
+\right).
 \]
 
-共同 offset 位于 (\ker D=\operatorname{span}\{\mathbf1\}) 中。可用 (\sum_q u_q=0) 作数值 gauge；它不改变 trajectory contrast。
+共同 offset 位于 \(\ker D=\operatorname{span}\{\mathbf1\}\) 中，不影响 relative set-min task。average edge loss 不推出 session maximum 很小，也不推出 appearance-OOD stability；Gate B 直接审计 tail residual 和证书锐度。
 
-## 4. Source-session calibration
+## 4. Frozen candidate interface
 
-对 calibration 前完全冻结的模型、图、尺度与时刻协议：
+AORTA 只做 arbitration。冻结接口为
+
+\[
+\mathcal C_\xi(O_t)
+=\{\tau_0,\tau_1,\ldots,\tau_{K_t}\},
+\qquad K_t\le K_{max}.
+\]
+
+- \(\tau_0\) 始终为 native；
+- challenger 可来自预声明 frozen planners 或 deterministic kinematic library；
+- 只能使用部署可得 observation/state；
+- 禁止 GT map、target labels 与 paired clean target image；
+- horizon、budget、seed、ordering、eligibility 与 provenance 在 calibration 前冻结；
+- 所有 methods 使用相同 candidates 与 compute budget。
+
+## 5. Data partition and calibration
+
+source train、development、calibration、test sessions 严格分离。模型、checkpoint、图、\(\alpha\)、\(\gamma_{task}\)、candidate interface 和所有选择规则在首次读取 calibration scores 前冻结。
 
 \[
 E_i=\max_{t\in T(Z_i)}\max_{e\in E}
-\frac{|(Du_{it}-Dd_{it})_e|}{s_e}.
+\frac{|(Du_{it}-D\widetilde d_{it})_e|}{s_e}.
 \]
-
-令 (k=\lceil(n+1)(1-\alpha)\rceil)。若 (k>n)，返回不可部署；否则 (q_\alpha=E_{(k)})。交换性下：
 
 \[
-P(\forall t\in T(Z),e\in E:
-|(Du-Dd)_e|\le q_\alpha s_e)
-\ge1-\alpha.
+k=\lceil(n+1)(1-\alpha)\rceil,
+\qquad q_\alpha=E_{(k)}.
 \]
 
-这是 source-session 边际保证，不覆盖任意 OOD。
+若 \(k>n\)，返回不可部署。有限阈值至少需要
 
-## 5. Uncertainty set and exact readout
+\[
+n\ge\left\lceil\frac1\alpha\right\rceil-1
+\]
 
-令 (w_e=q_\alpha s_e)，
+个独立 calibration sessions。帧和同 route corruption copies 不是独立 sessions。
+
+## 6. Exact robust readout
+
+令 \(w_e=q_\alpha s_e\)，
 
 \[
 \mathcal U(u,w)=\{d:|D(d-u)|_e\le w_e,\forall e\}.
 \]
 
-对非空 challenger (A) 与 native (B)：
+对 challenger set \(A\) 与 native set \(B\)：
 
 \[
-L_G(A,B)=\inf_{d\in\mathcal U}
-[\min_A d-\min_B d].
+L_G(A,B)
+=\inf_{d\in\mathcal U}
+[\min_A d-\min_B d]
 \]
 
-精确式为
+且
 
 \[
 L_G(A,B)
@@ -80,7 +130,8 @@ L_G(A,B)
 定义
 
 \[
-\psi_B(v)=\min_{b\in B}[u_b+\operatorname{dist}_w(v,b)],
+\psi_B(v)=\min_{b\in B}
+[u_b+\operatorname{dist}_w(v,b)],
 \]
 
 则
@@ -89,72 +140,104 @@ L_G(A,B)
 L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
 \]
 
-每个 native 一次 multi-source Dijkstra；Dijkstra/min-plus 是标准工具，不作为创新。若将初始标签统一减去 (c=\min_Bu)，最终 envelope 必须恢复 (+c)。
+每个 native 一次 exact multi-source Dijkstra。difference constraints 与 min-plus solver 是标准工具，不作为独立创新。
 
-## 6. Geometry certificate
+## 7. Continuous certificate
 
-V0 checker 只在以下条件可被确定性证明时返回 valid：
+geometry checker 必须确定性证明：
 
-- native/challenger samples 都位于各自连续 nominal footprint 内；
-- challenger samples 是 footprint 的内部 (h_j)-net，(h_j) 是解析或保守上界；
-- 完整 footprints 在认证 ROI 内且集合非空；
-- footprint、pose interpolation、车辆膨胀、grid 和数值协议一致；
-- teacher signed distance 在 ROI 上为 1-Lipschitz。
+- \(A_j\subset F_j\)、\(A_0\subset F_0\) 的节点是 footprint 内物理点；
+- \(A_j\) 是 \(F_j\) 的内部 \(h_j\)-net；
+- footprints 完全位于认证 ROI，集合非空；
+- reference surface、pose interpolation、vehicle dilation、coordinate transforms 与 protocol hash 一致。
 
-于是
-
-\[
-\Delta_{j0}^{cont}\ge L_G(A_j,A_0)-h_j.
-\]
-
-无法证明条件的 pair 拒绝。经验测试点最大误差不能替代证明半径。
-
-## 7. Arbitration
-
-候选先通过冻结的动力学、意图、进度和偏离预算。只有当
+令 \(\varepsilon_{map,j}=\max_{q\in A_j}\varepsilon_{map}(q)\)，native 同理。若 computed lower bound 可能乐观至多 \(\varepsilon_{num}\)，则
 
 \[
-L_G-h_j\ge\gamma_{task}+\varepsilon_{num}
+L_{j0}^{cert}
+=\widehat L_G
+-h_j
+-\varepsilon_{map,j}
+-\varepsilon_{map,0}
+-\varepsilon_{num}.
 \]
 
-时才可替换，其中 (\varepsilon_{num}) 上界最终 bound 的乐观数值误差。若无候选合格则保留 native；否则选择 deviation cost 最小者。
+无法证明 map、geometry 或 numerical budget 的 pair 不得认证 continuous task。
 
-## 8. Risk contract
+## 8. Arbitration and primary risk event
 
-令 (T(Z)) 为冻结 session 时刻集，
+冻结 \(\gamma_{task}\ge0\)。只有 \(L_{j0}^{cert}\ge\gamma_{task}\) 的 challenger 可被授权；否则保留 native。若多个合格，选择 deviation cost 最小者。
+
+主失败事件是所有授权干预的 relative-margin failure：
 
 \[
-I(Z)=\max_{t\in T(Z)}\mathbf1\{\text{replace at }t\},
+R_\gamma(Z)=
+\mathbf1\{\exists t\in T(Z):
+I_t=1,
+\Delta_{sel,0,t}^{cont}<\gamma_{task}\}.
 \]
+
+在 source exchangeability、calibration 前冻结和 deterministic sound contracts 下：
 
 \[
-H(Z)=\mathbf1\{\exists t\in T(Z):I_t=1,
-M_{0,t}^{cont}\ge0,M_{sel,t}^{cont}<0\}.
+P_{D_{cal},Z}(R_\gamma=1)\le\alpha.
 \]
 
-若 geometry checker 对 nominal footprints 确定性 sound，则
+若 \(\beta\) 上界整个 session 至少一次授权 pair 的非 field contract 错误接受，则
 
 \[
-P_{D_{cal},Z}(H=1)\le\alpha.
+P(R_\gamma=1)\le\min\{1,\alpha+\beta\}.
 \]
 
-若未来采用概率 checker，(\beta) 必须上界整个 session 至少一次授权 pair 几何误接受事件，风险上界变为 (\min\{1,\alpha+\beta\})。
+safe-native-to-unsafe-challenger event 在 \(\gamma_{task}\ge0\) 时只是推论。该保证不是固定 calibration realization 的条件保证，也不是 arbitrary-OOD guarantee。
 
-## 9. V0 implementation contract
+## 9. Appearance mechanism diagnostic
 
-- single native；connected 4-neighbor graph；fixed physical scale；
-- exact multi-source solver；one node-potential decoder；
-- deterministic internal geometry route；
-- frozen backbone/planners；source-only train/development/calibration；
-- target domain 禁止选模型、阈值或配置。
+对同一 scene 的 paired observations \(X,X'\)：
 
-首次运行前必须由 experiment-plan 冻结 ROI、resolution、(|\Omega|)、(|E|)、(T(Z))、checker 构造和数值误差预算。
+\[
+\rho(X,X')
+=\max_e
+\frac{|D[u_\theta(X')-u_\theta(X)]_e|}{s_e}.
+\]
 
-## 10. Qualification and stop rules
+则
 
-- Gate A：theorem oracle、geometry checker、数值方向；
-- Gate B：合法 source-only predictor 的米制 bound 非平凡性；允许训练小型 probe，不得用 GT 自拟合替代；
-- Gate C：meaningful continuous non-inclusion；
-- Gate D：held-out candidate policy/planner。
+\[
+\|r(X')\|_\infty
+\le\|r(X)\|_\infty+\rho(X,X').
+\]
 
-若 local graph 在 exact-readout 公平比较下不优于 global gauge/CDF，若证书几乎总为空，或收益只来自 geometry inclusion，则停止方法原创路线。
+因此应检验 graph potential differences 的 appearance stability，而不是 token 或 node values 完全不变。经验小 \(\rho\) 不产生 target coverage；target 只报告 empirical results。
+
+## 10. Usefulness decomposition
+
+评估单位 \(U=(Z,t)\) 由“均匀抽 session，再均匀抽冻结时刻”定义，推断按 session 聚类。
+
+- \(B(U)\)：存在 eligible、meaningful-non-inclusion 且 GT improvement \(\ge\delta_M\) 的 challenger；
+- \(C(U)\)：存在同一个 challenger 同时满足 \(B\) 与 certificate；
+- \(D(U)\)：最终 selected challenger 满足上述 useful 条件。
+
+报告
+
+\[
+S_{better}=P(B),
+\quad
+R_{cert|better}=P(C\mid B),
+\quad
+R_{opportunity}=P(C),
+\quad
+R_{selected}=P(D).
+\]
+
+meaningful non-inclusion 必须使用连续 footprints \(F_j\setminus F_0\) 与 \(F_0\setminus F_j\) 的双向差面积，或方向正确的 conservative cell-union lower bounds；有限 node sets 没有连续面积。
+
+## 11. V0 contract and stop rules
+
+- one node-potential decoder；single native；fixed physical scale；exact solver；
+- frozen DINOv3-H+、planners、candidate provider；
+- deterministic nominal geometry route；source-only train/development/calibration；
+- Gate A 验证 theorem、map/geometry/numerical ledger；
+- Gate B 验证 tail residual、\(S_{better}\)、\(R_{cert|better}\)、\(R_{opportunity}\)；
+- Gate A/B 失败则不进入完整 NAVSIM 训练；
+- local edge 不优于 exact global-gauge/具体 joint-field，或证书近乎全空，则停止方法原创路线。

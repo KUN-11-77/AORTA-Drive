@@ -22,6 +22,10 @@
 
 固定一个 node-potential decoder、固定物理 edge scale、source-session calibration、一次精确 multi-source transform、proof-carrying nominal geometry gate 和 native-preserving arbitration。learned scale 与路径近似移出 V0。贡献措辞从“新图算法”降级为待验证的结构化道路仲裁接口。
 
+### Independent amendment — AORTA-v8.3.1
+
+独立审查后补齐五个原规范尚未闭合的合同：continuous teacher 到 node label 的 map-error budget；DINO token 到物理节点的投影与 missing-evidence 规则；冻结且可复现的 source-only candidate provider；所有授权干预达到 \(\gamma_{task}\) 的 relative-margin 风险事件；candidate supply、certificate recall、certifiable opportunity 与 final selection 的分解。meaningful non-inclusion 改用连续 footprints 的双向差面积，appearance graph-gradient stability 仅保留为经验诊断。复审结论为 **Freeze YES**，但没有运行实验，也没有提升论文原创性结论。
+
 ## Major design decisions
 
 - 学习 candidate-free 共享物理场，不学习候选列表内的独立 scalar scores；
@@ -39,5 +43,5 @@
 
 ## Next handoff
 
-下一阶段应使用 `experiment-plan`：先冻结 NAVSIM ROI/resolution/graph size、合法 Gate B predictor、geometry checker 与数值误差预算，再执行 Gate A/B。未通过前，不启动完整训练或目标域评测。
+下一阶段只执行 Gate A/B：先冻结 NAVSIM ROI/resolution/graph size、continuous teacher/node projection、candidate provider、合法 Gate B predictor、geometry/map checker 与数值误差预算。未通过前，不启动完整训练或目标域评测。
 
