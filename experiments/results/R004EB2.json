@@ -1,0 +1,43 @@
+{
+  "anchor_count": 1440,
+  "artifact_bytes": 26469439104,
+  "claim_boundary": "Closes only the replayable full train/development visual feature, projection, and exact label-join interface. It does not establish learned accuracy, calibration coverage, certificate utility, driving performance, OOD robustness, real-time behavior, or Gate B success.",
+  "config_sha256": "1f93b85201c6cb47c37acd5751f1d1a1acde8ec8f374cf00f63b6bf03cd98382",
+  "evidence_bundle_path": "F:/AORTA-Drive-artifacts/gate-b/R004E/r004eb_eb2_evidence.tar.gz",
+  "evidence_bundle_sha256": "0fe46b2df6c29bf4c0632b3adc38629fe8e089ec19f8ea61cecd06895ae68baa",
+  "experiment_id": "R004E-B2-full-visual-feature-label-join",
+  "feature_manifest": {
+    "logical_sha256": "a8a9c87969b4ee95a89902a78ddb11173a071aa15839a3ec136abcb0d9caa269",
+    "sha256": "85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93"
+  },
+  "generation": {
+    "duration_seconds": 1255.0785388569348,
+    "image_reference_count": 17280,
+    "peak_cuda_bytes": 2034846720,
+    "unique_image_count": 17133
+  },
+  "implementation_revision": "9cdc7c21675c5b25df8adfcf94a9a9a71b38740a",
+  "independent_audit": {
+    "all_missing_node_count": 2452045,
+    "calibration_test_or_target_accessed": false,
+    "feature_failures": 0,
+    "feature_hash_mismatches": 0,
+    "invalid_storage_exact_zero": true,
+    "matched_label_record_count": 1440,
+    "projection_failures": 0,
+    "projection_hash_mismatches": 0,
+    "sampled_finite": true,
+    "sampled_group_count": 90,
+    "sampled_nodes_per_group": 64,
+    "sampler_max_absolute_error": 4.0531158447265625e-6,
+    "sampler_tolerance": 1e-5,
+    "supported_node_slot_count": 14556403
+  },
+  "integrity_audit": {
+    "external_cross_model_review": "UNAVAILABLE",
+    "reason": "The experiment-audit reviewer backend was not exposed in the current tool environment; no self-acquittal was substituted."
+  },
+  "recording_group_count": 90,
+  "status": "PASS",
+  "training_performed": false
+}
