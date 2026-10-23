@@ -382,6 +382,24 @@ polygon 之间允许重叠，raw internal seam 处按定义返回零。
 该 proposition 不负责证明上游 raw polygons、坐标变换或 map semantics 正确；这些
 分别属于 \(\varepsilon_{polygon}\)、\(\varepsilon_{transform}\) 与 protocol audit。
 
+### Lemma 3 — exact-nearest segment screening
+
+对 query point 与每条 raw segment，segment 的 axis-aligned bounding box distance
+是 segment distance 的下界。实现对 binary64 subtraction、square 与 sum 的每个正值
+结果各向 \(-\infty\) 移动一个 representable value，得到
+\(\underline b_i^2\)，在 IEEE-754 correctly-rounded 基本运算假设下满足
+
+\[
+\underline b_i^2
+\le \operatorname{dist}^2(q,\operatorname{bbox}(e_i))
+\le \operatorname{dist}^2(q,e_i).
+\]
+
+任取一条 segment 并精确计算有理 squared distance \(U^2\)，再保留所有
+\(\underline b_i^2\le U^2\) 的 segment。任何真实 nearest segment 必在保留集合内；
+因此只对保留集合执行 exact-rational segment distance，所得 minimum 与全量 exact
+搜索相同。该 screening 只删除已证明不可能最近的 segment，不改变 teacher。
+
 若一般数值实现输出 \(\widehat L_G\)，且已证明
 
 \[
@@ -390,7 +408,7 @@ L_G\ge\widehat L_G-\varepsilon_{num},
 
 则进一步扣除 \(\varepsilon_{num}\)。
 
-### Lemma 3 — outward-safe binary64 implementation
+### Lemma 4 — outward-safe binary64 implementation
 
 对有限 binary64 输入，若每次 Dijkstra path addition 都向 \(+\infty\) 外舍入、最终 \(u_a-\widehat\psi_B(a)\) 向 \(-\infty\) 外舍入，并在任何非有限结果时拒绝认证，则
 
@@ -431,7 +449,7 @@ P\left(
 
 这是 calibration sessions 与新 source session 联合随机性的边际保证。
 
-### Lemma 4 — finite-threshold sample size
+### Lemma 5 — finite-threshold sample size
 
 \(k\le n\) 的最低样本量为
 
@@ -508,7 +526,7 @@ r_e(X)=\frac{(Du(X)-D\widetilde d)_e}{s_e},
 =\max_e\frac{|D[u(X')-u(X)]_e|}{s_e}.
 \]
 
-### Lemma 5
+### Lemma 6
 
 \[
 \|r(X')\|_\infty

@@ -15,8 +15,8 @@ method:
   robust_readout: exact_multi_source_min_plus
   geometry_route: asymmetric_outer_cover_with_rotation_free_certified_fallback
   gamma_task: null
-  roi: null
-  resolution_m: null
+  roi: [-32.0, 32.0, -32.0, 32.0]
+  resolution_m: 1.0
   map_error_bound_m: null
   numerical_optimism_bound_m: 0.0
   numerical_rounding: outward_safe_ieee754_binary64

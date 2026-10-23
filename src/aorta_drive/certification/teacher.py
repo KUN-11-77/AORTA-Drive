@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 
 import numpy as np
+import numpy.typing as npt
 
 Point = tuple[float, float]
 Ring = tuple[Point, ...]
@@ -219,22 +220,100 @@ class ExactPolygonTeacher:
         if not components:
             raise ValueError("polygon teacher needs at least one component")
         self._components = components
+        self._component_bounds = tuple(
+            (
+                min(point[0] for point in component.outer),
+                max(point[0] for point in component.outer),
+                min(point[1] for point in component.outer),
+                max(point[1] for point in component.outer),
+            )
+            for component in components
+        )
         self._segments = tuple(
             (start, end)
             for component in components
             for ring in (component.outer, *component.holes)
             for start, end in zip(ring, (*ring[1:], ring[0]), strict=True)
         )
+        segment_array = np.asarray(
+            [(*start, *end) for start, end in self._segments],
+            dtype=np.float64,
+        )
+        self._segment_bounds = np.column_stack(
+            (
+                np.minimum(segment_array[:, 0], segment_array[:, 2]),
+                np.maximum(segment_array[:, 0], segment_array[:, 2]),
+                np.minimum(segment_array[:, 1], segment_array[:, 3]),
+                np.maximum(segment_array[:, 1], segment_array[:, 3]),
+            )
+        )
+
+    @property
+    def component_count(self) -> int:
+        """Number of raw polygon components in the frozen teacher object."""
+
+        return len(self._components)
+
+    @property
+    def segment_count(self) -> int:
+        """Number of raw boundary segments used by the distance teacher."""
+
+        return len(self._segments)
+
+    def _candidate_segment_indices(self, point: Point) -> npt.NDArray[np.int64]:
+        """Return a superset containing every exactly nearest raw segment.
+
+        Binary64 AABB-distance operations are rounded one representable value
+        toward negative infinity after every positive subtraction, square, and
+        sum.  The resulting values are lower bounds on exact squared segment
+        distance.  One exact segment distance supplies an upper bound; every
+        AABB whose lower bound does not exceed it is evaluated exactly.
+        """
+
+        px, py = point
+        bounds = self._segment_bounds
+        zero = np.zeros(bounds.shape[0], dtype=np.float64)
+        dx_approx = np.maximum.reduce((bounds[:, 0] - px, zero, px - bounds[:, 1]))
+        dy_approx = np.maximum.reduce((bounds[:, 2] - py, zero, py - bounds[:, 3]))
+        dx_lower = np.where(dx_approx > 0, np.nextafter(dx_approx, -np.inf), 0.0)
+        dy_lower = np.where(dy_approx > 0, np.nextafter(dy_approx, -np.inf), 0.0)
+        dx_squared = dx_lower * dx_lower
+        dy_squared = dy_lower * dy_lower
+        dx_squared = np.where(
+            dx_squared > 0,
+            np.nextafter(dx_squared, -np.inf),
+            0.0,
+        )
+        dy_squared = np.where(
+            dy_squared > 0,
+            np.nextafter(dy_squared, -np.inf),
+            0.0,
+        )
+        lower = dx_squared + dy_squared
+        lower = np.where(lower > 0, np.nextafter(lower, -np.inf), 0.0)
+        initial_index = int(np.argmin(lower))
+        initial_upper = _point_segment_squared_distance(point, *self._segments[initial_index])
+        upper_float = _fraction_to_float_upper(initial_upper)
+        return np.flatnonzero(lower <= upper_float).astype(np.int64, copy=False)
 
     def signed_distance_interval(self, point: Point) -> SignedDistanceInterval:
         if not all(np.isfinite(coordinate) for coordinate in point):
             raise ValueError("query point must be finite")
-        statuses = tuple(_component_status(point, component) for component in self._components)
+        px, py = point
+        statuses = tuple(
+            _component_status(point, component)
+            for component, (x_min, x_max, y_min, y_max) in zip(
+                self._components, self._component_bounds, strict=True
+            )
+            if x_min <= px <= x_max and y_min <= py <= y_max
+        )
         if 0 in statuses:
             return SignedDistanceInterval(0.0, 0.0)
         inside = 1 in statuses
+        candidate_indices = self._candidate_segment_indices(point)
         squared_distance = min(
-            _point_segment_squared_distance(point, start, end) for start, end in self._segments
+            _point_segment_squared_distance(point, *self._segments[int(index)])
+            for index in candidate_indices
         )
         lower, upper = _sqrt_fraction_interval(squared_distance)
         if inside:

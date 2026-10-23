@@ -1,0 +1,70 @@
+experiment_id: R002G-node-label-manifest-v1
+date: 2026-10-23
+scope: complete_navsim_raw_cover_node_label_ledger
+
+inputs:
+  metric_cache_root_env: AORTA_NAVSIM_METRIC_CACHE_ROOT
+  navsim_source_root_env: AORTA_NAVSIM_SOURCE_ROOT
+  artifact_root_env: NAVSIM_EXP_ROOT
+  expected_cache_files: 164
+  modify_inputs: false
+
+graph:
+  frame: current_ego_rear_axle
+  connectivity: four_neighbor
+  x_support_m: [-32.0, 32.0]
+  y_support_m: [-32.0, 32.0]
+  resolution_m: 1.0
+  rows: 64
+  columns: 64
+  node_count: 4096
+  undirected_edge_count: 8064
+  cell_covering_radius: sqrt_0_5_m
+  rationale:
+    - frozen_navsim_family_bev_support
+    - four_second_evaluation_horizon
+    - one_meter_matches_0_25m_bev_with_factor_four_decoder_stride
+
+teacher:
+  semantic_object: frozen_cache_raw_polygon_cover
+  membership: union_of_scorer_drivable_area_layers
+  magnitude: distance_to_all_selected_raw_polygon_rings
+  selected_layers:
+    - ROADBLOCK
+    - INTERSECTION
+    - DRIVABLE_AREA
+    - CARPARK_AREA
+  polygon_error_m: 0.0
+  polygon_error_scope: exact_frozen_cache_object_only
+
+ledger:
+  transform: rational_taylor_affine_interval
+  distance: exact_rational_segment_distance_interval
+  serialization: deterministic_float64_npy_inside_fixed_timestamp_zip
+  rounding_error_m: 0.0
+
+execution:
+  worker_processes: 8
+  record_order: cache_id_sorted
+  worker_count_affects_semantics: false
+
+success:
+  all_caches_load: true
+  all_nodes_labeled: true
+  all_labels_and_errors_finite: true
+  all_error_terms_nonnegative: true
+  deterministic_artifact_replay: true
+  cache_and_protocol_hashes_complete: true
+
+claims:
+  closes_frozen_cache_node_label_ledger: true
+  real_world_map_semantics: false
+  navsim_performance_evidence: false
+  full_gate_a_if_passed: true
+  authorizes_gate_b_not_full_training: true
+
+stop_rules:
+  - any_node_or_cache_failure
+  - non_reproducible_manifest
+  - label_runtime_or_storage_infeasible
+  - gate_b_certificate_nearly_empty_at_frozen_resolution

@@ -8,6 +8,7 @@ from fractions import Fraction
 import numpy as np
 import pytest
 
+from aorta_drive.certification import teacher as teacher_module
 from aorta_drive.certification.teacher import (
     ExactPolygonTeacher,
     MapErrorLedger,
@@ -122,3 +123,43 @@ def test_invalid_rings_and_empty_teacher_are_rejected() -> None:
         PolygonComponent(outer=((0.0, 0.0), (1.0, 0.0), (0.0, 0.0)))
     with pytest.raises(ValueError, match="at least one"):
         ExactPolygonTeacher(())
+
+
+def test_exact_teacher_reports_frozen_object_size() -> None:
+    teacher = ExactPolygonTeacher(
+        (
+            _rectangle(0.0, 1.0, 0.0, 1.0),
+            _rectangle(2.0, 4.0, 2.0, 5.0),
+        )
+    )
+
+    assert teacher.component_count == 2
+    assert teacher.segment_count == 8
+
+
+def test_accelerated_segment_screening_never_drops_the_exact_nearest() -> None:
+    components = (
+        _rectangle(-10.0, -2.0, -7.0, 6.0),
+        _rectangle(-1.5, 4.0, -3.0, 9.0),
+        _rectangle(5.0, 11.0, -8.0, 2.0),
+    )
+    teacher = ExactPolygonTeacher(components)
+    rng = np.random.default_rng(20261031)
+    for sample in rng.uniform(-15.0, 15.0, size=(500, 2)):
+        point = (float(sample[0]), float(sample[1]))
+        candidates = set(int(index) for index in teacher._candidate_segment_indices(point))
+        exact_distances = tuple(
+            teacher_module._point_segment_squared_distance(point, start, end)
+            for start, end in teacher._segments
+        )
+        exact_minimum = min(exact_distances)
+        exact_nearest = {
+            index for index, distance in enumerate(exact_distances) if distance == exact_minimum
+        }
+        assert exact_nearest <= candidates
+        interval = teacher.signed_distance_interval(point)
+        magnitude_squared = min(
+            Fraction.from_float(interval.lower) ** 2,
+            Fraction.from_float(interval.upper) ** 2,
+        )
+        assert magnitude_squared <= exact_minimum

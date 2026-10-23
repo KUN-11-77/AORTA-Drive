@@ -20,6 +20,19 @@ M_S^{cont}(\tau)
 
 它不等价于 collision、traffic-rule、comfort、tracking 或完整闭环安全。
 
+V0 主图冻结为 current rear-axle frame 上的 \([-32,32]\times[-32,32]\) m
+方形 support、1 m cells、64×64 cell centers、4096 nodes 和 8064 条无向
+4-neighbor edges。连续覆盖半径为向外舍入的
+
+\[
+h=\sqrt{(1/2)^2+(1/2)^2}=1/\sqrt2\ \text{m}.
+\]
+
+该选择来自 source-only 协议：NAVSIM 4 s horizon、现有冻结模型族共同的 64 m BEV
+support，以及 0.25 m 输入 BEV 的 factor-4 decoder stride；没有读取 target score。
+若 Gate B 显示该分辨率使证书近乎全空，按停止规则报告或执行预注册敏感性分析，
+不得根据 target 结果事后替换主图。
+
 ## 2. Visual node evidence protocol
 
 冻结 DINOv3-H+ 产生多相机历史 token fields。对当前 ego-frame 节点 \(q=(x,y)\)：
@@ -214,6 +227,13 @@ sin/cos enclosure 和 41 阶 Lagrange remainder；完整 affine transform 用有
 传播。存储点到所得二维区间四角的最大距离向外舍入，逐节点写入
 \(\varepsilon_{transform}(q)\)。超出 heading domain、非有限输入或区间/输出溢出
 均拒绝生成标签。32-ULP libm comparison 只作接口诊断，不进入 certificate。
+
+R002G node-label builder 对每个冻结 cache 和全部 4096 nodes 保存
+`label_m`、`transform_error_m`、`distance_error_m` 与 `total_error_m`。raw cache
+polygon coordinates 本身定义 paper teacher，因此只在该明确 scope 内取
+\(\varepsilon_{polygon}=0\)；这不等于真实道路或另一个 map release 的 polygon
+semantic error 为零。float64 `.npy` payload 使用固定 ZIP metadata，逐文件和逻辑
+manifest 均做 SHA-256；任一 node、cache、hash 或 replay 失败即拒绝 Gate A。
 
 synthetic teacher 资格通过不自动令真实 NAVSIM 的 transform/polygon 两项为零；它们
 必须由实际 preprocessing 与 protocol hash 单独闭合。

@@ -14,7 +14,7 @@
 ## Next — complete Gate A
 
 - [ ] 使用 `experiment-plan` 冻结首次资格配置
-- [ ] 确定 NAVSIM ROI、resolution、graph size 与 \(T(Z)\)
+- [x] 冻结 NAVSIM ROI、resolution 与 graph size（R002G：64×64、1 m、4096 nodes、8064 edges）；\(T(Z)\) 留待 Gate B protocol freeze
 - [ ] 冻结多相机/历史帧 token-to-node 投影、missing-evidence mask 与可见性协议
 - [ ] 冻结可复现的 source-only candidate provider
 - [x] 设计并 synthetic 验证 proof-carrying asymmetric geometry checker

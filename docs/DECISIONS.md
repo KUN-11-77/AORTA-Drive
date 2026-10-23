@@ -71,3 +71,15 @@
 - **Status:** accepted for R002F qualification
 - **Reason:** 40 阶 rational Taylor polynomial 加 41 阶 Lagrange remainder 可在冻结的 \([-4,4]\) rad domain 内包住精确 sin/cos；其后的二维 affine interval 与 outward Euclidean radius 直接产生逐节点 \(\varepsilon_{transform}\)，无需假设平台 libm 正确舍入。
 - **Boundary:** 该预算只覆盖 binary64 表示值到 paper transform 的数值误差，不覆盖物理定位、地图配准或 pose convention 错误；最终 ROI、resolution 与全部 node-label manifest 仍须冻结。
+
+## ADR-0014 — Freeze the V0 graph at 64×64 one-meter cells
+
+- **Status:** accepted for R002G and subsequent Gate B
+- **Reason:** \([-32,32]^2\) m 是被审计 NAVSIM 模型族的共同 source-side BEV support；1 m 对应 0.25 m 输入 BEV 的 factor-4 decoder stride，并将 graph 固定为 4096 nodes/8064 edges。该选择在读取 target score 和 calibration residual 前冻结。
+- **Tradeoff:** \(h=1/\sqrt2\) m 可能降低 certificate sharpness；若 Gate B 近乎全空，触发预注册 stop/sensitivity rule，不能事后用 target outcome 改写主配置。
+
+## ADR-0015 — Define zero polygon error only against the frozen cache object
+
+- **Status:** accepted
+- **Reason:** raw cache binary64 rings 本身定义 V0 paper teacher；相对于这一计算对象，polygon semantic approximation 为零，transform/distance/serialization 误差仍逐节点记账。
+- **Boundary:** 不主张相对于真实道路、另一 map release 或完整 HD-map API 的 polygon error 为零。
