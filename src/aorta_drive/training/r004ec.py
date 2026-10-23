@@ -152,7 +152,7 @@ def load_joined_anchors(
                 projection_mask_path=_inside(
                     feature_root, str(item["projection_mask_relative_path"])
                 ),
-                label_path=_inside(label_root, artifact_name),
+                label_path=_inside(label_root / "labels", artifact_name),
                 label_artifact_sha256=artifact_sha256,
             )
         )

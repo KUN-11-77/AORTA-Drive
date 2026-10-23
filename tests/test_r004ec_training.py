@@ -149,3 +149,4 @@ def test_manifest_join_accepts_completed_zero_failure_teacher_manifest(
     joined = load_joined_anchors(feature_manifest, label_manifest)
     assert len(joined) == 16
     assert all(record.recording_group == "group-a" for record in joined)
+    assert joined[0].label_path == (tmp_path / "labels" / "label-0.npz").resolve()
