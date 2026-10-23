@@ -1,0 +1,78 @@
+{
+  "artifact_sha256": "94f363a81cae8d6dcf081c2cea691460f84f437b118bc21284d8191554ecd46d",
+  "artifact_path": "F:/AORTA-Drive-artifacts/gate-b/R004C/r004c_clean_d7b086a.json",
+  "candidate_count": {
+    "max": 35.0,
+    "mean": 33.55416666666667,
+    "median": 35.0,
+    "min": 23.0,
+    "p05": 23.0,
+    "p95": 35.0
+  },
+  "claim_boundary": "Closes deterministic source-only candidate generation and provenance only; it does not prove full-vehicle geometry eligibility, meaningful non-inclusion, improvement over native, planner transfer, calibration coverage, or Gate B success.",
+  "clean_implementation_revision": "d7b086a787ef03941b9ca55085c6674c8faa0ee0",
+  "config_sha256": "92189d10b76c57b31c0deedd1a55e32f73bfc95eb53fc94d52b64bc2503e00b5",
+  "data_scope": {
+    "anchor_count": 1440,
+    "independent_recording_group_count": 90,
+    "log_count": 519,
+    "splits": [
+      "train",
+      "development"
+    ]
+  },
+  "experiment_id": "R004C-candidate-provider",
+  "initial_speed_mps": {
+    "max": 13.900917260189798,
+    "mean": 4.964912257728189,
+    "median": 4.655526372796933,
+    "min": 7.798908651640469e-05,
+    "p05": 0.25184184293667095,
+    "p95": 10.681237768243102
+  },
+  "integrity_audit": {
+    "external_cross_model_review": "UNAVAILABLE",
+    "reason": "The prescribed external Codex/manual-review backend was not exposed in the current tool environment; no self-acquittal was substituted."
+  },
+  "provider": {
+    "accelerations_mps2": [
+      0.0,
+      -1.0,
+      -2.0,
+      -3.0,
+      1.0
+    ],
+    "curvatures_per_m": [
+      0.0,
+      -0.01,
+      0.01,
+      -0.02,
+      0.02,
+      -0.04,
+      0.04
+    ],
+    "horizon_s": 4.0,
+    "interval_s": 0.5,
+    "maximum_lateral_acceleration_mps2": 4.0,
+    "maximum_longitudinal_acceleration_mps2": 3.0,
+    "maximum_raw_challenger_count": 35,
+    "maximum_speed_mps": 20.0,
+    "native_included_separately": true,
+    "randomness": false,
+    "type": "deterministic_constant_acceleration_curvature_v1"
+  },
+  "reference_point_roi": {
+    "anchor_count_with_at_least_one_candidate": 1440,
+    "candidate_count_max": 35.0,
+    "candidate_count_mean": 30.77986111111111,
+    "candidate_count_min": 5.0,
+    "is_full_vehicle_geometry_certificate": false
+  },
+  "rejection_counts": {
+    "duplicate": 0,
+    "lateral_acceleration_envelope": 2082,
+    "longitudinal_acceleration_envelope": 0,
+    "speed_envelope": 0
+  },
+  "status": "PASS"
+}
