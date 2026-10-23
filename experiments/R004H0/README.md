@@ -23,3 +23,10 @@ observed means were `-9.31e-9` and `-1.49e-8 m`, inside the existing `1e-6 m` ze
 contract. No real payload, optimizer step or later split was used. The repaired registration
 removes the unjustified bitwise-zero assertion and makes the existing tolerance explicit in
 both config and production audit.
+
+The next local pass completed all 11 focused and 142 repository tests. Strict mypy then
+found three static-only issues: a redundant Tensor cast, the generic optional type of the
+registered convolution bias, and missing upstream typing for `Tensor.backward`. The repair
+removes the cast, explicitly enforces a bias, and scopes one type-ignore to the untyped
+third-party call. No tensor formula, parameter, threshold, payload access or experiment
+decision changed.

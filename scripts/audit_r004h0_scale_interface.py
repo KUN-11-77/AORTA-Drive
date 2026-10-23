@@ -202,7 +202,7 @@ def main() -> None:
         raise AssertionError("scale initialization exceeded registered tolerance")
 
     loss = bounded_laplace_scale_loss(output.potential, label, output.edge_scales_m)
-    loss.total.backward()
+    loss.total.backward()  # type: ignore[no-untyped-call]
     potential_gradients = [
         parameter.grad for parameter in model.potential_predictor.parameters()
     ]

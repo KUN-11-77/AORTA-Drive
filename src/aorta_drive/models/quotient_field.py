@@ -216,7 +216,7 @@ class QuotientFieldPredictor(nn.Module):
             decoded1, size=level0.shape[-2:], mode="bilinear", align_corners=False
         )
         decoded0 = self.decoder0(self.up0(decoded0) + level0)
-        return cast(Tensor, decoded0)
+        return decoded0
 
     def potential_from_spatial_features(self, spatial_features: Tensor) -> Tensor:
         """Map a validated final decoder map to the zero-gauge node potential."""

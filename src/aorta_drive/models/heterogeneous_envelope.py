@@ -87,6 +87,8 @@ class BoundedEdgeScaleHead(nn.Module):
         probability = (initial_scale_m - scale_min_m) / (scale_max_m - scale_min_m)
         initial_logit = math.log(probability / (1.0 - probability))
         nn.init.zeros_(self.projection.weight)
+        if self.projection.bias is None:
+            raise RuntimeError("registered scale projection must contain a bias")
         nn.init.constant_(self.projection.bias, initial_logit)
 
     @property
