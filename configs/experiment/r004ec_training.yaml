@@ -1,0 +1,97 @@
+experiment_id: R004E-C-source-only-quotient-training-v1
+date: 2026-10-24
+scope: qualify_real_training_input_then_train_one_registered_probe
+
+frozen_inputs:
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  feature_logical_manifest_sha256: a8a9c87969b4ee95a89902a78ddb11173a071aa15839a3ec136abcb0d9caa269
+  allowed_splits: [train, development]
+  prohibited_splits: [calibration, test, target_domain]
+
+experimental_unit:
+  independent_unit: recording_group
+  train_groups: 66
+  development_groups: 24
+  anchors_per_group: 16
+  anchor_role: nested_repeated_measurement
+  checkpoint_aggregation: recording_group_first
+
+target:
+  source_array: label_m
+  learned_object: rightward_then_downward_4_neighbor_differences
+  edge_count: 8064
+  label_gauge_centering_required: false
+  reason: common_offsets_cancel_exactly_under_the_incidence_operator
+  teacher_error_ledger_role: provenance_and_later_continuous_certificate_only
+
+runtime_materialization:
+  dense_input: 12_x_1280_x_18_x_32_raw_bfloat16_bits
+  projection: vectorized_torch_grid_sample
+  mode: bilinear
+  align_corners: true
+  invalid_slots: exact_zero_after_sampling
+  output_shape: [4096, 12, 1280]
+  output_dtype: float32
+  numpy_oracle_tolerance: 0.00001
+
+stages:
+  C0_real_input_contract:
+    anchor_selection: lexicographically_first_train_group_anchor_0
+    training_updates: 0
+    acceptance:
+      sampler_max_absolute_error_at_most: 0.00001
+      output_zero_gauge_max_absolute_mean_m_at_most: 0.000001
+      deterministic_replay_max_absolute_error_m: 0.0
+      invalid_slot_storage_max_absolute_error_m: 0.0
+      edge_count: 8064
+      all_outputs_losses_and_gradients_finite: true
+  C1_single_group_overfit:
+    group_selection: lexicographically_first_train_recording_group
+    epochs: 4
+    anchors_per_epoch: 16
+    optimizer: adamw
+    learning_rate: 0.0003
+    betas: [0.9, 0.95]
+    weight_decay: 0.0001
+    gradient_clip_global_norm: 1.0
+    acceptance:
+      final_mean_objective_relative_to_initial_at_most: 0.90
+      best_exact_group_max_residual_relative_to_initial_at_most: 0.98
+      all_steps_and_gradients_finite: true
+    claim_boundary: optimization_and_data_signal_sanity_only
+  C2_full_registered_training:
+    seed: 20261023
+    maximum_epochs: 20
+    batch_size: 1
+    gradient_accumulation: 1
+    train_anchor_schedule: group_interleaved_each_anchor_once_per_epoch
+    optimizer: adamw
+    learning_rate: 0.0003
+    betas: [0.9, 0.95]
+    weight_decay: 0.0001
+    warmup_epochs: 1
+    schedule: cosine_to_zero_after_warmup
+    gradient_clip_global_norm: 1.0
+    checkpoint_primary: mean_of_worst_5_development_group_maxima
+    checkpoint_secondary: mean_of_all_24_development_group_maxima
+    checkpoint_final_tie_break: earliest_epoch
+    hyperparameter_search: prohibited
+
+run_order: [C0_real_input_contract, C1_single_group_overfit, C2_full_registered_training]
+stop_rules:
+  - any_prior_stage_fails
+  - any_calibration_test_or_target_artifact_is_read
+  - any_feature_label_or_scene_key_mismatch
+  - any_nonfinite_value_or_gradient
+  - any_invalid_slot_storage_changes_prediction
+  - any_unregistered_hyperparameter_change_after_C0
+
+claims:
+  C0_closes_real_input_contract_only: true
+  C1_closes_optimization_sanity_only: true
+  C2_may_freeze_one_development_selected_checkpoint_only: true
+  calibration_coverage_established: false
+  certificate_nontriviality_established: false
+  gate_b_passed: false

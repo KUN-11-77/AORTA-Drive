@@ -8,6 +8,25 @@
 
 **2026-10-24 execution status:** Gate A remains PASS within the frozen nominal-road contract. R004A–D froze the source split/time set, visual projection, candidate provider and legal quotient-field probe. R004E-A/B instantiated and independently audited exact teacher and visual artifacts for all 90 train/development recording groups and 1440 anchors. R004E-C learned checkpoint and all calibration/nontriviality evidence remain absent.
 
+### Immediate qualification subplan — R004E-C
+
+R004E-C is sequential and cannot skip a stage. The independent unit is a complete
+recording group; its 16 anchors are nested repeated measurements. C0 opens only the
+lexicographically first train anchor to qualify the real data path. C1 uses all 16
+anchors of that same group only to falsify broken optimization or absent data signal.
+C2 is the sole registered train/development run and selects checkpoints only after
+aggregating exact residual maxima within each of 24 development groups.
+
+| Stage | Claim tested | Frozen success criterion | Failure interpretation |
+|---|---|---|---|
+| C0 real-input contract | cached BF16 fields, projections and labels implement the frozen mathematical interface | sampler error `<=1e-5`; 8064 ordered edges; zero gauge `<=1e-6 m`; replay and invalid-storage errors exactly zero; finite nonzero gradients | loader, factorization or model contract is invalid; stop before updates |
+| C1 one-group overfit | the registered objective receives learnable signal through the real pipeline | after 4×16 updates, final mean objective `<=0.90` of initial and best exact group maximum `<=0.98` of initial; all steps finite | optimization/data signal is broken; do not tune on development or add modules |
+| C2 full registered probe | one frozen source-only probe can be selected without anchor pseudoreplication | each of 66 train groups contributes 16 anchors per epoch; checkpoint lexicographic key is worst-5 group mean, all-24 group mean, earliest epoch | report failed learning or resource infeasibility; calibration remains sealed |
+
+Teacher numerical ledgers remain provenance for later continuous lifting; they are not
+used as per-node training weights. The learned target is exactly the incidence image
+of `label_m`, so a common label offset cancels and cannot leak an absolute safety zero.
+
 ## Immediate qualification subplan — R004E-B
 
 ### Claim map
