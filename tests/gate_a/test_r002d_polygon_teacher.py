@@ -53,6 +53,21 @@ def test_concave_hole_and_disjoint_union_semantics() -> None:
     assert teacher.signed_distance_interval((12.0, 1.0)).lower > 0
 
 
+def test_overlapping_polygon_cover_keeps_internal_boundaries_conservatively() -> None:
+    teacher = ExactPolygonTeacher(
+        (
+            _rectangle(0.0, 2.0, 0.0, 2.0),
+            _rectangle(1.0, 3.0, 0.0, 2.0),
+        )
+    )
+    internal_seam = teacher.signed_distance_interval((1.0, 1.0))
+    overlap_interior = teacher.signed_distance_interval((1.5, 1.0))
+    outside = teacher.signed_distance_interval((4.0, 1.0))
+    assert internal_seam.lower == internal_seam.upper == 0.0
+    _assert_contains(overlap_interior, 0.5)
+    _assert_contains(outside, -1.0)
+
+
 def test_binary64_interval_encloses_exact_rational_segment_distance() -> None:
     teacher = ExactPolygonTeacher((_rectangle(0.0, 1.0, 0.0, 1.0),))
     point = (1.1, 1.2)

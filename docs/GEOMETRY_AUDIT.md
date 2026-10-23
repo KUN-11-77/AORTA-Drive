@@ -66,3 +66,27 @@ The revised contract is asymmetric:
 R002C qualifies this analytic construction on synthetic straight, rotating,
 mixed-motion, boundary, and adversarial 1-Lipschitz cases. It does not by itself
 close the NAVSIM coordinate and continuous-teacher error ledger.
+
+## Arithmetic-safe production fallback
+
+R002E adds a deliberately more conservative route for the production proof:
+
+- each challenger segment is enclosed by a rear-axle-centered disk whose radius
+  is half the endpoint translation plus the vehicle's maximum rear-axle radius
+  and the declared pose error;
+- native nodes come only from a rear-axle disk contained in the body for every
+  orientation;
+- midpoint construction, squared-distance tests, and grid support checks use
+  exact rationals for binary64 inputs, while square roots and sums round outward;
+- the certificate therefore does not consume the official scorer's four corner
+  coordinates and does not rely on trigonometric rounding assumptions.
+
+The official corner path remains a compatibility observation only. A fixed
+32-ULP-at-global-coordinate-scale check detects convention-level disagreements;
+its measured error is reported, but it is not a correction term in the disk
+certificate.
+
+The NAVSIM map cache contains overlapping drivable polygons. The continuous
+teacher consequently uses union membership with distance to all raw polygon
+boundaries. Internal overlap seams make the field more conservative inside the
+union, while avoiding an unproved numerical overlay operation.

@@ -227,11 +227,72 @@ F_{[0,1]}\subseteq R(\theta_m)K+p_m\oplus B_2(\delta).
 
 因此 \(a_x\) 必被选择。多段轨迹取各段节点并集；任何外包络越出 ROI、节点集为空、yaw 未展开或协议不一致时必须拒绝认证，而不是裁剪或经验补点。
 
+### Proposition 3 — rotation-free arithmetic-safe fallback
+
+若不能为中点旋转、三角函数和有向矩形距离提供完整数值证明，则生产证书不使用
+上述解析矩形路径。令
+
+\[
+R_K=\sup_{k\in K}\lVert k\rVert_2,
+\qquad
+p_m=(p_0+p_1)/2.
+\]
+
+不论区间内 yaw 如何变化，线性平移下的整段车体都包含于
+
+\[
+B_2\!\left(p_m,
+\tfrac12\lVert p_1-p_0\rVert_2+R_K+\varepsilon_{pose}\right).
+\]
+
+证明只需三角不等式：rear axle 到 \(p_m\) 的距离至多半段平移，任意车体点
+到 rear axle 的距离至多 \(R_K\)。以 binary64 输入代表的精确有理数计算中点、
+squared distance 与比较，并将平方根和非负加法向外舍入。再选择该圆盘加
+\(h\) 范围内的所有格心，即得到无需旋转或 libm 三角函数假设的 challenger
+\(h\)-cover。
+
+对 native，令
+
+\[
+r_{in}=\min\{l_{rear},l_{front},w/2\}-\varepsilon_{pose}>0.
+\]
+
+rear axle 周围半径 \(r_{in}\) 的闭圆盘在任意 yaw 下均位于真实矩形内部；选择其中
+的格心即可确定性满足 \(A_0\subseteq F_0\)。该 fallback 比有向矩形路径更保守，
+但其保守性影响证书锐度而非 soundness。
+
 ### Assumption M — continuous teacher and node-label ledger
 
 论文中的 \(\phi\) 必须绑定到一个预先冻结的 continuous nominal-road object，而不是
-raster EDT。V0.4 使用经过拓扑验证和 canonical union 的 polygon region；其边界线段
-与 query node 的 binary64 坐标在数学上解释为精确实数。
+raster EDT。V0.4 使用 raw polygon cover：成员关系由全部有效输入 polygon 的并集
+\(U=\cup_iP_i\) 决定，距离幅值则相对于全部原始 ring 的集合
+\(B_{raw}=\cup_i\partial P_i\) 计算：
+
+\[
+\phi_{cover}(x)=
+\begin{cases}
++\operatorname{dist}(x,B_{raw}),&x\in U,\\
+-\operatorname{dist}(x,B_{raw}),&x\notin U.
+\end{cases}
+\]
+
+该定义不需要数值 polygon overlay。其边界线段与 query node 的 binary64 坐标在
+数学上解释为精确实数。
+
+### Lemma 2 — raw-cover teacher 的 Lipschitz 性与保守性
+
+\(\phi_{cover}\) 是 1-Lipschitz。若两点同号，结论来自到固定闭集
+\(B_{raw}\) 的距离函数；若异号，连接两点的线段必穿过并集外边界，而并集外边界
+包含于 \(B_{raw}\)，两侧距离之和不超过两点距离。
+
+在 \(U\) 内，\(B_{raw}\) 还可能包含 polygon 重叠产生的内部 seam，因此
+
+\[
+0\le\phi_{cover}(x)\le \operatorname{dist}(x,\partial U).
+\]
+
+它可能牺牲证书锐度，但不会把内部 nominal-road clearance 高估；在 \(U\) 外，
+最近 raw boundary 必属于可见并集边界，所以与 union-boundary signed distance 一致。
 
 离线 teacher 对每个节点返回包含精确 signed distance 的区间
 \([\phi^-(q),\phi^+(q)]\)，node label \(\widetilde d(q)\) 的 distance/rounding
@@ -259,19 +320,20 @@ paper teacher 与 node label 之间的总账本为
 每次加法向 \(+\infty\) 外舍入。各项含义分别为 coordinate transform、上游 map 到
 冻结 polygon object 的近似、连续边界距离计算和其余序列化/量化误差。
 
-若论文任务明确且始终定义为“冻结 canonical polygon object 上的 nominal margin”，
+若论文任务明确且始终定义为“冻结 raw polygon cover 上的 nominal margin”，
 则 polygon semantic error 可按定义为零；若主张相对于原始 NAVSIM map、真实道路或
 另一个 preprocessing object，则不得通过重定义 teacher 将
 \(\varepsilon_{transform}\) 或 \(\varepsilon_{polygon}\) 置零。
 
-### Proposition 3 — exact-rational polygon distance interval
+### Proposition 4 — exact-rational polygon distance interval
 
 对 binary64 node 与 polygon vertices，逐线段用有理数精确计算投影参数与 squared
 distance，并对其平方根返回相邻 binary64 外包区间；inside/outside/boundary 使用精确
-有理 predicate。若输入是已验证的 simple、non-overlapping canonical polygon union，
-则所得区间包含冻结 continuous teacher 的精确 signed distance。
+有理 predicate。若每个输入 polygon ring 已独立验证为 simple、finite、non-empty 且
+hole topology 有效，则所得区间包含冻结 raw-cover teacher 的精确 signed clearance；
+polygon 之间允许重叠，raw internal seam 处按定义返回零。
 
-该 proposition 不负责证明上游 polygon union、坐标变换或 map semantics 正确；这些
+该 proposition 不负责证明上游 raw polygons、坐标变换或 map semantics 正确；这些
 分别属于 \(\varepsilon_{polygon}\)、\(\varepsilon_{transform}\) 与 protocol audit。
 
 若一般数值实现输出 \(\widehat L_G\)，且已证明
@@ -282,7 +344,7 @@ L_G\ge\widehat L_G-\varepsilon_{num},
 
 则进一步扣除 \(\varepsilon_{num}\)。
 
-### Lemma 2 — outward-safe binary64 implementation
+### Lemma 3 — outward-safe binary64 implementation
 
 对有限 binary64 输入，若每次 Dijkstra path addition 都向 \(+\infty\) 外舍入、最终 \(u_a-\widehat\psi_B(a)\) 向 \(-\infty\) 外舍入，并在任何非有限结果时拒绝认证，则
 
@@ -323,7 +385,7 @@ P\left(
 
 这是 calibration sessions 与新 source session 联合随机性的边际保证。
 
-### Lemma 3 — finite-threshold sample size
+### Lemma 4 — finite-threshold sample size
 
 \(k\le n\) 的最低样本量为
 
@@ -400,7 +462,7 @@ r_e(X)=\frac{(Du(X)-D\widetilde d)_e}{s_e},
 =\max_e\frac{|D[u(X')-u(X)]_e|}{s_e}.
 \]
 
-### Lemma 4
+### Lemma 5
 
 \[
 \|r(X')\|_\infty

@@ -1,0 +1,48 @@
+experiment_id: R002E-navsim-preprocessing-audit-v1
+date: 2026-10-23
+scope: read_only_navsim_metric_cache_interface_audit
+
+inputs:
+  metric_cache_root_env: AORTA_NAVSIM_METRIC_CACHE_ROOT
+  navsim_source_root_env: AORTA_NAVSIM_SOURCE_ROOT
+  nuplan_source_root_env: AORTA_NUPLAN_SOURCE_ROOT
+  expected_cache_files: 164
+  modify_inputs: false
+
+teacher:
+  semantic_object: raw_polygon_cover_clearance
+  membership: union_of_official_drivable_polygons
+  magnitude: distance_to_all_raw_polygon_boundaries
+  overlay_operation_required: false
+  official_layers:
+    - ROADBLOCK
+    - INTERSECTION
+    - DRIVABLE_AREA
+    - CARPARK_AREA
+
+vehicle:
+  reference_point: rear_axle
+  expected_name: pacifica
+  expected_width_m: 2.297
+  expected_front_extent_m: 4.049
+  expected_rear_overhang_m: 1.127
+
+geometry:
+  certified_fallback: rotation_free_rear_axle_disk
+  challenger_outer_radius: half_translation_plus_vehicle_radius_plus_pose_error
+  native_inner_radius: min_rear_front_half_width_minus_pose_error
+  arithmetic: exact_rational_squared_comparisons_and_outward_sqrt
+
+success:
+  all_caches_load: true
+  all_selected_polygons_finite_nonempty_valid: true
+  vehicle_protocol_consistent: true
+  corner_convention_compatibility_max_ulp: 32
+  corner_coordinates_used_by_certificate: false
+  unsupported_geometry_count: 0
+  source_manifest_complete: true
+
+claims:
+  navsim_performance_evidence: false
+  arbitrary_ood_evidence: false
+  full_gate_a_if_passed: false

@@ -30,7 +30,7 @@ def _validate_ring(ring: Ring) -> None:
 
 @dataclass(frozen=True)
 class PolygonComponent:
-    """One canonical polygon component with zero or more hole rings."""
+    """One validated raw polygon component with zero or more hole rings."""
 
     outer: Ring
     holes: tuple[Ring, ...] = ()
@@ -203,11 +203,15 @@ def _component_status(point: Point, component: PolygonComponent) -> int:
 
 
 class ExactPolygonTeacher:
-    """Signed distance to a frozen canonical polygon-union boundary.
+    """Signed clearance to a frozen polygon cover and all of its raw boundaries.
 
-    Binary64 coordinates are interpreted as exact real numbers. Components
-    must be a prevalidated canonical union: component interiors may not overlap,
-    holes must be valid and contained, and rings must be simple. This class
+    Membership is the union of all components.  The magnitude is distance to
+    the union of every input ring, including boundaries that become internal
+    when components overlap.  This remains 1-Lipschitz and is conservative
+    inside the polygon union, while avoiding a numerically unverified overlay.
+
+    Binary64 coordinates are interpreted as exact real numbers. Rings must be
+    prevalidated as simple and holes must be valid and contained. This class
     deliberately does not silently repair invalid map topology.
     """
 

@@ -152,7 +152,25 @@ geometry checker 必须确定性证明非对称合同：
 - footprints 完全位于认证 ROI，集合非空；
 - reference surface、pose interpolation、vehicle dilation、coordinate transforms 与 protocol hash 一致。
 
-V0.4 冻结相邻姿态间的线性平移与连续展开 yaw 的线性插值。每段使用中点车体的膨胀外包络
+V0.4 的默认证明路径是 rotation-free disk fallback。每段以 rear-axle 平移中点为圆心，
+使用
+
+\[
+r_i=\frac12\lVert p_{i+1}-p_i\rVert_2+R_K+\varepsilon_{pose}
+\]
+
+外包任意 yaw 变化下的整段车体，再以 \(r_i+h\) 选择固定格心；native 只选择
+rear axle 内圆盘
+
+\[
+r_{in}=\min\{l_{rear},l_{front},w/2\}-\varepsilon_{pose}>0
+\]
+
+中的格心。中点、squared distance 和比较按 binary64 输入对应的精确有理数计算，
+平方根与加法向外舍入，因此正式证书不依赖 scorer 四角点或 libm 三角函数。
+
+解析矩形路径可作为更锐利的研究实现：冻结相邻姿态间的线性平移与连续展开 yaw
+的线性插值。每段使用中点车体的膨胀外包络
 
 \[
 \delta_i=\frac12\lVert p_{i+1}-p_i\rVert_2
@@ -175,8 +193,10 @@ L_{j0}^{cert}
 
 无法证明 map、geometry 或 numerical budget 的 pair 不得认证 continuous task。
 
-continuous teacher 必须来自冻结、拓扑有效且 canonicalized 的 polygon union，而不是
-raster EDT。离线 node-label builder 使用 exact-rational segment squared distance 和
+continuous teacher 必须来自冻结且逐 polygon 拓扑有效的 raw polygon cover，而不是
+raster EDT，也不要求先做数值 overlay。成员关系取输入 polygons 的并集，距离幅值取到
+全部 raw rings 的最近距离；重叠产生的内部 seam 按定义为零，因而相对于 union-boundary
+clearance 保守。离线 node-label builder 使用 exact-rational segment squared distance 和
 binary64 outward sqrt interval，输出 \(\widetilde d(q)\) 与
 \(\varepsilon_{dist}(q)\)。部署账本保持
 
