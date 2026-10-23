@@ -83,3 +83,11 @@
 - **Status:** accepted
 - **Reason:** raw cache binary64 rings 本身定义 V0 paper teacher；相对于这一计算对象，polygon semantic approximation 为零，transform/distance/serialization 误差仍逐节点记账。
 - **Boundary:** 不主张相对于真实道路、另一 map release 或完整 HD-map API 的 polygon error 为零。
+
+## ADR-0016 — Split NAVSIM source data by complete physical recording
+
+- **Status:** accepted for Gate B protocol
+- **Reason:** 官方 navtrain 的 1192 个导出 log fragments 来自 162 个较长录制；把 fragment 或 frame 当独立样本会让同一录制跨 split，造成伪重复和过于乐观的 session calibration。R004A 因此以去掉文件名末尾区间后的 recording group 为唯一独立单位，并固定 66/24/40/32 个 train/development/calibration/test groups。
+- **Allocation:** 只用首次读取任何 predictor residual 前可见的 scene count、log count、month 与 vehicle ID 做精确组容量的元数据均衡；MILP 达到时限时保存的可行 incumbent 被哈希冻结，不宣称全局最优，也不得根据后续结果重新抽样。
+- **Time set:** 每个 group 按时间顺序固定 16 个 midpoint-quantile anchors；session 风险与效用结论仅覆盖该有限 (T(Z))，640 个 calibration anchors 仍只构成 40 个独立 calibration sessions。
+- **Boundary:** 该决定只关闭 data-independence 与有限时刻集，不证明 source exchangeability、coverage、predictor validity 或 Gate B 成功。

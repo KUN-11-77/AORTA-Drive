@@ -1,0 +1,97 @@
+experiment_id: R004A-source-session-protocol-v1
+date: 2026-10-24
+scope: source_split_independence_and_finite_time_set
+
+source:
+  dataset: NAVSIM-navtrain
+  scene_filter_sha256: 5f3c406a06c961e75d69d33bc127acd5704a3a440a7186bfa2212493ecf9fc01
+  scene_filter:
+    num_history_frames: 4
+    num_future_frames: 10
+    frame_interval: 1
+    has_route: true
+  official_log_count: 1192
+  official_scene_count: 103288
+  recording_group_count: 162
+  independent_unit: complete_recording_group
+  grouping_rule: strip_only_final_numeric_fragment_interval_from_log_name
+
+split:
+  seed: AORTA-R004-20261023-v1
+  result_independent_features:
+    - eligible_scene_count
+    - exported_log_count
+    - recording_month
+    - vehicle_id
+  forbidden_inputs:
+    - labels
+    - maps
+    - model_predictions
+    - residuals
+    - planner_scores
+    - target_domain_data
+  allocation_method: exact_group_capacity_weighted_normalized_l1_metadata_balance
+  solver: scipy_optimize_milp_highs
+  solver_outcome: time_limited_feasible_incumbent_not_claimed_optimal
+  assignment_logical_sha256: edd72ca4dddcf181da01bf2ae6fcf22b77eb849043751b46fda1f97906d4772d
+  groups:
+    train: 66
+    development: 24
+    calibration: 40
+    test: 32
+  logs:
+    train: 486
+    development: 176
+    calibration: 294
+    test: 236
+  scenes:
+    train: 42077
+    development: 15322
+    calibration: 25483
+    test: 20406
+
+time_set:
+  anchors_per_recording_group: 16
+  chronological_rule: floor((2*j+1)*N/(2*m))
+  index_origin: zero
+  total_anchors: 2592
+  counts:
+    train: 1056
+    development: 384
+    calibration: 640
+    test: 512
+  scope_boundary: theorem_and_metrics_apply_only_to_this_frozen_finite_time_set
+
+calibration:
+  independent_session_count: 40
+  primary_alpha: 0.10
+  secondary_alpha: 0.05
+  gamma_task_m: 0.0
+  reuse_for_architecture_checkpoint_threshold_or_candidate_selection: false
+  score_access_before_remaining_protocol_freeze: prohibited
+
+manifests:
+  root: configs/manifests
+  protocol_fingerprint: r004_protocol_fingerprint.json
+  recording_group_split: r004_recording_group_split.csv
+  source_log_manifest: r004_source_log_manifest.csv
+  session_time_set: r004_session_time_set.csv
+  protocol_logical_sha256: 090acf0c3621362b3d7c50e88a92a59d823a80d900e6e285fe25012d9dacab2b
+
+blocking_dependencies_before_gate_b_predictor:
+  - freeze_token_to_node_projection_and_missing_evidence
+  - freeze_candidate_provider_horizon_budget_ordering_and_provenance
+  - freeze_legal_source_only_predictor_and_checkpoint_rule
+
+claims:
+  closes_source_split_and_time_set_only: true
+  source_exchangeability_proved: false
+  learned_predictor_qualified: false
+  calibration_coverage_established: false
+  gate_b_passed: false
+
+stop_rules:
+  - any_recording_group_crosses_splits
+  - any_official_log_or_scene_is_missing_or_duplicated
+  - any_manifest_fails_deterministic_replay
+  - calibration_scores_are_read_before_all_blocking_dependencies_are_frozen

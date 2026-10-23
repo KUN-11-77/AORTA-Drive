@@ -15,13 +15,14 @@
 
 - [x] 使用 `experiment-plan` 冻结首次资格配置
 - [x] 冻结 NAVSIM ROI、resolution 与 graph size（R002G：64×64、1 m、4096 nodes、8064 edges）；\(T(Z)\) 留待 Gate B protocol freeze
+- [x] 冻结 source recording-group split 与有限 \(T(Z)\)（R004A：162 groups，16 anchors/group；40 calibration sessions）
 - [ ] 冻结多相机/历史帧 token-to-node 投影、missing-evidence mask 与可见性协议
 - [ ] 冻结可复现的 source-only candidate provider
 - [x] 设计并 synthetic 验证 proof-carrying asymmetric geometry checker
 - [x] 定义 continuous polygon teacher、\(\varepsilon_{map}\) 与 geometry arithmetic 的保守证明方案
 - [ ] 指定 Gate B 的合法 source-only predictor 或最小 probe
 - [ ] 固定具体 CDF/joint-field 最近邻
-- [ ] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)
+- [x] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)（主 \(\alpha=0.10\)，次 \(\alpha=0.05\)）
 
 ## Gate A implementation
 
