@@ -2,7 +2,7 @@
 
 ## Verdict
 
-**Mathematical core: PASS. Full Gate A: BLOCKED.**
+**Mathematical core: PASS. Full Gate A: PASS within the frozen nominal-road contract.**
 
 R001–R003 completed on clean implementation revision
 `821b0606f6739634ed72f3ca7bd663999d06a87c`. These runs validate the graph
@@ -34,6 +34,13 @@ ego-local to global transform using rational Taylor intervals on 164/164 caches,
 with 49/49 repository tests passing. The maximum registered per-point
 `epsilon_transform` was (4.635\times10^{-10}) m.
 
+R002G completed on clean revision
+`fcdb1e55098e0b4e0b9dee4eb26325aa2fc064f6`. It freezes a 64×64 one-meter
+rear-axle graph and closes the raw-cover node-label ledger for 164/164 caches
+and 671,744/671,744 nodes. All artifacts passed byte-replay and an independent
+hash/shape/finiteness/direction audit. The maximum registered total map ledger
+was \(4.6913963943\times10^{-10}\) m.
+
 ## Evidence
 
 | Run | Controlled question | Evidence | Result |
@@ -45,12 +52,14 @@ with 49/49 repository tests passing. The maximum registered per-point
 | R002D | Does the continuous polygon teacher enclose exact signed distance and sum map-error terms conservatively? | rectangles, concavity, holes, disjoint unions, 500 random labels, exact rational oracle and Lipschitz checks | PASS; 7 tests; all registered intervals/ledgers enclosed |
 | R002E | Do actual NAVSIM cache polygons, vehicle conventions and arithmetic-safe geometry satisfy the frozen interface? | 164 metric caches, 8 source hashes, 6,710 selected polygons, overlap audit, 32-ULP compatibility sentinel, rotation-free disk tests | PASS; 164/164 caches and 45/45 tests; transform ledger remains separate |
 | R002F | Can ego-local nodes be transformed to global polygons without trusting libm? | degree-40 rational sin/cos intervals, Lagrange remainder, exact affine propagation, 164 caches × 9 probes | PASS; 164/164 caches and 49/49 tests; max registered radius (4.635\times10^{-10}) m |
+| R002G | Does the frozen NAVSIM graph have a complete deterministic label/error ledger? | 164 caches × 4096 nodes, raw polygon cover, certified transform, exact-rational distance, byte replay and independent artifact audit | PASS; 671,744/671,744 labels and 164/164 artifacts; max total ledger \(4.6913963943\times10^{-10}\) m |
 | R003 | Are calibration, risk, and numerical directions correct? | finite-threshold sample sizes, session maxima, relative event tests, and 500 exact-fraction numerical comparisons | PASS; 9 tests; 0 optimistic bounds |
 
 Machine-readable records: [`R001.json`](R001.json), [`R002.json`](R002.json),
 [`R002B.json`](R002B.json), [`R002C.json`](R002C.json),
 [`R002D.json`](R002D.json), [`R002E.json`](R002E.json),
-[`R002F.json`](R002F.json), and [`R003.json`](R003.json).
+[`R002F.json`](R002F.json), [`R002G.json`](R002G.json), and
+[`R003.json`](R003.json).
 
 ## Theory optimization accepted
 
@@ -70,12 +79,12 @@ a source label of \(-3\) propagated over two unit edges gives \(-1\), not 2.
 The test oracle was corrected; the algorithm was not changed to match the wrong
 expectation. Formal clean-revision runs were executed only afterward.
 
-## Remaining blockers
+## Gate B blockers
 
-1. Freeze NAVSIM ROI/resolution/graph size and generate the complete per-node
-   raw-cover label, transform/distance error, and protocol-hash manifest.
-2. Freeze the source session manifest, token-to-node projection, missing-evidence
+1. Freeze the source session manifest, token-to-node projection, missing-evidence
    behavior, and candidate provider before Gate B.
+2. Qualify a legal source-only predictor and show finite, nontrivial session-tail
+   residuals before any formal end-to-end training.
 
 R002E used local NAVSIM metric caches read-only. No target appearance suite, GPU
 training, or server execution was used in these runs.

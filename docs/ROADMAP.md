@@ -7,18 +7,18 @@
 - [x] 冻结 v8.3.1 V0 条件理论规范
 - [x] 用 v8.3.2 asymmetric outer-cover/native-interior 合同修正连续几何 lifting
 - [x] 明确标准工具、风险量词、geometry contract 与公平 baseline
-- [x] 补齐连续 teacher/node-label map error、token-to-node evidence 与 candidate-provider contract
+- [x] 补齐 continuous teacher、node-label map error 与 token-to-node/candidate-provider 理论合同
 - [x] 将主风险升级为所有授权干预达到 \(\gamma_{task}\) 的 relative-margin event
 - [x] 将 affine panel 路线降级为历史 baseline
 
-## Next — complete Gate A
+## Next — freeze Gate B inputs
 
-- [ ] 使用 `experiment-plan` 冻结首次资格配置
+- [x] 使用 `experiment-plan` 冻结首次资格配置
 - [x] 冻结 NAVSIM ROI、resolution 与 graph size（R002G：64×64、1 m、4096 nodes、8064 edges）；\(T(Z)\) 留待 Gate B protocol freeze
 - [ ] 冻结多相机/历史帧 token-to-node 投影、missing-evidence mask 与可见性协议
 - [ ] 冻结可复现的 source-only candidate provider
 - [x] 设计并 synthetic 验证 proof-carrying asymmetric geometry checker
-- [ ] 定义 continuous polygon teacher、\(\varepsilon_{map}\) 与 geometry arithmetic 的保守证明方案
+- [x] 定义 continuous polygon teacher、\(\varepsilon_{map}\) 与 geometry arithmetic 的保守证明方案
 - [ ] 指定 Gate B 的合法 source-only predictor 或最小 probe
 - [ ] 固定具体 CDF/joint-field 最近邻
 - [ ] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)
@@ -33,7 +33,7 @@
 - [x] exact polygon teacher 与 map-error ledger synthetic tests（R002D clean revision 通过）
 - [x] NAVSIM cache/source/vehicle/polygon interface audit 与 rotation-free geometry arithmetic（R002E clean revision 通过）
 - [x] ego-local graph node 到 global raw polygons 的 transform interval 与 \(\varepsilon_{transform}\) primitive（R002F）
-- [ ] 冻结 ROI/resolution 并生成完整 raw-cover node-label/error manifest（R002G）
+- [x] 冻结 ROI/resolution 并生成完整 raw-cover node-label/error manifest（R002G：164/164 caches、671,744 nodes）
 
 ## Gate B/C qualification
 

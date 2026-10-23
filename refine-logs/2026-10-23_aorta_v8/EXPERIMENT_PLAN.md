@@ -6,7 +6,7 @@
 
 > 本计划用于验证、否证并修正当前条件规范，不预设方法成立。Gate A/B 通过前禁止正式长跑和目标域结论。
 
-**2026-10-23 execution status:** R001–R003 synthetic qualification completed on clean revision `821b060`; R002C asymmetric sweep cover passed on `943e7bb`; R002D exact polygon-teacher ledger passed on `497b77b`; R002E NAVSIM preprocessing/raw-cover/rotation-free geometry qualification passed on `13abb27`; R002F exact-rational coordinate-transform qualification passed on `1ff87a6` for 164/164 caches and 49/49 tests. Full Gate A remains blocked by freezing the actual ROI/resolution and generating the complete per-node raw-cover label/error manifest. See [`experiments/results/GATE_A_SYNTHETIC_SUMMARY.md`](../../experiments/results/GATE_A_SYNTHETIC_SUMMARY.md).
+**2026-10-23 execution status:** R001–R003 synthetic qualification completed on clean revision `821b060`; R002C asymmetric sweep cover passed on `943e7bb`; R002D exact polygon-teacher ledger passed on `497b77b`; R002E NAVSIM preprocessing/raw-cover/rotation-free geometry qualification passed on `13abb27`; R002F exact-rational coordinate-transform qualification passed on `1ff87a6`; R002G passed on clean revision `fcdb1e5` for 164/164 caches and 671,744/671,744 frozen graph nodes. Full Gate A is PASS within the frozen nominal-road contract. Gate B learned-predictor and nontriviality evidence remains absent. See [`experiments/results/GATE_A_SYNTHETIC_SUMMARY.md`](../../experiments/results/GATE_A_SYNTHETIC_SUMMARY.md).
 
 ## Claim Map
 
@@ -185,5 +185,5 @@
 - [x] frontier primitive 仅为 frozen DINO，并有强简单对照；不强行增加 frontier block
 - [x] MUST-RUN 与 NICE-TO-HAVE 已分离
 - [ ] 服务器硬件与连接信息完成安全配置
-- [ ] experiment config 首次冻结
-- [ ] Gate A 执行
+- [x] experiment config 首次冻结
+- [x] Gate A 执行

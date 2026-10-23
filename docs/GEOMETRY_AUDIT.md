@@ -99,4 +99,7 @@ Taylor polynomials plus a degree-41 Lagrange remainder enclose exact sin/cos.
 Exact rational affine interval propagation then returns a binary64 global point
 and an outward Euclidean `epsilon_transform` radius. All 164 cache poses passed;
 the maximum registered radius over the nine ([-50,0,50]^2) probes was
-(4.635\times10^{-10}) m. The final ROI-wide label manifest remains pending.
+(4.635\times10^{-10}) m. R002G subsequently closed the frozen
+\([-32,32]^2\) m ROI-wide path for 164/164 caches and 671,744/671,744 nodes;
+the maximum full-manifest map ledger was
+\(4.6913963943\times10^{-10}\) m.
