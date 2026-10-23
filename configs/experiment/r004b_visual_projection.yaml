@@ -1,0 +1,111 @@
+experiment_id: R004B-visual-projection-v1
+date: 2026-10-24
+scope: frozen_camera_to_patch_projection_and_missing_evidence_contract
+
+data_access:
+  permitted_splits:
+    - train
+    - development
+  prohibited_splits:
+    - calibration
+    - test
+    - target_domain
+  labels_or_planner_outputs_read: false
+  session_time_set: configs/manifests/r004_session_time_set.csv
+
+physical_graph:
+  reference_frame: current_rear_axle_ego
+  support_m: [-32.0, 32.0, -32.0, 32.0]
+  node_coordinates_m: half_integer_cell_centers
+  resolution_m: 1.0
+  shape: [64, 64]
+  node_count: 4096
+  reference_surface_z_m: 0.0
+
+camera_history:
+  cameras: [cam_l0, cam_f0, cam_r0]
+  history_offsets: [-3, -2, -1, 0]
+  slot_count: 12
+  temporal_transform: absolute_pose_se2_current_to_history
+  camera_transform: p_camera_equals_rotation_transpose_times_p_ego_minus_translation
+  raw_image_shape: [1080, 1920]
+
+distortion:
+  model: opencv_brown_conrady_5_forward
+  coefficient_order: [k1, k2, p1, p2, k3]
+  maximum_normalized_ideal_ray_radius: 1.0
+  rationale:
+    maximum_observed_ideal_image_boundary_radius: 0.9334159771399784
+    minimum_observed_radial_only_first_turning_radius: 1.1470478871481082
+  prohibited:
+    - silently_drop_distortion
+    - extrapolate_beyond_calibrated_ray_domain
+    - use_iterative_undistortion_as_forward_projection
+
+image_preprocessing:
+  color: RGB
+  crop: false
+  resize_shape: [288, 512]
+  resize_mode: torch_bicubic_align_corners_false_antialias_true
+  coordinate_convention: half_pixel
+  normalization_mean: [0.485, 0.456, 0.406]
+  normalization_std: [0.229, 0.224, 0.225]
+
+backbone:
+  name: dinov3_vith16plus
+  frozen: true
+  checkpoint_sha256: 7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488
+  parameter_count: 840633600
+  patch_size: 16
+  embedding_dimension: 1280
+  feature: normalized_last_4_layer_mean
+  inference_dtype: bfloat16
+  patch_grid_shape: [18, 32]
+
+node_projection:
+  resize_mapping: "u_resized = (u_raw + 0.5) * width_resized / width_raw - 0.5"
+  patch_mapping: "x_patch = (u_resized + 0.5) / patch_size - 0.5"
+  interpolation: bilinear_over_patch_centers
+  support_conditions:
+    - camera_depth_greater_than_1e-3_m
+    - ideal_normalized_ray_radius_at_most_1
+    - distorted_pixel_inside_raw_image
+    - coordinate_inside_patch_center_convex_hull
+  padding: prohibited
+  clamping: prohibited
+  extrapolation: prohibited
+  occlusion_model: none
+  semantic_name: projective_token_support_not_physical_visibility
+
+missing_evidence:
+  per_node_slot_mask_shape: [4096, 12]
+  invalid_slot_storage_value: zero_only_with_explicit_mask
+  legal_downstream_aggregation: masked_only
+  hard_best_view_selection: prohibited
+  all_slots_missing: learned_missing_token_required
+  evidence_count_feature: required
+  zero_vector_may_represent_observed_evidence: false
+
+acceptance:
+  opencv_project_points_max_absolute_error_px: 1.0e-8
+  image_membership_mismatch_count: 0
+  rectangular_dense_feature_shape: [1, 1280, 18, 32]
+  all_features_finite: true
+
+stop_rules:
+  - any_calibration_test_or_target_sample_is_accessed
+  - any_source_image_or_time_window_is_missing
+  - any_raw_image_shape_differs_from_1080x1920
+  - any_distortion_vector_is_not_five_finite_coefficients
+  - any_image_membership_disagrees_with_opencv_oracle
+  - maximum_oracle_error_exceeds_1e-8_px
+  - calibrated_image_boundary_reaches_the_frozen_ray_radius
+  - frozen_ray_radius_reaches_the_first_radial_turning_point
+  - rectangular_dino_output_shape_or_finiteness_fails
+
+claims:
+  closes_projection_and_missing_evidence_protocol_only: true
+  physical_occlusion_resolved: false
+  learned_predictor_qualified: false
+  calibration_coverage_established: false
+  gate_b_passed: false

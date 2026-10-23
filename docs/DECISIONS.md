@@ -91,3 +91,11 @@
 - **Allocation:** 只用首次读取任何 predictor residual 前可见的 scene count、log count、month 与 vehicle ID 做精确组容量的元数据均衡；MILP 达到时限时保存的可行 incumbent 被哈希冻结，不宣称全局最优，也不得根据后续结果重新抽样。
 - **Time set:** 每个 group 按时间顺序固定 16 个 midpoint-quantile anchors；session 风险与效用结论仅覆盖该有限 (T(Z))，640 个 calibration anchors 仍只构成 40 个独立 calibration sessions。
 - **Boundary:** 该决定只关闭 data-independence 与有限时刻集，不证明 source exchangeability、coverage、predictor validity 或 Gate B 成功。
+
+## ADR-0017 — Distortion-aware projective support with explicit missing evidence
+
+- **Status:** accepted for Gate B protocol
+- **Reason:** NAVSIM raw camera frames carry nonzero five-coefficient lens distortion. R004B therefore projects ideal ego-ground rays with the OpenCV Brown--Conrady forward model, then maps raw pixel centers through a no-crop 512×288 half-pixel resize into the 18×32 DINOv3-H+ patch grid. Silently dropping distortion changes the per-view support mask and moves supported nodes by a material fraction of a patch.
+- **Calibrated domain:** the ideal normalized ray radius is capped at 1.0. Across the 52 train/development calibration fingerprints, the maximum inverse-projected image-boundary radius is 0.93342 and the minimum radial-only first turning radius is 1.14705. This rejects nonphysical polynomial fold-back outside the calibrated field of view.
+- **Missing evidence:** a node-slot pair is supported only with positive depth, membership in the calibrated ray domain, raw-image membership, and membership in the patch-center convex hull. Unsupported slots may be stored as zero only together with an explicit mask; downstream pooling must be masked, all-missing nodes use a dedicated learned token, and hard best-view selection, padding, clamping, and extrapolation are prohibited.
+- **Boundary:** the mask certifies projective token support, not physical visibility or occlusion. R004B freezes the interface only; it does not qualify a learned field predictor, establish calibration coverage, or pass Gate B.

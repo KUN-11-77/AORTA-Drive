@@ -6,12 +6,14 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import pickle
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, cast
 
+import cv2
 import numpy as np
 import numpy.typing as npt
 from PIL import Image
@@ -96,6 +98,37 @@ def _quantiles(values: list[float]) -> dict[str, float]:
     }
 
 
+def _image_perimeter(
+    shape: tuple[int, int], samples_per_edge: int = 1024
+) -> npt.NDArray[np.float64]:
+    height, width = shape
+    horizontal = np.linspace(0.0, width - 1.0, samples_per_edge)
+    vertical = np.linspace(0.0, height - 1.0, samples_per_edge)
+    return np.concatenate(
+        (
+            np.column_stack((horizontal, np.zeros_like(horizontal))),
+            np.column_stack((horizontal, np.full_like(horizontal, height - 1.0))),
+            np.column_stack((np.zeros_like(vertical), vertical)),
+            np.column_stack((np.full_like(vertical, width - 1.0), vertical)),
+        )
+    )
+
+
+def _first_radial_turning_radius(distortion: npt.NDArray[np.float64]) -> float:
+    """First positive radius where d[r * radial(r)]/dr is zero."""
+
+    k1, k2, _p1, _p2, k3 = distortion
+    roots_s = np.roots([7.0 * k3, 5.0 * k2, 3.0 * k1, 1.0])
+    positive_s = sorted(
+        float(root.real)
+        for root in roots_s
+        if abs(float(root.imag)) <= 1e-10 and float(root.real) > 0.0
+    )
+    if not positive_s:
+        return float("inf")
+    return math.sqrt(positive_s[0])
+
+
 def audit(args: argparse.Namespace) -> dict[str, object]:
     """Run a metadata-only projection audit without labels or model outputs."""
 
@@ -123,10 +156,23 @@ def audit(args: argparse.Namespace) -> dict[str, object]:
     invalid_windows: list[str] = []
     image_shapes: dict[str, Counter[str]] = {camera: Counter() for camera in CAMERAS}
     calibration_fingerprints: dict[str, Counter[str]] = {camera: Counter() for camera in CAMERAS}
+    distortion_vectors: dict[str, set[tuple[float, ...]]] = {
+        camera: set() for camera in CAMERAS
+    }
+    oracle_checks_by_calibration: dict[str, dict[str, float | int]] = {}
     maximum_distortion = 0.0
     maximum_rotation_orthogonality_error = 0.0
     maximum_rotation_determinant_error = 0.0
     view_rates: dict[str, list[float]] = defaultdict(list)
+    pinhole_valid_disagreement_rates: list[float] = []
+    pinhole_false_valid_rates: list[float] = []
+    pinhole_missed_valid_rates: list[float] = []
+    distortion_mean_pixel_shifts: list[float] = []
+    distortion_max_pixel_shifts: list[float] = []
+    distortion_mean_patch_shifts: list[float] = []
+    raw_image_support_rates: list[float] = []
+    patch_hull_exclusion_rates: list[float] = []
+    patch_hull_conditional_exclusion_rates: list[float] = []
     all_history_rates: list[float] = []
     current_only_rates: list[float] = []
     observation_histogram: Counter[int] = Counter()
@@ -176,8 +222,13 @@ def audit(args: argparse.Namespace) -> dict[str, object]:
                         continue
                     raw_shape = _image_shape(image_path)
                     image_shapes[camera_name][f"{raw_shape[0]}x{raw_shape[1]}"] += 1
-                    calibration_fingerprints[camera_name][_calibration_fingerprint(camera)] += 1
+                    fingerprint = _calibration_fingerprint(camera)
+                    calibration_fingerprints[camera_name][fingerprint] += 1
                     rotation = np.asarray(camera["sensor2lidar_rotation"], dtype=np.float64)
+                    translation = np.asarray(
+                        camera["sensor2lidar_translation"], dtype=np.float64
+                    )
+                    intrinsics = np.asarray(camera["cam_intrinsic"], dtype=np.float64)
                     maximum_rotation_orthogonality_error = max(
                         maximum_rotation_orthogonality_error,
                         float(np.max(np.abs(rotation.T @ rotation - np.eye(3)))),
@@ -187,23 +238,134 @@ def audit(args: argparse.Namespace) -> dict[str, object]:
                         abs(float(np.linalg.det(rotation)) - 1.0),
                     )
                     distortion = np.asarray(camera["distortion"], dtype=np.float64)
-                    maximum_distortion = max(maximum_distortion, float(np.max(np.abs(distortion))))
+                    distortion_vectors[camera_name].add(
+                        tuple(float(value) for value in distortion)
+                    )
+                    maximum_distortion = max(
+                        maximum_distortion, float(np.max(np.abs(distortion)))
+                    )
                     projection = project_points_to_patch_grid(
                         history_xyz,
                         rotation,
-                        camera["sensor2lidar_translation"],
-                        camera["cam_intrinsic"],
+                        translation,
+                        intrinsics,
                         distortion,
                         raw_shape=raw_shape,
                         resized_shape=(args.resize_height, args.resize_width),
                         patch_size=args.patch_size,
-                        distortion_tolerance=args.distortion_tolerance,
+                        maximum_normalized_radius=args.maximum_normalized_radius,
                     )
+                    pinhole_projection = project_points_to_patch_grid(
+                        history_xyz,
+                        rotation,
+                        translation,
+                        intrinsics,
+                        np.zeros(5, dtype=np.float64),
+                        raw_shape=raw_shape,
+                        resized_shape=(args.resize_height, args.resize_width),
+                        patch_size=args.patch_size,
+                        maximum_normalized_radius=args.maximum_normalized_radius,
+                    )
+                    if fingerprint not in oracle_checks_by_calibration:
+                        camera_points = (history_xyz - translation) @ rotation
+                        oracle_uv, _ = cv2.projectPoints(
+                            camera_points,
+                            np.zeros(3, dtype=np.float64),
+                            np.zeros(3, dtype=np.float64),
+                            intrinsics,
+                            distortion,
+                        )
+                        oracle_uv = oracle_uv.reshape(-1, 2)
+                        finite_both = (
+                            np.all(np.isfinite(projection.raw_uv), axis=1)
+                            & np.all(np.isfinite(oracle_uv), axis=1)
+                        )
+                        with np.errstate(divide="ignore", invalid="ignore"):
+                            normalized = camera_points[:, :2] / camera_points[:, 2:3]
+                        bounded = (
+                            projection.positive_depth
+                            & finite_both
+                            & np.all(np.isfinite(normalized), axis=1)
+                            & (
+                                np.linalg.norm(normalized, axis=1)
+                                <= args.maximum_normalized_radius
+                            )
+                        )
+                        oracle_inside = (
+                            bounded
+                            & (oracle_uv[:, 0] >= 0.0)
+                            & (oracle_uv[:, 0] <= raw_shape[1] - 1.0)
+                            & (oracle_uv[:, 1] >= 0.0)
+                            & (oracle_uv[:, 1] <= raw_shape[0] - 1.0)
+                        )
+                        mask_mismatches = int(
+                            np.sum(projection.inside_raw_image != oracle_inside)
+                        )
+                        perimeter = _image_perimeter(raw_shape)
+                        ideal_perimeter = cv2.undistortPoints(
+                            perimeter[:, None, :], intrinsics, distortion
+                        ).reshape(-1, 2)
+                        maximum_boundary_radius = float(
+                            np.max(np.linalg.norm(ideal_perimeter, axis=1))
+                        )
+                        radial_turning_radius = _first_radial_turning_radius(distortion)
+                        if maximum_boundary_radius >= args.maximum_normalized_radius:
+                            raise RuntimeError(
+                                "calibrated ray bound excludes an observed image boundary: "
+                                f"boundary={maximum_boundary_radius:.12g}, "
+                                f"bound={args.maximum_normalized_radius:.12g}"
+                            )
+                        if args.maximum_normalized_radius >= radial_turning_radius:
+                            raise RuntimeError(
+                                "calibrated ray bound reaches radial polynomial fold-back: "
+                                f"bound={args.maximum_normalized_radius:.12g}, "
+                                f"turning={radial_turning_radius:.12g}"
+                            )
+                        if not np.any(bounded):
+                            raise RuntimeError(
+                                f"no bounded positive-depth OpenCV oracle rays for {fingerprint}"
+                            )
+                        oracle_checks_by_calibration[fingerprint] = {
+                            "bounded_ray_count": int(np.sum(bounded)),
+                            "inside_mask_mismatch_count": mask_mismatches,
+                            "maximum_ideal_image_boundary_radius": maximum_boundary_radius,
+                            "radial_only_first_turning_radius": radial_turning_radius,
+                            "maximum_absolute_error_px": float(
+                                np.max(
+                                    np.abs(
+                                        projection.raw_uv[bounded] - oracle_uv[bounded]
+                                    )
+                                )
+                            ),
+                        }
                     valid = projection.valid_for_bilinear_patch_sampling
+                    raw_support = projection.inside_raw_image
+                    excluded_by_patch_hull = raw_support & ~valid
+                    raw_image_support_rates.append(float(np.mean(raw_support)))
+                    patch_hull_exclusion_rates.append(float(np.mean(excluded_by_patch_hull)))
+                    patch_hull_conditional_exclusion_rates.append(
+                        float(np.sum(excluded_by_patch_hull) / max(np.sum(raw_support), 1))
+                    )
+                    pinhole_valid = pinhole_projection.valid_for_bilinear_patch_sampling
+                    pinhole_valid_disagreement_rates.append(float(np.mean(valid != pinhole_valid)))
+                    pinhole_false_valid_rates.append(float(np.mean(~valid & pinhole_valid)))
+                    pinhole_missed_valid_rates.append(float(np.mean(valid & ~pinhole_valid)))
+                    if np.any(valid):
+                        pixel_shift = np.linalg.norm(
+                            projection.raw_uv[valid] - pinhole_projection.raw_uv[valid], axis=1
+                        )
+                        patch_shift = np.linalg.norm(
+                            projection.patch_xy[valid] - pinhole_projection.patch_xy[valid], axis=1
+                        )
+                        distortion_mean_pixel_shifts.append(float(np.mean(pixel_shift)))
+                        distortion_max_pixel_shifts.append(float(np.max(pixel_shift)))
+                        distortion_mean_patch_shifts.append(float(np.mean(patch_shift)))
+                    view_rates[f"h{history_offset}:{camera_name}"].append(
+                        float(np.mean(valid))
+                    )
                     observation_count += valid.astype(np.int16)
                     if history_offset == 3:
                         current_visible |= valid
-                    view_rates[f"h{history_offset}:{camera_name}"].append(float(np.mean(valid)))
 
             all_visible = observation_count > 0
             current_only_rates.append(float(np.mean(current_visible)))
@@ -219,8 +381,8 @@ def audit(args: argparse.Namespace) -> dict[str, object]:
                     "scene_token": token,
                     "recording_group": anchor["recording_group"],
                     "split": anchor["split"],
-                    "current_frame_visible_fraction": float(np.mean(current_visible)),
-                    "four_frame_visible_fraction": float(np.mean(all_visible)),
+                    "current_frame_supported_fraction": float(np.mean(current_visible)),
+                    "four_frame_supported_fraction": float(np.mean(all_visible)),
                     "missing_node_count": int(np.sum(~all_visible)),
                     "observation_count_mean": float(np.mean(observation_count)),
                 }
@@ -235,8 +397,28 @@ def audit(args: argparse.Namespace) -> dict[str, object]:
     expected = len(anchors)
     if len(per_anchor) != expected:
         raise AssertionError(f"audited {len(per_anchor)} anchors, expected {expected}")
+    maximum_oracle_error = max(
+        float(check["maximum_absolute_error_px"])
+        for check in oracle_checks_by_calibration.values()
+    )
+    oracle_mask_mismatches = sum(
+        int(check["inside_mask_mismatch_count"])
+        for check in oracle_checks_by_calibration.values()
+    )
+    if oracle_mask_mismatches:
+        raise RuntimeError(
+            "projection disagrees with cv2.projectPoints image membership: "
+            f"mismatches={oracle_mask_mismatches}"
+        )
+    if maximum_oracle_error > args.oracle_max_error_px:
+        raise RuntimeError(
+            "projection disagrees with cv2.projectPoints: "
+            f"max_abs_error_px={maximum_oracle_error:.12g} > "
+            f"{args.oracle_max_error_px:.12g}"
+        )
     result: dict[str, object] = {
         "experiment_id": "R004B-projection-audit",
+        "implementation_revision": args.implementation_revision,
         "status": "PASS",
         "completed_at_utc": datetime.now(timezone.utc).isoformat(),
         "scope": "metadata-only train/development projection audit; no labels or model outputs",
@@ -261,32 +443,95 @@ def audit(args: argparse.Namespace) -> dict[str, object]:
                 args.resize_height // args.patch_size,
                 args.resize_width // args.patch_size,
             ],
-            "validity": "positive_depth_and_raw_bounds_and_patch_center_convex_hull",
+            "maximum_normalized_radius": args.maximum_normalized_radius,
+            "validity": (
+                "positive_depth_and_calibrated_ray_domain_and_raw_bounds_"
+                "and_patch_center_convex_hull"
+            ),
+            "distortion_model": "opencv_brown_conrady_5_forward",
+            "distortion_order": ["k1", "k2", "p1", "p2", "k3"],
             "occlusion_claim": False,
         },
         "image_shapes": {key: dict(value) for key, value in image_shapes.items()},
         "calibration_fingerprint_counts": {
             key: len(value) for key, value in calibration_fingerprints.items()
         },
+        "distortion_vectors": {
+            key: [list(vector) for vector in sorted(value)]
+            for key, value in distortion_vectors.items()
+        },
         "maximum_abs_distortion": maximum_distortion,
+        "pinhole_counterfactual": {
+            "purpose": "quantify the error from silently dropping NAVSIM distortion",
+            "valid_mask_disagreement_fraction_per_view": _quantiles(
+                pinhole_valid_disagreement_rates
+            ),
+            "pinhole_false_valid_fraction_per_view": _quantiles(
+                pinhole_false_valid_rates
+            ),
+            "pinhole_missed_valid_fraction_per_view": _quantiles(
+                pinhole_missed_valid_rates
+            ),
+            "mean_pixel_shift_on_valid_nodes_per_view": _quantiles(
+                distortion_mean_pixel_shifts
+            ),
+            "maximum_pixel_shift_on_valid_nodes_per_view": _quantiles(
+                distortion_max_pixel_shifts
+            ),
+            "mean_patch_shift_on_valid_nodes_per_view": _quantiles(
+                distortion_mean_patch_shifts
+            ),
+        },
+        "patch_token_support": {
+            "raw_image_support_fraction_per_view": _quantiles(raw_image_support_rates),
+            "patch_hull_exclusion_fraction_per_view": _quantiles(
+                patch_hull_exclusion_rates
+            ),
+            "conditional_exclusion_among_raw_supported_per_view": _quantiles(
+                patch_hull_conditional_exclusion_rates
+            ),
+            "policy": "excluded nodes are missing evidence; no padding or clamping",
+        },
+        "opencv_projection_oracle": {
+            "opencv_version": cv2.__version__,
+            "unique_calibrations_compared": len(oracle_checks_by_calibration),
+            "bounded_normalized_radius": args.maximum_normalized_radius,
+            "maximum_ideal_image_boundary_radius": max(
+                float(check["maximum_ideal_image_boundary_radius"])
+                for check in oracle_checks_by_calibration.values()
+            ),
+            "minimum_radial_only_first_turning_radius": min(
+                float(check["radial_only_first_turning_radius"])
+                for check in oracle_checks_by_calibration.values()
+            ),
+            "inside_mask_mismatch_count": oracle_mask_mismatches,
+            "maximum_absolute_error_px": maximum_oracle_error,
+            "acceptance_threshold_px": args.oracle_max_error_px,
+            "status": "PASS",
+        },
         "maximum_rotation_orthogonality_error": maximum_rotation_orthogonality_error,
         "maximum_rotation_determinant_error": maximum_rotation_determinant_error,
-        "current_frame_visible_fraction": _quantiles(current_only_rates),
-        "four_frame_visible_fraction": _quantiles(all_history_rates),
-        "per_view_frame_visible_fraction": {
+        "current_frame_supported_fraction": _quantiles(current_only_rates),
+        "four_frame_supported_fraction": _quantiles(all_history_rates),
+        "per_view_frame_supported_fraction": {
             key: _quantiles(value) for key, value in sorted(view_rates.items())
         },
         "observation_count_histogram": {
             str(key): value for key, value in sorted(observation_histogram.items())
         },
-        "radial_four_frame_visible_fraction": {
+        "radial_four_frame_supported_fraction": {
             key: visible / total for key, (visible, total) in radial_visible.items()
         },
         "input_hashes": {
             "time_set_sha256": _sha256(args.time_set),
+            "audit_script_sha256": _sha256(Path(__file__)),
             "projection_source_sha256": _sha256(
                 Path(__file__).parents[1] / "src" / "aorta_drive" / "vision" / "projection.py"
             ),
+        },
+        "method_sources": {
+            "opencv_calib3d": "https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html",
+            "nuplan_camera_schema_commit": "e9241677997dd86bfc0bcd44817ab04fe631405b",
         },
         "per_anchor": per_anchor,
     }
@@ -303,11 +548,13 @@ def main() -> None:
     parser.add_argument("--log-root", type=Path, required=True)
     parser.add_argument("--sensor-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--implementation-revision", required=True)
     parser.add_argument("--splits", default="train,development")
     parser.add_argument("--resize-height", type=int, default=288)
     parser.add_argument("--resize-width", type=int, default=512)
     parser.add_argument("--patch-size", type=int, default=16)
-    parser.add_argument("--distortion-tolerance", type=float, default=1e-12)
+    parser.add_argument("--maximum-normalized-radius", type=float, default=1.0)
+    parser.add_argument("--oracle-max-error-px", type=float, default=1e-8)
     parser.add_argument("--max-anchors", type=int)
     args = parser.parse_args()
     result = audit(args)

@@ -16,7 +16,7 @@
 - [x] 使用 `experiment-plan` 冻结首次资格配置
 - [x] 冻结 NAVSIM ROI、resolution 与 graph size（R002G：64×64、1 m、4096 nodes、8064 edges）；\(T(Z)\) 留待 Gate B protocol freeze
 - [x] 冻结 source recording-group split 与有限 \(T(Z)\)（R004A：162 groups，16 anchors/group；40 calibration sessions）
-- [ ] 冻结多相机/历史帧 token-to-node 投影、missing-evidence mask 与可见性协议
+- [x] 冻结多相机/历史帧 token-to-node 投影、missing-evidence mask 与投影支持协议（R004B）
 - [ ] 冻结可复现的 source-only candidate provider
 - [x] 设计并 synthetic 验证 proof-carrying asymmetric geometry checker
 - [x] 定义 continuous polygon teacher、\(\varepsilon_{map}\) 与 geometry arithmetic 的保守证明方案
