@@ -1,0 +1,41 @@
+{
+  "experiment_id": "R004H0-scale-interface-structural-v1",
+  "status": "COMPLETED",
+  "decision": "PASS",
+  "implementation_revision": "ad3e2dff5532cdd0c013d7fd93017988737bd307",
+  "config_sha256": "e4cf82028b0ef7b44c01b91f21eb7da8bac48fa9dac3814890b02b732d711949e",
+  "raw_result_sha256": "d3d009ac8e7be66b43593dc9698292cca852f78758bc50363066cb4511e8ef92",
+  "evidence_manifest_sha256": "5dea018a3848f43984a86833f1c18e9bf0eed92957103943e0195a2f4ab9aae5",
+  "role_counts": {
+    "fit": 42,
+    "selection": 8,
+    "proxy_cal": 16
+  },
+  "checks": {
+    "strict_old_state_dict_load": true,
+    "potential_replay_max_abs_m": 0.0,
+    "potential_wrapper_exact_replay": true,
+    "potential_gauge_abs_m": 1.4901161193847656e-08,
+    "scale_trainable_parameter_count": 194,
+    "edge_count": 8064,
+    "initial_scale_max_abs_error_m": 5.960464477539063e-08,
+    "potential_gradient_count": 0,
+    "nonzero_scale_gradient_elements": 194,
+    "candidate_or_planner_forward_inputs": false,
+    "optimizer_step_count": 0,
+    "remote_focused_tests_passed": 11,
+    "local_full_repository_tests_passed": 142,
+    "mypy_source_files_passed": 33,
+    "peak_gpu_gib": 0.9286260604858398,
+    "wall_seconds": 0.4940241910517216
+  },
+  "claims": {
+    "structural_interface_qualified": true,
+    "r004h1_registration_authorized": true,
+    "r004h1_training_authorized": false,
+    "learned_uncertainty_established": false,
+    "coverage_established": false,
+    "gate_b_passed": false,
+    "official_calibration_access_authorized": false
+  }
+}

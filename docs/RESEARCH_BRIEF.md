@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E 排除了当前 predictor 的 calibration 资格、gradient projection 与二值观测 mask；R004E-F 将失败收敛为稀疏 tail 与统一全图极值接口失配。AORTA-v8.4 经三轮独立审查后，R004E-G 已通过四项 residual interval、outward score/budget、角色拆分、rank、尺度 gauge 与异质 graph oracle。该结果只授权注册 R004H；learned uncertainty、正式 coverage、Gate B、OOD 与创新性仍未成立，官方 calibration 未读取。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E 排除了当前 predictor 的 calibration 资格、gradient projection 与二值观测 mask；R004E-F 将失败收敛为稀疏 tail 与统一全图极值接口失配。AORTA-v8.4 的 R004E-G 已关闭 residual/outward arithmetic、角色拆分、rank、尺度 gauge 与异质 graph oracle；R004H0 又通过候选无关尺度接口、旧势场精确回放和 scale-only 梯度审计。现在只授权注册 fresh fit-only R004H1；learned uncertainty、正式 coverage、Gate B、OOD 与创新性仍未成立，proxy-cal、development 与官方 calibration 均未因 H0 被读取。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：先冻结 R004H 的 fresh fit-only potential replay 与 scale-only probe。Scale head 只用 bounded Laplace proper loss；learned、per-observation pooled、uniform 与 evidence-only scale 在同一 frozen potential 上分别排练阈值，并使用共同 teacher opportunity 分母评估 continuous-corrected certificate recall。真实训练前必须提交完整配置、checkpoint rule、无效样本合同、算力预算和 stop rule；官方 calibration 继续封存。
+- 下一阶段：单独冻结 R004H1 fresh fit-only Stage P。优化只能读取 42 fit groups，checkpoint 选择只能读取 8 selection groups；必须预先固定初始化、seed、epoch、优化器、选择函数、资源上限与失败规则。H1 完成后仍须分别注册 H2 scale-only proper-loss、H3 proxy-cal rehearsal 与 H4 one-read development；官方 calibration 继续封存。

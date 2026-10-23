@@ -413,5 +413,7 @@ allocation。两者均不自动证明正式 coverage、OOD robustness 或算法�
 ### 12.4 Qualification status
 
 R004E-G 已通过 role、four-term interval residual、outward division/multiplication、joint-rank
-oracle、scale gauge 与 heterogeneous graph readout。该结果只允许冻结 R004H；真实训练、
-development one-read 和 official calibration 仍由后续独立门禁控制。
+oracle、scale gauge 与 heterogeneous graph readout。R004H0 随后通过旧势场 exact replay、
+194 参数 right/down scale head、bounded initialization、candidate-free signature 与
+scale-only gradient isolation。它只允许单独注册 fresh fit-only R004H1；真实训练、Stage S、
+proxy-cal、development one-read 和 official calibration 仍由各自后续门禁控制。

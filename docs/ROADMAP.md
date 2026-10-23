@@ -28,7 +28,8 @@
 - [x] R004E-E：0/24 gradient overshoot、9/24 missing-edge、15/24 fully observed；单独 Lipschitz 投影与二值观测 mask 均被否定
 - [x] R004E-F：24/24 组支持“平均视觉信号存在但极值目标失配”；排除全局符号反转与完全无信号
 - [x] R004E-G：冻结并通过 observation-conditioned heterogeneous edge envelope 的四项残差、outward arithmetic、proxy 角色与 synthetic falsification gates
-- [ ] R004H：冻结 fresh fit-only potential、scale-only head、pooled/uniform controls 与共同 opportunity endpoint，随后才允许真实训练
+- [x] R004H0：候选无关尺度接口、旧势场精确回放、角色 ledger 与 scale-only 梯度结构审计通过
+- [ ] R004H1–H4：依次冻结并执行 fresh fit-only potential、scale-only head、proxy rehearsal 与 one-read development；不得跨门并跑
 - [ ] 固定具体 CDF/joint-field 最近邻
 - [x] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)（主 \(\alpha=0.10\)，次 \(\alpha=0.05\)）
 

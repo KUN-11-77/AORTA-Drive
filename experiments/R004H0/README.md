@@ -13,7 +13,7 @@
 - **Interpretation:** PASS authorizes registering fresh fit-only Stage P training. It does
   not establish learned uncertainty, proxy/official coverage, task utility, Gate B or
   novelty.
-- **Status:** REGISTERED, not yet executed.
+- **Status:** COMPLETED — PASS. See `experiments/results/R004H0.md`.
 
 ## Preserved preflight repair
 

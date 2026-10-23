@@ -183,3 +183,23 @@
 - **Training decision:** Stage P must be freshly trained on fit only and selected on selection only. Stage S freezes Stage P and trains one bounded right/down scale head using only Laplace proper loss. No group-tail term enters scale fitting. Learned scale, a no-parameter per-observation pooled scale, uniform scale and evidence-only scale use the same potential and separate thresholds.
 - **Qualification evidence:** 19 focused and 131 full tests passed; 1000 randomized residual/score and 1000 budget cases were non-optimistic; scale gauge and heterogeneous graph oracles passed. Exact hashes are in `experiments/results/R004EG.md`.
 - **Boundary:** R004E-G qualifies primitives and the protocol only. R004H needs a separate preregistration and one-read development rule. Official calibration remains sealed; Gate B, learned uncertainty, OOD robustness and algorithmic novelty remain unestablished.
+
+## ADR-0028 — Qualify the scale interface before any heterogeneous training
+
+- **Status:** accepted after R004H0 PASS
+- **Reason:** the v8.4 repair needs to reuse the potential trunk without silently changing
+  its represented field, while exposing exactly one bounded right/down scale per graph edge.
+  R004H0 therefore requires strict old-checkpoint loading, exact potential replay, a
+  candidate/planner-free forward signature, exactly 194 trainable scale parameters and
+  gradient isolation before any optimizer step is authorized.
+- **Evidence:** on one deterministic fit-role anchor the refactor replay error was `0.0 m`,
+  all 194 scale-gradient elements were nonzero and finite, potential-gradient count was
+  zero, all 8064 scales were initialized to 1 m within `5.97e-8 m`, and peak CUDA allocation
+  was `0.929 GiB`. Focused tests passed 11/11 and the repository passed 142/142 tests.
+- **Decision:** R004H1 may now be registered, but not inferred from the old epoch-1
+  checkpoint. It must initialize a fresh Stage P model, optimize only on 42 fit groups and
+  select only on 8 selection groups. H0 does not authorize Stage S, proxy-cal, development
+  or official calibration access.
+- **Boundary:** structural gradient flow is not evidence that heteroscedastic uncertainty is
+  learnable or calibrated. Coverage, utility, Gate B, OOD robustness and novelty remain
+  unestablished.
