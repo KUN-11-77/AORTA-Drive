@@ -19,6 +19,7 @@ RUNS = {
     "R002": ROOT / "tests" / "gate_a" / "test_r002_continuous_lifting.py",
     "R002B": ROOT / "tests" / "gate_a" / "test_r002b_legacy_geometry_counterexamples.py",
     "R002C": ROOT / "tests" / "gate_a" / "test_r002c_swept_outer_cover.py",
+    "R002D": ROOT / "tests" / "gate_a" / "test_r002d_polygon_teacher.py",
     "R003": ROOT / "tests" / "gate_a" / "test_r003_calibration_and_risk.py",
 }
 

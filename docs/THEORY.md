@@ -227,6 +227,53 @@ F_{[0,1]}\subseteq R(\theta_m)K+p_m\oplus B_2(\delta).
 
 因此 \(a_x\) 必被选择。多段轨迹取各段节点并集；任何外包络越出 ROI、节点集为空、yaw 未展开或协议不一致时必须拒绝认证，而不是裁剪或经验补点。
 
+### Assumption M — continuous teacher and node-label ledger
+
+论文中的 \(\phi\) 必须绑定到一个预先冻结的 continuous nominal-road object，而不是
+raster EDT。V0.4 使用经过拓扑验证和 canonical union 的 polygon region；其边界线段
+与 query node 的 binary64 坐标在数学上解释为精确实数。
+
+离线 teacher 对每个节点返回包含精确 signed distance 的区间
+\([\phi^-(q),\phi^+(q)]\)，node label \(\widetilde d(q)\) 的 distance/rounding
+误差必须满足
+
+\[
+\varepsilon_{dist}(q)
+\ge
+\max\{
+|\widetilde d(q)-\phi^-(q)|,
+|\widetilde d(q)-\phi^+(q)|
+\}.
+\]
+
+paper teacher 与 node label 之间的总账本为
+
+\[
+\varepsilon_{map}(q)
+=\varepsilon_{transform}(q)
++\varepsilon_{polygon}(q)
++\varepsilon_{dist}(q)
++\varepsilon_{round}(q),
+\]
+
+每次加法向 \(+\infty\) 外舍入。各项含义分别为 coordinate transform、上游 map 到
+冻结 polygon object 的近似、连续边界距离计算和其余序列化/量化误差。
+
+若论文任务明确且始终定义为“冻结 canonical polygon object 上的 nominal margin”，
+则 polygon semantic error 可按定义为零；若主张相对于原始 NAVSIM map、真实道路或
+另一个 preprocessing object，则不得通过重定义 teacher 将
+\(\varepsilon_{transform}\) 或 \(\varepsilon_{polygon}\) 置零。
+
+### Proposition 3 — exact-rational polygon distance interval
+
+对 binary64 node 与 polygon vertices，逐线段用有理数精确计算投影参数与 squared
+distance，并对其平方根返回相邻 binary64 外包区间；inside/outside/boundary 使用精确
+有理 predicate。若输入是已验证的 simple、non-overlapping canonical polygon union，
+则所得区间包含冻结 continuous teacher 的精确 signed distance。
+
+该 proposition 不负责证明上游 polygon union、坐标变换或 map semantics 正确；这些
+分别属于 \(\varepsilon_{polygon}\)、\(\varepsilon_{transform}\) 与 protocol audit。
+
 若一般数值实现输出 \(\widehat L_G\)，且已证明
 
 \[

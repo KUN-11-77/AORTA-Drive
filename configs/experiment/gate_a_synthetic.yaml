@@ -42,6 +42,16 @@ r002c:
   reject_empty_sets: true
   production_swept_footprint_qualified: synthetic_only
 
+r002d:
+  purpose: qualify_continuous_polygon_teacher_and_map_error_ledger
+  semantic_object: frozen_canonical_polygon_union
+  coordinate_semantics: binary64_values_interpreted_as_exact_reals
+  boundary_distance: exact_rational_squared_distance_with_binary64_sqrt_interval
+  tested_geometry: [rectangle, concave_polygon, hole, disjoint_union]
+  random_node_labels: 500
+  map_error_terms: [transform, polygon, distance, rounding]
+  navsim_preprocessing_qualified: false
+
 r003:
   rational_numerical_cases: 500
   numerical_oracle: exact_fraction_arithmetic

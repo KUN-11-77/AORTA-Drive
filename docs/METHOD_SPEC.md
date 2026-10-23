@@ -175,6 +175,22 @@ L_{j0}^{cert}
 
 无法证明 map、geometry 或 numerical budget 的 pair 不得认证 continuous task。
 
+continuous teacher 必须来自冻结、拓扑有效且 canonicalized 的 polygon union，而不是
+raster EDT。离线 node-label builder 使用 exact-rational segment squared distance 和
+binary64 outward sqrt interval，输出 \(\widetilde d(q)\) 与
+\(\varepsilon_{dist}(q)\)。部署账本保持
+
+\[
+\varepsilon_{map}
+=\varepsilon_{transform}
++\varepsilon_{polygon}
++\varepsilon_{dist}
++\varepsilon_{round}.
+\]
+
+synthetic teacher 资格通过不自动令真实 NAVSIM 的 transform/polygon 两项为零；它们
+必须由实际 preprocessing 与 protocol hash 单独闭合。
+
 ## 8. Arbitration and primary risk event
 
 冻结 \(\gamma_{task}\ge0\)。只有 \(L_{j0}^{cert}\ge\gamma_{task}\) 的 challenger 可被授权；否则保留 native。若多个合格，选择 deviation cost 最小者。

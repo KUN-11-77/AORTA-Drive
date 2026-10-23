@@ -105,3 +105,23 @@ A_0\subseteq F_0.
 - ROI clipping 被静默接受；
 - 真实 preprocessing 的误差超过声明 budget；
 - 修正项使合法 candidate 的 certificate 几乎全部为空。
+
+## Continuous teacher amendment
+
+R002D 将 teacher 固定为 canonical polygon union 的连续 signed distance，而非
+raster EDT。binary64 vertices 与 node coordinates 被解释为精确实数；segment
+squared distance 和 point-in-polygon predicate 使用 exact rational arithmetic，
+平方根以相邻 binary64 数形成外包区间。
+
+node-label error 不吸收上游语义误差。完整账本仍为
+
+\[
+\varepsilon_{map}
+=\varepsilon_{transform}
++\varepsilon_{polygon}
++\varepsilon_{dist}
++\varepsilon_{round}.
+\]
+
+因此 synthetic R002D 即使通过，也只闭合 distance/rounding 构造；实际 NAVSIM
+preprocessing 仍需证明 transform、canonical union、序列化和 protocol hash。
