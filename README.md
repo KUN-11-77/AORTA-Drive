@@ -75,7 +75,7 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform 与确定性全节点 label builder。下一步先冻结 Gate B 的 source protocol 并资格测试最小合法 predictor，不启动正式性能长跑。
+当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform、确定性全节点 label builder，以及已冻结的 R004A source-session 与 R004B distortion-aware visual projection 协议。下一步先冻结 R004C source-only candidate provider 与合法 predictor/checkpoint rule，不启动正式性能长跑。
 
 ## 核心文档
 

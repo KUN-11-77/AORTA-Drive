@@ -1,0 +1,73 @@
+{
+  "artifact_hashes": {
+    "dino_probe_sha256": "0f765d0648dd9015bdf8b5ed5204e8d161f1f175fea227cbb2ca4328c268fdc3",
+    "projection_audit_sha256": "b1f994012ce842acd44df18930dc37f2f05e4a7292dc21875b40457bd54bc6c8"
+  },
+  "artifacts": {
+    "dino_probe": "F:/AORTA-Drive-artifacts/gate-b/R004B/clean_dino_a37acd0.json",
+    "projection_audit": "F:/AORTA-Drive-artifacts/gate-b/R004B/clean_replay_a37acd0.json",
+    "projection_log": "F:/AORTA-Drive-artifacts/gate-b/R004B/clean_replay_a37acd0.log"
+  },
+  "claim_boundary": "Closes the source train/development camera-to-token projection and explicit missing-evidence protocol only; it does not model occlusion, qualify a learned predictor, establish conformal coverage, evaluate target appearance OOD, or pass Gate B.",
+  "clean_implementation_revision": "a37acd09358cc65bfd235ccb0f4d8458b91cea37",
+  "config_sha256": "7e503d43d88073f7fde87e0cd930cbc7859ddfee490a5349bda74099b5aa7e26",
+  "data_scope": {
+    "anchor_count": 1440,
+    "camera_image_count": 17280,
+    "calibration_fingerprint_count": 52,
+    "independent_recording_group_count": 90,
+    "log_count": 519,
+    "splits": [
+      "train",
+      "development"
+    ]
+  },
+  "dino_rectangular_contract": {
+    "checkpoint_sha256": "7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488",
+    "feature_shape": [
+      1,
+      1280,
+      18,
+      32
+    ],
+    "finite": true,
+    "last_n_normalized_layer_mean": 4,
+    "parameter_count": 840633600,
+    "status": "PASS",
+    "training_performed": false
+  },
+  "experiment_id": "R004B-visual-projection",
+  "integrity_audit": {
+    "external_cross_model_review": "UNAVAILABLE",
+    "reason": "The prescribed external Codex/manual-review backend was not exposed in the current tool environment; no self-acquittal was substituted."
+  },
+  "missing_evidence": {
+    "current_frame_mean_supported_fraction": 0.46405436197916666,
+    "four_frame_mean_missing_fraction": 0.41572486029730904,
+    "four_frame_mean_supported_fraction": 0.584275139702691,
+    "four_frame_p05_supported_fraction": 0.468994140625,
+    "four_frame_p95_supported_fraction": 0.7109741210937499,
+    "temporal_support_gain": 0.1202207777235243,
+    "zero_observation_node_instances": 2452045
+  },
+  "oracle": {
+    "inside_image_mask_mismatch_count": 0,
+    "maximum_absolute_error_px": 9.094947017729282e-13,
+    "maximum_ideal_image_boundary_radius": 0.9334159771399784,
+    "maximum_normalized_radius": 1.0,
+    "minimum_radial_only_first_turning_radius": 1.1470478871481082,
+    "status": "PASS"
+  },
+  "patch_support": {
+    "mean_conditional_patch_hull_exclusion": 0.03509009551356375,
+    "mean_patch_hull_exclusion_fraction": 0.007411038434063947,
+    "policy": "excluded nodes are explicit missing evidence; no padding, clamping, or extrapolation"
+  },
+  "pinhole_counterfactual": {
+    "mean_mask_disagreement_fraction": 0.022892111319082753,
+    "mean_patch_shift": 0.6071613823337465,
+    "mean_pixel_shift": 36.42968294002479,
+    "maximum_pixel_shift": 238.2468665771151
+  },
+  "status": "PASS"
+}
