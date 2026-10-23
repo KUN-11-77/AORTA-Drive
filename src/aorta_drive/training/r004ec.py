@@ -77,12 +77,20 @@ def load_joined_anchors(
     label_root = label_manifest.parent if label_root is None else label_root
     visual = json.loads(feature_manifest.read_text(encoding="utf-8"))
     labels = json.loads(label_manifest.read_text(encoding="utf-8"))
-    if visual.get("status") != "PASS" or labels.get("status") != "PASS":
-        raise ValueError("both frozen manifests must have PASS status")
     visual_records = visual.get("records")
     label_records = labels.get("records")
     if not isinstance(visual_records, list) or not isinstance(label_records, list):
         raise ValueError("both manifests must contain record lists")
+    if visual.get("status") != "PASS":
+        raise ValueError("frozen visual manifest must have PASS status")
+    teacher_completed = (
+        labels.get("status") == "completed"
+        and labels.get("cache_failure_count") == 0
+        and labels.get("cache_pass_count") == labels.get("cache_count")
+        and labels.get("cache_count") == len(label_records)
+    )
+    if not teacher_completed:
+        raise ValueError("frozen teacher manifest must be completed with zero failures")
 
     label_by_key: dict[tuple[str, str], dict[str, object]] = {}
     for item in label_records:

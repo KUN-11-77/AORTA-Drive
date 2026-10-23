@@ -76,8 +76,17 @@ def test_manifest_join_rejects_prohibited_visual_split(tmp_path: Path) -> None:
         "records": [{"split": "calibration", "log_name": "l", "scene_token": "t"}],
     }
     labels = {
-        "status": "PASS",
-        "records": [{"cache_id": "l/t", "artifact_name": "a.npz", "artifact_sha256": "0" * 64}],
+        "status": "completed",
+        "cache_count": 1,
+        "cache_pass_count": 1,
+        "cache_failure_count": 0,
+        "records": [
+            {
+                "cache_id": "l/t",
+                "artifact_name": "a.npz",
+                "artifact_sha256": "0" * 64,
+            }
+        ],
     }
     feature_manifest = tmp_path / "features.json"
     label_manifest = tmp_path / "labels.json"
@@ -85,3 +94,58 @@ def test_manifest_join_rejects_prohibited_visual_split(tmp_path: Path) -> None:
     label_manifest.write_text(json.dumps(labels), encoding="utf-8")
     with pytest.raises(ValueError, match="prohibited split"):
         load_joined_anchors(feature_manifest, label_manifest)
+
+
+def test_manifest_join_accepts_completed_zero_failure_teacher_manifest(
+    tmp_path: Path,
+) -> None:
+    visual_records = []
+    label_records = []
+    for anchor in range(16):
+        log_name = "log-a"
+        scene_token = f"token-{anchor}"
+        visual_records.append(
+            {
+                "recording_group": "group-a",
+                "anchor_index": anchor,
+                "split": "train",
+                "log_name": log_name,
+                "scene_token": scene_token,
+                "projection_xy_relative_path": f"p-{anchor}.xy.npy",
+                "projection_mask_relative_path": f"p-{anchor}.mask.npy",
+                "slots": [
+                    {
+                        "slot_index": slot,
+                        "feature_relative_path": f"f-{anchor}-{slot}.npy",
+                    }
+                    for slot in range(12)
+                ],
+            }
+        )
+        label_records.append(
+            {
+                "cache_id": f"{log_name}/{scene_token}",
+                "artifact_name": f"label-{anchor}.npz",
+                "artifact_sha256": "0" * 64,
+            }
+        )
+    feature_manifest = tmp_path / "features.json"
+    label_manifest = tmp_path / "labels.json"
+    feature_manifest.write_text(
+        json.dumps({"status": "PASS", "records": visual_records}), encoding="utf-8"
+    )
+    label_manifest.write_text(
+        json.dumps(
+            {
+                "status": "completed",
+                "cache_count": 16,
+                "cache_pass_count": 16,
+                "cache_failure_count": 0,
+                "records": label_records,
+            }
+        ),
+        encoding="utf-8",
+    )
+    joined = load_joined_anchors(feature_manifest, label_manifest)
+    assert len(joined) == 16
+    assert all(record.recording_group == "group-a" for record in joined)
