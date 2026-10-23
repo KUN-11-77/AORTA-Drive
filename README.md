@@ -6,7 +6,7 @@
 
 面向 NAVSIM v1/v2 的 source-only 外观鲁棒驾驶研究：学习 candidate-free 道路差分场，为冻结 planner 的 challenger 相对 native 提供 nominal road-margin non-degradation 证书。
 
-> **研究状态：** AORTA-v8.3.2 已完成数学、synthetic geometry/teacher 与 R002E NAVSIM preprocessing 资格测试；full Gate A 仍受 ego-local/global coordinate-transform ledger 阻塞。尚无实验性能、任意 OOD coverage、实时性或顶会原创性结论。
+> **研究状态：** AORTA-v8.3.2 已完成数学、synthetic geometry/teacher、R002E NAVSIM preprocessing 与 R002F exact transform primitive 资格测试；full Gate A 仍受冻结 ROI 上完整 node-label/error manifest 阻塞。尚无实验性能、任意 OOD coverage、实时性或顶会原创性结论。
 
 ## 核心方法
 
@@ -75,7 +75,7 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher 与 rotation-free proof-carrying geometry checker；完整视觉 predictor 和 ego-local/global transform ledger 尚未实现。下一步先完成 Gate A，不启动正式性能长跑。
+当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker 与 rational-interval coordinate transform；完整视觉 predictor 和冻结 ROI 的全节点 label manifest 尚未实现。下一步先完成 Gate A，不启动正式性能长跑。
 
 ## 核心文档
 

@@ -32,7 +32,8 @@
 - [x] analytic sweep-cover property tests（R002C clean revision 通过）
 - [x] exact polygon teacher 与 map-error ledger synthetic tests（R002D clean revision 通过）
 - [x] NAVSIM cache/source/vehicle/polygon interface audit 与 rotation-free geometry arithmetic（R002E clean revision 通过）
-- [ ] ego-local graph node 到 global raw polygons 的 transform interval 与 \(\varepsilon_{transform}\)（R002F）
+- [x] ego-local graph node 到 global raw polygons 的 transform interval 与 \(\varepsilon_{transform}\) primitive（R002F）
+- [ ] 冻结 ROI/resolution 并生成完整 raw-cover node-label/error manifest（R002G）
 
 ## Gate B/C qualification
 

@@ -1,0 +1,26 @@
+{
+  "run_id": "R002F",
+  "status": "completed",
+  "timestamp_utc": "2026-10-23T14:45:45.1970854Z",
+  "implementation_revision": "1ff87a699483f3ac49cda79da4e3df880ed3ccf4",
+  "dirty_implementation_tree": false,
+  "scope": "coordinate-transform arithmetic qualification; no performance evidence",
+  "tests": {
+    "passed": 49,
+    "failed": 0
+  },
+  "cache_count": 164,
+  "cache_pass_count": 164,
+  "cache_failure_count": 0,
+  "probe_count_per_cache": 9,
+  "protocol_sha256": "a53373001c9b837a07e2a862f2c4db421aa711aa5355e6720b5716aea586d71e",
+  "cache_manifest_sha256": "13405b719ef4b3a41ebb8c5c8efd606bb0d167284b248d6c505154fa1e54d9e8",
+  "transform_source_sha256": "42c68af3658edeaaf3ce5c491a7136e40cadddd27e84cae124a46d55f8aeae2d",
+  "formal_artifact_sha256": "742abadfe74d049837b70ae1b3bd5998c14bf27dbea13eb297347128da013a21",
+  "max_abs_heading_rad": 3.109374364052834,
+  "max_epsilon_transform_m": 4.634674969755375e-10,
+  "max_libm_difference_m": 9.385703304198744e-10,
+  "max_libm_to_diagnostic_budget_ratio": 0.034503660343933845,
+  "libm_used_by_certificate": false,
+  "remaining_blocker": "freeze ROI/resolution and generate the complete per-node raw-cover label/error manifest"
+}

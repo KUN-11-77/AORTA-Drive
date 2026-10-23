@@ -90,3 +90,13 @@ The NAVSIM map cache contains overlapping drivable polygons. The continuous
 teacher consequently uses union membership with distance to all raw polygon
 boundaries. Internal overlap seams make the field more conservative inside the
 union, while avoiding an unproved numerical overlay operation.
+
+## Coordinate-transform arithmetic
+
+R002F removes platform trigonometry from the map-label proof path. For every
+binary64 heading in the registered ([-4,4]) rad domain, degree-40 rational
+Taylor polynomials plus a degree-41 Lagrange remainder enclose exact sin/cos.
+Exact rational affine interval propagation then returns a binary64 global point
+and an outward Euclidean `epsilon_transform` radius. All 164 cache poses passed;
+the maximum registered radius over the nine ([-50,0,50]^2) probes was
+(4.635\times10^{-10}) m. The final ROI-wide label manifest remains pending.

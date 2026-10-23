@@ -95,8 +95,10 @@ A_0\subseteq F_0.
   `497b77b` 上通过 7 项 synthetic 测试；
 - R002E：164/164 NAVSIM metric caches、45/45 repository tests 在 clean revision
   `13abb27` 上通过；raw polygon-cover 与 rotation-free disk proof path 获得资格；
-- full Gate A：保持 BLOCKED，直到 R002F 闭合 ego-local graph nodes 到 global raw
-  polygons 的 coordinate-transform interval 与 \(\varepsilon_{transform}\)。
+- R002F：164/164 caches、49/49 tests 在 clean revision `1ff87a6` 上通过；
+  exact-rational trig/affine interval 产生逐节点 \(\varepsilon_{transform}\)；
+- full Gate A：保持 BLOCKED，直到 R002G 冻结实际 ROI/resolution 并生成全节点
+  raw-cover label/error manifest。
 
 ## Falsifiers
 
@@ -129,6 +131,7 @@ node-label error 不吸收上游语义误差。完整账本仍为
 \]
 
 R002E 已冻结 cache/source hashes、raw polygon validity、vehicle convention 与
-rotation-free geometry arithmetic。剩余未闭合项是 ego-local graph node 到 global
-raw polygons 的 coordinate transform；它必须由 R002F 给出确定性 interval 或
-保守 \(\varepsilon_{transform}\)，不能由 32-ULP scorer-corner 兼容检查代替。
+rotation-free geometry arithmetic；R002F 已给出不依赖 libm 的确定性 transform
+interval 与 \(\varepsilon_{transform}\)。32-ULP scorer-corner comparison 仍只作
+兼容诊断。剩余项是实际 ROI/grid 与所有 node labels 的端到端 manifest，而不是新的
+经验 tolerance。
