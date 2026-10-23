@@ -1,0 +1,50 @@
+experiment_id: R004E-G-heterogeneous-envelope-oracle-v1
+date: 2026-10-24
+scope: synthetic_theory_numerics_and_role_protocol_only
+
+frozen_inputs:
+  recording_group_manifest: configs/manifests/r004_recording_group_split.csv
+  recording_group_manifest_sha256: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
+  allowed_manifest_split: train
+  prohibited_data_reads: [feature_payloads, labels, development, calibration, test, target_domain]
+
+roles:
+  namespace: AORTA-R004EG-roles-v1
+  fit_count: 42
+  selection_count: 8
+  proxy_cal_count: 16
+  historical_exposure_label: previously_used_by_v8_3_training_or_method_development
+  proxy_coverage_claim: prohibited
+
+scale_contract:
+  unit: metre
+  minimum: 0.0009765625
+  maximum: 16.0
+  parameterization: bounded_sigmoid
+  invalid_calibration_rule: any_invalid_group_fails_entire_variant_and_records_infinite_threshold
+
+conformal_contract:
+  proxy_alpha: 0.10
+  proxy_group_count: 16
+  proxy_rank: 16
+  formal_assumption: calibration_and_new_session_jointly_exchangeable_conditional_on_all_frozen_external_information
+  official_coverage_claim_from_proxy: prohibited
+
+oracle:
+  random_seed: 20261024
+  randomized_four_term_cases: 1000
+  randomized_budget_cases: 1000
+  exact_arithmetic: fractions.Fraction_from_represented_binary64
+  gauge_rescaling_factor: 2.0
+  gauge_max_ulp_difference: 8
+  cancellation_case: [1.0, -1.1102230246251565e-16, 1.0, 0.0]
+
+decision:
+  all_checks_must_pass: true
+  any_optimistic_arithmetic_case: fail
+  any_role_overlap_or_count_mismatch: fail
+  any_silent_invalid_group_filtering: fail
+  any_graph_oracle_optimism: fail
+  r004h_authorized_by_this_gate_alone: false
+  gate_b_passed_by_this_gate_alone: false
+  algorithmic_novelty_established: false
