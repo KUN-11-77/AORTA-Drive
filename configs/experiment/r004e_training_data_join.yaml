@@ -31,6 +31,18 @@ metric_cache:
     num_poses: 40
     interval_length_s: 0.1
   path_rule: log_name/unknown/scene_token/metric_cache.pkl
+  replay_contract:
+    raw_pickle_sha256: recorded_for_provenance_not_required_to_replay
+    teacher_input_sha256: required_to_replay
+    teacher_input_fields:
+      - ego_rear_axle_binary64_pose
+      - selected_map_layer_names
+      - all_selected_polygon_outer_and_hole_rings_binary64
+    invariances:
+      - geometry_component_order
+      - multipolygon_part_order
+      - ring_start_vertex
+      - ring_direction
   navsim_source_sha256:
     caching_py: dd178331754bacecc75d9563e8031ba1c125baf71c45cd2bf084510a6183c22d
     metric_cache_processor_py: b68f982dacc5fa7dccce0633cd6c12176e969a6b480b80f712abcf0a706b548f
@@ -51,7 +63,7 @@ node_labels:
 
 execution_ladder:
   - stage: one_anchor_cache_and_label
-    acceptance: exact_token_path_load_shape_finiteness_and_byte_replay
+    acceptance: exact_token_path_load_shape_finiteness_teacher_semantic_hash_and_label_byte_replay
   - stage: eight_complete_recording_groups
     expected_anchor_count: 128
     acceptance: every_group_has_16_unique_joined_anchors

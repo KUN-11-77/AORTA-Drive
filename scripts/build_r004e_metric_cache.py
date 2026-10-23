@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from aorta_drive.protocol.cache_fingerprint import fingerprint_metric_cache
 from aorta_drive.protocol.training_join import (
     TrainingAnchor,
     expected_metric_cache_path,
@@ -163,6 +164,7 @@ def main() -> None:
                 "relative_cache_path": path.relative_to(output).as_posix(),
                 "cache_bytes": path.stat().st_size,
                 "cache_sha256": _sha256(path),
+                "teacher_input_sha256": fingerprint_metric_cache(path),
             }
         )
     if failures or missing or successes != len(selected) or len(records) != len(selected):
@@ -185,7 +187,7 @@ def main() -> None:
             "split": record["split"],
             "log_name": record["log_name"],
             "scene_token": record["scene_token"],
-            "cache_sha256": record["cache_sha256"],
+            "teacher_input_sha256": record["teacher_input_sha256"],
         }
         for record in records
     ]
