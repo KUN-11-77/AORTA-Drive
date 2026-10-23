@@ -1,0 +1,50 @@
+{
+  "experiment_id": "R004H1-fresh-fit-potential-v1",
+  "status": "COMPLETED",
+  "decision": "PASS",
+  "training_revision": "634f990c7d8cf9598054237a70119c7b0c0773b4",
+  "audit_revision": "96e383419df2dfca6dae052b3304acf6aa8fd3c8",
+  "config_sha256": "1cebf499f7997f0190354b94df5b8982508912ba718c61c33946940db7bcee9d",
+  "script_sha256": "5c86aad04e8be7851cbf45a42b0023fc78e7b014eb1f860b2393515df874086e",
+  "raw_result_sha256": "7834fca5c0085545f5525d4961cc3df6d9ceb2611e8b41d2e848f3cf1b33c5fd",
+  "mechanical_audit_sha256": "70223331345fd61f0d2b2ce6c9df33414548e0e7d3dbb615dd5a4be5bb9aef75",
+  "evidence_manifest_sha256": "3979b99ca514d3f6d556c85dc631353ccdcca2f060c48d70ef6a9dd33e4be00d",
+  "selected_checkpoint_sha256": "8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b",
+  "execution": {
+    "seed": 20261023,
+    "fit_groups": 42,
+    "selection_groups": 8,
+    "anchors_per_group": 16,
+    "completed_epochs": 20,
+    "optimizer_updates": 13440,
+    "fresh_random_initialization": true,
+    "external_checkpoint_loaded": false,
+    "prohibited_payload_accessed": false
+  },
+  "selection": {
+    "selected_epoch": 20,
+    "selected_primary_m": 0.3800000121670049,
+    "zero_field_primary_m": 0.5506349755709012,
+    "relative_reduction_from_zero": 0.30988762242533013,
+    "selected_secondary_m": 2.2441165447235107,
+    "signal_gate_passed": true
+  },
+  "resources": {
+    "peak_cuda_bytes": 1617105408,
+    "elapsed_seconds": 1574.7876643569907,
+    "output_bytes": 96515812
+  },
+  "integrity": {
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE"
+  },
+  "claims": {
+    "selection_side_central_visual_signal": true,
+    "r004h2_registration_authorized": true,
+    "tail_control_established": false,
+    "scale_learning_established": false,
+    "coverage_established": false,
+    "gate_b_passed": false,
+    "official_calibration_access_authorized": false
+  }
+}

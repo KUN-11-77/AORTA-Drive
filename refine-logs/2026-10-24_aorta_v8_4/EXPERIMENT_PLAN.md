@@ -2,9 +2,11 @@
 
 ## Current gate position
 
-R004E-G has passed. The next executable program is R004H, but **no GPU run is authorized
-until its configuration, role manifest, architecture refactor, metrics and compute budget
-are committed and pinned**. Official calibration/test/target remain sealed.
+R004E-G and R004H0 passed. R004H1 then completed and passed its selection-side zero-field
+central-signal gate. The next executable block is R004H2, but **no scale optimization is
+authorized until its exact proper-loss configuration, selected H1 checkpoint, cap-collapse
+rule, controls and compute budget are committed and pinned**. Proxy-cal, development,
+official calibration, test and target remain sealed.
 
 ## Claim map
 

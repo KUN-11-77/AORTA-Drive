@@ -29,7 +29,8 @@
 - [x] R004E-F：24/24 组支持“平均视觉信号存在但极值目标失配”；排除全局符号反转与完全无信号
 - [x] R004E-G：冻结并通过 observation-conditioned heterogeneous edge envelope 的四项残差、outward arithmetic、proxy 角色与 synthetic falsification gates
 - [x] R004H0：候选无关尺度接口、旧势场精确回放、角色 ledger 与 scale-only 梯度结构审计通过
-- [ ] R004H1–H4：依次冻结并执行 fresh fit-only potential、scale-only head、proxy rehearsal 与 one-read development；不得跨门并跑
+- [x] R004H1：fresh fit-only potential 完成；selection macro edge-MAE 严格优于 zero field，授权 H2 注册
+- [ ] R004H2–H4：依次冻结并执行 scale-only head、proxy rehearsal 与 one-read development；不得跨门并跑
 - [ ] 固定具体 CDF/joint-field 最近邻
 - [x] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)（主 \(\alpha=0.10\)，次 \(\alpha=0.05\)）
 

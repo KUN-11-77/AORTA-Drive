@@ -16,5 +16,5 @@
 - **Interpretation:** a PASS supports only the existence of selection-side central visual
   signal and authorizes R004H2 registration. It is not uncertainty, coverage, utility,
   Gate B or novelty evidence.
-- **Status:** REGISTERED at implementation revision
-  `634f990c7d8cf9598054237a70119c7b0c0773b4`; not yet executed.
+- **Status:** COMPLETED — PASS for the selection-side central-signal gate. See
+  `experiments/results/R004H1.md`.

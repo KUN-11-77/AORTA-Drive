@@ -203,3 +203,24 @@
 - **Boundary:** structural gradient flow is not evidence that heteroscedastic uncertainty is
   learnable or calibrated. Coverage, utility, Gate B, OOD robustness and novelty remain
   unestablished.
+
+## ADR-0029 — Require fresh selection-side central signal before scale fitting
+
+- **Status:** accepted after R004H1 PASS
+- **Reason:** the old 66-group checkpoint had already used every future proxy role and was
+  selected by a development tail that later failed the zero-field control. Stage P therefore
+  restarts from the registered random seed, optimizes only 42 fit groups and chooses exactly
+  one checkpoint on 8 selection groups. The primary key is macro group-mean edge MAE because
+  R004E-F specifically established transferable central signal; the two-worst group maximum
+  is secondary and cannot silently replace the primary question.
+- **Evidence:** 20 complete epochs and 13,440 updates selected epoch 20. Its selection macro
+  mean was `0.3800000122 m`, strictly below the same-label zero field `0.5506349756 m`
+  (`30.99%` relative reduction). Mechanical replay reproduced the selector and strict-loaded
+  both checkpoints. The two-worst group maximum remained `2.2441165447 m`.
+- **Decision:** authorize registration of H2 scale-only proper-loss training. Stage P must be
+  loaded from checkpoint SHA-256 `8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b`
+  and frozen permanently.
+- **Boundary:** all selection groups are historically exposed and only one seed was run.
+  This supports a narrow mechanism-formation claim, not confirmation, tail control,
+  uncertainty calibration, task utility, Gate B, OOD robustness or novelty. External
+  cross-model integrity review was unavailable; the mechanical audit is not a substitute.

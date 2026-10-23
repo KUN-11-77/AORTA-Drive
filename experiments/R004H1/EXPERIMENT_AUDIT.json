@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-24",
+  "auditor": "external-reviewer-unavailable",
+  "overall_verdict": "REVIEW_UNAVAILABLE",
+  "integrity_status": "unavailable",
+  "mechanical_audit_status": "PASS",
+  "claims": [
+    {
+      "id": "H1-selection-central-signal",
+      "impact": "provisional_narrow_claim_only"
+    },
+    {
+      "id": "tail-scale-coverage-utility-novelty",
+      "impact": "unsupported"
+    }
+  ]
+}

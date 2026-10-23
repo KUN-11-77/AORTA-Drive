@@ -415,5 +415,7 @@ allocation。两者均不自动证明正式 coverage、OOD robustness 或算法�
 R004E-G 已通过 role、four-term interval residual、outward division/multiplication、joint-rank
 oracle、scale gauge 与 heterogeneous graph readout。R004H0 随后通过旧势场 exact replay、
 194 参数 right/down scale head、bounded initialization、candidate-free signature 与
-scale-only gradient isolation。它只允许单独注册 fresh fit-only R004H1；真实训练、Stage S、
-proxy-cal、development one-read 和 official calibration 仍由各自后续门禁控制。
+scale-only gradient isolation。R004H1 再用 fresh initialization、42 fit/8 selection roles
+完成 20 epochs，并在冻结 primary 上严格优于 zero field；但其 exact group maximum 仍大，
+因此只授权注册 Stage S。proxy-cal、development one-read 和 official calibration 仍由后续
+独立门禁控制。
