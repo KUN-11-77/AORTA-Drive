@@ -20,6 +20,14 @@ r002:
   geometry_tolerance: 1.0e-12
   production_swept_footprint_qualified: false
 
+r002b:
+  purpose: falsify_legacy_corner_and_discrete_pose_geometry
+  counterexamples:
+    - corners_inside_but_footprint_interior_outside
+    - endpoint_poses_inside_but_interpolated_sweep_outside
+    - raster_edt_differs_from_continuous_boundary_distance
+  production_swept_footprint_qualified: false
+
 r003:
   rational_numerical_cases: 500
   numerical_oracle: exact_fraction_arithmetic
