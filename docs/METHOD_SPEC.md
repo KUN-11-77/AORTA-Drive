@@ -1,6 +1,6 @@
-# AORTA-Drive Method Specification v0.3
+# AORTA-Drive Method Specification v0.4
 
-> Canonical method version: AORTA-v8.3.1. Formal proofs and assumptions are in [`THEORY.md`](THEORY.md).
+> Canonical method version: AORTA-v8.3.2. Formal proofs and assumptions are in [`THEORY.md`](THEORY.md).
 
 ## 1. Task objects
 
@@ -144,12 +144,23 @@ L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
 
 ## 7. Continuous certificate
 
-geometry checker 必须确定性证明：
+geometry checker 必须确定性证明非对称合同：
 
-- \(A_j\subset F_j\)、\(A_0\subset F_0\) 的节点是 footprint 内物理点；
-- \(A_j\) 是 \(F_j\) 的内部 \(h_j\)-net；
+- challenger 连续扫掠体 \(F_j\) 被解析外包络 \(\overline F_j\) 包含；
+- \(A_j\) 是 \(\overline F_j\) 的 \(h_j\)-cover，允许节点位于真实 challenger footprint 外；
+- \(A_0\subset F_0\)，每个 native 节点被证明位于至少一个真实 native footprint 内；
 - footprints 完全位于认证 ROI，集合非空；
 - reference surface、pose interpolation、vehicle dilation、coordinate transforms 与 protocol hash 一致。
+
+V0.4 冻结相邻姿态间的线性平移与连续展开 yaw 的线性插值。每段使用中点车体的膨胀外包络
+
+\[
+\delta_i=\frac12\lVert p_{i+1}-p_i\rVert_2
++2R_K\sin\frac{|\Delta\theta_i|}{4}
++\varepsilon_{pose}.
+\]
+
+边长为 \(r\) 的固定方格以 \(h_j=r/\sqrt2\) 覆盖外包络。任何 ROI clipping、未展开 yaw、空 challenger/native set 或协议不匹配均返回 reject。
 
 令 \(\varepsilon_{map,j}=\max_{q\in A_j}\varepsilon_{map}(q)\)，native 同理。若 computed lower bound 可能乐观至多 \(\varepsilon_{num}\)，则
 

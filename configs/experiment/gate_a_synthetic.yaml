@@ -28,6 +28,20 @@ r002b:
     - raster_edt_differs_from_continuous_boundary_distance
   production_swept_footprint_qualified: false
 
+r002c:
+  purpose: qualify_asymmetric_continuous_sweep_outer_cover
+  interpolation: linear_translation_linear_unwrapped_yaw
+  vehicle_reference: rear_axle
+  graph_cells: axis_aligned_squares
+  cell_covering_radius: resolution_div_sqrt_2
+  challenger_contract: analytic_outer_cover
+  native_contract: proven_internal_centers
+  adversarial_linear_teachers: 500
+  reject_roi_clipping: true
+  reject_wrapped_adjacent_yaw: true
+  reject_empty_sets: true
+  production_swept_footprint_qualified: synthetic_only
+
 r003:
   rational_numerical_cases: 500
   numerical_oracle: exact_fraction_arithmetic
@@ -37,5 +51,5 @@ r003:
 
 gate_decision:
   mathematical_core_requires: [R001, R002, R003]
-  full_gate_a_requires_production_geometry: true
+  full_gate_a_requires_production_geometry_and_map_ledger: true
   full_gate_a_status: blocked

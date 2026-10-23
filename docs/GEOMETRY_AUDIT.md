@@ -3,7 +3,7 @@
 ## Decision
 
 The existing scorer-style geometry path is useful as an evaluation signal but
-is not a proof-carrying continuous-footprint checker for AORTA-v8.3.1. It must
+is not a proof-carrying continuous-footprint checker for AORTA-v8.3.2. It must
 not be used to discharge the \(h_j\), internal-node, map-error, or continuous
 sweep assumptions without additional construction.
 
@@ -49,3 +49,20 @@ Before full Gate A can pass, the implementation must freeze and verify:
 
 The official DAC remains a secondary evaluation metric. It is not interchangeable
 with the continuous signed-distance teacher used by the certificate theorem.
+
+## V8.3.2 proof-carrying replacement
+
+The revised contract is asymmetric:
+
+- every challenger sweep is contained in a midpoint-body outer cover dilated by
+  the analytic translation, rotation, and declared pose-error radius;
+- all fixed-grid cell centers within the outer-cover radius plus one cell radius
+  are selected, giving \(h=r/\sqrt{2}\) without a sampling-density assumption;
+- native nodes are selected only when their centers are inside an actual native
+  footprint at a frozen pose;
+- ROI clipping, wrapped adjacent yaw, empty sets, and protocol mismatch reject
+  the pair.
+
+R002C qualifies this analytic construction on synthetic straight, rotating,
+mixed-motion, boundary, and adversarial 1-Lipschitz cases. It does not by itself
+close the NAVSIM coordinate and continuous-teacher error ledger.

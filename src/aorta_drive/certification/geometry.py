@@ -1,12 +1,22 @@
-"""Deterministic continuous-lifting contracts for Gate A."""
+"""Deterministic continuous-lifting contracts for Gate A.
+
+The production route is deliberately asymmetric.  Challenger nodes cover a
+proved outer approximation of the continuous sweep, while native nodes are
+proved physical points inside at least one native footprint.  This is the
+geometry contract required by the relative-margin theorem; dense sampling by
+itself is not a certificate.
+"""
 
 from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from typing import Final
 
 import numpy as np
 import numpy.typing as npt
+
+_PI: Final = math.pi
 
 
 @dataclass(frozen=True)
@@ -67,6 +77,251 @@ class ContinuousCorrection:
             - self.map_error_native
             - self.numerical_optimism
         )
+
+
+@dataclass(frozen=True)
+class Pose2D:
+    """Rear-axle pose with an unwrapped yaw in radians."""
+
+    x: float
+    y: float
+    yaw: float
+
+    def __post_init__(self) -> None:
+        if not all(np.isfinite(value) for value in (self.x, self.y, self.yaw)):
+            raise ValueError("pose values must be finite")
+
+
+@dataclass(frozen=True)
+class VehicleRectangle:
+    """Closed vehicle body rectangle in rear-axle coordinates."""
+
+    rear_overhang: float
+    front_extent: float
+    half_width: float
+
+    def __post_init__(self) -> None:
+        values = (self.rear_overhang, self.front_extent, self.half_width)
+        if not all(np.isfinite(value) and value > 0 for value in values):
+            raise ValueError("vehicle extents must be finite and positive")
+
+    @property
+    def radius(self) -> float:
+        """Maximum distance from the rear axle to a body point."""
+
+        return math.hypot(max(self.rear_overhang, self.front_extent), self.half_width)
+
+
+@dataclass(frozen=True)
+class RectangularGrid:
+    """Axis-aligned square-cell graph whose support is the certified ROI."""
+
+    x_min: float
+    y_min: float
+    columns: int
+    rows: int
+    resolution: float
+
+    def __post_init__(self) -> None:
+        if not all(np.isfinite(value) for value in (self.x_min, self.y_min, self.resolution)):
+            raise ValueError("grid values must be finite")
+        if self.columns <= 0 or self.rows <= 0:
+            raise ValueError("grid dimensions must be positive")
+        if self.resolution <= 0:
+            raise ValueError("grid resolution must be positive")
+
+    @property
+    def x_max(self) -> float:
+        return self.x_min + self.columns * self.resolution
+
+    @property
+    def y_max(self) -> float:
+        return self.y_min + self.rows * self.resolution
+
+    @property
+    def cell_radius(self) -> float:
+        return self.resolution / math.sqrt(2.0)
+
+    def centers(self) -> npt.NDArray[np.float64]:
+        """Return row-major cell centers as an ``N x 2`` matrix."""
+
+        xs = self.x_min + (np.arange(self.columns, dtype=np.float64) + 0.5) * self.resolution
+        ys = self.y_min + (np.arange(self.rows, dtype=np.float64) + 0.5) * self.resolution
+        xx, yy = np.meshgrid(xs, ys)
+        return np.column_stack((xx.ravel(), yy.ravel()))
+
+
+@dataclass(frozen=True)
+class SegmentOuterCover:
+    """Mid-pose rectangle dilated by a closed Euclidean ball."""
+
+    midpoint: Pose2D
+    inflation: float
+    translation_term: float
+    rotation_term: float
+
+
+@dataclass(frozen=True)
+class SweptCoverCertificate:
+    """Fixed-grid cover of every continuous challenger footprint point."""
+
+    node_indices: tuple[int, ...]
+    h: float
+    segment_covers: tuple[SegmentOuterCover, ...]
+    interpolation: str = "linear-translation-linear-unwrapped-yaw"
+
+
+@dataclass(frozen=True)
+class NativeInteriorCertificate:
+    """Fixed-grid nodes proved inside at least one native footprint."""
+
+    node_indices: tuple[int, ...]
+
+
+def _validate_pose_sequence(poses: tuple[Pose2D, ...]) -> None:
+    if not poses:
+        raise ValueError("pose sequence must be non-empty")
+    for start, end in zip(poses, poses[1:], strict=False):
+        if abs(end.yaw - start.yaw) > _PI:
+            raise ValueError("adjacent yaws must be unwrapped with absolute change at most pi")
+
+
+def _segment_outer_cover(
+    body: VehicleRectangle,
+    start: Pose2D,
+    end: Pose2D,
+    *,
+    pose_error: float,
+) -> SegmentOuterCover:
+    if not np.isfinite(pose_error) or pose_error < 0:
+        raise ValueError("pose_error must be finite and non-negative")
+    yaw_change = abs(end.yaw - start.yaw)
+    if yaw_change > _PI:
+        raise ValueError("adjacent yaws must be unwrapped with absolute change at most pi")
+    translation_term = 0.5 * math.hypot(end.x - start.x, end.y - start.y)
+    rotation_term = 2.0 * body.radius * math.sin(0.25 * yaw_change)
+    return SegmentOuterCover(
+        midpoint=Pose2D(
+            x=0.5 * (start.x + end.x),
+            y=0.5 * (start.y + end.y),
+            yaw=0.5 * (start.yaw + end.yaw),
+        ),
+        inflation=translation_term + rotation_term + pose_error,
+        translation_term=translation_term,
+        rotation_term=rotation_term,
+    )
+
+
+def _point_distance_to_body_rectangle(
+    points: npt.NDArray[np.float64],
+    body: VehicleRectangle,
+    pose: Pose2D,
+) -> npt.NDArray[np.float64]:
+    """Exact Euclidean point distance to one oriented body rectangle."""
+
+    relative = points - np.array([pose.x, pose.y], dtype=np.float64)
+    cosine = math.cos(pose.yaw)
+    sine = math.sin(pose.yaw)
+    local_x = cosine * relative[:, 0] + sine * relative[:, 1]
+    local_y = -sine * relative[:, 0] + cosine * relative[:, 1]
+    dx = np.maximum.reduce(
+        (-body.rear_overhang - local_x, np.zeros_like(local_x), local_x - body.front_extent)
+    )
+    dy = np.maximum(np.abs(local_y) - body.half_width, 0.0)
+    return np.hypot(dx, dy)
+
+
+def _cover_bounds(
+    body: VehicleRectangle, cover: SegmentOuterCover
+) -> tuple[float, float, float, float]:
+    """Axis-aligned bounds of an inflated oriented rectangle."""
+
+    cosine = math.cos(cover.midpoint.yaw)
+    sine = math.sin(cover.midpoint.yaw)
+    local_corners = (
+        (-body.rear_overhang, -body.half_width),
+        (-body.rear_overhang, body.half_width),
+        (body.front_extent, -body.half_width),
+        (body.front_extent, body.half_width),
+    )
+    xs = [cover.midpoint.x + cosine * x - sine * y for x, y in local_corners]
+    ys = [cover.midpoint.y + sine * x + cosine * y for x, y in local_corners]
+    return (
+        min(xs) - cover.inflation,
+        max(xs) + cover.inflation,
+        min(ys) - cover.inflation,
+        max(ys) + cover.inflation,
+    )
+
+
+def certify_swept_outer_cover(
+    body: VehicleRectangle,
+    poses: tuple[Pose2D, ...],
+    grid: RectangularGrid,
+    *,
+    pose_error: float = 0.0,
+    tolerance: float = 1e-12,
+) -> SweptCoverCertificate:
+    """Certify graph centers covering a linearly interpolated continuous sweep.
+
+    For every adjacent pose pair, the swept body is contained in the body at
+    the midpoint pose dilated by ``delta``.  ``delta`` is the sum of half the
+    endpoint translation, the exact chord bound for the maximum angular
+    deviation from the midpoint, and a declared pose-error radius.  Selecting
+    every grid center whose distance to the midpoint body is at most
+    ``delta + h`` then covers the outer set, where ``h`` is the cell radius.
+
+    A single pose is treated as a zero-length segment.  The function rejects
+    covers that leave the grid support; clipping is never accepted.
+    """
+
+    _validate_pose_sequence(poses)
+    if not np.isfinite(tolerance) or tolerance < 0:
+        raise ValueError("tolerance must be finite and non-negative")
+    pairs = tuple(zip(poses, poses[1:], strict=False)) or ((poses[0], poses[0]),)
+    covers = tuple(
+        _segment_outer_cover(body, start, end, pose_error=pose_error) for start, end in pairs
+    )
+    centers = grid.centers()
+    selected = np.zeros(centers.shape[0], dtype=bool)
+    for cover in covers:
+        x_min, x_max, y_min, y_max = _cover_bounds(body, cover)
+        if (
+            x_min < grid.x_min - tolerance
+            or x_max > grid.x_max + tolerance
+            or y_min < grid.y_min - tolerance
+            or y_max > grid.y_max + tolerance
+        ):
+            raise ValueError("swept outer cover leaves the certified grid ROI")
+        distances = _point_distance_to_body_rectangle(centers, body, cover.midpoint)
+        selected |= distances <= cover.inflation + grid.cell_radius + tolerance
+    indices = tuple(int(index) for index in np.flatnonzero(selected))
+    if not indices:
+        raise ValueError("swept outer cover produced an empty challenger node set")
+    return SweptCoverCertificate(indices, grid.cell_radius, covers)
+
+
+def certify_native_interior_nodes(
+    body: VehicleRectangle,
+    poses: tuple[Pose2D, ...],
+    grid: RectangularGrid,
+    *,
+    tolerance: float = 1e-12,
+) -> NativeInteriorCertificate:
+    """Select graph centers proved inside at least one native footprint."""
+
+    _validate_pose_sequence(poses)
+    if not np.isfinite(tolerance) or tolerance < 0:
+        raise ValueError("tolerance must be finite and non-negative")
+    centers = grid.centers()
+    selected = np.zeros(centers.shape[0], dtype=bool)
+    for pose in poses:
+        distances = _point_distance_to_body_rectangle(centers, body, pose)
+        selected |= distances <= tolerance
+    indices = tuple(int(index) for index in np.flatnonzero(selected))
+    if not indices:
+        raise ValueError("native footprint contains no fixed-grid center")
+    return NativeInteriorCertificate(indices)
 
 
 def _axis_covering_radius(axis: npt.NDArray[np.float64], low: float, high: float) -> float:

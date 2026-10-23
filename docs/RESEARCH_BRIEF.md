@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.1 V0 条件理论规范已冻结；尚无实验性能或论文原创性结论。
+> 状态：AORTA-v8.3.2 V0 条件理论规范正在进行 Gate A 几何闭合；尚无实验性能或论文原创性结论。
 
 ## 1. 问题锚点
 
@@ -12,7 +12,7 @@ AORTA-Drive 研究 NAVSIM v1/v2 上的 source-only appearance robustness。对�
 
 ## 2. 核心假设
 
-完整道路 signed-distance field 的共同 offset 可能在视觉退化下不可辨识，但局部 clearance differences 可能仍可学习。若 source session 上的 graph-gradient residual 能被同时校准，则一个 field coverage event 可以覆盖任务图内所有自适应 swept-set pairs，并认证每次授权干预达到冻结的相对改进阈值 \(\gamma_{task}\ge0\)。
+完整道路 signed-distance field 的共同 offset 可能在视觉退化下不可辨识，但局部 clearance differences 可能仍可学习。若 source session 上的 graph-gradient residual 能被同时校准，则一个 field coverage event 可以覆盖任务图内所有自适应 swept-set pairs，并经 challenger 外覆盖/native 内点的非对称几何合同，认证每次授权干预达到冻结的相对改进阈值 \(\gamma_{task}\ge0\)。
 
 该假设可能失败；遮挡、全局 calibration maximum、长路径累积和图错设都可能令证书失去非平凡性。即使证书有效，冻结 candidate provider 也可能没有提供更优候选；candidate supply 与 certificate recall 必须分别报告。
 

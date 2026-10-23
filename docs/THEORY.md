@@ -1,4 +1,4 @@
-# AORTA-v8.3.1 Formal Theory Contract
+# AORTA-v8.3.2 Formal Theory Contract
 
 > 本文只陈述条件定理。它不证明视觉 predictor 满足假设，也不提供 arbitrary-OOD coverage。
 
@@ -15,7 +15,8 @@
 |\widetilde d(q)-\phi(q)|\le\varepsilon_{map}(q).
 \]
 
-- \(A_j,A_0\subseteq\Omega\) 是非空 swept-node sets，\(F_j,F_0\subseteq\mathcal R\) 是连续 nominal footprints。
+- \(A_j,A_0\subseteq\Omega\) 是非空 graph-node sets，\(F_j,F_0\subseteq\mathcal R\) 是连续 nominal footprints。
+- \(\overline F_j\) 是 challenger footprint 的确定性外包络，满足 \(F_j\subseteq\overline F_j\)。
 - 网络、图、candidate interface、时刻集、阈值和所有选择规则在 calibration 前冻结。
 
 ## 2. Quotient invariance
@@ -115,12 +116,15 @@ L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
 
 若 \(A\subseteq B\)，则 \(L_G(A,B)\ge0\)；若 \(A=B\)，则 \(L_G(A,B)=0\)。该收益是 geometry-only law，不是视觉算法贡献。
 
-## 4. Continuous lifting with teacher error
+## 4. Continuous lifting with an asymmetric geometry contract
 
-### Assumption G
+旧的“challenger 节点既位于真实 footprint 内、又构成其内部 \(h\)-net”不是生产接口所必需，且难以从固定栅格确定性建立。V8.3.2 改用可验证的非对称合同：challenger 使用外覆盖，native 使用内部物理点。
 
-- \(A_j\subset F_j\) 与 \(A_0\subset F_0\) 的节点坐标都是 footprint 内的真实物理点；
-- \(A_j\) 是 \(F_j\) 的内部 \(h_j\)-net；
+### Assumption G2
+
+- \(F_j\subseteq\overline F_j\)，其中 \(\overline F_j\) 是由冻结轨迹插值、车体与姿态误差协议构造的外包络；
+- 对每个 \(x\in\overline F_j\)，存在 \(a\in A_j\) 使 \(\lVert x-a\rVert_2\le h_j\)；不要求 \(A_j\subseteq F_j\)；
+- \(A_0\subseteq F_0\)，即每个 native 节点都是至少一个真实 native footprint 内的物理点；
 - footprints 完全位于认证 ROI；
 - \(\phi\) 为 1-Lipschitz。
 
@@ -132,7 +136,7 @@ L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
 \varepsilon_{map,0}=\max_{q\in A_0}\varepsilon_{map}(q).
 \]
 
-### Theorem 2
+### Theorem 2 — asymmetric continuous lifting
 
 若 \(L_G(A_j,A_0)\) 是 node-label contrast 的有效 lower bound，则
 
@@ -146,10 +150,11 @@ L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
 
 ### Proof
 
-由 internal \(h_j\)-net 与 1-Lipschitz：
+由 \(F_j\subseteq\overline F_j\)、外覆盖性质与 1-Lipschitz：
 
 \[
 \inf_{x\in F_j}\phi(x)
+\ge\inf_{x\in\overline F_j}\phi(x)
 \ge\min_{a\in A_j}\phi(a)-h_j
 \ge\min_{a\in A_j}\widetilde d(a)
 -\varepsilon_{map,j}-h_j.
@@ -165,6 +170,62 @@ L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
 \]
 
 两式相减并代入 discrete lower bound 得证。∎
+
+注意，challenger 外包络可能引入额外低势节点，只会使 lower bound 更保守；native 若改用外包络节点则可能错误降低被减数，不能使用同一构造。
+
+### Proposition 1 — interval swept-footprint outer cover
+
+令车体 \(K\subset\mathbb R^2\) 以 rear axle 为原点，且 \(R_K=\sup_{k\in K}\lVert k\rVert_2\)。对相邻姿态使用
+
+\[
+p(s)=(1-s)p_0+sp_1,
+\qquad
+\theta(s)=(1-s)\theta_0+s\theta_1,
+\qquad s\in[0,1],
+\]
+
+其中 yaw 已连续展开且 \(|\theta_1-\theta_0|\le\pi\)。令中点姿态为 \((p_m,\theta_m)\)，并定义
+
+\[
+\delta
+=\frac12\lVert p_1-p_0\rVert_2
++2R_K\sin\frac{|\theta_1-\theta_0|}{4}
++\varepsilon_{pose}.
+\]
+
+则包含姿态误差半径 \(\varepsilon_{pose}\) 的整段真实扫掠体满足
+
+\[
+F_{[0,1]}\subseteq R(\theta_m)K+p_m\oplus B_2(\delta).
+\]
+
+证明：任意 \(s,k\) 相对中点变换的平移偏差不超过 \(\lVert p_1-p_0\rVert_2/2\)。旋转偏差满足
+
+\[
+\lVert R(\theta(s))k-R(\theta_m)k\rVert_2
+=2\lVert k\rVert_2\sin\frac{|\theta(s)-\theta_m|}{2}
+\le2R_K\sin\frac{|\theta_1-\theta_0|}{4}.
+\]
+
+再用三角不等式并加入姿态误差球即得证。∎
+
+### Proposition 2 — fixed-grid cover
+
+令边长为 \(r\) 的闭方格完全分割认证 ROI，格心为固定图节点，\(h=r/\sqrt2\)。对每个 Proposition 1 外包络，选择所有满足
+
+\[
+\operatorname{dist}(a,R(\theta_m)K+p_m)\le\delta+h
+\]
+
+的格心 \(a\)。若外包络完整位于 ROI，则所选格心是该外包络的 \(h\)-cover：任意外包络点 \(x\) 所在方格的中心 \(a_x\) 满足 \(\lVert x-a_x\rVert_2\le h\)，且
+
+\[
+\operatorname{dist}(a_x,R(\theta_m)K+p_m)
+\le\operatorname{dist}(x,R(\theta_m)K+p_m)+h
+\le\delta+h.
+\]
+
+因此 \(a_x\) 必被选择。多段轨迹取各段节点并集；任何外包络越出 ROI、节点集为空、yaw 未展开或协议不一致时必须拒绝认证，而不是裁剪或经验补点。
 
 若一般数值实现输出 \(\widehat L_G\)，且已证明
 
