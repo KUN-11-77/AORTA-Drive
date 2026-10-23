@@ -17,8 +17,8 @@
 | R004D | M1 | legal predictor freeze | candidate-free quotient-field probe | synthetic exact R004B shape | masking, gauge, gradients, CUDA resource fit | MUST | DONE | structural qualification only; no learned checkpoint |
 | R004E-A | M1 | anchor-aligned teacher | official cache + qualified polygon teacher | source train/dev | exact token join, replay, complete ledgers | MUST | DONE | 90 groups, 1440 anchors and 5,898,240 nodes passed independent audit |
 | R004E-B0 | M1 | one-anchor visual replay | dense BF16 map + projection-coordinate cache | one train anchor | byte replay, sampler oracle, memory | MUST | DONE | 12 dense + 2 projection artifacts replayed exactly; sampler error 1.91e-6 |
-| R004E-B1 | M1 | complete-group visual preflight | same frozen cache | 8 train/dev groups | 128-anchor exact feature-label join | MUST | TODO | EB0 PASS; no training or calibration access |
-| R004E-B2 | M1 | full visual feature-label join | same frozen cache | 90 train/dev groups | 1440-anchor exact join, ≤40 GiB | MUST | BLOCKED | requires EB1 PASS |
+| R004E-B1 | M1 | complete-group visual preflight | same frozen cache | 8 train/dev groups | 128-anchor exact feature-label join | MUST | DONE | 1422 dense + 256 projection files reopened; 2.05 GiB; sampler error 3.81e-6 |
+| R004E-B2 | M1 | full visual feature-label join | same frozen cache | 90 train/dev groups | 1440-anchor exact join, ≤40 GiB | MUST | TODO | EB1 PASS; no training or calibration access |
 | R005 | M1 | legal predictor | existing \(u_{abs}\) audit or minimal probe | source train/dev | field error, held-out eligibility | MUST | TODO | no teacher-as-predictor |
 | R006 | M1 | calibration sanity | absolute predictor + session score | exclusive source cal/test | finite-threshold eligibility, simultaneous coverage, sharpness | MUST | TODO | no calibration reuse |
 | R007 | M2 | uncertainty-only control | absolute band | held-out source | exact bound, certification | MUST | TODO | same \(u_{abs}\) |

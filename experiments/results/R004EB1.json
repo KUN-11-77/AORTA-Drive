@@ -1,0 +1,34 @@
+{
+  "anchor_count": 128,
+  "artifact_bytes": 2203993856,
+  "claim_boundary": "Qualifies the eight-complete-group feature/projection/label join and resource feasibility only; no full-set, training, calibration, target-domain, performance, or Gate B claim.",
+  "config_sha256": "1f93b85201c6cb47c37acd5751f1d1a1acde8ec8f374cf00f63b6bf03cd98382",
+  "evidence_bundle_path": "F:/AORTA-Drive-artifacts/gate-b/R004E/r004eb_eb1_evidence.tar.gz",
+  "evidence_bundle_sha256": "479e89d9511be0447e8c530bee5b9d186ec20877223248c9f7d2bada04187240",
+  "experiment_id": "R004E-B1-eight-group-visual-join",
+  "feature_manifest_sha256": "f26e42e9bcc75e06b1e05288b0e094aeb14072e3e20121e8ad5cb30f9b66873b",
+  "generation": {
+    "duration_seconds": 103.33098691795021,
+    "image_reference_count": 1536,
+    "peak_cuda_bytes": 2034846720,
+    "unique_image_count": 1422
+  },
+  "implementation_revision": "9cdc7c21675c5b25df8adfcf94a9a9a71b38740a",
+  "independent_audit": {
+    "calibration_test_or_target_accessed": false,
+    "feature_failures": 0,
+    "feature_hash_mismatches": 0,
+    "invalid_storage_exact_zero": true,
+    "matched_label_record_count": 128,
+    "projection_failures": 0,
+    "projection_hash_mismatches": 0,
+    "sampled_finite": true,
+    "sampled_group_count": 8,
+    "sampled_nodes_per_group": 64,
+    "sampler_max_absolute_error": 3.814697265625e-6,
+    "sampler_tolerance": 1e-5
+  },
+  "recording_group_count": 8,
+  "status": "PASS",
+  "training_performed": false
+}
