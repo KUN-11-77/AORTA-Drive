@@ -5,9 +5,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+
+# Required by torch deterministic algorithms for CUDA >= 10.2. This must be
+# present before the first cuBLAS operation, so the audit owns the setting.
+os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 
 import torch
 
@@ -97,6 +102,7 @@ def main() -> None:
         "implementation_revision": args.implementation_revision,
         "script_sha256": _sha256(Path(__file__)),
         "torch_version": torch.__version__,
+        "cublas_workspace_config": os.environ["CUBLAS_WORKSPACE_CONFIG"],
         "cuda_device_name": torch.cuda.get_device_name(device),
         "seed": args.seed,
         "input_shape": list(features.shape),

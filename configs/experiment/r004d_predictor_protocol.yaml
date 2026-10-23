@@ -75,6 +75,8 @@ training_objective:
 
 optimization:
   seed: 20261023
+  deterministic_evaluation_algorithms: true
+  cublas_workspace_config: ":4096:8"
   trainable_component: predictor_only
   optimizer: adamw
   learning_rate: 0.0003
