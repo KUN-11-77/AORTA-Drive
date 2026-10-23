@@ -29,6 +29,7 @@ architecture:
   potential_class: QuotientFieldPredictor
   potential_state_dict_must_load_strictly: true
   potential_refactor_replay_max_abs_m: 0.0
+  potential_gauge_abs_tolerance_m: 1.0e-6
   scale_head_class: BoundedEdgeScaleHead
   scale_head_operator: Conv2d_96_to_2_kernel_1
   scale_head_trainable_parameter_count: 194

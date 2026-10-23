@@ -103,7 +103,7 @@ def test_spatial_refactor_exactly_replays_the_legacy_potential_expression() -> N
         from_spatial = model.potential_from_spatial_features(spatial)
     assert torch.equal(actual, expected)
     assert torch.equal(from_spatial, expected)
-    assert torch.equal(actual.mean(dim=(-2, -1)), torch.zeros(2))
+    assert torch.max(torch.abs(actual.mean(dim=(-2, -1)))).item() <= 1.0e-6
 
 
 def test_default_scale_head_has_exactly_194_trainable_parameters() -> None:

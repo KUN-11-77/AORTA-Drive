@@ -179,6 +179,9 @@ def main() -> None:
     output = model(features, mask_batch)
     if not torch.equal(output.potential, forward_potential):
         raise AssertionError("wrapper changed the frozen potential output")
+    potential_gauge_abs = float(torch.abs(output.potential.mean()).item())
+    if potential_gauge_abs > float(architecture["potential_gauge_abs_tolerance_m"]):
+        raise AssertionError("potential gauge exceeded the registered tolerance")
     expected_edges = int(architecture["edge_count"])
     if output.edge_scales_m.shape != (1, expected_edges):
         raise AssertionError("scale head produced the wrong edge shape/order")
@@ -266,7 +269,7 @@ def main() -> None:
                 loss.mean_scaled_absolute_residual.detach().item()
             ),
             "loss_mean_log_scale": float(loss.mean_log_scale.detach().item()),
-            "potential_gauge_abs_m": float(torch.abs(output.potential.mean()).item()),
+            "potential_gauge_abs_m": potential_gauge_abs,
             "peak_gpu_gib": peak_gib,
             "wall_seconds": elapsed,
         },

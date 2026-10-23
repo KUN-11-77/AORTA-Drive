@@ -14,3 +14,12 @@
   not establish learned uncertainty, proxy/official coverage, task utility, Gate B or
   novelty.
 - **Status:** REGISTERED, not yet executed.
+
+## Preserved preflight repair
+
+The first registered local run passed exact legacy/new potential replay but failed an
+unregistered test-only requirement that the float32 spatial mean be bitwise zero. The
+observed means were `-9.31e-9` and `-1.49e-8 m`, inside the existing `1e-6 m` zero-gauge
+contract. No real payload, optimizer step or later split was used. The repaired registration
+removes the unjustified bitwise-zero assertion and makes the existing tolerance explicit in
+both config and production audit.
