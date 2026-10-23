@@ -261,6 +261,52 @@ rear axle 周围半径 \(r_{in}\) 的闭圆盘在任意 yaw 下均位于真实�
 的格心即可确定性满足 \(A_0\subseteq F_0\)。该 fallback 比有向矩形路径更保守，
 但其保守性影响证书锐度而非 soundness。
 
+### Proposition 4 — proof-carrying ego-to-global transform
+
+把输入 binary64 数值解释为精确实数。对 \(|\theta|\le4\)，分别以 40 阶 Maclaurin
+多项式 \(P_{40}^{sin},P_{40}^{cos}\) 计算有理中心，并使用 Lagrange remainder
+
+\[
+r_{41}(\theta)=\frac{|\theta|^{41}}{41!}
+\]
+
+构造精确区间
+
+\[
+\sin\theta\in[P_{40}^{sin}-r_{41},P_{40}^{sin}+r_{41}],
+\qquad
+\cos\theta\in[P_{40}^{cos}-r_{41},P_{40}^{cos}+r_{41}].
+\]
+
+因为 sin/cos 的任意 41 阶导数绝对值不超过 1，这两个区间包含精确三角函数值。
+对 ego-local node \(q=(q_x,q_y)\) 和 global rear-axle pose
+\((t_x,t_y,\theta)\)，用 exact-rational interval arithmetic 计算
+
+\[
+T_\theta(q)=
+\begin{bmatrix}t_x\\t_y\end{bmatrix}
++
+\begin{bmatrix}
+\cos\theta&-\sin\theta\\
+\sin\theta&\cos\theta
+\end{bmatrix}
+\begin{bmatrix}q_x\\q_y\end{bmatrix}
+\in I_x\times I_y.
+\]
+
+令存储点 \(\widehat T(q)\) 为两个区间中点转成 binary64 后的值，并以该点到
+矩形 \(I_x\times I_y\) 四角的最大 Euclidean distance 作向外舍入，得到
+\(\varepsilon_{transform}(q)\)。则
+
+\[
+\lVert T_\theta(q)-\widehat T(q)\rVert_2
+\le\varepsilon_{transform}(q).
+\]
+
+再由 continuous teacher 的 1-Lipschitz 性，坐标变换导致的 teacher value 误差至多
+\(\varepsilon_{transform}(q)\)。该命题不依赖平台 libm，但只覆盖表示值的数值变换；
+物理定位误差、地图配准误差或错误 pose convention 必须另列预算或拒绝。
+
 ### Assumption M — continuous teacher and node-label ledger
 
 论文中的 \(\phi\) 必须绑定到一个预先冻结的 continuous nominal-road object，而不是
@@ -325,7 +371,7 @@ paper teacher 与 node label 之间的总账本为
 另一个 preprocessing object，则不得通过重定义 teacher 将
 \(\varepsilon_{transform}\) 或 \(\varepsilon_{polygon}\) 置零。
 
-### Proposition 4 — exact-rational polygon distance interval
+### Proposition 5 — exact-rational polygon distance interval
 
 对 binary64 node 与 polygon vertices，逐线段用有理数精确计算投影参数与 squared
 distance，并对其平方根返回相邻 binary64 外包区间；inside/outside/boundary 使用精确

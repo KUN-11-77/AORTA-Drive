@@ -1,0 +1,32 @@
+experiment_id: R002F-coordinate-transform-v1
+date: 2026-10-23
+scope: ego_local_to_global_transform_qualification
+
+inputs:
+  semantics: binary64_values_interpreted_as_exact_reals
+  heading_domain_rad: [-4.0, 4.0]
+  local_probe_coordinates_m: [-50.0, 0.0, 50.0]
+  metric_cache_root_env: AORTA_NAVSIM_METRIC_CACHE_ROOT
+  navsim_source_root_env: AORTA_NAVSIM_SOURCE_ROOT
+  expected_cache_files: 164
+
+algorithm:
+  trigonometric_enclosure: exact_rational_taylor_with_lagrange_remainder
+  taylor_degree: 40
+  affine_interval_arithmetic: exact_rational
+  stored_point: interval_midpoint_binary64
+  epsilon_transform: outward_euclidean_radius_to_interval_corners
+  trust_platform_libm: false
+
+success:
+  all_cache_headings_finite_and_in_domain: true
+  every_probe_transform_finite: true
+  exact_transform_contained_by_analytic_interval: true
+  observed_libm_difference_within_32_ulp_diagnostic: true
+  all_registered_tests_pass: true
+
+claims:
+  closes_transform_arithmetic_primitive: true
+  freezes_final_roi_or_graph: false
+  navsim_performance_evidence: false
+  full_gate_a_if_passed: false

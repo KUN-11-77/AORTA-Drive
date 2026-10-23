@@ -65,3 +65,9 @@
 - **Status:** accepted for R002E qualification; coordinate-transform ledger pending
 - **Reason:** NAVSIM cache polygons materially overlap，canonical overlay 会引入额外数值证明义务。teacher 改为 union membership 加到全部 raw rings 的距离，在重叠内部 seam 处保守归零。正式 swept-footprint 证书使用 rear-axle disk outer cover 与 native inner disk，避免 scorer 四角点及三角函数舍入进入 soundness 链。
 - **Boundary:** 32-ULP corner check 只检查接口约定，不是 certificate error budget；ego-grid 到 global raw polygons 的坐标变换仍须单独闭合。
+
+## ADR-0013 — Certify coordinate transforms with rational trig intervals
+
+- **Status:** accepted for R002F qualification
+- **Reason:** 40 阶 rational Taylor polynomial 加 41 阶 Lagrange remainder 可在冻结的 \([-4,4]\) rad domain 内包住精确 sin/cos；其后的二维 affine interval 与 outward Euclidean radius 直接产生逐节点 \(\varepsilon_{transform}\)，无需假设平台 libm 正确舍入。
+- **Boundary:** 该预算只覆盖 binary64 表示值到 paper transform 的数值误差，不覆盖物理定位、地图配准或 pose convention 错误；最终 ROI、resolution 与全部 node-label manifest 仍须冻结。

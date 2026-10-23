@@ -208,6 +208,13 @@ binary64 outward sqrt interval，输出 \(\widetilde d(q)\) 与
 +\varepsilon_{round}.
 \]
 
+ego-local node 到 global raw polygons 的坐标变换不直接调用 libm 作为证明步骤。
+对 \(|\theta|\le4\) 的 binary64 heading，使用 40 阶 exact-rational Taylor
+sin/cos enclosure 和 41 阶 Lagrange remainder；完整 affine transform 用有理区间
+传播。存储点到所得二维区间四角的最大距离向外舍入，逐节点写入
+\(\varepsilon_{transform}(q)\)。超出 heading domain、非有限输入或区间/输出溢出
+均拒绝生成标签。32-ULP libm comparison 只作接口诊断，不进入 certificate。
+
 synthetic teacher 资格通过不自动令真实 NAVSIM 的 transform/polygon 两项为零；它们
 必须由实际 preprocessing 与 protocol hash 单独闭合。
 
