@@ -1,0 +1,13 @@
+name: aorta_operator
+backbone:
+  name: dinov3_h_plus
+  frozen: true
+candidate_encoder:
+  representation: swept_execution_tube
+panel_reasoner:
+  permutation_equivariant: true
+heads:
+  relative_shape: weighted_standardized
+  anchor: joint_log_scale_offset
+composer:
+  analytic_affine: true

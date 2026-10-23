@@ -1,0 +1,10 @@
+experiment_id: T0-operator-qualification
+claim_ids: []
+stage: unit_test
+tests:
+  - affine_reconstruction
+  - weighted_standardization
+  - degenerate_panel_flag
+  - malformed_input_rejection
+  - native_preserving_arbitration
+success_criterion: all_tests_pass

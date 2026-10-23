@@ -1,0 +1,2 @@
+experiment_id,registered_at,status,claim_ids,config,commit,seeds,data_split,primary_endpoint,success_criterion,artifact_ref,notes
+T0-operator-qualification,2026-10-23,planned,,configs/experiment/t0_operator_qualification.yaml,UNCOMMITTED,20261023,synthetic-unit,all specified unit tests pass,all_tests_pass,,Repository qualification only; not empirical evidence

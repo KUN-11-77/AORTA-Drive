@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+env/
+.conda/
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+
+# Research data and artifacts
+data/
+datasets/
+outputs/
+runs/
+checkpoints/
+wandb/
+mlruns/
+tensorboard/
+*.ckpt
+*.pth
+*.pt
+*.onnx
+*.npz
+*.npy
+*.parquet
+
+# Generated paper files
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.pdf
+
+# Local experiment notes
+experiments/**/raw/
+experiments/**/artifacts/
+

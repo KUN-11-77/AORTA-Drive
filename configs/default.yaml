@@ -1,0 +1,21 @@
+project: aorta-drive
+seed: 20261023
+experiment_id: null
+claim_ids: []
+
+paths:
+  experiment_root_env: NAVSIM_EXP_ROOT
+
+method:
+  panel_size: 16
+  factorization_eps: 1.0e-8
+  native_preserving: true
+  discretization_margin: 0.0
+
+calibration:
+  alpha: 0.1
+  method: joint_source_session
+
+integrity:
+  allow_target_tuning: false
+  require_registered_run: true
