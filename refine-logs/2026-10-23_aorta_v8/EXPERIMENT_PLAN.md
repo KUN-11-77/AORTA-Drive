@@ -6,7 +6,35 @@
 
 > 本计划用于验证、否证并修正当前条件规范，不预设方法成立。Gate A/B 通过前禁止正式长跑和目标域结论。
 
-**2026-10-23 execution status:** R001–R003 synthetic qualification completed on clean revision `821b060`; R002C asymmetric sweep cover passed on `943e7bb`; R002D exact polygon-teacher ledger passed on `497b77b`; R002E NAVSIM preprocessing/raw-cover/rotation-free geometry qualification passed on `13abb27`; R002F exact-rational coordinate-transform qualification passed on `1ff87a6`; R002G passed on clean revision `fcdb1e5` for 164/164 caches and 671,744/671,744 frozen graph nodes. Full Gate A is PASS within the frozen nominal-road contract. Gate B learned-predictor and nontriviality evidence remains absent. See [`experiments/results/GATE_A_SYNTHETIC_SUMMARY.md`](../../experiments/results/GATE_A_SYNTHETIC_SUMMARY.md).
+**2026-10-24 execution status:** Gate A remains PASS within the frozen nominal-road contract. R004A–D froze the source split/time set, visual projection, candidate provider and legal quotient-field probe. R004E-A then instantiated and independently audited exact teacher artifacts for all 90 train/development recording groups and 1440 anchors. R004E-B visual feature-label join, R004E-C learned checkpoint and all calibration/nontriviality evidence remain absent.
+
+## Immediate qualification subplan — R004E-B
+
+### Claim map
+
+| Claim | Minimum convincing evidence | Anti-claim |
+|---|---|---|
+| EB1 — the frozen visual evidence for every R004 train/development anchor is replayable and exactly joined to its teacher | two independent one-anchor builds have byte-identical dense BF16 feature and projection artifacts; 8-group then 90-group audits reopen every artifact and prove exact `(log_name, scene_token)` set equality | a DINO forward pass or matching tensor shape alone qualifies the training data |
+| EB2 — dense-feature plus projection-coordinate factorization preserves the frozen R004B interface at practical storage cost | masked bilinear materialization agrees with an independent `grid_sample` oracle, invalid slots are exact zero, all-missing nodes remain explicit, and the complete cache is at most 40 GiB | offline PCA, channel projection or node-tensor materialization may silently change the model input |
+
+This is a data-interface qualification, not a paper-result block. Passing it cannot establish learned accuracy, calibration coverage, certificate utility or OOD robustness.
+
+### Compact experiment blocks
+
+1. **EB0 — one-anchor replay (MUST):** build all 12 dense maps and the 4096×12 projection contract twice from independent output directories. Require identical canonical manifests and artifact hashes, finite `[1280,18,32]` BF16 maps, exact invalid-slot zeroing, and NumPy/torch sampler disagreement at most `1e-5`. Any failure freezes the pipeline for repair.
+2. **EB1 — eight complete groups (MUST):** process 128 anchors without splitting groups. Require exact feature-label keys, 8×16 group completeness, every feature/projection artifact reopened, storage and peak-memory within the frozen budget, and zero hash/shape/finiteness failures.
+3. **EB2 — all train/development groups (MUST):** process 90×16 anchors and reopen the complete cache. Require exact equality to the frozen time set, the frozen R004E-A label-manifest hash, zero extra/missing/duplicate IDs and total storage at most 40 GiB.
+4. **Ablations/frontier comparisons (CUT here):** backbone comparisons, PCA, lossy quantization and learned projection are not needed to qualify the interface and would confound the first training run. They belong only after Gate B shows nontriviality.
+
+### Run order and budget
+
+| Milestone | Decision gate | Estimated cost | Principal risk |
+|---|---|---:|---|
+| EB0 | exact two-build replay and sampler oracle PASS | <10 minutes, one RTX 3090 | CUDA/source/preprocessing nondeterminism |
+| EB1 | 128-anchor complete-group audit PASS | 10–30 minutes, ≤4 GiB peak GPU, several GiB disk | projection/feature/label join drift |
+| EB2 | 1440-anchor full audit PASS | 1–3 hours, ≤40 GiB disk | storage or I/O design is impractical |
+
+The cache stores the frozen `[1280,18,32]` BF16 map once per unique image and stores only float64 patch coordinates plus a Boolean support mask per anchor. It must not materialize the approximately 169 GiB redundant `[4096,12,1280]` node-slot tensor on disk. If any stage fails, retain the failed artifact and revise the interface; do not lower shape, precision or coverage post hoc.
 
 ## Claim Map
 
@@ -184,6 +212,6 @@
 - [x] simplicity 通过 fixed-scale/single-native/exact solver 维护
 - [x] frontier primitive 仅为 frozen DINO，并有强简单对照；不强行增加 frontier block
 - [x] MUST-RUN 与 NICE-TO-HAVE 已分离
-- [ ] 服务器硬件与连接信息完成安全配置
+- [x] 服务器硬件与连接信息完成安全配置（RTX 3090；凭据不写入仓库）
 - [x] experiment config 首次冻结
 - [x] Gate A 执行

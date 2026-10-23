@@ -1,0 +1,95 @@
+experiment_id: R004E-B-frozen-visual-feature-label-join-v1
+date: 2026-10-24
+scope: instantiate_replayable_dense_visual_evidence_and_exactly_join_the_R004E_A_teacher
+
+source_protocol:
+  time_set: configs/manifests/r004_session_time_set.csv
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  permitted_splits: [train, development]
+  prohibited_splits: [calibration, test, target_domain]
+  expected_recording_groups: 90
+  expected_anchors_per_group: 16
+  expected_anchor_count: 1440
+  expected_slot_count: 12
+  slot_order: history_oldest_to_current_then_camera_left_front_right
+
+teacher_join:
+  label_manifest: gate-b/R004E/full_evidence_49139e6/full_train_dev/labels/manifest.json
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  exact_key: [log_name, scene_token]
+  nearest_scene_or_file_order_join: prohibited
+
+image_preprocessing:
+  color: RGB
+  crop: false
+  raw_shape: [1080, 1920]
+  resize_shape: [288, 512]
+  resize_mode: torch_bicubic_align_corners_false_antialias_true
+  normalization_mean: [0.485, 0.456, 0.406]
+  normalization_std: [0.229, 0.224, 0.225]
+
+backbone:
+  name: dinov3_vith16plus
+  frozen: true
+  checkpoint_sha256: 7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488
+  python_source_tree_sha256: 98e2b6ff6adc14d31995081657c03128a1153c954f0ea2ce50b3a61cc3fce3b3
+  python_source_file_count: 151
+  parameter_count: 840633600
+  patch_size: 16
+  embedding_dimension: 1280
+  feature: normalized_last_4_layer_mean
+  inference_dtype: bfloat16
+  deterministic_algorithms: true
+  cublas_workspace_config: ":4096:8"
+  dense_shape: [1280, 18, 32]
+
+storage_factorization:
+  rationale: preserve_the_exact_frozen_DINO_map_without_materializing_169_GiB_of_redundant_node_slot_features
+  dense_feature_key: sha256_of_raw_image_bytes
+  dense_feature_artifact: deterministic_npy_of_raw_bfloat16_uint16_bits
+  lossless_relative_to_backbone_output: true
+  lossy_quantization_pca_or_channel_projection: prohibited
+  projection_coordinate_dtype: float64
+  projection_coordinate_shape: [4096, 12, 2]
+  projection_mask_dtype: bool
+  projection_mask_shape: [4096, 12]
+  invalid_coordinate_storage: exact_zero_with_explicit_false_mask
+  maximum_full_artifact_size_gib: 40
+
+runtime_sampling:
+  operator: bilinear_over_patch_centers
+  coordinate_conversion_for_runtime: float64_to_float32
+  padding: prohibited_for_valid_slots
+  clamping: prohibited
+  invalid_output_storage: exact_zero_after_mask
+  materialized_shape_per_anchor: [4096, 12, 1280]
+  materialized_dtype: float32
+  numpy_oracle_required: true
+
+execution_ladder:
+  - stage: one_anchor_two_independent_builds
+    acceptance: all_12_dense_features_and_projection_artifacts_byte_replay_and_sampler_oracle_agreement
+  - stage: eight_complete_recording_groups
+    expected_anchor_count: 128
+    acceptance: exact_feature_label_join_group_completeness_resource_and_throughput_audit
+  - stage: full_train_development
+    expected_anchor_count: 1440
+    acceptance: exact_unique_complete_join_zero_extra_tokens_and_all_artifacts_reopened
+
+stop_rules:
+  - any_calibration_test_or_target_anchor_is_read
+  - any_image_time_window_camera_or_label_is_missing
+  - any_checkpoint_or_DINO_source_hash_disagrees
+  - any_dense_feature_shape_dtype_finiteness_or_hash_check_fails
+  - any_projection_shape_dtype_mask_support_or_hash_check_fails
+  - any_one_anchor_replay_or_sampler_oracle_check_fails
+  - any_feature_or_label_key_is_missing_duplicated_or_extra
+  - complete_artifact_size_exceeds_40_GiB
+  - any_recording_group_is_treated_as_16_independent_validation_units
+
+claims:
+  closes_replayable_visual_feature_label_interface_if_passed: true
+  predictor_trained: false
+  learned_accuracy_established: false
+  calibration_coverage_established: false
+  gate_b_passed: false
