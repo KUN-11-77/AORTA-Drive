@@ -1,0 +1,52 @@
+{
+  "claim_boundary": "Closes only the provenance, semantic replay, exact token alignment, array contract, and complete train/development coverage of the R004 teacher artifacts. It does not establish visual feature quality, learned accuracy, calibration coverage, certificate sharpness, candidate utility, driving performance, OOD robustness, real-time behavior, or Gate B success.",
+  "config_sha256": "e504d16a783199502d62d39b1d81b1bc5ad641ca90ffbf8a65c955e78a7a45e4",
+  "experiment_id": "R004E-A-anchor-aligned-teacher",
+  "full_qualification": {
+    "anchor_count": 1440,
+    "array_failures": 0,
+    "artifact_hash_mismatches": 0,
+    "cache_hash_mismatches": 0,
+    "calibration_test_or_target_accessed": false,
+    "independently_checked_label_artifacts": 1440,
+    "label_manifest_sha256": "1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537",
+    "label_protocol_sha256": "ca1eb3028df8dc91ce393142a883b9695727c2fb17c21f16a8a53cb67347d7ea",
+    "maximum_total_error_m": 4.692142059470617e-10,
+    "metric_manifest_sha256": "ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332",
+    "node_count_per_anchor": 4096,
+    "recording_group_count": 90,
+    "source_log_fragment_count": 519,
+    "total_node_labels": 5898240
+  },
+  "implementation_revisions": {
+    "generation": "49139e6fc1589ddaebf4e41d6e4550ab3b94fe79",
+    "independent_join_audit": "4517ea065d226d49abea815e9474f72e280118ae"
+  },
+  "integrity_audit": {
+    "external_cross_model_review": "UNAVAILABLE",
+    "reason": "The prescribed external reviewer backend was not exposed in the current tool environment; no self-acquittal was substituted."
+  },
+  "local_evidence": {
+    "full_bundle_path": "F:/AORTA-Drive-artifacts/gate-b/R004E/r004e_full_evidence.tar.gz",
+    "full_bundle_sha256": "71a82132d176fa8e13d6d95f4bfb3bd2afaeee75c61f70afc0135c026b8f27c8",
+    "preflight_bundle_path": "F:/AORTA-Drive-artifacts/gate-b/R004E/r004e_preflight_evidence.tar.gz",
+    "preflight_bundle_sha256": "6324e9f24bae80f6e8e9ffcebeea9fec03383d5c67971599ae5f8551d6866a04"
+  },
+  "pre_freeze_falsifications": {
+    "prior_r002g_exact_token_matches": 0,
+    "prior_r002g_label_count": 164,
+    "prior_r002g_reuse_prohibited": true,
+    "raw_metric_pickle_byte_replay": false,
+    "teacher_input_semantic_replay": true,
+    "label_artifact_byte_replay": true
+  },
+  "preflight_eight_groups": {
+    "anchor_count": 128,
+    "independently_checked_label_artifacts": 128,
+    "recording_group_count": 8,
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "time_set_sha256": "33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9",
+  "training_performed": false
+}

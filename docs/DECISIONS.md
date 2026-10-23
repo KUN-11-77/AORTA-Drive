@@ -118,9 +118,10 @@
 
 ## ADR-0020 — Instantiate labels on the exact frozen R004 anchors
 
-- **Status:** proposed for R004E-A qualification
+- **Status:** accepted after R004E-A qualification
 - **Finding:** the R002G formal manifest contains 164 valid cache-label artifacts, but none of their scene tokens occurs among the 1440 R004 train/development anchors. R002G qualifies the teacher implementation and those exact cache objects; it cannot supervise R004 by token substitution or nearest-scene reuse.
 - **Decision:** run the official NAVSIM metric-cache processor only on the frozen R004 train/development tokens, then apply the already-qualified R002G label builder. The join key is exact `(log_name, scene_token)`, with one cache and one label per anchor. Existing R002G labels remain proof artifacts and are prohibited as R004 training labels unless their exact token is present.
 - **Execution:** one anchor, then eight complete recording groups, then all 90 groups. Calibration/test/target remain unread. The independent unit for any later validation statement remains the recording group; 16 anchors are nested observations.
 - **Replay correction:** an independent one-anchor regeneration showed that official compressed metric-cache pickle bytes are not canonical even when the resulting 4096-node label artifact is byte-identical. Raw pickle SHA remains provenance only. Replay is therefore judged by a canonical SHA-256 over the exact teacher inputs: rear-axle binary64 pose, selected layer names and every selected polygon outer/hole ring, invariant to component order, multipolygon order, cyclic ring start and ring direction. Label artifacts must still replay byte-for-byte.
+- **Qualification evidence:** the ladder passed at one anchor, eight complete groups (128 anchors) and all 90 train/development groups (1440 anchors). The final independent audit reopened 1440 label artifacts, found zero duplicate IDs, hash mismatches or array failures, and confirmed that calibration/test/target data were not accessed. Metric and label manifest SHA-256 values are recorded in `experiments/results/R004EA.md`.
 - **Boundary:** this repairs training-data alignment only. It does not train the predictor or establish residual sharpness, calibration coverage, certificate recall or driving utility.

@@ -21,7 +21,7 @@
 - [x] 设计并 synthetic 验证 proof-carrying asymmetric geometry checker
 - [x] 定义 continuous polygon teacher、\(\varepsilon_{map}\) 与 geometry arithmetic 的保守证明方案
 - [x] 指定并结构审计 Gate B 的合法 source-only quotient-field probe（R004D）
-- [ ] R004E-A：为 1440 个 train/development anchors 生成一一对应的 metric cache 与 node labels
+- [x] R004E-A：为 1440 个 train/development anchors 生成一一对应的 metric cache 与 node labels
 - [ ] R004E-B：生成冻结 DINO feature/projection artifacts 并完成 exact feature-label join
 - [ ] R004E-C：按唯一注册配置训练 probe，并冻结 development-only checkpoint
 - [ ] 固定具体 CDF/joint-field 最近邻
