@@ -1,0 +1,75 @@
+experiment_id: R004E-A-anchor-aligned-metric-cache-and-labels-v1
+date: 2026-10-24
+scope: instantiate_the_frozen_teacher_on_the_exact_R004_train_development_anchors
+
+source_protocol:
+  time_set: configs/manifests/r004_session_time_set.csv
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  permitted_splits: [train, development]
+  prohibited_splits: [calibration, test, target_domain]
+  expected_recording_groups: 90
+  expected_anchors_per_group: 16
+  expected_anchor_count: 1440
+  expected_unique_scene_tokens: 1440
+
+failed_reuse_control:
+  prior_label_manifest: gate-a/R002G/formal/manifest.json
+  prior_label_manifest_sha256: 4cf9f3345679d1326849b27caf97281bf6e4638a2c6e0d7bc611113241ad9a51
+  prior_label_count: 164
+  matched_R004_anchor_count: 0
+  reuse_for_R004_training: prohibited
+
+metric_cache:
+  producer: official_NAVSIM_metric_cache_processor
+  scene_filter:
+    num_history_frames: 4
+    num_future_frames: 10
+    frame_interval: 1
+    has_route: true
+    tokens: exact_R004_train_development_scene_tokens_only
+  proposal_sampling:
+    num_poses: 40
+    interval_length_s: 0.1
+  path_rule: log_name/unknown/scene_token/metric_cache.pkl
+  navsim_source_sha256:
+    caching_py: dd178331754bacecc75d9563e8031ba1c125baf71c45cd2bf084510a6183c22d
+    metric_cache_processor_py: b68f982dacc5fa7dccce0633cd6c12176e969a6b480b80f712abcf0a706b548f
+    metric_cache_py: b994b5c9221c0796c3c511f5c339102fc1b720a48be08a5d7aaa0ad2108b7185
+  modify_source_logs_or_maps: false
+
+node_labels:
+  producer: scripts/build_navsim_node_labels.py
+  contract: frozen_R002G_raw_cover_teacher_and_error_ledger
+  expected_shape: [64, 64]
+  required_arrays:
+    - label_m
+    - transform_error_m
+    - distance_error_m
+    - total_error_m
+  exact_join_key: [log_name, scene_token]
+  one_label_artifact_per_anchor: true
+
+execution_ladder:
+  - stage: one_anchor_cache_and_label
+    acceptance: exact_token_path_load_shape_finiteness_and_byte_replay
+  - stage: eight_complete_recording_groups
+    expected_anchor_count: 128
+    acceptance: every_group_has_16_unique_joined_anchors
+  - stage: full_train_development
+    expected_anchor_count: 1440
+    acceptance: complete_unique_hash_join_and_zero_extra_tokens
+
+stop_rules:
+  - any_calibration_test_or_target_anchor_is_read
+  - any_selected_scene_token_is_missing_or_duplicated
+  - any_cache_path_token_or_log_name_disagrees_with_the_frozen_time_set
+  - any_metric_cache_or_label_is_missing_nonfinite_or_nonreplayable
+  - any_prior_R002G_label_is_reused_for_a_different_scene_token
+  - any_recording_group_is_treated_as_16_independent_validation_units
+
+claims:
+  closes_anchor_aligned_training_teacher_if_passed: true
+  predictor_trained: false
+  learned_accuracy_established: false
+  calibration_coverage_established: false
+  gate_b_passed: false

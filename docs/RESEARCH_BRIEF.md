@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 已通过完整 Gate A；R004A–D 已冻结 source split/time set、distortion-aware visual evidence、deterministic candidate provider，以及合法 quotient-field probe/训练目标/development checkpoint rule。R004D 仅通过结构与资源资格，尚未训练 learned checkpoint；Gate B 仍未开始校准，也尚无实验性能、OOD coverage 或论文原创性结论。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 定理、算子和 R002G 标签生成器已通过，但 R004E join 审计发现 R002G 的 164 个 cache labels 与 R004 的 1440 个 train/development anchors 没有 token 交集。因此当前训练数据的 teacher 尚未实例化，不能把 R002G 标签直接用于 R004。R004A–D 的协议冻结仍有效；尚未训练 learned checkpoint，Gate B 也未开始校准。
 
 ## 1. 问题锚点
 
@@ -63,6 +63,7 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 ## 7. 当前裁定
 
 - V0 条件理论规范：可冻结；
+- Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：待 R004E-A；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：R004A–D 已完成；R004E 在不读取 calibration/test/target 的条件下生成 train/development feature-label join，按唯一注册配置训练最小 probe，并冻结 development-only 选出的 checkpoint。其后才允许读取 calibration residual 并运行 Gate B 最小资格与非平凡性测试。
+- 下一阶段：R004E-A 在不读取 calibration/test/target 的条件下，用官方 NAVSIM pipeline 为 1440 个冻结 train/development anchors 生成 metric caches 和 node labels；按 1 anchor、8 groups、全 90 groups 的顺序资格。完成 feature-label exact join 与注册训练后，才允许读取 calibration residual。

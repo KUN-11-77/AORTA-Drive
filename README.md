@@ -6,7 +6,7 @@
 
 面向 NAVSIM v1/v2 的 source-only 外观鲁棒驾驶研究：学习 candidate-free 道路差分场，为冻结 planner 的 challenger 相对 native 提供 nominal road-margin non-degradation 证书。
 
-> **研究状态：** AORTA-v8.3.2 已通过完整 Gate A；R004A–D 已冻结 source protocol、visual evidence、candidate provider 与合法 quotient-field probe/checkpoint rule。R004D 仅是结构和资源资格，尚无 learned checkpoint、实验性能、任意 OOD coverage、实时性或顶会原创性结论。
+> **研究状态：** AORTA-v8.3.2 的 Gate A primitives 与 R002G 标签生成器已通过；R004E join 审计发现原 164 个标签与当前 1440 个 train/development anchors 的 token 交集为 0，故正在生成 anchor-aligned teacher artifacts。R004A–D 的协议冻结仍有效，但尚无 learned checkpoint、实验性能、任意 OOD coverage、实时性或顶会原创性结论。
 
 ## 核心方法
 

@@ -115,3 +115,11 @@
 - **Tail alignment:** mean edge Huber alone is not aligned with the session maximum used by calibration. The frozen objective adds a centered log-sum-exp surrogate over edge residuals per anchor, while checkpoint selection uses the exact maximum over all 16 anchors and 8064 edges in each of the 24 development recording groups. The primary development criterion is the mean of the five worst group maxima, followed by the all-group mean and earliest epoch.
 - **Leakage boundary:** candidates, maps beyond the frozen training labels, certificates, planner scores, calibration/test samples and target-domain samples cannot enter training or checkpoint selection. This is a legality and feasibility probe, not a performance claim; calibration residuals remain unread until its code, configuration and structural audit are committed.
 - **Replay environment:** deterministic evaluation enables PyTorch deterministic algorithms and sets `CUBLAS_WORKSPACE_CONFIG=:4096:8` before the first CUDA linear-algebra operation. A seed without this CUDA workspace contract is insufficient for the frozen replay claim.
+
+## ADR-0020 — Instantiate labels on the exact frozen R004 anchors
+
+- **Status:** proposed for R004E-A qualification
+- **Finding:** the R002G formal manifest contains 164 valid cache-label artifacts, but none of their scene tokens occurs among the 1440 R004 train/development anchors. R002G qualifies the teacher implementation and those exact cache objects; it cannot supervise R004 by token substitution or nearest-scene reuse.
+- **Decision:** run the official NAVSIM metric-cache processor only on the frozen R004 train/development tokens, then apply the already-qualified R002G label builder. The join key is exact `(log_name, scene_token)`, with one cache and one label per anchor. Existing R002G labels remain proof artifacts and are prohibited as R004 training labels unless their exact token is present.
+- **Execution:** one anchor, then eight complete recording groups, then all 90 groups. Calibration/test/target remain unread. The independent unit for any later validation statement remains the recording group; 16 anchors are nested observations.
+- **Boundary:** this repairs training-data alignment only. It does not train the predictor or establish residual sharpness, calibration coverage, certificate recall or driving utility.
