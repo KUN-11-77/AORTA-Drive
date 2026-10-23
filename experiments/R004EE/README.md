@@ -14,7 +14,8 @@
   is retained. If none reaches 20, the verdict is mixed mechanism.
 - **Teacher integrity check:** every teacher edge must satisfy
   `|D label| <= 1 m + endpoint error ledgers + 1e-5 m`.
-- **Status:** REGISTERED. No training, parameter fitting, threshold search or
-  calibration access is permitted.
+- **Status:** COMPLETED — MIXED. Attribution was 0/24 overshoot, 9/24 missing-edge
+  incidence and 15/24 fully observed non-overshoot; no explanation reached 20/24.
+  See `experiments/results/R004EE.md`.
 - **Claim boundary:** this diagnostic selects the next falsification control; it
   cannot establish causality, architecture superiority, coverage, utility or Gate B.

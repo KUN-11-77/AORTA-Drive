@@ -25,7 +25,8 @@
 - [x] R004E-B：生成冻结 DINO feature/projection artifacts 并完成 exact feature-label join
 - [x] R004E-C：按唯一注册配置完成 20 epochs，并冻结 development-only epoch-1 checkpoint；保留 train objective 与 development group-tail 反向变化的负面结果
 - [x] R004E-D：visual-necessity control FAIL；checkpoint 优于 train-label mean prior，但差于约 1 m 的 zero-field endpoint
-- [ ] R004E-E：定位 excess residual 来自 gradient overshoot、all-missing 邻边还是 fully observed representation error
+- [x] R004E-E：0/24 gradient overshoot、9/24 missing-edge、15/24 fully observed；单独 Lipschitz 投影与二值观测 mask 均被否定
+- [ ] R004E-F：区分“平均视觉信号存在但极值目标失配”与“没有可迁移视觉信号”
 - [ ] 固定具体 CDF/joint-field 最近邻
 - [x] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)（主 \(\alpha=0.10\)，次 \(\alpha=0.05\)）
 

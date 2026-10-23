@@ -158,3 +158,11 @@
 - **Evidence:** on the same 24 development groups, zero-field worst-5/all-24 statistics were `1.000000954/1.000000725 m`; the frozen visual checkpoint gave `1.475400233/1.394614086 m`. The visual checkpoint beat the train-label mean spatial prior but failed both preregistered strict comparisons against zero.
 - **Decision:** do not open calibration and do not add a new module speculatively. First attribute the learned model's excess residual to predicted-gradient overshoot, edges incident to all-missing evidence, or errors on fully observed edges. Those cases imply different theory and architecture repairs.
 - **Boundary:** zero field is a diagnostic minimax control, not a useful certificate: a roughly 1 m per-edge uncertainty can still accumulate into vacuous path bounds. R004E-D rejects the current learned predictor/objective, not the broader task-equivalence research question.
+
+## ADR-0025 — Reject projection-only and binary-observability repairs
+
+- **Status:** accepted after R004E-E mixed diagnosis
+- **Evidence:** none of `3,096,576` development edges exceeded the registered predicted-gradient limit `1 + 1e-5 m`; group-global maxima were attributed to fully observed non-overshooting edges in 15/24 groups and missing-incident edges in 9/24. Neither reached the preregistered 20/24 single-mechanism threshold. The teacher Lipschitz ledger had zero violations.
+- **Decision:** do not add graph-Lipschitz projection as a claimed repair: projection onto the already-satisfied registered constraint cannot remove the measured errors. Do not equate projective support with reliable geometry or claim that removing all-missing nodes solves the problem: the both-observed subset still has `1.453571/1.370929 m` worst-5/all-24 group maxima, worse than the zero-field control.
+- **Next test:** before designing a new network, compare visual and zero-field group-mean edge error while retaining the exact group maximum, and include a frozen sign-flipped field only to detect a convention/inversion failure. This determines whether useful average visual information exists but the statistical target fails, or whether the representation itself is uninformative.
+- **Boundary:** R004E-E is development-only localization, not causal proof. It does not authorize calibration, a learned confidence mask, a new architecture or Gate B.

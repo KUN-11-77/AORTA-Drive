@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。唯一注册的 C2 probe 选择 epoch 1，但 train objective 下降时 development group-tail 恶化。R004E-D 又证明该 checkpoint 的 worst-5/all-24 residual（1.4754/1.3946 m）均差于由 1-Lipschitz teacher 导出的 zero-field control（约 1.000001/1.000001 m）。当前 predictor/objective 未获 calibration 资格；calibration 仍未读取，Gate B 未通过。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。唯一注册的 C2 probe 选择 epoch 1，但 train objective 下降时 development group-tail 恶化。R004E-D 证明该 checkpoint 差于约 1 m 的 zero-field control；R004E-E 进一步发现全部 3,096,576 条边均无注册意义的 gradient overshoot，而 fully observed 子图仍给出 1.4536/1.3709 m 的 worst-5/all-24 residual。单独 Lipschitz 投影和二值观测 mask 均不能修复当前 predictor；calibration 仍未读取，Gate B 未通过。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：R004E-E 只定位超额 residual：统计 selected checkpoint 的 \(|Du|>1\) overshoot、group-maximum edge 与 all-missing node 的关系，以及 fully observed edges 上的 residual。该诊断决定下一版应采用 graph-Lipschitz 输出投影、observable qualified subgraph，还是重构视觉表示；在诊断和新理论冻结前不得重训或读取 calibration。
+- 下一阶段：R004E-F 只用冻结 development 数据比较 visual、zero 与 sign-flipped field 的组级平均 edge MAE 和精确 group maximum，判定当前失败主要是 tail/objective mismatch 还是视觉表示没有可迁移信号。在该诊断与新理论冻结前不得重训或读取 calibration。
