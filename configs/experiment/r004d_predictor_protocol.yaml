@@ -1,0 +1,125 @@
+experiment_id: R004D-source-only-quotient-predictor-v1
+date: 2026-10-24
+scope: freeze_legal_minimal_predictor_training_and_checkpoint_contract
+
+data_access:
+  train_recording_groups: 66
+  development_recording_groups: 24
+  anchors_per_group: 16
+  permitted_splits: [train, development]
+  prohibited_splits: [calibration, test, target_domain]
+  independent_unit: complete_recording_group
+  candidate_or_planner_output_used_for_training_or_selection: false
+  calibration_score_access: prohibited_until_this_protocol_is_committed
+
+input:
+  producer: frozen_dinov3_vith16plus
+  checkpoint_sha256: 7c1da9a54b3db333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488
+  feature: normalized_last_4_layer_mean
+  feature_dimension: 1280
+  graph_shape: [64, 64]
+  node_count: 4096
+  slot_count: 12
+  slot_order: history_major_then_camera_left_front_right
+  history_offsets: [-3, -2, -1, 0]
+  cameras: [cam_l0, cam_f0, cam_r0]
+  invalid_storage: finite_zero_with_boolean_mask
+
+architecture:
+  name: masked_quotient_field_probe_v1
+  candidate_conditioned: false
+  trainable_backbone: false
+  token_projection:
+    shared_across_slots: true
+    dimensions: [1280, 64, 64]
+    activation: gelu
+  slot_context:
+    camera_embedding: learned
+    history_embedding: learned
+    fusion: masked_soft_attention
+    hard_view_selection: prohibited
+  missing_evidence:
+    all_missing_node: one_learned_token
+    evidence_fraction_feature: required
+    invalid_slots_have_exact_zero_fusion_weight: true
+  coordinate_features:
+    values: [x, y, sin_pi_x, cos_pi_x, sin_pi_y, cos_pi_y]
+    normalized_to_roi_half_extent: true
+  spatial_decoder:
+    type: two_scale_residual_unet
+    widths: [96, 128, 192]
+    normalization: group_norm
+    downsample_factors: [1, 2, 4]
+    interpolation: bilinear_align_corners_false
+  output:
+    type: node_potential
+    shape: [64, 64]
+    gauge_projection: subtract_exact_spatial_mean
+
+training_objective:
+  label: frozen_R002G_node_potential
+  prediction_target: oriented_4_neighbor_graph_differences
+  edge_order: all_rightward_then_all_downward
+  edge_count: 8064
+  physical_edge_scale_m: 1.0
+  mean_term:
+    type: huber
+    delta_m: 0.25
+    weight: 1.0
+  tail_term:
+    type: centered_logsumexp_over_edges_per_anchor
+    temperature_m: 0.10
+    weight: 0.25
+    statistical_bound_claimed: false
+  rationale: average_optimization_stability_plus_alignment_with_max_edge_calibration_score
+
+optimization:
+  seed: 20261023
+  trainable_component: predictor_only
+  optimizer: adamw
+  learning_rate: 0.0003
+  betas: [0.9, 0.95]
+  weight_decay: 0.0001
+  maximum_epochs: 20
+  warmup_epochs: 1
+  schedule: cosine_to_zero_after_warmup
+  predictor_compute_dtype: float32
+  backbone_compute_dtype: bfloat16
+  gradient_clip_global_norm: 1.0
+  anchor_schedule: each_train_anchor_once_per_epoch_with_recording_groups_interleaved
+  augmentation: none
+  hyperparameter_search: prohibited_for_primary_probe
+
+checkpoint_rule:
+  evaluated_after_each_epoch: true
+  development_statistic_per_group: max_over_16_anchors_and_8064_edges_absolute_metric_residual
+  primary: mean_of_largest_ceil_20_percent_group_statistics
+  primary_group_count: 5
+  secondary: mean_over_all_24_group_statistics
+  final_tie_break: earliest_epoch
+  candidate_certificate_or_planner_metric_used: false
+  calibration_or_test_used: false
+
+qualification_before_training:
+  - exact_input_output_shape
+  - all_outputs_and_gradients_finite
+  - output_spatial_mean_within_1e-6_m
+  - invalid_slot_value_invariance
+  - all_missing_token_path_exercised
+  - deterministic_evaluation_replay
+  - one_full_4096_node_forward_backward_fits_on_rtx3090
+
+stop_rules:
+  - any_calibration_test_or_target_sample_is_accessed
+  - any_candidate_map_planner_score_or_certificate_enters_predictor_or_checkpoint_selection
+  - invalid_slot_storage_changes_prediction
+  - output_or_gradient_is_nonfinite
+  - zero_gauge_tolerance_is_exceeded
+  - full_contract_forward_backward_exceeds_available_rtx3090_memory
+
+claims:
+  closes_predictor_legality_and_checkpoint_protocol_only: true
+  learned_predictor_qualified: false
+  calibration_coverage_established: false
+  certificate_nontriviality_established: false
+  gate_b_passed: false

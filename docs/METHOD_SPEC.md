@@ -62,6 +62,22 @@ u_\theta(X,q)
 
 相机顺序、历史长度、token layers、reference surface、projection convention、missing token 和聚合方式在 calibration 前冻结。
 
+R004D 的最小合法 probe 将 12 个槽位固定为 history-major、每个历史时刻内
+`left/front/right`。每个有效槽位经共享的 (1280\to64\to64) 投影，并加入
+camera/history embedding；masked soft attention 只在有效槽位上归一化，不允许
+hard best-view。全缺失节点使用单一 learned missing token，且有效槽位比例作为显式
+输入。融合后的 64×64 场经过宽度为 96/128/192 的两尺度 residual U-Net。该结构
+不接收 candidate、map、planner output、certificate 或 score。
+
+输出 raw potential 后执行 gauge projection
+
+\[
+u_\theta(q)\leftarrow u_\theta(q)
+-|\Omega|^{-1}\sum_{v\in\Omega}u_\theta(v).
+\]
+
+这只选择商空间中的一个稳定代表，不增加任务假设，也不把绝对零点重新引入监督。
+
 ## 3. Graph-gradient training
 
 V0 使用固定物理 edge scale \(s_e=\ell_e/\ell_{ref}>0\)。令 \(D\) 为 incidence matrix：
@@ -75,7 +91,39 @@ V0 使用固定物理 edge scale \(s_e=\ell_e/\ell_{ref}>0\)。令 \(D\) 为 inc
 \right).
 \]
 
-共同 offset 位于 \(\ker D=\operatorname{span}\{\mathbf1\}\) 中，不影响 relative set-min task。average edge loss 不推出 session maximum 很小，也不推出 appearance-OOD stability；Gate B 直接审计 tail residual 和证书锐度。
+实际 probe 的优化目标同时包含平均项与 tail-aligned surrogate。令
+
+\[
+r_{t,e}=\frac{|(Du_\theta-D\widetilde d_S)_{t,e}|}{s_e},
+\]
+
+则
+
+\[
+\mathcal L_{train}
+=\operatorname{mean}_{t,e}\operatorname{Huber}_{0.25}(r_{t,e})
++0.25\operatorname{mean}_{t}
+\left[
+0.10\log\sum_e\exp(r_{t,e}/0.10)-0.10\log|E|
+\right].
+\]
+
+第二项与 smooth maximum 具有相同梯度，但减去了与参数无关的常数；它只是训练
+surrogate，不是 coverage bound。每个 train recording group 的 16 个 anchors 每 epoch
+各使用一次，并将 recording groups 交错排序。anchor 是组内重复观测，不作为独立
+统计样本。
+
+每个 epoch 后，在全部 24 个 development recording groups 上计算
+
+\[
+E_z^{dev}=\max_{t\in T(z),e\in E}r_{t,e}.
+\]
+
+checkpoint 按以下预冻结字典序选择：五个最大 (E_z^{dev}) 的平均、全部 24 个的
+平均、最早 epoch。candidate utility、certificate rate、planner score、calibration/test
+数据均不得进入该规则。
+
+共同 offset 位于 \(\ker D=\operatorname{span}\{\mathbf1\}\) 中，不影响 relative set-min task。average edge loss 或上述 smooth-tail surrogate 均不推出 session maximum 很小，也不推出 appearance-OOD stability；Gate B 仍直接审计独立 session residual 与证书锐度。
 
 ## 4. Frozen candidate interface
 

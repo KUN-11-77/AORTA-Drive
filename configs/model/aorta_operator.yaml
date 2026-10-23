@@ -1,16 +1,30 @@
-name: aorta_cmfe_v8_3_1_v0
+name: aorta_cmfe_v8_3_2_v0
 backbone:
   name: dinov3_h_plus
   frozen: true
 field_decoder:
+  name: masked_quotient_field_probe_v1
   output: node_potential
   candidate_conditioned: false
   train_target: graph_gradient_of_signed_distance
+  token_projection_dimensions: [1280, 64, 64]
+  fusion: masked_soft_attention
+  slot_order: history_major_then_camera_left_front_right
+  spatial_decoder: two_scale_residual_unet
+  spatial_widths: [96, 128, 192]
+  output_gauge: zero_spatial_mean
   node_evidence:
     projection: calibrated_reference_surface
     sampling: bilinear_token_grid
     invalid_projection: missing_evidence_token
     visibility_semantics: frustum_only
+training:
+  mean_edge_loss: huber_delta_0_25m
+  tail_edge_loss: centered_logsumexp_temperature_0_10m_weight_0_25
+  checkpoint_unit: development_recording_group
+  checkpoint_primary: worst_5_of_24_group_maxima_mean
+  checkpoint_secondary: all_24_group_maxima_mean
+  checkpoint_tie_break: earliest_epoch
 uncertainty:
   edge_scale: fixed_physical
 solver:
