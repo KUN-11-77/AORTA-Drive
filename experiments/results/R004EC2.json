@@ -1,0 +1,39 @@
+{
+  "artifact_ref": "F:/AORTA-Drive-artifacts/gate-b/R004E/r004ec_c2_evidence.tar.gz",
+  "artifact_sha256": "ca763af07b6c85606b3e24025f92c5814054c50b94f13519c62fe3177e26b74b",
+  "calibration_test_or_target_accessed": false,
+  "checkpoint": {
+    "best_sha256": "94d3e77e0d16e6649706e4fad94f8b5e88fd3857165286c295e133297299fc2d",
+    "latest_sha256": "56984a1a8dfd705e8ce990bdf8c7ac699f171858aa527424a9647eb3f0c9c5b3",
+    "selected_development_all24_mean_m": 1.394614075620969,
+    "selected_development_worst5_mean_m": 1.4754000425338745,
+    "selected_epoch": 1
+  },
+  "claim_boundary": "One registered train/development run and checkpoint selection only; no calibration, certificate, utility, OOD, or Gate B claim.",
+  "experiment_id": "R004E-C2-full-source-only-training",
+  "implementation_revision": "7bca5c89a086b0b83ac40a499ef75914dcfd9cd0",
+  "integrity_audit": {
+    "external_cross_model_review": "UNAVAILABLE",
+    "mechanical_audit_sha256": "410b271681734eda17bb97f4b830b9d4bbfdecd1985d3a784a519d5c7883686d",
+    "mechanical_audit_status": "PASS",
+    "reason": "The external reviewer backend is not exposed; no self-acquittal was substituted."
+  },
+  "optimization": {
+    "completed_epochs": 20,
+    "development_anchor_count": 384,
+    "development_group_count": 24,
+    "elapsed_seconds": 2660.923684034962,
+    "optimizer_updates": 21120,
+    "parameter_count": 4000225,
+    "peak_cuda_bytes": 1617075200,
+    "train_anchor_count_per_epoch": 1056,
+    "train_group_count": 66
+  },
+  "research_diagnostic": {
+    "final_all24_over_epoch1": 1.42807225137494,
+    "final_train_mean_objective_over_epoch1": 0.752735182693633,
+    "final_worst5_over_epoch1": 1.54019693658475,
+    "interpretation": "Average train optimization improved while development recording-group tail statistics degraded after epoch 1."
+  },
+  "status": "PASS_WITH_NEGATIVE_GENERALIZATION_SIGNAL"
+}

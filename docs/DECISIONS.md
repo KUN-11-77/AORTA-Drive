@@ -142,3 +142,11 @@
 - **Qualification evidence:** the real-anchor torch path agreed with the independent NumPy oracle to `9.7751617431640625e-6` under the frozen `1e-5` gate, preserved the 8064-edge order and zero gauge, was exactly invariant to invalid storage, replayed identically, and produced finite backward gradients. The numerical sampler gate passed narrowly and must not be characterized as a wide margin.
 - **Preserved failures:** two pre-model executions exposed status-literal and nested-artifact-path mismatches. Both logs remain in the evidence bundle and both repairs have regression tests; neither failed execution performed an optimizer update.
 - **Boundary:** C0 qualifies one real input/backward path only. It does not show optimization success, held-out group generalization, calibration coverage, certificate nontriviality, utility or OOD robustness.
+
+## ADR-0023 — Freeze the epoch-1 checkpoint but withhold calibration pending visual-necessity controls
+
+- **Status:** accepted after R004E-C2 completion
+- **Execution:** the sole registered seed completed 20 epochs over 66 train groups and evaluated all 24 development groups after every epoch. The frozen lexicographic group-tail rule selected epoch 1 with worst-5 mean `1.475400 m` and all-24 mean `1.394614 m`; the checkpoint and complete ledger are hash-frozen.
+- **Negative evidence:** from epoch 1 to 20, train mean objective fell to `0.7527×`, while development worst-5 and all-24 group-tail statistics rose to `1.5402×` and `1.4281×`. Thus the current anchor-level mean plus centered log-sum-exp surrogate does not empirically track the intended cross-group maximum endpoint under continued optimization.
+- **Decision:** do not read calibration merely because a checkpoint exists. First compare the frozen visual checkpoint, without any further fitting, against a zero-difference field and a train-label mean spatial prior on the already-used development endpoint. Calibration is permitted only if the visual checkpoint strictly improves both worst-5 and all-24 statistics over both controls.
+- **Interpretation boundary:** this pattern does not yet identify whether the cause is representation, missing evidence, or objective/statistical-level mismatch. It is neither a Gate B pass nor proof that all quotient-field approaches fail.

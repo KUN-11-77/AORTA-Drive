@@ -23,7 +23,8 @@
 - [x] 指定并结构审计 Gate B 的合法 source-only quotient-field probe（R004D）
 - [x] R004E-A：为 1440 个 train/development anchors 生成一一对应的 metric cache 与 node labels
 - [x] R004E-B：生成冻结 DINO feature/projection artifacts 并完成 exact feature-label join
-- [ ] R004E-C：按唯一注册配置训练 probe，并冻结 development-only checkpoint
+- [x] R004E-C：按唯一注册配置完成 20 epochs，并冻结 development-only epoch-1 checkpoint；保留 train objective 与 development group-tail 反向变化的负面结果
+- [ ] R004E-D：在读取 calibration 前完成 zero field 与 train-label mean spatial-prior 的 visual-necessity control
 - [ ] 固定具体 CDF/joint-field 最近邻
 - [x] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)（主 \(\alpha=0.10\)，次 \(\alpha=0.05\)）
 
