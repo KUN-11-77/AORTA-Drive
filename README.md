@@ -6,7 +6,7 @@
 
 面向 NAVSIM v1/v2 的 source-only 外观鲁棒驾驶研究：学习 candidate-free 道路差分场，为冻结 planner 的 challenger 相对 native 提供 nominal road-margin non-degradation 证书。
 
-> **研究状态：** AORTA-v8.3.2 的 Gate A 与 R004E-A/B/C 已完成；R004E-D/E 证明冻结 predictor 差于 1-Lipschitz zero-field control，且问题不是输出梯度越界，fully observed 子图同样失败。当前 predictor/objective 未获 calibration 资格；仍无实验性能、任意 OOD coverage、实时性或顶会原创性结论。
+> **研究状态：** AORTA-v8.3.2 的 Gate A 与 R004E-A/B/C 已完成；R004E-D/E/F 表明冻结 predictor 具有平均视觉信号，却因稀疏 tail 在统一全图最大误差上输给零场。当前正重建 heterogeneous edge-envelope 理论；calibration 仍封存，也仍无实验性能、任意 OOD coverage、实时性或顶会原创性结论。
 
 ## 核心方法
 
@@ -75,7 +75,7 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform、确定性全节点 label builder，以及已冻结的 R004A–E source-session、visual projection、candidate provider、quotient-field probe 与失败定位协议。下一步先区分平均视觉信号与极值目标失配，不读取 calibration/test/target，也不启动完整性能长跑。
+当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform、确定性全节点 label builder，以及已冻结的 R004A–F source-session、visual projection、candidate provider、quotient-field probe 与失败定位协议。下一步先冻结 heterogeneous edge-envelope 的定理与架构，不读取 calibration/test/target，也不启动完整性能长跑。
 
 ## 核心文档
 

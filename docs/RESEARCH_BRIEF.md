@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。唯一注册的 C2 probe 选择 epoch 1，但 train objective 下降时 development group-tail 恶化。R004E-D 证明该 checkpoint 差于约 1 m 的 zero-field control；R004E-E 进一步发现全部 3,096,576 条边均无注册意义的 gradient overshoot，而 fully observed 子图仍给出 1.4536/1.3709 m 的 worst-5/all-24 residual。单独 Lipschitz 投影和二值观测 mask 均不能修复当前 predictor；calibration 仍未读取，Gate B 未通过。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E 排除了当前 predictor 的 calibration 资格、gradient projection 与二值观测 mask。R004E-F 又在 24/24 development groups 上证明视觉场平均 edge MAE 优于零场（0.4944 vs 0.5543 m），但 group maximum 全部更差；问题已收敛为稀疏 tail 与统一全图极值接口失配，而非全局符号错误或完全无视觉信号。calibration 仍未读取，Gate B 未通过。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：R004E-F 只用冻结 development 数据比较 visual、zero 与 sign-flipped field 的组级平均 edge MAE 和精确 group maximum，判定当前失败主要是 tail/objective mismatch 还是视觉表示没有可迁移信号。在该诊断与新理论冻结前不得重训或读取 calibration。
+- 下一阶段：R004E-G 先冻结 candidate-independent heterogeneous edge uncertainty 的标准化 session event、coverage 定理、scale anti-inflation 约束、group-aligned loss 与 exact min-plus readout，再做 synthetic oracle。理论与 falsification gates 通过前不得重训或读取 calibration。

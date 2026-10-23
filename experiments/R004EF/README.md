@@ -16,4 +16,6 @@
   zero.
 - **Support:** at least 20/24 groups, with frozen precedence inversion, tail mismatch,
   no signal, then mixed/partial.
-- **Status:** REGISTERED. No fitting, threshold search or new split access is allowed.
+- **Status:** COMPLETED — TAIL/OBJECTIVE MISMATCH. The registered joint event held in
+  24/24 groups; inversion and no-signal events held in 0/24. See
+  `experiments/results/R004EF.md`.
