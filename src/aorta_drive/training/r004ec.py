@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -280,3 +281,37 @@ def deterministic_interleaved_epoch(
     if len(set(schedule)) != len(records) or len(schedule) != len(records):
         raise AssertionError("interleaved schedule is not an exact anchor permutation")
     return schedule
+
+
+def qualifies_single_group_overfit(
+    *,
+    initial_mean_objective: float,
+    final_mean_objective: float,
+    initial_group_max_residual: float,
+    evaluated_group_max_residuals: Sequence[float],
+    maximum_mean_ratio: float = 0.90,
+    maximum_best_max_ratio: float = 0.98,
+) -> bool:
+    """Apply the preregistered C1 optimization-sanity gate without retuning."""
+
+    values = (
+        initial_mean_objective,
+        final_mean_objective,
+        initial_group_max_residual,
+        *evaluated_group_max_residuals,
+        maximum_mean_ratio,
+        maximum_best_max_ratio,
+    )
+    if any(not math.isfinite(value) for value in values):
+        return False
+    if (
+        initial_mean_objective <= 0.0
+        or initial_group_max_residual <= 0.0
+        or not evaluated_group_max_residuals
+        or not 0.0 < maximum_mean_ratio < 1.0
+        or not 0.0 < maximum_best_max_ratio < 1.0
+    ):
+        return False
+    mean_ratio = final_mean_objective / initial_mean_objective
+    best_max_ratio = min(evaluated_group_max_residuals) / initial_group_max_residual
+    return mean_ratio <= maximum_mean_ratio and best_max_ratio <= maximum_best_max_ratio

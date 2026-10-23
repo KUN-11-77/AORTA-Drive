@@ -11,6 +11,7 @@ from aorta_drive.training.r004ec import (
     JoinedAnchor,
     deterministic_interleaved_epoch,
     load_joined_anchors,
+    qualifies_single_group_overfit,
     sample_dense_features_torch,
 )
 from aorta_drive.vision.feature_cache import bilinear_sample_dense_numpy
@@ -150,3 +151,24 @@ def test_manifest_join_accepts_completed_zero_failure_teacher_manifest(
     assert len(joined) == 16
     assert all(record.recording_group == "group-a" for record in joined)
     assert joined[0].label_path == (tmp_path / "labels" / "label-0.npz").resolve()
+
+
+def test_single_group_overfit_gate_uses_both_preregistered_ratios() -> None:
+    assert qualifies_single_group_overfit(
+        initial_mean_objective=1.0,
+        final_mean_objective=0.9,
+        initial_group_max_residual=2.0,
+        evaluated_group_max_residuals=(2.1, 1.96),
+    )
+    assert not qualifies_single_group_overfit(
+        initial_mean_objective=1.0,
+        final_mean_objective=0.89,
+        initial_group_max_residual=2.0,
+        evaluated_group_max_residuals=(1.99, 1.97),
+    )
+    assert not qualifies_single_group_overfit(
+        initial_mean_objective=0.0,
+        final_mean_objective=0.0,
+        initial_group_max_residual=2.0,
+        evaluated_group_max_residuals=(1.0,),
+    )

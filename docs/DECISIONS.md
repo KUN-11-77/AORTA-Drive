@@ -134,3 +134,11 @@
 - **Replay contract:** DINO checkpoint and canonical Python-source-tree hashes are frozen. Independent one-anchor builds must have byte-identical feature/projection artifacts and identical logical manifests. NumPy materialization must agree with an independent torch `grid_sample` path within `1e-5`, and invalid slots must be exact zero after masking.
 - **Qualification evidence:** the ladder passed at one anchor, eight complete groups and all 90 train/development groups. The full audit reopened 17,133 dense features and 2880 projection arrays, matched all 1440 frozen labels, and used 24.65 GiB. Exact hashes and resource figures are recorded in `experiments/results/R004EB2.md`.
 - **Boundary:** this closes the training-data interface only. It neither trains the quotient-field predictor nor establishes calibration, certificate sharpness, driving utility or OOD robustness.
+
+## ADR-0022 — Materialize frozen dense features at runtime before the predictor
+
+- **Status:** accepted after R004E-C0 qualification
+- **Decision:** decode the 12 persisted BF16 maps exactly to float32, apply one vectorized `grid_sample` with `align_corners=True`, and set every unsupported node-slot value to exact zero after sampling. The teacher target is the right/down incidence image of raw `label_m`; its common offset cancels exactly, while the numerical teacher ledger remains provenance for later continuous lifting rather than an optimization weight.
+- **Qualification evidence:** the real-anchor torch path agreed with the independent NumPy oracle to `9.7751617431640625e-6` under the frozen `1e-5` gate, preserved the 8064-edge order and zero gauge, was exactly invariant to invalid storage, replayed identically, and produced finite backward gradients. The numerical sampler gate passed narrowly and must not be characterized as a wide margin.
+- **Preserved failures:** two pre-model executions exposed status-literal and nested-artifact-path mismatches. Both logs remain in the evidence bundle and both repairs have regression tests; neither failed execution performed an optimizer update.
+- **Boundary:** C0 qualifies one real input/backward path only. It does not show optimization success, held-out group generalization, calibration coverage, certificate nontriviality, utility or OOD robustness.

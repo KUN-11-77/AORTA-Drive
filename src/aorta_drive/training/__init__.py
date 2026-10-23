@@ -6,6 +6,7 @@ from aorta_drive.training.r004ec import (
     deterministic_interleaved_epoch,
     load_joined_anchors,
     load_training_anchor,
+    qualifies_single_group_overfit,
     sample_dense_features_torch,
 )
 
@@ -15,5 +16,6 @@ __all__ = [
     "deterministic_interleaved_epoch",
     "load_joined_anchors",
     "load_training_anchor",
+    "qualifies_single_group_overfit",
     "sample_dense_features_torch",
 ]
