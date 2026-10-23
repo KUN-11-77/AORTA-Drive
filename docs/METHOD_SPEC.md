@@ -140,7 +140,7 @@ L_G(A,B)
 L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
 \]
 
-每个 native 一次 exact multi-source Dijkstra。difference constraints 与 min-plus solver 是标准工具，不作为独立创新。
+每个 native 一次 exact multi-source Dijkstra。V0 binary64 实现对 path additions 向 \(+\infty\) 外舍入、对最终差值向 \(-\infty\) 外舍入，并拒绝非有限结果；因此对表示后的输入方向保守，当前实现取 \(\varepsilon_{num}=0\)。输入量化与 map/geometry error 仍单独扣除。difference constraints 与 min-plus solver 是标准工具，不作为独立创新。
 
 ## 7. Continuous certificate
 

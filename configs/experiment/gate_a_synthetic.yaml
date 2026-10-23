@@ -1,0 +1,33 @@
+experiment_id: gate-a-synthetic-v1
+date: 2026-10-23
+scope: synthetic_cpu_qualification
+seed_base: 20261023
+
+r001:
+  lp_solver: scipy_highs
+  chain_cycle_random_cases: 240
+  grid_random_cases: 40
+  absolute_tolerance: 1.0e-9
+  relative_tolerance: 1.0e-9
+  include_common_shift: true
+  include_nonzero_source_labels: true
+  include_zero_weight_edges: true
+  include_inclusion_and_equality: true
+
+r002:
+  geometry_fixture: axis_aligned_rectangle_cartesian_internal_net
+  adversarial_linear_teachers: 500
+  geometry_tolerance: 1.0e-12
+  production_swept_footprint_qualified: false
+
+r003:
+  rational_numerical_cases: 500
+  numerical_oracle: exact_fraction_arithmetic
+  arithmetic_policy: outward_safe_ieee754_binary64
+  numerical_optimism_bound_m: 0.0
+  calibration_alphas: [0.10, 0.05, 0.01, 0.005]
+
+gate_decision:
+  mathematical_core_requires: [R001, R002, R003]
+  full_gate_a_requires_production_geometry: true
+  full_gate_a_status: blocked

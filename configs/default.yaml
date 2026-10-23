@@ -18,7 +18,8 @@ method:
   roi: null
   resolution_m: null
   map_error_bound_m: null
-  numerical_optimism_bound_m: null
+  numerical_optimism_bound_m: 0.0
+  numerical_rounding: outward_safe_ieee754_binary64
   require_geometry_certificate: true
 
 candidate_provider:

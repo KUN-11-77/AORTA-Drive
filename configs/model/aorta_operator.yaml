@@ -16,6 +16,7 @@ uncertainty:
 solver:
   type: exact_multi_source_min_plus
   approximate: false
+  arithmetic: outward_safe_ieee754_binary64
 arbitration:
   native_preserving: true
   require_continuous_geometry_certificate: true

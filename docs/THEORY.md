@@ -166,13 +166,25 @@ L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
 
 两式相减并代入 discrete lower bound 得证。∎
 
-若数值实现输出 \(\widehat L_G\)，且已证明
+若一般数值实现输出 \(\widehat L_G\)，且已证明
 
 \[
 L_G\ge\widehat L_G-\varepsilon_{num},
 \]
 
 则进一步扣除 \(\varepsilon_{num}\)。
+
+### Lemma 2 — outward-safe binary64 implementation
+
+对有限 binary64 输入，若每次 Dijkstra path addition 都向 \(+\infty\) 外舍入、最终 \(u_a-\widehat\psi_B(a)\) 向 \(-\infty\) 外舍入，并在任何非有限结果时拒绝认证，则
+
+\[
+\widehat\psi_B(v)\ge\psi_B(v),
+\qquad
+\widehat L_G(A,B)\le L_G(A,B).
+\]
+
+因此该特定实现相对于“以输入 binary64 数值作为精确实数”的数学问题没有乐观误差，可取 \(\varepsilon_{num}=0\)。证明由每次上舍入保持 path-length upper bound、minimum 保持 upper bound，以及最终下舍入保持 lower bound 直接得到。此结论不覆盖输入量化、坐标误差、编译器违反 IEEE-754 语义或其他 solver；这些误差必须另行记账。
 
 ## 5. Source-session calibration
 
@@ -203,7 +215,7 @@ P\left(
 
 这是 calibration sessions 与新 source session 联合随机性的边际保证。
 
-### Lemma 2 — finite-threshold sample size
+### Lemma 3 — finite-threshold sample size
 
 \(k\le n\) 的最低样本量为
 
@@ -280,7 +292,7 @@ r_e(X)=\frac{(Du(X)-D\widetilde d)_e}{s_e},
 =\max_e\frac{|D[u(X')-u(X)]_e|}{s_e}.
 \]
 
-### Lemma 3
+### Lemma 4
 
 \[
 \|r(X')\|_\infty
