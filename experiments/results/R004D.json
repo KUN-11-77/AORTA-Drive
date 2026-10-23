@@ -1,0 +1,52 @@
+{
+  "artifact_path": "F:/AORTA-Drive-artifacts/gate-b/R004D/r004d_structural_91072b8.json",
+  "artifact_sha256": "b9e2826fb7545f745f086416eefba4827901f6f6bd1da9c99d4708ed7f8c2704",
+  "claim_boundary": "Closes the predictor legality, shape, masking, quotient-gauge, differentiability, resource-fit, and development checkpoint-selection contracts only. It does not establish learned accuracy, calibration coverage, certificate nontriviality, driving utility, OOD robustness, or Gate B success.",
+  "clean_implementation_revision": "91072b807ba46db601cfd73dbff771aedba78e2d",
+  "config_sha256": "cc066fcb3209e1e8488b94f289dba4a061f4cc96014c3ebd5435af65d46e4391",
+  "experiment_id": "R004D-source-only-quotient-predictor",
+  "integrity_audit": {
+    "external_cross_model_review": "UNAVAILABLE",
+    "reason": "The prescribed external Codex/manual-review backend was not exposed in the current tool environment; no self-acquittal was substituted."
+  },
+  "pre_freeze_falsification": {
+    "failure": "The first RTX 3090 audit enabled deterministic algorithms without the required CUDA cuBLAS workspace contract and was rejected before producing a result.",
+    "repair": "CUBLAS_WORKSPACE_CONFIG=:4096:8 is now set by the audit before the first CUDA linear-algebra operation and is frozen in the configuration.",
+    "failed_revision_result_reused": false
+  },
+  "protocol": {
+    "candidate_conditioned": false,
+    "checkpoint_primary": "mean_of_worst_5_of_24_development_recording_group_maxima",
+    "checkpoint_secondary": "mean_of_all_24_development_recording_group_maxima",
+    "checkpoint_tie_break": "earliest_epoch",
+    "output": "zero_spatial_mean_node_potential",
+    "slot_count": 12,
+    "training_target": "oriented_graph_potential_differences"
+  },
+  "resource_scale_audit": {
+    "all_missing_node_count": 16,
+    "cuda_device_name": "NVIDIA GeForce RTX 3090",
+    "deterministic_replay_max_absolute_error_m": 0.0,
+    "finite_gradients": true,
+    "forward_backward_total_seconds": 4.6375153720146045,
+    "input_shape": [
+      1,
+      4096,
+      12,
+      1280
+    ],
+    "invalid_storage_max_absolute_error_m": 0.0,
+    "output_finite": true,
+    "output_shape": [
+      1,
+      64,
+      64
+    ],
+    "parameter_count": 4000225,
+    "peak_cuda_bytes": 1895916032,
+    "synthetic_shape_contract_only": true,
+    "training_performed": false,
+    "zero_gauge_max_absolute_mean_m": 1.862645149230957e-09
+  },
+  "status": "PASS"
+}

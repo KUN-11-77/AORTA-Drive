@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 已通过完整 Gate A；R004A–C 已依次冻结 source recording-group split/有限 session time set、distortion-aware token-to-node 与 missing-evidence 合同，以及 deterministic source-only candidate provider。合法 predictor 与 checkpoint rule 尚未冻结，因此 Gate B 仍未开始校准，也尚无 learned predictor、实验性能、OOD coverage 或论文原创性结论。
+> 状态：AORTA-v8.3.2 V0 已通过完整 Gate A；R004A–D 已冻结 source split/time set、distortion-aware visual evidence、deterministic candidate provider，以及合法 quotient-field probe/训练目标/development checkpoint rule。R004D 仅通过结构与资源资格，尚未训练 learned checkpoint；Gate B 仍未开始校准，也尚无实验性能、OOD coverage 或论文原创性结论。
 
 ## 1. 问题锚点
 
@@ -65,4 +65,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - V0 条件理论规范：可冻结；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：R004A–C 已完成；在不读取 calibration scores 的条件下固定合法 predictor architecture、training objective 与 checkpoint rule。随后只运行 Gate B 最小资格与非平凡性测试，不直接启动正式训练长跑。
+- 下一阶段：R004A–D 已完成；R004E 在不读取 calibration/test/target 的条件下生成 train/development feature-label join，按唯一注册配置训练最小 probe，并冻结 development-only 选出的 checkpoint。其后才允许读取 calibration residual 并运行 Gate B 最小资格与非平凡性测试。

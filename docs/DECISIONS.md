@@ -110,7 +110,7 @@
 
 ## ADR-0019 — Freeze a masked quotient-field probe before reading calibration residuals
 
-- **Status:** proposed for R004D structural qualification
+- **Status:** accepted after R004D structural qualification
 - **Reason:** the predictor must respect the actual R004B evidence interface and the common-offset nullspace of the downstream task. R004D therefore uses shared per-slot projection, learned camera/history context, masked soft attention, an explicit all-missing token and evidence-count feature, followed by a small multiscale spatial decoder. The output spatial mean is removed exactly, so optimization occurs in a fixed representative of the quotient space rather than spending capacity on an unidentifiable common offset.
 - **Tail alignment:** mean edge Huber alone is not aligned with the session maximum used by calibration. The frozen objective adds a centered log-sum-exp surrogate over edge residuals per anchor, while checkpoint selection uses the exact maximum over all 16 anchors and 8064 edges in each of the 24 development recording groups. The primary development criterion is the mean of the five worst group maxima, followed by the all-group mean and earliest epoch.
 - **Leakage boundary:** candidates, maps beyond the frozen training labels, certificates, planner scores, calibration/test samples and target-domain samples cannot enter training or checkpoint selection. This is a legality and feasibility probe, not a performance claim; calibration residuals remain unread until its code, configuration and structural audit are committed.

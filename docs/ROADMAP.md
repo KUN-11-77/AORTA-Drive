@@ -20,7 +20,8 @@
 - [x] 冻结可复现的 source-only candidate provider（R004C：deterministic constant-acceleration/curvature library）
 - [x] 设计并 synthetic 验证 proof-carrying asymmetric geometry checker
 - [x] 定义 continuous polygon teacher、\(\varepsilon_{map}\) 与 geometry arithmetic 的保守证明方案
-- [ ] 指定并结构审计 Gate B 的合法 source-only quotient-field probe（R004D）
+- [x] 指定并结构审计 Gate B 的合法 source-only quotient-field probe（R004D）
+- [ ] 生成 train/development 冻结 feature-label join 并完成一次注册 probe 训练（R004E）
 - [ ] 固定具体 CDF/joint-field 最近邻
 - [x] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)（主 \(\alpha=0.10\)，次 \(\alpha=0.05\)）
 
