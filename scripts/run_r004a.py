@@ -12,8 +12,9 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-from aorta_drive.certification.calibration import minimum_calibration_sessions
 from freeze_r004_protocol import freeze_protocol
+
+from aorta_drive.certification.calibration import minimum_calibration_sessions
 
 ROOT = Path(__file__).parents[1]
 COMMITTED_MANIFEST_ROOT = ROOT / "configs" / "manifests"
@@ -54,35 +55,37 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         raise RuntimeError("formal R004A run requires a clean implementation revision")
     revision = _git("rev-parse", "HEAD")
 
-    with tempfile.TemporaryDirectory(prefix="aorta-r004a-first-") as first_name:
-        with tempfile.TemporaryDirectory(prefix="aorta-r004a-second-") as second_name:
-            first = Path(first_name)
-            second = Path(second_name)
-            summary_first = freeze_protocol(
-                args.source_roster,
-                args.token_index,
-                args.assignment,
-                first,
-                anchors_per_session=16,
-            )
-            summary_second = freeze_protocol(
-                args.source_roster,
-                args.token_index,
-                args.assignment,
-                second,
-                anchors_per_session=16,
-            )
-            names = sorted(path.name for path in first.iterdir())
-            if names != sorted(path.name for path in second.iterdir()):
-                raise AssertionError("replay outputs differ in file names")
-            replay_hashes = {name: _sha256(first / name) for name in names}
-            if replay_hashes != {name: _sha256(second / name) for name in names}:
-                raise AssertionError("two independent manifest replays are not byte-identical")
-            committed_hashes = {name: _sha256(COMMITTED_MANIFEST_ROOT / name) for name in names}
-            if replay_hashes != committed_hashes:
-                raise AssertionError("replayed manifests do not match the committed freeze")
-            if summary_first != summary_second:
-                raise AssertionError("replayed protocol summaries differ")
+    with (
+        tempfile.TemporaryDirectory(prefix="aorta-r004a-first-") as first_name,
+        tempfile.TemporaryDirectory(prefix="aorta-r004a-second-") as second_name,
+    ):
+        first = Path(first_name)
+        second = Path(second_name)
+        summary_first = freeze_protocol(
+            args.source_roster,
+            args.token_index,
+            args.assignment,
+            first,
+            anchors_per_session=16,
+        )
+        summary_second = freeze_protocol(
+            args.source_roster,
+            args.token_index,
+            args.assignment,
+            second,
+            anchors_per_session=16,
+        )
+        names = sorted(path.name for path in first.iterdir())
+        if names != sorted(path.name for path in second.iterdir()):
+            raise AssertionError("replay outputs differ in file names")
+        replay_hashes = {name: _sha256(first / name) for name in names}
+        if replay_hashes != {name: _sha256(second / name) for name in names}:
+            raise AssertionError("two independent manifest replays are not byte-identical")
+        committed_hashes = {name: _sha256(COMMITTED_MANIFEST_ROOT / name) for name in names}
+        if replay_hashes != committed_hashes:
+            raise AssertionError("replayed manifests do not match the committed freeze")
+        if summary_first != summary_second:
+            raise AssertionError("replayed protocol summaries differ")
 
     groups = _read_csv(COMMITTED_MANIFEST_ROOT / "r004_recording_group_split.csv")
     logs = _read_csv(COMMITTED_MANIFEST_ROOT / "r004_source_log_manifest.csv")
