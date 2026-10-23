@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 已通过完整 Gate A：数学 oracle、proof-carrying geometry、NAVSIM raw-cover teacher、exact transform 与 R002G 全节点误差账本均闭合。尚无 learned predictor、实验性能、OOD coverage 或论文原创性结论。
+> 状态：AORTA-v8.3.2 V0 已通过完整 Gate A；R004A 又冻结并通过了 source recording-group split 与有限 session time set。token-to-node/missing-evidence、candidate provider 与合法 predictor 尚未冻结，因此 Gate B 仍未开始校准，也尚无 learned predictor、实验性能、OOD coverage 或论文原创性结论。
 
 ## 1. 问题锚点
 
@@ -65,4 +65,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - V0 条件理论规范：可冻结；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：执行 R004，冻结 source sessions、token-to-node/missing-evidence、候选生成器与数据独立性协议；随后只运行 Gate B 最小合法 source-only predictor 和非平凡性资格测试，不直接启动正式训练长跑。
+- 下一阶段：R004A 已完成；执行 R004B/R004C，冻结 token-to-node/missing-evidence 与 source-only candidate provider，并在不读取 calibration scores 的条件下固定合法 predictor/checkpoint rule。随后只运行 Gate B 最小资格与非平凡性测试，不直接启动正式训练长跑。

@@ -1,0 +1,54 @@
+{
+  "alpha_eligibility": {
+    "0.05": true,
+    "0.10": true
+  },
+  "anchors_per_recording_group": 16,
+  "byte_identical_replays": 2,
+  "calibration_anchor_count": 640,
+  "calibration_independent_sessions": 40,
+  "claim_boundary": "Closes source split independence and finite T(Z) only; no predictor, coverage, performance, OOD, or Gate B success claim.",
+  "clean_implementation_revision": "db73ca4012319bbe20da484abd82cc091e4250cd",
+  "committed_manifest_hashes": {
+    "r004_protocol_fingerprint.json": "ce55e2412fb0bb334ecf2482663cfa07d257240fc6aaa200ed8d288dd27b8617",
+    "r004_recording_group_split.csv": "42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7",
+    "r004_session_time_set.csv": "33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9",
+    "r004_source_log_manifest.csv": "d8973a3bc617ff7c5e3958ab67d8a8602632bc6fbe6090c976c79a97eea7a545"
+  },
+  "completed_at_utc": "2026-10-23T16:09:21.467465+00:00",
+  "experiment_id": "R004A-source-session-protocol",
+  "maximum_relative_log_imbalance": 0.0033557046979865116,
+  "maximum_relative_scene_imbalance": 0.0013118658508249265,
+  "protocol_config_sha256": "870fc7afa9d3691e34b8b99f5c50dc07bedaed8b19f1bb327b69d920cf264937",
+  "source_inputs": {
+    "source_roster_sha256": "3953cc9be454b6bc39f5ab82dbe78ef01202cb0be16f1f786fb5f0c39cc20e01",
+    "source_token_index_sha256": "fd0bd313638aca7479341fa2aff9601bee44ca98a4afe9d1cb11712e9d7cb177",
+    "split_assignment_sha256": "b9fc4d4933ac77ce4da71c66845d1f150b0cfc6a173ca5bd19a47a36bf83c181"
+  },
+  "split": {
+    "group_counts": {
+      "calibration": 40,
+      "development": 24,
+      "test": 32,
+      "train": 66
+    },
+    "log_counts": {
+      "calibration": 294,
+      "development": 176,
+      "test": 236,
+      "train": 486
+    },
+    "logical_sha256": "b12b0d006cbebf43dc91621326538ad339842156067aed1fad53b4086b991f62",
+    "scene_counts": {
+      "calibration": 25483,
+      "development": 15322,
+      "test": 20406,
+      "train": 42077
+    },
+    "total_groups": 162,
+    "total_logs": 1192,
+    "total_scenes": 103288
+  },
+  "status": "PASS",
+  "total_anchors": 2592
+}
