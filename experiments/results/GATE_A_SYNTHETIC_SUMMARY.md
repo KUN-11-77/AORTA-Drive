@@ -22,6 +22,13 @@ polygon boundary-distance intervals, certified node-label error, and outward-saf
 map-error summation on synthetic canonical polygons. It does not validate the
 actual NAVSIM polygon union or coordinate preprocessing.
 
+R002E completed on clean revision
+`13abb27cb6a77cffcb92f4475ef05684b3a57630`. It qualifies the raw polygon-cover
+interface and rotation-free rear-axle disk geometry path on 164/164 local NAVSIM
+metric caches, with 45/45 repository tests passing. Full Gate A remains blocked
+only on the ego-centric graph-node to global raw-polygon coordinate-transform
+interval and `epsilon_transform` ledger.
+
 ## Evidence
 
 | Run | Controlled question | Evidence | Result |
@@ -31,11 +38,12 @@ actual NAVSIM polygon union or coordinate preprocessing.
 | R002B | Can legacy corner/discrete-pose/raster shortcuts certify the theorem? | constructive footprint-interior, between-pose sweep, and half-pixel EDT counterexamples | FALSIFIED as certificate route; 3 counterexamples reproduced |
 | R002C | Does the asymmetric analytic cover include continuous challenger sweeps while keeping native nodes internal? | straight, rotating and mixed sweeps; analytic inflation; 500 linear teachers; ROI/yaw/empty-set rejection | PASS; 5 tests; 0 observed false acceptances |
 | R002D | Does the continuous polygon teacher enclose exact signed distance and sum map-error terms conservatively? | rectangles, concavity, holes, disjoint unions, 500 random labels, exact rational oracle and Lipschitz checks | PASS; 7 tests; all registered intervals/ledgers enclosed |
+| R002E | Do actual NAVSIM cache polygons, vehicle conventions and arithmetic-safe geometry satisfy the frozen interface? | 164 metric caches, 8 source hashes, 6,710 selected polygons, overlap audit, 32-ULP compatibility sentinel, rotation-free disk tests | PASS; 164/164 caches and 45/45 tests; transform ledger remains separate |
 | R003 | Are calibration, risk, and numerical directions correct? | finite-threshold sample sizes, session maxima, relative event tests, and 500 exact-fraction numerical comparisons | PASS; 9 tests; 0 optimistic bounds |
 
 Machine-readable records: [`R001.json`](R001.json), [`R002.json`](R002.json),
 [`R002B.json`](R002B.json), [`R002C.json`](R002C.json),
-[`R002D.json`](R002D.json), and [`R003.json`](R003.json).
+[`R002D.json`](R002D.json), [`R002E.json`](R002E.json), and [`R003.json`](R003.json).
 
 ## Theory optimization accepted
 
@@ -57,12 +65,10 @@ expectation. Formal clean-revision runs were executed only afterward.
 
 ## Remaining blockers
 
-1. Audit the actual NAVSIM polygon union and coordinate preprocessing to bound
-   `epsilon_transform` and `epsilon_polygon`; synthetic R002D does not discharge them.
-2. Add outward-safe geometry arithmetic or an explicit geometry numerical budget,
-   then audit vehicle/pose/grid/transform protocol hashes on NAVSIM preprocessing.
-3. Freeze the source session manifest, token-to-node projection, missing-evidence
+1. Freeze and verify the ego-centric graph-node to global raw-polygon coordinate
+   transform, including a deterministic interval or conservative `epsilon_transform`.
+2. Freeze the source session manifest, token-to-node projection, missing-evidence
    behavior, and candidate provider before Gate B.
 
-No NAVSIM data, target appearance suite, GPU training, or server execution was
-used in these runs.
+R002E used local NAVSIM metric caches read-only. No target appearance suite, GPU
+training, or server execution was used in these runs.

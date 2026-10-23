@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 条件理论规范正在进行 Gate A 几何闭合；尚无实验性能或论文原创性结论。
+> 状态：AORTA-v8.3.2 V0 已通过数学、synthetic teacher/geometry 与 R002E NAVSIM preprocessing 资格测试；full Gate A 仍受 ego-local/global coordinate-transform ledger 阻塞。尚无实验性能或论文原创性结论。
 
 ## 1. 问题锚点
 
@@ -65,4 +65,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - V0 条件理论规范：可冻结；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：使用 `experiment-plan` 冻结配置并规划 Gate A/B，不直接开始长跑。
+- 下一阶段：完成 R002F coordinate-transform interval 与 \(\varepsilon_{transform}\)；full Gate A 通过前不直接开始训练长跑。

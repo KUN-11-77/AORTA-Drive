@@ -1,0 +1,56 @@
+{
+  "run_id": "R002E",
+  "status": "completed",
+  "timestamp_utc": "2026-10-23T14:32:44.4355405Z",
+  "implementation_revision": "13abb27cb6a77cffcb92f4475ef05684b3a57630",
+  "dirty_implementation_tree": false,
+  "scope": "read-only NAVSIM preprocessing interface and arithmetic-safe geometry qualification; no performance evidence",
+  "tests": {
+    "passed": 45,
+    "failed": 0
+  },
+  "cache_count": 164,
+  "cache_pass_count": 164,
+  "cache_failure_count": 0,
+  "cache_manifest_sha256": "13405b719ef4b3a41ebb8c5c8efd606bb0d167284b248d6c505154fa1e54d9e8",
+  "formal_artifact_sha256": "889c953e6ebe06ef804bac21e82e62e6ee76635963db35970896ca0ea010ea9a",
+  "protocol_sha256": "366c82fff279bffa0f8690a12b9afe8d83e3376a21e6b4e3a4faa4cbf007bbdd",
+  "source_manifest_count": 8,
+  "source_manifest_expected": 8,
+  "map_names": {
+    "us-nv-las-vegas-strip": 51,
+    "us-pa-pittsburgh-hazelwood": 37,
+    "us-ma-boston": 47,
+    "sg-one-north": 29
+  },
+  "map_versions": {
+    "nuplan-maps-v1.0": 164
+  },
+  "geometry_types": {
+    "Polygon": 6710
+  },
+  "map_layer_types": {
+    "ROADBLOCK": 3685,
+    "LANE": 6561,
+    "LANE_CONNECTOR": 8698,
+    "INTERSECTION": 1677,
+    "CARPARK_AREA": 1348
+  },
+  "overlap_scene_count": 96,
+  "max_overlap_excess_m2": 2035.1968311859055,
+  "max_corner_abs_error_m": 9.313225746154785e-10,
+  "max_corner_compatibility_budget_m": 2.9802322387695312e-08,
+  "max_corner_error_to_budget_ratio": 0.03125,
+  "corner_coordinates_used_by_certificate": false,
+  "source_hashes": {
+    "navsim.metric_cache": "b994b5c9221c0796c3c511f5c339102fc1b720a48be08a5d7aaa0ad2108b7185",
+    "navsim.pdm_occupancy_map": "19746b885186b363a964ca8b51ba3591ae7f8c68744df24824e7bdc744b591d3",
+    "navsim.pdm_array_representation": "0104cd2c291a3fb67630d8670b19cf8d2e01d79ca788f55f9b12264f2c2b4e3c",
+    "navsim.pdm_scorer": "c9132b8b7019cc05c57573a26a8326cd7762dfdff35592046625a7fa895f6b62",
+    "navsim.pdm_geometry_utils": "84ff47a6ef3346b7c89f7cd5580e82a2dfcc1c1bf922bf6227e398e8ba2c1354",
+    "navsim.evaluate_pdm_score": "201bf865535eb578ac2ed8c5f6aff7e3fb815372c4ba64cdfff31f65020ed378",
+    "nuplan.vehicle_parameters": "abef0f3869261467dec6d5641d0554efe99d9314d0338ccc77cbc6be9b3705d5",
+    "nuplan.geometry_convert": "7a4b5dd05af8146f7ed4672b621dc609c0405ffc87b4ccc457468dbd24036847"
+  },
+  "remaining_blocker": "ego-centric graph node to global raw-polygon coordinate-transform interval and epsilon_transform ledger"
+}

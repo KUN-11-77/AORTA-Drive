@@ -92,10 +92,11 @@ A_0\subseteq F_0.
 - R002C：解析外包络与固定格心覆盖已在 clean revision `943e7bb` 上通过
   5 项 synthetic Gate A 测试；
 - R002D：exact polygon-SDF interval 与显式 map-error ledger 已在 clean revision
-  `497b77b` 上通过 7 项 synthetic 测试；NAVSIM transform/polygon preprocessing
-  仍待审计；
-- full Gate A：保持 BLOCKED，直到 R002C、R002D 和实际 NAVSIM preprocessing audit
-  全部通过。
+  `497b77b` 上通过 7 项 synthetic 测试；
+- R002E：164/164 NAVSIM metric caches、45/45 repository tests 在 clean revision
+  `13abb27` 上通过；raw polygon-cover 与 rotation-free disk proof path 获得资格；
+- full Gate A：保持 BLOCKED，直到 R002F 闭合 ego-local graph nodes 到 global raw
+  polygons 的 coordinate-transform interval 与 \(\varepsilon_{transform}\)。
 
 ## Falsifiers
 
@@ -110,8 +111,10 @@ A_0\subseteq F_0.
 
 ## Continuous teacher amendment
 
-R002D 将 teacher 固定为 canonical polygon union 的连续 signed distance，而非
-raster EDT。binary64 vertices 与 node coordinates 被解释为精确实数；segment
+R002D 的 exact-rational distance 构造在 R002E 后绑定为 raw polygon-cover teacher，
+而非 raster EDT 或未经证明的 canonical overlay。成员关系取 raw polygons 的并集，
+距离幅值取到全部 raw rings 的最近距离；内部 overlap seam 保守归零。binary64
+vertices 与 node coordinates 被解释为精确实数；segment
 squared distance 和 point-in-polygon predicate 使用 exact rational arithmetic，
 平方根以相邻 binary64 数形成外包区间。
 
@@ -125,5 +128,7 @@ node-label error 不吸收上游语义误差。完整账本仍为
 +\varepsilon_{round}.
 \]
 
-因此 synthetic R002D 即使通过，也只闭合 distance/rounding 构造；实际 NAVSIM
-preprocessing 仍需证明 transform、canonical union、序列化和 protocol hash。
+R002E 已冻结 cache/source hashes、raw polygon validity、vehicle convention 与
+rotation-free geometry arithmetic。剩余未闭合项是 ego-local graph node 到 global
+raw polygons 的 coordinate transform；它必须由 R002F 给出确定性 interval 或
+保守 \(\varepsilon_{transform}\)，不能由 32-ULP scorer-corner 兼容检查代替。

@@ -31,7 +31,8 @@
 - [x] equality/inclusion set cases
 - [x] analytic sweep-cover property tests（R002C clean revision 通过）
 - [x] exact polygon teacher 与 map-error ledger synthetic tests（R002D clean revision 通过）
-- [ ] NAVSIM preprocessing、transform hash 与 geometry arithmetic error audit
+- [x] NAVSIM cache/source/vehicle/polygon interface audit 与 rotation-free geometry arithmetic（R002E clean revision 通过）
+- [ ] ego-local graph node 到 global raw polygons 的 transform interval 与 \(\varepsilon_{transform}\)（R002F）
 
 ## Gate B/C qualification
 
