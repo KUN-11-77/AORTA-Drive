@@ -24,11 +24,11 @@
 
 ## Gate A implementation
 
-- [ ] graph uncertainty LP oracle
-- [ ] exact multi-source min-plus implementation
-- [ ] common-shift、nonzero-label、zero-edge、chain、cycle tests
-- [ ] equality/inclusion set cases
-- [ ] geometry certificate property tests
+- [x] graph uncertainty LP oracle
+- [x] outward-safe multi-source min-plus implementation
+- [x] common-shift、nonzero-label、zero-edge、chain、cycle、grid tests
+- [x] equality/inclusion set cases
+- [ ] production geometry certificate property tests（synthetic rectangle route 已通过）
 
 ## Gate B/C qualification
 

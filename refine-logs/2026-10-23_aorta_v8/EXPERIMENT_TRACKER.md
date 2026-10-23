@@ -2,9 +2,9 @@
 
 | Run ID | Milestone | Purpose | System / Variant | Split | Metrics | Priority | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
-| R001 | M0 | theorem oracle | closed form vs LP vs multi-source | synthetic graphs | bound error, shift invariance | MUST | TODO | CPU only |
-| R002 | M0 | continuous lifting soundness | teacher/node map + deterministic geometry checker | synthetic fields/footprints | \(h_j\), \(\varepsilon_{map}\), false acceptance | MUST | TODO | CPU only |
-| R003 | M0 | risk/numerical contract | relative-event and float adversaries | synthetic graphs/sessions | \(R_\gamma\), optimism bound \(\varepsilon_{num}\) | MUST | TODO | CPU only |
+| R001 | M0 | theorem oracle | closed form vs LP vs multi-source | synthetic graphs | bound error, shift invariance | MUST | DONE | 280 randomized LP cases plus edge cases passed |
+| R002 | M0 | continuous lifting soundness | teacher/node map + deterministic geometry checker | synthetic fields/footprints | \(h_j\), \(\varepsilon_{map}\), false acceptance | MUST | DONE | Synthetic rectangle route passed; production checker still blocks full Gate A |
+| R003 | M0 | risk/numerical contract | relative-event and float adversaries | synthetic graphs/sessions | \(R_\gamma\), optimism bound \(\varepsilon_{num}\) | MUST | DONE | 500 exact-fraction cases support outward-safe \(\varepsilon_{num}=0\) |
 | R004 | M1 | protocol freeze audit | source session manifest + projection/candidate specs | source | leakage, independence, deterministic replay | MUST | TODO | freeze before features |
 | R005 | M1 | legal predictor | existing \(u_{abs}\) audit or minimal probe | source train/dev | field error, held-out eligibility | MUST | TODO | no teacher-as-predictor |
 | R006 | M1 | calibration sanity | absolute predictor + session score | exclusive source cal/test | finite-threshold eligibility, simultaneous coverage, sharpness | MUST | TODO | no calibration reuse |

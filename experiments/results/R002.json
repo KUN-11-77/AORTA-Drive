@@ -1,0 +1,20 @@
+{
+  "run_id": "R002",
+  "status": "completed",
+  "timestamp_utc": "2026-10-23T13:20:49.775108+00:00",
+  "git_revision": "821b0606f6739634ed72f3ca7bd663999d06a87c",
+  "implementation_tree_dirty": false,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "command": [
+    "D:\\Anaconda3\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests\\gate_a\\test_r002_continuous_lifting.py"
+  ],
+  "duration_seconds": 1.604821,
+  "return_code": 0,
+  "stdout": "....                                                                     [100%]\n4 passed in 0.32s\n",
+  "stderr": ""
+}
