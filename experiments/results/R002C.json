@@ -1,0 +1,20 @@
+{
+  "run_id": "R002C",
+  "status": "completed",
+  "timestamp_utc": "2026-10-23T13:52:07.486883+00:00",
+  "git_revision": "943e7bb1647a88e038035bf0e153c28b04c890e3",
+  "implementation_tree_dirty": false,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "command": [
+    "D:\\Anaconda3\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests\\gate_a\\test_r002c_swept_outer_cover.py"
+  ],
+  "duration_seconds": 1.712685,
+  "return_code": 0,
+  "stdout": ".....                                                                    [100%]\n5 passed in 0.33s\n",
+  "stderr": ""
+}

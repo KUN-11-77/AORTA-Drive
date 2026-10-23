@@ -53,3 +53,9 @@
 
 - **Status:** accepted
 - **Reason:** zero intervention can arise from no better candidate, a vacuous certificate, or the selection policy. Report \(S_{better}\)、\(R_{cert|better}\)、\(R_{opportunity}\) and \(R_{selected}\) on one predeclared session-time sampling unit.
+
+## ADR-0011 — Asymmetric continuous geometry lifting
+
+- **Status:** accepted for synthetic Gate A; NAVSIM ledger pending
+- **Reason:** challenger 外包络 + fixed-grid \(h\)-cover 与 native internal nodes 足以推出连续 relative-margin lower bound，且避免不可生产化的 challenger internal-net 假设。
+- **Boundary:** R002C 只验证解析构造与拒绝逻辑；continuous polygon teacher、coordinate transform 和 geometry arithmetic 的确定性误差预算仍阻塞 full Gate A。

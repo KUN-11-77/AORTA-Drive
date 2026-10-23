@@ -89,7 +89,8 @@ A_0\subseteq F_0.
 ## Evidence status
 
 - R002B：旧 corner/discrete/raster 捷径已被反例否定；
-- R002C：解析外包络与固定格心覆盖正在 synthetic Gate A 资格测试；
+- R002C：解析外包络与固定格心覆盖已在 clean revision `943e7bb` 上通过
+  5 项 synthetic Gate A 测试；
 - R002D：连续 polygon-SDF teacher 与 map/transform error ledger 尚未执行；
 - full Gate A：保持 BLOCKED，直到 R002C、R002D 和实际 NAVSIM preprocessing audit
   全部通过。

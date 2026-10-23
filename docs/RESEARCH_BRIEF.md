@@ -47,7 +47,7 @@ AORTA-Drive 研究 NAVSIM v1/v2 上的 source-only appearance robustness。对�
 \text{all authorized interventions reach }\gamma_{task}.
 \]
 
-既有观察只支持继续研究任务空间接口，不证明 v8.3.1 的局部差分假设、校准锐度、系统收益或创新性。
+既有观察只支持继续研究任务空间接口，不证明 v8.3.2 的局部差分假设、校准锐度、系统收益或创新性。
 
 ## 6. 验收门
 

@@ -6,7 +6,7 @@
 
 面向 NAVSIM v1/v2 的 source-only 外观鲁棒驾驶研究：学习 candidate-free 道路差分场，为冻结 planner 的 challenger 相对 native 提供 nominal road-margin non-degradation 证书。
 
-> **研究状态：** AORTA-v8.3.1 V0 条件理论规范已冻结；尚无实验性能、任意 OOD coverage、实时性或顶会原创性结论。
+> **研究状态：** AORTA-v8.3.2 已完成 synthetic 几何合同资格测试；full Gate A 仍受 NAVSIM map/transform error ledger 阻塞。尚无实验性能、任意 OOD coverage、实时性或顶会原创性结论。
 
 ## 核心方法
 
@@ -75,18 +75,19 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-当前 source code 只包含早期 affine baseline 与 native-preserving scaffold；v8.3.1 尚未实现。下一步只执行 Gate A/B：先冻结 ROI、resolution、graph size、teacher/node projection、candidate provider、geometry/map checker 与数值误差预算。
+当前 source code 包含 Gate A exact graph solver、校准/风险合同和 v8.3.2 synthetic proof-carrying geometry checker；完整视觉 predictor 与 NAVSIM map/transform ledger 尚未实现。下一步先完成 Gate A，不启动正式性能长跑。
 
 ## 核心文档
 
 - [研究问题](docs/RESEARCH_BRIEF.md)
-- [v8.3.1 方法规范](docs/METHOD_SPEC.md)
+- [v8.3.2 方法规范](docs/METHOD_SPEC.md)
 - [形式化定理与证明](docs/THEORY.md)
 - [Claim–Evidence Matrix](docs/CLAIM_EVIDENCE_MATRIX.md)
 - [实验协议边界](docs/EXPERIMENT_PROTOCOL.md)
 - [架构决策](docs/DECISIONS.md)
 - [v8.3.1 冻结提案](refine-logs/2026-10-23_aorta_v8/V8_3_1_PROPOSAL.md)
 - [v8.3.1 独立审查与冻结复核](refine-logs/2026-10-23_aorta_v8/V8_3_1_REVIEW.md)
+- [v8.3.2 几何修订](refine-logs/2026-10-23_aorta_v8/V8_3_2_GEOMETRY_AMENDMENT.md)
 - [Gate A/B 实验计划](refine-logs/2026-10-23_aorta_v8/EXPERIMENT_PLAN.md)
 - [五轮审查总结](refine-logs/2026-10-23_aorta_v8/REVIEW_SUMMARY.md)
 
