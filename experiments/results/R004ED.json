@@ -1,0 +1,29 @@
+{
+  "artifact_ref": "F:/AORTA-Drive-artifacts/gate-b/R004E/r004ed_evidence.tar.gz",
+  "artifact_sha256": "81959ef6dfe16144df8e496bc87bb11a342b24cb0d1e1a079842a8ea33a952e8",
+  "calibration_test_or_target_accessed": false,
+  "claim_boundary": "Development-only visual-necessity control; no held-out, calibration, utility, OOD, or Gate B claim.",
+  "experiment_id": "R004E-D-development-visual-necessity",
+  "implementation_revision": "b9e0556a1a96082342498de593a6f5e3018bbf0c",
+  "integrity_audit": {
+    "external_cross_model_review": "UNAVAILABLE",
+    "reason": "The required external reviewer backend is not exposed; no self-acquittal was substituted."
+  },
+  "result_sha256": "6da61915cf2106d0641055e18c8ea5317fff45a72d87769fa66beeb5549ced0c",
+  "status": "FAIL",
+  "systems": {
+    "frozen_visual_checkpoint": {
+      "all24_mean_m": 1.3946140855550766,
+      "worst5_mean_m": 1.4754002332687377
+    },
+    "train_label_mean_spatial_prior": {
+      "all24_mean_m": 1.7516492108503978,
+      "worst5_mean_m": 1.7712934732437133
+    },
+    "zero_field": {
+      "all24_mean_m": 1.0000007251898448,
+      "worst5_mean_m": 1.0000009536743164
+    }
+  },
+  "visual_strictly_better_than_both_controls_on_both_endpoints": false
+}

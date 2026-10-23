@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。唯一注册的 C2 probe 训练了 20 epochs，并由 24 个 development recording groups 的冻结规则选择 epoch 1；工程训练门通过，但 train objective 持续下降时 development group-tail 明显恶化。checkpoint 已冻结，calibration 仍未读取，Gate B 尚未通过。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。唯一注册的 C2 probe 选择 epoch 1，但 train objective 下降时 development group-tail 恶化。R004E-D 又证明该 checkpoint 的 worst-5/all-24 residual（1.4754/1.3946 m）均差于由 1-Lipschitz teacher 导出的 zero-field control（约 1.000001/1.000001 m）。当前 predictor/objective 未获 calibration 资格；calibration 仍未读取，Gate B 未通过。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：先做 R004E-D development-only visual-necessity control，将冻结的 epoch-1 checkpoint 与 zero-difference field、train-label mean spatial prior 在同一 exact group-tail endpoint 上比较，不调参。只有视觉 checkpoint 同时优于两个简单控制，才允许读取 calibration residual；否则当前 predictor/objective 返回理论与架构重构。
+- 下一阶段：R004E-E 只定位超额 residual：统计 selected checkpoint 的 \(|Du|>1\) overshoot、group-maximum edge 与 all-missing node 的关系，以及 fully observed edges 上的 residual。该诊断决定下一版应采用 graph-Lipschitz 输出投影、observable qualified subgraph，还是重构视觉表示；在诊断和新理论冻结前不得重训或读取 calibration。

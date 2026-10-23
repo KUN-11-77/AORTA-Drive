@@ -6,7 +6,7 @@
 
 面向 NAVSIM v1/v2 的 source-only 外观鲁棒驾驶研究：学习 candidate-free 道路差分场，为冻结 planner 的 challenger 相对 native 提供 nominal road-margin non-degradation 证书。
 
-> **研究状态：** AORTA-v8.3.2 的 Gate A 与 R004E-A/B/C 已完成；唯一注册的 C2 run 冻结了 epoch-1 learned checkpoint，但后续训练呈现 train objective 改善、development recording-group tail 恶化的负面信号。calibration 尚未读取，仍无实验性能、任意 OOD coverage、实时性或顶会原创性结论。
+> **研究状态：** AORTA-v8.3.2 的 Gate A 与 R004E-A/B/C 已完成；C2 冻结了 epoch-1 checkpoint，但 R004E-D 发现其 development group-tail 明显差于 1-Lipschitz zero-field control。当前 predictor/objective 未获 calibration 资格；仍无实验性能、任意 OOD coverage、实时性或顶会原创性结论。
 
 ## 核心方法
 

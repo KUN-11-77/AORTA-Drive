@@ -150,3 +150,11 @@
 - **Negative evidence:** from epoch 1 to 20, train mean objective fell to `0.7527×`, while development worst-5 and all-24 group-tail statistics rose to `1.5402×` and `1.4281×`. Thus the current anchor-level mean plus centered log-sum-exp surrogate does not empirically track the intended cross-group maximum endpoint under continued optimization.
 - **Decision:** do not read calibration merely because a checkpoint exists. First compare the frozen visual checkpoint, without any further fitting, against a zero-difference field and a train-label mean spatial prior on the already-used development endpoint. Calibration is permitted only if the visual checkpoint strictly improves both worst-5 and all-24 statistics over both controls.
 - **Interpretation boundary:** this pattern does not yet identify whether the cause is representation, missing evidence, or objective/statistical-level mismatch. It is neither a Gate B pass nor proof that all quotient-field approaches fail.
+
+## ADR-0024 — Reject calibration entry when the learned field loses to the zero-difference control
+
+- **Status:** accepted after R004E-D failure
+- **Control theorem:** the continuous signed-distance teacher is 1-Lipschitz, so on a 1 m edge the true difference magnitude is at most approximately 1 m after the separately bounded label error. The zero-difference predictor therefore provides a deterministic residual control near 1 m without visual input.
+- **Evidence:** on the same 24 development groups, zero-field worst-5/all-24 statistics were `1.000000954/1.000000725 m`; the frozen visual checkpoint gave `1.475400233/1.394614086 m`. The visual checkpoint beat the train-label mean spatial prior but failed both preregistered strict comparisons against zero.
+- **Decision:** do not open calibration and do not add a new module speculatively. First attribute the learned model's excess residual to predicted-gradient overshoot, edges incident to all-missing evidence, or errors on fully observed edges. Those cases imply different theory and architecture repairs.
+- **Boundary:** zero field is a diagnostic minimax control, not a useful certificate: a roughly 1 m per-edge uncertainty can still accumulate into vacuous path bounds. R004E-D rejects the current learned predictor/objective, not the broader task-equivalence research question.
