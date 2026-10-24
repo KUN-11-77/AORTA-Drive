@@ -567,3 +567,8 @@
 - **Boundary:** this does not rerun or alter the experiment and cannot change scientific
   endpoints. It strengthens only evidence validation; external independent review remains
   unavailable.
+
+The first hardened-audit replay also failed because the manually pinned config digest had
+one extra hexadecimal `d`. That failed `audit_v2` is retained. The only permitted correction
+was to match the digest to both the raw result field and an independent hash of the frozen
+config; the unchanged raw result was then audited as `audit_v3`.

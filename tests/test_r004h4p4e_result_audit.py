@@ -34,7 +34,7 @@ def _valid_result() -> dict[str, object]:
         "status": "COMPLETED",
         "implementation_revision": "06284a8fd3f13763fe56ed97cfe38f01b427d106",
         "config_sha256": (
-            "eb3e2ffbcca839c5161a5d246b9e7320850d67fc271cc0bd352982421e8ddd196"
+            "eb3e2ffbcca839c5161a5d246b9e7320850d67fc271cc0bd352982421e8dd196"
         ),
         "elapsed_seconds": 1.0,
         "data_scope": {

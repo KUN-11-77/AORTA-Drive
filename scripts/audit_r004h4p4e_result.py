@@ -29,7 +29,7 @@ def audit(result: dict[str, Any]) -> dict[str, Any]:
         failures.append("implementation revision mismatch")
     if (
         result.get("config_sha256")
-        != "eb3e2ffbcca839c5161a5d246b9e7320850d67fc271cc0bd352982421e8ddd196"
+        != "eb3e2ffbcca839c5161a5d246b9e7320850d67fc271cc0bd352982421e8dd196"
     ):
         failures.append("registered config hash mismatch")
     scope = _mapping(result.get("data_scope"), "data_scope")
