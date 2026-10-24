@@ -1,6 +1,16 @@
-experiment_id: R004H6-heldout-visual-generalization-v1
+experiment_id: R004H6R1-heldout-visual-generalization-resource-replay-v1
 date: 2026-10-24
 scope: one_read_current_model_heldout_development_visual_generalization
+
+resource_only_amendment:
+  predecessor: R004H6-heldout-visual-generalization-v1
+  predecessor_outcome: stopped_after_all_384_fields_but_before_result_write_on_wall_cap
+  scientific_endpoints_read_before_amendment: false
+  changed_field: resources.maximum_wall_minutes
+  old_value: 90
+  new_value: 120
+  all_scientific_inputs_conditions_controls_estimands_and_decision_rules_unchanged: true
+  predecessor_fields_reused: false
 
 frozen_inputs:
   source_split_manifest_sha256: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
@@ -148,7 +158,7 @@ stop_rules:
 
 resources:
   device: cuda:0
-  maximum_wall_minutes: 90
+  maximum_wall_minutes: 120
   maximum_peak_gpu_gib: 6.0
   maximum_output_gib: 2.0
 
