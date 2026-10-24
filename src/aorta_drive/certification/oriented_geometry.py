@@ -178,9 +178,27 @@ def _body_cover_inside_grid(
     cover: OrientedSegmentCover,
     grid: RectangularGrid,
 ) -> bool:
-    inflation = _fraction(cover.inflation_m)
+    x_min, x_max, y_min, y_max = _cover_global_bounds(body, cover)
     x_low, x_high = grid.x_support
     y_low, y_high = grid.y_support
+    return x_min >= x_low and x_max <= x_high and y_min >= y_low and y_max <= y_high
+
+
+def _cover_global_bounds(
+    body: VehicleRectangle,
+    cover: OrientedSegmentCover,
+    *,
+    extra_radius: float = 0.0,
+) -> tuple[Fraction, Fraction, Fraction, Fraction]:
+    """Return exact-rational AABB bounds enclosing a dilated oriented body."""
+
+    if not np.isfinite(extra_radius) or extra_radius < 0:
+        raise ValueError("extra_radius must be finite and non-negative")
+    inflation = _fraction(cover.inflation_m) + _fraction(extra_radius)
+    x_lows: list[Fraction] = []
+    x_highs: list[Fraction] = []
+    y_lows: list[Fraction] = []
+    y_highs: list[Fraction] = []
     for local_point in (
         (-body.rear_overhang, -body.half_width),
         (-body.rear_overhang, body.half_width),
@@ -188,14 +206,31 @@ def _body_cover_inside_grid(
         (body.front_extent, body.half_width),
     ):
         global_corner = certify_ego_to_global(local_point, cover.midpoint)
-        if (
-            global_corner.x_interval.lower - inflation < x_low
-            or global_corner.x_interval.upper + inflation > x_high
-            or global_corner.y_interval.lower - inflation < y_low
-            or global_corner.y_interval.upper + inflation > y_high
-        ):
-            return False
-    return True
+        x_lows.append(global_corner.x_interval.lower - inflation)
+        x_highs.append(global_corner.x_interval.upper + inflation)
+        y_lows.append(global_corner.y_interval.lower - inflation)
+        y_highs.append(global_corner.y_interval.upper + inflation)
+    return min(x_lows), max(x_highs), min(y_lows), max(y_highs)
+
+
+def certify_oriented_segment_covers(
+    body: VehicleRectangle,
+    poses: tuple[Pose2D, ...],
+    grid: RectangularGrid,
+    *,
+    pose_error: float = 0.0,
+) -> tuple[OrientedSegmentCover, ...]:
+    """Build continuous segment covers and reject any cover leaving the ROI."""
+
+    if not poses:
+        raise ValueError("pose sequence must be non-empty")
+    pairs = tuple(zip(poses, poses[1:], strict=False)) or ((poses[0], poses[0]),)
+    covers = tuple(
+        _segment_cover(body, start, end, pose_error=pose_error) for start, end in pairs
+    )
+    if any(not _body_cover_inside_grid(body, cover, grid) for cover in covers):
+        raise ValueError("oriented swept cover leaves the certified grid ROI")
+    return covers
 
 
 def certify_oriented_swept_outer_cover(
@@ -207,22 +242,24 @@ def certify_oriented_swept_outer_cover(
 ) -> OrientedSweptCoverCertificate:
     """Certify an h-cover of a piecewise-linear oriented rectangle sweep."""
 
-    if not poses:
-        raise ValueError("pose sequence must be non-empty")
-    pairs = tuple(zip(poses, poses[1:], strict=False)) or ((poses[0], poses[0]),)
-    covers = tuple(
-        _segment_cover(body, start, end, pose_error=pose_error) for start, end in pairs
+    covers = certify_oriented_segment_covers(
+        body, poses, grid, pose_error=pose_error
     )
     centers = grid.centers()
     selected = np.zeros(centers.shape[0], dtype=bool)
     h = grid.cell_radius
     for cover in covers:
-        if not _body_cover_inside_grid(body, cover, grid):
-            raise ValueError("oriented swept cover leaves the certified grid ROI")
         threshold_squared = (
             _fraction(cover.inflation_m) + _fraction(h)
         ) ** 2
+        x_min, x_max, y_min, y_max = _cover_global_bounds(
+            body, cover, extra_radius=h
+        )
         for index, center in enumerate(centers):
+            center_x = _fraction(float(center[0]))
+            center_y = _fraction(float(center[1]))
+            if not (x_min <= center_x <= x_max and y_min <= center_y <= y_max):
+                continue
             lower_squared = _distance_squared_lower_to_body(
                 (float(center[0]), float(center[1])), body, cover.midpoint
             )
@@ -268,29 +305,57 @@ def certify_oriented_inner_cells(
     y_high = _fraction(body.half_width) - error
     if x_low >= x_high or y_low >= y_high:
         return OrientedInnerCellCertificate(())
-    selected: list[int] = []
-    for index in range(grid.rows * grid.columns):
-        corners = _cell_corners(grid, index)
-        inside_any_pose = False
-        for pose in poses:
-            intervals = [certify_global_to_ego(corner, pose) for corner in corners]
-            if all(
-                local.x_interval.lower >= x_low
-                and local.x_interval.upper <= x_high
-                and local.y_interval.lower >= y_low
-                and local.y_interval.upper <= y_high
-                for local in intervals
-            ):
-                inside_any_pose = True
-                break
-        if inside_any_pose:
-            selected.append(index)
-    return OrientedInnerCellCertificate(tuple(selected))
+    selected: set[int] = set()
+    column_bounds = [
+        (
+            _fraction(grid.x_min) + column * _fraction(grid.resolution),
+            _fraction(grid.x_min) + (column + 1) * _fraction(grid.resolution),
+        )
+        for column in range(grid.columns)
+    ]
+    row_bounds = [
+        (
+            _fraction(grid.y_min) + row * _fraction(grid.resolution),
+            _fraction(grid.y_min) + (row + 1) * _fraction(grid.resolution),
+        )
+        for row in range(grid.rows)
+    ]
+    for pose in poses:
+        nominal_cover = OrientedSegmentCover(pose, 0.0, 0.0, 0.0, 0.0, 0.0)
+        body_x_min, body_x_max, body_y_min, body_y_max = _cover_global_bounds(
+            body, nominal_cover
+        )
+        candidate_columns = [
+            column
+            for column, (cell_low, cell_high) in enumerate(column_bounds)
+            if cell_high >= body_x_min and cell_low <= body_x_max
+        ]
+        candidate_rows = [
+            row
+            for row, (cell_low, cell_high) in enumerate(row_bounds)
+            if cell_high >= body_y_min and cell_low <= body_y_max
+        ]
+        for row in candidate_rows:
+            for column in candidate_columns:
+                index = row * grid.columns + column
+                if index in selected:
+                    continue
+                corners = _cell_corners(grid, index)
+                intervals = [certify_global_to_ego(corner, pose) for corner in corners]
+                if all(
+                    local.x_interval.lower >= x_low
+                    and local.x_interval.upper <= x_high
+                    and local.y_interval.lower >= y_low
+                    and local.y_interval.upper <= y_high
+                    for local in intervals
+                ):
+                    selected.add(index)
+    return OrientedInnerCellCertificate(tuple(sorted(selected)))
 
 
 def _cells_disjoint_from_oriented_cover(
     cells: tuple[int, ...],
-    cover: OrientedSweptCoverCertificate,
+    covers: tuple[OrientedSegmentCover, ...],
     body: VehicleRectangle,
     grid: RectangularGrid,
 ) -> tuple[int, ...]:
@@ -298,8 +363,15 @@ def _cells_disjoint_from_oriented_cover(
     witnesses: list[int] = []
     for index in cells:
         center = (float(centers[index, 0]), float(centers[index, 1]))
+        cell_x = _fraction(center[0])
+        cell_y = _fraction(center[1])
         disjoint = True
-        for segment in cover.segment_covers:
+        for segment in covers:
+            x_min, x_max, y_min, y_max = _cover_global_bounds(
+                body, segment, extra_radius=grid.cell_radius
+            )
+            if not (x_min <= cell_x <= x_max and y_min <= cell_y <= y_max):
+                continue
             threshold_squared = (
                 _fraction(segment.inflation_m) + _fraction(grid.cell_radius)
             ) ** 2
@@ -332,10 +404,10 @@ def certify_oriented_bidirectional_noninclusion(
 ) -> OrientedBidirectionalNonInclusion:
     """Lower-bound both continuous set differences with oriented certificates."""
 
-    challenger_outer = certify_oriented_swept_outer_cover(
+    challenger_outer = certify_oriented_segment_covers(
         body, challenger_poses, grid, pose_error=pose_error
     )
-    native_outer = certify_oriented_swept_outer_cover(
+    native_outer = certify_oriented_segment_covers(
         body, native_poses, grid, pose_error=pose_error
     )
     challenger_inner = certify_oriented_inner_cells(
