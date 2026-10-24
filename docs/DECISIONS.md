@@ -882,3 +882,37 @@ the current open-ended geometry certificate iteration remains STOP.
   H7BS4A冻结的`(log_name, scene_token)`精确连接R004E cache；禁止近邻、跨token或旧标签插值。
 - **Reason:** 实现可重复性不能替代实验对象对齐；否则会用错误场景的道路几何解释视觉盲区。
 - **Boundary:** B0A/B0A2都不证明可观测性、决策充分性、模型收益或OOD泛化。
+
+## ADR-0064 — Retire scalar road-margin minima as the general reranking object
+
+- **Status:** accepted after H7BS4B1–B3 and exact mechanical replay.
+- **Evidence:** graph-level correlated uncertainty added no sign-identifiable pairs in B1；B2
+  attributed 2,033 exact-zero contrasts to common-minimum domination；B3 temporal first-fork
+  recovered only 170/2,033 pairs with a group-bootstrap interval of 6.34–10.29%. Spatial-exclusive
+  minima recovered all 1,568 pairs on which both exclusive branches existed, but applied to only
+  77.13% and therefore failed the frozen 95% applicability gate.
+- **Decision:** stop global, fixed-prefix and temporal-fork scalar road-margin minima as a general
+  AORTA reranker. Keep spatial-exclusive clearance only as a selective diagnostic. Do not train a
+  replacement network until a new decision estimand passes source-only label legality and oracle
+  ceiling gates.
+- **Boundary:** this rejects one readout family on one frozen source-fit panel. It does not reject
+  visual task representations generally and provides no learned, held-out, driving, safety,
+  NavDream or novelty evidence.
+
+## ADR-0065 — Make candidate utility explicitly native-conditioned
+
+- **Status:** accepted before H7BS4B4 scientific execution, after official scorer source audit.
+- **Evidence:** the frozen NAVSIM scorer normalizes progress by the maximum progress in the current
+  score panel. Adding a higher-progress candidate can therefore change another candidate's score;
+  an absolute panel-independent candidate utility is not the evaluator's actual estimand.
+- **Decision:** define each source label by independently evaluating one `[native, candidate]` pair
+  with the official execution, candidate-conditioned reactive traffic and one-frame PDM scorer.
+  Write the future model as `s(X, native, candidate)` and construct pair preferences only by
+  subtracting node scores under the same native context. Batch-scoring all seven candidates to
+  manufacture labels is prohibited.
+- **Consequence:** antisymmetry, cycle consistency and common-gauge invariance remain exact within
+  one native context, while cross-planner transfer becomes conditional generalization to a new
+  native trajectory rather than unconditional absolute-score transfer.
+- **Boundary:** the B4 label excludes two-frame extended comfort and is not full official PDMS.
+  It does not yet establish label signal, learned prediction, architecture necessity, planner
+  transfer, OOD robustness, driving benefit or safety.

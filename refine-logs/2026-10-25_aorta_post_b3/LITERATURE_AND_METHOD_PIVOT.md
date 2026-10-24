@@ -35,11 +35,14 @@
 > 在保持物理场景与候选轨迹不变、只改变视觉外观时，应该保持的是候选之间的任务偏好关系；
 > feature、dense field 或单候选绝对 score 的稳定都不是该关系的充分条件。
 
-候选数学对象是 **appearance-quotient preference operator**。共享 scorer 对每个候选给出
-\(s_\theta(X,\tau_i)\)，但学习与校准对象是 native-relative 差异
+候选数学对象是 **appearance-quotient preference operator**。由于当前 NAVSIM evaluator 的
+progress normalization 依赖 native-candidate 评分对，共享 scorer 不能被错误解释为候选的绝对效用；
+它对每个候选给出 planner/native-conditioned 节点分数 \(s_\theta(X,\tau_0,\tau_i)\)，学习与
+校准对象是同一 native context 下的差异
 
 \[
-\Delta_{ij}^{\theta}(X)=s_\theta(X,\tau_j)-s_\theta(X,\tau_i).
+\Delta_{ij}^{\theta}(X,\tau_0)
+=s_\theta(X,\tau_0,\tau_j)-s_\theta(X,\tau_0,\tau_i).
 \]
 
 它具有三项精确结构：
@@ -60,25 +63,28 @@ ranking flip、regret 和跨 planner 泛化时，Hodge/coboundary 结构才获�
 
 ### 3.1 估计对象、干预与可识别性
 
-令 \(S\) 表示物理场景，\(A\) 表示只改变成像外观的干预，观测为 \(X=g(S,A)\)，候选面板
-\(\mathcal T(S)=\{\tau_0,\ldots,\tau_{K-1}\}\) 与冻结 evaluator 的 task utility
-\(U(S,\tau_i)\) 在该干预下保持不变。目标不是恢复唯一的绝对 score，而是估计商空间中的偏好：
+令 \(S\) 表示物理场景，\(A\) 表示只改变成像外观的干预，观测为 \(X=g(S,A)\)，冻结 planner
+\(\pi\) 产生 native \(\tau_0^\pi\) 与候选面板
+\(\mathcal T(S,\pi)=\{\tau_0^\pi,\ldots,\tau_{K-1}\}\)。冻结 evaluator 的 task utility 应写成
+\(U(S,\pi,\tau_i)\)，并在合法外观干预下保持不变。目标不是恢复跨 planner 唯一的绝对 score，
+而是估计给定 native context 的商空间偏好：
 
 \[
-\Delta_{ij}^{*}(S)=U(S,\tau_j)-U(S,\tau_i).
+\Delta_{ij}^{*}(S,\pi)=U(S,\pi,\tau_j)-U(S,\pi,\tau_i).
 \]
 
 这里必须显式登记三项假设，而不能把它们写成结论：
 
 1. **外观干预有效性：**变换不改变场景几何、candidate panel 与 evaluator outcome；
 2. **标签合法性：**训练可访问的 \(U\) 不含 development/test/target 信息，也不是由待评模型生成；
-3. **效用可排序性：**冻结 evaluator 的偏好可由标量 utility 表示；若存在实质非传递偏好，下面的
+3. **效用可排序性：**给定 \((S,\pi,\tau_0^\pi)\) 后，冻结 evaluator 的偏好可由标量 utility
+   表示；若存在实质非传递偏好，下面的
    exact-gradient 参数化就是错误归纳偏置。
 
 绝对分数只在等价类
 
 \[
-[s]=\{s+c(S)\mathbf 1:c(S)\in\mathbb R\}
+[s]=\{s+c(S,\pi)\mathbf 1:c(S,\pi)\in\mathbb R\}
 \]
 
 中可识别；偏好差分是该等价类上的 well-defined quantity。这解释了为什么 common scene bias
@@ -86,28 +92,45 @@ ranking flip、regret 和跨 planner 泛化时，Hodge/coboundary 结构才获�
 
 ### 3.2 可证明结构与可证伪边界
 
-**命题 1（精确图结构）。** 对任意共享标量 scorer，\(\Delta_{ij}=s_j-s_i\) 在候选完全图上是
+**命题 1（精确图结构）。** 对任意固定的 \((X,\tau_0)\) 与共享标量 scorer，
+\(\Delta_{ij}=s_j-s_i\) 在候选完全图上是
 0-cochain 的 coboundary，因此严格满足反对称、所有三角环路和为零，以及 scene-gauge 不变性。
 这不是经验正则化效果，而是参数化恒等式。
 
 **命题 2（不变性不足）。** 仅最小化 \(\mathcal L_{app}\) 时，常数 scorer
-\(s_\theta(X,\tau_i)=c\) 取得零 appearance loss，却不包含任何任务排序信息。因此外观一致性不能
+\(s_\theta(X,\tau_0,\tau_i)=c\) 取得零 appearance loss，却不包含任何任务排序信息。因此外观一致性不能
 单独识别 \(\Delta^*\)，必须由合法 task supervision 或等价的 decision signal 排除坍缩。
 
-**命题 3（决策遗憾界）。** 若对一个场景的全部候选存在某个不可识别 common gauge \(c(S)\)，使
+**命题 3（决策遗憾界）。** 若对一个固定 scene/planner context 的全部候选存在某个不可识别
+common gauge \(c(S,\pi)\)，使
 
 \[
-\max_i\left|s_\theta(X,\tau_i)-U(S,\tau_i)-c(S)\right|\leq\varepsilon,
+\max_i\left|s_\theta(X,\tau_0,\tau_i)-U(S,\pi,\tau_i)-c(S,\pi)\right|
+\leq\varepsilon,
 \]
 
-且 \(\hat i=\arg\max_i s_\theta(X,\tau_i)\)、\(i^*=\arg\max_i U(S,\tau_i)\)，则
+且 \(\hat i=\arg\max_i s_\theta(X,\tau_0,\tau_i)\)、
+\(i^*=\arg\max_i U(S,\pi,\tau_i)\)，则
 
 \[
-U(S,\tau_{i^*})-U(S,\tau_{\hat i})\leq 2\varepsilon.
+U(S,\pi,\tau_{i^*})-U(S,\pi,\tau_{\hat i})\leq 2\varepsilon.
 \]
 
 证明只使用两次一致误差界与 \(s_{\hat i}\ge s_{i^*}\)。它给出了从表示误差到 decision regret
 的最小桥梁，也明确说明普通平均 MAE 不足：需要候选内一致误差、top-margin 与 regret 共同报告。
+
+**命题 4（评分面板依赖）。** 当前 NAVSIM scorer 在 progress 超过冻结阈值时使用
+
+\[
+\widetilde p_i(\mathcal P)=
+\frac{p_i}{\max_{k\in\mathcal P}p_k}.
+\]
+
+因此对一般评分面板 \(\mathcal P\)，加入一个更高 progress 的无关候选会改变原候选的分数；
+absolute candidate utility 不满足 independence of irrelevant alternatives。官方单轨迹评价实际使用
+\(\mathcal P_i=\{\tau_0,\tau_i\}\)，所以当前合法标签只能写成 native-conditioned
+\(U(S,\pi,\tau_i)\equiv U(S;\tau_0^\pi,\tau_i)\)。这直接决定网络必须显式读取 native context，
+也禁止把 7 个候选一次批量评分后当作训练真值。若未来 evaluator 改变，estimand 必须重新审查。
 
 **失效条件。** 上述命题不保证跨场景泛化、外观干预真实性、置信度校准或 evaluator 与真实驾驶
 安全的一致性；也不证明 exact-gradient 模型优于自由 pairwise 模型。若 oracle preference 大量为
@@ -130,17 +153,22 @@ Hodge 术语不能被用来掩盖这个可检验前提。
 ### 4.1 Architecture
 
 \[
-Z=E_{vision}(X),\quad a_i=E_{traj}(\tau_i),\quad
-h_i=H_\theta(a_i,Z),\quad s_i=W_s h_i,\quad \Delta_{i0}=s_i-s_0.
+Z=E_{vision}(X),\quad a_0=E_{traj}(\tau_0),\quad a_i=E_{traj}(\tau_i),
+\]
+
+\[
+h_i=H_\theta(a_0,a_i,Z),\quad s_i=W_s h_i,\quad \Delta_{ij}=s_j-s_i.
 \]
 
 - frozen/shared visual backbone 只运行一次；
-- trajectory encoder 显式编码完整 4 s pose/yaw/time，不再通过固定 dense grid 聚合；
+- trajectory encoder 显式编码完整 4 s native、candidate 及其相对 pose/yaw/time，不再通过固定
+  dense grid 聚合；
 - shared cross-attention scorer 对候选 permutation equivariant；
 - multi-factor heads 仅在 NAVSIM labels 合法、且容量匹配 ablation 需要时加入；
 - 不恢复 B1 已失去必要性的 graph-correlated uncertainty。
 
-该结构与 GTRS/DA-WAM 形似，因此 architecture 本身不能单独作为 novelty。候选创新只可能来自
+该结构与 GTRS/DA-WAM 形似，因此 architecture 本身不能单独作为 novelty。跨 planner 也不是
+“同一绝对 score 无条件迁移”，而是以新 planner 的 native 作为显式 context 做条件泛化。候选创新只可能来自
 **appearance intervention 上的 exact preference estimand、cycle consistency 与 selective
 native-relative decision rule 的统一**。
 
@@ -151,14 +179,14 @@ native-relative decision rule 的统一**。
 \[
 \mathcal L_{task}
 =\sum_{i\ne j}w_{ij}\,
-\rho\!\left(\Delta_{ij}^{\theta}(X)-(y_j-y_i)\right),
+\rho\!\left(\Delta_{ij}^{\theta}(X,\tau_0)-(y_j-y_i)\right),
 \]
 
 \[
 \mathcal L_{app}
 =\sum_a\sum_{i\ne j}w_{ij}\,
-\rho\!\left(\Delta_{ij}^{\theta}(T_aX)-
-\operatorname{sg}[\Delta_{ij}^{\theta}(X)]\right).
+\rho\!\left(\Delta_{ij}^{\theta}(T_aX,\tau_0)-
+\operatorname{sg}[\Delta_{ij}^{\theta}(X,\tau_0)]\right).
 \]
 
 \(w_{ij}\) 必须在结果前由 task-critical / hard-negative 合同冻结，不能按模型误差事后挑 pair。
