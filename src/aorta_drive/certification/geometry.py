@@ -108,13 +108,19 @@ class ContinuousCorrection:
 
         if not np.isfinite(computed_discrete_bound):
             raise ValueError("computed_discrete_bound must be finite")
-        return float(
-            computed_discrete_bound
-            - self.h_challenger
-            - self.map_error_challenger
-            - self.map_error_native
-            - self.numerical_optimism
-        )
+        result = computed_discrete_bound
+        for correction in (
+            self.h_challenger,
+            self.map_error_challenger,
+            self.map_error_native,
+            self.numerical_optimism,
+        ):
+            if correction == 0.0:
+                continue
+            result = math.nextafter(result - correction, -math.inf)
+        if not math.isfinite(result):
+            raise ValueError("continuous correction overflowed")
+        return result
 
 
 @dataclass(frozen=True)
@@ -283,6 +289,23 @@ class DiskSweptCoverCertificate:
     h: float
     segment_covers: tuple[SegmentDiskCover, ...]
     interpolation: str = "linear-translation-arbitrary-yaw"
+
+
+@dataclass(frozen=True)
+class SweptInnerCellCertificate:
+    """Grid cells proved contained in at least one continuous footprint."""
+
+    cell_indices: tuple[int, ...]
+
+
+@dataclass(frozen=True)
+class BidirectionalNonInclusionCertificate:
+    """Conservative area lower bounds for both continuous set differences."""
+
+    challenger_minus_native_area_lower_m2: float
+    native_minus_challenger_area_lower_m2: float
+    challenger_witness_cells: tuple[int, ...]
+    native_witness_cells: tuple[int, ...]
 
 
 def _validate_pose_sequence(poses: tuple[Pose2D, ...]) -> None:
@@ -542,6 +565,166 @@ def certify_native_inner_disk_nodes(
     if not indices:
         raise ValueError("native inner disks contain no fixed-grid center")
     return NativeInteriorCertificate(indices)
+
+
+def certify_swept_inner_disk_cells(
+    body: VehicleRectangle,
+    poses: tuple[Pose2D, ...],
+    grid: RectangularGrid,
+    *,
+    pose_error: float = 0.0,
+) -> SweptInnerCellCertificate:
+    """Select full grid cells contained in at least one footprint.
+
+    Each selected square cell is enclosed by the disk of radius ``grid.cell_radius``
+    about its center.  The nominal rear-axle disk of radius
+    ``body.inner_radius - pose_error`` is contained in the physical body for every
+    yaw, so the complete selected cell is contained in an actual footprint.  The
+    construction deliberately does not infer continuous area from point samples.
+    """
+
+    if not poses:
+        raise ValueError("pose sequence must be non-empty")
+    if not np.isfinite(pose_error) or pose_error < 0:
+        raise ValueError("pose_error must be finite and non-negative")
+    available_radius = (
+        _fraction(body.inner_radius) - _fraction(pose_error) - _fraction(grid.cell_radius)
+    )
+    if available_radius <= 0:
+        return SweptInnerCellCertificate(())
+    radius_squared = available_radius * available_radius
+    centers = grid.centers()
+    selected = np.zeros(centers.shape[0], dtype=bool)
+    for pose in poses:
+        center_x = _fraction(pose.x)
+        center_y = _fraction(pose.y)
+        for index, center in enumerate(centers):
+            if (
+                _exact_squared_distance(
+                    float(center[0]), float(center[1]), center_x, center_y
+                )
+                <= radius_squared
+            ):
+                selected[index] = True
+    return SweptInnerCellCertificate(tuple(int(index) for index in np.flatnonzero(selected)))
+
+
+def _cells_disjoint_from_disk_cover(
+    cell_indices: tuple[int, ...],
+    cover: DiskSweptCoverCertificate,
+    grid: RectangularGrid,
+) -> tuple[int, ...]:
+    centers = grid.centers()
+    witnesses: list[int] = []
+    for index in cell_indices:
+        center = centers[index]
+        disjoint = True
+        for segment in cover.segment_covers:
+            threshold = _add_up(segment.radius, grid.cell_radius)
+            if (
+                _exact_squared_distance(
+                    float(center[0]),
+                    float(center[1]),
+                    segment.midpoint_x,
+                    segment.midpoint_y,
+                )
+                <= _fraction(threshold) ** 2
+            ):
+                disjoint = False
+                break
+        if disjoint:
+            witnesses.append(index)
+    return tuple(witnesses)
+
+
+def _cell_area_lower(count: int, resolution: float) -> float:
+    exact = count * _fraction(resolution) ** 2
+    result = float(exact)
+    if _fraction(result) > exact:
+        result = math.nextafter(result, -math.inf)
+    return result
+
+
+def certify_disk_noninclusion_from_covers(
+    challenger_outer: DiskSweptCoverCertificate,
+    challenger_inner: SweptInnerCellCertificate,
+    native_outer: DiskSweptCoverCertificate,
+    native_inner: SweptInnerCellCertificate,
+    grid: RectangularGrid,
+) -> BidirectionalNonInclusionCertificate:
+    """Compose precomputed sound inner/outer certificates into area bounds."""
+
+    challenger_witnesses = _cells_disjoint_from_disk_cover(
+        challenger_inner.cell_indices,
+        native_outer,
+        grid,
+    )
+    native_witnesses = _cells_disjoint_from_disk_cover(
+        native_inner.cell_indices,
+        challenger_outer,
+        grid,
+    )
+    return BidirectionalNonInclusionCertificate(
+        challenger_minus_native_area_lower_m2=_cell_area_lower(
+            len(challenger_witnesses), grid.resolution
+        ),
+        native_minus_challenger_area_lower_m2=_cell_area_lower(
+            len(native_witnesses), grid.resolution
+        ),
+        challenger_witness_cells=challenger_witnesses,
+        native_witness_cells=native_witnesses,
+    )
+
+
+def certify_bidirectional_disk_noninclusion(
+    body: VehicleRectangle,
+    challenger_poses: tuple[Pose2D, ...],
+    native_poses: tuple[Pose2D, ...],
+    grid: RectangularGrid,
+    *,
+    challenger_pose_error: float = 0.0,
+    native_pose_error: float = 0.0,
+) -> BidirectionalNonInclusionCertificate:
+    """Lower-bound both continuous swept-footprint difference areas.
+
+    For either direction, a witness cell must be wholly inside one trajectory's
+    physical footprint at a frozen pose and wholly outside every disk in the
+    other trajectory's continuous outer cover.  Distinct grid cells have
+    disjoint interiors, so their total cell area is a valid lower bound on the
+    corresponding continuous set difference.
+    """
+
+    challenger_outer = certify_swept_disk_cover(
+        body,
+        challenger_poses,
+        grid,
+        pose_error=challenger_pose_error,
+    )
+    native_outer = certify_swept_disk_cover(
+        body,
+        native_poses,
+        grid,
+        pose_error=native_pose_error,
+    )
+    challenger_inner = certify_swept_inner_disk_cells(
+        body,
+        challenger_poses,
+        grid,
+        pose_error=challenger_pose_error,
+    )
+    native_inner = certify_swept_inner_disk_cells(
+        body,
+        native_poses,
+        grid,
+        pose_error=native_pose_error,
+    )
+    return certify_disk_noninclusion_from_covers(
+        challenger_outer,
+        challenger_inner,
+        native_outer,
+        native_inner,
+        grid,
+    )
 
 
 def _axis_covering_radius(axis: npt.NDArray[np.float64], low: float, high: float) -> float:

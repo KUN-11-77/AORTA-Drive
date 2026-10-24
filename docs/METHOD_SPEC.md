@@ -354,6 +354,25 @@ R_{selected}=P(D).
 
 meaningful non-inclusion 必须使用连续 footprints \(F_j\setminus F_0\) 与 \(F_0\setminus F_j\) 的双向差面积，或方向正确的 conservative cell-union lower bounds；有限 node sets 没有连续面积。
 
+R004H4 的生产候选采用 rotation-free disk 合同。对轨迹 \(a\)，完整落在任一
+rear-axle inner disk 的 1 m 网格单元组成 \(I_a\subseteq F_a\)，连续 sweep disk
+组成 \(O_a\supseteq F_a\)。只有完整 cell 同时满足 \(C\subseteq I_j\) 且
+\(C\cap O_0=\varnothing\) 时，其面积才计入 \(F_j\setminus F_0\) 下界；反方向同理。
+H4P 的冻结 meaningful 门槛是两个方向均至少 `1.0 m^2`，即每个方向至少一个完整
+1 m cell witness。节点集合差、中心点差和四角采样都不构成该证据。
+
+teacher opportunity 使用同一连续合同。若 challenger outer-cover nodes 为 \(A_j\)，
+native inner nodes 为 \(A_0\)，点标签及绝对误差为 \((\tilde d_v,\epsilon_v)\)，则
+
+\[
+\underline\Delta^{teacher}_{j0}
+=\min_{a\in A_j}(\tilde d_a-\epsilon_a)-h_j
+-\min_{b\in A_0}(\tilde d_b+\epsilon_b).
+\]
+
+H4P 将 \(\delta_M\) 冻结为 `0.5 m`。该量是连续 teacher improvement 的保守下界，
+不是节点 MAE、名义轨迹中心线 clearance 或 NAVSIM DAC。
+
 ## 11. V0 contract and stop rules
 
 - one node-potential decoder；single native；fixed physical scale；exact solver；

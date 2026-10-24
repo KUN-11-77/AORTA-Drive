@@ -156,3 +156,45 @@ def certify_ego_to_global(
         sine_interval=sine,
         cosine_interval=cosine,
     )
+
+
+def certify_global_to_ego(
+    global_point: tuple[float, float],
+    ego_rear_axle: Pose2D,
+) -> CoordinateTransformCertificate:
+    """Certify the inverse rigid transform into the current ego frame.
+
+    The exact target is ``local = R(-heading) @ (global - translation)``.
+    This is the transform needed to express a cached global planner trajectory
+    on AORTA's fixed ego-centric graph without trusting platform trigonometry.
+    """
+
+    if len(global_point) != 2 or not all(np.isfinite(value) for value in global_point):
+        raise ValueError("global point must contain two finite coordinates")
+    dx = _fraction(global_point[0]) - _fraction(ego_rear_axle.x)
+    dy = _fraction(global_point[1]) - _fraction(ego_rear_axle.y)
+    sine, cosine = _sin_cos_intervals(_fraction(ego_rear_axle.yaw))
+    x_interval = cosine.scale(dx).add(sine.scale(dy))
+    y_interval = cosine.scale(dy).add(sine.scale(-dx))
+    stored_x = _stored_midpoint(x_interval)
+    stored_y = _stored_midpoint(y_interval)
+    stored_x_fraction = _fraction(stored_x)
+    stored_y_fraction = _fraction(stored_y)
+    x_error = max(
+        abs(stored_x_fraction - x_interval.lower),
+        abs(stored_x_fraction - x_interval.upper),
+    )
+    y_error = max(
+        abs(stored_y_fraction - y_interval.lower),
+        abs(stored_y_fraction - y_interval.upper),
+    )
+    error_radius = _sqrt_fraction_upper(x_error * x_error + y_error * y_error)
+    return CoordinateTransformCertificate(
+        x=stored_x,
+        y=stored_y,
+        error_radius=error_radius,
+        x_interval=x_interval,
+        y_interval=y_interval,
+        sine_interval=sine,
+        cosine_interval=cosine,
+    )

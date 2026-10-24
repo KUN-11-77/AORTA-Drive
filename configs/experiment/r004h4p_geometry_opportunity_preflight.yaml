@@ -1,0 +1,76 @@
+experiment_id: R004H4P-continuous-opportunity-preflight-v1
+date: 2026-10-24
+scope: fit_only_single_anchor_geometry_and_opportunity_interface
+
+predecessor:
+  experiment: R004H3-proxy-calibration-rehearsal-v1
+  decision: PASS
+  raw_result_sha256: edcea4ec3e08168328e8e18c401b52e8444cc898d86ea22ab068870c78e41204
+
+inputs:
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  metric_manifest_sha256: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  allowed_role: fit
+  selected_group_rule: first_fit_row_in_frozen_role_manifest
+  selected_anchor_rule: lowest_anchor_index_in_selected_group
+  anchor_count: 1
+  prohibited_roles: [selection, proxy_cal, development, calibration, test, target_domain]
+
+native:
+  source: official_metric_cache_MetricCache.trajectory
+  identity: cached_PDM_Closed_planner_trajectory
+  human_trajectory_use: prohibited
+  current_pose_source: MetricCache.ego_state.rear_axle
+  horizon_s: 4.0
+  interval_s: 0.5
+  samples_including_origin: 9
+  global_to_ego_transform: exact_rational_interval_with_outward_radius
+
+candidate:
+  provider: deterministic_constant_acceleration_curvature_v1
+  input_speed: norm_of_current_raw_ego_dynamic_state_xy
+  prepend_exact_current_origin: true
+
+intent_eligibility:
+  minimum_native_terminal_displacement_m: 2.0
+  progress_ratio: [0.8, 1.2]
+  maximum_terminal_cross_track_m: 3.5
+  maximum_terminal_heading_difference_rad: 0.35
+  maximum_terminal_speed_difference_mps: 4.0
+  road_teacher_or_prediction_used: false
+
+geometry:
+  grid: {x_min_m: -32.0, y_min_m: -32.0, rows: 64, columns: 64, resolution_m: 1.0}
+  vehicle: {rear_overhang_m: 1.127, front_extent_m: 4.049, half_width_m: 1.1485}
+  challenger_and_native_outer: rotation_free_rear_axle_disk_sweep
+  challenger_and_native_inner_area: complete_grid_cells_inside_rear_axle_inner_disks
+  noninclusion_lower_bound: inner_cells_of_one_disjoint_from_continuous_outer_cover_of_other
+  clipping: reject
+  empty_certificate_set: reject
+
+opportunity:
+  minimum_challenger_minus_native_area_lower_m2: 1.0
+  minimum_native_minus_challenger_area_lower_m2: 1.0
+  minimum_teacher_improvement_lower_m: 0.5
+  teacher_challenger_margin: outer_cover_node_lower_minus_cover_radius
+  teacher_native_margin: inner_node_upper
+
+decision:
+  stage1_pass_requires:
+    - exact_registered_anchor_and_input_hashes
+    - cached_native_is_PDM_Closed_and_not_human_future
+    - nine_finite_native_samples_with_certified_inverse_transform
+    - deterministic_candidate_replay
+    - geometry_and_opportunity_pipeline_completes_without_contract_error
+    - no_prohibited_role_access
+  stage1_pass_only_authorizes: expanded_fit_only_preflight
+  development_access_authorized: false
+  h4_registration_authorized: false
+  zero_geometry_pairs_or_zero_opportunities: report_as_design_evidence_not_silently_filter
+
+resources:
+  device: cpu
+  maximum_wall_minutes: 5
+  maximum_output_mib: 1

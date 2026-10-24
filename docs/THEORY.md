@@ -261,6 +261,30 @@ rear axle 周围半径 \(r_{in}\) 的闭圆盘在任意 yaw 下均位于真实�
 的格心即可确定性满足 \(A_0\subseteq F_0\)。该 fallback 比有向矩形路径更保守，
 但其保守性影响证书锐度而非 soundness。
 
+### Lemma 3a — conservative bidirectional continuous non-inclusion
+
+对任一轨迹 \(a\)，令 \(O_a\supseteq F_a\) 为 Proposition 3 的连续圆盘外覆盖，
+令 \(I_a\subseteq F_a\) 为完整落在某个 rear-axle 内圆盘中的闭网格单元并集。定义
+
+\[
+W_{a\setminus b}=\{C:C\subseteq I_a,\ C\cap O_b=\varnothing\}.
+\]
+
+则不同网格单元内部不交，并且
+
+\[
+\operatorname{area}(F_a\setminus F_b)
+\ge \sum_{C\in W_{a\setminus b}}\operatorname{area}(C).
+\]
+
+证明：每个 witness cell 满足 \(C\subseteq I_a\subseteq F_a\)，又因
+\(F_b\subseteq O_b\) 且 \(C\cap O_b=\varnothing\)，所以
+\(C\subseteq F_a\setminus F_b\)。对互异 cell 的面积求和即得。计算时，一个边长
+\(r\) 的 cell 以格心为中心包含于半径 \(h=r/\sqrt2\) 的圆盘；因此
+\(\lVert c-p\rVert+h\le r_{in}\) 证明完整 cell 在内圆盘中，而
+\(\lVert c-p_m\rVert>R_{outer}+h\) 证明完整 cell 与外圆盘不交。两方向分别计算，
+不得用有限节点集合的基数差代替连续面积。∎
+
 ### Proposition 4 — proof-carrying ego-to-global transform
 
 把输入 binary64 数值解释为精确实数。对 \(|\theta|\le4\)，分别以 40 阶 Maclaurin
@@ -306,6 +330,13 @@ T_\theta(q)=
 再由 continuous teacher 的 1-Lipschitz 性，坐标变换导致的 teacher value 误差至多
 \(\varepsilon_{transform}(q)\)。该命题不依赖平台 libm，但只覆盖表示值的数值变换；
 物理定位误差、地图配准误差或错误 pose convention 必须另列预算或拒绝。
+
+同一证明直接覆盖 inverse transform：对 global point (g) 先用精确有理数形成
+(g-t)，再以同一 sin/cos 区间传播
+(R(-\theta)(g-t))。R004H4P 将每个 cached PDM-Closed rear-axle point 的所得半径
+取最大值作为 native pose-error radius；rotation-free disk outer/inner 合同分别增加/
+扣除该半径。这里的目标轨迹是缓存中表示的 planner trajectory，本命题不声称覆盖
+planner 本身相对于真实车辆运动的模型误差。
 
 ### Assumption M — continuous teacher and node-label ledger
 

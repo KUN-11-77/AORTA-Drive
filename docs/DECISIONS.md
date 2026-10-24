@@ -320,3 +320,22 @@
   inflated joint tail.
 - **Boundary:** H3 groups were historically exposed, and budget summaries are not task
   utility. Development remains sealed until every H4 denominator and decision rule is frozen.
+
+## ADR-0036 — Prove continuous non-inclusion before opening development
+
+- **Status:** accepted before R004H4P Stage 1
+- **Problem:** challenger outer nodes and native inner points are sufficient for the relative
+  margin theorem but cannot prove that both continuous footprint differences have positive
+  area. A finite node-set difference would be a category error.
+- **Decision:** use cached PDM-Closed as the explicitly named native for this mechanism
+  probe, sample it at the same `0:0.5:4.0 s` horizon, and carry the global-to-ego transform
+  radius. For each direction, count only complete 1 m grid cells proved inside one
+  trajectory's rear-axle inner disks and disjoint from every disk in the other trajectory's
+  continuous outer cover. Require at least `1.0 m^2` in both directions and a conservative
+  continuous teacher improvement lower bound of at least `0.5 m`.
+- **Intent contract:** progress ratio `[0.8,1.2]`, terminal cross-track `<=3.5 m`, terminal
+  heading difference `<=0.35 rad`, terminal speed difference `<=4.0 m/s`, with native
+  terminal displacement `>=2.0 m`. This filter cannot read the teacher or prediction.
+- **Boundary:** the registered single fit anchor is an interface/runtime preflight only. It
+  cannot estimate opportunity frequency, register H4, open development, establish coverage
+  or support method claims.

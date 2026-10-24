@@ -136,6 +136,23 @@ This is a preregistered diagnostic, not a control-selection rule. H4 must preser
 thresholds and use a method-independent teacher opportunity denominator to test whether the
 learned scale's localized low budgets have candidate-level value despite tail inflation.
 
+### H4P — fit-only continuous-opportunity preflight
+
+- **Stage 1 data:** the lowest-index anchor in the first fit row of the frozen role
+  manifest; development and every later role remain sealed.
+- **Native:** the cached official `MetricCache.trajectory`, identified as PDM-Closed rather
+  than `human_trajectory`, sampled at `0:0.5:4.0 s` and transformed to the current ego frame
+  with an exact-rational inverse-transform error radius.
+- **Eligibility:** same horizon, native-terminal progress ratio `[0.8,1.2]`, terminal
+  cross-track at most `3.5 m`, heading difference at most `0.35 rad`, speed difference at
+  most `4.0 m/s`, and native terminal displacement at least `2.0 m`.
+- **Continuous non-inclusion:** each direction needs at least one complete `1 m^2` inner
+  cell proved disjoint from the other trajectory's continuous disk outer cover.
+- **Teacher opportunity:** conservative continuous improvement lower bound at least
+  `delta_M=0.5 m`.
+- **Permission boundary:** Stage 1 can authorize only an expanded fit-only preflight. It
+  cannot register H4 or open development, even if the one anchor contains opportunities.
+
 ### H4 — one-read development qualification
 
 - **Data:** all 24 groups x 16 frozen times, exactly once after every choice above is frozen.
