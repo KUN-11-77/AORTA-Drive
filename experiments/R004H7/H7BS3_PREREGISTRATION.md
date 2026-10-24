@@ -1,6 +1,8 @@
 # R004H7-BS3 预注册：前向96×64完整候选域development资格
 
-状态：`PREREGISTERED_NOT_RUN`。本实验是一次性、outcome-blind development几何资格，
+状态：`R1_PREREGISTERED_NOT_RUN`。原实现因身份manifest接口错误在首个trajectory artifact
+前fail closed；R1只改用已冻结的source split manifest，详见`H7BS3_PREFLIGHT_FAILURE.md`。
+本实验是一次性、outcome-blind development几何资格，
 不是网络评测。
 
 ## 设计依据

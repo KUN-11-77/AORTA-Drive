@@ -1,6 +1,14 @@
 from __future__ import annotations
 
-from run_r004h7bs3_development_support import summarize
+from pathlib import Path
+
+from run_r004h7bs3_development_support import _groups, summarize
+
+
+def test_h7bs3_reads_24_development_groups_from_source_split() -> None:
+    repository = Path(__file__).resolve().parents[2]
+    groups = _groups(repository / "configs/manifests/r004_recording_group_split.csv")
+    assert len(groups) == 24
 
 
 def test_h7bs3_requires_all_candidates_and_group_coverage() -> None:

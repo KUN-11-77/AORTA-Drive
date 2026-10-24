@@ -29,7 +29,7 @@ def _write_json(path: Path, value: Mapping[str, Any]) -> None:
 def _groups(path: Path) -> tuple[str, ...]:
     with path.open("r", encoding="utf-8", newline="") as stream:
         rows = list(csv.DictReader(stream))
-    groups = tuple(row["recording_group"] for row in rows if row["role"] == "development")
+    groups = tuple(row["recording_group"] for row in rows if row["split"] == "development")
     if len(groups) != 24 or len(set(groups)) != 24:
         raise ValueError("role manifest does not define 24 unique development groups")
     return groups
@@ -147,7 +147,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     _verify_inputs(
         stage,
         {
-            "group_role_manifest": args.group_role_manifest,
+            "source_split_manifest": args.source_split_manifest,
             "development_panel_manifest": args.panel_manifest,
             "h7bs1_development_support_result": args.h7bs1_development_result,
             "h7bs2_fit_result": args.h7bs2_result,
@@ -165,7 +165,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if args.output_directory.exists():
         raise FileExistsError(f"refusing to overwrite {args.output_directory}")
     args.output_directory.mkdir(parents=True)
-    groups = _groups(args.group_role_manifest)
+    groups = _groups(args.source_split_manifest)
     manifest = cast(dict[str, Any], json.loads(args.panel_manifest.read_text(encoding="utf-8")))
     if manifest.get("outcome_fields_included") is not False:
         raise ValueError("development panel manifest is not outcome-free")
@@ -216,7 +216,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, required=True)
-    parser.add_argument("--group-role-manifest", type=Path, required=True)
+    parser.add_argument("--source-split-manifest", type=Path, required=True)
     parser.add_argument("--panel-manifest", type=Path, required=True)
     parser.add_argument("--panel-root", type=Path, required=True)
     parser.add_argument("--h7bs1-development-result", type=Path, required=True)

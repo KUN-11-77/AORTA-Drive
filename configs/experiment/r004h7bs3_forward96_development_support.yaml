@@ -1,6 +1,6 @@
 experiment_id: R004H7BS3-forward96-full-domain-development-gate-v1
 date: 2026-10-24
-status: preregistered_one_shot_not_run
+status: preflight_failed_before_first_trajectory_artifact__superseded_by_r1
 
 H7BS3:
   scientific_role: outcome_blind_complete_candidate_domain_qualification
