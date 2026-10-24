@@ -70,6 +70,95 @@ U_theta + {F_i}
     -> choose challenger only if identifiable; otherwise native fallback
 ```
 
+### 3.1 单一论文主张与30秒故事
+
+现有外观鲁棒方法通常优化特征不变或最终轨迹一致，但两者都没有回答：在视觉只部分覆盖未来
+任务区域时，哪些稳定信息足以可靠地区分完整驾驶候选？AORTA的候选主张是：**学习可积的
+相对任务势及其相关不确定集合，在共享变量上直接判断候选排序是否可识别；可识别才干预，
+否则回退。** 因而外观稳定、任务信息、完整时域与拒判不是四个并列模块，而是同一
+“decision identifiability under partial visual evidence”问题的四个必要条件。
+
+该故事只有在B0/B1、容量匹配结构消融、未见外观和实际决策收益都成立时才可写入论文主张；
+任何一关失败都必须缩小或替换主张。
+
+### 3.2 候选网络参数化
+
+令冻结视觉编码器产生多相机历史token (Z)，投影与支撑审计产生局部证据(O)。共享图解码器
+输出未定gauge的node logits (a_\theta)和edge scale logits (s_\phi)：
+
+\[
+u_\theta=P_\perp a_\theta,
+\qquad P_\perp=I-\frac{1}{|V|}\mathbf1\mathbf1^\top,
+\qquad z_\theta=B_0u_\theta .
+\]
+
+因此(u_\theta)选取mean-zero代表元，真正进入监督与决策的是exact 1-cochain
+(z_\theta\in\operatorname{im}B_0)，并由架构恒有(B_1z_\theta=0)。这比给direct-edge
+head事后增加cycle penalty更强：可积性不是软偏好，而是可行域。
+
+edge预算采用硬方向参数化
+
+\[
+w_{\phi,e}=w_{\mathrm{ledger},e}
+              +w_{\mathrm{support},e}(O)
+              +\operatorname{softplus}(s_{\phi,e}),
+\]
+
+其中ledger项不可学习，support floor在缺失或离支撑边界更远时不得下降。具体floor形式只有在
+B0/B1测出关键盲区分布后才能冻结；当前禁止凭直觉指定常数。
+
+### 3.3 候选核心loss：proper relation learning而非装饰性多项加权
+
+teacher node potential为\(d^*\)，edge target为\(z^*=B_0d^*\)，残差
+\(r_e=z_{\theta,e}-z^*_e\)。中心与scale联合训练的基本项采用Laplace proper score：
+
+\[
+\mathcal L_{\mathrm{proper}}
+=\frac{1}{\sum_e\omega_e}
+ \sum_e\omega_e
+ \left(\frac{|r_e|}{b_e}+\log b_e\right),
+\qquad
+b_e=b_{\min,e}(O)+\operatorname{softplus}(s_{\phi,e}).
+\]
+
+\(\omega_e\)只编码预先冻结的合法teacher/support mask；不能由预测误差事后重加权。
+\(\log b_e\)阻止网络仅靠扩大不确定性降低残差代价，硬floor保证missing区域不能虚假变窄。
+
+对同一场景的clean/appearance pair，定义
+
+\[
+\mathcal L_{\mathrm{app}}
+=\frac{1}{|E_O|}\sum_{e\in E_O}
+\rho\!\left(z^{(a)}_{\theta,e}-z^{(0)}_{\theta,e}\right).
+\]
+
+不把多个lambda任意拼成“创新loss”，而把稳定性写成约束优化：
+
+\[
+\min_{\theta,\phi}\ \mathcal L_{\mathrm{proper}}
+\quad\text{s.t.}\quad
+\mathbb E[\mathcal L_{\mathrm{app}}]\le\delta_{\mathrm{app}},
+\]
+
+再用非负对偶变量进行primal–dual优化。\(\delta_{\mathrm{app}}\)必须在fit协议中预注册；常数场
+虽然满足约束，却会被proper task score惩罚。Hodge consistency由参数化保证，不再添加重复的
+cycle loss。候选排序loss仅作后续消融，因为把它放入主loss会引入planner/candidate-provider
+依赖，削弱跨planner主张。
+
+### 3.4 核心推理算法
+
+一次视觉前向产生\((u_\theta,w_\phi,O)\)，一次multi-source图solver构造共享不确定包络；所有
+完整4秒candidate复用该包络。对challenger (j) 与native (0)，计算
+
+\[
+L_{j0}=\inf_{d\in\mathcal U_\theta(X,O)}
+\left[\min_{q\in F_j}d_q-\min_{q\in F_0}d_q\right].
+\]
+
+只有(L_{j0}\ge\gamma\)、几何/资格合同通过且candidate存在时才替换native。没有合法候选、
+证据不足、集合过宽或数值审计失败都映射到同一个明确动作：abstain并保留native。该算法的
+创新候选不是Dijkstra本身，而是“结构化任务表示—相关集合—共享比较—选择性干预”的闭环。
+
 ## 4. 模块必要性账本
 
 | 模块 | 目的 | 直接依据 | 删除实验 |
