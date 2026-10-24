@@ -971,3 +971,18 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** quotient factorization, conditional mutual information and constrained optimization
   are standard tools, not novelty claims. No generalization, calibration, NavDream, driving benefit
   or real-time result follows until their registered experiments pass.
+
+## ADR-0069 — Treat one-frame NAVSIM labels as differences of candidate-local scores
+
+- **Status:** accepted after pre-formal-run official-source inspection; no scientific outcomes read.
+- **Evidence:** `pdm_score_from_interpolated_trajectory` constructs `[metric-cache PDM trajectory,
+  evaluated trajectory]`, scores both, and returns `pred_idx=1`. The runner invokes this separately
+  for native and every legal challenger. It does not jointly score `[native, challenger]`.
+- **Decision:** define `F_S(tau)` as the evaluated-trajectory score in its internal fixed-PDM-baseline
+  proposal set and define the label as `delta_i0 = F_S(tau_i) - F_S(tau_0)`. The native remains the
+  candidate-generation and difference reference, not the progress-normalization baseline.
+- **Implementation consequence:** require `PROGRESS_MODE=eval` before any scorer call, record it in
+  primary/replay, and audit it against the frozen config. `gen_gt` fails closed.
+- **Boundary:** these labels are one-frame, independently normalized surrogate scores and omit
+  two-frame extended comfort. A positive oracle would not establish complete official PDMS gain,
+  an absolute utility, safety, or cross-planner calibration.

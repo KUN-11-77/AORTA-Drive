@@ -1,12 +1,12 @@
 # R004H7-BS4B4R1 implementation preflight
 
-状态：`LOCAL_SCORER_SEMANTICS_AMENDMENT_PASS__SERVER_REPREFLIGHT_REQUIRED__FORMAL_RUN_NOT_AUTHORIZED`。
+状态：`SERVER_SCORER_SEMANTICS_REPREFLIGHT_PASS__FORMAL_RUN_NOT_AUTHORIZED`。
 
 > 2026-10-25 pre-run source audit 发现旧文档把 official scorer 误写为 `[native, challenger]`
 > 联合评分。实际实现对 native 和每个 challenger 分别在固定 `[PDM baseline, trajectory]` proposal
 > set 中评分。该勘误发生在 formal R1 前且未读取 outcome；runner/audit 已增加
 > `PROGRESS_MODE=eval` fail-closed 合同。下述 `9664e4b` server smoke 仍是合法的候选域证据，但其
-> source bundle 已被新 runner/audit 取代，不能作为当前代码的最终服务器 preflight。
+> source bundle 已被新 runner/audit 取代；当前提交 `08081cc` 已完成下述服务器语义复检。
 
 ## 已闭合
 
@@ -21,6 +21,25 @@
   domain drift、四类 fail-closed gate 与独立 summary/audit 复算；
 - 全库 `354 passed`，未破坏既有实验合同；
 - runner/audit 通过 Python compile，配置内本地 source SHA 均由自动测试核验。
+
+## 服务器 scorer-semantics re-preflight
+
+冻结提交 `08081cc` 以离线 archive 同步，archive SHA-256 为
+`31fb7f8f5919fcfaccf6b9a5c8faefce7e9e932135c8e1eb92ecdf8bd8451764`。服务器同一 NAVSIM 环境中：
+
+- 当前 R1 合同测试 `11/11` 通过；
+- 本地 implementation hashes 与 config exact；官方 NAVSIM source hashes 与 config exact；
+- `PROGRESS_MODE` 未设置时解析为 `eval`，显式 `eval` 通过，`gen_gt` 在 scorer 调用前 fail-closed；
+- estimand 明确为 fixed metric-cache PDM baseline，`native_and_challenger_jointly_scored=false`；
+- scorer 未调用，scientific outcomes 未访问，development/calibration/test/NavDream/target 未访问；
+- semantic preflight artifact SHA-256：
+  `073783d925540c1829faefa34233de8bd03eb5b6526a500e73724478def8add1`；
+- local artifact：
+  `F:\AORTA-Drive-artifacts\gate-b\R004H7\r004h7bs4b4r1_preflight_08081cc\semantic_preflight.json`。
+
+旧 `9664e4b` payload interface smoke 与 roster audit 仍用于候选域证据，因为 core、membership、
+candidate provider、NAVSIM execution 与 B4 dependency hashes 未变；新提交只修正 estimand 文字并在
+runner/audit 增加 progress-mode fail-closed 合同。
 
 ## 服务器 interface smoke
 
@@ -68,10 +87,18 @@
 - runner SHA-256：`f263608a5522a76654226023b762b80bbffb3c58cebd3ad0b5be2fc6ddac9001`；
 - audit SHA-256：`28f4395d83d1336e7f09b145530ae49a13c71df023952d974c8009511fc81c79`。
 
+## 当前冻结摘要
+
+- source commit：`08081cc`；
+- config SHA-256：`9eb2a0f112333b2b2cba06cb0b9d52e131cc43277ebc30b85c182ad9d175e3f0`；
+- preregistration SHA-256：`9db3afe2069936cb87d8c6a074ee205fe347c952cccbd801dd42290b59ce3bab`；
+- core SHA-256：`4c3f73fd3cc1b964faf987081065e680567a6802d4464c4f53f24ceb9fe063c7`；
+- runner SHA-256：`c975c8d9e44df575498afaf436ce2455efde1c1f20f5e96784ef842671d84d1d`；
+- audit SHA-256：`dde8f2b5bf8977c19517a5297de6557d842a250f46c4ac6eb6860c3ec6f6c889`。
+
 ## 下一门
 
-先对新提交重新执行 outcome-free server tests/interface smoke 与 source hashes；通过后，下一步才是
-一次 primary + 一次 independent full replay + mechanical audit 的正式 R1。根据 B4 失败后
+下一步是一次 primary + 一次 independent full replay + mechanical audit 的正式 R1。根据 B4 失败后
 冻结的停止规则，smoke 通过不自动授权第三次正式运行；在明确授权前保持 HOLD。正式运行期间
 禁止读取 partial scientific metrics 或修改 membership、threshold、bootstrap、candidate provider、
 scorer 与统计协议。
