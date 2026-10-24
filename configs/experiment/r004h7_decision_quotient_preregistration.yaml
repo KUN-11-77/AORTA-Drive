@@ -1,6 +1,7 @@
 experiment_id: R004H7-decision-quotient-structure-necessity-v1
 date: 2026-10-24
 status: preregistered_not_authorized_to_train
+preregistration_revision: b07f39d624287429e739431a012294e037fe3376
 
 claims:
   primary: decision_contrast_error_is_more_relevant_to_ranking_failure_than_global_representation_error
