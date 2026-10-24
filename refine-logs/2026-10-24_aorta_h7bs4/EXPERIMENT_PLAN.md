@@ -61,8 +61,8 @@ Anti-claim：结果不能仅来自扩大节点数、空间先验或选择性丢�
 | M2 | teacher关键点 | H7BS4B | 形成架构必要条件 | CPU并行 | teacher生成成本 |
 | M2.5 | 联合集合非空洞性 | H7BS4B1 | **完成但未通过**；仅5/42组达覆盖，joint无额外符号识别 | CPU≤120min | 已确认近空洞 |
 | M2.6 | 零差异结构归因 | H7BS4B2 | **完成**；2033/2219为共同min支配，42/42组 | CPU分钟级 | fit post-result，仅设计资格 |
-| M2.7 | fork-aware oracle资格 | H7BS4B3 | shared gate不被绕过且branch contrast恢复非平凡区分 | CPU分钟级 | spatial/temporal定义可能冲突 |
-| M3 | 推理代价 | H7BS4C | B3冻结新接口且重新获得资格后再计时 | 单GPU小时级 | DINO主导时延 |
+| M2.7 | fork-aware oracle资格 | H7BS4B3 | **完成但未通过**；temporal恢复170/2033，spatial适用率77.13% | CPU 320s+replay | general road-margin reranker已STOP |
+| M3 | 推理代价 | H7BS4C | HOLD；只有新decision object先通过文献、oracle与结构资格才重新注册 | 单GPU小时级 | 当前无合格方法可计时 |
 | M4 | development确认 | A/B/C冻结后一次性 | 不调阈值 | CPU/GPU | 历史暴露，仅held-out资格 |
 
 ## Compute and Data Budget

@@ -49,3 +49,10 @@ native与challenger，覆盖42/42 groups；186个来自1 m离散support重复，
 机械重放672/672 exact。该结果只授予fork-aware task operator的oracle设计资格；下一步必须保留
 共同风险资格门并裁决spatial-overlap与temporal-prefix定义。learned network、H7-C、NavDream与
 驾驶收益继续HOLD。
+
+H7BS4B3现已完成并否定fork-aware scalar minimum的一般reranker资格。temporal first-fork虽对
+2,033/2,033 pairs有定义，但只恢复170个非零contrast，组等权恢复率8.26%，95% CI为
+6.34–10.29%；固定2.5秒suffix只恢复464个。spatial-exclusive在1,568个双侧非空pair上全部恢复，
+但总体适用率仅77.13%，不能用complete-case子集替代一般panel。机械重放672/672 exact，按预注册
+裁决`STOP_ROAD_MARGIN_AS_GENERAL_RERANKER`。H7-C、network、NavDream与decision evaluation继续
+HOLD；下一步先做决策充分对象的文献与oracle理论审查，不自动搜索新架构。

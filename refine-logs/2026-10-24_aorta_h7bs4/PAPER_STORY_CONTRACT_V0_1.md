@@ -209,3 +209,15 @@ support duplicates、0 个 distinct-min ties；common-min 覆盖 42/42 groups，
 这不是简单“去掉共同区域”：共同 trunk 必须先通过资格，branch contrast 只能在两侧分支非空时
 使用。spatial overlap 与 temporal prefix 的定义还未裁决，fork-aware oracle 的非退化性也未验证。
 在这些门通过前，30 秒故事只能称候选叙事，不能写成论文已证明贡献。
+
+## 12. B3 后故事撤回与保留的 insight
+
+H7BS4B3 已机械通过但 temporal fork 主假设失败：仅170/2033个common-min pairs恢复非零contrast，
+组级bootstrap CI为`[0.0634,0.1029]`。spatial-exclusive虽在双侧非空时恢复差异，但465/2033个
+pairs至少一侧独占集合为空，适用率只有77.13%。因此第11节候选“shared trunk + future forks”
+不得进入最终30秒方法故事，general road-margin reranker按预注册停止。
+
+保留的顶会级 insight 是更基础的反例：**即使视觉field稳定、正确，甚至直接使用perfect teacher，
+不合适的candidate readout仍会删除几乎全部决策差异。** 下一版故事必须由一个能同时处理
+common mass、nested support、局部灾难风险与gauge的决策充分算子重新赢得；在此之前，Figure 1
+与口述只可用于问题定义，不能暗示AORTA方法闭环已经完成。

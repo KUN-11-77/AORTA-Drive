@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 R004H7-BS4B3：`STOP_ROAD_MARGIN_AS_GENERAL_RERANKER`。** 预注册
+> temporal first-fork 对2,033个common-min pairs均可定义，但只恢复170个exact-nonzero branch
+> contrasts；组等权恢复率8.26%，95% bootstrap CI为6.34–10.29%，远低于严格多数门。固定
+> 2.5 s suffix只恢复464个。spatial-exclusive在1,568个双侧非空pair上全部恢复，但465个nested
+> pairs至少一侧独占集合为空，总体适用率77.13%低于95%门，不能事后替代primary。机械重放
+> 672/672 exact；learned field、DINO、outcome、development及封存数据均未读取。该结果停止
+> global/fixed/temporal scalar-min道路裕度作为一般候选reranker；H7C/network/NavDream/decision
+> evaluation继续HOLD。下一步先查新并审查新的decision-sufficient数学对象，不自动搜索架构。
+
 > **2026-10-24 post-D0理论迁移审查：复杂度按必要性而非模块数量治理。** 候选核心链冻结为
 > Hodge-consistent quotient representation、support-conditioned correlated graph uncertainty、
 > exact shared-variable robust readout与selective Simplex fallback。离散外微分解释potential
