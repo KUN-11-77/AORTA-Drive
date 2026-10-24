@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/tAmmxTZVphVCsvOViwTLYia0ySc</id>
+  <title>arXiv Query: search_query=all:"selective prediction" AND all:"distribution shift"&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <updated>2026-10-24T15:27:50Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22selective+prediction%22+AND+all:%22distribution+shift%22&amp;start=0&amp;max_results=10&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+  <opensearch:totalResults>16</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2603.24704v1</id>
+    <title>Conformal Selective Prediction with General Risk Control</title>
+    <updated>2026-03-25T18:29:23Z</updated>
+    <link href="https://arxiv.org/abs/2603.24704v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.24704v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In deploying artificial intelligence (AI) models, selective prediction offers the option to abstain from making a prediction when uncertain about model quality. To fulfill its promise, it is crucial to enforce strict and precise error control over cases where the model is trusted. We propose Selective Conformal Risk control with E-values (SCoRE), a new framework for deriving such decisions for any trained model and any user-defined, bounded and continuously-valued risk. SCoRE offers two types of guarantees on the risk among ``positive'' cases in which the system opts to trust the model. Built upon conformal inference and hypothesis testing ideas, SCoRE first constructs a class of (generalized) e-values, which are non-negative random variables whose product with the unknown risk has expectation no greater than one. Such a property is ensured by data exchangeability without requiring any modeling assumptions. Passing these e-values on to hypothesis testing procedures, we yield the binary trust decisions with finite-sample error control. SCoRE avoids the need of uniform concentration, and can be readily extended to settings with distribution shifts. We evaluate the proposed methods with simulations and demonstrate their efficacy through applications to error management in drug discovery, health risk prediction, and large language models.</summary>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-25T18:29:23Z</published>
+    <arxiv:primary_category term="stat.ME"/>
+    <author>
+      <name>Tian Bai</name>
+    </author>
+    <author>
+      <name>Ying Jin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.19558v2</id>
+    <title>Reliable Financial Named Entity Recognition Under Domain Shift: Confidence Estimation and Selective Prediction</title>
+    <updated>2026-08-26T04:07:40Z</updated>
+    <link href="https://arxiv.org/abs/2608.19558v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.19558v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Financial AI systems often train information extractors on one textual register and deploy them across filings, news, and user-generated content, and standard F1 scores do not indicate which predictions remain safe to automate when that input distribution changes. We study confidence estimation and selective prediction for financial named entity recognition (NER) on a three-tier stress test spanning SEC filings, financial news, and general-topic social media as an extreme out-of-domain condition, evaluating a BERT tagger and LoRA-tuned Qwen2.5-0.5B/1.5B models with five inference-time confidence signals, three training seeds, and bootstrap intervals. Confidence rankings themselves change under shift: whole-output probability is the strongest in-domain error detector but deteriorates out of domain, whereas entity-span probability and self-consistency are more robust; self-consistency is also better calibrated without post-hoc fitting. Abstention reduces sentence error from 34.3% to below 2% on the highest-confidence 40% of in-domain inputs and remains useful on financial news, but recovers no usefully large clean subset under the extreme social-media shift. These results motivate a staged deployment strategy that detects severe distribution shift upstream before applying prediction-level confidence gating.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-20T01:55:41Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zihao Zheng</name>
+    </author>
+    <author>
+      <name>Baichuan Li</name>
+    </author>
+    <author>
+      <name>Junyi Yao</name>
+    </author>
+    <author>
+      <name>Jiayu Long</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.15233v1</id>
+    <title>Adaptive Individual Uncertainty under Out-Of-Distribution Shift with Expert-Routed Conformal Prediction</title>
+    <updated>2025-10-17T01:51:33Z</updated>
+    <link href="https://arxiv.org/abs/2510.15233v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2510.15233v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reliable, informative, and individual uncertainty quantification (UQ) remains missing in current ML community. This hinders the effective application of AI/ML to risk-sensitive domains. Most methods either fail to provide coverage on new data, inflate intervals so broadly that they are not actionable, or assign uncertainties that do not track actual error, especially under a distribution shift. In high-stakes drug discovery, protein-ligand affinity (PLI) prediction is especially challenging as assay noise is heterogeneous, chemical space is imbalanced and large, and practical evaluations routinely involve distribution shift. In this work, we introduce a novel uncertainty quantification method, Trustworthy Expert Split-conformal with Scaled Estimation for Efficient Reliable Adaptive intervals (TESSERA), that provides per-sample uncertainty with reliable coverage guarantee, informative and adaptive prediction interval widths that track the absolute error. We evaluate on protein-ligand binding affinity prediction under both independent and identically distributed (i.i.d.) and scaffold-based out-of-distribution (OOD) splits, comparing against strong UQ baselines. TESSERA attains near-nominal coverage and the best coverage-width trade-off as measured by the Coverage-Width Criterion (CWC), while maintaining competitive adaptivity (lowest Area Under the Sparsification Error (AUSE)). Size-Stratified Coverage (SSC) further confirms that intervals are right-sized, indicating width increases when data are scarce or noisy, and remain tight when predictions are reliable. By unifying Mixture of Expert (MoE) diversity with conformal calibration, TESSERA delivers trustworthy, tight, and adaptive uncertainties that are well-suited to selective prediction and downstream decision-making in the drug-discovery pipeline and other applications.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-10-17T01:51:33Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Amitesh Badkul</name>
+    </author>
+    <author>
+      <name>Lei Xie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.14969v3</id>
+    <title>Robust Machine Learning for Regulatory Sequence Modeling under Biological and Technical Distribution Shifts</title>
+    <updated>2026-10-09T15:57:01Z</updated>
+    <link href="https://arxiv.org/abs/2601.14969v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.14969v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Robust machine learning for regulatory genomics is studied under biologically and technically induced distribution shifts. Deep convolutional and attention based models achieve strong in distribution performance on DNA regulatory sequence prediction tasks but are usually evaluated under i.i.d. assumptions, even though real applications involve cell type specific programs, evolutionary turnover, assay protocol changes, and sequencing artifacts. We introduce a robustness framework that combines a mechanistic simulation benchmark with real data analysis on a massively parallel reporter assay (MPRA) dataset to quantify performance degradation, calibration failures, and uncertainty based reliability. In simulation, motif driven regulatory outputs are generated with cell type specific programs, PWM perturbations, GC bias, depth variation, batch effects, and heteroscedastic noise, and CNN, BiLSTM, and transformer models are evaluated. Models remain accurate and reasonably calibrated under mild GC content shifts but show higher error, severe variance miscalibration, and coverage collapse under motif effect rewiring and noise dominated regimes, revealing robustness gaps invisible to standard i.i.d. evaluation. Adding simple biological structural priors motif derived features in simulation and global GC content in MPRA improves in distribution error and yields consistent robustness gains under biologically meaningful genomic shifts, while providing only limited protection against strong assay noise. Uncertainty-aware selective prediction offers an additional safety layer that risk coverage analyses on simulated and MPRA data show that filtering low confidence inputs recovers low risk subsets, including under GC-based out-of-distribution conditions, although reliability gains diminish when noise dominates.</summary>
+    <category term="q-bio.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-21T13:15:27Z</published>
+    <arxiv:comment>19 pages, 16 figures</arxiv:comment>
+    <arxiv:primary_category term="q-bio.GN"/>
+    <author>
+      <name>Yiyao Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.00138v2</id>
+    <title>Explicit Abstention Knobs for Predictable Reliability in Video Question Answering</title>
+    <updated>2026-01-15T17:31:17Z</updated>
+    <link href="https://arxiv.org/abs/2601.00138v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.00138v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>High-stakes deployment of vision-language models (VLMs) requires selective prediction, where systems abstain when uncertain rather than risk costly errors. We investigate whether confidence-based abstention provides reliable control over error rates in video question answering, and whether that control remains robust under distribution shift. Using NExT-QA and Gemini 2.0 Flash, we establish two findings. First, confidence thresholding provides mechanistic control in-distribution. Sweeping threshold epsilon produces smooth risk-coverage tradeoffs, reducing error rates f</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-12-31T23:27:32Z</published>
+    <arxiv:comment>Preprint. Diagnostic study of confidence-based abstention under evidence truncation</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Jorge Ortiz</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2210.10897v3</id>
+    <title>Window-Based Distribution Shift Detection for Deep Neural Networks</title>
+    <updated>2023-06-08T14:47:19Z</updated>
+    <link href="https://arxiv.org/abs/2210.10897v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2210.10897v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>To deploy and operate deep neural models in production, the quality of their predictions, which might be contaminated benignly or manipulated maliciously by input distributional deviations, must be monitored and assessed. Specifically, we study the case of monitoring the healthy operation of a deep neural network (DNN) receiving a stream of data, with the aim of detecting input distributional deviations over which the quality of the network's predictions is potentially damaged. Using selective prediction principles, we propose a distribution deviation detection method for DNNs. The proposed method is derived from a tight coverage generalization bound computed over a sample of instances drawn from the true underlying distribution. Based on this bound, our detector continuously monitors the operation of the network out-of-sample over a test window and fires off an alarm whenever a deviation is detected. Our novel detection method performs on-par or better than the state-of-the-art, while consuming substantially lower computation time (five orders of magnitude reduction) and space complexities. Unlike previous methods, which require at least linear dependence on the size of the source distribution for each detection, rendering them inapplicable to ``Google-Scale'' datasets, our approach eliminates this dependence, making it suitable for real-world applications.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-10-19T21:27:25Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Guy Bar-Shalom</name>
+    </author>
+    <author>
+      <name>Yonatan Geifman</name>
+    </author>
+    <author>
+      <name>Ran El-Yaniv</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.02952v2</id>
+    <title>UAT-LITE: Inference-Time Uncertainty-Aware Attention for Pretrained Transformers</title>
+    <updated>2026-03-10T04:15:47Z</updated>
+    <link href="https://arxiv.org/abs/2602.02952v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.02952v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Neural NLP models are often miscalibrated and overconfident, assigning high confidence to incorrect predictions and failing to express uncertainty during internal evidence aggregation. This undermines selective prediction and high-stakes deployment. Post-hoc calibration methods adjust output probabilities but leave internal computation unchanged, while ensemble and Bayesian approaches improve uncertainty at substantial training or storage cost. We propose UAT-LITE, an inference-time framework that makes self-attention uncertainty-aware via Monte Carlo dropout in pretrained transformer classifiers. Unlike output-level calibration (e.g., TS), UAT-LITE injects epistemic uncertainty directly into attention, enabling uncertainty-aware routing during contextualization and token-level diagnostic signals beyond global logit rescaling. Token-level epistemic uncertainty is estimated from stochastic forward passes and used to modulate self-attention during contextualization, without modifying pretrained weights or training objectives. We additionally introduce a layer-wise variance decomposition to diagnose how predictive uncertainty accumulates across transformer depth. Across SQuAD 2.0 answerability, MNLI, and SST-2, UAT-LITE achieves an average relative ECE reduction of approximately 20% compared with a fine-tuned BERT-base baseline while preserving accuracy, and yields more informative uncertainty behavior for selective prediction under distribution shift.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-03T00:51:26Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Elias Hossain</name>
+    </author>
+    <author>
+      <name>Shubhashis Roy Dipta</name>
+    </author>
+    <author>
+      <name>Subash Neupane</name>
+    </author>
+    <author>
+      <name>Rajib Rana</name>
+    </author>
+    <author>
+      <name>Ravid Shwartz-Ziv</name>
+    </author>
+    <author>
+      <name>Ivan Garibay</name>
+    </author>
+    <author>
+      <name>Niloofar Yousefi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.28769v1</id>
+    <title>Uncertainty-Aware Deepfake Detection via Multi-View Structural Learning</title>
+    <updated>2026-07-30T18:42:01Z</updated>
+    <link href="https://arxiv.org/abs/2607.28769v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.28769v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Security-critical biometric and forensic applications require accurate predictions and reliable confidence estimates, particularly under distribution shift. This challenge is especially acute for deepfake detection, where foundation-model-based detectors often exhibit overconfident predictions on out-of-distribution manipulations, which limits their suitability for operational deployment. We propose an uncertainty-aware deepfake detection framework that identifies manipulations through inconsistencies across complementary evidence sources. The framework integrates three streams: a visual stream based on an adapted CLIP encoder, a semantic stream that models consistency among facial attributes through differentiable constraints, and a structural stream that captures class-dependent dependency patterns between semantic and forensic features. To effectively combine these signals, we introduce Inter-Branch Disagreement Calibration (IBDC), a disagreement-aware uncertainty modeling mechanism that links predictive uncertainty to conflicts among evidence streams. Extensive cross-dataset experiments using FaceForensics++ as the training source demonstrate that the proposed framework achieves state-of-the-art generalization across multiple out-of-distribution benchmarks while consistently improving calibration and selective prediction performance. These results show that combining complementary evidence with disagreement-aware uncertainty provides a robust foundation for trustworthy and well-calibrated deepfake detection under distribution shift.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-30T18:42:01Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Muhammad Umar Farooq</name>
+    </author>
+    <author>
+      <name>Kutub Uddin</name>
+    </author>
+    <author>
+      <name>Awais Khan</name>
+    </author>
+    <author>
+      <name>Khalid Malik</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2209.15558v2</id>
+    <title>Out-of-Distribution Detection and Selective Generation for Conditional Language Models</title>
+    <updated>2023-03-07T22:05:28Z</updated>
+    <link href="https://arxiv.org/abs/2209.15558v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2209.15558v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Machine learning algorithms typically assume independent and identically distributed samples in training and at test time. Much work has shown that high-performing ML classifiers can degrade significantly and provide overly-confident, wrong classification predictions, particularly for out-of-distribution (OOD) inputs. Conditional language models (CLMs) are predominantly trained to classify the next token in an output sequence, and may suffer even worse degradation on OOD inputs as the prediction is done auto-regressively over many steps. Furthermore, the space of potential low-quality outputs is larger as arbitrary text can be generated and it is important to know when to trust the generated output. We present a highly accurate and lightweight OOD detection method for CLMs, and demonstrate its effectiveness on abstractive summarization and translation. We also show how our method can be used under the common and realistic setting of distribution shift for selective generation (analogous to selective prediction for classification) of high-quality outputs, while automatically abstaining from low-quality ones, enabling safer deployment of generative language models.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-09-30T16:17:11Z</published>
+    <arxiv:comment>Published in ICLR 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jie Ren</name>
+    </author>
+    <author>
+      <name>Jiaming Luo</name>
+    </author>
+    <author>
+      <name>Yao Zhao</name>
+    </author>
+    <author>
+      <name>Kundan Krishna</name>
+    </author>
+    <author>
+      <name>Mohammad Saleh</name>
+    </author>
+    <author>
+      <name>Balaji Lakshminarayanan</name>
+    </author>
+    <author>
+      <name>Peter J. Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.16614v1</id>
+    <title>Beyond Accuracy: Assessing Calibration of Geospatial Foundation Models and Their Sensitivity to Distribution Shifts</title>
+    <updated>2026-08-17T14:16:14Z</updated>
+    <link href="https://arxiv.org/abs/2608.16614v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.16614v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Geospatial Foundation Models (GeoFMs) are most commonly ranked and selected by accuracy on standard benchmark conditions via averaged ranks. We show that this protocol is too narrow: the promised deployment in critical EO tasks requires further angles of analysis, mainly calibration, the agreement between a model's confidence and its correctness. Across 16 frozen encoders, four classification and five segmentation datasets, and two orthogonal stress axes, every encoder degrades as corruption intensifies, and the ranking changes as well. Across the four classification benchmarks, EO-pretrained and ImageNet-pretrained encoders are indistinguishable on clean accuracy and clean calibration, and EO pretraining provides no more stability under shift than ImageNet pretraining. Under shift the GeoFMs drift further into overconfidence than the ImageNet-pretrained encoders, at every grade and in every corruption family. A centered kernel alignment (CKA) analysis ties this to representational rigidity: EO-pretrained embeddings move less under corruption while losing just as much task information and remaining overconfident. We apply three commonly explored uncertainty quantification methods and find that temperature scaling and deep ensembles cannot counteract the degradation, while a Gaussian-process probe roughly halves ECE under severe cloud only by tripling it on clean data. In selective prediction experiments, we find that confidence-based abstention cannot defer around confidently wrong predictions, and advocate that benchmark rankings and evaluations should therefore operate across a multitude of conditions and metrics to more holistically evaluate model development progress and close the gap to real world deployment scenarios.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-17T14:16:14Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Nils Lehmann</name>
+    </author>
+    <author>
+      <name>Jakob Gawlikowski</name>
+    </author>
+    <author>
+      <name>Burak Ekim</name>
+    </author>
+    <author>
+      <name>Isaac Corley</name>
+    </author>
+    <author>
+      <name>Xiao Xiang Zhu</name>
+    </author>
+  </entry>
+</feed>

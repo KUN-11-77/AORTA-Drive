@@ -1,0 +1,16 @@
+{
+  "requested_url": "https://export.arxiv.org/api/query?search_query=all%3A%22information%20bottleneck%22%20AND%20%28all%3Ainvariance%20OR%20all%3Asufficiency%29&start=0&max_results=15&sortBy=relevance&sortOrder=descending",
+  "retrieved_at_utc": "2026-10-24T15:28:00.198601+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://export.arxiv.org/api/query?search_query=all%3A%22information%20bottleneck%22%20AND%20%28all%3Ainvariance%20OR%20all%3Asufficiency%29&start=0&max_results=15&sortBy=relevance&sortOrder=descending",
+  "status": 200,
+  "content_type": "application/atom+xml; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 37679,
+  "sha256": "0fd647e707de7006108e00bb25eca4cb7157bea99df384e4188a5cf744307f9d",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\refine-logs\\2026-10-24_aorta_h7bs4\\sources\\arxiv_information_invariance.xml",
+  "elapsed_seconds": 1.427,
+  "pdf_detected": false
+}

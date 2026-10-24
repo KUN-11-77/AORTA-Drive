@@ -1,0 +1,16 @@
+{
+  "requested_url": "https://export.arxiv.org/api/query?search_query=%28all%3A%22Hodge%20decomposition%22%20AND%20all%3A%22graph%20neural%22%29%20OR%20ti%3AHodgeNet&start=0&max_results=15&sortBy=relevance&sortOrder=descending",
+  "retrieved_at_utc": "2026-10-24T15:28:59.996143+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://export.arxiv.org/api/query?search_query=%28all%3A%22Hodge%20decomposition%22%20AND%20all%3A%22graph%20neural%22%29%20OR%20ti%3AHodgeNet&start=0&max_results=15&sortBy=relevance&sortOrder=descending",
+  "status": 200,
+  "content_type": "application/atom+xml; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 7815,
+  "sha256": "ac60070683f6ee114080897643f139c0e474cef9133d122b16dfdb05264b3087",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\refine-logs\\2026-10-24_aorta_h7bs4\\sources\\arxiv_hodge_neural.xml",
+  "elapsed_seconds": 1.83,
+  "pdf_detected": false
+}

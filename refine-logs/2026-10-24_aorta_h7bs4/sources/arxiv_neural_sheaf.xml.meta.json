@@ -1,0 +1,16 @@
+{
+  "requested_url": "https://export.arxiv.org/api/query?search_query=%28all%3A%22sheaf%20neural%20network%22%20OR%20all%3A%22neural%20sheaf%22%29&start=0&max_results=15&sortBy=relevance&sortOrder=descending",
+  "retrieved_at_utc": "2026-10-24T15:28:59.951645+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://export.arxiv.org/api/query?search_query=%28all%3A%22sheaf%20neural%20network%22%20OR%20all%3A%22neural%20sheaf%22%29&start=0&max_results=15&sortBy=relevance&sortOrder=descending",
+  "status": 200,
+  "content_type": "application/atom+xml; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 33595,
+  "sha256": "cf0777c512f0cfb80e070b1f61bf3ba86bf680179098f0128978b5521895d0f3",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\refine-logs\\2026-10-24_aorta_h7bs4\\sources\\arxiv_neural_sheaf.xml",
+  "elapsed_seconds": 2.609,
+  "pdf_detected": false
+}

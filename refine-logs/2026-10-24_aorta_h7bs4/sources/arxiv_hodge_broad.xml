@@ -1,0 +1,364 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/xCB5W/fES/wP5IGhXk2qr0MwfPQ</id>
+  <title>arXiv Query: search_query=(all:Hodge OR all:"discrete exterior calculus") AND (all:graph OR all:simplicial)&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-10-24T15:28:08Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(all:Hodge+OR+all:%22discrete+exterior+calculus%22)+AND+(all:graph+OR+all:simplicial)&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>371</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/math/0508341v2</id>
+    <title>Discrete Exterior Calculus</title>
+    <updated>2005-08-18T22:27:29Z</updated>
+    <link href="https://arxiv.org/abs/math/0508341v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/math/0508341v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>  We present a theory and applications of discrete exterior calculus on simplicial complexes of arbitrary finite dimension. This can be thought of as calculus on a discrete space. Our theory includes not only discrete differential forms but also discrete vector fields and the operators acting on these objects. This allows us to address the various interactions between forms and vector fields (such as Lie derivatives) which are important in applications. Previous attempts at discrete exterior calculus have addressed only differential forms. We also introduce the notion of a circumcentric dual of a simplicial complex. The importance of dual complexes in this field has been well understood, but previous researchers have used barycentric subdivision or barycentric duals. We show that the use of circumcentric duals is crucial in arriving at a theory of discrete exterior calculus that admits both vector fields and forms.</summary>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.NA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2005-08-18T14:13:14Z</published>
+    <arxiv:comment>53 pages, 24 figures. Fixed labels in figures</arxiv:comment>
+    <arxiv:primary_category term="math.DG"/>
+    <author>
+      <name>Mathieu Desbrun</name>
+    </author>
+    <author>
+      <name>Anil N. Hirani</name>
+    </author>
+    <author>
+      <name>Melvin Leok</name>
+    </author>
+    <author>
+      <name>Jerrold E. Marsden</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2010.15520v1</id>
+    <title>A Primitive Variable Discrete Exterior Calculus Discretization of Incompressible Navier-Stokes Equations over Surface Simplicial Meshes</title>
+    <updated>2020-10-29T12:30:59Z</updated>
+    <link href="https://arxiv.org/abs/2010.15520v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2010.15520v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A conservative primitive variable discrete exterior calculus (DEC) discretization of the Navier-Stokes equations is performed. An existing DEC method (Mohamed, M. S., Hirani, A. N., Samtaney, R. (2016). Discrete exterior calculus discretization of incompressible Navier-Stokes equations over surface simplicial meshes. Journal of Computational Physics, 312, 175-191) is modified to this end, and is extended to include the energy-preserving time integration and the Coriolis force to enhance its applicability to investigate the late time behavior of flows on rotating surfaces, i.e., that of the planetary flows. The simulation experiments show second order accuracy of the scheme for the structured-triangular meshes, and first order accuracy for the otherwise unstructured meshes. The method exhibits second order kinetic energy relative error convergence rate with mesh size for inviscid flows. The test case of flow on a rotating sphere demonstrates that the method preserves the stationary state, and conserves the inviscid invariants over an extended period of time.</summary>
+    <category term="physics.flu-dyn" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-10-29T12:30:59Z</published>
+    <arxiv:primary_category term="physics.flu-dyn"/>
+    <author>
+      <name>Pankaj Jagad</name>
+    </author>
+    <author>
+      <name>Abdullah Abukhwejah</name>
+    </author>
+    <author>
+      <name>Mamdouh Mohamed</name>
+    </author>
+    <author>
+      <name>Ravi Samtaney</name>
+    </author>
+    <arxiv:doi>10.1063/5.0035981</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1063/5.0035981" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1802.04506v1</id>
+    <title>Numerical Convergence of Discrete Exterior Calculus on Arbitrary Surface Meshes</title>
+    <updated>2018-02-13T08:37:57Z</updated>
+    <link href="https://arxiv.org/abs/1802.04506v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1802.04506v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Discrete exterior calculus (DEC) is a structure-preserving numerical framework for partial differential equations solution, particularly suitable for simplicial meshes. A longstanding and widespread assumption has been that DEC requires special (Delaunay) triangulations, which complicated the mesh generation process especially on curved surfaces. This paper presents numerical evidences demonstrating that this restriction is unnecessary. Convergence experiments are carried out for various physical problems using both Delaunay and non-Delaunay triangulations. Signed diagonal definition for the key DEC operator (Hodge star) is adopted. The errors converge as expected for all considered meshes and experiments. This relieves the DEC paradigm from unnecessary triangulation limitation.</summary>
+    <category term="math.NA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2018-02-13T08:37:57Z</published>
+    <arxiv:primary_category term="math.NA"/>
+    <author>
+      <name>Mamdouh S. Mohamed</name>
+    </author>
+    <author>
+      <name>Anil N. Hirani</name>
+    </author>
+    <author>
+      <name>Ravi Samtaney</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/0810.3434v4</id>
+    <title>Numerical method for Darcy flow derived using Discrete Exterior Calculus</title>
+    <updated>2011-08-31T19:24:11Z</updated>
+    <link href="https://arxiv.org/abs/0810.3434v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/0810.3434v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We derive a numerical method for Darcy flow, hence also for Poisson's equation in mixed (first order) form, based on discrete exterior calculus (DEC). Exterior calculus is a generalization of vector calculus to smooth manifolds and DEC is one of its discretizations on simplicial complexes such as triangle and tetrahedral meshes. DEC is a coordinate invariant discretization, in that it does not depend on the embedding of the simplices or the whole mesh. We start by rewriting the governing equations of Darcy flow using the language of exterior calculus. This yields a formulation in terms of flux differential form and pressure. The numerical method is then derived by using the framework provided by DEC for discretizing differential forms and operators that act on forms. We also develop a discretization for spatially dependent Hodge star that varies with the permeability of the medium. This also allows us to address discontinuous permeability. The matrix representation for our discrete non-homogeneous Hodge star is diagonal, with positive diagonal entries. The resulting linear system of equations for flux and pressure are saddle type, with a diagonal matrix as the top left block. The performance of the proposed numerical method is illustrated on many standard test problems. These include patch tests in two and three dimensions, comparison with analytically known solution in two dimensions, layered medium with alternating permeability values, and a test with a change in permeability along the flow direction. We also show numerical evidence of convergence of the flux and the pressure. A convergence experiment is also included for Darcy flow on a surface. A short introduction to the relevant parts of smooth and discrete exterior calculus is included in this paper. We also include a discussion of the boundary condition in terms of exterior calculus.</summary>
+    <category term="math.NA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2008-10-19T21:26:28Z</published>
+    <arxiv:comment>Added numerical experiment for flow on a surface. Other small changes in meshing related comments</arxiv:comment>
+    <arxiv:primary_category term="math.NA"/>
+    <author>
+      <name>Anil N. Hirani</name>
+    </author>
+    <author>
+      <name>Kalyana B. Nakshatrala</name>
+    </author>
+    <author>
+      <name>Jehanzeb H. Chaudhry</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.12501v1</id>
+    <title>Porous Convection in the Discrete Exterior Calculus with Geometric Multigrid</title>
+    <updated>2025-08-17T21:25:10Z</updated>
+    <link href="https://arxiv.org/abs/2508.12501v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.12501v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The discrete exterior calculus (DEC) defines a family of discretized differential operators which preserve certain desirable properties from the exterior calculus. We formulate and solve the porous convection equations in the DEC via the Decapodes.jl embedded domain-specific language (eDSL) for multiphysics problems discretized via CombinatorialSpaces.jl. CombinatorialSpaces.jl is an open-source Julia library which implements the DEC over simplicial complexes, and now offers a geometric multigrid solver over maps between subdivided simplicial complexes. We demonstrate numerical results of multigrid solvers for the Poisson problem and porous convection problem, both as a standalone solver and as a preconditioner for open-source Julia iterative methods libraries.</summary>
+    <category term="cs.CE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-17T21:25:10Z</published>
+    <arxiv:primary_category term="cs.CE"/>
+    <author>
+      <name>Luke Morris</name>
+    </author>
+    <author>
+      <name>George Rauta</name>
+    </author>
+    <author>
+      <name>Kevin Carlson</name>
+    </author>
+    <author>
+      <name>James Fairbanks</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.00725v2</id>
+    <title>Averaging Property of Wedge Product and Naturality in Discrete Exterior Calculus</title>
+    <updated>2023-11-13T17:33:06Z</updated>
+    <link href="https://arxiv.org/abs/2310.00725v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.00725v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In exterior calculus on smooth manifolds, the exterior derivative and wedge product are natural with respect to smooth maps between manifolds, that is, these operations commute with pullback. In discrete exterior calculus (DEC), simplicial cochains play the role of discrete forms, the coboundary operator serves as the discrete exterior derivative, and the antisymmetrized cup product provides a discrete wedge product. We show that these discrete operations in DEC are natural with respect to abstract simplicial maps. A second contribution is a new averaging interpretation of the discrete wedge product in DEC. We also show that this wedge product is the same as Wilson's cochain product defined using Whitney and de Rham maps.</summary>
+    <category term="math.NA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-01T16:52:21Z</published>
+    <arxiv:comment>arXiv admin note: substantial text overlap with arXiv:2104.10277. Note from authors in response to arXiv admin note: The material in this submission was split off from arXiv:2104.10277 and version 2 of arXiv:2104.10277 does not contain the material in this submission. This revision includes material about cochain product using Whitney forms and connection to C-infinity algebras</arxiv:comment>
+    <arxiv:primary_category term="math.NA"/>
+    <author>
+      <name>Mark D. Schubel</name>
+    </author>
+    <author>
+      <name>Daniel Berwick-Evans</name>
+    </author>
+    <author>
+      <name>Anil N. Hirani</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1905.00992v2</id>
+    <title>Extending discrete exterior calculus to a fractional derivative</title>
+    <updated>2019-07-16T22:48:07Z</updated>
+    <link href="https://arxiv.org/abs/1905.00992v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1905.00992v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Fractional partial differential equations (FDEs) are used to describe phenomena that involve a "non-local" or "long-range" interaction of some kind. Accurate and practical numerical approximation of their solutions is challenging due to the dense matrices arising from standard discretization procedures. In this paper, we begin to extend the well-established computational toolkit of Discrete Exterior Calculus (DEC) to the fractional setting, focusing on proper discretization of the fractional derivative. We define a Caputo-like fractional discrete derivative, in terms of the standard discrete exterior derivative operator from DEC, weighted by a measure of distance between $p$-simplices in a simplicial complex. We discuss key theoretical properties of the fractional discrete derivative and compare it to the continuous fractional derivative via a series of numerical experiments.</summary>
+    <category term="math.NA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.GR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-05-02T23:57:44Z</published>
+    <arxiv:comment>18 pages, 11 figures. Work is to be presented at Solid and Physical Modeling 2019</arxiv:comment>
+    <arxiv:primary_category term="math.NA"/>
+    <arxiv:journal_ref>Computer-Aided Design 114 (2019) 64-72</arxiv:journal_ref>
+    <author>
+      <name>Justin Crum</name>
+    </author>
+    <author>
+      <name>Joshua A. Levine</name>
+    </author>
+    <author>
+      <name>Andrew Gillette</name>
+    </author>
+    <arxiv:doi>10.1016/j.cad.2019.05.018</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1016/j.cad.2019.05.018" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1508.01166v2</id>
+    <title>Discrete exterior calculus discretization of incompressible Navier-Stokes equations over surface simplicial meshes</title>
+    <updated>2016-02-11T17:11:16Z</updated>
+    <link href="https://arxiv.org/abs/1508.01166v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1508.01166v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A conservative discretization of incompressible Navier-Stokes equations is developed based on discrete exterior calculus (DEC). A distinguishing feature of our method is the use of an algebraic discretization of the interior product operator and a combinatorial discretization of the wedge product. The governing equations are first rewritten using the exterior calculus notation, replacing vector calculus differential operators by the exterior derivative, Hodge star and wedge product operators. The discretization is then carried out by substituting with the corresponding discrete operators based on the DEC framework. Numerical experiments for flows over surfaces reveal a second order accuracy for the developed scheme when using structured-triangular meshes, and first order accuracy for otherwise unstructured meshes. By construction, the method is conservative in that both mass and vorticity are conserved up to machine precision. The relative error in kinetic energy for inviscid flow test cases converges in a second order fashion with both the mesh size and the time step.</summary>
+    <category term="physics.flu-dyn" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.NA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2015-08-05T18:50:28Z</published>
+    <arxiv:comment>35 pages, 8 figures</arxiv:comment>
+    <arxiv:primary_category term="physics.flu-dyn"/>
+    <arxiv:journal_ref>J. Comput. Phys., 312, (2016), 175-191</arxiv:journal_ref>
+    <author>
+      <name>Mamdouh S. Mohamed</name>
+    </author>
+    <author>
+      <name>Anil N. Hirani</name>
+    </author>
+    <author>
+      <name>Ravi Samtaney</name>
+    </author>
+    <arxiv:doi>10.1016/j.jcp.2016.02.028</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1016/j.jcp.2016.02.028" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.03763v1</id>
+    <title>Optimizing Weighted Hodge Laplacian Flows on Simplicial Complexes</title>
+    <updated>2026-02-03T17:25:49Z</updated>
+    <link href="https://arxiv.org/abs/2602.03763v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.03763v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Simplicial complexes are generalizations of graphs that describe higher-order network interactions among nodes in the graph. Network dynamics described by graph Laplacian flows have been widely studied in network science and control theory, and these can be generalized to simplicial complexes using Hodge Laplacians. We study weighted Hodge Laplacian flows on simplicial complexes. In particular, we develop a framework for weighted consensus dynamics based on weighted Hodge Laplacian flows and show some decomposition results for weighted Hodge Laplacians. We then show that two key spectral functions of the weighted Hodge Laplacians, the trace of the pseudoinverse and the smallest non-zero eigenvalue, are jointly convex in upper and lower simplex weights and can be formulated as semidefinite programs. Thus, globally optimal weights can be efficiently determined to optimize flows in terms of these functions. Numerical experiments demonstrate that optimal weights can substantially improve these metrics compared to uniform weights.</summary>
+    <category term="math.OC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-03T17:25:49Z</published>
+    <arxiv:comment>6 pages, 4 figures, presented at 2025 Conference on Decision and Control</arxiv:comment>
+    <arxiv:primary_category term="math.OC"/>
+    <arxiv:journal_ref>2025 IEEE 64th Conference on Decision and Control (CDC), 5276-5281</arxiv:journal_ref>
+    <author>
+      <name>Mathias Hudoba de Badyn</name>
+    </author>
+    <author>
+      <name>Tyler Summers</name>
+    </author>
+    <arxiv:doi>10.1109/CDC57313.2025.11312795</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/CDC57313.2025.11312795" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.25192v1</id>
+    <title>Parallelisation of Discrete Exterior Calculus via Representation Theory on Curved and Three-Dimensional Meshes</title>
+    <updated>2026-07-28T01:46:13Z</updated>
+    <link href="https://arxiv.org/abs/2607.25192v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.25192v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We establish a universal block-diagonalization framework for Discrete Exterior Calculus (DEC) operators on symmetric meshes, enabling embarrassingly parallel solvers with provable FLOP reductions. We prove that the two fundamental DEC operators, the discrete exterior derivative $d$ and the Hodge star $\star$, are equivariant under isometric finite group actions on simplicial complexes. The proof exploits the permutation representation induced on cochain spaces by the group action. As a consequence, any operator assembled from $d$ and $\star$ (including the Hodge Laplacian, the codifferential, Maxwell-type operators, and elasticity operators) inherits a block-diagonal structure in a single symmetry-adapted basis, which is computed only once per mesh. Unlike spectral methods restricted to flat Platonic domains, the framework applies natively to curved manifolds and is applicable in principle to computational electromagnetism and geometric fluid simulation on symmetric domains. Numerical experiments on a geodesic sphere ($I_h$ symmetry) and a hexagonal torus ($D_{6h}$ symmetry) yield FLOP-based parallel speedups, relative to a dense direct factorization, of up to $62\times$ and $182\times$, respectively. A further experiment on a body-centred-cubic (BCC) tessellation of the flat 3-torus $T^3$ with $T_d$ symmetry confirms equivariance of the exterior derivative, Hodge star, and Hodge Laplacian at machine precision for form degrees $k=0,1,2$ across three mesh resolutions. The FLOP-based sequential speedup approaches its theoretical asymptote of $\approx 9.07\times$, which a standard Schur-multiplicity reduction deepens by a further factor of order $|G|$. These results show that a single symmetry-adapted basis reduces the linear-solve cost of structure-preserving DEC computations on curved and three-dimensional meshes.</summary>
+    <category term="math.NA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-28T01:46:13Z</published>
+    <arxiv:comment>33 pages, 8 figures, 6 tables. Code: https://github.com/ldsufrpe/dec-equivariance</arxiv:comment>
+    <arxiv:primary_category term="math.NA"/>
+    <author>
+      <name>Leon D. da Silva</name>
+    </author>
+    <author>
+      <name>Marcelo P. Santos</name>
+    </author>
+    <author>
+      <name>José D. da Silva</name>
+    </author>
+    <author>
+      <name>Gilson Ferreira</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1807.05044v5</id>
+    <title>Random Walks on Simplicial Complexes and the normalized Hodge 1-Laplacian</title>
+    <updated>2019-11-06T16:36:04Z</updated>
+    <link href="https://arxiv.org/abs/1807.05044v5" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1807.05044v5" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Focusing on coupling between edges, we generalize the relationship between the normalized graph Laplacian and random walks on graphs by devising an appropriate normalization for the Hodge Laplacian -- the generalization of the graph Laplacian for simplicial complexes -- and relate this to a random walk on edges. Importantly, these random walks are intimately connected to the topology of the simplicial complex, just as random walks on graphs are related to the topology of the graph. This serves as a foundational step towards incorporating Laplacian-based analytics for higher-order interactions. We demonstrate how to use these dynamics for data analytics that extract information about the edge-space of a simplicial complex that complements and extends graph-based analysis. Specifically, we use our normalized Hodge Laplacian to derive spectral embeddings for examining trajectory data of ocean drifters near Madagascar and also develop a generalization of personalized PageRank for the edge-space of simplicial complexes to analyze a book co-purchasing dataset.</summary>
+    <category term="cs.SI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DM" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.AT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.soc-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2018-07-13T13:05:07Z</published>
+    <arxiv:comment>38 pages, 11 figures, 1 table (abstract above shortened); to appear in SIAM Review, June 2020</arxiv:comment>
+    <arxiv:primary_category term="cs.SI"/>
+    <arxiv:journal_ref>SIAM Review 2020 62:2, 353-391</arxiv:journal_ref>
+    <author>
+      <name>Michael T. Schaub</name>
+    </author>
+    <author>
+      <name>Austin R. Benson</name>
+    </author>
+    <author>
+      <name>Paul Horn</name>
+    </author>
+    <author>
+      <name>Gabor Lippner</name>
+    </author>
+    <author>
+      <name>Ali Jadbabaie</name>
+    </author>
+    <arxiv:doi>10.1137/18M1201019</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1137/18M1201019" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.29579v1</id>
+    <title>Stringy Irregular Hodge Numbers for Non-Simplicial Toric Landau--Ginzburg Data</title>
+    <updated>2026-08-27T07:27:10Z</updated>
+    <link href="https://arxiv.org/abs/2609.29579v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.29579v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We extend orbifold irregular Hodge theory from simplicial toric Landau--Ginzburg models to data defined by possibly non-simplicial stacky fans. For a Clarke mirror pair, we construct a filtered Koszul--de Rham complex over toric face rings. For simplicial ray-supported data, a strict filtered comparison identifies this complex with the Harder--Lee cellular residue complex, and hence it computes the orbifold irregular Hodge numbers.
+  Using this complex, for a fixed possibly non-simplicial datum, we prove that the models obtained from its projective crepant simplicial subdivisions have the same orbifold irregular Hodge polynomial whenever the potential is nondegenerate at infinity. This common value defines the stringy irregular Hodge numbers of the original datum.</summary>
+    <category term="math.AG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-27T07:27:10Z</published>
+    <arxiv:primary_category term="math.AG"/>
+    <author>
+      <name>Haoxu Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.13834v2</id>
+    <title>Topology-Preserving Neural Operator Learning via Hodge Decomposition</title>
+    <updated>2026-05-29T19:42:16Z</updated>
+    <link href="https://arxiv.org/abs/2605.13834v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.13834v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we study solution operators of physical field equations on geometric meshes from a function-space perspective. We reveal that Hodge orthogonality fundamentally resolves spectral interference by isolating unlearnable topological degrees of freedom from learnable geometric dynamics, enabling an additive approximation confined to structure-preserving subspaces. Building on Hodge theory and operator splitting, we derive a principled operator-level decomposition. The result is a Hybrid Eulerian-Lagrangian architecture with an algebraic-level inductive bias we call Hodge Spectral Duality (HSD). In our framework, we use discrete differential forms to capture topology-dominated components and an orthogonal auxiliary ambient space to represent complex local dynamics. Our method achieves superior accuracy and efficiency on geometric graphs with enhanced fidelity to physical invariants. Our code is available at https://github.com/ContinuumCoder/Hodge-Spectral-Duality</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-13T17:56:23Z</published>
+    <arxiv:comment>Accepted at ICML 2026. Code available at https://github.com/ContinuumCoder/Hodge-Spectral-Duality</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Dongzhe Zheng</name>
+    </author>
+    <author>
+      <name>Tao Zhong</name>
+    </author>
+    <author>
+      <name>Christine Allen-Blanchette</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2409.04731v1</id>
+    <title>A Hybrid Discrete Exterior Calculus Discretization and Fourier Transform of the Incompressible Navier-Stokes Equations in 3D</title>
+    <updated>2024-09-07T06:26:45Z</updated>
+    <link href="https://arxiv.org/abs/2409.04731v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.04731v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The simulation of fluid flow problems, specifically incompressible flows governed by the Navier-Stokes equations (NSE), holds fundamental significance in a range of scientific and engineering applications. Traditional numerical methods employed for solving these equations on three-dimensional (3D) meshes are commonly known for their moderate conservation properties, high computational intensity and substantial resource demands. Relying on its ability to capture the intrinsic geometric and topological properties of simplicial meshes, discrete exterior calculus (DEC) provides a discrete analog to differential forms and enables the discretization of partial differential equations (PDEs) on meshes.We present a hybrid discretization approach for the 3D incompressible Navier-Stokes equations based on DEC and Fourier transform (FT). An existing conservative primitive variable DEC discretization of incompressible Navier-Stokes equations over surface simplicial meshes developed by Jagad et al. [1] is considered in the planar dimension while the Fourier expansion is applied in the third dimension. The test cases of three-dimensional lid-driven cavity and viscous Taylor-Green three-dimensional vortex (TGV) flows show that the simulation results using this hybrid approach are comparable to literature.</summary>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.flu-dyn" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-09-07T06:26:45Z</published>
+    <arxiv:comment>29 pages, 17 figures</arxiv:comment>
+    <arxiv:primary_category term="physics.comp-ph"/>
+    <author>
+      <name>Abdullah Abukhwejah</name>
+    </author>
+    <author>
+      <name>Pankaj Jagad</name>
+    </author>
+    <author>
+      <name>Ravi Samtaney</name>
+    </author>
+    <author>
+      <name>Peter Schmid</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2505.24534v1</id>
+    <title>HLSAD: Hodge Laplacian-based Simplicial Anomaly Detection</title>
+    <updated>2025-05-30T12:41:08Z</updated>
+    <link href="https://arxiv.org/abs/2505.24534v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2505.24534v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we propose HLSAD, a novel method for detecting anomalies in time-evolving simplicial complexes. While traditional graph anomaly detection techniques have been extensively studied, they often fail to capture changes in higher-order interactions that are crucial for identifying complex structural anomalies. These higher-order interactions can arise either directly from the underlying data itself or through graph lifting techniques. Our approach leverages the spectral properties of Hodge Laplacians of simplicial complexes to effectively model multi-way interactions among data points. By incorporating higher-dimensional simplicial structures into our method, our method enhances both detection accuracy and computational efficiency. Through comprehensive experiments on both synthetic and real-world datasets, we demonstrate that our approach outperforms existing graph methods in detecting both events and change points.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-05-30T12:41:08Z</published>
+    <arxiv:comment>Accepted for KDD 2025</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Florian Frantzen</name>
+    </author>
+    <author>
+      <name>Michael T. Schaub</name>
+    </author>
+    <arxiv:doi>10.1145/3711896.3736998</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3711896.3736998" title="doi"/>
+  </entry>
+</feed>

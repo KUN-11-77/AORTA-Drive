@@ -853,3 +853,23 @@ the current open-ended geometry certificate iteration remains STOP.
   preserve this dependence and force abstention when the decision sign is not identifiable.
 - **Boundary:** D0 did not read teacher, fields or outcomes. It neither validates the new target nor
   supports prediction, decision, driving, safety, latency, NavDream, novelty or publication claims.
+
+## ADR-0062 — Govern complexity by falsified simpler alternatives, not module count
+
+- **Status:** accepted as the post-D0 architecture policy.
+- **Decision:** retain complex deterministic structure when it is required by a counterexample,
+  theorem assumption, auditable error direction or shared-compute requirement. Limit trainable
+  novelty to the quotient decoder and correlated uncertainty mechanism unless a later registered
+  failure proves another component necessary.
+- **Adopt now as theory candidates:** discrete-exterior/Hodge consistency, additive-gauge quotient,
+  support-conditioned graph uncertainty, exact shared-variable robust readout and selective
+  Simplex-style fallback.
+- **Conditional only:** sheaf fusion, continuous neural fields, PEA-style adaptation, learned depth,
+  diffusion/RL candidate generation and target-shift weighting. Each needs its own failure evidence
+  and capacity/latency-matched deletion test.
+- **Reasoning:** parsimony means no unsupported mechanisms, not artificially few mechanisms. A
+  system can be mathematically layered and operationally complex while retaining one dominant
+  contribution: identifiable decision arbitration from partially observed appearance-robust task
+  relations.
+- **Boundary:** the literature mapping and candidate architecture do not validate novelty or any
+  theorem assumptions on NAVSIM/NavDream; B0/B1 remain required before training.

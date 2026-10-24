@@ -1,0 +1,16 @@
+{
+  "requested_url": "https://export.arxiv.org/api/query?search_query=all%3A%22graph%20Hodge%22%20AND%20all%3A%22neural%20network%22&start=0&max_results=10&sortBy=relevance&sortOrder=descending",
+  "retrieved_at_utc": "2026-10-24T15:27:48.487502+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://export.arxiv.org/api/query?search_query=all%3A%22graph%20Hodge%22%20AND%20all%3A%22neural%20network%22&start=0&max_results=10&sortBy=relevance&sortOrder=descending",
+  "status": 200,
+  "content_type": "application/atom+xml; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 766,
+  "sha256": "64c98cd217342f46d57a6087a5a436fbd79f0e075dd8b1f270839c437f1b9a35",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\refine-logs\\2026-10-24_aorta_h7bs4\\sources\\arxiv_graph_hodge.xml",
+  "elapsed_seconds": 0.951,
+  "pdf_detected": false
+}

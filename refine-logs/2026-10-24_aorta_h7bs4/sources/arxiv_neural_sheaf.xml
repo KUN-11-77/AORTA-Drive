@@ -1,0 +1,383 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/xuYss3ehclBEFb+H/2kdKqBE3rk</id>
+  <title>arXiv Query: search_query=(all:"sheaf neural network" OR all:"neural sheaf")&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-10-24T15:29:03Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22sheaf+neural+network%22+OR+all:%22neural+sheaf%22&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>43</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2605.19021v2</id>
+    <title>Deep Neural Sheaf Diffusion</title>
+    <updated>2026-05-22T18:44:04Z</updated>
+    <link href="https://arxiv.org/abs/2605.19021v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.19021v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep Graph Neural Networks (GNNs) are essential for capturing complex dependencies in graph-structured data. However, scaling GNNs to depth remains challenging, as stacking layers leads to representation collapse and diminishing sensitivity due to repeated aggregation. While Neural Sheaf Diffusion (NSD) provides strong theoretical guarantees against such collapse, these guarantees do not translate to practice: as depth increases, the disagreement signal of the sheaf Laplacian vanishes, limiting the contribution of deeper layers. We identify mechanisms that hinder NSD effectiveness at depth and propose \emph{Deep Neural Sheaf Diffusion} (DNSD), which replaces the sheaf Laplacian with a sheaf adjacency operator to maintain informative signals across layers. This is complemented by normalization, odd nonlinearities, and gating. To provide a principled explanation of the expected performance improvement, we contrast sheaf diffusion to graph attention mechanisms, highlighting that DNSD replaces scalar attention scores with matrix-valued edge functions and normalizes node representations rather than attention scores. We demonstrate empirically that DNSD effectively utilizes deep aggregation in graph tasks, outperforming GNN and NSD baselines with up to 30pp accuracy on synthetic long-range datasets, and consistently outperforming them on real-world benchmarks. These results position sheaf-based architectures as a promising building block for graph foundation models by supporting effective deep architectures.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-18T18:42:19Z</published>
+    <arxiv:comment>Accepted at the ICML 2026 Workshop on Graph Foundation Models (GFM@ICML 2026). Code available at https://github.com/remibourgerie/deep-neural-sheaf-diffusion</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Rémi Bourgerie</name>
+    </author>
+    <author>
+      <name>Šarūnas Girdzijauskas</name>
+    </author>
+    <author>
+      <name>Viktoria Fodor</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.09590v2</id>
+    <title>Bayesian Sheaf Neural Networks</title>
+    <updated>2025-09-12T16:40:19Z</updated>
+    <link href="https://arxiv.org/abs/2410.09590v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.09590v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Equipping graph neural networks with a convolution operation defined in terms of a cellular sheaf offers advantages for learning expressive representations of heterophilic graph data. The most flexible approach to constructing the sheaf is to learn it as part of the network as a function of the node features. However, this leaves the network potentially overly sensitive to the learned sheaf. As a counter-measure, we propose a variational approach to learning cellular sheaves within sheaf neural networks, yielding an architecture we refer to as a Bayesian sheaf neural network. As part of this work, we define a novel family of reparameterizable probability distributions on the rotation group $SO(n)$ using the Cayley transform. We evaluate the Bayesian sheaf neural network on several graph datasets, and show that our Bayesian sheaf models achieve leading performance compared to baseline models and are less sensitive to the choice of hyperparameters under limited training data settings.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-12T16:46:48Z</published>
+    <arxiv:comment>32 pages, 4 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Patrick Gillespie</name>
+    </author>
+    <author>
+      <name>Layal Bou Hamdan</name>
+    </author>
+    <author>
+      <name>Ioannis Schizas</name>
+    </author>
+    <author>
+      <name>David L. Boothe</name>
+    </author>
+    <author>
+      <name>Vasileios Maroulas</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.00159v2</id>
+    <title>Sheaf Neural Networks and biomedical applications</title>
+    <updated>2026-03-19T14:16:00Z</updated>
+    <link href="https://arxiv.org/abs/2602.00159v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.00159v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The purpose of this paper is to elucidate the theory and mathematical modelling behind the sheaf neural network (SNN) algorithm and then show how SNN can effectively answer to biomedical questions in a concrete case study and outperform the most popular graph neural networks (GNNs) as graph convolutional networks (GCNs), graph attention networks (GAT) and GraphSage.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.NE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-29T19:36:32Z</published>
+    <arxiv:comment>Bibliography updated</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Aneeqa Mehrab</name>
+    </author>
+    <author>
+      <name>Jan Willem Van Looy</name>
+    </author>
+    <author>
+      <name>Pietro Demurtas</name>
+    </author>
+    <author>
+      <name>Stefano Iotti</name>
+    </author>
+    <author>
+      <name>Emil Malucelli</name>
+    </author>
+    <author>
+      <name>Francesca Rossi</name>
+    </author>
+    <author>
+      <name>Ferdinando Zanchetta</name>
+    </author>
+    <author>
+      <name>Rita Fioresi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.01322v1</id>
+    <title>Clifford Sheaf Neural Networks</title>
+    <updated>2026-10-01T08:49:33Z</updated>
+    <link href="https://arxiv.org/abs/2610.01322v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.01322v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We introduce the Clifford Sheaf Neural Network (CSNN), an equivariant sheaf neural network for geometric graphs that places a Clifford algebra on each stalk of a cellular sheaf and transports multivector features along edges. The canonical choice of restriction map for sheaves with algebra-valued stalks is algebra homomorphism. Adding the constraint of equivariance, the naive choice becomes versor conjugation. However, versor conjugation is expressively weak, so we drop algebra homomorphism and arrive at the K-term sandwich. The resulting sheaf Laplacian is positive semidefinite by construction, needs no versor constraint, and still mixes grades. Our main contribution characterizes the resulting family of restriction maps along three axes: which grades a map couples, how much of the endomorphism space it reaches, and how well it is conditioned. The K-term sandwich spans half of the endomorphism space, and in Cl(3, 0, 0) it corresponds to the maps that commute with the central pseudoscalar. The number of terms controls expressivity. CSNN is the reversion member, a first-order model by construction and the grade-mixing corner of this family, developed as a sheaf construction for graph-level equivariant regression.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T08:49:33Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Kotaro Kamiya</name>
+    </author>
+    <author>
+      <name>Joel Nicholls</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2012.06333v1</id>
+    <title>Sheaf Neural Networks</title>
+    <updated>2020-12-08T01:19:48Z</updated>
+    <link href="https://arxiv.org/abs/2012.06333v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2012.06333v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present a generalization of graph convolutional networks by generalizing the diffusion operation underlying this class of graph neural networks. These sheaf neural networks are based on the sheaf Laplacian, a generalization of the graph Laplacian that encodes additional relational structure parameterized by the underlying graph. The sheaf Laplacian and associated matrices provide an extended version of the diffusion operation in graph convolutional networks, providing a proper generalization for domains where relations between nodes are non-constant, asymmetric, and varying in dimension. We show that the resulting sheaf neural networks can outperform graph convolutional networks in domains where relations between nodes are asymmetric and signed.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.AT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-12-08T01:19:48Z</published>
+    <arxiv:comment>NeuRips 2020 Workshop on TDA and Beyond</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Jakob Hansen</name>
+    </author>
+    <author>
+      <name>Thomas Gebhart</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2512.00242v3</id>
+    <title>Polynomial Neural Sheaf Diffusion: A Spectral Filtering Approach on Cellular Sheaves</title>
+    <updated>2026-05-14T22:07:04Z</updated>
+    <link href="https://arxiv.org/abs/2512.00242v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.00242v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Sheaf Neural Networks equip graph structures with a cellular sheaf: a geometric structure which assigns local vector spaces (stalks) and a linear learnable restriction/transport maps to nodes and edges, yielding an edge-aware inductive bias that handles heterophily and limits oversmoothing. However, common Neural Sheaf Diffusion implementations rely on SVD-based sheaf normalization and dense per-edge restriction maps, which scale with stalk dimension, require frequent Laplacian rebuilds, and yield brittle gradients. To address these limitations, we introduce Polynomial Neural Sheaf Diffusion (PolyNSD), a new sheaf diffusion approach whose propagation operator is a degree-K polynomial in a normalised sheaf Laplacian, evaluated via a stable three-term recurrence on a spectrally rescaled operator. This provides an explicit K-hop receptive field in a single layer (independently of the stalk dimension), with a trainable spectral response obtained as a convex mixture of K+1 orthogonal polynomial basis responses. PolyNSD enforces stability via convex mixtures, spectral rescaling, and residual/gated paths, reaching new state-of-the-art results on both homophilic and heterophilic benchmarks, inverting the Neural Sheaf Diffusion trend by obtaining these results with just diagonal restriction maps, decoupling performance from large stalk dimension, while reducing runtime and memory requirements.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.ET" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-28T23:10:54Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Alessio Borgi</name>
+    </author>
+    <author>
+      <name>Fabrizio Silvestri</name>
+    </author>
+    <author>
+      <name>Pietro Liò</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2206.08702v1</id>
+    <title>Sheaf Neural Networks with Connection Laplacians</title>
+    <updated>2022-06-17T11:39:52Z</updated>
+    <link href="https://arxiv.org/abs/2206.08702v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2206.08702v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A Sheaf Neural Network (SNN) is a type of Graph Neural Network (GNN) that operates on a sheaf, an object that equips a graph with vector spaces over its nodes and edges and linear maps between these spaces. SNNs have been shown to have useful theoretical properties that help tackle issues arising from heterophily and over-smoothing. One complication intrinsic to these models is finding a good sheaf for the task to be solved. Previous works proposed two diametrically opposed approaches: manually constructing the sheaf based on domain knowledge and learning the sheaf end-to-end using gradient-based methods. However, domain knowledge is often insufficient, while learning a sheaf could lead to overfitting and significant computational overhead. In this work, we propose a novel way of computing sheaves drawing inspiration from Riemannian geometry: we leverage the manifold assumption to compute manifold-and-graph-aware orthogonal maps, which optimally align the tangent spaces of neighbouring data points. We show that this approach achieves promising results with less computational overhead when compared to previous SNN models. Overall, this work provides an interesting connection between algebraic topology and differential geometry, and we hope that it will spark future research in this direction.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.AT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-06-17T11:39:52Z</published>
+    <arxiv:comment>Presented at the ICML 2022 Workshop on Topology, Algebra, and Geometry in Machine Learning</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Federico Barbero</name>
+    </author>
+    <author>
+      <name>Cristian Bodnar</name>
+    </author>
+    <author>
+      <name>Haitz Sáez de Ocáriz Borde</name>
+    </author>
+    <author>
+      <name>Michael Bronstein</name>
+    </author>
+    <author>
+      <name>Petar Veličković</name>
+    </author>
+    <author>
+      <name>Pietro Liò</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.20308v2</id>
+    <title>Sheaf Neural Networks on SPD Manifolds: Second-Order Geometric Representation Learning</title>
+    <updated>2026-05-31T06:50:24Z</updated>
+    <link href="https://arxiv.org/abs/2604.20308v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.20308v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Graph neural networks face two fundamental challenges rooted in the linear structure of Euclidean vector spaces: (1) Current architectures represent geometry through vectors (directions, gradients), yet many tasks require matrix-valued representations that capture relationships between directions-such as how atomic orientations covary in a molecule. These second-order representations are naturally captured by points on the symmetric positive definite matrices (SPD) manifold; (2) Standard message passing applies shared transformations across edges. Sheaf neural networks address this via edge-specific transformations, but existing formulations remain confined to vector spaces and therefore cannot propagate matrix-valued features. We address both challenges by developing the first sheaf neural network operates natively on the SPD manifold. Our key insight is that the SPD manifold admits a Lie group structure, enabling well-posed analogs of sheaf operators without projecting to Euclidean space. Theoretically, we prove that SPD-valued sheaves are strictly more expressive than Euclidean sheaves: they admit consistent configurations (global sections) that vector-valued sheaves cannot represent, directly translating to richer learned representations. Empirically, our sheaf convolution transforms effectively rank-1 directional inputs into full-rank matrices encoding local geometric structure. Our dual-stream architecture achieves SOTA on 6/7 MoleculeNet benchmarks, with the sheaf framework providing consistent depth robustness.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-22T08:09:04Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yuhan Peng</name>
+    </author>
+    <author>
+      <name>Junwen Dong</name>
+    </author>
+    <author>
+      <name>Yuzhi Zeng</name>
+    </author>
+    <author>
+      <name>Hao Li</name>
+    </author>
+    <author>
+      <name>Ce Ju</name>
+    </author>
+    <author>
+      <name>Huitao Feng</name>
+    </author>
+    <author>
+      <name>Diaaeldin Taha</name>
+    </author>
+    <author>
+      <name>Anna Wienhard</name>
+    </author>
+    <author>
+      <name>Kelin Xia</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.19514v3</id>
+    <title>Do Sheaf Neural Networks Use Holonomy? A Measure--Intervene--Control Study</title>
+    <updated>2026-09-28T18:17:04Z</updated>
+    <link href="https://arxiv.org/abs/2607.19514v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.19514v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Geometric architectures are often motivated by internal mechanisms, but accuracy alone does not show whether predictions use them. In Sheaf Neural Networks (SNNs), edge transports form a connection whose cycle products define holonomy. We ask whether training changes triangle holonomy, whether predictions rely on the learned connection, and whether holonomy drives triangle counting. We use basis-independent loop readouts with identity interventions and shortcut controls. On high-homophily GraphUniverse graphs, triangle counting increases the mean SO(2) triangle rotation in Neural Sheaf Propagation (NSP) from 0.010 to 0.388 radians, while community detection ends at 0.029 radians. With more data, learned SO(2)--NSP outperforms Identity NSP, and replacing its transports after training increases error further. However, ridge regression is more accurate, diagonal maps improve without continuous rotation, and fixed-degree models develop rotation without improved counting. Thus, NSP can learn and rely on a nontrivial connection, but our experiments do not show that triangle holonomy drives its predictions.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-21T18:57:22Z</published>
+    <arxiv:comment>Longer version of Ext Abstract @GeoInt,ECCV</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Ankit Grover</name>
+    </author>
+    <author>
+      <name>Rémi Bourgerie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.28853v3</id>
+    <title>Equivariant Sheaf Neural Networks: Learning Geometric Transport on Graphs</title>
+    <updated>2026-10-01T11:48:09Z</updated>
+    <link href="https://arxiv.org/abs/2608.28853v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.28853v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Equivariant graph neural networks provide a principled way to model geometric systems, but efficient first-order architectures remain limited in how vector information can be transformed as it moves across a graph. We introduce \textsc{ESNN}, an Equivariant Sheaf Neural Network that enriches this interaction by learning directed, matrix-valued transport between neighboring vector features while preserving exact Euclidean equivariance. Rather than increasing the order of the representation, ESNN keeps scalar and vector features first-order and places the additional geometric flexibility in the edge transport itself. We characterize this transport theoretically, showing that when relative displacement is the only covariant geometric input, every linear $O(n)$-equivariant map decomposes into independent radial and tangential components, while learned covariant features enable richer feature-conditioned transformations. We also introduce controlled symmetry relaxation for systems with a preferred ambient direction, which may be prescribed or inferred from data while recovering full $E(n)$-equivariance when the directional pathway is inactive. Across particle dynamics, mesh-based simulation, point-cloud classification, and molecular property prediction, ESNN improves dynamics prediction, recovers the gravity axis when symmetry is broken, yields substantial gains on selected mesh tasks and long-horizon rollouts, and remains robust to unseen rotations. These results show that learning how geometric information is transported across edges offers a complementary route to expressive equivariant message passing without requiring higher-order representations.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-28T20:49:43Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Alessio Borgi</name>
+    </author>
+    <author>
+      <name>Mario Severino</name>
+    </author>
+    <author>
+      <name>Fabrizio Silvestri</name>
+    </author>
+    <author>
+      <name>Pietro Liò</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.03798v4</id>
+    <title>Foundations of Equivariant Deep Learning: Unifying Graph and Sheaf Neural Networks</title>
+    <updated>2026-08-11T17:48:50Z</updated>
+    <link href="https://arxiv.org/abs/2607.03798v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.03798v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Symmetry is everywhere in nature and society. Geometric deep learning builds architectures respecting group symmetries, whereas topological deep learning organizes computation through cells, incidence relations, and local-to-global structure. In this paper, we extend geometric deep learning beyond simple group actions and unify it with topological deep learning. Specifically, we develop order-equivariant neural networks (OENN), which generalize standard graph message passing and sheaf neural networks via the theory of equivariant vector bundles over face posets (or face categories). We (i) characterize all linear order-equivariant maps, (ii) build OENN layers, and (iii) prove universal approximation theorems (UATs) for continuous order-equivariant maps, which are new results even when restricted to sheaf neural networks. We illustrate the framework on graph and sheaf models. Our results can also be seen as extending the known UAT for graph neural networks to a more general setting that subsumes sheaf neural networks as well. In the appendix, we show that OENN can be connected, via the action groupoid Grothendieck construction, to CENN (category-equivariant neural network), which gives the categorical general form of equivariant neural networks, allowing us to leverage categorical symmetry in data and extending geometric deep learning from groups of symmetries to categories of transformations.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-04T09:59:11Z</published>
+    <arxiv:comment>Accepted at ICML 2026 as a spotlight paper with oral presentation</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yoshihiro Maruyama</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.21435v1</id>
+    <title>Gaussian Sheaf Neural Networks</title>
+    <updated>2026-05-20T17:26:32Z</updated>
+    <link href="https://arxiv.org/abs/2605.21435v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.21435v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Graph Neural Networks (GNNs) have become the de facto standard for learning on relational data. While traditional GNNs' message passing is well suited for vector-valued node features, there are cases in which node features are better represented by probability distributions than real vectors. Concretely, when node features are Gaussians, characterized by a mean and a covariance matrix, naively concatenating their parameters into a single vector and applying standard message passing discards the geometric and algebraic structure that governs means and covariances. We propose Gaussian Sheaf Neural Networks (GSNNs), a principled framework that incorporates these inductive biases into graph-based learning. Building on the theory of cellular sheaves, we derive a new Laplacian operator that generalizes the sheaf Laplacian to this setting and preserves its key properties. We complement our theoretical contributions with experiments on synthetic and real-world data that illustrate the practical relevance of GSNNs.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.AT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.CT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-20T17:26:32Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>André Ribeiro</name>
+    </author>
+    <author>
+      <name>Ana Luiza Tenório</name>
+    </author>
+    <author>
+      <name>Tiago da Silva</name>
+    </author>
+    <author>
+      <name>Diego Mesquita</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2505.05702v3</id>
+    <title>Hypergraph Neural Sheaf Diffusion: A Symmetric Simplicial Set Framework for Higher-Order Learning</title>
+    <updated>2025-07-30T18:24:32Z</updated>
+    <link href="https://arxiv.org/abs/2505.05702v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2505.05702v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The absence of intrinsic adjacency relations and orientation systems in hypergraphs creates fundamental challenges for constructing sheaf Laplacians of arbitrary degrees. We resolve these limitations through symmetric simplicial sets derived directly from hypergraphs, called symmetric simplicial lifting, which encode all possible oriented subrelations within each hyperedge as ordered tuples. This construction canonically defines adjacency via facet maps while inherently preserving hyperedge provenance. We establish that the normalized degree zero sheaf Laplacian on our symmetric simplicial lifting reduces exactly to the traditional graph normalized sheaf Laplacian when restricted to graphs, validating its mathematical consistency with prior graph-based sheaf theory. Furthermore, the induced structure preserves all structural information from the original hypergraph, ensuring that every multi-way relational detail is faithfully retained. Leveraging this framework, we introduce Hypergraph Neural Sheaf Diffusion (HNSD), the first principled extension of neural sheaf diffusion to hypergraphs. HNSD operates via normalized degree zero sheaf Laplacian over symmetric simplicial lifting, resolving orientation ambiguity and adjacency sparsity inherent to hypergraph learning. Experimental evaluations demonstrate HNSDs competitive performance across established benchmarks.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.AT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-05-09T00:26:38Z</published>
+    <arxiv:comment>Published in IEEE Access</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>IEEE Access, vol. 13, pp. 131823-131838, 2025</arxiv:journal_ref>
+    <author>
+      <name>Seongjin Choi</name>
+    </author>
+    <author>
+      <name>Gahee Kim</name>
+    </author>
+    <author>
+      <name>Yong-Geun Oh</name>
+    </author>
+    <arxiv:doi>10.1109/ACCESS.2025.3592104</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/ACCESS.2025.3592104" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.02558v1</id>
+    <title>Benchmarking Sheaf Neural Networks for Inductive Tasks</title>
+    <updated>2026-08-03T17:41:20Z</updated>
+    <link href="https://arxiv.org/abs/2608.02558v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.02558v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Sheaf Neural Networks (SNNs) generalize message passing by replacing scalar edge weights of standard Graph Neural Networks (GNNs) with learnable, edge-dependent restriction maps between node stalks. Despite their strong theoretical foundations and promising transductive results, SNNs have been evaluated almost exclusively on transductive node classification, leaving their behaviour under inductive protocols unknown. We address this gap through the first systematic benchmark of the sheaf design space, evaluating three diffusion mechanisms (neural sheaf diffusion, sheaf attention, and sheaf attention with Graph Attention Network v2), three restriction-map parameterizations, three stalk dimensions, and six modern GNN architectural components, within a message-passing reformulation that never assembles the heavy sheaf Laplacian, making the full design space trainable under cross-graph batching. Across $1{,}890$ controlled experiments on 14 inductive datasets, multiple insights emerge: restriction maps are the dominant design choice and general maps are preferable, larger stalks add capacity but not long-range reach, architectural components explain more performance variation than the entire sheaf-specific design space itself. Under a matched protocol, SNNs transfer to inductive settings but do not reach the strongest baselines, with gaps being dataset-dependent. Practically, a single sheaf configuration can generalize across datasets, so effort is better spent tuning the surrounding architectural recipe than the sheaf operator itself.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-03T17:41:20Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Stefano Fiorini</name>
+    </author>
+    <author>
+      <name>Edoardo Coppola</name>
+    </author>
+    <author>
+      <name>Pietro Liò</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2507.00647v4</id>
+    <title>Cooperative Sheaf Neural Networks</title>
+    <updated>2026-10-03T00:02:26Z</updated>
+    <link href="https://arxiv.org/abs/2507.00647v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2507.00647v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Sheaf diffusion has recently emerged as a promising design pattern for graph representation learning due to its inherent ability to handle heterophilic data and avoid oversmoothing. Meanwhile, cooperative message passing has also been proposed as a way to enhance the flexibility of information diffusion by allowing nodes to independently choose whether to propagate/gather information from/to neighbors. A natural question ensues: is sheaf diffusion capable of exhibiting this cooperative behavior? Here, we provide a negative answer to this question. In particular, we show that existing sheaf diffusion methods fail to achieve cooperative behavior due to the lack of message directionality. To circumvent this limitation, we introduce the notion of cellular sheaves over directed graphs and characterize their in- and out-degree Laplacians. We leverage our construction to propose Cooperative Sheaf Neural Networks (CSNNs). Theoretically, we characterize the receptive field of CSNN and show it allows nodes to selectively attend (listen) to arbitrarily far nodes while ignoring all others in their path, potentially mitigating oversquashing. Our experiments show that CSNN presents overall better performance compared to prior art on sheaf diffusion as well as cooperative graph neural networks.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-07-01T10:42:41Z</published>
+    <arxiv:comment>Accepted to ICLR 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>André Ribeiro</name>
+    </author>
+    <author>
+      <name>Ana Luiza Tenório</name>
+    </author>
+    <author>
+      <name>Juan Belieni</name>
+    </author>
+    <author>
+      <name>Amauri H. Souza</name>
+    </author>
+    <author>
+      <name>Diego Mesquita</name>
+    </author>
+  </entry>
+</feed>

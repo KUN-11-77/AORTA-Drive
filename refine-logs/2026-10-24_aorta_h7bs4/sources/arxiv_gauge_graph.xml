@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/duWIVypLFreQEYdIWPA4pFRbBzM</id>
+  <title>arXiv Query: search_query=all:"gauge equivariant" AND all:"graph"&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <updated>2026-10-24T15:27:50Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22gauge+equivariant%22+AND+all:%22graph%22&amp;start=0&amp;max_results=10&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+  <opensearch:totalResults>11</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2003.05425v3</id>
+    <title>Gauge Equivariant Mesh CNNs: Anisotropic convolutions on geometric graphs</title>
+    <updated>2021-11-19T12:00:16Z</updated>
+    <link href="https://arxiv.org/abs/2003.05425v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2003.05425v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A common approach to define convolutions on meshes is to interpret them as a graph and apply graph convolutional networks (GCNs). Such GCNs utilize isotropic kernels and are therefore insensitive to the relative orientation of vertices and thus to the geometry of the mesh as a whole. We propose Gauge Equivariant Mesh CNNs which generalize GCNs to apply anisotropic gauge equivariant kernels. Since the resulting features carry orientation information, we introduce a geometric message passing scheme defined by parallel transporting features over mesh edges. Our experiments validate the significantly improved expressivity of the proposed model over conventional GCNs and other methods.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-03-11T17:21:15Z</published>
+    <arxiv:comment>Published at ICLR 2021</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Pim de Haan</name>
+    </author>
+    <author>
+      <name>Maurice Weiler</name>
+    </author>
+    <author>
+      <name>Taco Cohen</name>
+    </author>
+    <author>
+      <name>Max Welling</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.20797v1</id>
+    <title>Gauge-Equivariant Graph Neural Networks for Lattice Gauge Theories</title>
+    <updated>2026-04-22T17:21:20Z</updated>
+    <link href="https://arxiv.org/abs/2604.20797v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.20797v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Local gauge symmetry underlies fundamental interactions and strongly correlated quantum matter, yet existing machine-learning approaches lack a general, principled framework for learning under site-dependent symmetries, particularly for intrinsically nonlocal observables. Here we introduce a gauge-equivariant graph neural network that embeds non-Abelian symmetry directly into message passing via matrix-valued, gauge-covariant features and symmetry-compatible updates, extending equivariant learning from global to fully local symmetries. In this formulation, message passing implements gauge-covariant transport across the lattice, allowing nonlocal correlations and loop-like structures to emerge naturally from local operations. We validate the approach across pure gauge, gauge-matter, and dynamical regimes, establishing gauge-equivariant message passing as a general paradigm for learning in systems governed by local symmetry.</summary>
+    <category term="cond-mat.str-el" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-lat" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-22T17:21:20Z</published>
+    <arxiv:comment>11 pages, 5 figures</arxiv:comment>
+    <arxiv:primary_category term="cond-mat.str-el"/>
+    <author>
+      <name>Ali Rayat</name>
+    </author>
+    <author>
+      <name>Yaohang Li</name>
+    </author>
+    <author>
+      <name>Gia-Wei Chern</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2511.16062v2</id>
+    <title>Gauge-Equivariant Graph Networks via Self-Interference Cancellation</title>
+    <updated>2026-05-19T12:44:46Z</updated>
+    <link href="https://arxiv.org/abs/2511.16062v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.16062v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Graph Neural Networks (GNNs) excel on homophilous graphs but often fail under heterophily due to self-reinforcing and phase-inconsistent signals. We propose a \textbf{G}auge-\textbf{E}quivariant Graph Network with \textbf{S}elf-Interference \textbf{C}ancellation (GESC), which replaces additive aggregation with a projection-based interference mechanism. Unlike prior magnetic or gauge-equivariant GNNs that rely on additive message mixing, GESC explicitly models self-interference arising from redundant low-frequency components. We show that the absence of interference handling in existing gauge-based GNNs is a primary driver of oversmoothing under gauge transport. We introduce a $\mathrm{U}(1)$ phase connection followed by a rank-1 projection that suppresses self-parallel components before attention, and a sign-aware gate that regulates negatively aligned neighbors. Across diverse graph benchmarks, GESC consistently outperforms recent state-of-the-art models while offering a unified, interference-aware view of message passing. Our code is available at https://github.com/ChoiYoonHyuk/GESC.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-20T05:48:22Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yoonhyuk Choi</name>
+    </author>
+    <author>
+      <name>Jiho Choi</name>
+    </author>
+    <author>
+      <name>Jiwoo Kang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.19589v2</id>
+    <title>Modeling Dynamics over Meshes with Gauge Equivariant Nonlinear Message Passing</title>
+    <updated>2023-11-03T02:20:30Z</updated>
+    <link href="https://arxiv.org/abs/2310.19589v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.19589v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Data over non-Euclidean manifolds, often discretized as surface meshes, naturally arise in computer graphics and biological and physical systems. In particular, solutions to partial differential equations (PDEs) over manifolds depend critically on the underlying geometry. While graph neural networks have been successfully applied to PDEs, they do not incorporate surface geometry and do not consider local gauge symmetries of the manifold. Alternatively, recent works on gauge equivariant convolutional and attentional architectures on meshes leverage the underlying geometry but underperform in modeling surface PDEs with complex nonlinear dynamics. To address these issues, we introduce a new gauge equivariant architecture using nonlinear message passing. Our novel architecture achieves higher performance than either convolutional or attentional networks on domains with highly complex and nonlinear dynamics. However, similar to the non-mesh case, design trade-offs favor convolutional, attentional, or message passing networks for different tasks; we investigate in which circumstances our message passing method provides the most benefit.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-30T14:45:59Z</published>
+    <arxiv:comment>Accepted to NeurIPS 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Jung Yeon Park</name>
+    </author>
+    <author>
+      <name>Lawson L. S. Wong</name>
+    </author>
+    <author>
+      <name>Robin Walters</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.18742v1</id>
+    <title>Emergent Loop Geometry in Gauge-Equivariant Graph Neural Networks</title>
+    <updated>2026-10-13T17:10:38Z</updated>
+    <link href="https://arxiv.org/abs/2610.18742v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.18742v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Gauge-equivariant graph neural networks generate ordered products of gauge links through local message passing, but the geometry of these internal structures is not captured by the receptive field alone. We investigate the statistical ensemble of closed lattice walks generated by recursive node- and edge-feature operations, independently of network training. Analytical and numerical results reveal a separation between rapid growth of contour length and much slower spatial expansion: deeper compositions generate increasingly long paths through repeated traversal of relatively compact regions. Loop expansions of fermionic observables provide a physical interpretation of this hierarchy, showing how spatial locality remains compatible with high-order dependence on nearby gauge fields. These findings identify complementary roles of network depth in extending spatial reach and enriching the representations constructed within that reach, providing a geometrical perspective on learning lattice gauge observables.</summary>
+    <category term="cond-mat.stat-mech" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.str-el" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-lat" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-13T17:10:38Z</published>
+    <arxiv:comment>16 pages, 8 figures</arxiv:comment>
+    <arxiv:primary_category term="cond-mat.stat-mech"/>
+    <author>
+      <name>Ali Rayat</name>
+    </author>
+    <author>
+      <name>Gia-Wei Chern</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2408.09740v2</id>
+    <title>Equivariant homotopy classification of graph C*-algebras</title>
+    <updated>2024-08-26T06:46:52Z</updated>
+    <link href="https://arxiv.org/abs/2408.09740v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2408.09740v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We show that shift equivalence of essential adjacency matrices coincides with gauge-equivariant homotopy equivalence of their stabilized graph C*-algebras. This provide the first equivalent formulation of shift equivalence of essential matrices in terms of gauge actions on graph C*-algebras. Our proof uses bicategory theory for C*-bimodules developed by Meyer and Sehnem, allowing us to avoid the use of K-theory classification of C*-algebras.</summary>
+    <category term="math.OA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DS" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.RA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-08-19T07:09:57Z</published>
+    <arxiv:comment>21 pages. Fixed some minor typos and updated MSC</arxiv:comment>
+    <arxiv:primary_category term="math.OA"/>
+    <author>
+      <name>Boris Bilich</name>
+    </author>
+    <author>
+      <name>Adam Dor-On</name>
+    </author>
+    <author>
+      <name>Efren Ruiz</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2502.15591v2</id>
+    <title>Uniqueness theorems for $L^p$-operator graph algebras</title>
+    <updated>2025-10-27T14:16:58Z</updated>
+    <link href="https://arxiv.org/abs/2502.15591v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2502.15591v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We continue the study of $L^p$-operator algebras associated with directed graphs initiated by Cortiñas and Rodríguez, and we establish $L^p$-analogs of both the gauge-invariant and the Cuntz-Krieger uniqueness theorems. The first of these asserts that for a graph $Q$, a gauge-equivariant spatial representation of its Leavitt path algebra $L_Q$ on an $L^p$-space generates an injective representation whenever the idempotents associated to the vertices of $Q$ are nonzero. The second of these theorems states that, in the setting just described, the same conclusion holds if gauge-equivariance is replaced by the assumption that every cycle in $Q$ has an entry. Additionally, we show that for acyclic graphs, such representations are automatically isometric.
+  While our general approach is inspired by the proofs in the C*-algebra setting, a careful analysis of spatial representations of graphs on $L^p$-spaces is required. In particular, we exploit the interplay between analytical properties of Banach algebras, such as the role of hermitian elements, and geometric notions specific to $L^p$-spaces, such as spatial implementation.</summary>
+    <category term="math.FA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.OA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-02-21T17:01:38Z</published>
+    <arxiv:comment>V2: 29 pages</arxiv:comment>
+    <arxiv:primary_category term="math.FA"/>
+    <author>
+      <name>Eusebio Gardella</name>
+    </author>
+    <author>
+      <name>Siri Tinghammar</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2209.14470v6</id>
+    <title>From length-preserving pushouts of graphs to one-surjective pullbacks of graph algebras</title>
+    <updated>2025-07-17T12:06:55Z</updated>
+    <link href="https://arxiv.org/abs/2209.14470v6" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2209.14470v6" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The unions of directed graphs are the simplest examples of pushouts of directed graphs. The conditions under which they contravariantly induce surjective gauge-equivariant pullbacks of graph C*-algebras have been well studied and vastly instantiated in noncommutative topology (e.g., quantum balls and spheres). Herein, we go beyond the unions of graphs to systematically determine optimal conditions for more general length-preserving pushouts of graphs under which they contravariantly induce graded pullbacks of path algebras, Leavitt path algebras, and graph C*-algebras. Our pullbacks are surjective only on one side, as dictated by natural examples and K-theory. The proposed new approach enlarges the scope of applications from admissible subgraphs (also called quotient graphs) to generalizations of unlabeled foldings of Stallings and collapsing the line graphs of graphs to initial graphs. Moreover, we introduce the concept of locally derived graphs, which substantially extends the paradigm of derived graphs (or skew products of graphs), and use the projection foldings from locally derived graphs to their base (or voltage) graphs to obtain one-surjective pullbacks of graph C*-algebras.</summary>
+    <category term="math.RA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-09-28T23:35:50Z</published>
+    <arxiv:comment>42 pages</arxiv:comment>
+    <arxiv:primary_category term="math.RA"/>
+    <author>
+      <name>Piotr M. Hajac</name>
+    </author>
+    <author>
+      <name>Mariusz Tobolski</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.22453v1</id>
+    <title>Geometric Structures on Graphs: a Holonomy-Based Discretization of Curvature</title>
+    <updated>2026-08-23T15:03:19Z</updated>
+    <link href="https://arxiv.org/abs/2608.22453v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.22453v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We propose a holonomy-based framework for discretizing curvature on graphs equipped with local symmetric positive-definite metrics. Each vertex carries a fibre metric \(g_i\), and each directed edge carries a reversible metric-compatible transport \(F_{ij}\). The ordered product around an oriented triangular loop \(\mathcal C\) gives a holonomy \(H_{\mathcal C}\), whose normalized logarithm \(Ω_{\mathcal C}=-s_{\mathcal C}^{-1}\operatorname{Log}(H_{\mathcal C})\) is used as a finite-loop curvature observation. Thus the construction discretizes the geometric principle that infinitesimal holonomy is controlled by curvature, rather than treating holonomy as a heuristic feature. Since \(Ω_{\mathcal C}\) lies in the \(g_i\)-orthogonal Lie algebra, it is not itself a velocity of an SPD metric. We therefore introduce two aggregation mechanisms: a commutator with a symmetric response matrix, producing symmetric Ricci-type metric responses, and an incidence-aware covariant divergence of curvature-induced edge fluxes, reflecting the relation between trace and covariant divergence. The resulting responses are locally orthogonal-gauge equivariant and can drive exponential updates that preserve positive definiteness. We also give a reversible metric-compatible parametrization of edge transports, allowing orthogonal edge factors, loop scales, weights, and response matrices to be learned while respecting the graph geometry. Known-geometry calibrations on the unit sphere test the holonomy--curvature relation, curvature preservation under nontrivial local metric representations, and the empirical recovery of edge transports from local observations.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-23T15:03:19Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Hao Li</name>
+    </author>
+    <author>
+      <name>Yuhan Peng</name>
+    </author>
+    <author>
+      <name>Junwen Dong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.01917v3</id>
+    <title>Splittings for C*-correspondences and strong shift equivalence</title>
+    <updated>2025-01-02T11:40:30Z</updated>
+    <link href="https://arxiv.org/abs/2305.01917v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.01917v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present an extension of the notion of in-splits from symbolic dynamics to topological graphs and, more generally, to C*-correspondences. We demonstrate that in-splits provide examples of strong shift equivalences of C*-correspondences. Furthermore, we provide a streamlined treatment of Muhly, Pask, and Tomforde's proof that any strong shift equivalence of regular C*-correspondences induces a (gauge-equivariant) Morita equivalence between Cuntz-Pimsner algebras. For topological graphs, we prove that in-splits induce diagonal-preserving gauge-equivariant *-isomorphisms in analogy with the results for Cuntz-Krieger algebras. Additionally, we examine the notion of out-splits for C*-correspondences.</summary>
+    <category term="math.OA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.DS" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-03T06:17:36Z</published>
+    <arxiv:comment>After this article was published, Adam Dor-On informed us of a gap in our Theorem 3.5. The gap is rectified by a recent result of Boris Bilich, Adam Dor-On, and Efren Ruiz. We have added Remark 3.7 which explains the gap and its fix. We thank Adam Dor-On for bringing this to our attention</arxiv:comment>
+    <arxiv:primary_category term="math.OA"/>
+    <author>
+      <name>Kevin Aguyar Brix</name>
+    </author>
+    <author>
+      <name>Alexander Mundey</name>
+    </author>
+    <author>
+      <name>Adam Rennie</name>
+    </author>
+    <arxiv:doi>10.7146/math.scand.a-142308</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.7146/math.scand.a-142308" title="doi"/>
+  </entry>
+</feed>

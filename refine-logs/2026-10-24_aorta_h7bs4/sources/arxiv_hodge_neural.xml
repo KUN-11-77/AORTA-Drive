@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/3nWU1LJ0pbeCLk4QXs1MdmxbsNc</id>
+  <title>arXiv Query: search_query=(all:"Hodge decomposition" AND all:"graph neural") OR ti:HodgeNet&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-10-24T15:29:02Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(all:%22Hodge+decomposition%22+AND+all:%22graph+neural%22)+OR+ti:HodgeNet&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>4</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2410.10546v4</id>
+    <title>Graph Classification Gaussian Processes via Hodgelet Spectral Features</title>
+    <updated>2025-02-01T03:59:13Z</updated>
+    <link href="https://arxiv.org/abs/2410.10546v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.10546v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The problem of classifying graphs is ubiquitous in machine learning. While it is standard to apply graph neural networks or graph kernel methods, Gaussian processes can be employed by transforming spatial features from the graph domain into spectral features in the Euclidean domain, and using them as the input points of classical kernels. However, this approach currently only takes into account features on vertices, whereas some graph datasets also support features on edges. In this work, we present a Gaussian process-based classification algorithm that can leverage one or both vertex and edges features. Furthermore, we take advantage of the Hodge decomposition to better capture the intricate richness of vertex and edge features, which can be beneficial on diverse tasks.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-14T14:26:46Z</published>
+    <arxiv:comment>NeurIPS 2024 Workshop on Bayesian Decision-Making and Uncertainty (Spotlight)</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Mathieu Alain</name>
+    </author>
+    <author>
+      <name>So Takao</name>
+    </author>
+    <author>
+      <name>Xiaowen Dong</name>
+    </author>
+    <author>
+      <name>Bastian Rieck</name>
+    </author>
+    <author>
+      <name>Emmanuel Noutahi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2505.10877v1</id>
+    <title>Graph and Simplicial Complex Prediction Gaussian Process via the Hodgelet Representations</title>
+    <updated>2025-05-16T05:33:42Z</updated>
+    <link href="https://arxiv.org/abs/2505.10877v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2505.10877v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Predicting the labels of graph-structured data is crucial in scientific applications and is often achieved using graph neural networks (GNNs). However, when data is scarce, GNNs suffer from overfitting, leading to poor performance. Recently, Gaussian processes (GPs) with graph-level inputs have been proposed as an alternative. In this work, we extend the Gaussian process framework to simplicial complexes (SCs), enabling the handling of edge-level attributes and attributes supported on higher-order simplices. We further augment the resulting SC representations by considering their Hodge decompositions, allowing us to account for homological information, such as the number of holes, in the SC. We demonstrate that our framework enhances the predictions across various applications, paving the way for GPs to be more widely used for graph and SC-level predictions.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-05-16T05:33:42Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Mathieu Alain</name>
+    </author>
+    <author>
+      <name>So Takao</name>
+    </author>
+    <author>
+      <name>Xiaowen Dong</name>
+    </author>
+    <author>
+      <name>Bastian Rieck</name>
+    </author>
+    <author>
+      <name>Emmanuel Noutahi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2104.12826v1</id>
+    <title>HodgeNet: Learning Spectral Geometry on Triangle Meshes</title>
+    <updated>2021-04-26T19:00:11Z</updated>
+    <link href="https://arxiv.org/abs/2104.12826v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2104.12826v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Constrained by the limitations of learning toolkits engineered for other applications, such as those in image processing, many mesh-based learning algorithms employ data flows that would be atypical from the perspective of conventional geometry processing. As an alternative, we present a technique for learning from meshes built from standard geometry processing modules and operations. We show that low-order eigenvalue/eigenvector computation from operators parameterized using discrete exterior calculus is amenable to efficient approximate backpropagation, yielding spectral per-element or per-mesh features with similar formulas to classical descriptors like the heat/wave kernel signatures. Our model uses few parameters, generalizes to high-resolution meshes, and exhibits performance and time complexity on par with past work.</summary>
+    <category term="cs.GR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-04-26T19:00:11Z</published>
+    <arxiv:comment>Accepted to SIGGRAPH 2021</arxiv:comment>
+    <arxiv:primary_category term="cs.GR"/>
+    <author>
+      <name>Dmitriy Smirnov</name>
+    </author>
+    <author>
+      <name>Justin Solomon</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1912.02354v1</id>
+    <title>HodgeNet: Graph Neural Networks for Edge Data</title>
+    <updated>2019-12-05T02:49:56Z</updated>
+    <link href="https://arxiv.org/abs/1912.02354v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1912.02354v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Networks and network processes have emerged as powerful tools for modeling social interactions, disease propagation, and a variety of additional dynamics driven by relational structures. Recently, neural networks have been generalized to process data on graphs, thus being able to learn from the aforementioned network processes achieving cutting-edge performance in traditional tasks such as node classification and link prediction. However, these methods have all been formulated in a way suited only to data on the nodes of a graph. The application of these techniques to data supported on the edges of a graph, namely flow signals, has not been explored in detail. To bridge this gap, we propose the use of the so-called Hodge Laplacian combined with graph neural network architectures for the analysis of flow data. Specifically, we apply two graph neural network architectures to solve the problems of flow interpolation and source localization.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-12-05T02:49:56Z</published>
+    <arxiv:comment>6 pages, 1 figure</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>T. Mitchell Roddenberry</name>
+    </author>
+    <author>
+      <name>Santiago Segarra</name>
+    </author>
+  </entry>
+</feed>

@@ -1,0 +1,400 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/ZhnQLbftz1FRBgUd+tZyQ2zmPEc</id>
+  <title>arXiv Query: search_query=(all:"decision-focused learning" OR all:"predict-then-optimize")&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-10-24T15:29:02Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22decision-focused+learning%22+OR+all:%22predict-then-optimize%22&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>1043</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2307.05213v3</id>
+    <title>Score Function Gradient Estimation to Widen the Applicability of Decision-Focused Learning</title>
+    <updated>2026-05-31T14:08:35Z</updated>
+    <link href="https://arxiv.org/abs/2307.05213v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2307.05213v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Many real-world optimization problems contain parameters that are unknown before deployment time, either due to stochasticity or to lack of information (e.g., demand or travel times in delivery problems). A common strategy in such cases is to estimate said parameters via machine learning (ML) models trained to minimize the prediction error, which however is not necessarily aligned with the downstream task-level error. The decision-focused learning (DFL) paradigm overcomes this limitation by training to directly minimize a task loss, e.g. regret. Since the latter has non-informative gradients for combinatorial problems, state-of-the-art DFL methods introduce surrogates and approximations that enable training. But these methods exploit specific assumptions about the problem structures (e.g., convex or linear problems, unknown parameters only in the objective function). We propose an alternative method that makes no such assumptions, it combines stochastic smoothing with score function gradient estimation which works on any task loss. This opens up the use of DFL methods to nonlinear objectives, uncertain parameters in the problem constraints, and even two-stage stochastic optimization. Experiments show that it typically requires more epochs, but that it is on par with specialized methods and performs especially well for the difficult case of problems with uncertainty in the constraints, in terms of solution quality, scalability, or both.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-07-11T12:32:13Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>Silvestri, Mattia, et al. "Score Function Gradient Estimation to Widen the Applicability of Decision-Focused Learning." Journal of Artificial Intelligence Research 85 (2026)</arxiv:journal_ref>
+    <author>
+      <name>Mattia Silvestri</name>
+    </author>
+    <author>
+      <name>Senne Berden</name>
+    </author>
+    <author>
+      <name>Jayanta Mandi</name>
+    </author>
+    <author>
+      <name>Ali İrfan Mahmutoğulları</name>
+    </author>
+    <author>
+      <name>Brandon Amos</name>
+    </author>
+    <author>
+      <name>Tias Guns</name>
+    </author>
+    <author>
+      <name>Michele Lombardi</name>
+    </author>
+    <arxiv:doi>10.1613/jair.1.19498</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1613/jair.1.19498" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.08797v1</id>
+    <title>Scaling Decision-Focused Learning to Large Problems with Lagrangian Decomposition</title>
+    <updated>2026-06-07T19:27:59Z</updated>
+    <link href="https://arxiv.org/abs/2606.08797v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.08797v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Decision-focused learning has shown great promise for addressing predict-then-optimize problems, particularly in the presence of under-specified models. However, its practical deployment is often hindered by high computational costs and limited scalability, as it requires solving a constrained optimization problem for each training instance at every iteration. To address these challenges, we propose a novel framework that incorporates Lagrangian decomposition into the decision-focused learning paradigm. Specifically, we introduce a new surrogate objective along with two loss functions for evaluating and training the underlying prediction model. We further propose two variants of our approach, which offer different trade-offs between computational efficiency and solution quality. Our framework can be seamlessly integrated with standard decision-focused learning methods, including Smart Predict-then-Optimize (SPO+) and Implicit Maximum Likelihood Estimation (IMLE). Through experiments on two standard benchmarks, the multi-dimensional knapsack problem and quadratic portfolio optimization, we demonstrate that our approach achieves competitive performance while remaining amenable to parallelization. In particular, it consistently outperforms traditional decision-focused learning methods on large-scale instances, involving up to eight times more variables than those typically considered in related work. The implementation is available at https://github.com/corail-research/DFL-LD.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-07T19:27:59Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Stéphane Eilles-Chan Way</name>
+    </author>
+    <author>
+      <name>Hugo Percot</name>
+    </author>
+    <author>
+      <name>Quentin Cappart</name>
+    </author>
+    <author>
+      <name>Tias Guns</name>
+    </author>
+    <author>
+      <name>Louis-Martin Rousseau</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2308.05889v2</id>
+    <title>DF2: Distribution-Free Decision-Focused Learning</title>
+    <updated>2025-06-24T03:35:35Z</updated>
+    <link href="https://arxiv.org/abs/2308.05889v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2308.05889v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Decision-focused learning (DFL), which differentiates through the KKT conditions, has recently emerged as a powerful approach for predict-then-optimize problems. However, under probabilistic settings, DFL faces three major bottlenecks: model mismatch error, sample average approximation error, and gradient approximation error. Model mismatch error stems from the misalignment between the model's parameterized predictive distribution and the true probability distribution. Sample average approximation error arises when using finite samples to approximate the expected optimization objective. Gradient approximation error occurs when the objectives are non-convex and KKT conditions cannot be directly applied. In this paper, we present DF2, the first distribution-free decision-focused learning method designed to mitigate these three bottlenecks. Rather than depending on a task-specific forecaster that requires precise model assumptions, our method directly learns the expected optimization function during training. To efficiently learn this function in a data-driven manner, we devise an attention-based model architecture inspired by the distribution-based parameterization of the expected objective. We evaluate DF2 on two synthetic problems and three real-world problems, demonstrating the effectiveness of DF2. Our code is available at: https://github.com/Lingkai-Kong/DF2.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-08-11T00:44:46Z</published>
+    <arxiv:comment>UAI 2025</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Lingkai Kong</name>
+    </author>
+    <author>
+      <name>Wenhao Mu</name>
+    </author>
+    <author>
+      <name>Jiaming Cui</name>
+    </author>
+    <author>
+      <name>Yuchen Zhuang</name>
+    </author>
+    <author>
+      <name>B. Aditya Prakash</name>
+    </author>
+    <author>
+      <name>Bo Dai</name>
+    </author>
+    <author>
+      <name>Chao Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.04328v2</id>
+    <title>Robust Losses for Decision-Focused Learning</title>
+    <updated>2024-07-27T13:40:56Z</updated>
+    <link href="https://arxiv.org/abs/2310.04328v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.04328v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Optimization models used to make discrete decisions often contain uncertain parameters that are context-dependent and estimated through prediction. To account for the quality of the decision made based on the prediction, decision-focused learning (end-to-end predict-then-optimize) aims at training the predictive model to minimize regret, i.e., the loss incurred by making a suboptimal decision. Despite the challenge of the gradient of this loss w.r.t. the predictive model parameters being zero almost everywhere for optimization problems with a linear objective, effective gradient-based learning approaches have been proposed to minimize the expected loss, using the empirical loss as a surrogate. However, empirical regret can be an ineffective surrogate because empirical optimal decisions can vary substantially from expected optimal decisions. To understand the impact of this deficiency, we evaluate the effect of aleatoric and epistemic uncertainty on the accuracy of empirical regret as a surrogate. Next, we propose three novel loss functions that approximate expected regret more robustly. Experimental results show that training two state-of-the-art decision-focused learning approaches using robust regret losses improves test-sample empirical regret in general while keeping computational time equivalent relative to the number of training epochs.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.OC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-06T15:45:10Z</published>
+    <arxiv:comment>10 pages, 3 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24, pages 4868-4875, 2024</arxiv:journal_ref>
+    <author>
+      <name>Noah Schutte</name>
+    </author>
+    <author>
+      <name>Krzysztof Postek</name>
+    </author>
+    <author>
+      <name>Neil Yorke-Smith</name>
+    </author>
+    <arxiv:doi>10.24963/ijcai.2024/538</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.24963/ijcai.2024/538" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.02943v1</id>
+    <title>3D-Learning: Diffusion-Augmented Distributionally Robust Decision-Focused Learning</title>
+    <updated>2026-02-03T00:37:22Z</updated>
+    <link href="https://arxiv.org/abs/2602.02943v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.02943v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Predict-then-Optimize (PTO) pipelines are widely employed in computing and networked systems, where Machine Learning (ML) models are used to predict critical contextual information for downstream decision-making tasks such as cloud LLM serving, data center demand response, and edge workload scheduling. However, these ML predictors are often vulnerable to out-of-distribution (OOD) samples at test time, leading to significant decision performance degradation due to large prediction errors. To address the generalization challenges under OOD conditions, we present the framework of Distributionally Robust Decision-Focused Learning (DR-DFL), which trains ML models to optimize decision performance under the worst-case distribution. Instead of relying on classical Distributionally Robust Optimization (DRO) techniques, we propose Diffusion-Augmented Distributionally Robust Decision-Focused Learning (3D-Learning), which searches for the worst-case distribution within the parameterized space of a diffusion model. By leveraging the powerful distribution modeling capabilities of diffusion models, 3D-Learning identifies worst-case distributions that remain consistent with real data, achieving a favorable balance between average and worst-case scenarios. Empirical results on an LLM resource provisioning task demonstrate that 3D-Learning outperforms existing DRO and Data Augmentation methods in OOD generalization performance.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-03T00:37:22Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Jiaqi Wen</name>
+    </author>
+    <author>
+      <name>Lei Fan</name>
+    </author>
+    <author>
+      <name>Jianyi Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2511.08035v2</id>
+    <title>From Sequential to Recursive: Enhancing Decision-Focused Learning with Bidirectional Feedback</title>
+    <updated>2025-11-27T07:52:43Z</updated>
+    <link href="https://arxiv.org/abs/2511.08035v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.08035v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Decision-focused learning (DFL) has emerged as a powerful end-to-end alternative to conventional predict-then-optimize (PTO) pipelines by directly optimizing predictive models through downstream decision losses. Existing DFL frameworks are limited by their strictly sequential structure, referred to as sequential DFL (S-DFL). However, S-DFL fails to capture the bidirectional feedback between prediction and optimization in complex interaction scenarios. In view of this, we first time propose recursive decision-focused learning (R-DFL), a novel framework that introduces bidirectional feedback between downstream optimization and upstream prediction. We further extend two distinct differentiation methods: explicit unrolling via automatic differentiation and implicit differentiation based on fixed-point methods, to facilitate efficient gradient propagation in R-DFL. We rigorously prove that both methods achieve comparable gradient accuracy, with the implicit method offering superior computational efficiency. Extensive experiments on both synthetic and real-world datasets, including the newsvendor problem and the bipartite matching problem, demonstrate that R-DFL not only substantially enhances the final decision quality over sequential baselines but also exhibits robust adaptability across diverse scenarios in closed-loop decision-making problems.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-11T09:40:58Z</published>
+    <arxiv:comment>Accepted by The 40th Annual AAAI Conference on Artificial Intelligence (AAAI-26), Main track</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Xinyu Wang</name>
+    </author>
+    <author>
+      <name>Jinxiao Du</name>
+    </author>
+    <author>
+      <name>Yiyang Peng</name>
+    </author>
+    <author>
+      <name>Wei Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2112.03609v4</id>
+    <title>Decision-Focused Learning: Through the Lens of Learning to Rank</title>
+    <updated>2022-06-17T14:39:07Z</updated>
+    <link href="https://arxiv.org/abs/2112.03609v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2112.03609v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In the last years decision-focused learning framework, also known as predict-and-optimize, have received increasing attention. In this setting, the predictions of a machine learning model are used as estimated cost coefficients in the objective function of a discrete combinatorial optimization problem for decision making. Decision-focused learning proposes to train the ML models, often neural network models, by directly optimizing the quality of decisions made by the optimization solvers. Based on a recent work that proposed a noise contrastive estimation loss over a subset of the solution space, we observe that decision-focused learning can more generally be seen as a learning-to-rank problem, where the goal is to learn an objective function that ranks the feasible points correctly. This observation is independent of the optimization method used and of the form of the objective function. We develop pointwise, pairwise and listwise ranking loss functions, which can be differentiated in closed form given a subset of solutions. We empirically investigate the quality of our generic methods compared to existing decision-focused learning approaches with competitive results. Furthermore, controlling the subset of solutions allows controlling the runtime considerably, with limited effect on regret.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-12-07T10:11:44Z</published>
+    <arxiv:comment>Accepted for presentation at ICML, 2022</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Jayanta Mandi</name>
+    </author>
+    <author>
+      <name>Víctor Bucarey</name>
+    </author>
+    <author>
+      <name>Maxime Mulamba</name>
+    </author>
+    <author>
+      <name>Tias Guns</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2311.16487v4</id>
+    <title>On the Robustness of Decision-Focused Learning</title>
+    <updated>2025-06-19T18:50:12Z</updated>
+    <link href="https://arxiv.org/abs/2311.16487v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2311.16487v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Decision-Focused Learning (DFL) is an emerging learning paradigm that tackles the task of training a machine learning (ML) model to predict missing parameters of an incomplete optimization problem, where the missing parameters are predicted. DFL trains an ML model in an end-to-end system, by integrating the prediction and optimization tasks, providing better alignment of the training and testing objectives. DFL has shown a lot of promise and holds the capacity to revolutionize decision-making in many real-world applications. However, very little is known about the performance of these models under adversarial attacks. We adopt ten unique DFL methods and benchmark their performance under two distinctly focused attacks adapted towards the Predict-then-Optimize problem setting. Our study proposes the hypothesis that the robustness of a model is highly correlated with its ability to find predictions that lead to optimal decisions without deviating from the ground-truth label. Furthermore, we provide insight into how to target the models that violate this condition and show how these models respond differently depending on the achieved optimality at the end of their training cycles.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.OC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-11-28T04:34:04Z</published>
+    <arxiv:comment>17 pages, 45 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yehya Farhat</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2106.03279v4</id>
+    <title>Learning MDPs from Features: Predict-Then-Optimize for Sequential Decision Problems by Reinforcement Learning</title>
+    <updated>2022-07-16T23:59:24Z</updated>
+    <link href="https://arxiv.org/abs/2106.03279v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2106.03279v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In the predict-then-optimize framework, the objective is to train a predictive model, mapping from environment features to parameters of an optimization problem, which maximizes decision quality when the optimization is subsequently solved. Recent work on decision-focused learning shows that embedding the optimization problem in the training pipeline can improve decision quality and help generalize better to unseen tasks compared to relying on an intermediate loss function for evaluating prediction quality. We study the predict-then-optimize framework in the context of sequential decision problems (formulated as MDPs) that are solved via reinforcement learning. In particular, we are given environment features and a set of trajectories from training MDPs, which we use to train a predictive model that generalizes to unseen test MDPs without trajectories. Two significant computational challenges arise in applying decision-focused learning to MDPs: (i) large state and action spaces make it infeasible for existing techniques to differentiate through MDP problems, and (ii) the high-dimensional policy space, as parameterized by a neural network, makes differentiating through a policy expensive. We resolve the first challenge by sampling provably unbiased derivatives to approximate and differentiate through optimality conditions, and the second challenge by using a low-rank approximation to the high-dimensional sample-based derivatives. We implement both Bellman--based and policy gradient--based decision-focused learning on three different MDP problems with missing parameters, and show that decision-focused learning performs better in generalization to unseen tasks.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-06-06T23:53:31Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Kai Wang</name>
+    </author>
+    <author>
+      <name>Sanket Shah</name>
+    </author>
+    <author>
+      <name>Haipeng Chen</name>
+    </author>
+    <author>
+      <name>Andrew Perrault</name>
+    </author>
+    <author>
+      <name>Finale Doshi-Velez</name>
+    </author>
+    <author>
+      <name>Milind Tambe</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2505.13564v3</id>
+    <title>Online Decision-Focused Learning</title>
+    <updated>2026-03-07T18:28:44Z</updated>
+    <link href="https://arxiv.org/abs/2505.13564v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2505.13564v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Decision-focused learning (DFL) is an increasingly popular paradigm for training predictive models whose outputs are used in decision-making tasks. Instead of merely optimizing for predictive accuracy, DFL trains models to directly minimize the loss associated with downstream decisions. However, existing studies focus solely on scenarios where a fixed batch of data is available and the objective function does not change over time. We instead investigate DFL in dynamic environments where the objective function and data distribution evolve over time. This setting is challenging for online learning because the objective function has zero or undefined gradients, which prevents the use of standard first-order optimization methods, and is generally non-convex. To address these difficulties, we (i) regularize the objective to make it differentiable and (ii) use perturbation techniques along with a near-optimal oracle to overcome non-convexity. Combining those techniques yields two original online algorithms tailored for DFL, for which we establish respectively static and dynamic regret bounds. These are the first provable guarantees for the online decision-focused problem. Finally, we showcase the effectiveness of our algorithms on a knapsack experiment, where they outperform two standard benchmarks.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-05-19T10:40:30Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Aymeric Capitaine</name>
+    </author>
+    <author>
+      <name>Maxime Haddouche</name>
+    </author>
+    <author>
+      <name>Eric Moulines</name>
+    </author>
+    <author>
+      <name>Michael I. Jordan</name>
+    </author>
+    <author>
+      <name>Etienne Boursier</name>
+    </author>
+    <author>
+      <name>Alain Durmus</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2312.07718v2</id>
+    <title>CaVE: A Cone-Aligned Approach for Fast Predict-then-optimize with Binary Linear Programs</title>
+    <updated>2024-03-15T21:45:39Z</updated>
+    <link href="https://arxiv.org/abs/2312.07718v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2312.07718v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The end-to-end predict-then-optimize framework, also known as decision-focused learning, has gained popularity for its ability to integrate optimization into the training procedure of machine learning models that predict the unknown cost (objective function) coefficients of optimization problems from contextual instance information. Naturally, most of the problems of interest in this space can be cast as integer linear programs. In this work, we focus on binary linear programs (BLPs) and propose a new end-to-end training method to predict-then-optimize. Our method, Cone-aligned Vector Estimation (CaVE), aligns the predicted cost vectors with the normal cone corresponding to the true optimal solution of a training instance. When the predicted cost vector lies inside the cone, the optimal solution to the linear relaxation of the binary problem is optimal. This alignment not only produces decision-aware learning models but also dramatically reduces training time as it circumvents the need to solve BLPs to compute a loss function with its gradients. Experiments across multiple datasets show that our method exhibits a favorable trade-off between training time and solution quality, particularly with large-scale optimization problems such as vehicle routing, a hard BLP that has yet to benefit from predict-then-optimize methods in the literature due to its difficulty.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.OC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-12-12T20:24:19Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Bo Tang</name>
+    </author>
+    <author>
+      <name>Elias B. Khalil</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.19587v1</id>
+    <title>A Solver-Free Training Method for Predict-then-Optimize</title>
+    <updated>2026-06-17T20:42:49Z</updated>
+    <link href="https://arxiv.org/abs/2606.19587v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.19587v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We propose a scalable method for training prediction (machine learning) models in the predict-then-optimize paradigm, where model outputs serve as coefficients for a subsequent linear optimization task. Directly minimizing the empirical decision regret is intractable for linear programming and combinatorial optimization since the decision mapping is piecewise constant, and the gradients are zero almost everywhere. While existing methods address this by smoothing the differentiation process, they suffer from scalability issues, since a computationally expensive solver call is required for every gradient evaluation. To address this, we propose a decision-focused learning pipeline based on a measure transformation principle, which yields a new surrogate loss that is completely optimization-solver-free during training. We establish theoretical guarantees, including Fisher consistency and excess risk bounds. Empirically, our method achieves decision quality competitive with state-of-the-art methods while reducing training time by orders of magnitude.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-17T20:42:49Z</published>
+    <arxiv:comment>Accepted by ICML 2026</arxiv:comment>
+    <arxiv:primary_category term="stat.ML"/>
+    <author>
+      <name>Beichen Wan</name>
+    </author>
+    <author>
+      <name>Mo Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.18005v1</id>
+    <title>Scalable Decision-Focused Learning through Cost-Sensitive Regression</title>
+    <updated>2026-05-18T07:58:26Z</updated>
+    <link href="https://arxiv.org/abs/2605.18005v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.18005v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Many real-world combinatorial problems involve uncertain parameters, which can be predicted given contextual features and historical data. These `predict-then-optimize' or `contextual optimization' problems have gained significant attention: end-to-end training methods can now minimize the downstream task cost rather than the predictive error. However, despite their effectiveness, these decision-focused learning (DFL) approaches often rely on repeated solving of the underlying combinatorial optimization problem during training, making them computationally expensive and difficult to scale. We reframe the learning problem as a cost-sensitive multi-output regression problem: multi-output due to the combinatorial problem having multiple uncertain parameters, and cost-sensitive due to the downstream task cost being the real target. Our technical contribution is the formalization of multiple loss function components that follow from this reframing: cost-insensitive normalization, decision-aware asymmetric penalization of over- and underpredictions, and instance-based costs that mimic the true downstream task-based loss locally. These components require zero or one solve per training data instance, while requiring no further solves during training. Experiments show that the combination of loss components achieves comparable downstream task quality to the state of the art, while being significantly more efficient, enabling scaling to problem sizes that have not been tackled before with DFL.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-18T07:58:26Z</published>
+    <arxiv:comment>12 pages, 7 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Noah Schutte</name>
+    </author>
+    <author>
+      <name>Senne Berden</name>
+    </author>
+    <author>
+      <name>Tias Guns</name>
+    </author>
+    <author>
+      <name>Krzysztof Postek</name>
+    </author>
+    <author>
+      <name>Neil Yorke-Smith</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2202.00916v4</id>
+    <title>Scalable Decision-Focused Learning in Restless Multi-Armed Bandits with Application to Maternal and Child Health</title>
+    <updated>2023-08-13T05:44:37Z</updated>
+    <link href="https://arxiv.org/abs/2202.00916v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2202.00916v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper studies restless multi-armed bandit (RMAB) problems with unknown arm transition dynamics but with known correlated arm features. The goal is to learn a model to predict transition dynamics given features, where the Whittle index policy solves the RMAB problems using predicted transitions. However, prior works often learn the model by maximizing the predictive accuracy instead of final RMAB solution quality, causing a mismatch between training and evaluation objectives. To address this shortcoming, we propose a novel approach for decision-focused learning in RMAB that directly trains the predictive model to maximize the Whittle index solution quality. We present three key contributions: (i) we establish differentiability of the Whittle index policy to support decision-focused learning; (ii) we significantly improve the scalability of decision-focused learning approaches in sequential problems, specifically RMAB problems; (iii) we apply our algorithm to a previously collected dataset of maternal and child health to demonstrate its performance. Indeed, our algorithm is the first for decision-focused learning in RMAB that scales to real-world problem sizes.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-02-02T08:36:10Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Kai Wang</name>
+    </author>
+    <author>
+      <name>Shresth Verma</name>
+    </author>
+    <author>
+      <name>Aditya Mate</name>
+    </author>
+    <author>
+      <name>Sanket Shah</name>
+    </author>
+    <author>
+      <name>Aparna Taneja</name>
+    </author>
+    <author>
+      <name>Neha Madhiwalla</name>
+    </author>
+    <author>
+      <name>Aparna Hegde</name>
+    </author>
+    <author>
+      <name>Milind Tambe</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.14907v1</id>
+    <title>Strategic Decision Focused Learning</title>
+    <updated>2026-09-14T01:52:42Z</updated>
+    <link href="https://arxiv.org/abs/2609.14907v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.14907v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Machine learning (ML) predictions are increasingly being used to guide decision-making, giving rise to the problem of decision-focused learning (DFL) where predictors are optimized for downstream decision quality rather than accuracy alone. However, most existing work assumes a single decision-maker optimizing in isolation. This paper formalizes strategic decision-focused learning, where an ML system predicts an exogenous state that some agents observe before playing a game. For example, a park ranger may predict wildlife locations to allocate anti-poaching patrols against strategic poachers. While the exogenous state is unaffected by agent actions, predictions influence agents' strategies and the resulting equilibrium. We find that strategic considerations fundamentally change the learning problem. In particular, we show the prediction accuracy-equilibrium payoff landscape can be non-monotonic, i.e., better predictions can degrade performance. We propose algorithmic approaches to address these challenges and validate them across benchmarks in wildlife conservation and infrastructure protection. Our theory and experiments highlight the importance of accounting for strategic interactions when designing predictors.</summary>
+    <category term="cs.GT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-14T01:52:42Z</published>
+    <arxiv:primary_category term="cs.GT"/>
+    <author>
+      <name>Tinashe Handina</name>
+    </author>
+    <author>
+      <name>Yuehan Diao</name>
+    </author>
+    <author>
+      <name>Adam Wierman</name>
+    </author>
+    <author>
+      <name>Eric Mazumdar</name>
+    </author>
+  </entry>
+</feed>

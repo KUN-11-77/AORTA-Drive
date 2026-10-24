@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/C4mN4UHHvi9lsQouNSBrwf6COps</id>
+  <title>arXiv Query: search_query=(all:"runtime assurance" OR all:shielding) AND (all:learning OR all:autonomous)&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-10-24T15:28:02Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(all:%22runtime+assurance%22+OR+all:shielding)+AND+(all:learning+OR+all:autonomous)&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>535</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2605.08190v1</id>
+    <title>Synergistic Simplex: Cooperative Runtime Assurance for Safety-Critical Autonomous Systems</title>
+    <updated>2026-05-05T15:23:03Z</updated>
+    <link href="https://arxiv.org/abs/2605.08190v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.08190v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Autonomous systems increasingly rely on machine-learning (ML) components for safety-critical tasks such as perception and control in autonomous vehicles (AVs). While ML enables essential capabilities, it inevitably exhibits long-tail faults that make it unsuitable for safety-critical tasks. Runtime assurance (RTA) mitigates this issue by pairing ML components with verifiable safety monitors, e.g., Control Simplex and Perception Simplex architectures. However, the limited performance of safety monitors remains a major bottleneck.
+  The Synergistic Simplex (SS) architecture improves system performance by enabling bidirectional integration between ML components and safety monitors while preserving formal safety guarantees. The key innovation here is allowing safety monitors to use ML outputs, which is typically prohibited in RTA systems. We formally derive conditions under which this integration preserves safety and demonstrate the performance benefits. We present the design, analysis, and evaluation of SS for AV obstacle detection.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-05T15:23:03Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Ayoosh Bansal</name>
+    </author>
+    <author>
+      <name>Mikael Yeghiazaryan</name>
+    </author>
+    <author>
+      <name>Artyom Khachatryan</name>
+    </author>
+    <author>
+      <name>Tianyi Zhu</name>
+    </author>
+    <author>
+      <name>Hunmin Kim</name>
+    </author>
+    <author>
+      <name>Naira Hovakimyan</name>
+    </author>
+    <author>
+      <name>Lui Sha</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2102.12981v3</id>
+    <title>The Black-Box Simplex Architecture for Runtime Assurance of Autonomous CPS</title>
+    <updated>2022-05-31T08:46:54Z</updated>
+    <link href="https://arxiv.org/abs/2102.12981v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2102.12981v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The Simplex Architecture is a runtime assurance framework where control authority may switch from an unverified and potentially unsafe advanced controller to a backup baseline controller in order to maintain the safety of an autonomous cyber-physical system. In this work, we show that runtime checks can replace the requirement to statically verify safety of the baseline controller. This is important as there are many powerful control techniques, such as model-predictive control and neural network controllers, that work well in practice but are difficult to statically verify. Since the method does not use internal information about the advanced or baseline controller, we call the approach the Black-Box Simplex Architecture. We prove the architecture is safe and present two case studies where (i) model-predictive control provides safe multi-robot coordination, and (ii) neural networks provably prevent collisions in groups of F-16 aircraft, despite the controllers occasionally outputting unsafe commands.</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-02-24T09:18:32Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <arxiv:journal_ref>NASA Formal Methods (2022) 231-250</arxiv:journal_ref>
+    <author>
+      <name>Usama Mehmood</name>
+    </author>
+    <author>
+      <name>Sanaz Sheikhi</name>
+    </author>
+    <author>
+      <name>Stanley Bak</name>
+    </author>
+    <author>
+      <name>Scott A. Smolka</name>
+    </author>
+    <author>
+      <name>Scott D. Stoller</name>
+    </author>
+    <arxiv:doi>10.1007/978-3-031-06773-0_12</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1007/978-3-031-06773-0_12" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.06507v2</id>
+    <title>Verification-Guided Shielding for Deep Reinforcement Learning</title>
+    <updated>2024-06-20T23:07:12Z</updated>
+    <link href="https://arxiv.org/abs/2406.06507v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.06507v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In recent years, Deep Reinforcement Learning (DRL) has emerged as an effective approach to solving real-world tasks. However, despite their successes, DRL-based policies suffer from poor reliability, which limits their deployment in safety-critical domains. Various methods have been put forth to address this issue by providing formal safety guarantees. Two main approaches include shielding and verification. While shielding ensures the safe behavior of the policy by employing an external online component (i.e., a ``shield'') that overrides potentially dangerous actions, this approach has a significant computational cost as the shield must be invoked at runtime to validate every decision. On the other hand, verification is an offline process that can identify policies that are unsafe, prior to their deployment, yet, without providing alternative actions when such a policy is deemed unsafe. In this work, we present verification-guided shielding -- a novel approach that bridges the DRL reliability gap by integrating these two methods. Our approach combines both formal and probabilistic verification tools to partition the input domain into safe and unsafe regions. In addition, we employ clustering and symbolic representation procedures that compress the unsafe regions into a compact representation. This, in turn, allows to temporarily activate the shield solely in (potentially) unsafe regions, in an efficient manner. Our novel approach allows to significantly reduce runtime overhead while still preserving formal safety guarantees. We extensively evaluate our approach on two benchmarks from the robotic navigation domain, as well as provide an in-depth analysis of its scalability and completeness.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-10T17:44:59Z</published>
+    <arxiv:comment>Accepted in the 1st Reinforcement Learning Conference (RLC), 2024. [Corsi and Amir contributed equally]</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Davide Corsi</name>
+    </author>
+    <author>
+      <name>Guy Amir</name>
+    </author>
+    <author>
+      <name>Andoni Rodriguez</name>
+    </author>
+    <author>
+      <name>Cesar Sanchez</name>
+    </author>
+    <author>
+      <name>Guy Katz</name>
+    </author>
+    <author>
+      <name>Roy Fox</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.11996v1</id>
+    <title>Assured AI-Native Network Control Loops: State of the Art, Research Challenges and the Missing Runtime Assurance Layer</title>
+    <updated>2026-09-09T21:44:13Z</updated>
+    <link href="https://arxiv.org/abs/2609.11996v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.11996v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The evolution towards autonomous and AI-native telecommunication networks is transforming network control from predefined automation towards distributed and intelligent decision-making. Advances in closed-loop automation, O-RAN, Network Digital Twins, AI-driven orchestration, and autonomous agents enable multiple specialized control functions to operate concurrently across network domains and timescales. This introduces a system-level assurance challenge: individually acceptable decisions may interact through shared resources and network state, while changes in their operational context may invalidate assumptions under which they were evaluated.
+  This paper presents a state-of-the-art review of AI-native network control, focusing on the composition and runtime assurance of autonomous control loops. It examines closed-loop and zero-touch automation, intelligent controllers, Network Digital Twins, AI-driven orchestration, autonomous agents, trustworthy AI, and runtime assurance. The analysis shows that these directions provide important foundations for autonomous operation but lack a unified mechanism for assuring heterogeneous control loops whose decisions depend on shared and dynamically changing network state.
+  To address this gap, the paper identifies dependency-aware runtime assurance as a research direction for assured composition of AI-native network control loops. The proposed perspective associates decisions with assumptions and dependencies on which their validity relies, monitors changes that may invalidate accepted decisions, and supports runtime resolution of concurrent control interactions. A telecom use case and an initial architecture and formal model illustrate the concept and identify open challenges in dependency representation, runtime validation, conflict resolution, latency-aware assurance, and experimental evaluation.</summary>
+    <category term="cs.NI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-09T21:44:13Z</published>
+    <arxiv:comment>23 pages, 3 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.NI"/>
+    <author>
+      <name>Bartosz Belter</name>
+    </author>
+    <author>
+      <name>Mariusz Głąbowski</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.04288v1</id>
+    <title>Searching for Optimal Runtime Assurance via Reachability and Reinforcement Learning</title>
+    <updated>2023-10-06T14:45:57Z</updated>
+    <link href="https://arxiv.org/abs/2310.04288v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.04288v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A runtime assurance system (RTA) for a given plant enables the exercise of an untrusted or experimental controller while assuring safety with a backup (or safety) controller. The relevant computational design problem is to create a logic that assures safety by switching to the safety controller as needed, while maximizing some performance criteria, such as the utilization of the untrusted controller. Existing RTA design strategies are well-known to be overly conservative and, in principle, can lead to safety violations. In this paper, we formulate the optimal RTA design problem and present a new approach for solving it. Our approach relies on reward shaping and reinforcement learning. It can guarantee safety and leverage machine learning technologies for scalability. We have implemented this algorithm and present experimental results comparing our approach with state-of-the-art reachability and simulation-based RTA approaches in a number of scenarios using aircraft models in 3D space with complex safety requirements. Our approach can guarantee safety while increasing utilization of the experimental controller over existing approaches.</summary>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.FL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-06T14:45:57Z</published>
+    <arxiv:primary_category term="eess.SY"/>
+    <author>
+      <name>Kristina Miller</name>
+    </author>
+    <author>
+      <name>Christopher K. Zeitler</name>
+    </author>
+    <author>
+      <name>William Shen</name>
+    </author>
+    <author>
+      <name>Kerianne Hobbs</name>
+    </author>
+    <author>
+      <name>Sayan Mitra</name>
+    </author>
+    <author>
+      <name>John Schierman</name>
+    </author>
+    <author>
+      <name>Mahesh Viswanathan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.04585v1</id>
+    <title>RTAEval: A framework for evaluating runtime assurance logic</title>
+    <updated>2023-06-05T12:39:44Z</updated>
+    <link href="https://arxiv.org/abs/2306.04585v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.04585v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Runtime assurance (RTA) addresses the problem of keeping an autonomous system safe while using an untrusted (or experimental) controller. This can be done via logic that explicitly switches between the untrusted controller and a safety controller, or logic that filters the input provided by the untrusted controller. While several tools implement specific instances of RTAs, there is currently no framework for evaluating different approaches. Given the importance of the RTA problem in building safe autonomous systems, an evaluation tool is needed. In this paper, we present the RTAEval framework as a low code framework that can be used to quickly evaluate different RTA logics for different types of agents in a variety of scenarios. RTAEval is designed to quickly create scenarios, run different RTA logics, and collect data that can be used to evaluate and visualize performance. In this paper, we describe different components of RTAEval and show how it can be used to create and evaluate scenarios involving multiple aircraft models.</summary>
+    <category term="cs.LO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-05T12:39:44Z</published>
+    <arxiv:primary_category term="cs.LO"/>
+    <author>
+      <name>Kristina Miller</name>
+    </author>
+    <author>
+      <name>Christopher K. Zeitler</name>
+    </author>
+    <author>
+      <name>William Shen</name>
+    </author>
+    <author>
+      <name>Mahesh Viswanathan</name>
+    </author>
+    <author>
+      <name>Sayan Mitra</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1905.10691v3</id>
+    <title>Safe Reinforcement Learning with Nonlinear Dynamics via Model Predictive Shielding</title>
+    <updated>2020-10-21T14:27:24Z</updated>
+    <link href="https://arxiv.org/abs/1905.10691v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1905.10691v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reinforcement learning is a promising approach to synthesizing policies for challenging robotics tasks. A key problem is how to ensure safety of the learned policy---e.g., that a walking robot does not fall over or that an autonomous car does not run into an obstacle. We focus on the setting where the dynamics are known, and the goal is to ensure that a policy trained in simulation satisfies a given safety constraint. We propose an approach, called model predictive shielding (MPS), that switches on-the-fly between a learned policy and a backup policy to ensure safety. We prove that our approach guarantees safety, and empirically evaluate it on the cart-pole.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-05-25T23:09:44Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Osbert Bastani</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2101.11196v2</id>
+    <title>Safe Multi-Agent Reinforcement Learning via Shielding</title>
+    <updated>2021-02-02T18:30:53Z</updated>
+    <link href="https://arxiv.org/abs/2101.11196v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2101.11196v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-agent reinforcement learning (MARL) has been increasingly used in a wide range of safety-critical applications, which require guaranteed safety (e.g., no unsafe states are ever visited) during the learning process.Unfortunately, current MARL methods do not have safety guarantees. Therefore, we present two shielding approaches for safe MARL. In centralized shielding, we synthesize a single shield to monitor all agents' joint actions and correct any unsafe action if necessary. In factored shielding, we synthesize multiple shields based on a factorization of the joint state space observed by all agents; the set of shields monitors agents concurrently and each shield is only responsible for a subset of agents at each step.Experimental results show that both approaches can guarantee the safety of agents during learning without compromising the quality of learned policies; moreover, factored shielding is more scalable in the number of agents than centralized shielding.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.FL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-01-27T04:27:06Z</published>
+    <arxiv:comment>8 pages, 11 figures and 2 tables, to be published in AAMAS 2021</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Ingy Elsayed-Aly</name>
+    </author>
+    <author>
+      <name>Suda Bharadwaj</name>
+    </author>
+    <author>
+      <name>Christopher Amato</name>
+    </author>
+    <author>
+      <name>Rüdiger Ehlers</name>
+    </author>
+    <author>
+      <name>Ufuk Topcu</name>
+    </author>
+    <author>
+      <name>Lu Feng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.25371v1</id>
+    <title>Conformal Recovery-Deadline Certificates for Runtime Assurance of Adapting Controllers</title>
+    <updated>2026-06-24T04:02:06Z</updated>
+    <link href="https://arxiv.org/abs/2606.25371v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.25371v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Runtime assurance (RTA) protects a safety-critical system by switching from an advanced controller to a verified safe controller when a monitored condition is violated. The standard latching rule, which trips on the first breach of the safe set and then coasts, is correct for a diverging controller but pathological for a capable online-adapting one. Such a controller is unsafe by design during a bounded recovery transient. It must excite the plant to identify the fault before it can correct it, so a latching shield trips on that transient and suppresses a controller that would have recovered. We introduce the conformal recovery-deadline certificate, a split-conformal, distribution-free, finite-sample upper bound on the adapting controller's recovery time that licenses delayed fallback with a coverage guarantee, backstopped by a verified monitor at a hard critical limit. The certified deadline discriminates capable from incapable controllers, keeping the recoverer autonomous while catching the diverger. The construction separates autonomy, governed by statistical coverage, from safety, governed by the verified backstop, as an instance of reliability-asymmetric design. We prove marginal coverage, a weighted extension that restores coverage under a known fault-distribution shift, and group-conditional Mondrian coverage. We demonstrate all three on two unrelated Simplex testbeds: a 6-DOF spacecraft attitude controller and a torque-controlled inverted pendulum. Both show the same suppression pathology and the same cure, making the certificate a domain-general mechanism rather than a single-system trick.</summary>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-24T04:02:06Z</published>
+    <arxiv:primary_category term="eess.SY"/>
+    <author>
+      <name>Alireza Shojaei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.19836v1</id>
+    <title>Adaptive Probabilistic Shielding by Learning MDPs for Safe Reinforcement Learning</title>
+    <updated>2026-08-20T09:37:44Z</updated>
+    <link href="https://arxiv.org/abs/2608.19836v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.19836v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Probabilistic shielding is a technique for safe reinforcement learning (RL). Typically, a static observer -- called the shield -- constrains the learning agent's actions to those for which acting safely remains feasible. Traditionally, the shield is computed from the transition probabilities of the underlying Markov decision process (MDP). Thus, this technique is not applicable when the MDP model is not given a priori, which, unfortunately, is the case in typical RL applications. In this paper, we study the problem of computing a shield in the setting where the transition graph of the MDP is known, but the transition probabilities are unknown. Our approach integrates probabilistic shielding with online model learning: as the RL agent explores the environment, we estimate the transition probabilities. From this estimate, we compute a shield. While the shield may be conservative initially, it adapts as the model estimate becomes more precise. Thus, the shield improves in tandem with the RL agent. This paradigm of adaptive probabilistic shielding raises a number of challenges, such as when to recompute the shield and how to balance between exploration and safety during learning. We empirically evaluate multiple variants of this paradigm across several environments.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-20T09:37:44Z</published>
+    <arxiv:comment>19 pages, 3 figures, 3 tables. To be published in the proceedings of RV 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Astrid Horn Brorholt</name>
+      <arxiv:affiliation>Aalborg University, Aalborg, Denmark</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Maris F. L. Galesloot</name>
+      <arxiv:affiliation>Radboud University, Nijmegen, Netherlands</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Nils Jansen</name>
+      <arxiv:affiliation>Radboud University, Nijmegen, Netherlands</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Kim Guldstrand Larsen</name>
+      <arxiv:affiliation>Aalborg University, Aalborg, Denmark</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Christian Schilling</name>
+      <arxiv:affiliation>Aalborg University, Aalborg, Denmark</arxiv:affiliation>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2205.01419v1</id>
+    <title>An Empirical Analysis of the Use of Real-Time Reachability for the Safety Assurance of Autonomous Vehicles</title>
+    <updated>2022-05-03T11:12:29Z</updated>
+    <link href="https://arxiv.org/abs/2205.01419v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2205.01419v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent advances in machine learning technologies and sensing have paved the way for the belief that safe, accessible, and convenient autonomous vehicles may be realized in the near future. Despite tremendous advances within this context, fundamental challenges around safety and reliability are limiting their arrival and comprehensive adoption. Autonomous vehicles are often tasked with operating in dynamic and uncertain environments. As a result, they often make use of highly complex components, such as machine learning approaches, to handle the nuances of sensing, actuation, and control. While these methods are highly effective, they are notoriously difficult to assure. Moreover, within uncertain and dynamic environments, design time assurance analyses may not be sufficient to guarantee safety. Thus, it is critical to monitor the correctness of these systems at runtime. One approach for providing runtime assurance of systems with components that may not be amenable to formal analysis is the simplex architecture, where an unverified component is wrapped with a safety controller and a switching logic designed to prevent dangerous behavior. In this paper, we propose using a real-time reachability algorithm for the implementation of the simplex architecture to assure the safety of a 1/10 scale open source autonomous vehicle platform known as F1/10. The reachability algorithm that we leverage (a) provides provable guarantees of safety, and (b) is used to detect potentially unsafe scenarios. In our approach, the need to analyze an underlying controller is abstracted away, instead focusing on the effects of the controller's decisions on the system's future states. We demonstrate the efficacy of our architecture through a vast set of experiments conducted both in simulation and on an embedded hardware platform.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.FL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-05-03T11:12:29Z</published>
+    <arxiv:comment>30 pages, 12 Figures, Submitted to Artificial Intelligence's Special Issue on "Risk-Aware Autonomous Systems: Theory and Practice."</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Patrick Musau</name>
+    </author>
+    <author>
+      <name>Nathaniel Hamilton</name>
+    </author>
+    <author>
+      <name>Diego Manzanas Lopez</name>
+    </author>
+    <author>
+      <name>Preston Robinette</name>
+    </author>
+    <author>
+      <name>Taylor T. Johnson</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.00270v1</id>
+    <title>Robust Shielding for Safe Reinforcement Learning</title>
+    <updated>2026-05-29T19:01:12Z</updated>
+    <link href="https://arxiv.org/abs/2606.00270v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.00270v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Shielding is an effective approach to formally guarantee the safety of reinforcement learning agents in Markov decision processes (MDPs). However, existing shielding techniques typically assume knowledge of the safety-relevant transition dynamics - a requirement that is seldom met in practice. To address this limitation, we introduce a novel shielding framework for robust MDPs (RMDPs), i.e., MDPs with sets of transition probabilities. We define safety as the satisfaction of a linear temporal logic (LTL) formula with a certain threshold probability under the worst-case transition probabilities of the RMDP. We prove that our shielding framework is both sound and optimal for the RMDP: every policy admissible by the shield is safe, and conversely, every safe RMDP policy is admissible by the shield. We combine our approach with existing sampling methods for learning transition probabilities of MDPs with probably approximately correct (PAC) guarantees. This combination enables the construction of shields for MDPs that, with high confidence, guarantee safety while remaining minimally restrictive. Our experiments show that our shields for learned RMDPs guarantee safety in unknown MDPs while recovering strong expected return as the number of samples increases.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-29T19:01:12Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Edwin Hamel-De le Court</name>
+    </author>
+    <author>
+      <name>Thom Badings</name>
+    </author>
+    <author>
+      <name>Alessandro Abate</name>
+    </author>
+    <author>
+      <name>Francesco Belardinelli</name>
+    </author>
+    <author>
+      <name>Francesco Fabiano</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2212.01861v1</id>
+    <title>Online Shielding for Reinforcement Learning</title>
+    <updated>2022-12-04T16:00:29Z</updated>
+    <link href="https://arxiv.org/abs/2212.01861v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2212.01861v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Besides the recent impressive results on reinforcement learning (RL), safety is still one of the major research challenges in RL. RL is a machine-learning approach to determine near-optimal policies in Markov decision processes (MDPs). In this paper, we consider the setting where the safety-relevant fragment of the MDP together with a temporal logic safety specification is given and many safety violations can be avoided by planning ahead a short time into the future. We propose an approach for online safety shielding of RL agents. During runtime, the shield analyses the safety of each available action. For any action, the shield computes the maximal probability to not violate the safety specification within the next $k$ steps when executing this action. Based on this probability and a given threshold, the shield decides whether to block an action from the agent. Existing offline shielding approaches compute exhaustively the safety of all state-action combinations ahead of time, resulting in huge computation times and large memory consumption. The intuition behind online shielding is to compute at runtime the set of all states that could be reached in the near future. For each of these states, the safety of all available actions is analysed and used for shielding as soon as one of the considered states is reached. Our approach is well suited for high-level planning problems where the time between decisions can be used for safety computations and it is sustainable for the agent to wait until these computations are finished. For our evaluation, we selected a 2-player version of the classical computer game SNAKE. The game represents a high-level planning problem that requires fast decisions and the multiplayer setting induces a large state space, which is computationally expensive to analyse exhaustively.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-12-04T16:00:29Z</published>
+    <arxiv:comment>arXiv admin note: substantial text overlap with arXiv:2012.09539</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Bettina Könighofer</name>
+    </author>
+    <author>
+      <name>Julian Rudolf</name>
+    </author>
+    <author>
+      <name>Alexander Palmisano</name>
+    </author>
+    <author>
+      <name>Martin Tappler</name>
+    </author>
+    <author>
+      <name>Roderick Bloem</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.03804v1</id>
+    <title>Easy-to-Use Shielding for Reinforcement Learning</title>
+    <updated>2026-06-02T15:50:34Z</updated>
+    <link href="https://arxiv.org/abs/2606.03804v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.03804v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Safe exploration is a key challenge in Reinforcement Learning (RL) that aims to prevent agents from making harmful decisions while exploring their environment. Safe exploration is a key challenge in Reinforcement Learning (RL) that aims to prevent agents from making harmful decisions while exploring their environment. Shielding is one such technique that assumes domain knowledge in the form of an environment model to decide upon action safety. Although well-established, shielding has seen limited adoption in RL due to the lack of accessible end-to-end infrastructure connecting formal shield synthesis with standard RL frameworks. Applying shielding typically requires expertise in formal methods and substantial engineering effort, keeping it outside the typical RL workflow. We address this by extending our shield synthesis tool Tempest into a practical backend for safe RL. Our core contribution is tempestpy, a Python library that integrates Tempest-based shield synthesis directly into the Gymnasium API, allowing shields to be synthesized and deployed within existing RL pipelines. This lowers the barrier to entry for shielding and turns formal safe-exploration methods into a usable component for RL practitioners. We also extend Tempest's algorithmic support to compute sound shields for stochastic multiplayer games, preserving formal safety guarantees. We demonstrate the resulting workflow end to end and evaluate shielded and unshielded RL across multiple environments. To facilitate modeling, we provide symbolic models for MiniGrid and introduce MiniGridSafe, a collection of playground environments designed to make shielding easily accessible and experimentally transparent. MiniGridSafe extends MiniGrid with safety-oriented scenarios featuring probabilistic transitions and additional agents, enabling the study of challenging safety aspects in a simple and intuitive setting.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-02T15:50:34Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Stefan Pranger</name>
+    </author>
+    <author>
+      <name>Bettina Könighofer</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2207.13446v1</id>
+    <title>Dynamic Shielding for Reinforcement Learning in Black-Box Environments</title>
+    <updated>2022-07-27T10:54:05Z</updated>
+    <link href="https://arxiv.org/abs/2207.13446v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2207.13446v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>It is challenging to use reinforcement learning (RL) in cyber-physical systems due to the lack of safety guarantees during learning. Although there have been various proposals to reduce undesired behaviors during learning, most of these techniques require prior system knowledge, and their applicability is limited. This paper aims to reduce undesired behaviors during learning without requiring any prior system knowledge. We propose dynamic shielding: an extension of a model-based safe RL technique called shielding using automata learning. The dynamic shielding technique constructs an approximate system model in parallel with RL using a variant of the RPNI algorithm and suppresses undesired explorations due to the shield constructed from the learned model. Through this combination, potentially unsafe actions can be foreseen before the agent experiences them. Experiments show that our dynamic shield significantly decreases the number of undesired events during training.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.FL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-07-27T10:54:05Z</published>
+    <arxiv:comment>This is the author (and extended) version of the manuscript of the same name published in the proceedings of the 20th International Symposium on Automated Technology for Verification and Analysis (ATVA 2022)</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Masaki Waga</name>
+    </author>
+    <author>
+      <name>Ezequiel Castellano</name>
+    </author>
+    <author>
+      <name>Sasinee Pruekprasert</name>
+    </author>
+    <author>
+      <name>Stefan Klikovits</name>
+    </author>
+    <author>
+      <name>Toru Takisaka</name>
+    </author>
+    <author>
+      <name>Ichiro Hasuo</name>
+    </author>
+  </entry>
+</feed>

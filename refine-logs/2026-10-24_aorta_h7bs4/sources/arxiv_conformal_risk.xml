@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/bl+UMljsdl3Gw8kWqKK5V7t6c0w</id>
+  <title>arXiv Query: search_query=all:"conformal risk control"&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <updated>2026-10-24T15:27:50Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22conformal+risk+control%22&amp;start=0&amp;max_results=10&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+  <opensearch:totalResults>103</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2512.12844v2</id>
+    <title>Selective Conformal Risk Control</title>
+    <updated>2026-04-27T02:26:44Z</updated>
+    <link href="https://arxiv.org/abs/2512.12844v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.12844v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reliable uncertainty quantification is essential for deploying machine learning systems in high-stakes domains. Conformal prediction provides distribution-free coverage guarantees but often produces overly large prediction sets, limiting its practical utility. To address this issue, we propose \textit{Selective Conformal Risk Control} (SCRC), a unified framework that integrates conformal prediction with selective classification. The framework formulates uncertainty control as a two-stage problem: the first stage selects confident samples for prediction, and the second stage applies conformal risk control on the selected subset to construct calibrated prediction sets. We develop two algorithms under this framework. The first, SCRC-T, preserves exchangeability by computing thresholds jointly over calibration and test samples, offering exact finite-sample guarantees. The second, SCRC-I, is a calibration-only variant that provides PAC-style probabilistic guarantees while being more computational efficient. Experiments on two public datasets show that both methods achieve the target coverage and risk levels, with nearly identical performance, while SCRC-I exhibits slightly more conservative risk control but superior computational practicality. Our results demonstrate that selective conformal risk control offers an effective and efficient path toward compact, reliable uncertainty quantification.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-12-14T21:18:28Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yunpeng Xu</name>
+    </author>
+    <author>
+      <name>Wenge Guo</name>
+    </author>
+    <author>
+      <name>Zhi Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2208.02814v4</id>
+    <title>Conformal Risk Control</title>
+    <updated>2025-06-13T18:38:23Z</updated>
+    <link href="https://arxiv.org/abs/2208.02814v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2208.02814v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We extend conformal prediction to control the expected value of any monotone loss function. The algorithm generalizes split conformal prediction together with its coverage guarantee. Like conformal prediction, the conformal risk control procedure is tight up to an $\mathcal{O}(1/n)$ factor. We also introduce extensions of the idea to distribution shift, quantile risk control, multiple and adversarial risk control, and expectations of U-statistics. Worked examples from computer vision and natural language processing demonstrate the usage of our algorithm to bound the false negative rate, graph distance, and token-level F1-score.</summary>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.ST" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-08-04T17:59:44Z</published>
+    <arxiv:comment>Code available at https://github.com/aangelopoulos/conformal-risk</arxiv:comment>
+    <arxiv:primary_category term="stat.ME"/>
+    <author>
+      <name>Anastasios N. Angelopoulos</name>
+    </author>
+    <author>
+      <name>Stephen Bates</name>
+    </author>
+    <author>
+      <name>Adam Fisch</name>
+    </author>
+    <author>
+      <name>Lihua Lei</name>
+    </author>
+    <author>
+      <name>Tal Schuster</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2405.00417v1</id>
+    <title>Conformal Risk Control for Ordinal Classification</title>
+    <updated>2024-05-01T09:55:31Z</updated>
+    <link href="https://arxiv.org/abs/2405.00417v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2405.00417v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As a natural extension to the standard conformal prediction method, several conformal risk control methods have been recently developed and applied to various learning problems. In this work, we seek to control the conformal risk in expectation for ordinal classification tasks, which have broad applications to many real problems. For this purpose, we firstly formulated the ordinal classification task in the conformal risk control framework, and provided theoretic risk bounds of the risk control method. Then we proposed two types of loss functions specially designed for ordinal classification tasks, and developed corresponding algorithms to determine the prediction set for each case to control their risks at a desired level. We demonstrated the effectiveness of our proposed methods, and analyzed the difference between the two types of risks on three different datasets, including a simulated dataset, the UTKFace dataset and the diabetic retinopathy detection dataset.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-05-01T09:55:31Z</published>
+    <arxiv:comment>17 pages, 8 figures, 2 table; 1 supplementary page</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>In UAI 2023: The 39th Conference on Uncertainty in Artificial Intelligence</arxiv:journal_ref>
+    <author>
+      <name>Yunpeng Xu</name>
+    </author>
+    <author>
+      <name>Wenge Guo</name>
+    </author>
+    <author>
+      <name>Zhi Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.10392v1</id>
+    <title>Safe Probabilistic Planning for Human-Robot Interaction using Conformal Risk Control</title>
+    <updated>2026-03-11T04:19:44Z</updated>
+    <link href="https://arxiv.org/abs/2603.10392v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.10392v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we present a novel probabilistic safe control framework for human-robot interaction that combines control barrier functions (CBFs) with conformal risk control to provide formal safety guarantees while considering complex human behavior. The approach uses conformal risk control to quantify and control the prediction errors in CBF safety values and establishes formal guarantees on the probability of constraint satisfaction during interaction. We introduce an algorithm that dynamically adjusts the safety margins produced by conformal risk control based on the current interaction context. Through experiments on human-robot navigation scenarios, we demonstrate that our approach significantly reduces collision rates and safety violations as compared to baseline methods while maintaining high success rates in goal-reaching tasks and efficient control. The code, simulations, and other supplementary material can be found on the project website: https://jakeagonzales.github.io/crc-cbf-website/.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-11T04:19:44Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Jake Gonzales</name>
+    </author>
+    <author>
+      <name>Kazuki Mizuta</name>
+    </author>
+    <author>
+      <name>Karen Leung</name>
+    </author>
+    <author>
+      <name>Lillian J. Ratliff</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04576v1</id>
+    <title>Conformal Risk Control for Multiuser Beamforming</title>
+    <updated>2026-10-03T15:11:22Z</updated>
+    <link href="https://arxiv.org/abs/2610.04576v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04576v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We consider multiuser downlink beamforming with prescribed signal-to-interference-plus-noise ratio (SINR) requirements under imperfect channel state information and a tight transmit power budget. Robust worst-case designs often require tractable channel-error models and may not yield feasible beamformers that meet the power budget. To alleviate these issues, we propose conformal risk control for beamforming (CRCBeam), which combines the classical fixed-point minimum-power beamforming with conformal risk control to calibrate an SINR margin from calibration sample pairs of estimated and true channels. Under exchangeability, CRCBeam provides finite-sample control over served-outage risk, which is the probability of transmitting when at least one user fails to meet its SINR target. CRCBeam requires no parametric channel-error model and transmits only when the power budget is met. Numerical experiments using a pilot contamination channel error model corroborate that CRCBeam achieves the served-outage risk while meeting the power budget. In contrast, worst-case robust baselines, Gaussian-ball and conformal-ball beamforming, either do not meet the target risk or exceed the power budget.</summary>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-03T15:11:22Z</published>
+    <arxiv:comment>5 pages with references on the 5th page</arxiv:comment>
+    <arxiv:primary_category term="eess.SP"/>
+    <author>
+      <name>Aman Goel</name>
+    </author>
+    <author>
+      <name>Sundeep Prabhakar Chepuri</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38112v1</id>
+    <title>ReCIRC: Rectified Conformal Risk Control</title>
+    <updated>2026-09-29T17:49:17Z</updated>
+    <link href="https://arxiv.org/abs/2609.38112v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38112v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Many applications of black-box predictive models require controlling task-relevant error rates, such as missed lesion pixels in segmentation or missed labels in multilabel classification. Conformal risk control (CRC; Angelopoulos et al., arXiv:2208.02814) gives distribution-free guarantees for such losses, but it calibrates a single threshold shared by all inputs. Because conditional risk varies with the input, this marginal guarantee often overprotects easy cases and underprotects hard ones. We propose ReCIRC (Rectified Conformal Risk Control), which inverts each input's estimated local risk curve to reparameterize the calibrated threshold as a risk budget $a$ representing a common target conditional risk, and then applies CRC unchanged to the resulting family. ReCIRC retains CRC's finite-sample marginal guarantee regardless of the accuracy of the estimated curves, while accurate curves yield approximate conditional risk control and, under additional conditions, asymptotically exact conditional risk control; they also support a risk-calibration diagnostic. Across three synthetic and five real-data settings spanning segmentation, multilabel and multiclass classification, and regression, ReCIRC attained the lowest average worst-group risk and mean positive group excess in every setting, while maintaining marginal risk close to the target, whereas changes in prediction size were application-dependent.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T17:49:17Z</published>
+    <arxiv:comment>69 pages, 11 figures</arxiv:comment>
+    <arxiv:primary_category term="stat.ML"/>
+    <author>
+      <name>Bruno Marcondes e Resende</name>
+    </author>
+    <author>
+      <name>Helton Graziadei</name>
+    </author>
+    <author>
+      <name>Thiago Rodrigo Ramos</name>
+    </author>
+    <author>
+      <name>Rafael Izbicki</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.15489v2</id>
+    <title>Multiply Robust Conformal Risk Control with Coarsened Data</title>
+    <updated>2026-10-22T01:08:02Z</updated>
+    <link href="https://arxiv.org/abs/2508.15489v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.15489v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Conformal Prediction (CP) provides prediction sets with formal coverage guarantees, but most existing methods assume fully observed training and calibration data. In many applications, however, outcomes, covariates, or both may be missing or coarsened. We develop a general framework for predictive inference with coarsened data by combining semiparametric theory with conformal methods.
+  We introduce two complementary procedures. $(i)$ Robust Split Prediction (RSP) generalizes the doubly robust estimating-equation approach of Yang et al. [2024] beyond the classical missing outcome problem by constructing an efficient influence function based estimating equation and solving its empirical analogue. This yields multiply robust prediction sets under general coarsening patterns. $(ii)$ Robust Split Conformal Prediction (RSCP) instead combines semiparametric theory with conformal risk control. Because efficient influence functions are generally non-monotone in the threshold, we first estimate the target threshold on an independent sample and freeze the threshold-dependent nuisance functions at this preliminary estimate. This restores monotonicity and allows standard conformal risk control arguments to be applied. The resulting coverage guarantees inherit the higher-order mixed-bias structure of the influence function. We develop the theory for classical, multi-stage monotone, and non-monotone missingness and illustrate the performance of the methods through simulations and a longitudinal rheumatoid-arthritis application.</summary>
+    <category term="math.ST" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-21T12:14:44Z</published>
+    <arxiv:comment>113 pages, 7 figures</arxiv:comment>
+    <arxiv:primary_category term="math.ST"/>
+    <author>
+      <name>Manit Paul</name>
+    </author>
+    <author>
+      <name>Arun Kumar Kuchibhotla</name>
+    </author>
+    <author>
+      <name>Eric J. Tchetgen Tchetgen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.20151v1</id>
+    <title>Conformal Risk Control for Non-Monotonic Losses</title>
+    <updated>2026-02-23T18:58:54Z</updated>
+    <link href="https://arxiv.org/abs/2602.20151v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.20151v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Conformal risk control is an extension of conformal prediction for controlling risk functions beyond miscoverage. The original algorithm controls the expected value of a loss that is monotonic in a one-dimensional parameter. Here, we present risk control guarantees for generic algorithms applied to possibly non-monotonic losses with multidimensional parameters. The guarantees depend on the stability of the algorithm -- unstable algorithms have looser guarantees. We give applications of this technique to selective image classification, FDR and IOU control of tumor segmentations, and multigroup debiasing of recidivism predictions across overlapping race and sex groups using empirical risk minimization.</summary>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.ST" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-23T18:58:54Z</published>
+    <arxiv:primary_category term="stat.ME"/>
+    <author>
+      <name>Anastasios N. Angelopoulos</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.18777v2</id>
+    <title>Aligning Model Properties via Conformal Risk Control</title>
+    <updated>2024-11-05T07:17:54Z</updated>
+    <link href="https://arxiv.org/abs/2406.18777v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.18777v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>AI model alignment is crucial due to inadvertent biases in training data and the underspecified machine learning pipeline, where models with excellent test metrics may not meet end-user requirements. While post-training alignment via human feedback shows promise, these methods are often limited to generative AI settings where humans can interpret and provide feedback on model outputs. In traditional non-generative settings with numerical or categorical outputs, detecting misalignment through single-sample outputs remains challenging, and enforcing alignment during training requires repeating costly training processes. In this paper we consider an alternative strategy. We propose interpreting model alignment through property testing, defining an aligned model $f$ as one belonging to a subset $\mathcal{P}$ of functions that exhibit specific desired behaviors. We focus on post-processing a pre-trained model $f$ to better align with $\mathcal{P}$ using conformal risk control. Specifically, we develop a general procedure for converting queries for testing a given property $\mathcal{P}$ to a collection of loss functions suitable for use in a conformal risk control algorithm. We prove a probabilistic guarantee that the resulting conformal interval around $f$ contains a function approximately satisfying $\mathcal{P}$. We exhibit applications of our methodology on a collection of supervised learning datasets for (shape-constrained) properties such as monotonicity and concavity. The general procedure is flexible and can be applied to a wide range of desired properties. Finally, we prove that pre-trained models will always require alignment techniques even as model sizes or training data increase, as long as the training data contains even small biases.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-26T22:24:46Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>William Overman</name>
+    </author>
+    <author>
+      <name>Jacqueline Jil Vallon</name>
+    </author>
+    <author>
+      <name>Mohsen Bayati</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.15964v1</id>
+    <title>PromptShift-CRC: Drift-Aware Conformal Risk Control for Foundation Models Under Prompt and Domain Shift</title>
+    <updated>2026-06-14T18:45:56Z</updated>
+    <link href="https://arxiv.org/abs/2606.15964v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.15964v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Foundation models are now used in settings where the prompts they receive can change quickly. Users change, topics change, policies change, and the model may suddenly face a kind of request that was rare in the calibration data. This makes fixed calibration risky. Conformal prediction and conformal risk control give model-agnostic ways to control error, but they work best when the calibration data still look like the future data. This paper develops PromptShift CRC, a drift-aware conformal risk control method for foundation-model outputs under prompt and domain shift. The method embeds prompts and responses, measures how far the current prompt stream has moved from the calibration pool, gives more weight to relevant or recent calibration examples, and updates the risk level online after observed violations. It reports three practical diagnostics: realized risk error, prompt drift, and effective calibration size. We give conditions under which the method controls risk up to terms for distribution mismatch and weighted quantile uncertainty. In a synthetic prompt-shift benchmark, static conformal risk control fails sharply after drift, while PromptShift-CRC gives the best coverage among the adaptive baselines considered. We then evaluate the same calibration layer on public benchmark derived streams for question answering, toxicity, summarization factuality, and long-context hallucination risk</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-14T18:45:56Z</published>
+    <arxiv:primary_category term="stat.ML"/>
+    <author>
+      <name>Jeffery Opoku</name>
+    </author>
+    <author>
+      <name>David Banahene</name>
+    </author>
+  </entry>
+</feed>

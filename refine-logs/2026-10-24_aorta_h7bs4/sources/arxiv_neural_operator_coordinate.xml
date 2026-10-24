@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/pJ8E1HHIn0grmfpbuAqW25FsHyk</id>
+  <title>arXiv Query: search_query=(all:"neural operator" OR all:"implicit neural representation") AND (all:irregular OR all:coordinate)&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-10-24T15:28:02Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(all:%22neural+operator%22+OR+all:%22implicit+neural+representation%22)+AND+(all:irregular+OR+all:coordinate)&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>410</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2304.00837v1</id>
+    <title>Disorder-invariant Implicit Neural Representation</title>
+    <updated>2023-04-03T09:28:48Z</updated>
+    <link href="https://arxiv.org/abs/2304.00837v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2304.00837v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Implicit neural representation (INR) characterizes the attributes of a signal as a function of corresponding coordinates which emerges as a sharp weapon for solving inverse problems. However, the expressive power of INR is limited by the spectral bias in the network training. In this paper, we find that such a frequency-related problem could be greatly solved by re-arranging the coordinates of the input signal, for which we propose the disorder-invariant implicit neural representation (DINER) by augmenting a hash-table to a traditional INR backbone. Given discrete signals sharing the same histogram of attributes and different arrangement orders, the hash-table could project the coordinates into the same distribution for which the mapped signal can be better modeled using the subsequent INR network, leading to significantly alleviated spectral bias. Furthermore, the expressive power of the DINER is determined by the width of the hash-table. Different width corresponds to different geometrical elements in the attribute space, \textit{e.g.}, 1D curve, 2D curved-plane and 3D curved-volume when the width is set as $1$, $2$ and $3$, respectively. More covered areas of the geometrical elements result in stronger expressive power. Experiments not only reveal the generalization of the DINER for different INR backbones (MLP vs. SIREN) and various tasks (image/video representation, phase retrieval, refractive index recovery, and neural radiance field optimization) but also show the superiority over the state-of-the-art algorithms both in quality and speed. \textit{Project page:} \url{https://ezio77.github.io/DINER-website/}</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-04-03T09:28:48Z</published>
+    <arxiv:comment>Journal extension of the CVPR'23 highlight paper "DINER: Disorder-invariant Implicit Neural Representation". In the extension, we model the expressive power of the DINER using parametric functions in the attribute space. As a result, better results are achieved than the conference version. arXiv admin note: substantial text overlap with arXiv:2211.07871</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Hao Zhu</name>
+    </author>
+    <author>
+      <name>Shaowen Xie</name>
+    </author>
+    <author>
+      <name>Zhen Liu</name>
+    </author>
+    <author>
+      <name>Fengyi Liu</name>
+    </author>
+    <author>
+      <name>Qi Zhang</name>
+    </author>
+    <author>
+      <name>You Zhou</name>
+    </author>
+    <author>
+      <name>Yi Lin</name>
+    </author>
+    <author>
+      <name>Zhan Ma</name>
+    </author>
+    <author>
+      <name>Xun Cao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.19434v1</id>
+    <title>FINER++: Building a Family of Variable-periodic Functions for Activating Implicit Neural Representation</title>
+    <updated>2024-07-28T09:24:57Z</updated>
+    <link href="https://arxiv.org/abs/2407.19434v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.19434v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Implicit Neural Representation (INR), which utilizes a neural network to map coordinate inputs to corresponding attributes, is causing a revolution in the field of signal processing. However, current INR techniques suffer from the "frequency"-specified spectral bias and capacity-convergence gap, resulting in imperfect performance when representing complex signals with multiple "frequencies". We have identified that both of these two characteristics could be handled by increasing the utilization of definition domain in current activation functions, for which we propose the FINER++ framework by extending existing periodic/non-periodic activation functions to variable-periodic ones. By initializing the bias of the neural network with different ranges, sub-functions with various frequencies in the variable-periodic function are selected for activation. Consequently, the supported frequency set can be flexibly tuned, leading to improved performance in signal representation. We demonstrate the generalization and capabilities of FINER++ with different activation function backbones (Sine, Gauss. and Wavelet) and various tasks (2D image fitting, 3D signed distance field representation, 5D neural radiance fields optimization and streamable INR transmission), and we show that it improves existing INRs. Project page: {https://liuzhen0212.github.io/finerpp/}</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-28T09:24:57Z</published>
+    <arxiv:comment>Extension of previous CVPR paper "FINER: Flexible spectral-bias tuning in implicit neural representation by variable-periodic activation functions". arXiv admin note: substantial text overlap with arXiv:2312.02434</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Hao Zhu</name>
+    </author>
+    <author>
+      <name>Zhen Liu</name>
+    </author>
+    <author>
+      <name>Qi Zhang</name>
+    </author>
+    <author>
+      <name>Jingde Fu</name>
+    </author>
+    <author>
+      <name>Weibing Deng</name>
+    </author>
+    <author>
+      <name>Zhan Ma</name>
+    </author>
+    <author>
+      <name>Yanwen Guo</name>
+    </author>
+    <author>
+      <name>Xun Cao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2211.07871v1</id>
+    <title>DINER: Disorder-Invariant Implicit Neural Representation</title>
+    <updated>2022-11-15T03:34:24Z</updated>
+    <link href="https://arxiv.org/abs/2211.07871v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2211.07871v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Implicit neural representation (INR) characterizes the attributes of a signal as a function of corresponding coordinates which emerges as a sharp weapon for solving inverse problems. However, the capacity of INR is limited by the spectral bias in the network training. In this paper, we find that such a frequency-related problem could be largely solved by re-arranging the coordinates of the input signal, for which we propose the disorder-invariant implicit neural representation (DINER) by augmenting a hash-table to a traditional INR backbone. Given discrete signals sharing the same histogram of attributes and different arrangement orders, the hash-table could project the coordinates into the same distribution for which the mapped signal can be better modeled using the subsequent INR network, leading to significantly alleviated spectral bias. Experiments not only reveal the generalization of the DINER for different INR backbones (MLP vs. SIREN) and various tasks (image/video representation, phase retrieval, and refractive index recovery) but also show the superiority over the state-of-the-art algorithms both in quality and speed.</summary>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-11-15T03:34:24Z</published>
+    <arxiv:comment>10 pages, 11 figures</arxiv:comment>
+    <arxiv:primary_category term="eess.IV"/>
+    <author>
+      <name>Shaowen Xie</name>
+    </author>
+    <author>
+      <name>Hao Zhu</name>
+    </author>
+    <author>
+      <name>Zhen Liu</name>
+    </author>
+    <author>
+      <name>Qi Zhang</name>
+    </author>
+    <author>
+      <name>You Zhou</name>
+    </author>
+    <author>
+      <name>Xun Cao</name>
+    </author>
+    <author>
+      <name>Zhan Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.02354v1</id>
+    <title>Implicit neural representation of textures</title>
+    <updated>2026-02-02T17:17:20Z</updated>
+    <link href="https://arxiv.org/abs/2602.02354v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.02354v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Implicit neural representation (INR) has proven to be accurate and efficient in various domains. In this work, we explore how different neural networks can be designed as a new texture INR, which operates in a continuous manner rather than a discrete one over the input UV coordinate space. Through thorough experiments, we demonstrate that these INRs perform well in terms of image quality, with considerable memory usage and rendering inference time. We analyze the balance between these objectives. In addition, we investigate various related applications in real-time rendering and down-stream tasks, e.g. mipmap fitting and INR-space generation.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.GR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-02T17:17:20Z</published>
+    <arxiv:comment>Albert Kwok and Zheyuan Hu contributed equally to this work</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Albert Kwok</name>
+    </author>
+    <author>
+      <name>Zheyuan Hu</name>
+    </author>
+    <author>
+      <name>Dounia Hammou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2312.01061v2</id>
+    <title>Spectral-wise Implicit Neural Representation for Hyperspectral Image Reconstruction</title>
+    <updated>2025-03-18T02:47:41Z</updated>
+    <link href="https://arxiv.org/abs/2312.01061v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2312.01061v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Coded Aperture Snapshot Spectral Imaging (CASSI) reconstruction aims to recover the 3D spatial-spectral signal from 2D measurement. Existing methods for reconstructing Hyperspectral Image (HSI) typically involve learning mappings from a 2D compressed image to a predetermined set of discrete spectral bands. However, this approach overlooks the inherent continuity of the spectral information. In this study, we propose an innovative method called Spectral-wise Implicit Neural Representation (SINR) as a pioneering step toward addressing this limitation. SINR introduces a continuous spectral amplification process for HSI reconstruction, enabling spectral super-resolution with customizable magnification factors. To achieve this, we leverage the concept of implicit neural representation. Specifically, our approach introduces a spectral-wise attention mechanism that treats individual channels as distinct tokens, thereby capturing global spectral dependencies. Additionally, our approach incorporates two components, namely a Fourier coordinate encoder and a spectral scale factor module. The Fourier coordinate encoder enhances the SINR's ability to emphasize high-frequency components, while the spectral scale factor module guides the SINR to adapt to the variable number of spectral channels. Notably, the SINR framework enhances the flexibility of CASSI reconstruction by accommodating an unlimited number of spectral bands in the desired output. Extensive experiments demonstrate that our SINR outperforms baseline methods. By enabling continuous reconstruction within the CASSI framework, we take the initial stride toward integrating implicit neural representation into the field.</summary>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-12-02T08:06:07Z</published>
+    <arxiv:comment>Accepted by IEEE Transactions on Circuits and Systems for Video Technology, has been published</arxiv:comment>
+    <arxiv:primary_category term="eess.IV"/>
+    <arxiv:journal_ref>Volume: 34, Issue: 5, May 2024</arxiv:journal_ref>
+    <author>
+      <name>Huan Chen</name>
+    </author>
+    <author>
+      <name>Wangcai Zhao</name>
+    </author>
+    <author>
+      <name>Tingfa Xu</name>
+    </author>
+    <author>
+      <name>Shiyun Zhou</name>
+    </author>
+    <author>
+      <name>Peifu Liu</name>
+    </author>
+    <author>
+      <name>Jianan Li</name>
+    </author>
+    <arxiv:doi>10.1109/TCSVT.2023.3318366</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TCSVT.2023.3318366" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2201.12425v1</id>
+    <title>CoordX: Accelerating Implicit Neural Representation with a Split MLP Architecture</title>
+    <updated>2022-01-28T21:30:42Z</updated>
+    <link href="https://arxiv.org/abs/2201.12425v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2201.12425v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Implicit neural representations with multi-layer perceptrons (MLPs) have recently gained prominence for a wide variety of tasks such as novel view synthesis and 3D object representation and rendering. However, a significant challenge with these representations is that both training and inference with an MLP over a large number of input coordinates to learn and represent an image, video, or 3D object, require large amounts of computation and incur long processing times. In this work, we aim to accelerate inference and training of coordinate-based MLPs for implicit neural representations by proposing a new split MLP architecture, CoordX. With CoordX, the initial layers are split to learn each dimension of the input coordinates separately. The intermediate features are then fused by the last layers to generate the learned signal at the corresponding coordinate point. This significantly reduces the amount of computation required and leads to large speedups in training and inference, while achieving similar accuracy as the baseline MLP. This approach thus aims at first learning functions that are a decomposition of the original signal and then fusing them to generate the learned signal. Our proposed architecture can be generally used for many implicit neural representation tasks with no additional memory overheads. We demonstrate a speedup of up to 2.92x compared to the baseline model for image, video, and 3D shape representation and rendering tasks.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-01-28T21:30:42Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Ruofan Liang</name>
+    </author>
+    <author>
+      <name>Hongyi Sun</name>
+    </author>
+    <author>
+      <name>Nandita Vijaykumar</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.08743v1</id>
+    <title>Generalizable Implicit Neural Representation As a Universal Spatiotemporal Traffic Data Learner</title>
+    <updated>2024-06-13T02:03:22Z</updated>
+    <link href="https://arxiv.org/abs/2406.08743v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.08743v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>$\textbf{This is the conference version of our paper: Spatiotemporal Implicit Neural Representation as a Generalized Traffic Data Learner}$. Spatiotemporal Traffic Data (STTD) measures the complex dynamical behaviors of the multiscale transportation system. Existing methods aim to reconstruct STTD using low-dimensional models. However, they are limited to data-specific dimensions or source-dependent patterns, restricting them from unifying representations. Here, we present a novel paradigm to address the STTD learning problem by parameterizing STTD as an implicit neural representation. To discern the underlying dynamics in low-dimensional regimes, coordinate-based neural networks that can encode high-frequency structures are employed to directly map coordinates to traffic variables. To unravel the entangled spatial-temporal interactions, the variability is decomposed into separate processes. We further enable modeling in irregular spaces such as sensor graphs using spectral embedding. Through continuous representations, our approach enables the modeling of a variety of STTD with a unified input, thereby serving as a generalized learner of the underlying traffic dynamics. It is also shown that it can learn implicit low-rank priors and smoothness regularization from the data, making it versatile for learning different dominating data patterns. We validate its effectiveness through extensive experiments in real-world scenarios, showcasing applications from corridor to network scales. Empirical results not only indicate that our model has significant superiority over conventional low-rank models, but also highlight that the versatility of the approach. We anticipate that this pioneering modeling perspective could lay the foundation for universal representation of STTD in various real-world tasks. $\textbf{The full version can be found at:}$ https://doi.org/10.48550/arXiv.2405.03185.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-13T02:03:22Z</published>
+    <arxiv:comment>Accepted by the Conference in Emerging Technologies in Transportation Systems (TRC-30). arXiv admin note: substantial text overlap with arXiv:2405.03185</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Tong Nie</name>
+    </author>
+    <author>
+      <name>Guoyang Qin</name>
+    </author>
+    <author>
+      <name>Wei Ma</name>
+    </author>
+    <author>
+      <name>Jian Sun</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.29892v1</id>
+    <title>Joint Spatiotemporal Spectral Neural Operators for Learning PDEs on Irregular Domains</title>
+    <updated>2026-08-30T16:41:10Z</updated>
+    <link href="https://arxiv.org/abs/2608.29892v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.29892v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Learning solution operators for partial differential equations (PDEs) on irregular and geometry-dependent domains remains a central challenge in scientific machine learning. While spectral methods provide strong inductive biases for modeling global interactions, they are typically limited to regular domains, and existing neural approaches often require domain warping, interpolation, or costly geometric embeddings. We introduce the \textbf{Graph Spectral Neural Operator (GSNO)}, a neural operator that combines spatial graph spectral decompositions with temporal Fourier transforms through a unified space--time spectral kernel. This formulation enables globally coherent operator learning on non-Cartesian discretizations without domain warping or autoregressive rollouts. By replacing learned geometric embeddings with a graph Laplacian spectral basis, GSNO provides geometry-aware spectral learning with low parameter complexity. Across steady and unsteady PDE benchmarks on irregular and geometry-dependent domains, GSNO achieves strong accuracy with reduced runtime and parameter counts, while demonstrating robust zero-shot generalization across mesh resolutions and geometry families.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-30T16:41:10Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Abdolmehdi Behroozi</name>
+    </author>
+    <author>
+      <name>Chaopeng Shen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.05624v2</id>
+    <title>Locality-Aware Generalizable Implicit Neural Representation</title>
+    <updated>2023-10-12T05:33:19Z</updated>
+    <link href="https://arxiv.org/abs/2310.05624v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.05624v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Generalizable implicit neural representation (INR) enables a single continuous function, i.e., a coordinate-based neural network, to represent multiple data instances by modulating its weights or intermediate features using latent codes. However, the expressive power of the state-of-the-art modulation is limited due to its inability to localize and capture fine-grained details of data entities such as specific pixels and rays. To address this issue, we propose a novel framework for generalizable INR that combines a transformer encoder with a locality-aware INR decoder. The transformer encoder predicts a set of latent tokens from a data instance to encode local information into each latent token. The locality-aware INR decoder extracts a modulation vector by selectively aggregating the latent tokens via cross-attention for a coordinate input and then predicts the output by progressively decoding with coarse-to-fine modulation through multiple frequency bandwidths. The selective token aggregation and the multi-band feature modulation enable us to learn locality-aware representation in spatial and spectral aspects, respectively. Our framework significantly outperforms previous generalizable INRs and validates the usefulness of the locality-aware latents for downstream tasks such as image generation.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-09T11:26:58Z</published>
+    <arxiv:comment>19 pages, 12 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Doyup Lee</name>
+    </author>
+    <author>
+      <name>Chiheon Kim</name>
+    </author>
+    <author>
+      <name>Minsu Cho</name>
+    </author>
+    <author>
+      <name>Wook-Shin Han</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.06203v1</id>
+    <title>Adaptive Coordinate Transforms for Neural Operators</title>
+    <updated>2026-05-07T13:10:56Z</updated>
+    <link href="https://arxiv.org/abs/2605.06203v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.06203v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Neural operators have achieved promising performance on partial differential equations (PDEs), but most existing models are built on fixed Eulerian coordinates. This mismatch between evolving physical structures and static coordinates creates spatial misalignment, leading to unnecessarily non-local operator mappings and reinforcing a smoothness preference near sharp transitions. Inspired by adaptive coordinate transformations in classical PDE analysis, we propose the Adaptive Coordinate Transform (ACT) block, a plug-and-play module for data-driven geometric adaptation in neural operators. ACT blocks resolve this structural limitation by learning adaptive coordinate systems within the operator learning pipeline. Specifically, given an input feature, the ACT block learns a coordinate transformation and represents the same feature under the transformed coordinates via differentiable sampling. This operation preserves the underlying signal while changing its spatial representation, equivalent to expressing the same physical quantity in different coordinate systems. By adapting the coordinate system to the data, ACT allows the network to better track evolving structures, reduce operator complexity, and dynamically focus on critical features to improve learning. We evaluate the proposed approach across diverse PDE benchmarks and multiple neural operator architectures. Experimental results demonstrate consistent and significant improvements in predictive accuracy, indicating that learning coordinate systems provides a powerful mechanism for enhancing operator learning.</summary>
+    <category term="cs.CE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-07T13:10:56Z</published>
+    <arxiv:primary_category term="cs.CE"/>
+    <author>
+      <name>Chaoyu Liu</name>
+    </author>
+    <author>
+      <name>Zhonghao Li</name>
+    </author>
+    <author>
+      <name>Gaohang Chen</name>
+    </author>
+    <author>
+      <name>Zakhar Shumaylov</name>
+    </author>
+    <author>
+      <name>Zhongying Deng</name>
+    </author>
+    <author>
+      <name>Qian Zhang</name>
+    </author>
+    <author>
+      <name>Zhonghua Qiao</name>
+    </author>
+    <author>
+      <name>Carola-Bibiane Schönlieb</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.05617v2</id>
+    <title>LINEAR: Learning Implicit Neural Representation With Explicit Physical Priors for Accelerated Quantitative T1rho Mapping</title>
+    <updated>2024-07-24T00:26:52Z</updated>
+    <link href="https://arxiv.org/abs/2407.05617v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.05617v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Quantitative T1rho mapping has shown promise in clinical and research studies. However, it suffers from long scan times. Deep learning-based techniques have been successfully applied in accelerated quantitative MR parameter mapping. However, most methods require fully-sampled training dataset, which is impractical in the clinic. In this study, a novel subject-specific unsupervised method based on the implicit neural representation is proposed to reconstruct T1rho-weighted images from highly undersampled k-space data, which only takes spatiotemporal coordinates as the input. Specifically, the proposed method learned a implicit neural representation of the MR images driven by two explicit priors from the physical model of T1rho mapping, including the signal relaxation prior and self-consistency of k-t space data prior. The proposed method was verified using both retrospective and prospective undersampled k-space data. Experiment results demonstrate that LINEAR achieves a high acceleration factor up to 14, and outperforms the state-of-the-art methods in terms of suppressing artifacts and achieving the lowest error.</summary>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-08T05:13:03Z</published>
+    <arxiv:comment>Yuanyuan Liu and Jinwen Xie contributed equally to this work</arxiv:comment>
+    <arxiv:primary_category term="eess.IV"/>
+    <author>
+      <name>Yuanyuan Liu</name>
+    </author>
+    <author>
+      <name>Jinwen Xie</name>
+    </author>
+    <author>
+      <name>Zhuo-Xu Cui</name>
+    </author>
+    <author>
+      <name>Qingyong Zhu</name>
+    </author>
+    <author>
+      <name>Jing Cheng</name>
+    </author>
+    <author>
+      <name>Dong Liang</name>
+    </author>
+    <author>
+      <name>Yanjie Zhu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2309.12642v1</id>
+    <title>RHINO: Regularizing the Hash-based Implicit Neural Representation</title>
+    <updated>2023-09-22T06:20:41Z</updated>
+    <link href="https://arxiv.org/abs/2309.12642v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.12642v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The use of Implicit Neural Representation (INR) through a hash-table has demonstrated impressive effectiveness and efficiency in characterizing intricate signals. However, current state-of-the-art methods exhibit insufficient regularization, often yielding unreliable and noisy results during interpolations. We find that this issue stems from broken gradient flow between input coordinates and indexed hash-keys, where the chain rule attempts to model discrete hash-keys, rather than the continuous coordinates. To tackle this concern, we introduce RHINO, in which a continuous analytical function is incorporated to facilitate regularization by connecting the input coordinate and the network additionally without modifying the architecture of current hash-based INRs. This connection ensures a seamless backpropagation of gradients from the network's output back to the input coordinates, thereby enhancing regularization. Our experimental results not only showcase the broadened regularization capability across different hash-based INRs like DINER and Instant NGP, but also across a variety of tasks such as image fitting, representation of signed distance functions, and optimization of 5D static / 6D dynamic neural radiance fields. Notably, RHINO outperforms current state-of-the-art techniques in both quality and speed, affirming its superiority.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-22T06:20:41Z</published>
+    <arxiv:comment>17 pages, 11 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Hao Zhu</name>
+    </author>
+    <author>
+      <name>Fengyi Liu</name>
+    </author>
+    <author>
+      <name>Qi Zhang</name>
+    </author>
+    <author>
+      <name>Xun Cao</name>
+    </author>
+    <author>
+      <name>Zhan Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2601.01922v1</id>
+    <title>Efficient temporal prediction of compressible flows in irregular domains using Fourier neural operators</title>
+    <updated>2026-01-05T09:12:35Z</updated>
+    <link href="https://arxiv.org/abs/2601.01922v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.01922v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates the temporal evolution of high-speed compressible fluids in irregular flow fields using the Fourier Neural Operator (FNO). We reconstruct the irregular flow field point set into sequential format compatible with FNO input requirements, and then embed temporal bundling technique within a recurrent neural network (RNN) for multi-step prediction. We further employ a composite loss function to balance errors across different physical quantities. Experiments are conducted on three different types of irregular flow fields, including orthogonal and non-orthogonal grid configurations. Then we comprehensively analyze the physical component loss curves, flow field visualizations, and physical profiles. Results demonstrate that our approach significantly surpasses traditional numerical methods in computational efficiency while achieving high accuracy, with maximum relative $L_2$ errors of (0.78, 0.57, 0.35)% for ($p$, $T$, $\mathbf{u}$) respectively. This verifies that the method can efficiently and accurately simulate the temporal evolution of high-speed compressible flows in irregular domains.</summary>
+    <category term="physics.flu-dyn" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-05T09:12:35Z</published>
+    <arxiv:comment>18 pages, 15 figures</arxiv:comment>
+    <arxiv:primary_category term="physics.flu-dyn"/>
+    <author>
+      <name>Yifan Nie</name>
+    </author>
+    <author>
+      <name>Qiaoxin Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.18083v1</id>
+    <title>Implicit neural representations as a coordinate-based framework for continuous environmental field reconstruction from sparse ecological observations</title>
+    <updated>2026-04-20T10:59:08Z</updated>
+    <link href="https://arxiv.org/abs/2604.18083v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.18083v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reconstructing continuous environmental fields from sparse and irregular observations remains a central challenge in environmental modelling and biodiversity informatics. Many ecological datasets are heterogeneous in space and time, making grid-based approaches difficult to scale or generalise across domains. Here, we evaluate implicit neural representations (INRs) as a coordinate-based modelling framework for learning continuous spatial and spatio-temporal fields directly from coordinate inputs. We analyse their behaviour across three representative modelling scenarios: species distribution reconstruction, phenological dynamics, and morphological segmentation derived from open biodiversity data. Beyond predictive performance, we examine interpolation behaviour, spatial coherence, and computational characteristics relevant for environmental modelling workflows, including scalability, resolution-independent querying, and architectural inductive bias. Results show that neural fields provide stable continuous representations with predictable computational cost, complementing classical smoothers and tree-based approaches. These findings position coordinate-based neural fields as a flexible representation layer that can be integrated into environmental modelling pipelines and exploratory analysis frameworks for large, irregularly sampled datasets.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-20T10:59:08Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Agnieszka Pregowska</name>
+    </author>
+    <author>
+      <name>Hazem M. Kalaji</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2308.09771v1</id>
+    <title>3D cine-magnetic resonance imaging using spatial and temporal implicit neural representation learning (STINR-MR)</title>
+    <updated>2023-08-18T18:48:06Z</updated>
+    <link href="https://arxiv.org/abs/2308.09771v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2308.09771v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The reconstruction of 3D cine-MRI is challenged by highly undersampled k-space data in each cine frame, due to the slow speed of MR signal acquisition. We proposed a machine learning-based framework, spatial and temporal implicit neural representation learning (STINR-MR), for accurate 3D cine-MRI reconstruction from highly undersampled data. STINR-MR used a joint reconstruction and deformable registration approach to address the ill-posed spatiotemporal reconstruction problem, by solving a reference-frame 3D MR image and a corresponding motion model which deforms the reference frame to each cine frame. The reference-frame image was reconstructed as a spatial implicit neural representation (INR) network, which learns the mapping from input 3D spatial coordinates to corresponding MR values. The dynamic motion model was constructed via a temporal INR, as well as basis deformation vector fields(DVFs) extracted from prior/onboard 4D-MRIs. The learned INR encodes input time points and outputs corresponding weighting factors to combine the basis DVFs into time-resolved motion fields. STINR-MR was evaluated using MR data simulated from the 4D extended cardiac-torso (XCAT) digital phantom and MR data acquired clinically from a healthy human subject. Its reconstruction accuracy was also compared with that of the model-based non-rigid motion estimation method (MR-MOTUS). STINR-MR can reconstruct 3D cine-MR images with high temporal (&lt;100 ms) and spatial (3 mm) resolutions to accurately capture different irregular motion patterns. Compared with MR-MOTUS, STINR-MR consistently reconstructed images with better quality, fewer artifacts, and achieved superior tumor localization accuracy. STINR-MR provides a lightweight and efficient framework for accurate 3D cine-MRI reconstruction, and does not require external data for pre-training to avoid generalizability issues encountered in deep learning methods.</summary>
+    <category term="physics.med-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-08-18T18:48:06Z</published>
+    <arxiv:primary_category term="physics.med-ph"/>
+    <author>
+      <name>Hua-Chieh Shao</name>
+    </author>
+    <author>
+      <name>Tielige Mengke</name>
+    </author>
+    <author>
+      <name>Jie Deng</name>
+    </author>
+    <author>
+      <name>You Zhang</name>
+    </author>
+  </entry>
+</feed>

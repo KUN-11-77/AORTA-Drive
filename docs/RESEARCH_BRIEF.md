@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-24 post-D0理论迁移审查：复杂度按必要性而非模块数量治理。** 候选核心链冻结为
+> Hodge-consistent quotient representation、support-conditioned correlated graph uncertainty、
+> exact shared-variable robust readout与selective Simplex fallback。离散外微分解释potential
+> 的gauge与可积性；信息充分性排除“稳定但无用”；联合集合保留公共候选相关性；拒判把证据
+> 不足变成正式行为。Sheaf、连续operator、PEA升级、depth和diffusion/RL均为条件模块，须由
+> 独立失败证据授权。最近资格门为96×64 teacher-critical observability与oracle uncertainty
+> non-vacuity；二者通过前不训练新架构。详见`THEORY_TRANSFER_AUDIT.md`与
+> `SYSTEM_THEORY_V0_5_CANDIDATE.md`。
+
 > **2026-10-24 R004H7-BS4A-D0：difference-only直接证据修复被否定。** 42 fit groups、
 > 672 anchors、3864个native–challenger pairs全部完成精确集合归因；3678个几何不同pair中
 > 有8个非空对称差区域完全无直接projective evidence，分布于5 groups/5 anchors，差异仅

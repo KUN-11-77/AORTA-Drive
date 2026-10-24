@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/qkk/6SQYvieCZwFnVF0qk8mhAKU</id>
+  <title>arXiv Query: search_query=(all:"selective classification" OR all:"learning to defer") AND all:neural&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-10-24T15:29:03Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(all:%22selective+classification%22+OR+all:%22learning+to+defer%22)+AND+all:neural&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>42</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/1711.06664v3</id>
+    <title>Predict Responsibly: Improving Fairness and Accuracy by Learning to Defer</title>
+    <updated>2018-09-07T00:48:55Z</updated>
+    <link href="https://arxiv.org/abs/1711.06664v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1711.06664v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In many machine learning applications, there are multiple decision-makers involved, both automated and human. The interaction between these agents often goes unaddressed in algorithmic development. In this work, we explore a simple version of this interaction with a two-stage framework containing an automated model and an external decision-maker. The model can choose to say "Pass", and pass the decision downstream, as explored in rejection learning. We extend this concept by proposing "learning to defer", which generalizes rejection learning by considering the effect of other agents in the decision-making process. We propose a learning algorithm which accounts for potential biases held by external decision-makers in a system. Experiments demonstrate that learning to defer can make systems not only more accurate but also less biased. Even when working with inconsistent or biased users, we show that deferring models still greatly improve the accuracy and/or fairness of the entire system.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2017-11-17T18:43:04Z</published>
+    <arxiv:comment>Accepted as a conference paper at Neural Information Processing Systems 2018</arxiv:comment>
+    <arxiv:primary_category term="stat.ML"/>
+    <author>
+      <name>David Madras</name>
+    </author>
+    <author>
+      <name>Toniann Pitassi</name>
+    </author>
+    <author>
+      <name>Richard Zemel</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.13732v1</id>
+    <title>Realizable $H$-Consistent and Bayes-Consistent Loss Functions for Learning to Defer</title>
+    <updated>2024-07-18T17:35:03Z</updated>
+    <link href="https://arxiv.org/abs/2407.13732v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.13732v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present a comprehensive study of surrogate loss functions for learning to defer. We introduce a broad family of surrogate losses, parameterized by a non-increasing function $Ψ$, and establish their realizable $H$-consistency under mild conditions. For cost functions based on classification error, we further show that these losses admit $H$-consistency bounds when the hypothesis set is symmetric and complete, a property satisfied by common neural network and linear function hypothesis sets. Our results also resolve an open question raised in previous work (Mozannar et al., 2023) by proving the realizable $H$-consistency and Bayes-consistency of a specific surrogate loss. Furthermore, we identify choices of $Ψ$ that lead to $H$-consistent surrogate losses for any general cost function, thus achieving Bayes-consistency, realizable $H$-consistency, and $H$-consistency bounds simultaneously. We also investigate the relationship between $H$-consistency bounds and realizable $H$-consistency in learning to defer, highlighting key differences from standard classification. Finally, we empirically evaluate our proposed surrogate losses and compare them with existing baselines.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-18T17:35:03Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Anqi Mao</name>
+    </author>
+    <author>
+      <name>Mehryar Mohri</name>
+    </author>
+    <author>
+      <name>Yutao Zhong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2108.07392v5</id>
+    <title>Incorporating Uncertainty in Learning to Defer Algorithms for Safe Computer-Aided Diagnosis</title>
+    <updated>2021-11-29T00:56:37Z</updated>
+    <link href="https://arxiv.org/abs/2108.07392v5" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2108.07392v5" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep neural networks are increasingly being used for computer-aided diagnosis, but erroneous diagnoses can be extremely costly for patients. We propose a learning to defer with uncertainty (LDU) algorithm which identifies patients for whom diagnostic uncertainty is high and defers them for evaluation by human experts. LDU was evaluated on the diagnosis of myocardial infarction (using discharge summaries), the diagnosis of any comorbidities (using structured data), and the diagnosis of pleural effusion and pneumothorax (using chest x-rays), and compared with 'learning to defer without uncertainty information' (LD) and 'direct triage by uncertainty' (DT) methods. LDU achieved the same F1 score as LD but deferred considerably fewer patients (e.g. 36% vs. 69% deferral rate for diagnosing pleural effusion with an F1 score of 0.96). Furthermore, even when many patients were assigned the wrong diagnosis with high confidence (e.g. for the diagnosis of any comorbidities) LDU achieved a 17% increase in F1 score, whereas DT was not applicable. Importantly, the weight of the defer loss in LDU can be easily adjusted to obtain the desired trade-off between diagnostic accuracy and deferral rate. In conclusion, LDU can readily augment any existing diagnostic network to reduce the risk of erroneous diagnoses in clinical practice.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-08-17T01:00:04Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Jessie Liu</name>
+    </author>
+    <author>
+      <name>Blanca Gallego</name>
+    </author>
+    <author>
+      <name>Sebastiano Barbieri</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1705.08500v2</id>
+    <title>Selective Classification for Deep Neural Networks</title>
+    <updated>2017-06-01T14:10:34Z</updated>
+    <link href="https://arxiv.org/abs/1705.08500v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1705.08500v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Selective classification techniques (also known as reject option) have not yet been considered in the context of deep neural networks (DNNs). These techniques can potentially significantly improve DNNs prediction performance by trading-off coverage. In this paper we propose a method to construct a selective classifier given a trained neural network. Our method allows a user to set a desired risk level. At test time, the classifier rejects instances as needed, to grant the desired risk (with high probability). Empirical results over CIFAR and ImageNet convincingly demonstrate the viability of our method, which opens up possibilities to operate DNNs in mission-critical applications. For example, using our method an unprecedented 2% error in top-5 ImageNet classification can be guaranteed with probability 99.9%, and almost 60% test coverage.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2017-05-23T19:43:56Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yonatan Geifman</name>
+    </author>
+    <author>
+      <name>Ran El-Yaniv</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2405.11533v2</id>
+    <title>Hierarchical Selective Classification</title>
+    <updated>2025-01-06T06:39:22Z</updated>
+    <link href="https://arxiv.org/abs/2405.11533v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2405.11533v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deploying deep neural networks for risk-sensitive tasks necessitates an uncertainty estimation mechanism. This paper introduces hierarchical selective classification, extending selective classification to a hierarchical setting. Our approach leverages the inherent structure of class relationships, enabling models to reduce the specificity of their predictions when faced with uncertainty. In this paper, we first formalize hierarchical risk and coverage, and introduce hierarchical risk-coverage curves. Next, we develop algorithms for hierarchical selective classification (which we refer to as "inference rules"), and propose an efficient algorithm that guarantees a target accuracy constraint with high probability. Lastly, we conduct extensive empirical studies on over a thousand ImageNet classifiers, revealing that training regimes such as CLIP, pretraining on ImageNet21k and knowledge distillation boost hierarchical selective performance.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-05-19T12:24:30Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Shani Goren</name>
+    </author>
+    <author>
+      <name>Ido Galil</name>
+    </author>
+    <author>
+      <name>Ran El-Yaniv</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.15508v4</id>
+    <title>How to Fix a Broken Confidence Estimator: Evaluating Post-hoc Methods for Selective Classification with Deep Neural Networks</title>
+    <updated>2024-05-24T17:48:11Z</updated>
+    <link href="https://arxiv.org/abs/2305.15508v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.15508v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper addresses the problem of selective classification for deep neural networks, where a model is allowed to abstain from low-confidence predictions to avoid potential errors. We focus on so-called post-hoc methods, which replace the confidence estimator of a given classifier without modifying or retraining it, thus being practically appealing. Considering neural networks with softmax outputs, our goal is to identify the best confidence estimator that can be computed directly from the unnormalized logits. This problem is motivated by the intriguing observation in recent work that many classifiers appear to have a "broken" confidence estimator, in the sense that their selective classification performance is much worse than what could be expected by their corresponding accuracies. We perform an extensive experimental study of many existing and proposed confidence estimators applied to 84 pretrained ImageNet classifiers available from popular repositories. Our results show that a simple $p$-norm normalization of the logits, followed by taking the maximum logit as the confidence estimator, can lead to considerable gains in selective classification performance, completely fixing the pathological behavior observed in many classifiers. As a consequence, the selective classification performance of any classifier becomes almost entirely determined by its corresponding accuracy. Moreover, these results are shown to be consistent under distribution shift. Our code is available at https://github.com/lfpc/FixSelectiveClassification.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-24T18:56:55Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>Proceedings of the Fortieth Conference on Uncertainty in Artificial Intelligence, PMLR 244:547-584, 2024. https://proceedings.mlr.press/v244/cattelan24a.html</arxiv:journal_ref>
+    <author>
+      <name>Luís Felipe P. Cattelan</name>
+    </author>
+    <author>
+      <name>Danilo Silva</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.12708v2</id>
+    <title>Deep Neural Network Benchmarks for Selective Classification</title>
+    <updated>2024-09-18T07:48:33Z</updated>
+    <link href="https://arxiv.org/abs/2401.12708v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2401.12708v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>With the increasing deployment of machine learning models in many socially sensitive tasks, there is a growing demand for reliable and trustworthy predictions. One way to accomplish these requirements is to allow a model to abstain from making a prediction when there is a high risk of making an error. This requires adding a selection mechanism to the model, which selects those examples for which the model will provide a prediction. The selective classification framework aims to design a mechanism that balances the fraction of rejected predictions (i.e., the proportion of examples for which the model does not make a prediction) versus the improvement in predictive performance on the selected predictions. Multiple selective classification frameworks exist, most of which rely on deep neural network architectures. However, the empirical evaluation of the existing approaches is still limited to partial comparisons among methods and settings, providing practitioners with little insight into their relative merits. We fill this gap by benchmarking 18 baselines on a diverse set of 44 datasets that includes both image and tabular data. Moreover, there is a mix of binary and multiclass tasks. We evaluate these approaches using several criteria, including selective error rate, empirical coverage, distribution of rejected instance's classes, and performance on out-of-distribution instances. The results indicate that there is not a single clear winner among the surveyed baselines, and the best method depends on the users' objectives.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-23T12:15:47Z</published>
+    <arxiv:comment>Published in The Journal of Data centric Machine Learning Research (DMLR), Vol 1, (17):1-58 (2024)</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>Journal of Data-centric Machine Learning Research (DMLR), Vol 1, (17):1-58, (2024)</arxiv:journal_ref>
+    <author>
+      <name>Andrea Pugnana</name>
+    </author>
+    <author>
+      <name>Lorenzo Perini</name>
+    </author>
+    <author>
+      <name>Jesse Davis</name>
+    </author>
+    <author>
+      <name>Salvatore Ruggieri</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.04745v1</id>
+    <title>Confidence-aware Contrastive Learning for Selective Classification</title>
+    <updated>2024-06-07T08:43:53Z</updated>
+    <link href="https://arxiv.org/abs/2406.04745v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.04745v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Selective classification enables models to make predictions only when they are sufficiently confident, aiming to enhance safety and reliability, which is important in high-stakes scenarios. Previous methods mainly use deep neural networks and focus on modifying the architecture of classification layers to enable the model to estimate the confidence of its prediction. This work provides a generalization bound for selective classification, disclosing that optimizing feature layers helps improve the performance of selective classification. Inspired by this theory, we propose to explicitly improve the selective classification model at the feature level for the first time, leading to a novel Confidence-aware Contrastive Learning method for Selective Classification, CCL-SC, which similarizes the features of homogeneous instances and differentiates the features of heterogeneous instances, with the strength controlled by the model's confidence. The experimental results on typical datasets, i.e., CIFAR-10, CIFAR-100, CelebA, and ImageNet, show that CCL-SC achieves significantly lower selective risk than state-of-the-art methods, across almost all coverage degrees. Moreover, it can be combined with existing methods to bring further improvement.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-07T08:43:53Z</published>
+    <arxiv:comment>Accepted by ICML 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yu-Chang Wu</name>
+    </author>
+    <author>
+      <name>Shen-Huan Lyu</name>
+    </author>
+    <author>
+      <name>Haopu Shang</name>
+    </author>
+    <author>
+      <name>Xiangyu Wang</name>
+    </author>
+    <author>
+      <name>Chao Qian</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2110.14914v2</id>
+    <title>Trading via Selective Classification</title>
+    <updated>2021-10-31T10:47:19Z</updated>
+    <link href="https://arxiv.org/abs/2110.14914v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2110.14914v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A binary classifier that tries to predict if the price of an asset will increase or decrease naturally gives rise to a trading strategy that follows the prediction and thus always has a position in the market. Selective classification extends a binary or many-class classifier to allow it to abstain from making a prediction for certain inputs, thereby allowing a trade-off between the accuracy of the resulting selective classifier against coverage of the input feature space. Selective classifiers give rise to trading strategies that do not take a trading position when the classifier abstains. We investigate the application of binary and ternary selective classification to trading strategy design. For ternary classification, in addition to classes for the price going up or down, we include a third class that corresponds to relatively small price moves in either direction, and gives the classifier another way to avoid making a directional prediction. We use a walk-forward train-validate-test approach to evaluate and compare binary and ternary, selective and non-selective classifiers across several different feature sets based on four classification approaches: logistic regression, random forests, feed-forward, and recurrent neural networks. We then turn these classifiers into trading strategies for which we perform backtests on commodity futures markets. Our empirical results demonstrate the potential of selective classification for trading.</summary>
+    <category term="q-fin.TR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-10-28T06:38:05Z</published>
+    <arxiv:comment>(8 pages, 6 figures, 4 tables, ICAIF'21)</arxiv:comment>
+    <arxiv:primary_category term="q-fin.TR"/>
+    <author>
+      <name>Nestoras Chalkidis</name>
+    </author>
+    <author>
+      <name>Rahul Savani</name>
+    </author>
+    <arxiv:doi>10.1145/3490354.3494379</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3490354.3494379" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.06032v1</id>
+    <title>Ensemble-Based Dirichlet Modeling for Predictive Uncertainty and Selective Classification</title>
+    <updated>2026-04-07T16:28:20Z</updated>
+    <link href="https://arxiv.org/abs/2604.06032v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.06032v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Neural network classifiers trained with cross-entropy loss achieve strong predictive accuracy but lack the capability to provide inherent predictive uncertainty estimates, thus requiring external techniques to obtain these estimates. In addition, softmax scores for the true class can vary substantially across independent training runs, which limits the reliability of uncertainty-based decisions in downstream tasks. Evidential Deep Learning aims to address these limitations by producing uncertainty estimates in a single pass, but evidential training is highly sensitive to design choices including loss formulation, prior regularization, and activation functions. Therefore, this work introduces an alternative Dirichlet parameter estimation strategy by applying a method of moments estimator to ensembles of softmax outputs, with an optional maximum-likelihood refinement step. This ensemble-based construction decouples uncertainty estimation from the fragile evidential loss design while also mitigating the variability of single-run cross-entropy training, producing explicit Dirichlet predictive distributions. Across multiple datasets, we show that the improved stability and predictive uncertainty behavior of these ensemble-derived Dirichlet estimates translate into stronger performance in downstream uncertainty-guided applications such as prediction confidence scoring and selective classification.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-07T16:28:20Z</published>
+    <arxiv:comment>48 pages</arxiv:comment>
+    <arxiv:primary_category term="stat.ML"/>
+    <author>
+      <name>Courtney Franzen</name>
+    </author>
+    <author>
+      <name>Farhad Pourkamali-Anaraki</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.08574v1</id>
+    <title>Post-hoc Selective Classification for Reliable Synthetic Image Detection</title>
+    <updated>2026-05-09T00:25:22Z</updated>
+    <link href="https://arxiv.org/abs/2605.08574v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.08574v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As synthetic images become increasingly realistic, reliable synthetic image detection techniques are of pressing need to prevent their misuse. Despite satisfactory in-distribution performance, deep neural network-based synthetic image detectors (SIDs) lack reliability in deployment and often fail in the presence of common covariate shifts, resulting in poor detection accuracy. To avoid the risk caused by potential errors, we adopt a selective classification (SC) strategy by allowing SIDs to abstain from making low confidence predictions. For practicality, we focus on post-hoc methods which perform confidence estimation on a given SID without retraining. However, we show that conventional logit-based confidence score functions (CSFs) exhibit pathological behavior under covariate shifts, leading to SC performance close to or even worse than random guessing. To address this, we propose a simple yet effective SC framework for Reliable Synthetic Image Detection (ReSIDe). First, we generalize the notion of logits to an SID's intermediate layers from a centroid matching perspective, extending the use of logit-based CSFs to any layer of an SID. Then, we introduce a preference optimization algorithm that aggregates confidence scores extracted from different layers to a final confidence estimate by minimizing an upper bound of the area under the risk-coverage curve (AURC). Extensive experimental results show that ReSIDe significantly boosts the SC performance of various logit-based CSFs under common covariate shifts, achieving up to 69.55% AURC reduction.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-09T00:25:22Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Kaixiang Zheng</name>
+    </author>
+    <author>
+      <name>Jacob H. Seidman</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.03075v1</id>
+    <title>Robustness Meets Uncertainty: Evidential Adversarial Training for Robust Selective Classification</title>
+    <updated>2026-07-03T08:10:21Z</updated>
+    <link href="https://arxiv.org/abs/2607.03075v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.03075v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Safety-critical applications require classifiers that are both robust and reliable. Adversarial training is a widely adopted defense for improving robustness in deep neural networks; however, its effect on the reliability of predictive uncertainty remains underexplored. We investigate this gap through the lens of selective classification, which has rarely been systematically analyzed alongside adversarial robustness. We introduce a unified benchmark for the robustness-uncertainty trade-off. It standardizes architectures, augmentations, threat models, and evaluation metrics across clean, adversarial, and common-corruption settings. Across a wide range of state-of-the-art adversarial training methods, we uncover a recurring failure mode: several approaches improve robust accuracy while degrading uncertainty ranking, leading to poorer selective behavior. To address this, we propose Evidential Adversarial Training (EV-AT), which models uncertainty through a Dirichlet distribution and combines (i) an evidence-based loss promoting clean accuracy and reliable uncertainty with (ii) a robust evidence-alignment loss matching clean and adversarial predictions in log Dirichlet-parameter space. Extensive experiments show that EV-AT shifts the Pareto frontier of robustness-uncertainty trade-offs beyond prior state-of-the-art adversarial training methods. Our source code is publicly available at https://github.com/NicolasSournac/Robustness_Meets_Uncertainty.EV-AT.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-03T08:10:21Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Nicolas Sournac</name>
+    </author>
+    <author>
+      <name>Ahmed Baha Ben Jmaa</name>
+    </author>
+    <author>
+      <name>Bertrand Braeckeveldt</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2403.14715v3</id>
+    <title>Towards Understanding Why Label Smoothing Degrades Selective Classification and How to Fix It</title>
+    <updated>2025-02-20T15:02:44Z</updated>
+    <link href="https://arxiv.org/abs/2403.14715v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.14715v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Label smoothing (LS) is a popular regularisation method for training neural networks as it is effective in improving test accuracy and is simple to implement. ``Hard'' one-hot labels are ``smoothed'' by uniformly distributing probability mass to other classes, reducing overfitting. Prior work has suggested that in some cases LS can degrade selective classification (SC) -- where the aim is to reject misclassifications using a model's uncertainty. In this work, we first demonstrate empirically across an extended range of large-scale tasks and architectures that LS consistently degrades SC. We then address a gap in existing knowledge, providing an explanation for this behaviour by analysing logit-level gradients: LS degrades the uncertainty rank ordering of correct vs incorrect predictions by suppressing the max logit more when a prediction is likely to be correct, and less when it is likely to be wrong. This elucidates previously reported experimental results where strong classifiers underperform in SC. We then demonstrate the empirical effectiveness of post-hoc logit normalisation for recovering lost SC performance caused by LS. Furthermore, linking back to our gradient analysis, we again provide an explanation for why such normalisation is effective.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-19T06:46:24Z</published>
+    <arxiv:comment>Published as a conference paper at ICLR 2025</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Guoxuan Xia</name>
+    </author>
+    <author>
+      <name>Olivier Laurent</name>
+    </author>
+    <author>
+      <name>Gianni Franchi</name>
+    </author>
+    <author>
+      <name>Christos-Savvas Bouganis</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1609.03396v2</id>
+    <title>FALCON: Feature Driven Selective Classification for Energy-Efficient Image Recognition</title>
+    <updated>2017-03-08T15:16:19Z</updated>
+    <link href="https://arxiv.org/abs/1609.03396v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1609.03396v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Machine-learning algorithms have shown outstanding image recognition or classification performance for computer vision applications. However, the compute and energy requirement for implementing such classifier models for large-scale problems is quite high. In this paper, we propose Feature Driven Selective Classification (FALCON) inspired by the biological visual attention mechanism in the brain to optimize the energy-efficiency of machine-learning classifiers. We use the consensus in the characteristic features (color/texture) across images in a dataset to decompose the original classification problem and construct a tree of classifiers (nodes) with a generic-to-specific transition in the classification hierarchy. The initial nodes of the tree separate the instances based on feature information and selectively enable the latter nodes to perform object specific classification. The proposed methodology allows selective activation of only those branches and nodes of the classification tree that are relevant to the input while keeping the remaining nodes idle. Additionally, we propose a programmable and scalable Neuromorphic Engine (NeuE) that utilizes arrays of specialized neural computational elements to execute the FALCON based classifier models for diverse datasets. The structure of FALCON facilitates the reuse of nodes while scaling up from small classification problems to larger ones thus allowing us to construct classifier implementations that are significantly more efficient. We evaluate our approach for a 12-object classification task on the Caltech101 dataset and 10-object task on CIFAR-10 dataset by constructing FALCON models on the NeuE platform in 45nm technology. Our results demonstrate significant improvement in energy-efficiency and training time for minimal loss in output quality.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2016-09-12T13:40:13Z</published>
+    <arxiv:comment>13 pages, 13 figures, Accepted for publication in IEEE TCAD, 2017</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Priyadarshini Panda</name>
+    </author>
+    <author>
+      <name>Aayush Ankit</name>
+    </author>
+    <author>
+      <name>Parami Wijesinghe</name>
+    </author>
+    <author>
+      <name>Kaushik Roy</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2207.07506v3</id>
+    <title>Augmenting Softmax Information for Selective Classification with Out-of-Distribution Data</title>
+    <updated>2023-03-14T16:11:35Z</updated>
+    <link href="https://arxiv.org/abs/2207.07506v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2207.07506v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Detecting out-of-distribution (OOD) data is a task that is receiving an increasing amount of research attention in the domain of deep learning for computer vision. However, the performance of detection methods is generally evaluated on the task in isolation, rather than also considering potential downstream tasks in tandem. In this work, we examine selective classification in the presence of OOD data (SCOD). That is to say, the motivation for detecting OOD samples is to reject them so their impact on the quality of predictions is reduced. We show under this task specification, that existing post-hoc methods perform quite differently compared to when evaluated only on OOD detection. This is because it is no longer an issue to conflate in-distribution (ID) data with OOD data if the ID data is going to be misclassified. However, the conflation within ID data of correct and incorrect predictions becomes undesirable. We also propose a novel method for SCOD, Softmax Information Retaining Combination (SIRC), that augments softmax-based confidence scores with feature-agnostic information such that their ability to identify OOD samples is improved without sacrificing separation between correct and incorrect ID predictions. Experiments on a wide variety of ImageNet-scale datasets and convolutional neural network architectures show that SIRC is able to consistently match or outperform the baseline for SCOD, whilst existing OOD detection methods fail to do so.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-07-15T14:39:57Z</published>
+    <arxiv:comment>ACCV 2022 (Best Paper Award) https://openaccess.thecvf.com/content/ACCV2022/html/Xia_Augmenting_Softmax_Information_for_Selective_Classification_with_Out-of-Distribution_Data_ACCV_2022_paper.html</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Guoxuan Xia</name>
+    </author>
+    <author>
+      <name>Christos-Savvas Bouganis</name>
+    </author>
+  </entry>
+</feed>

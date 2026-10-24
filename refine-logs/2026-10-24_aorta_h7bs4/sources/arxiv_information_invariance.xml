@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/NdYm8VvzTDZC8BRgmv2J9woVA2M</id>
+  <title>arXiv Query: search_query=all:"information bottleneck" AND (all:invariance OR all:sufficiency)&amp;id_list=&amp;start=0&amp;max_results=15</title>
+  <updated>2026-10-24T15:28:02Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22information+bottleneck%22+AND+(all:invariance+OR+all:sufficiency)&amp;start=0&amp;max_results=15&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>164</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2602.14002v1</id>
+    <title>The Sufficiency-Conciseness Trade-off in LLM Self-Explanation from an Information Bottleneck Perspective</title>
+    <updated>2026-02-15T05:57:39Z</updated>
+    <link href="https://arxiv.org/abs/2602.14002v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.14002v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models increasingly rely on self-explanations, such as chain of thought reasoning, to improve performance on multi step question answering. While these explanations enhance accuracy, they are often verbose and costly to generate, raising the question of how much explanation is truly necessary. In this paper, we examine the trade-off between sufficiency, defined as the ability of an explanation to justify the correct answer, and conciseness, defined as the reduction in explanation length. Building on the information bottleneck principle, we conceptualize explanations as compressed representations that retain only the information essential for producing correct answers.To operationalize this view, we introduce an evaluation pipeline that constrains explanation length and assesses sufficiency using multiple language models on the ARC Challenge dataset. To broaden the scope, we conduct experiments in both English, using the original dataset, and Persian, as a resource-limited language through translation. Our experiments show that more concise explanations often remain sufficient, preserving accuracy while substantially reducing explanation length, whereas excessive compression leads to performance degradation.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-15T05:57:39Z</published>
+    <arxiv:comment>LREC 2026 submission; focuses on LLM self-explanation, interpretability, and information bottleneck analysis</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Ali Zahedzadeh</name>
+    </author>
+    <author>
+      <name>Behnam Bahrak</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2404.17951v1</id>
+    <title>Cauchy-Schwarz Divergence Information Bottleneck for Regression</title>
+    <updated>2024-04-27T16:13:05Z</updated>
+    <link href="https://arxiv.org/abs/2404.17951v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2404.17951v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The information bottleneck (IB) approach is popular to improve the generalization, robustness and explainability of deep neural networks. Essentially, it aims to find a minimum sufficient representation $\mathbf{t}$ by striking a trade-off between a compression term $I(\mathbf{x};\mathbf{t})$ and a prediction term $I(y;\mathbf{t})$, where $I(\cdot;\cdot)$ refers to the mutual information (MI). MI is for the IB for the most part expressed in terms of the Kullback-Leibler (KL) divergence, which in the regression case corresponds to prediction based on mean squared error (MSE) loss with Gaussian assumption and compression approximated by variational inference. In this paper, we study the IB principle for the regression problem and develop a new way to parameterize the IB with deep neural networks by exploiting favorable properties of the Cauchy-Schwarz (CS) divergence. By doing so, we move away from MSE-based regression and ease estimation by avoiding variational approximations or distributional assumptions. We investigate the improved generalization ability of our proposed CS-IB and demonstrate strong adversarial robustness guarantees. We demonstrate its superior performance on six real-world regression tasks over other popular deep IB approaches. We additionally observe that the solutions discovered by CS-IB always achieve the best trade-off between prediction accuracy and compression ratio in the information plane. The code is available at \url{https://github.com/SJYuCNEL/Cauchy-Schwarz-Information-Bottleneck}.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-04-27T16:13:05Z</published>
+    <arxiv:comment>accepted by ICLR-24, project page: \url{https://github.com/SJYuCNEL/Cauchy-Schwarz-Information-Bottleneck}</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Shujian Yu</name>
+    </author>
+    <author>
+      <name>Xi Yu</name>
+    </author>
+    <author>
+      <name>Sigurd Løkse</name>
+    </author>
+    <author>
+      <name>Robert Jenssen</name>
+    </author>
+    <author>
+      <name>Jose C. Principe</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2210.17444v3</id>
+    <title>Multimodal Information Bottleneck: Learning Minimal Sufficient Unimodal and Multimodal Representations</title>
+    <updated>2022-12-05T12:41:04Z</updated>
+    <link href="https://arxiv.org/abs/2210.17444v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2210.17444v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Learning effective joint embedding for cross-modal data has always been a focus in the field of multimodal machine learning. We argue that during multimodal fusion, the generated multimodal embedding may be redundant, and the discriminative unimodal information may be ignored, which often interferes with accurate prediction and leads to a higher risk of overfitting. Moreover, unimodal representations also contain noisy information that negatively influences the learning of cross-modal dynamics. To this end, we introduce the multimodal information bottleneck (MIB), aiming to learn a powerful and sufficient multimodal representation that is free of redundancy and to filter out noisy information in unimodal representations. Specifically, inheriting from the general information bottleneck (IB), MIB aims to learn the minimal sufficient representation for a given task by maximizing the mutual information between the representation and the target and simultaneously constraining the mutual information between the representation and the input data. Different from general IB, our MIB regularizes both the multimodal and unimodal representations, which is a comprehensive and flexible framework that is compatible with any fusion methods. We develop three MIB variants, namely, early-fusion MIB, late-fusion MIB, and complete MIB, to focus on different perspectives of information constraints. Experimental results suggest that the proposed method reaches state-of-the-art performance on the tasks of multimodal sentiment analysis and multimodal emotion recognition across three widely used datasets. The codes are available at \url{https://github.com/TmacMai/Multimodal-Information-Bottleneck}.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-10-31T16:14:18Z</published>
+    <arxiv:comment>This paper is accepted by IEEE Transactions on Multimedia. This version addresses some mistakes and typos in the original paper. The appendix is available at https://github.com/TmacMai/Multimodal-Information-Bottleneck/blob/main/appendix.pdf</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Sijie Mai</name>
+    </author>
+    <author>
+      <name>Ying Zeng</name>
+    </author>
+    <author>
+      <name>Haifeng Hu</name>
+    </author>
+    <arxiv:doi>10.1109/TMM.2022.3171679</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TMM.2022.3171679" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.09858v1</id>
+    <title>Support sufficiency as action-sufficient compression: a single-cycle rate-regret formulation</title>
+    <updated>2026-05-28T14:59:41Z</updated>
+    <link href="https://arxiv.org/abs/2606.09858v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.09858v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Robust decision-making requires compression. A system that forms a rich support state cannot usually preserve its full structure at the point of action. It must retain only those distinctions needed to act, verify, abstain, or defer under the current consequence geometry. This paper formalizes support sufficiency as action-sufficient compression. Let $H$ denote a full support state, $\mathcal{A}$ a finite action set, and $Z$ a consequence geometry specifying payoff structure. For fixed $Z$, the coarsest exactly action-sufficient compression is the quotient of support space by policy equivalence. Two support states may be merged exactly when they require the same optimal action. This clarifies why content-only and scalar-confidence-only arbitration fail whenever their induced partitions cross action boundaries. Approximate sufficiency is then defined by bounded expected policy regret. In the finite single-cycle setting, this yields a rate-regret problem with source $H$, reproduction alphabet $\mathcal{A}$, and distortion given by consequence-sensitive regret. The optimal stochastic action channel inherits the standard rate-distortion Gibbs form, applied here to support states with regret distortion. The contribution is interpretive: action adequacy is distinguished from reconstruction fidelity, information-bottleneck prediction, and rational inattention. Robust single-cycle arbitration does not require preserving all support, but it does require preserving the distinctions that consequence geometry makes action-relevant.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-28T14:59:41Z</published>
+    <arxiv:comment>22 pages. Submitted to Journal of Mathematical Psychology. Formal single-cycle model of action-sufficient support compression and rate-regret sufficiency</arxiv:comment>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Mark Walsh</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2512.15671v1</id>
+    <title>When sufficiency is insufficient: the functional information bottleneck for identifying probabilistic neural representations</title>
+    <updated>2025-12-17T18:23:54Z</updated>
+    <link href="https://arxiv.org/abs/2512.15671v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.15671v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The neural basis of probabilistic computations remains elusive, even amidst growing evidence that humans and other animals track their uncertainty. Recent work has proposed that probabilistic representations arise naturally in task-optimized neural networks trained without explicitly probabilistic inductive biases. However, prior work has lacked clear criteria for distinguishing probabilistic representations, those that perform transformations characteristic of probabilistic computation, from heuristic neural codes that merely reformat inputs. We propose a novel information bottleneck framework, the functional information bottleneck (fIB), that crucially evaluates a neural representation based not only on its statistical sufficiency but also on its minimality, allowing us to disambiguate heuristic from probabilistic coding. To demonstrate the power of this framework, we study a variety of task-optimized neural networks that had been suggested to develop probabilistic representations in earlier work: networks trained to perform static inference tasks (such as cue combination and coordinate transformation) or dynamic state estimation tasks (Kalman filtering). In contrast to earlier claims, our minimality requirement reveals that probabilistic representations fail to emerge in these networks: they do not develop minimal codes of Bayesian posteriors in their hidden layer activities, and instead rely on heuristic input recoding. Therefore, it remains an open question under which conditions truly probabilistic representations emerge in neural networks. More generally, our work provides a stringent framework for identifying probabilistic neural codes. Thus, it lays the foundation for systematically examining whether, how, and which posteriors are represented in neural circuits during complex decision-making tasks.</summary>
+    <category term="q-bio.NC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-12-17T18:23:54Z</published>
+    <arxiv:comment>20 pages, 10 figures</arxiv:comment>
+    <arxiv:primary_category term="q-bio.NC"/>
+    <author>
+      <name>Ishan Kalburge</name>
+    </author>
+    <author>
+      <name>Máté Lengyel</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2106.06607v2</id>
+    <title>Invariance Principle Meets Information Bottleneck for Out-of-Distribution Generalization</title>
+    <updated>2022-11-20T21:51:18Z</updated>
+    <link href="https://arxiv.org/abs/2106.06607v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2106.06607v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The invariance principle from causality is at the heart of notable approaches such as invariant risk minimization (IRM) that seek to address out-of-distribution (OOD) generalization failures. Despite the promising theory, invariance principle-based approaches fail in common classification tasks, where invariant (causal) features capture all the information about the label. Are these failures due to the methods failing to capture the invariance? Or is the invariance principle itself insufficient? To answer these questions, we revisit the fundamental assumptions in linear regression tasks, where invariance-based approaches were shown to provably generalize OOD. In contrast to the linear regression tasks, we show that for linear classification tasks we need much stronger restrictions on the distribution shifts, or otherwise OOD generalization is impossible. Furthermore, even with appropriate restrictions on distribution shifts in place, we show that the invariance principle alone is insufficient. We prove that a form of the information bottleneck constraint along with invariance helps address key failures when invariant features capture all the information about the label and also retains the existing success when they do not. We propose an approach that incorporates both of these principles and demonstrate its effectiveness in several experiments.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-06-11T20:42:27Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Kartik Ahuja</name>
+    </author>
+    <author>
+      <name>Ethan Caballero</name>
+    </author>
+    <author>
+      <name>Dinghuai Zhang</name>
+    </author>
+    <author>
+      <name>Jean-Christophe Gagnon-Audet</name>
+    </author>
+    <author>
+      <name>Yoshua Bengio</name>
+    </author>
+    <author>
+      <name>Ioannis Mitliagkas</name>
+    </author>
+    <author>
+      <name>Irina Rish</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2106.06333v6</id>
+    <title>Invariant Information Bottleneck for Domain Generalization</title>
+    <updated>2022-03-21T05:07:35Z</updated>
+    <link href="https://arxiv.org/abs/2106.06333v6" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2106.06333v6" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Invariant risk minimization (IRM) has recently emerged as a promising alternative for domain generalization. Nevertheless, the loss function is difficult to optimize for nonlinear classifiers and the original optimization objective could fail when pseudo-invariant features and geometric skews exist. Inspired by IRM, in this paper we propose a novel formulation for domain generalization, dubbed invariant information bottleneck (IIB). IIB aims at minimizing invariant risks for nonlinear classifiers and simultaneously mitigating the impact of pseudo-invariant features and geometric skews. Specifically, we first present a novel formulation for invariant causal prediction via mutual information. Then we adopt the variational formulation of the mutual information to develop a tractable loss function for nonlinear classifiers. To overcome the failure modes of IRM, we propose to minimize the mutual information between the inputs and the corresponding representations. IIB significantly outperforms IRM on synthetic datasets, where the pseudo-invariant features and geometric skews occur, showing the effectiveness of proposed formulation in overcoming failure modes of IRM. Furthermore, experiments on DomainBed show that IIB outperforms $13$ baselines by $0.9\%$ on average across $7$ real datasets.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-06-11T12:12:40Z</published>
+    <arxiv:comment>AAAI 2022</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Bo Li</name>
+    </author>
+    <author>
+      <name>Yifei Shen</name>
+    </author>
+    <author>
+      <name>Yezhen Wang</name>
+    </author>
+    <author>
+      <name>Wenzhen Zhu</name>
+    </author>
+    <author>
+      <name>Colorado J. Reed</name>
+    </author>
+    <author>
+      <name>Jun Zhang</name>
+    </author>
+    <author>
+      <name>Dongsheng Li</name>
+    </author>
+    <author>
+      <name>Kurt Keutzer</name>
+    </author>
+    <author>
+      <name>Han Zhao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2010.05375v1</id>
+    <title>Causal learning with sufficient statistics: an information bottleneck approach</title>
+    <updated>2020-10-12T00:20:01Z</updated>
+    <link href="https://arxiv.org/abs/2010.05375v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2010.05375v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The inference of causal relationships using observational data from partially observed multivariate systems with hidden variables is a fundamental question in many scientific domains. Methods extracting causal information from conditional independencies between variables of a system are common tools for this purpose, but are limited in the lack of independencies. To surmount this limitation, we capitalize on the fact that the laws governing the generative mechanisms of a system often result in substructures embodied in the generative functional equation of a variable, which act as sufficient statistics for the influence that other variables have on it. These functional sufficient statistics constitute intermediate hidden variables providing new conditional independencies to be tested. We propose to use the Information Bottleneck method, a technique commonly applied for dimensionality reduction, to find underlying sufficient sets of statistics. Using these statistics we formulate new additional rules of causal orientation that provide causal information not obtainable from standard structure learning algorithms, which exploit only conditional independencies between observable variables. We validate the use of sufficient statistics for structure learning both with simulated systems built to contain specific sufficient statistics and with benchmark data from regulatory rules previously and independently proposed to model biological signal transduction networks.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-10-12T00:20:01Z</published>
+    <arxiv:primary_category term="stat.ML"/>
+    <author>
+      <name>Daniel Chicharro</name>
+    </author>
+    <author>
+      <name>Michel Besserve</name>
+    </author>
+    <author>
+      <name>Stefano Panzeri</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.14077v1</id>
+    <title>Label Smoothing is a Pragmatic Information Bottleneck</title>
+    <updated>2025-08-12T14:50:23Z</updated>
+    <link href="https://arxiv.org/abs/2508.14077v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.14077v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This study revisits label smoothing via a form of information bottleneck. Under the assumption of sufficient model flexibility and no conflicting labels for the same input, we theoretically and experimentally demonstrate that the model output obtained through label smoothing explores the optimal solution of the information bottleneck. Based on this, label smoothing can be interpreted as a practical approach to the information bottleneck, enabling simple implementation. As an information bottleneck method, we experimentally show that label smoothing also exhibits the property of being insensitive to factors that do not contain information about the target, or to factors that provide no additional information about it when conditioned on another variable.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-12T14:50:23Z</published>
+    <arxiv:comment>18 pages, 8 figures, published in Transactions on Machine Learning Research (TMLR), 2025</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Sota Kudo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.25952v1</id>
+    <title>On the Information Bottleneck for Ergodic Finite-State Markov Chains: Stationary Approximation and Asymptotic Optimality</title>
+    <updated>2026-10-19T07:42:38Z</updated>
+    <link href="https://arxiv.org/abs/2610.25952v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.25952v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we investigate the information bottleneck problem for sources that follow discrete-time ergodic finite-state Markov chains. We propose treating observations generated by the time-varying Markov chain as if they were drawn from its unique stationary distribution, and we use the solution to the information bottleneck problem for the stationary process to compress samples from the time-varying process. The resulting error is upper bounded by several information gap terms. We establish sufficient conditions under which these gaps converge to zero and analyze the convergence rates of the different information gap terms. The proofs are based on intricate analysis using convergence of subsequences along with the derivation of properties of the optimization sets associated with the information bottleneck problem. In addition to the inequalities and convergence results we establish, our analysis offers insights into how simple properties of ergodic Markov chains give rise to results concerning the information bottleneck problem for such chains.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-19T07:42:38Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Wael Tabbara</name>
+    </author>
+    <author>
+      <name>Jihad Fahs</name>
+    </author>
+    <author>
+      <name>Mohamad Assaad</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.21508v1</id>
+    <title>WaterVIB: Learning Minimal Sufficient Watermark Representations via Variational Information Bottleneck</title>
+    <updated>2026-02-25T02:38:17Z</updated>
+    <link href="https://arxiv.org/abs/2602.21508v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.21508v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Robust watermarking is critical for intellectual property protection, whereas existing methods face a severe vulnerability against regeneration-based AIGC attacks. We identify that existing methods fail because they entangle the watermark with high-frequency cover texture, which is susceptible to being rewritten during generative purification. To address this, we propose WaterVIB, a theoretically grounded framework that reformulates the encoder as an information sieve via the Variational Information Bottleneck. Instead of overfitting to fragile cover details, our approach forces the model to learn a Minimal Sufficient Statistic of the message. This effectively filters out redundant cover nuances prone to generative shifts, retaining only the essential signal invariant to regeneration. We theoretically prove that optimizing this bottleneck is a necessary condition for robustness against distribution-shifting attacks. Extensive experiments demonstrate that WaterVIB significantly outperforms state-of-the-art methods, achieving superior zero-shot resilience against unknown diffusion-based editing.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-25T02:38:17Z</published>
+    <arxiv:comment>22 pages, 7 figures. Preprint</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Haoyuan He</name>
+    </author>
+    <author>
+      <name>Yu Zheng</name>
+    </author>
+    <author>
+      <name>Jie Zhou</name>
+    </author>
+    <author>
+      <name>Jiwen Lu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.04247v3</id>
+    <title>I$^3$-MRec: Invariant Learning with Information Bottleneck for Incomplete Modality Recommendation</title>
+    <updated>2025-10-15T11:10:53Z</updated>
+    <link href="https://arxiv.org/abs/2508.04247v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.04247v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multimodal recommender systems (MRS) improve recommendation performance by integrating complementary semantic information from multiple modalities. However, the assumption of complete multimodality rarely holds in practice due to missing images and incomplete descriptions, hindering model robustness and generalization. To address these challenges, we introduce a novel method called \textbf{I$^3$-MRec}, which uses \textbf{I}nvariant learning with \textbf{I}nformation bottleneck principle for \textbf{I}ncomplete \textbf{M}odality \textbf{Rec}ommendation. To achieve robust performance in missing modality scenarios, I$^3$-MRec enforces two pivotal properties: (i) cross-modal preference invariance, ensuring consistent user preference modeling across varying modality environments, and (ii) compact yet effective multimodal representation, as modality information becomes unreliable in such scenarios, reducing the dependence on modality-specific information is particularly important. By treating each modality as a distinct semantic environment, I$^3$-MRec employs invariant risk minimization (IRM) to learn preference-oriented representations. In parallel, a missing-aware fusion module is developed to explicitly simulate modality-missing scenarios. Built upon the Information Bottleneck (IB) principle, the module aims to preserve essential user preference signals across these scenarios while effectively compressing modality-specific information. Extensive experiments conducted on three real-world datasets demonstrate that I$^3$-MRec consistently outperforms existing state-of-the-art MRS methods across various modality-missing scenarios, highlighting its effectiveness and robustness in practical applications.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.MM" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-06T09:29:50Z</published>
+    <arxiv:comment>ACM Multimedia 2025 Accepted</arxiv:comment>
+    <arxiv:primary_category term="cs.IR"/>
+    <arxiv:journal_ref>In Proceedings of the 33st ACM International Conference on Multimedia (MM '25), 2025</arxiv:journal_ref>
+    <author>
+      <name>Huilin Chen</name>
+    </author>
+    <author>
+      <name>Miaomiao Cai</name>
+    </author>
+    <author>
+      <name>Fan Liu</name>
+    </author>
+    <author>
+      <name>Zhiyong Cheng</name>
+    </author>
+    <author>
+      <name>Richang Hong</name>
+    </author>
+    <author>
+      <name>Meng Wang</name>
+    </author>
+    <arxiv:doi>10.1145/3746027.3755410</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3746027.3755410" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1706.01350v3</id>
+    <title>Emergence of Invariance and Disentanglement in Deep Representations</title>
+    <updated>2018-06-28T17:50:54Z</updated>
+    <link href="https://arxiv.org/abs/1706.01350v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1706.01350v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Using established principles from Statistics and Information Theory, we show that invariance to nuisance factors in a deep neural network is equivalent to information minimality of the learned representation, and that stacking layers and injecting noise during training naturally bias the network towards learning invariant representations. We then decompose the cross-entropy loss used during training and highlight the presence of an inherent overfitting term. We propose regularizing the loss by bounding such a term in two equivalent ways: One with a Kullbach-Leibler term, which relates to a PAC-Bayes perspective; the other using the information in the weights as a measure of complexity of a learned model, yielding a novel Information Bottleneck for the weights. Finally, we show that invariance and independence of the components of the representation learned by the network are bounded above and below by the information in the weights, and therefore are implicitly optimized during training. The theory enables us to quantify and predict sharp phase transitions between underfitting and overfitting of random labels when using our regularized loss, which we verify in experiments, and sheds light on the relation between the geometry of the loss function, invariance properties of the learned representation, and generalization error.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2017-06-05T14:31:03Z</published>
+    <arxiv:comment>Deep learning, neural network, representation, flat minima, information bottleneck, overfitting, generalization, sufficiency, minimality, sensitivity, information complexity, stochastic gradient descent, regularization, total correlation, PAC-Bayes</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Alessandro Achille</name>
+    </author>
+    <author>
+      <name>Stefano Soatto</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2408.01697v2</id>
+    <title>Invariant Graph Learning Meets Information Bottleneck for Out-of-Distribution Generalization</title>
+    <updated>2025-02-13T04:10:14Z</updated>
+    <link href="https://arxiv.org/abs/2408.01697v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2408.01697v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Graph out-of-distribution (OOD) generalization remains a major challenge in graph learning since graph neural networks (GNNs) often suffer from severe performance degradation under distribution shifts. Invariant learning, aiming to extract invariant features across varied distributions, has recently emerged as a promising approach for OOD generation. Despite the great success of invariant learning in OOD problems for Euclidean data (i.e., images), the exploration within graph data remains constrained by the complex nature of graphs. Existing studies, such as data augmentation or causal intervention, either suffer from disruptions to invariance during the graph manipulation process or face reliability issues due to a lack of supervised signals for causal parts. In this work, we propose a novel framework, called Invariant Graph Learning based on Information bottleneck theory (InfoIGL), to extract the invariant features of graphs and enhance models' generalization ability to unseen distributions. Specifically, InfoIGL introduces a redundancy filter to compress task-irrelevant information related to environmental factors. Cooperating with our designed multi-level contrastive learning, we maximize the mutual information among graphs of the same class in the downstream classification tasks, preserving invariant features for prediction to a great extent. An appealing feature of InfoIGL is its strong generalization ability without depending on supervised signal of invariance. Experiments on both synthetic and real-world datasets demonstrate that our method achieves state-of-the-art performance under OOD generalization for graph classification tasks. The source code is available at https://github.com/maowenyu-11/InfoIGL.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-08-03T07:38:04Z</published>
+    <arxiv:comment>The article has been accepted by Frontiers of Computer Science (FCS), with the DOI: {10.1007/s11704-025-40798-3}</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Wenyu Mao</name>
+    </author>
+    <author>
+      <name>Jiancan Wu</name>
+    </author>
+    <author>
+      <name>Haoyang Liu</name>
+    </author>
+    <author>
+      <name>Yongduo Sui</name>
+    </author>
+    <author>
+      <name>Xiang Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.29900v1</id>
+    <title>OVA-IB: One vs All Information Bottleneck for Multi-Modal Alignment</title>
+    <updated>2026-05-28T13:23:07Z</updated>
+    <link href="https://arxiv.org/abs/2605.29900v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.29900v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Contrastive learning is effective for aligning paired views or modalities, but alignment beyond two modalities remains non-trivial and comparatively underexplored. Pairwise CLIP-style losses decompose multi-modal alignment into independent two-way comparisons and therefore do not explicitly model higher-order dependencies among multiple modalities. Recent beyond-pairwise objectives approach this problem from statistical or geometric perspectives, but arbitrary-modality alignment still lacks a principled criterion for defining what each modality should preserve and compress relative to the others. We revisit arbitrary-modality alignment through the Information Bottleneck principle. In multi-modal learning, sufficiency should preserve information predictable from the remaining modalities, while minimality should compress modality-specific information not supported by them. This naturally leads to a One-vs-All view, where each modality is characterized with respect to the remaining modalities. We propose OVA-IB, an Information Bottleneck framework for arbitrary-modality alignment. OVA-IB optimizes a tractable One-vs-All contrastive lower bound for sufficiency connected to a Dual Total Correlation-style objective, uses a parameter-free geometry-aware projection score, and derives a tractable upper-bound regularizer for minimality by bounding each representation's dependence on its own input with representation distributions induced by the remaining modalities. Experiments on classification, regression, modality-agnostic evaluation, and cross-modal retrieval benchmarks demonstrate strong and robust performance.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-28T13:23:07Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Tianchao Li</name>
+    </author>
+    <author>
+      <name>Shujian Yu</name>
+    </author>
+    <author>
+      <name>Xinrui Zu</name>
+    </author>
+    <author>
+      <name>Zhaolong Wei</name>
+    </author>
+    <author>
+      <name>Jeremy Gummeson</name>
+    </author>
+    <author>
+      <name>Jack C. P. Cheng</name>
+    </author>
+    <author>
+      <name>Robert Jenssen</name>
+    </author>
+  </entry>
+</feed>
