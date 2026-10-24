@@ -18,6 +18,9 @@
 - \(A_j,A_0\subseteq\Omega\) 是非空 graph-node sets，\(F_j,F_0\subseteq\mathcal R\) 是连续 nominal footprints。
 - \(\overline F_j\) 是 challenger footprint 的确定性外包络，满足 \(F_j\subseteq\overline F_j\)。
 - 网络、图、candidate interface、时刻集、阈值和所有选择规则在 calibration 前冻结。
+- candidate provider 的输出是 desired reference \(\hat\tau_j\)；用于资格、几何与证书
+  的轨迹是官方冻结执行算子后的 \(\tau_j=\mathcal S_{x_0}(\hat\tau_j)\)。native 与
+  challenger 必须经过同一 0.1 s resampling、LQR tracker 与 kinematic bicycle model。
 
 ## 2. Quotient invariance
 

@@ -481,3 +481,22 @@
 - **Boundary:** no data, provider amplitude, dynamic envelope, intent threshold, anchor or
   adequacy gate changes. The first raw artifact and its expected mechanical-audit failure
   remain evidence of the implementation defect. The corrected replay may still fail supply.
+
+## ADR-0046 — Insert the official NAVSIM execution operator before task geometry
+
+- **Status:** accepted after corrected R004H4P3 and official-source inspection
+- **Evidence:** corrected R004H4P3 mechanically passes but its self-constructed polynomial
+  screen accepts only 154/768 desired candidates. Official `pdm_score` does not score that
+  polynomial: `transform_trajectory` creates desired `EgoState`s with zero dynamic fields,
+  `get_trajectory_as_array` resamples native and prediction at 0.1 s, and `PDMSimulator`
+  applies `BatchLQRTracker` plus `BatchKinematicBicycleModel` before scoring.
+- **Theory correction:** distinguish desired reference \(\hat\tau\) from realized trajectory
+  \(\tau=\mathcal S_{x_0}(\hat\tau)\), where \(\mathcal S\) is the frozen official execution
+  operator. Intent eligibility, swept footprint, teacher opportunity and certification must
+  use paired realized native/challenger trajectories. The field-coverage theorem remains
+  candidate-independent once these realized sets are supplied.
+- **Decision:** do not revise the provider again or relax its gates. Register a read-only
+  execution-interface audit on fit data to close sampling, coordinate, simulator and state-
+  array semantics. The polynomial screen result is retained as a failed formulation, not
+  evidence about official realized feasibility.
+- **Boundary:** no geometry teacher, prediction, image or development read is authorized.

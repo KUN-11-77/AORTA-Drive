@@ -142,6 +142,21 @@ AORTA 只做 arbitration。冻结接口为
 - horizon、budget、seed、ordering、eligibility 与 provenance 在 calibration 前冻结；
 - 所有 methods 使用相同 candidates 与 compute budget。
 
+### 4.1 Desired reference versus realized trajectory
+
+Provider 输出 desired reference \(\hat\tau_j\)，但 NAVSIM 不直接评分该对象。冻结官方
+执行算子
+
+\[
+\tau_j=\mathcal S_{x_0}(\hat\tau_j),
+\]
+
+其中包含 relative-to-global 转换、官方 0.1 s 重采样、`BatchLQRTracker` 与
+`BatchKinematicBicycleModel`。native 与所有 challenger 必须共享同一初始状态和同一
+算子。后续 intent filter、swept-footprint set、opportunity label 与 certificate 均定义在
+\(\tau_j\) 上，而不是 \(\hat\tau_j\) 上。任何 desired-curve smoothness screen 仅为诊断，
+除非另证其与 \(\mathcal S\) 等价。
+
 ## 5. Data partition and calibration
 
 source train、development、calibration、test sessions 严格分离。模型、checkpoint、图、\(\alpha\)、\(\gamma_{task}\)、candidate interface 和所有选择规则在首次读取 calibration scores 前冻结。

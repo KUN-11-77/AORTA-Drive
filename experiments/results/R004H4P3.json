@@ -1,0 +1,37 @@
+{
+  "experiment_id": "R004H4P3-native-offset-fit-supply-v1",
+  "status": "COMPLETED_FORMULATION_MISMATCH",
+  "registered_decision": "STOP_CANDIDATE_SUPPLY_COVERAGE",
+  "implementation_revision": "81d60b05be9fcb7a4580e3b3d64f660dea697958",
+  "result_sha256": "1c88512df416143fb4405ec9756ed511d56869668fa486fbbe192a45d1a0031f",
+  "audit_sha256": "69581df38525c035609fdcbe71ba71ad820f9578b57e2ec490d452aa795a8d38",
+  "invalid_initial_revision": "affc9bf174fc3ef9dd820f093cf93bc45e46c503",
+  "invalid_initial_result_sha256": "b2f59dae2e3a94f5a96a43e647935b353e63382551d624ff75e6f5733a6ef8ac",
+  "invalid_initial_audit_sha256": "e90da1e938b40c419a64f5c5e942083ebc27c3c7615c248232f41e934d9a2ff5",
+  "supply": {
+    "anchors_with_eligible_candidate": 38,
+    "anchor_count": 128,
+    "anchor_supply_fraction": 0.296875,
+    "minimum_group_anchor_supply_fraction": 0.1875,
+    "anchors_with_both_signed_eligible_candidates": 27
+  },
+  "provider": {
+    "registered_constructions": 768,
+    "accepted_constructions": 154,
+    "continuous_dynamic_envelope_rejections": 590,
+    "native_reference_displacement_rejections": 24
+  },
+  "integrity": {
+    "endpoint_invariant_failure_count": 0,
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE"
+  },
+  "claims": {
+    "provider_adequate_under_registered_polynomial_screen": false,
+    "official_navsim_realized_supply_estimated": false,
+    "geometry_evaluated": false,
+    "development_access_authorized": false,
+    "coverage_established": false,
+    "gate_b_passed": false
+  }
+}
