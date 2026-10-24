@@ -448,3 +448,15 @@ p_0=\frac{s_0-s_{min}}{s_{max}-s_{min}}.
 RMS 分支完全不进入 cap、logit jump 至少缩小 10 倍且归一化 jump 不超过 1，则只支持
 “activation scale 是当前实例的主导 conditioning 原因”。其余原因使用各自预注册 vote，
 不足 6/8 一律 `UNRESOLVED`。
+
+R004H2D 最终得到 activation-scale `8/8`、parameterization `0/8`、LR-primary `0/8`。
+因此下一实例只允许在 detached scale branch 上使用
+
+\[
+N(h)=h/\max\!\left(\sqrt{\frac{1}{CHW}\sum_{cxy}h_{cxy}^2},\epsilon\right),
+\]
+
+其中实际输入必须非零，ε 仅作数值防护且不得成为可调超参数。(N(h)) 不进入 potential
+path，不中心化，也没有可学习 affine 参数。由 (N(ch)=N(h);(c>0))，尺度头对 trunk 的
+正 activation gauge 不变，同时保留通道和空间方向结构。这是接口可识别性修复，而不是
+扩大网络容量。

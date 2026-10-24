@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H1 fresh potential 通过 selection 中心信号门；首个 R004H2 scale-only proper-loss 训练则 STOP：最佳 learned loss `2.566971`，而 uniform 1 m 为 `0.380000`，预裁剪梯度范数达到 `10^5` 量级。H3 未授权。tail control、learned uncertainty、正式 coverage、Gate B、OOD 与创新性仍未成立，proxy-cal、development 与官方 calibration 均未读取。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H1 fresh potential 通过 selection 中心信号门；首个 R004H2 scale-only proper-loss 训练 STOP。R004H2D 在固定 8 anchors 上以 8/8 票确认 frozen trunk activation magnitude 是该实例的主导 conditioning 缺陷，并排除初始参数化放大与 learning-rate-primary。H3 未授权。tail control、learned uncertainty、正式 coverage、Gate B、OOD 与创新性仍未成立，proxy-cal、development 与官方 calibration 均未读取。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：执行已冻结的 R004H2D read-only conditioning 诊断，不得直接调学习率重跑。诊断固定 8 个 fit/selection anchors，同时记录 raw trunk feature 范数、bias-only 与 full-head 初始梯度、normalization-only counterfactual 和解析 AdamW 首步。只有至少 6/8 预注册因果票支持同一解释，才允许注册一次 H2 修订；proxy-cal、development 与官方 calibration 继续封存。
+- 下一阶段：注册一次且仅一次 R004H2R1。唯一结构变化是对 detached scale-branch input 做 uncentered per-observation global-RMS gauge removal；potential path、194 参数 head、objective、optimizer、`3e-4` learning rate、seed、schedule、roles、selector 与 gates 全部不变。proxy-cal、development 与官方 calibration 继续封存。

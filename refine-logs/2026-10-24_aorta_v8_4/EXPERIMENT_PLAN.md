@@ -15,6 +15,11 @@ replays, without parameter mutation, the registered AdamW first step on raw vers
 uncentered-RMS-normalized spatial features. A cause requires at least 6/8 preregistered
 votes; otherwise the result is `UNRESOLVED` and no revision is authorized.
 
+R004H2D completed with activation-scale votes `8/8` and both rivals `0/8`. One R004H2R1
+registration is authorized. Its only change may be uncentered per-observation global-RMS
+normalization on the detached scale branch; all optimization, data-role, selection and stop
+contracts from H2 remain fixed.
+
 ## Claim map
 
 | ID | Claim candidate | Minimum evidence | Falsifier |

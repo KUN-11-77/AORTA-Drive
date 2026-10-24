@@ -17,4 +17,5 @@
   roles beyond fit/selection, hyperparameter search, scale fitting or metric selection.
 - **Interpretation:** a resolved diagnosis may authorize registration of exactly one H2
   revision targeted at that cause. It does not establish scale quality or downstream claims.
-- **Status:** REGISTERED; not yet executed.
+- **Status:** COMPLETED — `TRUNK_ACTIVATION_SCALE_DOMINANT` with 8/8 votes. See
+  `experiments/results/R004H2D.md`.

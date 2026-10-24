@@ -261,3 +261,20 @@
   registered step becomes stable under magnitude-only normalization.
 - **Boundary:** this is a cause diagnosis, not a scale-fit result. It may authorize one
   targeted H2 revision but never H3, coverage, task utility, Gate B, OOD or novelty claims.
+
+## ADR-0032 — Repair only the diagnosed activation gauge
+
+- **Status:** accepted after R004H2D
+- **Evidence:** all 8/8 fixed anchors voted for activation scale. Raw feature RMS was
+  `1776`–`2195`; raw first-step logit changes were `82`–`133` with `75%`–`93%` cap entry.
+  Uncentered global-RMS removal reduced changes to `0.041`–`0.065` with zero cap entry.
+  Median full-gradient reduction was `2026.85×`. Mechanical replay passed.
+- **Decision:** authorize registration of exactly one R004H2 revision that divides the
+  detached scale-branch input by its per-observation uncentered global RMS. Keep the
+  potential path, 194-parameter head, objective, optimizer, learning rate, schedule,
+  fit/selection roles, seed, selector and stop gates unchanged.
+- **Rejected changes:** no LayerNorm or centering, no learned affine normalization, no
+  learning-rate tuning, no alternate scale parameterization, no extra head capacity and no
+  proxy/development read.
+- **Boundary:** H3 remains blocked until the revised H2 independently passes both its
+  proper-loss and cap gates.
