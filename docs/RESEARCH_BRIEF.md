@@ -9,6 +9,15 @@
 > global/fixed/temporal scalar-min道路裕度作为一般候选reranker；H7C/network/NavDream/decision
 > evaluation继续HOLD。下一步先查新并审查新的decision-sufficient数学对象，不自动搜索架构。
 
+> **2026-10-25 post-B3 literature gate：普通替代方案已排除。** CVPR 2019 Oral NMP 已使用时空
+> cost volume沿轨迹累加，故signed occupancy integral不是新贡献；CVaR/EVaR已有成熟风险规划；
+> GTRS、DA-WAM与TOAD已覆盖trajectory tokenizer、candidate-conditioned latent、hard negatives、
+> off-proposal scorer与test-time search。当前唯一值得继续查验的候选是appearance-quotient
+> preference：直接学习外观干预下的native-relative task score differences，并用scalar-score
+> coboundary保证antisymmetry与cycle consistency。但它尚未通过标签合法性、oracle ceiling、
+> direct-pair/GTRS/DA-WAM匹配消融、NavDream或时延门，不授权实现。详见
+> `refine-logs/2026-10-25_aorta_post_b3/LITERATURE_AND_METHOD_PIVOT.md`。
+
 > **2026-10-24 post-D0理论迁移审查：复杂度按必要性而非模块数量治理。** 候选核心链冻结为
 > Hodge-consistent quotient representation、support-conditioned correlated graph uncertainty、
 > exact shared-variable robust readout与selective Simplex fallback。离散外微分解释potential
