@@ -338,7 +338,13 @@ def main() -> None:
     torch.cuda.init()  # type: ignore[no-untyped-call]
     potential = QuotientFieldPredictor().to(device)
     potential.load_state_dict(stage_p_payload["model_state_dict"], strict=True)
-    model = HeterogeneousEnvelopePredictor(potential).to(device)
+    scale_input_normalization = str(
+        config["model"].get("scale_input_normalization", "none")
+    )
+    model = HeterogeneousEnvelopePredictor(
+        potential,
+        scale_input_normalization=scale_input_normalization,
+    ).to(device)
     trainable_parameters = sum(
         parameter.numel() for parameter in model.parameters() if parameter.requires_grad
     )
@@ -576,6 +582,7 @@ def main() -> None:
         "seed": seed,
         "stage_p_trainable_parameters": 0,
         "scale_head_trainable_parameters": trainable_parameters,
+        "scale_input_normalization": scale_input_normalization,
         "fit_group_count": 42,
         "selection_group_count": 8,
         "fit_anchor_count_per_epoch": len(fit_records),

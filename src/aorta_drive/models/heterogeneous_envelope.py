@@ -28,6 +28,19 @@ class ScaleLossOutput:
     mean_log_scale: Tensor
 
 
+def uncentered_global_rms_normalize(spatial_features: Tensor) -> Tensor:
+    """Remove the positive per-observation magnitude gauge without centering."""
+
+    if spatial_features.ndim != 4:
+        raise ValueError("spatial_features must have shape [batch, channels, height, width]")
+    if not torch.isfinite(spatial_features).all():
+        raise ValueError("spatial_features must be finite")
+    rms = torch.sqrt(torch.mean(spatial_features.square(), dim=(1, 2, 3), keepdim=True))
+    if torch.any(rms <= torch.finfo(spatial_features.dtype).tiny):
+        raise ValueError("each observation must have nonzero spatial-feature RMS")
+    return spatial_features / rms
+
+
 def bounded_laplace_scale_loss(
     predicted_potential: Tensor,
     label_potential: Tensor,
@@ -121,9 +134,17 @@ class BoundedEdgeScaleHead(nn.Module):
 class HeterogeneousEnvelopePredictor(nn.Module):
     """Freeze a potential predictor and train only its minimal scale head."""
 
-    def __init__(self, potential_predictor: QuotientFieldPredictor) -> None:
+    def __init__(
+        self,
+        potential_predictor: QuotientFieldPredictor,
+        *,
+        scale_input_normalization: str = "none",
+    ) -> None:
         super().__init__()
+        if scale_input_normalization not in {"none", "uncentered_global_rms"}:
+            raise ValueError("unknown scale-input normalization")
         self.potential_predictor = potential_predictor
+        self.scale_input_normalization = scale_input_normalization
         self.scale_head = BoundedEdgeScaleHead(
             input_channels=potential_predictor.spatial_output_channels,
             grid_size=potential_predictor.grid_size,
@@ -149,7 +170,10 @@ class HeterogeneousEnvelopePredictor(nn.Module):
             node_slot_mask,
         )
         potential = self.potential_predictor.potential_from_spatial_features(spatial)
-        edge_scales = self.scale_head(spatial.detach())
+        scale_input = spatial.detach()
+        if self.scale_input_normalization == "uncentered_global_rms":
+            scale_input = uncentered_global_rms_normalize(scale_input)
+        edge_scales = self.scale_head(scale_input)
         return HeterogeneousEnvelopeOutput(
             potential=potential,
             edge_scales_m=edge_scales,

@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：注册一次且仅一次 R004H2R1。唯一结构变化是对 detached scale-branch input 做 uncentered per-observation global-RMS gauge removal；potential path、194 参数 head、objective、optimizer、`3e-4` learning rate、seed、schedule、roles、selector 与 gates 全部不变。proxy-cal、development 与官方 calibration 继续封存。
+- 下一阶段：执行已注册且仅此一次的 R004H2R1。唯一结构变化是对 detached scale-branch input 做 uncentered per-observation global-RMS gauge removal；potential path、194 参数 head、objective、optimizer、`3e-4` learning rate、seed、schedule、roles、selector 与 gates 全部不变。proxy-cal、development 与官方 calibration 继续封存。

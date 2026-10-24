@@ -20,6 +20,10 @@ registration is authorized. Its only change may be uncentered per-observation gl
 normalization on the detached scale branch; all optimization, data-role, selection and stop
 contracts from H2 remain fixed.
 
+R004H2R1 is now registered with the original H2 seed, ten epochs, AdamW `3e-4`, 42/8
+fit/selection roles, proper-loss selector, uniform 1 m fit gate and 0.95 cap-collapse rule.
+No R1 result may be used to introduce a second repair attempt.
+
 ## Claim map
 
 | ID | Claim candidate | Minimum evidence | Falsifier |

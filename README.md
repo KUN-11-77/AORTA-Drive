@@ -75,7 +75,7 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform、确定性全节点 label builder，以及已冻结的 R004A–H2D 协议与完整结果账本。下一步仅允许注册 R004H2R1：在 scale branch 入口移除 uncentered per-observation RMS gauge，其余 H2 合同逐项保持不变。
+当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform、确定性全节点 label builder，以及已冻结的 R004A–H2D 协议与完整结果账本。R004H2R1 已注册：在 scale branch 入口移除 uncentered per-observation RMS gauge，其余 H2 合同逐项保持不变；下一步只执行该固定实例。
 
 ## 核心文档
 
