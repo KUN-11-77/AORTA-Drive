@@ -1,0 +1,20 @@
+{
+  "experiment_id": "R004H7B-shadow-decision-implementation-qualification-v1",
+  "status": "PASS_IMPLEMENTATION_QUALIFICATION__PAYLOAD_HOLD",
+  "date": "2026-10-24",
+  "implementation_revision": "432d0473b6828bceca910cc1763a44ed8180e0f1",
+  "config_sha256": "26716748bf8329d448fa6024896af9cb8d0897b37c9ef98bbf28e3f6c97be660",
+  "shadow_decision_source_sha256": "9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5",
+  "runner_source_sha256": "dac827f3daa84222886f88b8d5b59f47018f072ac852d765c56216610a708c4a",
+  "audit_source_sha256": "5ed8cd59adfcbfd61149b1c141f5868459d980b31daa8502f90966c01f8bbecd",
+  "focused_h7b_tests_passed": 7,
+  "focused_h7a_h7b_tests_passed": 13,
+  "full_repository_tests_passed": 281,
+  "strict_mypy_passed": true,
+  "ruff_status": "TOOLING_UNAVAILABLE",
+  "development_payload_accessed": false,
+  "calibration_test_navdream_or_target_accessed": false,
+  "scientific_result_available": false,
+  "next_status": "GO_FROZEN_H7B_EXECUTION_ONLY_AFTER_SEPARATE_AUTHORIZATION",
+  "claim_boundary": "Implementation qualification only; no endpoint relevance, representation necessity, driving, safety, test, target, or novelty evidence."
+}

@@ -2,6 +2,9 @@ experiment_id: R004H7-decision-quotient-structure-necessity-v1
 date: 2026-10-24
 status: preregistered_not_authorized_to_train
 preregistration_revision: b07f39d624287429e739431a012294e037fe3376
+gate_clarification_revisions:
+  - 7246d19ed76e21f775fde4d48f6fd861ef5b220e
+  - e89b33e7731b78faf99b6ce89ca17b5e75e1b048
 
 claims:
   primary: decision_contrast_error_is_more_relevant_to_ranking_failure_than_global_representation_error
@@ -26,7 +29,18 @@ H7A:
   failure_action: stop_before_H7B
 
 H7B:
-  authorization: held_until_H7A_pass_and_implementation_audit
+  authorization: implementation_qualified_payload_access_still_hold
+  implementation:
+    revision: 432d0473b6828bceca910cc1763a44ed8180e0f1
+    shadow_decision_source_sha256: 9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5
+    runner_source_sha256: dac827f3daa84222886f88b8d5b59f47018f072ac852d765c56216610a708c4a
+    audit_source_sha256: 5ed8cd59adfcbfd61149b1c141f5868459d980b31daa8502f90966c01f8bbecd
+    navsim_execution_source_sha256: f8ed588568fbeeebaa9c99ffd1d952f29cb490950b9490869bdf869cbdd00717
+    native_offset_source_sha256: 76a238a4538f49211ccb24bd30e1b2cda79b0f26fae656e49f184b7adbc2440e
+    intent_filter_source_sha256: f4271d81c9484e3609bc9715205bda08d8ee9fb909f11a61d5a094dfbc06c034
+    official_source_sha256:
+      navsim/evaluate/pdm_score.py: 7d0b82b8420c52dfedfda2a56b4aa44bd371cd1adbac58f001c19ccda60cf99c
+      navsim/planning/simulation/planner/pdm_planner/simulation/pdm_simulator.py: 30efc69ffc36409a496c84f560ba7201727c5e87c6a13d3f7a8e79f19ab6df4a
   model_updates: prohibited
   split: historically_exposed_development
   frozen_inputs:
