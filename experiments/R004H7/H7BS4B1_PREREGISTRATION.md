@@ -18,7 +18,7 @@ outcome 或驾驶分数。目标是先判断：在当前视觉支持拓扑下，
 |d_p-d_q|\le 1\mathrm m+\varepsilon_p+\varepsilon_q.
 \]
 
-由此定义共享场集合 
+由此定义共享场集合
 
 \[
 \mathcal U_{\mathrm{joint}}
