@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-24 R004H7-BS4A：`STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE`。** fit-only
+> outcome/teacher-free审计覆盖42 groups、672 anchors、4536个合法候选与261个源日志；
+> 42/42 groups达到12/16门，但有2个native候选的全部查询节点均无直接projective
+> evidence，按预注册硬门严格STOP。机械重放ledgers、summary和日志hash为0失败。全网格
+> 平均支持72.27%、候选节点平均89.28%；实际使用新增`x>=32m`区域的1104个候选，其扩展
+> 节点支持率均为100%，故失败不来自96×64远距扩展，而来自两个非扩展native查询。
+> teacher构建与训练保持HOLD；只允许一次不读teacher/outcome的候选公共/差异区域归因，
+> 不得删例或放宽门槛。完整记录见`experiments/R004H7/H7BS4A_RESULTS.md`。
+
 > **2026-10-24 R004H7-BS3R1：`DEVELOPMENT_FULL_DOMAIN_PASS`。** 固定前向96×64、
 > 1m、完整4秒域在24个historically exposed development groups上支持384/384 native与
 > 2206/2206 eligible challengers，0 anchors发生候选域越界；24/24 groups达到至少12/16

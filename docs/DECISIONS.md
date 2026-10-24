@@ -820,3 +820,19 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** domain containment is necessary but not sufficient for task sufficiency. It does
   not establish visual information at long range, decoder accuracy, 1m resolution adequacy,
   decision relevance, driving benefit, safety, final-test/target generalization or novelty.
+
+## ADR-0060 — Fail the all-candidate direct-evidence precondition without blaming forward range
+
+- **Status:** accepted after H7BS4A fit execution and exact mechanical replay.
+- **Evidence:** 2/4536 query candidates have zero directly supported query nodes, so the frozen
+  strict gate fails even though all 42 groups meet 12/16. Both are native queries with 10 or 12
+  nodes and no node in the added `x>=32m` region. In contrast, all extension nodes queried by
+  1104 candidates have direct projective support.
+- **Decision:** preserve the STOP. Do not delete the two cases, relax the zero-failure rule or
+  call mean support a pass. Hold teacher generation and network training. Permit one outcome- and
+  teacher-free post-hoc attribution of common versus candidate-distinguishing query regions.
+- **Theory implication:** a task-sufficient visual interface should be defined on information
+  needed to contrast candidates, not assumed to require direct evidence at every candidate's
+  invariant footprint. This is a hypothesis to test, not yet an algorithmic contribution.
+- **Boundary:** projective support is not occlusion-aware physical visibility or task correctness;
+  no NavDream, latency, decision, driving, safety or novelty claim follows.

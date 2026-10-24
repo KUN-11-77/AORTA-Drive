@@ -1,0 +1,26 @@
+{
+  "experiment_id": "R004H7BS4A-fit-projective-observability-v1",
+  "date": "2026-10-24",
+  "audit_status": "REVIEW_UNAVAILABLE",
+  "mechanical_integrity": "PASS",
+  "scientific_gate": "STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE",
+  "external_reviewer_backend_available": false,
+  "checks": {
+    "ground_truth_provenance": "NOT_APPLICABLE_OUTCOME_AND_TEACHER_FREE_SUPPORT_QUALIFICATION",
+    "score_normalization": "PASS_NO_PERFORMANCE_SCORE_OR_SELF_NORMALIZATION",
+    "result_existence": "PASS_HASH_BOUND_RESULT_AND_MECHANICAL_AUDIT",
+    "dead_code": "PASS_RUNNER_OUTPUT_REPLAYED_BY_INDEPENDENT_AUDIT_SCRIPT",
+    "scope": "PASS_42_FIT_GROUPS_672_ANCHORS_4536_QUERY_CANDIDATES_261_SOURCE_LOGS",
+    "evaluation_type": "deterministic_projective_support_qualification"
+  },
+  "claim_impact": {
+    "forward_extension_projective_support_on_frozen_fit_queries": "mechanically_supported",
+    "all_candidate_direct_evidence_precondition": "falsified_by_2_zero_evidence_native_queries",
+    "physical_visibility": "unproven",
+    "task_correctness": "unproven",
+    "decision_relevance": "unproven",
+    "navdream_generalization": "unproven",
+    "latency": "unproven",
+    "driving_or_safety": "unproven"
+  }
+}

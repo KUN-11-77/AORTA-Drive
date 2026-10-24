@@ -1,0 +1,45 @@
+{
+  "experiment_id": "R004H7BS4A-fit-projective-observability-v1",
+  "status": "COMPLETED_STRICT_STOP",
+  "code_commit": "0a09600",
+  "result_sha256": "4671032f4d22d37d067c83e0c298e592467e13601788b55dae53f8a7055cc8cc",
+  "mechanical_audit_sha256": "6e062a3bfc17d36f7824668f29473ac2d0074371a0c7a8e7da61f1f104f71919",
+  "mechanical_audit": "PASS",
+  "external_review": "REVIEW_UNAVAILABLE",
+  "scope": {
+    "fit_groups": 42,
+    "anchors": 672,
+    "query_candidates": 4536,
+    "unique_source_logs": 261,
+    "teacher_field_outcome_development_calibration_test_navdream_target_accessed": false
+  },
+  "result": {
+    "decision": "STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE",
+    "groups_meeting_12_of_16": [42, 42],
+    "zero_direct_evidence_candidates": 2,
+    "mean_grid_supported_node_fraction": 0.7226925804501488,
+    "mean_candidate_supported_query_fraction": 0.892787144024838,
+    "candidate_queries_using_forward_extension": 1104,
+    "mean_forward_extension_supported_fraction_among_users": 1.0
+  },
+  "zero_evidence_attribution": [
+    {
+      "recording_group": "2021.07.16.01.22.41_veh-14",
+      "anchor_index": 11,
+      "candidate_registered_index": 0,
+      "role": "native",
+      "query_nodes": 12,
+      "forward_extension_query_nodes": 0
+    },
+    {
+      "recording_group": "2021.09.15.13.16.40_veh-28",
+      "anchor_index": 3,
+      "candidate_registered_index": 0,
+      "role": "native",
+      "query_nodes": 10,
+      "forward_extension_query_nodes": 0
+    }
+  ],
+  "next_status": "HOLD_TEACHER_AND_TRAINING__REGISTER_POSTHOC_CANDIDATE_CONTRAST_SUPPORT_ATTRIBUTION_ONLY",
+  "claim_boundary": "The 96x64 forward extension is projectively supported wherever frozen fit candidates use it, but the preregistered all-candidate direct-evidence condition fails on two native queries outside the extension. This does not establish physical visibility, task correctness, decision relevance, latency, driving benefit, safety, or OOD generalization."
+}
