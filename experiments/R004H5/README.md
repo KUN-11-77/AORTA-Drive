@@ -8,3 +8,5 @@
 
 配置：`configs/experiment/r004h5_fit_appearance_mechanism.yaml`。
 
+输入资格状态：`PASS`。42 groups、672 anchors、8064 unique raw images 已逐文件重放，0 missing、0 hash mismatch；详见 `experiments/results/R004H5_INPUT.md`。该结果只授权冻结模型推理。
+
