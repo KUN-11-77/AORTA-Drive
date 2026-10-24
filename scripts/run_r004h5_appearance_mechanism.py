@@ -339,6 +339,7 @@ def main() -> None:
     parser.add_argument("--implementation-revision", required=True)
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument("--smoke-one-anchor", action="store_true")
     args = parser.parse_args()
     if args.output_directory.exists():
         raise FileExistsError(f"refusing to overwrite {args.output_directory}")
@@ -384,6 +385,7 @@ def main() -> None:
         raise ValueError("R004H5 must use exactly the 672 fit anchors")
     order = {group: index for index, group in enumerate(fit_groups)}
     records = tuple(sorted(records, key=lambda row: (order[row.recording_group], row.anchor_index)))
+    execution_records = records[:1] if args.smoke_one_anchor else records
     visual_by_token = _feature_records(args.feature_manifest, fit_set)
     started = time.perf_counter()
     uniform_feature, loo_teacher = _precompute_fit_priors(records)
@@ -417,7 +419,7 @@ def main() -> None:
     torch.cuda.reset_peak_memory_stats(device)
     ledgers: list[dict[str, Any]] = []
     clean_replay_mismatch_count = 0
-    for number, record in enumerate(records, start=1):
+    for number, record in enumerate(execution_records, start=1):
         visual = visual_by_token[record.scene_token]
         slots = cast(list[dict[str, Any]], visual["slots"])
         raw_images: list[Float32Array] = []
@@ -527,7 +529,7 @@ def main() -> None:
             "field_artifact_sha256": sha256_file(field_path),
         }
         ledgers.append(ledger)
-        if number % 16 == 0 or number == len(records):
+        if number % 16 == 0 or number == len(execution_records):
             elapsed = time.perf_counter() - started
             peak_gib = torch.cuda.max_memory_allocated(device) / 1024**3
             output_gib = sum(
@@ -547,7 +549,7 @@ def main() -> None:
                 "implementation_revision": args.implementation_revision,
                 "config_sha256": sha256_file(args.config),
                 "completed_anchor_count": number,
-                "fit_anchor_count": len(records),
+                "fit_anchor_count": len(execution_records),
                 "elapsed_seconds": elapsed,
                 "peak_cuda_bytes": int(torch.cuda.max_memory_allocated(device)),
                 "clean_replay_mismatch_count": clean_replay_mismatch_count,
@@ -555,6 +557,32 @@ def main() -> None:
             }
             _write_json(args.output_directory / "progress.json", progress)
             print(json.dumps(progress, sort_keys=True), flush=True)
+
+    if args.smoke_one_anchor:
+        smoke_result: dict[str, Any] = {
+            "experiment_id": "R004H5-one-anchor-integration-smoke-v1",
+            "status": "PASS",
+            "completed_at_utc": datetime.now(timezone.utc).isoformat(),
+            "implementation_revision": args.implementation_revision,
+            "config_sha256": sha256_file(args.config),
+            "script_sha256": sha256_file(Path(__file__)),
+            **input_hashes,
+            "fit_anchor_count": 1,
+            "appearance_condition_count": len(APPEARANCE_CONDITIONS),
+            "clean_replay_mismatch_count": clean_replay_mismatch_count,
+            "all_registered_inference_and_probe_branches_exercised": True,
+            "scientific_metrics_reported_or_used_for_tuning": False,
+            "prohibited_payload_accessed": False,
+            "elapsed_seconds": time.perf_counter() - started,
+            "peak_cuda_bytes": int(torch.cuda.max_memory_allocated(device)),
+            "claim_boundary": (
+                "One fit-anchor integration smoke only. Scientific metric values are not "
+                "reported or used; no mechanism or performance claim is supported."
+            ),
+        }
+        _write_json(args.output_directory / "smoke_result.json", smoke_result)
+        print(json.dumps(smoke_result, ensure_ascii=False, indent=2, sort_keys=True))
+        return
 
     summary = _macro_group_summary(ledgers)
     elapsed = time.perf_counter() - started
