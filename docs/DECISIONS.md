@@ -520,3 +520,17 @@
 - **Boundary:** PASS authorizes registration of a separate realized-trajectory intent and
   geometry preflight only. No geometry, teacher, prediction, development, calibration, test
   or target-domain payload is read here; no provider or threshold change is authorized.
+
+## ADR-0048 — Parse registered experiment configuration before payload access
+
+- **Status:** accepted after the first R004H4P4E launch stopped before payload access
+- **Evidence:** the registered YAML placed `decision_use` at mapping indentation beneath a
+  block sequence. `yaml.safe_load` rejected the file before anchors or cache payloads were
+  read. The official one-anchor smoke test had exercised the implementation directly and
+  therefore did not expose this orchestration defect.
+- **Repair:** represent secondary diagnostics as a mapping with explicit `metrics` and
+  `decision_use` fields, and add a repository test that parses the exact registered file and
+  checks its key gate values. Preserve the failed launch log; rerun under a new implementation
+  revision. No threshold, data, provider or decision endpoint changes.
+- **Boundary:** this is an implementation-integrity repair. The failed launch carries no
+  scientific result and cannot support or reject the theory.

@@ -2,10 +2,28 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import numpy as np
+import yaml  # type: ignore[import-untyped]
 
 from aorta_drive.certification.geometry import Pose2D
 from aorta_drive.evaluation.navsim_execution import _states_to_local_poses
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_registered_official_execution_config_parses() -> None:
+    config = yaml.safe_load(
+        (
+            ROOT
+            / "configs/experiment/r004h4p4e_official_execution_audit.yaml"
+        ).read_text(encoding="utf-8")
+    )
+    assert config["secondary_diagnostics"]["decision_use"] == "prohibited"
+    assert len(config["secondary_diagnostics"]["metrics"]) == 5
+    assert config["interface_gates"]["expected_batch_size"] == 7
 
 
 def test_state_batch_inverse_transform_is_shape_preserving_and_exact_at_origin() -> None:

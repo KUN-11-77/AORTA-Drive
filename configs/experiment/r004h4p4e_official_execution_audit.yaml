@@ -58,11 +58,12 @@ interface_gates:
   source_hashes_exact: true
 
 secondary_diagnostics:
-  - native_desired_to_realized_terminal_position_error_m
-  - challenger_desired_to_realized_max_position_error_m
-  - realized_intent_supply_using_0.5_second_subsamples
-  - realized_both_sign_supply
-  - desired_final_segment_identity_survival_after_execution
+  metrics:
+    - native_desired_to_realized_terminal_position_error_m
+    - challenger_desired_to_realized_max_position_error_m
+    - realized_intent_supply_using_0.5_second_subsamples
+    - realized_both_sign_supply
+    - desired_final_segment_identity_survival_after_execution
   decision_use: prohibited
 
 decision:
