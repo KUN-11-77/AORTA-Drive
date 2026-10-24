@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H2D 定位 activation gauge，R004H2R1 通过 proper-loss/cap gates。R004H3 完成 16-group proxy rehearsal。R004H4P 未执行 geometry；R004H4P2S 已确认缓存 PDM 动态速度无效。R004H4P2R1 用同定义的末段位置平均速度重放后，供给从 26/128 修正为 82/128，但仍未通过 90%/每组75% 门。当前只允许设计并验证一个 native-conditioned、端点不变的中段扰动 provider；不得直接进入 geometry 或 development。正式 coverage、Gate B、OOD 与创新性仍未成立，development 与官方 calibration 未读取。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H2D 定位 activation gauge，R004H2R1 通过 proper-loss/cap gates。R004H3 完成 16-group proxy rehearsal。R004H4P 未执行 geometry；R004H4P2S 已确认缓存 PDM 动态速度无效。R004H4P2R1 用同定义的末段位置平均速度重放后为 82/128，仍未过供给门。R004H4P3S 已通过 native-conditioned 端点不变 provider 的合成资格门：33/36 构造通过连续包络筛查、端点量精确闭合、两类反例正确拒绝、209项测试通过；外部审查不可用，完整性仍标为 provisional。下一步只允许注册同一128个 fit anchors 的 provider supply，不得进入 geometry 或 development。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：执行已注册的 R004H4P3S。候选只在 `0--3.5 s` 沿 native 终端位移法向施加二阶端点为零的平滑扰动，`3.5--4.0 s` 与 native 完全一致；heading 来自扰动曲线切向，完整多项式段通过递归 Bernstein 速度/加速度包络筛查。六类解析轨迹、六个幅值、过大幅值与低位移反例及至少209项仓库测试全部通过后，才允许注册 R004H4P3 fit-only supply run。不得放宽 intent 门、读取 geometry teacher 或 development。
+- 下一阶段：注册并执行 R004H4P3，在与 R004H4P2R1 完全相同的128个 fit anchors 上仅替换 provider。主终点仍为至少一个合格候选的 anchor fraction，门仍为总体 `>=0.90` 且每组 `>=0.75`；同时报告连续动态包络拒绝率、正负方向供给和端点不变量。不得读取 geometry teacher、prediction 或 development。

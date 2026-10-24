@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-24",
+  "auditor": "REVIEW_UNAVAILABLE",
+  "overall_verdict": "review_unavailable",
+  "integrity_status": "provisional",
+  "mechanical_audit": "pass",
+  "checks": {
+    "gt_provenance": {"status": "unreviewed"},
+    "score_normalization": {"status": "unreviewed"},
+    "result_existence": {"status": "mechanically_passed"},
+    "dead_code": {"status": "unreviewed"},
+    "scope": {"status": "unreviewed"},
+    "eval_type": "deterministic_synthetic_construction"
+  },
+  "claims": [
+    {"id": "synthetic_interface", "impact": "provisional_mechanical_support"},
+    {"id": "fit_supply", "impact": "unsupported_not_run"},
+    {"id": "coverage_or_gate_b", "impact": "unsupported"}
+  ]
+}

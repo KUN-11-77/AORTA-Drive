@@ -1,0 +1,29 @@
+{
+  "experiment_id": "R004H4P3S-native-offset-synthetic-qualification-v1",
+  "status": "COMPLETED",
+  "decision": "PASS_TO_REGISTER_R004H4P3_FIT_SUPPLY",
+  "implementation_revision": "2cb2ba5bef0c899c5ee1955872ade60f3aecd3c7",
+  "result_sha256": "15ee2dd08d0fcf984101aad0eb0623fadc6124ad22dd097ccd1661788d875dfe",
+  "audit_sha256": "806cf02349d4a9eb65e6ee05e1fd965f05631a5975015457fe69c8aeda865486",
+  "summary": {
+    "analytic_case_count": 6,
+    "registered_construction_count": 36,
+    "accepted_candidate_count": 33,
+    "both_sign_case_count": 6,
+    "invariant_failure_count": 0,
+    "repository_test_count": 209
+  },
+  "integrity": {
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE",
+    "integrity_status": "PROVISIONAL"
+  },
+  "claims": {
+    "synthetic_provider_interface_qualified": true,
+    "fit_supply_estimated": false,
+    "formal_real_arithmetic_proof": false,
+    "development_access_authorized": false,
+    "coverage_established": false,
+    "gate_b_passed": false
+  }
+}
