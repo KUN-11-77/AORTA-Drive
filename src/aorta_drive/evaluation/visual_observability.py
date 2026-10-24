@@ -18,6 +18,72 @@ BoolArray = npt.NDArray[np.bool_]
 IntArray = npt.NDArray[np.int64]
 
 
+def _region_observability(
+    indices: IntArray, evidence: BoolArray
+) -> dict[str, int | float | bool | None]:
+    """Describe one exact set region without turning nodes into samples."""
+
+    selected = evidence[indices]
+    count = int(indices.size)
+    supported = int(np.count_nonzero(selected))
+    return {
+        "node_count": count,
+        "supported_node_count": supported,
+        "supported_fraction": supported / count if count else None,
+        "has_any_direct_projective_evidence": supported > 0,
+        "all_nodes_directly_supported": supported == count,
+    }
+
+
+def pairwise_contrast_observability(
+    reference_indices: npt.ArrayLike,
+    comparison_indices: npt.ArrayLike,
+    node_has_evidence: npt.ArrayLike,
+) -> dict[str, Any]:
+    """Partition a candidate pair into common and distinguishing query sets.
+
+    This is an attribution primitive, not a decision-sufficiency test.  In
+    particular, a set-min operator can still be controlled by an unsupported
+    common node even when every exclusive node is observed.
+    """
+
+    reference = np.asarray(reference_indices, dtype=np.int64)
+    comparison = np.asarray(comparison_indices, dtype=np.int64)
+    evidence = np.asarray(node_has_evidence)
+    for name, indices in (("reference", reference), ("comparison", comparison)):
+        if indices.ndim != 1 or indices.size == 0 or len(np.unique(indices)) != indices.size:
+            raise ValueError(f"{name}_indices must be a nonempty unique vector")
+    if evidence.ndim != 1 or evidence.dtype != np.bool_:
+        raise ValueError("node_has_evidence must be a one-dimensional bool array")
+    if (
+        np.any(reference < 0)
+        or np.any(reference >= evidence.size)
+        or np.any(comparison < 0)
+        or np.any(comparison >= evidence.size)
+    ):
+        raise ValueError("candidate node index lies outside the evidence field")
+
+    common = np.intersect1d(reference, comparison, assume_unique=True)
+    reference_only = np.setdiff1d(reference, comparison, assume_unique=True)
+    comparison_only = np.setdiff1d(comparison, reference, assume_unique=True)
+    distinguishing = np.union1d(reference_only, comparison_only)
+    unsupported_reference = reference[~evidence[reference]]
+    unsupported_comparison = comparison[~evidence[comparison]]
+    return {
+        "geometrically_distinct": bool(distinguishing.size),
+        "common": _region_observability(common, evidence),
+        "reference_only": _region_observability(reference_only, evidence),
+        "comparison_only": _region_observability(comparison_only, evidence),
+        "symmetric_difference": _region_observability(distinguishing, evidence),
+        "unsupported_reference_nodes_all_common": bool(
+            np.all(np.isin(unsupported_reference, common))
+        ),
+        "unsupported_comparison_nodes_all_common": bool(
+            np.all(np.isin(unsupported_comparison, common))
+        ),
+    }
+
+
 def candidate_observability(
     node_indices: npt.ArrayLike,
     node_has_evidence: npt.ArrayLike,

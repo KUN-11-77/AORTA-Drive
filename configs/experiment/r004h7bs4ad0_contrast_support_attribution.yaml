@@ -1,0 +1,84 @@
+experiment_id: R004H7BS4AD0-contrast-support-attribution-v1
+date: 2026-10-24
+status: preregistered_posthoc_not_run
+
+H7BS4AD0:
+  scientific_role: outcome_and_teacher_free_failure_attribution_only
+  parent_decision: H7BS4A_STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE
+  parent_decision_must_remain_unchanged: true
+  independent_unit: recording_group
+  scope: all_42_fit_groups_all_672_anchors_all_native_eligible_challenger_pairs
+  pair_definition:
+    reference: native
+    comparison: each_full_horizon_intent_eligible_challenger
+    common: exact_node_set_intersection
+    reference_only: exact_native_set_difference
+    comparison_only: exact_challenger_set_difference
+    distinguishing: exact_symmetric_difference
+  registered_questions:
+    - whether_unsupported_nodes_of_each_H7BS4A_blind_native_are_pair_common
+    - whether_any_geometrically_distinct_pair_has_zero_supported_distinguishing_nodes
+    - whether_failure_attribution_is_common_region_contrast_region_or_mixed
+  no_threshold_policy: report_exact_empty_partial_and_full_support_without_tuning
+  interpretation:
+    common_region_supported_case: attribution_only_not_decision_sufficiency
+    reason: set_min_can_still_be_controlled_by_an_unsupported_common_node
+    forbidden_upgrade: H7BS4A_PASS
+  roi:
+    id: forward_extend_96x64
+    x_min_m: -32.0
+    y_min_m: -32.0
+    columns: 96
+    rows: 64
+    resolution_m: 1.0
+  vehicle:
+    rear_overhang_m: 1.127
+    front_extent_m: 4.049
+    half_width_m: 1.1485
+  projection:
+    cameras: [cam_l0, cam_f0, cam_r0]
+    history_offsets: [-3, -2, -1, 0]
+    raw_shape: [1080, 1920]
+    resized_shape: [288, 512]
+    patch_size: 16
+    maximum_normalized_radius: 1.0
+    support: bilinear_patch_center_convex_hull_no_padding_clamping_or_extrapolation
+    semantics: projective_token_support_not_physical_visibility
+  frozen_input_sha256:
+    h7bs4a_result: 4671032f4d22d37d067c83e0c298e592467e13601788b55dae53f8a7055cc8cc
+    h7bs4a_config: ccc718745f5d1031e050adcf4435b5194eeaa25b57afeaa555338aa44c6d71ad
+    h7bs1_fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+  implementation_sha256:
+    observability_source: ccb3ff2fb2fc8cf49bb9a6696eb9d0f690635609704685bc590f712a9d804299
+    shadow_decision_source: 9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5
+    h7bs4a_runner_source: a2bab0d63bb1b6dd4292bec4f14a78f105a3fb191fe4f594e2e20c74341c5327
+    runner_source: 0d19d1e4b72c41f85f0158d1b31097d89ed2857932290f8142755f3f85a16339
+    audit_source: 293922a89b14968fb23e9e21274796d111da627f3f64dc1764f4dc6857fff927
+  forbidden_inputs:
+    - teacher_labels_or_margins
+    - learned_visual_fields
+    - DINO_feature_values
+    - ranking_regret_or_flip
+    - development
+    - calibration
+    - test
+    - NavDream
+    - target
+  resources:
+    device: cpu
+    maximum_wall_minutes: 120
+    maximum_output_mib: 64
+
+claim_boundary:
+  permitted:
+    - exact_pair_common_and_symmetric_difference_projective_support_attribution_on_fit
+    - interface_hypothesis_generation_for_a_future_preregistered_test
+  prohibited:
+    - reversal_or_upgrade_of_H7BS4A_STOP
+    - decision_sufficiency
+    - teacher_critical_observability
+    - field_accuracy_or_visual_robustness
+    - inference_latency
+    - driving_or_safety_gain
+    - development_test_target_or_NavDream_generalization
+    - architecture_novelty

@@ -7,6 +7,7 @@ import pytest
 
 from aorta_drive.evaluation.visual_observability import (
     candidate_observability,
+    pairwise_contrast_observability,
     summarize_group_observability,
 )
 
@@ -74,4 +75,39 @@ def test_candidate_observability_rejects_duplicate_indices() -> None:
             np.asarray([0, 0]),
             np.asarray([True], dtype=np.bool_),
             np.asarray([0.5]),
+        )
+
+
+def test_pairwise_contrast_observability_partitions_exact_sets() -> None:
+    result = pairwise_contrast_observability(
+        np.asarray([0, 1, 2]),
+        np.asarray([1, 2, 3, 4]),
+        np.asarray([False, False, True, True, False], dtype=np.bool_),
+    )
+    assert result["common"]["node_count"] == 2
+    assert result["reference_only"]["node_count"] == 1
+    assert result["comparison_only"]["node_count"] == 2
+    assert result["symmetric_difference"]["node_count"] == 3
+    assert result["symmetric_difference"]["supported_node_count"] == 1
+    assert result["unsupported_reference_nodes_all_common"] is False
+
+
+def test_pairwise_contrast_observability_keeps_empty_region_explicit() -> None:
+    result = pairwise_contrast_observability(
+        np.asarray([0, 1]),
+        np.asarray([0, 1, 2]),
+        np.asarray([False, False, True], dtype=np.bool_),
+    )
+    assert result["reference_only"]["node_count"] == 0
+    assert result["reference_only"]["supported_fraction"] is None
+    assert result["unsupported_reference_nodes_all_common"] is True
+    assert result["symmetric_difference"]["has_any_direct_projective_evidence"] is True
+
+
+def test_pairwise_contrast_observability_rejects_out_of_domain_nodes() -> None:
+    with pytest.raises(ValueError, match="outside"):
+        pairwise_contrast_observability(
+            np.asarray([0, 2]),
+            np.asarray([1]),
+            np.asarray([True, False], dtype=np.bool_),
         )
