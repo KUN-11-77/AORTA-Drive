@@ -6,12 +6,17 @@ predecessors:
   interface:
     experiment: R004H4P5I-realized-geometry-interface-v1
     raw_result_sha256: ec096a416e530fa9952d91f680bee1c4295989f9bbb0fef9eb3fb97f74274d86
+    config_sha256: 7c5ddb9d29ae73ad5714591743ccaeade20f0404bb365da878c0e13b73b548de
   disk_diagnosis:
     experiment: R004H4P5D-disk-resolution-diagnosis-v1
     raw_result_sha256: be7a68eb5818750e7bd856434f9a47e0d9794be512f015021070860e03ef5b92
     decision: RETIRE_DISK_NONINCLUSION_AND_QUALIFY_ORIENTED_RECTANGLE
 
 frozen_scope:
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  metric_manifest_sha256: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
   role: fit
   selected_group_rule: first_eight_fit_rows_in_frozen_role_manifest
   selected_anchor_rule: anchor_index_zero_in_each_selected_group
@@ -99,12 +104,13 @@ qualification:
     - all_registered_synthetic_and_adversarial_cases_pass
     - every_positive_formal_witness_is_a_subset_proof_not_a_sampled_point_heuristic
     - no_roi_clipping_empty_set_fallback_or_nonfinite_value
-    - no_formal_lower_bound_exceeds_the_corresponding_diagnostic_reference_beyond_reported_reference_discretization_change
+    - polygon_reference_is_not_used_as_an_upper_bound_or_a_soundness_oracle
   nontriviality_pass_requires:
     - at_least_one_frozen_real_candidate_has_positive_formal_area_in_both_directions_at_canonical_0p25m_or_0p125m_resolution
   resolution_assessment:
     - report_all_frozen_resolutions_without_post_hoc_selection
     - positive_bounds_should_not_decrease_under_nested_canonical_refinement_except_for_a_declared_implementation_error
+    - certificate_to_polygon_ratio_is_diagnostic_only_because_sampled_polygon_union_is_not_an_area_upper_bound
   teacher_outcome:
     - report_separately_from_geometry
     - geometry_pass_does_not_imply_teacher_opportunity

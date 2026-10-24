@@ -653,7 +653,9 @@ This does not assert that a tighter certificate will find a positive opportunity
 - **Terminal design:** R004H4P5R freezes the same eight sentinels and all existing candidates,
   compares a dyadically refined polygon diagnostic, the retired disk control and the oriented
   certificate at `1.0/0.5/0.25/0.125 m`. Four fixed grid phases are diagnostic; only the
-  canonical phase enters the primary decision. Polygon output is not called exact ground truth.
+  canonical phase enters the primary decision. Polygon output is not called exact ground truth
+  and is not used as an upper-bound soundness oracle: a union of sampled rectangles does not
+  upper-bound the continuous set difference when both sweeps are refined.
 - **Stop rules:** if polygon differences persist but the finest grid remains vacuous, stop grid
   refinement and evaluate a conservative polygon certificate. If geometry becomes nontrivial
   while all teacher bounds remain below `0.5 m`, stop geometry work and review the provider or
