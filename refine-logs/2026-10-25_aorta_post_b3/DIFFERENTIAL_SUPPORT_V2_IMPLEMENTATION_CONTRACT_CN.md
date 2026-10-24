@@ -47,6 +47,8 @@ positive / negative / common support queries
 | `visual_tokens` | \([B,P,d_v]\) | 冻结 DINO token，只计算一次 |
 | `token_geometry` | \([B,P,d_g]\) | camera、patch ray、历史时间、投影 provenance |
 | `trajectories` | \([B,K_{max},T,d_s]\) | pose、yaw、velocity/curvature/time；index 0 固定为 native |
+| `previous_selected_trajectory` | \([B,T_{prev},d_s]\) | 上一周期实际选择轨迹/overlap state；无合法历史时配合 `adjacent_context=false` |
+| `adjacent_context` | \([B]\) bool | 对应 official aggregator 的 \(a_t\)，禁止用零轨迹冒充正常历史 |
 | `legal_mask` | \([B,K_{max}]\) bool | 与 B4R1 membership 完全同一对象；native 为 true |
 | `soft_support` | ragged \([B,K,T,N]\) 或稀疏等价物 | 每个时刻的 oriented footprint measure |
 | `direct_mask` | 与 support 可对齐 | 直接投影证据 provenance，不是 hard attention mask |
@@ -110,11 +112,12 @@ E^r=\operatorname{MHA}(Q^r,K(Z),V(Z);b^r_{geo}),
 对每个 pair 构造 ordered tuple
 
 \[
-H_{i0}=(E^+,E^-,E^\cap,Q_{i0},p_{i0}),
+H_{i0}=(E^+,E^-,E^\cap,Q_{i0},P_{t-1},a_t,p_{i0}),
 \]
 
-其中 \(p_{i0}\) 包含 \(\kappa\)、正负质量、missing pattern 与 time-of-divergence，但不包含
-teacher/outcome。将正向与交换后的 tuple 在同一 batch 中送入共享 comparator：
+其中 \(P_{t-1}\) 是低成本 previous-action geometry token；\(p_{i0}\) 包含 \(\kappa\)、正负质量、
+missing pattern 与 time-of-divergence，但不包含 teacher/outcome。将正向与交换后的 tuple 在同一
+batch 中送入共享 comparator：
 
 \[
 \hat\delta_{i0}=\tfrac12[G_\theta(H_{i0})-G_\theta(H_{0i})].
@@ -142,8 +145,9 @@ scale 读取 provenance 不代表 coverage；coverage 仍来自独立 recording-
 \sum_{b,i:\,legal}\rho(\hat\delta_{bi0}-\delta^*_{bi0}).
 \]
 
-这里的 \(\delta^*\) 必须是 surrogate-alignment gate 通过后冻结的训练 target。B4R1 的 one-frame
-margin 在该 gate 前只可用于 oracle qualification，不得直接填入本式启动主训练。
+这里的 \(\delta^*\) 必须是 augmented-context 的完整 official native-relative target。B4R1 的
+one-frame margin只可用于 oracle qualification与 `1/7` worst-case sign certificate，不得直接填入
+本式启动主训练。
 
 若 batch 内 `N_legal=0`，该项定义为零并记录 empty batch，不产生 NaN。默认 challenger uniform；
 hard-negative weighting 只有独立 source-only 证据才能启用。
@@ -177,6 +181,9 @@ quantile 和 OOD empirical coverage 分开报告。禁止用训练 NLL 直接声
 7. 否则选择最大 \(L_i\) 的 challenger。
 
 `direct_mask`/\(\kappa\) 默认不单独否决候选；hard gate 只有预注册对照证明必要且非真空后才能加入。
+无合法 previous context 时必须显式设置 `adjacent_context=false`，按 official one-frame 语义处理并
+默认保留 native；只有 one-frame margin 的确定性 `1/7` sign certificate 成立时，才可形成候选改善
+证据。
 
 ## 8. 必过 metamorphic tests
 
@@ -223,7 +230,8 @@ readout，但不得取消 swap test 后仍声称反对称保证。
 ## 11. 解锁顺序
 
 1. B4R1 正式 oracle 通过；
-2. 预注册并通过 one-frame surrogate 对完整 official target 的 alignment gate；
+2. materialize augmented-context full official target；将 one-frame 限定为 oracle gate和具有
+   `1/7` worst-case sign certificate的子域；
 3. 仅实现 support builder、tensor contract 与上述 metamorphic tests；
 4. source-only 小规模 implementation qualification，不读取 NavDream/development outcome；
 5. 预注册参数/FLOP/token/seed 匹配的普通 scorer、factor arms 与 DA-WAM/GTRS-style 对照；

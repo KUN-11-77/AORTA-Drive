@@ -1039,6 +1039,8 @@ the current open-ended geometry certificate iteration remains STOP.
   context 或收窄研究范围，不得用 surrogate 结果冒充 official behavior gain。
 - **Artifact:**
   `refine-logs/2026-10-25_aorta_post_b3/SCORER_ALIGNMENT_AND_FACTOR_THEORY_V1_CN.md`。
+- **Superseded scope:** ADR-0078进一步收紧：alignment不再授权one-frame成为最终训练标签；full target
+  是默认label，one-frame只保留oracle gate与`1/7`符号证书子域。
 
 ## ADR-0073：以单一决策差异故事约束方法，并把two-frame context设为条件复杂度
 
@@ -1056,6 +1058,8 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:**
   `refine-logs/2026-10-25_aorta_post_b3/ICCV_ORAL_STORY_READINESS_V4_CN.md`；
   `refine-logs/2026-10-25_aorta_post_b3/OFFICIAL_TARGET_DISCOVERY_AND_ALIGNMENT_V1_CN.md`。
+- **Superseded scope:** ADR-0078区分“previous-action变量属于estimand context”和“是否需要复杂
+  temporal branch”；前者已由官方目标固定为必需，后者仍由matched实验裁决。
 
 ## ADR-0074：full-target alignment必须扩充真实previous context，禁止在稀疏anchor roster上伪闭合
 
@@ -1121,3 +1125,22 @@ the current open-ended geometry certificate iteration remains STOP.
   不读取partial scientific metrics、不修改candidate、membership、threshold或统计协议。
 - **Artifact:** `experiments/R004H7/H7BS4B4R1_IMPLEMENTATION_PREFLIGHT.md`；本地镜像
   `F:/AORTA-Drive-artifacts/gate-b/R004H7/r004h7bs4b4r1_preflight_53f16c1.json`。
+
+## ADR-0078：full official target固定为最终estimand；previous-action是上下文而非可选模块
+
+- **Decision:** `FULL_TARGET_LABEL__MINIMAL_PREVIOUS_CONTEXT_ALWAYS__COMPLEX_TEMPORAL_BRANCH_CONDITIONAL`。
+- **Reason:** 官方目标精确含`H*C2/8`，而`C2`读取前后帧模拟轨迹重叠段。若关系模型完全省略上一
+  周期selected trajectory，表示纤维上一般可存在相同当前输入但不同full margin的上下文，违反
+  决策充分性。是否观察到大量flip只决定经验影响大小，不能改变目标函数的自变量。
+- **Consequence:** B4R1 one-frame只作合法域oracle gate。通过后最终训练标签默认来自真实previous
+  row的full native-relative margin；上一周期实际selected trajectory以低成本geometry token和
+  adjacency flag进入输入。专用transition-support attention/temporal encoder只有在matched arm相对
+  简单token降低held-out full-target regret时保留。无历史时显式使用official one-frame语义并默认
+  native。
+- **Exact bound:** 对任意pair，`|Delta_one|>1/7`保证full sign相同；one-frame top choice的full
+  regret最坏不超过`1/8`。前者是可报告的worst-case certified subdomain，不得用于事后筛样；后者
+  太宽，不能授权one-frame作为最终标签。
+- **Boundary:** source上零counterexample不证明NavDream/跨planner充分；任一非tie counterexample
+  足以反驳current-only普遍充分。B4R1未获授权，full-target materialization未运行。
+- **Artifact:**
+  `refine-logs/2026-10-25_aorta_post_b3/OFFICIAL_TARGET_ALIGNMENT_AND_TEMPORAL_CONTEXT_V2_CN.md`。

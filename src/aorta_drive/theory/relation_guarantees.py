@@ -13,6 +13,10 @@ from enum import Enum
 import numpy as np
 import numpy.typing as npt
 
+OFFICIAL_CURRENT_WEIGHT = 7.0 / 8.0
+OFFICIAL_TEMPORAL_WEIGHT = 1.0 / 8.0
+ONE_FRAME_SIGN_CERTIFICATE_THRESHOLD = 1.0 / 7.0
+
 
 class RelationDecisionReason(str, Enum):
     """Auditable outcomes of native-relative lower-bound arbitration."""
@@ -36,6 +40,38 @@ class SelectiveRelationDecision:
     intervened: bool
     reason: RelationDecisionReason
     selected_lower_bound: float
+
+
+def compose_full_pair_margin(
+    one_frame_pair_margin: float,
+    temporal_factor_difference: float,
+) -> float:
+    """Compose the adjacent-context official pair margin.
+
+    ``temporal_factor_difference`` is the challenger-minus-reference difference
+    of ``H * C2`` and must lie in ``[-1, 1]``.
+    """
+
+    if not np.isfinite(one_frame_pair_margin):
+        raise ValueError("one_frame_pair_margin must be finite")
+    if (
+        not np.isfinite(temporal_factor_difference)
+        or temporal_factor_difference < -1.0
+        or temporal_factor_difference > 1.0
+    ):
+        raise ValueError("temporal_factor_difference must lie in [-1, 1]")
+    return float(
+        OFFICIAL_CURRENT_WEIGHT * one_frame_pair_margin
+        + OFFICIAL_TEMPORAL_WEIGHT * temporal_factor_difference
+    )
+
+
+def one_frame_sign_is_full_certified(one_frame_pair_margin: float) -> bool:
+    """Return whether the worst-case full-target sign is fixed and nonzero."""
+
+    if not np.isfinite(one_frame_pair_margin):
+        raise ValueError("one_frame_pair_margin must be finite")
+    return abs(one_frame_pair_margin) > ONE_FRAME_SIGN_CERTIFICATE_THRESHOLD
 
 
 def _aligned_vectors(

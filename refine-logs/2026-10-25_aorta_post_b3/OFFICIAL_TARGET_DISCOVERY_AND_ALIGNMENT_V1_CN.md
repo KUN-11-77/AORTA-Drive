@@ -1,6 +1,10 @@
 # NAVSIM 完整官方目标发现与 surrogate 对齐设计 v1
 
-状态：`TARGET_SEMANTICS_FOUND__ALIGNMENT_DRAFT__B4R1_PASS_REQUIRED`。
+状态：`SUPERSEDED_BY_V2__HISTORICAL_TARGET_DISCOVERY_RECORD`。
+
+> 当前规范见 `OFFICIAL_TARGET_ALIGNMENT_AND_TEMPORAL_CONTEXT_V2_CN.md`。v2 收紧为：full target是
+> 最终训练estimand，previous selected trajectory始终属于context；one-frame只作B4R1 oracle gate与
+> `|Delta_one|>1/7`的worst-case sign-certified subdomain。本文保留用于记录源码发现过程。
 
 本文在未读取 B4R1 科学结果的条件下审计本地 NAVSIM 官方执行，回答 one-frame 标签与完整官方
 行为目标的差别。它不注册或运行新实验，也不授权 relation 网络训练。

@@ -44,7 +44,8 @@ drift、correct-image necessity 和 downstream regret。
 
 ### L2：唯一部署估计对象
 
-令官方或经 alignment 认可的冻结行为效用为 \(F_C(\tau)\)。唯一主估计对象为合法 ragged 域上的
+令完整 official 行为效用为 \(F_C(\tau)\)，其中
+\(C_t=(\pi,\tau^{sel}_{t-1},\tau_{0,t},V_t,a_t)\)。唯一主估计对象为合法 ragged 域上的
 native-relative margin：
 
 \[
@@ -263,7 +264,7 @@ sharpness；最终半径来自独立 group calibration。若 scale arm 不改善
 | point/scale 分离 | point accuracy 不等于 coverage | 允许独立校准和风险—覆盖权衡 | fixed vs learned scale |
 | native fallback | 存在不可识别世界与有限样本误差 | 证据不足时避免无根据干预 | forced replace vs selective |
 | shared backbone + vectorized queries | 在线预算 | 避免 \(K\) 次视觉编码 | latency profile / K scaling |
-| previous-action context（条件） | official full target 含 two-frame comfort | 仅在 alignment 显示翻转时补充状态 | current-only vs conditioned |
+| previous-action context | official full target 函数上依赖 two-frame comfort | 最小geometry token始终属于估计上下文；复杂temporal branch按需 | current-only vs token vs temporal encoder |
 
 该表是复杂度许可证：没有“直接原因 + 删除检验”的模块不得进入主图。
 
@@ -310,7 +311,8 @@ scorer 并降低论文定位；若 selective arm 近乎全拒判或不降低 fal
 按顺序执行，前一关失败不得用后一关平均分掩盖：
 
 1. B4R1 合法候选域存在非平凡 one-frame oracle；
-2. one-frame 与 augmented-context full official target 在 sign/top-choice/regret 上对齐；
+2. 以 augmented-context full official target 冻结最终 label；报告 one-frame `1/7` 符号证书覆盖与
+   temporal counterexamples；
 3. correct image 优于 geometry-matched mismatch、removed 和 trajectory-only；
 4. differential-support 在参数、FLOP、token、数据、seed 匹配下胜过 field、ordinary scorer 与
    DA-WAM/GTRS-style scorer；

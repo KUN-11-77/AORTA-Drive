@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 full-target语义收紧：`FULL_TARGET_IS_FINAL_ESTIMAND__PREVIOUS_CONTEXT_IS_INPUT`。**
+> 官方目标满足`F_full=7/8 F_one+1/8 H*C2`，故上一周期实际selected trajectory属于目标函数上下文，
+> 不能再由经验alignment决定是否存在。最小previous-action geometry token将始终进入最终relation
+> 输入；复杂temporal encoder仍由matched消融决定。对任意候选对，`|Delta_one|>1/7`严格保证full
+> sign一致；one-frame top choice的最坏full regret至多`1/8`，但该界并不足以授权其作为训练真值。
+> B4R1仍只作低成本oracle gate；通过后最终监督默认使用augmented-context full target，任何实际
+> sign/top-choice反例都否定current-only普遍充分性。详见
+> `OFFICIAL_TARGET_ALIGNMENT_AND_TEMPORAL_CONTEXT_V2_CN.md`。
+
 > **2026-10-25 B4R1开封前来源审计：`SERVER_PROVENANCE_REPREFLIGHT_PASS__FORMAL_HOLD`。**
 > 正式 outcome 前已补齐 primary/replay 的status、commit、config、frozen-input、implementation、
 > sealed-role与full-PDMS boundary核验，并将wall cap从180分钟收紧为用户要求的120分钟。冻结来源
@@ -20,9 +29,10 @@
 > **2026-10-25 relation仲裁语义分离：`DATA_FREE_CONTRACT_PASS__NO_EMPIRICAL_CLAIM`。** 历史
 > `native_preserving` 处理绝对安全区间并要求先证明native不安全；新理论处理
 > `challenger-minus-native` margin，只要求同时lower bound严格为正。两者已禁止复用同一接口。
-> 新增数据无关参考实现及7项性质测试；与既有decision-quotient、legacy arbitration和calibration
-> 合计20项定向测试通过，strict mypy通过。测试覆盖条件性真实改善、NaN/Inf fail-closed、零
-> challenger、`2 epsilon` appearance drift与常数坍缩反例，以及42-group 95%有限/99%全拒判边界。
+> 新增数据无关参考实现，现有11项性质测试；与既有decision-quotient、legacy arbitration和
+> calibration合计29项定向测试通过，strict mypy通过。测试覆盖条件性真实改善、NaN/Inf
+> fail-closed、零challenger、`2 epsilon` appearance drift与常数坍缩反例、42-group 95%有限/99%
+> 全拒判边界，以及one-frame `1/7`严格符号证书、边界反例与`1/8` top-choice regret界。
 > 本地`dinov3` conda入口失效，验证使用Python 3.13 +显式`PYTHONPATH=src`；未修改环境，服务器正式
 > 环境不受影响。该结果不证明coverage、NavDream、网络或驾驶收益，也不授权B4R1。
 

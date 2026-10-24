@@ -6,10 +6,13 @@ import numpy as np
 import pytest
 
 from aorta_drive.theory.relation_guarantees import (
+    ONE_FRAME_SIGN_CERTIFICATE_THRESHOLD,
     RelationDecisionReason,
     arbitrate_native_relative,
+    compose_full_pair_margin,
     group_simultaneous_nonconformity,
     group_split_quantile_or_infinity,
+    one_frame_sign_is_full_certified,
 )
 
 
@@ -96,3 +99,39 @@ def test_group_calibration_rejects_invalid_inputs() -> None:
         group_simultaneous_nonconformity((0.0,), (0.0,), (0.0,))
     with pytest.raises(ValueError, match="alpha"):
         group_split_quantile_or_infinity((0.0,), alpha=0.0)
+
+
+def test_one_frame_strict_one_seventh_threshold_certifies_full_sign() -> None:
+    temporal_differences = np.linspace(-1.0, 1.0, num=41)
+    for one_frame_margin in (-1.0, -0.2, 0.2, 1.0):
+        assert one_frame_sign_is_full_certified(one_frame_margin)
+        for temporal_difference in temporal_differences:
+            full = compose_full_pair_margin(one_frame_margin, temporal_difference)
+            assert np.sign(full) == np.sign(one_frame_margin)
+
+    boundary = ONE_FRAME_SIGN_CERTIFICATE_THRESHOLD
+    assert not one_frame_sign_is_full_certified(boundary)
+    assert compose_full_pair_margin(boundary, -1.0) == pytest.approx(0.0)
+
+
+def test_one_frame_top_choice_has_one_eighth_worst_case_full_regret() -> None:
+    candidate_values = (0.0, 0.25, 0.5, 0.75, 1.0)
+    temporal_values = (0.0, 0.5, 1.0)
+    for one_frame in itertools.product(candidate_values, repeat=3):
+        one = np.asarray(one_frame, dtype=np.float64)
+        selected = int(np.argmax(one))
+        for temporal in itertools.product(temporal_values, repeat=3):
+            full = 7.0 / 8.0 * one + 1.0 / 8.0 * np.asarray(temporal)
+            regret = float(np.max(full) - full[selected])
+            assert regret <= np.nextafter(1.0 / 8.0, np.inf)
+
+
+def test_temporal_factor_can_flip_an_uncertified_one_frame_order() -> None:
+    one_frame_margin = 0.1
+    assert not one_frame_sign_is_full_certified(one_frame_margin)
+    assert compose_full_pair_margin(one_frame_margin, -1.0) < 0.0
+
+
+def test_full_pair_composition_rejects_invalid_temporal_factor() -> None:
+    with pytest.raises(ValueError, match=r"\[-1, 1\]"):
+        compose_full_pair_margin(0.2, 1.01)

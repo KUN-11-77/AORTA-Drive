@@ -98,7 +98,7 @@ head 均是工具，不单列为创新。
 | task + orbit 双约束 | 单独稳定可坍缩、单独任务可受外观扰动 | 稳定错误或正确但脆弱 | remove task / remove orbit |
 | soft provenance + calibration | 直接证据率不是可识别性的充分条件 | 硬门可能错误拒判或近乎全拒判 | no provenance / soft / frozen hard gate |
 | native fallback | 观测等价世界与有限样本误差 | 证据不足时仍产生有害干预 | risk–coverage / false intervention |
-| temporal context（条件模块） | 完整官方分数含 two-frame comfort | one-frame surrogate 若翻转排序则标签错位 | 仅在 alignment gate 失败后启用 |
+| previous-action context | 完整官方分数在函数上依赖 two-frame comfort | 省略后不能一般表示 full target | 最小geometry token固定；复杂temporal encoder按matched消融启用 |
 
 新增复杂度只有在表中出现新的、可复算失败证据时才有资格进入系统。
 
@@ -124,8 +124,7 @@ intervention、hard-failure rescue、clean harm 与 batch-1 P95 latency。不能
 只有同时满足以下条件，才可把当前故事从“连贯假设”升级为“顶会结果”：
 
 1. 合法候选域存在非平凡 official-target oracle；
-2. one-frame surrogate 与完整 official target 的 sign/top-choice/regret 对齐，或引入必要的 previous-
-   action context 后闭合；
+2. augmented-context full official target 闭合；one-frame只作为oracle gate与`1/7`符号证书子域；
 3. differential-support arm 在参数、FLOP、token、数据与 seed 匹配下显著优于 independent scorer、
    DA-WAM/GTRS-style scorer、field readout 与 trajectory-only prior；
 4. correct-image 优于 mismatch/removed，排除场景先验和不看图像；
