@@ -1073,3 +1073,20 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** experiments/R004H7/H7BS4B4T0_TEMPORAL_CONTEXT_PREFLIGHT.md；
   src/aorta_drive/evaluation/temporal_context_roster.py；
   scripts/audit_r004h7bs4b4t0_temporal_context_roster.py。
+
+## ADR-0075：用理论—网络—行为闭环和单一故事资格门约束后续设计
+
+- **Decision:** `ONE_DOMINANT_MECHANISM__EVERY_COMPONENT_NEEDS_FAILURE_THEOREM_AND_ABLATION`。
+- **Reason:** 数学、网络、loss、拒判、时延和叙事已分别建立，但若不共用同一估计对象，仍可能在
+  实现中重新变成模块堆叠。当前唯一部署对象冻结为合法 ragged 域上的 native-relative official-task
+  margin；完整时域 signed differential support、global visual evidence、反对称 relation、task+orbit
+  constraint、同时校准和 native fallback 必须各自对应已观察失败、条件命题与删除实验。
+- **Consequence:** 摘要最多保留一项主贡献（appearance-interventional differential-support relation
+  learning）和一项从属机制（evidence-qualified native-preserving arbitration）。公式复杂度、DINO、
+  cross-attention、Jordan/Hodge、conformal 和 uncertainty head 不单独列创新。任何新增模块都需满足
+  “新反例或官方依赖—数学职责—可区分预测—matched deletion”四联证据，否则不进入主方法。
+- **Boundary:** 该闭环是可证伪设计合同，不是效果证据。B4R1、full-target alignment、correct-image
+  necessity、matched scorer、NavDream、跨 planner、clean no-harm 与 batch-1 latency 未通过前，
+  仍为 `NOT_ICCV_READY / NOT_ORAL_READY`。
+- **Artifact:**
+  `refine-logs/2026-10-25_aorta_post_b3/THEORY_ARCHITECTURE_CLOSURE_V1_CN.md`。

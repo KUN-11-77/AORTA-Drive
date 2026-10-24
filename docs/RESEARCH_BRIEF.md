@@ -1,5 +1,15 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 理论—网络—行为闭环合同：`FORMAL_CLOSURE_CANDIDATE__EMPIRICAL_CORE_UNPROVEN`。**
+> 当前主线已压成五层建筑：合法外观干预、native-relative estimand、完整时域差异支持、同时关系
+> 不确定集合、native-preserving 实时执行。六个条件命题分别约束 relation 输出、signed support、
+> global visual context、task+orbit loss、`2 epsilon` regret bridge 与 simultaneous lower-bound
+> arbitration；每个网络模块均绑定已观察失败和删除实验。顶会故事只保留
+> appearance-interventional differential-support relation learning 一项主贡献与可信仲裁一项从属
+> 机制。该闭环不新增经验主张；B4R1、full-target alignment、matched scorer、NavDream、三 planner、
+> clean no-harm 和 batch-1 latency 仍全部是硬门。详见
+> `refine-logs/2026-10-25_aorta_post_b3/THEORY_ARCHITECTURE_CLOSURE_V1_CN.md`。
+
 > **2026-10-25 two-frame上下文roster审查：FORMAL_OUTCOME_FREE_INTERFACE_PASS。**
 > 现有672-anchor fit roster内0/672存在≤0.55 s相邻token，直接调用官方aggregator会把two-frame
 > 权重全部置零并伪造full=one-frame的100%对齐；但从261个官方raw logs逐token恢复时，672/672
