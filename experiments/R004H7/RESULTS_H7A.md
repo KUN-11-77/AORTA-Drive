@@ -34,4 +34,3 @@
 2. exact set-min decision quotient 全局分段线性但一般不是线性 quotient，固定矩阵 kernel 只能在 active cell 内成立；
 3. decision-contrast 误差给出候选排序 regret 的确定性上界，但界的经验紧致度与可预测性仍须 H7-B 验证；
 4. H7-A 通过只允许进入 H7-B 的实现和机械资格，不允许直接读取 development payload 或训练 H7-C。
-

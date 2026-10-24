@@ -21,4 +21,3 @@
 - `GO`：H7-B runner、候选面板完整性检查和审计器的实现；
 - `HOLD`：读取24-group development payload；
 - `HOLD`：H7-C训练、official calibration/test、NavDream/target和驾驶收益。
-
