@@ -278,3 +278,16 @@
   proxy/development read.
 - **Boundary:** H3 remains blocked until the revised H2 independently passes both its
   proper-loss and cap gates.
+
+## ADR-0033 — Accept the gauge repair and advance only to proxy rehearsal
+
+- **Status:** accepted after R004H2R1 PASS
+- **Evidence:** with all H2 contracts unchanged except detached scale-input RMS removal,
+  selected proper loss became `0.0015641139` versus uniform `0.3800000343`; both cap
+  fractions were zero and maximum pre-clip gradient norm was `4.6456`. Mechanical replay
+  verified epoch 9, both gates and both checkpoint hashes.
+- **Decision:** the scale interface is qualified for R004H3 registration. Use the selected
+  checkpoint SHA-256 `aacb6bf43ce909860d6e459c9115eb2ca471c84f2426ea560545e0e471cd2b48`.
+- **Boundary:** H3 uses historically exposed proxy groups only to rehearse the frozen
+  calibration machinery and compare learned, pooled, uniform and evidence-only controls.
+  It cannot produce a coverage claim or authorize official calibration by itself.

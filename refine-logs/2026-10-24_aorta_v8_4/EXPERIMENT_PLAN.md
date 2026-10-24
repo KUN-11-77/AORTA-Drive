@@ -24,6 +24,12 @@ R004H2R1 is now registered with the original H2 seed, ten epochs, AdamW `3e-4`, 
 fit/selection roles, proper-loss selector, uniform 1 m fit gate and 0.95 cap-collapse rule.
 No R1 result may be used to introduce a second repair attempt.
 
+R004H2R1 completed and passed: selected `0.001564` versus uniform `0.380000`, with zero
+cap-neighborhood mass and zero Stage-P updates. The next block is H3 registration, not
+development access. H3 is a historically exposed proxy rehearsal and must freeze all four
+scale controls, finite-sample threshold rules, common denominators and abort conditions
+before any proxy payload is opened.
+
 ## Claim map
 
 | ID | Claim candidate | Minimum evidence | Falsifier |

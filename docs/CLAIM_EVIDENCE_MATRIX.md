@@ -13,7 +13,7 @@
 | C7 | candidate-free event 迁移到未见 candidate policy/frozen planner | 同一校准事件下 held-out policy/planner test | coverage/utility 随候选机制崩溃 | proposed |
 | C8 | 运行代价可接受 | 冻结图规模上的 field 与 multi-source profiler | 不满足预注册资源门 | proposed |
 | C9 | graph potential differences 是 appearance transfer 的相关机制 | paired same-scene \(\rho\)、session-tail residual 与 empirical target coverage | \(\rho\) 与证书退化无关或目标域严重失效 | partial mechanism evidence only：R004E-F development mean signal + R004H1 historically exposed selection mean signal；paired/OOD/coverage 未验证 |
-| C10 | observation-conditioned bounded edge scale 可在冻结 potential 上被稳定学习 | proper-loss fit、cap diagnostics、pooled/uniform controls 与后续 common-denominator task endpoint | learned proper loss 不优于 uniform、边界塌缩或 learned 不优于 pooled | first instance falsified：R004H2 learned `2.566971` vs uniform `0.380000`; conditioning diagnosis required |
+| C10 | observation-conditioned bounded edge scale 可在冻结 potential 上被稳定学习 | proper-loss fit、cap diagnostics、pooled/uniform controls 与后续 common-denominator task endpoint | learned proper loss 不优于 uniform、边界塌缩或 learned 不优于 pooled | partial：raw-interface H2 falsified；gauge-repaired H2R1 `0.001564 < 0.380000` 且 zero cap；pooled/task endpoint 未验证 |
 | C11 | frozen Stage-P activation magnitude is the dominant conditioning defect in first H2 | fixed-anchor exact gradients and non-mutating first-step raw/RMS counterfactual | fewer than 6/8 activation-scale votes or normalization does not remove first-step cap entry | supported for registered instance：R004H2D 8/8 votes; not yet a scale-quality claim |
 
 ## Claim language policy

@@ -14,4 +14,4 @@
 - **Interpretation:** PASS would establish only that the targeted interface repair rescues
   selection-side scale fitting and would authorize H3 registration. It would not establish
   calibration, coverage, task utility, Gate B, OOD robustness or novelty.
-- **Status:** REGISTERED; not yet executed.
+- **Status:** COMPLETED — PASS. See `experiments/results/R004H2R1.md`.

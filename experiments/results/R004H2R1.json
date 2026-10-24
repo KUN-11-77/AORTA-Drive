@@ -1,0 +1,36 @@
+{
+  "experiment_id": "R004H2R1-rms-normalized-scale-fit-v1",
+  "status": "COMPLETED",
+  "decision": "PASS",
+  "implementation_revision": "e1085ff01b14f8428f8a6799896c353d2a5af21e",
+  "audit_revision": "a06558be625fec8a6f1ae090855834ce6402898e",
+  "result_sha256": "42c023f93d010afb702ee5712c04aa08bd00f878e40c52bf10220e6ca8cb9463",
+  "audit_sha256": "5733d4f9dca4930f609bbd597e8b2f7554009440da4fd9f793e5d20920e98d22",
+  "evidence_manifest_sha256": "360eed6d7a347c32f3819af159148f11bc1bf20a18981e93f1afff6fde432d89",
+  "selected_epoch": 9,
+  "selected_primary": 0.0015641138888895512,
+  "uniform_primary": 0.38000003434717655,
+  "proper_loss_improvement_gate_passed": true,
+  "scale_cap_gate_passed": true,
+  "selected_scale_diagnostics": {
+    "geometric_mean_scale_m": 0.37669832763603134,
+    "minimum_scale_m": 0.07129955291748047,
+    "maximum_scale_m": 1.84562349319458,
+    "lower_cap_fraction": 0.0,
+    "upper_cap_fraction": 0.0
+  },
+  "maximum_preclip_gradient_norm": 4.64557409286499,
+  "best_scale_checkpoint_sha256": "aacb6bf43ce909860d6e459c9115eb2ca471c84f2426ea560545e0e471cd2b48",
+  "integrity": {
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE",
+    "payload_files_read_by_audit": 0
+  },
+  "claims": {
+    "selection_side_scale_fit_qualified": true,
+    "r004h3_registration_authorized": true,
+    "coverage_established": false,
+    "gate_b_passed": false,
+    "official_calibration_access_authorized": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-24",
+  "auditor": "external-reviewer-unavailable",
+  "overall_verdict": "REVIEW_UNAVAILABLE",
+  "integrity_status": "unavailable",
+  "mechanical_audit_status": "PASS",
+  "mechanical_audit_sha256": "5733d4f9dca4930f609bbd597e8b2f7554009440da4fd9f793e5d20920e98d22",
+  "claims": [
+    {
+      "id": "H2R1-selection-scale-fit",
+      "impact": "qualified_for_h3_registration"
+    },
+    {
+      "id": "coverage-utility-gate-b-ood-novelty",
+      "impact": "unsupported"
+    }
+  ]
+}

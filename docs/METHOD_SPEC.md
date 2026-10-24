@@ -460,3 +460,9 @@ N(h)=h/\max\!\left(\sqrt{\frac{1}{CHW}\sum_{cxy}h_{cxy}^2},\epsilon\right),
 path，不中心化，也没有可学习 affine 参数。由 (N(ch)=N(h);(c>0))，尺度头对 trunk 的
 正 activation gauge 不变，同时保留通道和空间方向结构。这是接口可识别性修复，而不是
 扩大网络容量。
+
+R004H2R1 的 selected proper loss 为 `0.001564`，uniform 为 `0.380000`，两侧 cap fraction
+均为 0，且最大 pre-clip gradient norm 从旧实例的 `714505.6` 降到 `4.65`。这验证的是
+“gauge diagnosis 能解释并修复当前 optimization instance”，并非 calibration。下一门 H3
+只能用 historically exposed proxy roles 排练 calibration 与 control comparison；正式
+coverage 必须等待从未用于设计的 official calibration/future source sessions。
