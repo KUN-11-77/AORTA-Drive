@@ -1,0 +1,36 @@
+experiment_id: R004H7BS1-development-support-qualification-v1
+date: 2026-10-24
+status: frozen_one_shot_authorized
+selected_prefix_index: 25
+selected_prefix_seconds: 2.5
+independent_unit: recording_group
+development_groups: 24
+anchors_per_group: 16
+minimum_valid_anchors_per_group: 12
+pass_rule: 24_of_24_groups_at_least_12_of_16_valid
+failure_action: stop_current_fixed_grid_shadow_route_without_threshold_or_prefix_change
+frozen_input_sha256:
+  fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+  fit_audit: 7674d9fe36c2e8cb8c40abce620450a9962093626c75591767011e3a85f1b970
+  development_panel_manifest: ee9769e74d976e7b18afd913a5e9f49e3933edaaeda2bbb13705d668a9982ca6
+  source_split_manifest: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
+  base_config: 315d71499356f69775fc501d6a7e6d88b8e75461e3387a5fe6325210f9c8bd16
+implementation_sha256:
+  support_adequacy_source: 772c76740cf02887359ef125f281082c1020ce86bdfbf428d0807fbac45eedab
+  runner_source: fa92e4f19a239fe40c292d6b0a8b132cbd2bd113bb259f790f1c3d1126b15445
+  audit_source: d0f3057f281ca554f9dae63bb1e4fe440dda7a32d383dabd3e485e97a7e9e811
+forbidden_inputs:
+  - H7B_result_or_outcomes
+  - visual_fields
+  - DINO_features
+  - teacher_labels_or_margins
+  - official_calibration
+  - test
+  - NavDream
+  - target
+pass_only_authorizes: preregister_H7B2_prefix_decision_relevance
+does_not_authorize:
+  - H7B2_outcome_access_before_separate_preregistration
+  - H7C_training
+  - architecture_change
+  - driving_or_safety_claim

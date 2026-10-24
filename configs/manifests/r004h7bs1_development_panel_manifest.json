@@ -1,0 +1,2703 @@
+{
+  "manifest_id": "R004H7BS1-development-panel-artifacts-v1",
+  "outcome_fields_included": false,
+  "permitted_fields": [
+    "recording_group",
+    "anchor_index",
+    "scene_token",
+    "panel_artifact",
+    "panel_artifact_sha256"
+  ],
+  "record_count": 384,
+  "records": [
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/1bf6fef253f45586.npz",
+      "panel_artifact_sha256": "fdd727ed31ebbaf9cb895b9868587ab8765ac03d0476f00af31d9d7479b74e41",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "1bf6fef253f45586"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/b3c794a291025583.npz",
+      "panel_artifact_sha256": "3e003e48f359a1158c3c0ff029c8dd0b2cec7aa91a96af32ec1bc62707e123ff",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "b3c794a291025583"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/96ec50cf5af356e4.npz",
+      "panel_artifact_sha256": "d7dc5335ad09320d8f5c3dd6ba5e4a92334db6df991c25e7e79be14fa0fda73c",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "96ec50cf5af356e4"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/f42dcf82749e5653.npz",
+      "panel_artifact_sha256": "32cc6201ab56268ae88b0fb835ff036f9a18b187b55827e0ffbdce743b316f09",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "f42dcf82749e5653"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/3d89b0d5284052c0.npz",
+      "panel_artifact_sha256": "2c92100a332dac49658f7ba07f1a5ae59d608c6638df4fe5a83f4f9e8b1fd9e8",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "3d89b0d5284052c0"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/7cb4e6e9108854e6.npz",
+      "panel_artifact_sha256": "6cd9bd7ddb25d88e8200e38734cf3192ccf6c83e1a12a59dc114c9c19b63ee28",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "7cb4e6e9108854e6"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/dfa76e9bf2595ddb.npz",
+      "panel_artifact_sha256": "d882594c1d7c64e3a8975019da8a358cd86011218431caf7f07c6eda6fda5d52",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "dfa76e9bf2595ddb"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/3d9486ad3a3e54d3.npz",
+      "panel_artifact_sha256": "d2af2bde570e04e1e1afcb6441df2275674c4fb3f1295eb21bccd02ae8dff7b5",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "3d9486ad3a3e54d3"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/9d8aec4babc556a4.npz",
+      "panel_artifact_sha256": "f065f11bb92cde9a4a4f17a1984fc486f513b8e3f2f9a45ab46876f5b8c707f8",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "9d8aec4babc556a4"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/68b390e21dc353d1.npz",
+      "panel_artifact_sha256": "04820df5653cfb5bcc7bc68d64b489ec62c3b0716f770c772240e1582ad1737b",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "68b390e21dc353d1"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/71281ce8f1305d51.npz",
+      "panel_artifact_sha256": "e5c4e2bae8896b3dc068a7c14b62cd5e572107f65f26dd3b6aeb0d356ffc14b5",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "71281ce8f1305d51"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/c68a71521dd55dd4.npz",
+      "panel_artifact_sha256": "71e71d3e78dc4f5190c2790c414f99b6b4e6a5a54b4d4cf4ee8e287d3127f359",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "c68a71521dd55dd4"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/8e347079d607560e.npz",
+      "panel_artifact_sha256": "a27d962f6f3a7290ed98762c61195a41ce86d8b617ed136183a93026c07ed20a",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "8e347079d607560e"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/1105069b85ea5a50.npz",
+      "panel_artifact_sha256": "3e604d1f1ceb223ccc5f9fef5f131494907a462c7c414dced22ae673a3c6df02",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "1105069b85ea5a50"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/4cea5b5b2c935d62.npz",
+      "panel_artifact_sha256": "1afcb08a3fe11219bee6f6175fc5bfb3e89ad0666caf1e584c24f0780ee6dbe3",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "4cea5b5b2c935d62"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/6caafe170a4459d2.npz",
+      "panel_artifact_sha256": "bc7d9b8849eb36a8fad16884c499e294a660be4a9a2a4973fa3f9a20b49fe927",
+      "recording_group": "2021.06.07.11.59.52_veh-35",
+      "scene_token": "6caafe170a4459d2"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/277eaf7ed4345d6a.npz",
+      "panel_artifact_sha256": "aae866ea5c80e9b52314a3905513c07945a977129e81185b1eaa2795ee882e63",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "277eaf7ed4345d6a"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/b1f60a0b277c5db7.npz",
+      "panel_artifact_sha256": "0313b9b7d05a7db3478208eaec1a998d933e7ec0f0410a6a56e58c6e02857c40",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "b1f60a0b277c5db7"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/706d7fd9d41f59e5.npz",
+      "panel_artifact_sha256": "2282d8c9cc7eb8ed0ba55b05ebe29d4fba070e5c55b2ad8f7a6cf3924b5a9fa2",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "706d7fd9d41f59e5"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/273ba1c6031758b3.npz",
+      "panel_artifact_sha256": "777aebcf2201992792fd53f19d6e08a2488eb96c66e5ffd20a67b1be31b0af7d",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "273ba1c6031758b3"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/c88783d641f05b81.npz",
+      "panel_artifact_sha256": "ef4837acdc9ba454ed71359bc251c6401a9369caaec6372f8ef1409384454f6c",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "c88783d641f05b81"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/a0f9cd8225e75017.npz",
+      "panel_artifact_sha256": "31b51c65e015274083842f2e76fbfe0ed0639cc080262f574d44548f64014b92",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "a0f9cd8225e75017"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/237cf1956f9f50bb.npz",
+      "panel_artifact_sha256": "22ed5166b381f0aa5f1f955246d640a7981ae1c29c67234b241477230523740d",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "237cf1956f9f50bb"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/6daeb5d592cf55ef.npz",
+      "panel_artifact_sha256": "06d809795c32a3bb787a028c12d572d7b3d532649916929c3f6d8ab48ed714e6",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "6daeb5d592cf55ef"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/9127c6f5731f526f.npz",
+      "panel_artifact_sha256": "919f29f03b512401b6328adb39b17e5bd075e6bbed94200e33c7a038cc067caa",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "9127c6f5731f526f"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/b68993c80a2f532e.npz",
+      "panel_artifact_sha256": "c15eef25bc91e3bf230f87474342cd671ac337d06493477c4b904c6f849a1d79",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "b68993c80a2f532e"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/f60aad815b095e76.npz",
+      "panel_artifact_sha256": "3da58ac349c6461f93f37259538a8aabf35adcc77b8ada1671d0db7570d9bdac",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "f60aad815b095e76"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/5e504b35cd7a564d.npz",
+      "panel_artifact_sha256": "c36af048f40d6585a02fea0fcc4f13b0727a1565deb0d114f9be661b9c8282ae",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "5e504b35cd7a564d"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/9ecf49d54d1b5d6a.npz",
+      "panel_artifact_sha256": "79772ed6296eb65db9f98f5800176943aa491100d3dc3b23d7efbe342810a63c",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "9ecf49d54d1b5d6a"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/4260389794a85585.npz",
+      "panel_artifact_sha256": "02ee60dc8b927f09f5a703186b991465fced65fed03b7ce9dbe2e74cce40ee18",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "4260389794a85585"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/c92b0ae37cf25717.npz",
+      "panel_artifact_sha256": "ed546819f7d3cb61451a4786a0cf7ad6ccaa45a6a1159e03c0f0ce3e1178563a",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "c92b0ae37cf25717"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/bd969d5de34759bb.npz",
+      "panel_artifact_sha256": "31c71baad9e42b80c4db9ce53996a6953932f04ee031e153caa1873d794998a2",
+      "recording_group": "2021.06.07.17.48.02_veh-38",
+      "scene_token": "bd969d5de34759bb"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/ec29487d1ea458f3.npz",
+      "panel_artifact_sha256": "0d90fcb292a85c70d5d48e24f51dad1cf8164d6f73eaf37d2e112ee4640d03d8",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "ec29487d1ea458f3"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/7479833730f65a7f.npz",
+      "panel_artifact_sha256": "98854ecd1b80471bea19107fa38d376f6a0f46d4ddc12df0c5cd72d6e38651d6",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "7479833730f65a7f"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/116c573d57195e3f.npz",
+      "panel_artifact_sha256": "0082c9ad454f51c0108bf7e091bd424701aea7aced72c97df4000464a5bd55c5",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "116c573d57195e3f"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/95fa90648e375716.npz",
+      "panel_artifact_sha256": "65e6ba42a4a066e54f478bf8a5dd7f32f787f0534a9fecea0542a53e68382685",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "95fa90648e375716"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/0f2b9eb422e956f1.npz",
+      "panel_artifact_sha256": "9c718cb6e4d235d1d2ccf52d48d83ea920c6fa117820b51795c417a18dccd3ab",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "0f2b9eb422e956f1"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/7e1a78e863505b21.npz",
+      "panel_artifact_sha256": "9b8c54b919b27facca9f86c00c52920e822900d92b4e726c4c9805b2ec2a1fc2",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "7e1a78e863505b21"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/813620597d445c39.npz",
+      "panel_artifact_sha256": "7ebd913b646efa592d445037c441a736a3c6514afeac02a5dcb2f7da6c07dcc2",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "813620597d445c39"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/ed4ed27a45f958cd.npz",
+      "panel_artifact_sha256": "355e121496bb3f5839025d789e9aa1a8f512c5a08e051755a2f82d4c33af16cd",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "ed4ed27a45f958cd"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/f3afb2e02b10540b.npz",
+      "panel_artifact_sha256": "c31b5eb26c983956fb2c4b7b38ebe3756d34054e91ee2efecbf2bbbaa44c5e01",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "f3afb2e02b10540b"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/4124459df53c50a0.npz",
+      "panel_artifact_sha256": "1884fd3744ea64c6ca22de1f86490687fba4a13d806f7ca0c73a4d75a8645bf3",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "4124459df53c50a0"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/e974f96e3a2c5bee.npz",
+      "panel_artifact_sha256": "2cb62c8e0f7ad697e504b3ccae2b21a0beedabaec192fff35fd8fd70a5d3af91",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "e974f96e3a2c5bee"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/6c90dc5afe0d54d7.npz",
+      "panel_artifact_sha256": "baf975135b97946742e8a31e05af3a46267f6d52c3dac2baea21eedfa1b876a0",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "6c90dc5afe0d54d7"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/d1ad2beda0625931.npz",
+      "panel_artifact_sha256": "5022d36850561cf4d5485f04e1d55b4ea7bf1c00edfb2fb2b458b79248da6761",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "d1ad2beda0625931"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/fb08fcc23df8508a.npz",
+      "panel_artifact_sha256": "62388e3ff300b20f1972caa615b23978a83a1a2a0b1db92a2277d66f9cfdca08",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "fb08fcc23df8508a"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/f978bac15c1256ae.npz",
+      "panel_artifact_sha256": "f416cb5239fc4781cce2f5ad3ff467e3febed92ebfc8a1544282a1086159d9da",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "f978bac15c1256ae"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/ec94ff3c7a3c5697.npz",
+      "panel_artifact_sha256": "bbe90466dcfefffb7aa16963ebf7dad931b7e5a309194dfb5027b3ed7df9e304",
+      "recording_group": "2021.06.08.14.35.24_veh-26",
+      "scene_token": "ec94ff3c7a3c5697"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/7a506f9b7a4c52da.npz",
+      "panel_artifact_sha256": "2eae910ccf87045b5d38676fb2e0df5b09fe3bfa941e1afa2c84b4086532229b",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "7a506f9b7a4c52da"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/0878ec6f0bab5d8c.npz",
+      "panel_artifact_sha256": "2210464076beac14caed45a4719a8a420fdff66a3ba4123676554e51252f8a2e",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "0878ec6f0bab5d8c"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/c562b15ef1a054b4.npz",
+      "panel_artifact_sha256": "87f4f10a7c593b501c226fdf789b5a55e0618d08a4fd3de9b4f70a75998c35b9",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "c562b15ef1a054b4"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/500c836c18dd5408.npz",
+      "panel_artifact_sha256": "353ab3cb751c4eb4162290c941c387b55bab3d06c1a652e980e0b44cdd7c04eb",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "500c836c18dd5408"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/48b355707ffb50c2.npz",
+      "panel_artifact_sha256": "747733a7b7d7324e79c68947eab7cb29ce74a06eca1801d17dea81c41af8acad",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "48b355707ffb50c2"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/4104608f2d6b5aae.npz",
+      "panel_artifact_sha256": "a1392f7f0260946bad9aced860247bfc5b8c0ad8936de3835b4850519502c1d4",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "4104608f2d6b5aae"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/569e43109dd653b7.npz",
+      "panel_artifact_sha256": "eb0afbd75b0f77fd62257634433dac1e4e722769d0ea2e66fa969d8ba4d322ab",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "569e43109dd653b7"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/1669d83266855152.npz",
+      "panel_artifact_sha256": "25c9bb36f8c2f0b2d1476ab582dad493be2a635b75b9beb3b7aeb0a857fd3006",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "1669d83266855152"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/395f8b6e865c5c70.npz",
+      "panel_artifact_sha256": "f6ce37273a1827698c56814d9c51ff3039c62c07e9ac6ff355678585c75721ff",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "395f8b6e865c5c70"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/ef9e4e09f9a35b8a.npz",
+      "panel_artifact_sha256": "ab3f346fc727a96a6fefb0552ca3e95d09d37a68c0488e8452f303c4cd975254",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "ef9e4e09f9a35b8a"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/4b61b4011ea659b7.npz",
+      "panel_artifact_sha256": "89e283c0f32b652906ac635226bac0d9397e5fbdb77d4e077b1858729c75a507",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "4b61b4011ea659b7"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/315e77baaba657ef.npz",
+      "panel_artifact_sha256": "65effd8619b02d8aef09c7331dd59f6daca067a2e609b94e8d501faa12456687",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "315e77baaba657ef"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/8ff31026699c5723.npz",
+      "panel_artifact_sha256": "042c0dff8c4549b623993b791d65209a48d90ea54b05a64eebb1f6c0b5c5cf2c",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "8ff31026699c5723"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/3f6d991e9f565b22.npz",
+      "panel_artifact_sha256": "467088144bcfe72e12ca4fe35577ca6410da872402d03020dd5e254fdf944cbe",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "3f6d991e9f565b22"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/e6527747cd6558aa.npz",
+      "panel_artifact_sha256": "1d5a305a6e5813dd1078321e9711b728419993df6bced4d65350a9e2513661b0",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "e6527747cd6558aa"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/b4f2ff91840e5cf3.npz",
+      "panel_artifact_sha256": "31416afcb24ca3f96ba1afe0bc444396199b34aeb00fc3aa8a9f999f13d295f6",
+      "recording_group": "2021.06.08.14.36.49_veh-38",
+      "scene_token": "b4f2ff91840e5cf3"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/09717f8c81b25be9.npz",
+      "panel_artifact_sha256": "6067cf52bf5a6c247893802a232f0f22c3258789afe86c791fc4be5cf68064f9",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "09717f8c81b25be9"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/f4be708915ed5cb0.npz",
+      "panel_artifact_sha256": "a7cf8e9fb8f7909d34d2a717bdc3f39fbc638b9ed8ff85f8e2ac6cbdc84567d7",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "f4be708915ed5cb0"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/2f5cc7975ea856cc.npz",
+      "panel_artifact_sha256": "8fe377ac22dfd313e57dceace372cee98d676ebef73f86edaf543ba8fe97b99a",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "2f5cc7975ea856cc"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/bcae010572dd5984.npz",
+      "panel_artifact_sha256": "022b64af126fb40595048013cd50f085dc47dda258e3281568448f2841f11f62",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "bcae010572dd5984"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/f96a48a8e2825b7d.npz",
+      "panel_artifact_sha256": "225711522a6d2817597f8e6bb7f431a6885aa660b47f332b678baa12943f994a",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "f96a48a8e2825b7d"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/e122ebbcb40f5fbe.npz",
+      "panel_artifact_sha256": "86127373e7ff356926a565a3760f0dfb0d55ad6bb685d467892268c312dbc9a5",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "e122ebbcb40f5fbe"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/82d75f6773235f3f.npz",
+      "panel_artifact_sha256": "de14758cb5c66051cf3ca5c135408b1ad61c4b3fb0123df1d06de46da663c32d",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "82d75f6773235f3f"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/c9e6b39557475482.npz",
+      "panel_artifact_sha256": "a8bd85f83412789aced16ca12a9dbf322943e800f733ad70e7a5191dcd7e6153",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "c9e6b39557475482"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/52c1474a08e2565b.npz",
+      "panel_artifact_sha256": "35ab3b3e7d3015c698789f2de2daba997808f27505e93f1f926ab36ee77a2f6b",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "52c1474a08e2565b"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/72feda02f9eb5602.npz",
+      "panel_artifact_sha256": "64cbea35eab5594b8976034f34319a3a9cf41cc5cd3602b61270a41973e9783f",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "72feda02f9eb5602"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/2abf086a585a582a.npz",
+      "panel_artifact_sha256": "ecdc7b6853127b1d8fe60956c049152c253e33ef3ff868fc84feefd5e05a8d7c",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "2abf086a585a582a"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/938f4d541d49553a.npz",
+      "panel_artifact_sha256": "91c74c9f4e2ca83c66ff5e29ac937598c3a7643b6c94f140731caa894618b180",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "938f4d541d49553a"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/b960d6fec51b52e3.npz",
+      "panel_artifact_sha256": "1a483ee521630cccdc55339243b9638cd0105cc35f7d2f6f5083858a6b4670ce",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "b960d6fec51b52e3"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/6b5a8334e4e75478.npz",
+      "panel_artifact_sha256": "08fea86eebe3d824eee83a256a348a14ab818b9eafe1b5516a28d56ca667c602",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "6b5a8334e4e75478"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/66f2a48d906551d2.npz",
+      "panel_artifact_sha256": "806036e6b2b6094693e224f3fbdfd19e6ee453b365a6c0c022323a40f3af0519",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "66f2a48d906551d2"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/fb50030e0564501d.npz",
+      "panel_artifact_sha256": "0b48dfb92d0df08d0a1bcd519348c413e927f808c8ebcc415daf5d05fa507cf2",
+      "recording_group": "2021.06.08.19.16.23_veh-26",
+      "scene_token": "fb50030e0564501d"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/83c5802c7c0158a1.npz",
+      "panel_artifact_sha256": "9e95e372b02dcfd7aa3a18a2b163cd9c796eaf8b7720dc66c9ceef8dcd060a37",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "83c5802c7c0158a1"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/046af43ffa4c5e9a.npz",
+      "panel_artifact_sha256": "24000d71cb344a4eb8e5a08bca059100f03f7f78a4d966b0e24b15e353f82017",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "046af43ffa4c5e9a"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/cb431241a7b35ed2.npz",
+      "panel_artifact_sha256": "4fdd679306be77d753e822868890f1ab6ff4fb1b7d4fd3b16a4881220ffcf171",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "cb431241a7b35ed2"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/d4fa892028dc5b81.npz",
+      "panel_artifact_sha256": "bc4f59ece8220f5b947a63f612a87ffdd51751e800ace44d91a7c2c60c55e9a2",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "d4fa892028dc5b81"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/c5fc16b5bea45bcc.npz",
+      "panel_artifact_sha256": "dc6f38404985dc3f985c46cee9e59f1c96d86221177508c4562b8286ebb05a1b",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "c5fc16b5bea45bcc"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/72eb5cf31ff35d84.npz",
+      "panel_artifact_sha256": "e15b5e8598fcef489cf25a014ae0be3d20bc4d93a3d54c97f4637aa0a0364637",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "72eb5cf31ff35d84"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/9cc05eac48d45e7f.npz",
+      "panel_artifact_sha256": "61f8e49cfdac5115cee7dcafe464d2c2221b0f476028440ba86c4a79eb9fcf05",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "9cc05eac48d45e7f"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/2660d11ef866550e.npz",
+      "panel_artifact_sha256": "6432c8b70f3f51228d771f42368260b9e5326830274a9dceb8f6dd352c7f4e0e",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "2660d11ef866550e"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/b098b3e1f2995fa4.npz",
+      "panel_artifact_sha256": "d3af1b77ad8e6e3793159f8274d9d9203eb3b5c047f5073f5f061f805ae218f1",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "b098b3e1f2995fa4"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/d3b3922b4d86538b.npz",
+      "panel_artifact_sha256": "7a55f06d419dd9cda1f26a258464e715d47c97526a6c31c648c8aaeec4b2966e",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "d3b3922b4d86538b"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/0600854e139557e8.npz",
+      "panel_artifact_sha256": "3c5e80c4855212cbaa013be35ffe50d4abb519f92f7dc186df156702e253f13e",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "0600854e139557e8"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/5496c5dc52965f7c.npz",
+      "panel_artifact_sha256": "e2ad8552195bc57514846083990279c50e38e829baca7758960f5137ba36b79e",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "5496c5dc52965f7c"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/b372c78ad6765777.npz",
+      "panel_artifact_sha256": "6966beeffcf6a4349c402471633f691072da59590c6e19911bb364dce69db942",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "b372c78ad6765777"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/461a0fd85d115812.npz",
+      "panel_artifact_sha256": "b4ff5a0f375c6299ed2100a2faef11979d113572523315e1e6762b9b44b244aa",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "461a0fd85d115812"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/5c42652f08945702.npz",
+      "panel_artifact_sha256": "b7f909d4731ef9ec650783d3a3998e174b32793db80863c070e1283c1ac8cf33",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "5c42652f08945702"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/bcb3c1045eeb506f.npz",
+      "panel_artifact_sha256": "73c62767f7ce0ea9e654687dfb26e5f529b271202cfefa07f9eca2a15f10fa70",
+      "recording_group": "2021.06.09.14.03.17_veh-12",
+      "scene_token": "bcb3c1045eeb506f"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/0e6c1fcddfef581f.npz",
+      "panel_artifact_sha256": "15eb56f9f116e55ccd451de5a357c6e96716fc086618bcd8278779529a20d2bf",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "0e6c1fcddfef581f"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/66dc36f149fd5b0e.npz",
+      "panel_artifact_sha256": "f2315dd62e9994dbe1db012b01c0d561c888197dadeffe61b852199408b66215",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "66dc36f149fd5b0e"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/0970c083af7d5572.npz",
+      "panel_artifact_sha256": "26aa4d9af53d6476617827d3e227e8d28396315a986219673d29e44a854787d0",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "0970c083af7d5572"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/9d3da2152b76584a.npz",
+      "panel_artifact_sha256": "32cbffdae51106f5a0f40cf9fe017b3f30df2b439321c5e2895946e657c92402",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "9d3da2152b76584a"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/1d1e7480ff6e53a5.npz",
+      "panel_artifact_sha256": "db2406ed453b7b10991deb776aeb617a47102605639cc462cd245bf2476f7fb4",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "1d1e7480ff6e53a5"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/b459ef4f206654aa.npz",
+      "panel_artifact_sha256": "51e183347f9b8dbf1e97c09857256097065c2e1397498150d2e9c698c0f9b422",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "b459ef4f206654aa"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/c6d474768cf75531.npz",
+      "panel_artifact_sha256": "9cd188cf1ec2421450139cc7237b4369f83e4f0de5e290c577a2684ee5ab867a",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "c6d474768cf75531"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/57f8282582565d4b.npz",
+      "panel_artifact_sha256": "32b30eb3dd574d882e2a3c7ffd0ebd9a5c3321428bf4d483c241fb484231ac0b",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "57f8282582565d4b"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/793016c27f9e5bfe.npz",
+      "panel_artifact_sha256": "d632599d6b6ab2522a0db6006be2e2a00f5234a539a26aa4249b26050ba2da41",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "793016c27f9e5bfe"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/cb341b26f7665dfe.npz",
+      "panel_artifact_sha256": "221946fb5bfef31c655ef3ac327b725aa528df8573456fe56727bdf6b3401854",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "cb341b26f7665dfe"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/a5bf08c4e68450f8.npz",
+      "panel_artifact_sha256": "1a912b46f0cfc48b677ba826ce484dfbd7d33468ef421ec823a1fbca0e3c36ce",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "a5bf08c4e68450f8"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/723052a153345510.npz",
+      "panel_artifact_sha256": "04678fd12db2736a9e8faec672c3c1b68058266cdf8f48478ddc3dde0f6d7eb0",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "723052a153345510"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/77b68cb316b4537a.npz",
+      "panel_artifact_sha256": "aef4edd29faacefa88ef6483126d2487403aa5e17c1d4848ba53d88455ff0f47",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "77b68cb316b4537a"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/d5fc362b9bfb5392.npz",
+      "panel_artifact_sha256": "d66686b3d5a097d5a98555967db4050f372cb70754e1deff071671bf275eb028",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "d5fc362b9bfb5392"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/157b5f6f03685671.npz",
+      "panel_artifact_sha256": "63c4b0bb755f19636879fb4a12c77a8ed1594846cc13a7e93c3a058101e88b90",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "157b5f6f03685671"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/076ab7880c575700.npz",
+      "panel_artifact_sha256": "9d8fed98f1b2b40e6892be172bfdbab46c857b4cd702080520135ad90da71e1f",
+      "recording_group": "2021.06.09.18.23.43_veh-35",
+      "scene_token": "076ab7880c575700"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/e6c80e9b00a6568f.npz",
+      "panel_artifact_sha256": "ad94af4a279cd26202681ba17bd5918623ceba9c8c2e69883fe5f840c34e4a8e",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "e6c80e9b00a6568f"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/d1acf3b1b19853ad.npz",
+      "panel_artifact_sha256": "d5d14859ffbb55905e380729ba95fe003005f4f4af187ea6b5bcefda3943855b",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "d1acf3b1b19853ad"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/17a962d10a30583d.npz",
+      "panel_artifact_sha256": "3836ac07ceea61ffe01f218435ef2f3d60ac1307520b11e027d5f5c3b46475b4",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "17a962d10a30583d"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/b5d700bf6acc5778.npz",
+      "panel_artifact_sha256": "37e0219ce5d452f96c75d95476ad6f2f60a470f74f4f837ebc50b95dede84b1e",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "b5d700bf6acc5778"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/342479f7274654ef.npz",
+      "panel_artifact_sha256": "d5adfe1d17e1a9da3dfcfa738f5491e9dba7fd5b8b2e6dddad488330fab959b3",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "342479f7274654ef"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/1821e84b94d55f84.npz",
+      "panel_artifact_sha256": "1c394b5eadf505a607474364ad3230870fe7af69206efe5d2446fc555c4c50f6",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "1821e84b94d55f84"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/623de0318a295e6c.npz",
+      "panel_artifact_sha256": "8391ea9745db70a183e8dc6f5b38cf3e941e0bcb743302230028657cec6c1c0b",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "623de0318a295e6c"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/762ac191c3275e78.npz",
+      "panel_artifact_sha256": "8542a32ff6946a6d1599e9f5265317d7cbb881d4e8a8322fdb081eafa43108b6",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "762ac191c3275e78"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/170ace85700f534d.npz",
+      "panel_artifact_sha256": "4658880b14a0ebca899ac31f0eaaa2e41e94800e9668502236745012b4571676",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "170ace85700f534d"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/e70c55c0c8b25aed.npz",
+      "panel_artifact_sha256": "60ecb335c1eb3c500f5c8c7ac4bee3987b90aebbbe46557c04aec761415e1000",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "e70c55c0c8b25aed"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/94bf1dd100a05381.npz",
+      "panel_artifact_sha256": "2a4ce9232c361de04dccf2d067a5cc262a0c05877d2e4d95ffa6c97397f19db8",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "94bf1dd100a05381"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/707854f68a36569a.npz",
+      "panel_artifact_sha256": "83b3e3d00e4b01cf13df334cb826897d2061298f120bfc1f7f39a2bdb1b8a49f",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "707854f68a36569a"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/3c8b50a10070559c.npz",
+      "panel_artifact_sha256": "b77fe59df6011480029ad5f83e8531e6a73b0e163b849d89d3105dbd9abbb3c2",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "3c8b50a10070559c"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/59a58c29eb1452ec.npz",
+      "panel_artifact_sha256": "cee5d5a2bb91af549d2cd99e6da79faf646a4a81ec2dd77136e50ed288db922b",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "59a58c29eb1452ec"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/fc9a5aa47ad7528b.npz",
+      "panel_artifact_sha256": "b4db019e7c913967f67eed5e5074655b68f579d551796421e5b7e611179e08b7",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "fc9a5aa47ad7528b"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/19e61dcdd9cd54e0.npz",
+      "panel_artifact_sha256": "15dd25e6581847175739034957f222c56552de20df5f1a90a96709d4b588bef2",
+      "recording_group": "2021.06.14.13.27.42_veh-35",
+      "scene_token": "19e61dcdd9cd54e0"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/7ecd333b7bde51d5.npz",
+      "panel_artifact_sha256": "d4006057c408a0ad1d83df361b219aa6b85d2c74ed6fc25880bcaa8670491e15",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "7ecd333b7bde51d5"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/61953af75f355258.npz",
+      "panel_artifact_sha256": "72f19ec035e948c074f00da41c66f95e3e232c2687295aa2bec180e1e43c3254",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "61953af75f355258"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/951d1fa68a7e558c.npz",
+      "panel_artifact_sha256": "02f873f7e06288112d28955cc6e50bfe895ca5536889ea81dfa5296483b48fc0",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "951d1fa68a7e558c"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/89988034830a5612.npz",
+      "panel_artifact_sha256": "45f0177527849d08ca398cd5565fbcc4d983fdbce40837515063b84e2cd4a33e",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "89988034830a5612"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/5bdb98dd7ea9595b.npz",
+      "panel_artifact_sha256": "0a2b438ff8c4f54b348fc75a7af50ac36fbe5a837b393e9d78ba95830bf11210",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "5bdb98dd7ea9595b"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/6f9a76efec1a502a.npz",
+      "panel_artifact_sha256": "e65e40180916e895c7ee5ec19b720e1a85eda319832a32c405aa56835bb4d277",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "6f9a76efec1a502a"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/fe8c8324e27f5bf0.npz",
+      "panel_artifact_sha256": "5da3ad564bd9bfc900bc36d6323cbe494ce8125f8a69439c95e260b97e90fc49",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "fe8c8324e27f5bf0"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/bf8631caed0a53c5.npz",
+      "panel_artifact_sha256": "d17c2c6f2f99761a26895ba499f80195b8e01b313b0fa42a3aaece3aaf3300fc",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "bf8631caed0a53c5"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/5abc0f02113d53ff.npz",
+      "panel_artifact_sha256": "99f8d0110f48e1db03bb7d4673c51c1de0cc0187c661e86491a637f7709d5f98",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "5abc0f02113d53ff"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/c1ca28773a695643.npz",
+      "panel_artifact_sha256": "884eb70a5e5d48492b0bf37dc36b8fc0b5d27aedbb64fde056991c60c019144c",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "c1ca28773a695643"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/9bc1eb578201587a.npz",
+      "panel_artifact_sha256": "ebc24d7304acf5037ddfb2b9ee4f3f0205dbff9c1b1d6c149da3037ae35aa709",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "9bc1eb578201587a"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/0ca85c13a0fb5b6c.npz",
+      "panel_artifact_sha256": "3465fb99a2d573a5490019d615e4cd1a3b67805524a8903b09fb76de12e3aa99",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "0ca85c13a0fb5b6c"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/de9e21fa955b5dc4.npz",
+      "panel_artifact_sha256": "5c3b4bdd6e5c737696fff3b576ad8c43adb3153294a6324eaacc9eae889008f3",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "de9e21fa955b5dc4"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/a2322675b61d5f78.npz",
+      "panel_artifact_sha256": "318b9cf09eefd7db97e192234192758189addb57271c84b2339060f66f59a62d",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "a2322675b61d5f78"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/9e2f006506ac52e0.npz",
+      "panel_artifact_sha256": "b6b8c422246d36edbe10b02629cc0bf708cb7ab8d299883bde84902b53a63507",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "9e2f006506ac52e0"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/aaa1380df9bc59a4.npz",
+      "panel_artifact_sha256": "8454b1f0c3968efcbdb99f91fd31ae41ba159b7a45de6cdf07304d3f17ef05f7",
+      "recording_group": "2021.06.23.14.54.32_veh-16",
+      "scene_token": "aaa1380df9bc59a4"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/fc1ed2f7c7f65785.npz",
+      "panel_artifact_sha256": "072c20901e0b8de1671288b96aa71041f4f096723065103e519da4b16db7f610",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "fc1ed2f7c7f65785"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/8ed0f2cb1f2b5a8d.npz",
+      "panel_artifact_sha256": "be41624cd760be4145eb9a9b81b068a41d8a66a05fc1c788936696bc4bbd1044",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "8ed0f2cb1f2b5a8d"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/0caf19ca08d1560c.npz",
+      "panel_artifact_sha256": "c79f466e377d21d7ebb344881eecc847a4b087dbcf0fd16df90777312e638ee1",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "0caf19ca08d1560c"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/0127bd65ba445036.npz",
+      "panel_artifact_sha256": "be6b5550a7fe76d2d94d642a0a22f2e2e9e03b11b96475695a27d433950063c8",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "0127bd65ba445036"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/94a4a427c6b15d58.npz",
+      "panel_artifact_sha256": "03754e4606d82f59e63c69600844f38851106129667140c363db7b852568c52c",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "94a4a427c6b15d58"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/5fd938db35a25dbd.npz",
+      "panel_artifact_sha256": "8160b35086fd51c809a960dfce468daebccbe374505ca2f28d9b83cbeb147ac8",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "5fd938db35a25dbd"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/dcfd640c86425a68.npz",
+      "panel_artifact_sha256": "6012a45a23366f8abd839781d64d4ee4d10cdd3a1247a9a850d446532192af9f",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "dcfd640c86425a68"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/a746bff8ea615236.npz",
+      "panel_artifact_sha256": "57af482278c81e177ae9bb3f5f483e955419beca6d62c0238b22b2119545e7c7",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "a746bff8ea615236"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/47ed6859c88e543f.npz",
+      "panel_artifact_sha256": "ba6af4019c32e0009cdbb2985d1d1fa9d8896ec6101059d62cb9dc582545c375",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "47ed6859c88e543f"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/7ca4df5ac4b055cd.npz",
+      "panel_artifact_sha256": "b5402890d149e4b9c8186b2d98d31eadb80288d293578186a9bd888bd08ce7fb",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "7ca4df5ac4b055cd"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/26cc81c963dd5b5b.npz",
+      "panel_artifact_sha256": "7a3e791a0889b78f043efced4c19bc0c9e9a7ed2954b34a4bd3de162e4c125f1",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "26cc81c963dd5b5b"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/756ef76b110a54cd.npz",
+      "panel_artifact_sha256": "fd6d7211bcd07e07883ca28588ed8228603320edf88ca632968627e18c5ca6a3",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "756ef76b110a54cd"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/d1c5adc071f25431.npz",
+      "panel_artifact_sha256": "7a5eceef01412e32ea5522bb0eb55d3ab3a66ebfb5eee3318174086c3b9355a9",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "d1c5adc071f25431"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/60a92e31360b55aa.npz",
+      "panel_artifact_sha256": "e27c417d85eb762290a67a50d4fdedbfa02f43728133cb820539c78aa1474f60",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "60a92e31360b55aa"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/b79946f39eb05574.npz",
+      "panel_artifact_sha256": "aea32bcae56b13056e30772e4fa813d2e8bd16ab5355560499b764932e11d06f",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "b79946f39eb05574"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/e01d0a58445f5b5e.npz",
+      "panel_artifact_sha256": "9196acbbb88e90204bbbfbe16d5e470d43bccd6893851f90ca4287cfeb5b8830",
+      "recording_group": "2021.07.09.17.06.37_veh-35",
+      "scene_token": "e01d0a58445f5b5e"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/6de7026aa59254b3.npz",
+      "panel_artifact_sha256": "f15112aa779a83b50028f346e0ca1228174a56f4d4412d7b63450c28e472e8ac",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "6de7026aa59254b3"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/718a2117fd2957e5.npz",
+      "panel_artifact_sha256": "c66a53b8d50f03407fe007463dfe71ccee931c88a3d3bd909dce4cb7989e084a",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "718a2117fd2957e5"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/a76e1531d9d35ecc.npz",
+      "panel_artifact_sha256": "9ab52f785bf165989df7f6ae7a8b3cdd3fc0562726b0adc02b98368e0098c49b",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "a76e1531d9d35ecc"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/3fb9bd823f405282.npz",
+      "panel_artifact_sha256": "2e6e700f43cd2c20ce9ecb3fc825ac4d2471915d8fbd14f285fda05ee99fcbeb",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "3fb9bd823f405282"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/a5b0c095289f5ede.npz",
+      "panel_artifact_sha256": "10932bd1c718ca53ae32e54b64aee481f7dfa486d1898c9c01ec0c14ca07757a",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "a5b0c095289f5ede"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/ce534c09f95a5d7c.npz",
+      "panel_artifact_sha256": "f7931034009c68fb8d4e2db37af96066804360cd69ab7dc7e92d2dc27491d35d",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "ce534c09f95a5d7c"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/8d4c9d77729c5179.npz",
+      "panel_artifact_sha256": "6db3a8dfaade8518e21878da58f39f723800c4176e121c9bfab5b677f26badb6",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "8d4c9d77729c5179"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/529ff203e37955d6.npz",
+      "panel_artifact_sha256": "052fc7390cec39f076b1f7a74a65c8efa3edf904edb93c9f7ad63e2fc849c8cf",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "529ff203e37955d6"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/3e80032635bb59d8.npz",
+      "panel_artifact_sha256": "55651c1027a30241143192b067227b95446dcfbc00c74eaf41dc7caa4d55c371",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "3e80032635bb59d8"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/c49335749ea658b8.npz",
+      "panel_artifact_sha256": "bbd2cf99e2a85b1656b5253a72c6d87491e5e68100a547cfa93ac7290afe8eb2",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "c49335749ea658b8"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/78b0d0e8f6f55262.npz",
+      "panel_artifact_sha256": "a9ad005524fde71597392d5e15028b0dde97eaafb3544e803bd53fd1eb5cb3d9",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "78b0d0e8f6f55262"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/4631b52e81ea5beb.npz",
+      "panel_artifact_sha256": "cf4f73e05a72b451ece9ff25c154fab544c9e864ee3f504d1a7290f0cc11d8ef",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "4631b52e81ea5beb"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/a85310877c245a66.npz",
+      "panel_artifact_sha256": "0ff6e25fd74526ad7929a472e4209a77a8c24d44c318ee3286e909660c0fa1ef",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "a85310877c245a66"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/8ff82260cfc657e3.npz",
+      "panel_artifact_sha256": "a0ea33f40d16560488291e263e4165bc59549b2f5647a781ce2a4eb14073885b",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "8ff82260cfc657e3"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/541b0729b5985703.npz",
+      "panel_artifact_sha256": "cfa6578db8749467a86324b60cf99496a3c93526867942225ef357bc8026ced0",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "541b0729b5985703"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/f5404fe344215761.npz",
+      "panel_artifact_sha256": "b66392a373ce5500e2663b12d0a2935da9785075d8e48226663bf89c7b57f412",
+      "recording_group": "2021.07.09.20.26.06_veh-35",
+      "scene_token": "f5404fe344215761"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/a7ad15b5aa6d51b4.npz",
+      "panel_artifact_sha256": "bd0e1652a111d2bf5e3bd9a8766bf7385318806838d3447fabe330dde496a807",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "a7ad15b5aa6d51b4"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/23995f4d015a5b57.npz",
+      "panel_artifact_sha256": "8007f0eed2e5d69f4f508dbb6909dbecd2115d2a6afd8362bc4b6c5b43e62472",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "23995f4d015a5b57"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/897c937f1952565d.npz",
+      "panel_artifact_sha256": "bd19e8dcfda0b00af32a73e3066e02b32b44c189507cfd114e0b99470f5f2f21",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "897c937f1952565d"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/1741bf0fd9c6515e.npz",
+      "panel_artifact_sha256": "a0482488385f3bc728ea61dc1d399b2345b4ae3c259d75aa0904bdcf2eae3bb9",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "1741bf0fd9c6515e"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/4961c4fadf0d5dea.npz",
+      "panel_artifact_sha256": "cfb78d502bcfed0660116b2fab303a90d4f889f953663c6136900f910257cd6f",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "4961c4fadf0d5dea"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/bd0cdb2296c559dd.npz",
+      "panel_artifact_sha256": "e4ba157724d7413e8a998271da0fc6e08aeee5ef4bbbfb399f7bfc155ac82180",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "bd0cdb2296c559dd"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/eec636eb25755c98.npz",
+      "panel_artifact_sha256": "3e3e99ab72421ea503d93e65773d4ea2cd3eabbd42f549455fab139a97772ed8",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "eec636eb25755c98"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/52390e6d440f5bab.npz",
+      "panel_artifact_sha256": "6b957eb3d876f5d51a70da1580b052fa1690bf0db89d0d5b01a28317c3245f31",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "52390e6d440f5bab"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/42bbbd53d734511c.npz",
+      "panel_artifact_sha256": "594cb8885566a0e87031c4f90749efd57ccd533bf053cc2ead201d73ec5e8226",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "42bbbd53d734511c"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/31fc738fde175210.npz",
+      "panel_artifact_sha256": "206217e7cb07fe112f2862e1e2be6a0e7fa34f6d6b8256dcbbb76afdcbcefb26",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "31fc738fde175210"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/29589186b1b05375.npz",
+      "panel_artifact_sha256": "11f62e3caeaeb1b35d4c1705bd25813278665a912cd1d26f0214026a32808e31",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "29589186b1b05375"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/66ef45f136bd560b.npz",
+      "panel_artifact_sha256": "05f4c825c82a84cd3fdf0c1a41ce3eb0acd94976e2dd2e5026d5c0b2e85759b4",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "66ef45f136bd560b"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/8c636af7afe2556f.npz",
+      "panel_artifact_sha256": "1bcfc5e355fcd9375f88a5943daaba12ec3ac7af681a949ea1af1071d089fca7",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "8c636af7afe2556f"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/93fadcf5bd8b523c.npz",
+      "panel_artifact_sha256": "059ddeafd19d209bd7e80ede5ce8b624cf023439a421230a6fb75fca032eb994",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "93fadcf5bd8b523c"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/744d475d32745e46.npz",
+      "panel_artifact_sha256": "0823f44f930635e277b1464c089e0f6f3d20d236aced4c28a556b40e9063a6ec",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "744d475d32745e46"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/a0a933b99cc3524e.npz",
+      "panel_artifact_sha256": "7949753c4e72011381c2987197c5f60e9a87591ae4d7e52cde02365011cd7ebc",
+      "recording_group": "2021.07.16.16.27.22_veh-26",
+      "scene_token": "a0a933b99cc3524e"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/462c6d61bea85652.npz",
+      "panel_artifact_sha256": "084be01a30be4fca55f486667dc90a6141507b527ef503655a0bc49029f419ea",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "462c6d61bea85652"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/16c6fb6030205e4a.npz",
+      "panel_artifact_sha256": "19c74f8e7131e8b20f7e4cf88127ce12a9bec7e0c2df85a779ab2e4a5d8864f7",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "16c6fb6030205e4a"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/914777285a8c5010.npz",
+      "panel_artifact_sha256": "debf1bce9a633f91e5dba18c9fceb626d4c2fecbf4afe0c119bed264af177542",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "914777285a8c5010"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/d496d3c0811c51c7.npz",
+      "panel_artifact_sha256": "ae0c38cb86d0f1e548c8ef364b18408549692d9b0f0c08537be91d71dccfebf5",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "d496d3c0811c51c7"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/1bf100f880f558d6.npz",
+      "panel_artifact_sha256": "b1ddbff7e0d0e0211715f401c40b5cb5ab02ae6c4ea19b17dba91b71fe29a913",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "1bf100f880f558d6"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/d2d91c2cc2a1562c.npz",
+      "panel_artifact_sha256": "a2c54596dda973168c40255d0538cd8282cc70a0a771241f9853ca06938f2323",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "d2d91c2cc2a1562c"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/8ae33734d4455d71.npz",
+      "panel_artifact_sha256": "2addc73db781d01559c0acd490687e1ca72346f1c6f1f2754e6557d0e146fee2",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "8ae33734d4455d71"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/0c3b217686585932.npz",
+      "panel_artifact_sha256": "5a6338295d934cd09c640166d824e412410581b1265c1d9f16f730dfbf70e7fe",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "0c3b217686585932"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/48475a59f57e5d12.npz",
+      "panel_artifact_sha256": "f2dbd79dcfd6cd267ebd3a72b41362280eb932e74749669905ea1a99ddb5987f",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "48475a59f57e5d12"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/d598b1322a9f55e4.npz",
+      "panel_artifact_sha256": "ce4ee27658198861d6fee27d7e4ec7a202b1b2d3db1d4ab240837f37982c4dfa",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "d598b1322a9f55e4"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/1741fe35eeb75d3b.npz",
+      "panel_artifact_sha256": "1f128c9002df49f237fe6aa0afb712f0bc0b5b39f78d2f62370921996b97c467",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "1741fe35eeb75d3b"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/cebac405bc31584f.npz",
+      "panel_artifact_sha256": "8e30194b747928fd0d30b52277165835c79fa35c4721e71499ecf910bc397231",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "cebac405bc31584f"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/4015f95850b251b3.npz",
+      "panel_artifact_sha256": "5f2e7faeb2ab93a4ea26cbc7b95c7f79627f1ddd571533d748663d330bfbbbf6",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "4015f95850b251b3"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/05813591952058ef.npz",
+      "panel_artifact_sha256": "83ad0a72a8018d2e3e32a23025568516739848bb5366951cf15828a76307f64a",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "05813591952058ef"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/b109ee08b7ae567b.npz",
+      "panel_artifact_sha256": "d59feb7bf68e2e4dea591dc82d8d8878358da93c0cbb9149e1c4ce3d1c7f8722",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "b109ee08b7ae567b"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/0a65faa1ae005d16.npz",
+      "panel_artifact_sha256": "77af2fa06c28b551ac46f9c01c52a038b3fb241de8d0b32b5d654f78c995967e",
+      "recording_group": "2021.07.24.20.37.45_veh-17",
+      "scene_token": "0a65faa1ae005d16"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/c7987b66003a5b79.npz",
+      "panel_artifact_sha256": "0ef0d0c0b38200c4585a0296159fcb24bf33a00b4025d6cb705093053d9e1399",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "c7987b66003a5b79"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/6fb2a39fcd8f57cc.npz",
+      "panel_artifact_sha256": "00c206ffaa805aa07a31002b047446612e0b773c540e1744a7a1cea7736d7933",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "6fb2a39fcd8f57cc"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/db39486e0261558e.npz",
+      "panel_artifact_sha256": "549408da83fb6660463475fbc612e994ab6ad1855655bd4d69e9880fb6ac7ddf",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "db39486e0261558e"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/866a3b09789b557b.npz",
+      "panel_artifact_sha256": "3f423bef0fa15ff2ca2bab31f9ec9353248eaa0e26a9a826ae932603ed72f6c5",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "866a3b09789b557b"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/ce355e272ebb557e.npz",
+      "panel_artifact_sha256": "92243873efa370ef37aaefe80dcff557ea2ab9d9e6f9ca6a2ff5bc9c1f909b26",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "ce355e272ebb557e"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/a6b8b23c3c315c09.npz",
+      "panel_artifact_sha256": "a91f46581c09db1c1def0e517ee93d4ba0da689350b471a5f227452ddcfcae8e",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "a6b8b23c3c315c09"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/c2f07eecb3b95c01.npz",
+      "panel_artifact_sha256": "8bc16abb12c0f0e65e63e49344c18f4f6af54cb5c876ad4851ef0211634b3d48",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "c2f07eecb3b95c01"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/e1b1b93ce53f5cb8.npz",
+      "panel_artifact_sha256": "398ab0080541bea6371eb9cd698aff7a0367d895a5511dc12cf277b1426dfd99",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "e1b1b93ce53f5cb8"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/2a3f323fdf335451.npz",
+      "panel_artifact_sha256": "27bc7c6791736193d6031177a00bfdebd8a1173ecec4448ac16d00da2c4cf1b2",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "2a3f323fdf335451"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/c3c7034524445599.npz",
+      "panel_artifact_sha256": "fc41b1cd7681e10b958375e2c3b54946590a78628ecafcc29e2155513cd0e4f5",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "c3c7034524445599"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/6ae16c13f80a5c88.npz",
+      "panel_artifact_sha256": "53712716793631750dab2842c3c6a6bb8ca61d36daad096814c7ca36401fd05b",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "6ae16c13f80a5c88"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/787d862ad9545912.npz",
+      "panel_artifact_sha256": "6e38df78a457c8d1e08578599a17a60e9ca6cca1a9f3596b9b0a9147e9ccb7ed",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "787d862ad9545912"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/cb93fdc0e34c5974.npz",
+      "panel_artifact_sha256": "4bbe44ff70dcf1763e91e8d43dd461db3ccaaa27a4ecf6e8f0a0afc6675b5dbd",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "cb93fdc0e34c5974"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/3e99a66a9c70564b.npz",
+      "panel_artifact_sha256": "0fe8beeed14007bd1ed43f13fa87c38e0c898b55c8b9a3dd8276665f31d74ae0",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "3e99a66a9c70564b"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/2a15ef91bb2d51a9.npz",
+      "panel_artifact_sha256": "6a50585907004b51bca26108d9bce89e5b276d83122b8ed36f756fcf35935a31",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "2a15ef91bb2d51a9"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/6ac76f37dfd6506f.npz",
+      "panel_artifact_sha256": "a67fdcafa46065f1d34f24ce013a67c933ea4d3cafa62884f8fbf831c6c012dd",
+      "recording_group": "2021.08.09.17.55.59_veh-28",
+      "scene_token": "6ac76f37dfd6506f"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/35264d920eff5bed.npz",
+      "panel_artifact_sha256": "715331d4a5d14b86386e69d7f78c932c23a6764089fd29858d33738ba2e944c4",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "35264d920eff5bed"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/1026c180bee95d94.npz",
+      "panel_artifact_sha256": "25ae987e0048e0eefd03b7454edef1e8b205b48df80d484570887463c20d4a2d",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "1026c180bee95d94"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/d8edcfbc893a5a69.npz",
+      "panel_artifact_sha256": "99cd64feb5a22d0943fc89612c7c254c80f3d2e6e906daec499da8ad423c51b3",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "d8edcfbc893a5a69"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/9c22daec6e4a54b3.npz",
+      "panel_artifact_sha256": "64d62ba16fa3dcbf6c1116d38d0970e274ba8657baf131a6fbab690a7893ac27",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "9c22daec6e4a54b3"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/f8b6e862c32058ab.npz",
+      "panel_artifact_sha256": "cbf104372d5b6c5849abd661a78d3fd9d4625b36a1075eb89008faf16b0f17b6",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "f8b6e862c32058ab"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/637472fb0fc85398.npz",
+      "panel_artifact_sha256": "1bb2a597345408a8ccb3cd6bdc6551c7319863b8542302ce48d714ceeb6e32fa",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "637472fb0fc85398"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/bf3c3738f7c252f3.npz",
+      "panel_artifact_sha256": "0913427586a8a54623647595ad9e91943be12d5860ac5fe6355352f19b5b61bf",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "bf3c3738f7c252f3"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/662f7fb5636c54e3.npz",
+      "panel_artifact_sha256": "3cc6a7224c397d73fddd9143b1a0e394bb242a688207a29fdf29d436d8edabdb",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "662f7fb5636c54e3"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/cd3f3ec4f0dc515f.npz",
+      "panel_artifact_sha256": "6a2f1bfea07f75b1f683819b1a5a952e58d518830e06015fdd784fec7ab605ab",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "cd3f3ec4f0dc515f"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/7f1a9a055ee05802.npz",
+      "panel_artifact_sha256": "d8cc0927596ac8eb0f9b833c6aea847e334b9269dcbcd587231ea1b13db3c4f3",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "7f1a9a055ee05802"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/99d8d430bb4b5781.npz",
+      "panel_artifact_sha256": "3b4995eec734f1264d94a0ebc21846f9598945c0741702cb6ad8a0b143b4a51b",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "99d8d430bb4b5781"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/e3ff8a49b52e5a17.npz",
+      "panel_artifact_sha256": "e66777c877c4ce13d5a279e508c37fb7f90645788d31131082422bbf8fd8c560",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "e3ff8a49b52e5a17"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/1e1bb6eb92ef54c9.npz",
+      "panel_artifact_sha256": "45ddf4f77b141fcfcc5582fae5e93a3a6f4242e04e716db61619220adf1944b2",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "1e1bb6eb92ef54c9"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/54722fdb147d5e37.npz",
+      "panel_artifact_sha256": "acc713b6da762c7ad4aa75a68e76cb6c103128ff72632a37ab43c6d07a6411ac",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "54722fdb147d5e37"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/08f13880855c5cbe.npz",
+      "panel_artifact_sha256": "53a258613e0c99db5ac7ad80814b9fea0858f0d6d53d2bf3aeb951ee5a7b739f",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "08f13880855c5cbe"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/c5e1c717d7f55eec.npz",
+      "panel_artifact_sha256": "d392ef105aa2e7b48e6bcafaabc4f0cf5c748efe833f35edb9efec9929a0a1ad",
+      "recording_group": "2021.08.09.18.37.41_veh-28",
+      "scene_token": "c5e1c717d7f55eec"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/66baa7591f8c574b.npz",
+      "panel_artifact_sha256": "f3ce0b81a9a5654deef9592ce4fface7731e265b0079f194e70506ebb9cab16b",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "66baa7591f8c574b"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/8565cc226b8d592b.npz",
+      "panel_artifact_sha256": "96559ddba19088fc845cd4a0f61d188ec3edb8ded52d310154c929655828bd28",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "8565cc226b8d592b"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/29741652e0705def.npz",
+      "panel_artifact_sha256": "53731ef21441f55e5b1b603599c0ae877d703fb4ee7f57556bad49188b785085",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "29741652e0705def"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/de0b9cff2cfa5501.npz",
+      "panel_artifact_sha256": "138fe357a7699ad6589dc6467762c737398c2d7634a176e745bc61fe55eea329",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "de0b9cff2cfa5501"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/0c2d91a6ba0f5763.npz",
+      "panel_artifact_sha256": "e205d2a08f6311f205a74046038de83ebcba78d3183e331b752912cd92aee455",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "0c2d91a6ba0f5763"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/cbe55a8e77315a92.npz",
+      "panel_artifact_sha256": "e2a33609845704c94f4a98b2c9c4e673ec4598cd8777d43bdbed092ed386667e",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "cbe55a8e77315a92"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/d8e2eace4a6453f5.npz",
+      "panel_artifact_sha256": "c49a6951db004f1f7c6f8268211b764a159693f47ba602a71d027af953950583",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "d8e2eace4a6453f5"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/135d4c2ca1ba54f3.npz",
+      "panel_artifact_sha256": "be33aaae9c0d1266bc68d9697a6dfb2e3afadc7fc70966556d26e61c3270ef73",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "135d4c2ca1ba54f3"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/1e8dda9172775774.npz",
+      "panel_artifact_sha256": "d6216582e43b6e71181f4df063cf68312293912d2070d620c8243f9dc2501caa",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "1e8dda9172775774"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/6f66566490555f5f.npz",
+      "panel_artifact_sha256": "7ddb7139945eaeaa3188f5424408e17bb57b114dc0f02ca6d565da3f5d19f128",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "6f66566490555f5f"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/77793a31f30159a4.npz",
+      "panel_artifact_sha256": "728bbba939d7dd35c808172a38db5ed428e61a608438e4fc95701fc933e2f910",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "77793a31f30159a4"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/097ec0f4cd3358b2.npz",
+      "panel_artifact_sha256": "97a4a7fd621486456883df67f7e8fb99deaac4f71b6bf290d26cce9df6c50f65",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "097ec0f4cd3358b2"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/748c3cffa9e2548d.npz",
+      "panel_artifact_sha256": "e11794ad209f5036b629fb6d4542a4edfe93f582e30e07eecb7c92fb7dd227b7",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "748c3cffa9e2548d"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/b0aa67508aa85fda.npz",
+      "panel_artifact_sha256": "d1f6f22e0b514752dcfed59d9388b099eb24d045a4dc747dfe3fc106ec1dca3c",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "b0aa67508aa85fda"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/eac80380b5185bdc.npz",
+      "panel_artifact_sha256": "e5d2fa05f1c15fc8603da82a6bc74ac6a1572b30e7738951fdce0089840914a4",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "eac80380b5185bdc"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/16fd7a56ac3f59f7.npz",
+      "panel_artifact_sha256": "c5585ca74f9fc65f01cc0bb67d97aa236f84c8dcb2de8d21415f22266594697e",
+      "recording_group": "2021.08.17.13.15.12_veh-45",
+      "scene_token": "16fd7a56ac3f59f7"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/df068d0a893d55ac.npz",
+      "panel_artifact_sha256": "a5bb014a20ff4a5dc41d9236e142dd71210621bbe713251afa3b37d61aa4616c",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "df068d0a893d55ac"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/5ebaf730712c5f7b.npz",
+      "panel_artifact_sha256": "2f519727cdc15ef6f0cb0922abda7e6a084bda19f47401ff870bb2fed90d1bc8",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "5ebaf730712c5f7b"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/6a473aa3988054e4.npz",
+      "panel_artifact_sha256": "ccf87a8485bd766be4ee3ce0212a488cb7aa79cc846e8f5619b2cd15f534ed26",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "6a473aa3988054e4"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/a0648422f8115d60.npz",
+      "panel_artifact_sha256": "3ac8dc0f612f3f6a9a2265f0a6ef1b5d9ea199022a77d45e4e2657ecd888a9bb",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "a0648422f8115d60"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/ec38b59a7fcb5a84.npz",
+      "panel_artifact_sha256": "d51a90022714e750d346e0594072f8fa09a796060051b44e3baf606302da7d10",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "ec38b59a7fcb5a84"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/b22b0357fe785b89.npz",
+      "panel_artifact_sha256": "16be7655dcf9965c3a990363256ff77b53be4709f35d358c02a14f1056343f33",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "b22b0357fe785b89"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/f19d332849a559f2.npz",
+      "panel_artifact_sha256": "6a6cd308111586320122623b23a0aac21e8f4ee3e426e84796fc56164ad3c4b6",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "f19d332849a559f2"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/fd8174eed8625f5c.npz",
+      "panel_artifact_sha256": "f343742300a072fbc3e423f6cc0b8d9c3fbc013f2075f400a848033e51610e2a",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "fd8174eed8625f5c"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/eeb1307a277855b1.npz",
+      "panel_artifact_sha256": "3aa6c1d30f6f634eb72741b29755dcd93cf4773b71c210ebf9f44dfd231ce3e8",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "eeb1307a277855b1"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/8d4bf0ef31485a9b.npz",
+      "panel_artifact_sha256": "bfe55618df5d1044c0fba121c1eae9219f2f7741aa05ac94c96110c21854b462",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "8d4bf0ef31485a9b"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/08483deb309e5072.npz",
+      "panel_artifact_sha256": "8a0ca53703da369acde2e046ed89b7cc07e183176cdd9fe178bd3965bf3dddea",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "08483deb309e5072"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/3380e48d141754f0.npz",
+      "panel_artifact_sha256": "5684c6b9c248194cb529c85d42be8de47f3f9bf34d4f723f56b3442708fcc392",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "3380e48d141754f0"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/77b7014c9bcd5d77.npz",
+      "panel_artifact_sha256": "46eb103757ace5de6d857662e30aa91d219969dfbd88329ca3c672fdd995423b",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "77b7014c9bcd5d77"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/922c39207c225a70.npz",
+      "panel_artifact_sha256": "30a172973a5f086c390837e2827c7683346e74f382c3eb2bdcea91432da74d79",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "922c39207c225a70"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/2b116fa07e2959d7.npz",
+      "panel_artifact_sha256": "a73bc7cca375ee4dcea5781f03a1a6d5999abaa08f0e27bf868697badaf38bf0",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "2b116fa07e2959d7"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/7e4f555f00b15823.npz",
+      "panel_artifact_sha256": "08cba76187c591e7099faf15938299959241f6e2743b75b003599bc89cc31d31",
+      "recording_group": "2021.08.24.18.30.46_veh-08",
+      "scene_token": "7e4f555f00b15823"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/962ca5fa613355b1.npz",
+      "panel_artifact_sha256": "03f487cff610ff9b1e8db50fd81804fd82dbfc60729b744c581b190f5cd4c3d1",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "962ca5fa613355b1"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/026b8b18e1455a40.npz",
+      "panel_artifact_sha256": "310f4478aef9da5558f9379e7e6315d5e2076844c27d0e0322ab0ebf1c9c3748",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "026b8b18e1455a40"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/ce830e00e7595410.npz",
+      "panel_artifact_sha256": "fee69ed73b811d89dc18b3d14d294f47c539272bc22da241d0afdf409d850c75",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "ce830e00e7595410"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/8529f15bfc7551da.npz",
+      "panel_artifact_sha256": "7ae2a514c89c3de473a0a74a627d95a9271d557be0708e0d53cc40a366d6b49f",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "8529f15bfc7551da"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/2513d59288fd57cb.npz",
+      "panel_artifact_sha256": "4adf5e251f156e15e566c5c3ab800a4597b2854a2e3dfea48f091d93764586a7",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "2513d59288fd57cb"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/f40fdf9e02235056.npz",
+      "panel_artifact_sha256": "8f5982611eb89e3f93b2ab7700db7c391a518f3a65ed908782a40f00643c45a7",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "f40fdf9e02235056"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/9505e65e787d5faf.npz",
+      "panel_artifact_sha256": "2097a6955380fa62790571d318297a21a999147ac083b32b54aaf2e00252109c",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "9505e65e787d5faf"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/2aa697e36adb5db9.npz",
+      "panel_artifact_sha256": "5ff2a231a69ff02323058a8908b302f8d7f6353ba3dd9f2e7e3c6c16a336925b",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "2aa697e36adb5db9"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/e92a21e9ca035ded.npz",
+      "panel_artifact_sha256": "69bf6a9d6e02a1d8d3d3b181a0de523111f605c34ebcedea14a6404e8be5b1b3",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "e92a21e9ca035ded"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/13690abf6716559f.npz",
+      "panel_artifact_sha256": "ac8684745868c1b0fb861921beb50ddbad9b4e5984dac10ba7ae5afdaa4f2cc3",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "13690abf6716559f"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/f4a2b11c552a5331.npz",
+      "panel_artifact_sha256": "340bc3f1fd2b660e7c8453cac8c0a28ea179ec0a3f47579f6de0e8fe6d15953a",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "f4a2b11c552a5331"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/d838fc5ff0b4599e.npz",
+      "panel_artifact_sha256": "38d631a388303c008435b3557b487194479976378165835bfa0d3c90b5b6c2c2",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "d838fc5ff0b4599e"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/b93fd0b203e550aa.npz",
+      "panel_artifact_sha256": "8a76b5401c003387757dd42f719602ca2daee89dcafd4aa81538a2fec7cc7438",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "b93fd0b203e550aa"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/8837b04cf0b45ddb.npz",
+      "panel_artifact_sha256": "5c3687b7536b824f647d500c8fcd43cf5f8c2550715032b9193fe9dbd1c3b756",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "8837b04cf0b45ddb"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/744c87dd1eb951e3.npz",
+      "panel_artifact_sha256": "387e6c1e96529b3b3b44dcf77b8f1cb4b390852913c5ed901cf13b2062fb6fcc",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "744c87dd1eb951e3"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/8da4a4c212625161.npz",
+      "panel_artifact_sha256": "d98a4d276613c42a1baa0431f3fe945dc9f3c83cc49c9f87aed53fdbafa87dc4",
+      "recording_group": "2021.08.31.18.15.54_veh-40",
+      "scene_token": "8da4a4c212625161"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/93c400f671195c0f.npz",
+      "panel_artifact_sha256": "d312196bff18ba9387d6298a94efb753c7578193bec8238d2c90c5ef29ef6bfb",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "93c400f671195c0f"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/eaeb2679e4da5af7.npz",
+      "panel_artifact_sha256": "608d35f5012bc57c52ae7d04316ceef9db528dd014b83b3654ff3b6a6f3bed8d",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "eaeb2679e4da5af7"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/93d8407d91a55b91.npz",
+      "panel_artifact_sha256": "4e48785a86a6089940313d1167821cf90b38d4cc607b98387f3fd9880ceebfc7",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "93d8407d91a55b91"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/28f2009d506f5fe5.npz",
+      "panel_artifact_sha256": "b722cfeaabeb70466a2dcf452727b5083e1990289686845f5d5d0a178e803867",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "28f2009d506f5fe5"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/5d67ff4fa6f75f68.npz",
+      "panel_artifact_sha256": "ee75ffd3d54202ce76c22acccd453f4ca630c8ebf9fcec2f8accfe302033eeb7",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "5d67ff4fa6f75f68"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/34808f596ce75f54.npz",
+      "panel_artifact_sha256": "8a8e90ab311c45b2009bb44fa42415877b4fa74d85f696c3459e64e5a7d99649",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "34808f596ce75f54"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/76fdd5d4a8085508.npz",
+      "panel_artifact_sha256": "46f35296012263d5e15d1306dc2323c90d72197f4f1edd8ded86e39e22f6be67",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "76fdd5d4a8085508"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/d087301fcc56589a.npz",
+      "panel_artifact_sha256": "26a8936ff770d2afe7304bc2499cbcc94fc854bf86d0672a97a8d2278432ffb6",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "d087301fcc56589a"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/48e5a26608f05384.npz",
+      "panel_artifact_sha256": "f7f35e92c0aa951db8539e028949a402d5310c71b7dc5887a91f811206bae04b",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "48e5a26608f05384"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/7ffd01bb8e8a50da.npz",
+      "panel_artifact_sha256": "09d4636bcb3583133008c6a50147eb4778ec9670995e4c671b395d335b0ef252",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "7ffd01bb8e8a50da"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/4b1740f9c95f5490.npz",
+      "panel_artifact_sha256": "de97665a08e47d89d9f7e19101294ef23482034d215083e9f201db1fa6225960",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "4b1740f9c95f5490"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/6090f0b3fb905edd.npz",
+      "panel_artifact_sha256": "1e0975a93b373bff1a25d9ac9a08af12702571f9e834c3efb5bb8aa2d6327c4c",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "6090f0b3fb905edd"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/ea2bf5b01e14590a.npz",
+      "panel_artifact_sha256": "df9befdc67a080007cd4b2f64543351bf7a20dcf692ccd58ce0fef43cb371ef2",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "ea2bf5b01e14590a"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/60be0b13dce558dd.npz",
+      "panel_artifact_sha256": "4c06aeb90ac3a5c42d7230dd8046d83836d6c1c36bcbb481d13c86b608882381",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "60be0b13dce558dd"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/d1d2b43f3b425716.npz",
+      "panel_artifact_sha256": "3c280cd66ad7354dbf8b6e816b6fcee75437c8b3d64016b644438eb0a1b790cf",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "d1d2b43f3b425716"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/327c7e53cce3593d.npz",
+      "panel_artifact_sha256": "2fcecb9848e6773cf0a14364631b39bbd2ef0b6d6fa078ac4163d35477f895ba",
+      "recording_group": "2021.09.14.19.46.05_veh-45",
+      "scene_token": "327c7e53cce3593d"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/1af38358361457cf.npz",
+      "panel_artifact_sha256": "a1f4292257f37eb6f5fd2dd9d5de5da7749549061c41dc5022b57502be927662",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "1af38358361457cf"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/688c95d08bf259d5.npz",
+      "panel_artifact_sha256": "19a2b252afd952569fc2c61668740e70628a13ada14e1c0f8c70044feff2c3ea",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "688c95d08bf259d5"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/1fb597d5b0635148.npz",
+      "panel_artifact_sha256": "c1eb691b4bee98e4d2ccc2ac1e11c0ee8fbc36ba8bf829d1187108c8acc91efe",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "1fb597d5b0635148"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/d5bb3b34044e5386.npz",
+      "panel_artifact_sha256": "3e37cdae37cea68314fd139727bb49cd0514204d42fc616536b92b45ee01d3ae",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "d5bb3b34044e5386"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/41c320cd704b5976.npz",
+      "panel_artifact_sha256": "1edd004d6a13ed908e110348626cd9e2cec9341be56e3895f775217b19e1992a",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "41c320cd704b5976"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/1af57adf63ad5095.npz",
+      "panel_artifact_sha256": "01132260d9291afb65125cc89bb812d79b08314707fcc2d6f291d083db054388",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "1af57adf63ad5095"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/c362ae1e0cf253d7.npz",
+      "panel_artifact_sha256": "9726ad7050e40a454e08c92b2172b2f800753cd2b08760d8c10ef1cdf8cb2aaa",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "c362ae1e0cf253d7"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/91d9a3ac3b6955b2.npz",
+      "panel_artifact_sha256": "6880afbadfc4fffdc6a7f62ec6221af1b264db5f423b03a0b612285132b72f99",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "91d9a3ac3b6955b2"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/1a9cded5cbcd5383.npz",
+      "panel_artifact_sha256": "2bc362e545cc685dc3dc6a751e531d737155d280b2f2ccd6a12ce86d2d0c5e48",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "1a9cded5cbcd5383"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/461fb854eaa3583e.npz",
+      "panel_artifact_sha256": "1d6b3fd943166930c7c13f2d6862cdd11f2e69160cfca73a43df1f200bc24dad",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "461fb854eaa3583e"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/e7940ed4b17651f8.npz",
+      "panel_artifact_sha256": "572aaa481f1681a38575296c342e1f60a0f143b934dee703e51e34e9fdc563b0",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "e7940ed4b17651f8"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/fd174b94236f5f27.npz",
+      "panel_artifact_sha256": "05145c2b27cc1a25d8e988972c3858e9f3f159149c5b5fc7c91de9cb8dddc429",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "fd174b94236f5f27"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/67933bdd1c9c55ff.npz",
+      "panel_artifact_sha256": "8e4092c268cf9889fa2d2e3ff1feb069a311286ca39166b079dc18e0de758ade",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "67933bdd1c9c55ff"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/4afef5c886315cff.npz",
+      "panel_artifact_sha256": "f675650901cd8c63a3558d4fc38335ada95692f5ffe03217c99bc3795d841a3a",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "4afef5c886315cff"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/cb0c66b292c1577a.npz",
+      "panel_artifact_sha256": "f369974cadcc0cdc4d7b6ae511d949143113c5908646be9161260bf6e3c133ff",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "cb0c66b292c1577a"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/19a28765a1085628.npz",
+      "panel_artifact_sha256": "6917641cc2c7f5b2d9630f8780e4ec4fb8a5f1f36303f64077d10d01275dabbf",
+      "recording_group": "2021.09.14.20.42.30_veh-45",
+      "scene_token": "19a28765a1085628"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/3711c1f6d49d5a4a.npz",
+      "panel_artifact_sha256": "343827b5ac82477dca36266c57fd356a82a680c1826fcfd63421d5319b0882a6",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "3711c1f6d49d5a4a"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/4bc0426f0c6654e0.npz",
+      "panel_artifact_sha256": "f84b53ab3701248f4e6fcfaa4517e023af05d36964d9d76e8a7e80dda7f0d3b1",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "4bc0426f0c6654e0"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/c548289645825b5d.npz",
+      "panel_artifact_sha256": "3d286b8774c07d68086da2da1b5710a184cd66d99e1a47fcf6f3829128c5c347",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "c548289645825b5d"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/5d4fe0392aa15a58.npz",
+      "panel_artifact_sha256": "b3dcf882420e9855582724279304aa5de5a8b01b6c3613455f30a14bb40fafa3",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "5d4fe0392aa15a58"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/9c1b06bc71f356be.npz",
+      "panel_artifact_sha256": "9d243e93234f6b2ce3388c127e9f42ae820f9a95ac6def9a80512a4dc92a3ac5",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "9c1b06bc71f356be"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/8cfac84e6c385dd9.npz",
+      "panel_artifact_sha256": "7f30df2cd7fd2baf51364fd1cd5c8cdc455283a1bdfacad19b3e9c992da30823",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "8cfac84e6c385dd9"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/4df6d1c668375c88.npz",
+      "panel_artifact_sha256": "edf28e375f5b452b84987aa82188beed067e019eed9a70207f3de4df169a6828",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "4df6d1c668375c88"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/ddc3040fd29d56f9.npz",
+      "panel_artifact_sha256": "073dea592043632271225c327555db04e61b5baf1b7162811a8c18d6c7492274",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "ddc3040fd29d56f9"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/f46b80f569a25d50.npz",
+      "panel_artifact_sha256": "b218b6700d878efed822427f25fa511b204df4bc6a1fb2aebf7fc7f69a71ef11",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "f46b80f569a25d50"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/07680c3cd44a54f4.npz",
+      "panel_artifact_sha256": "2cabbd8064e2221c2a784b432d9a4800978c21ed1605ed80c2a2a3352de3ff88",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "07680c3cd44a54f4"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/970d1c862201594c.npz",
+      "panel_artifact_sha256": "f6a5944b32d54cbf8e05018003b9abb874b98e014ed278059aedcbcceb1960ca",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "970d1c862201594c"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/44073836de975cae.npz",
+      "panel_artifact_sha256": "87822d12c49992c797c41a1f396d0d7a2546a5b7d38a6088bf4bb4e0d8475084",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "44073836de975cae"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/2a4ffb44d84559af.npz",
+      "panel_artifact_sha256": "d4fa3359e844466ee6b36a26c790e9848f4598a4654902e235fb26ce81a05efc",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "2a4ffb44d84559af"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/cf8a7ca3e5d95343.npz",
+      "panel_artifact_sha256": "816ae3df7fe11ab3aa9b48d9e6f2dec7d6e102e9b9594a76e65f6da8b8f3c4b9",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "cf8a7ca3e5d95343"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/e1b97d19389a518a.npz",
+      "panel_artifact_sha256": "635ff71a3a5f34f1800e1544819a7c11576fadc27260f08bb68ac40120ff2663",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "e1b97d19389a518a"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/5ccc8d66797d5e00.npz",
+      "panel_artifact_sha256": "ce9022fd0047552885b9b4c1a0f9b86fb11bf07225a48e338cc453addd7a23eb",
+      "recording_group": "2021.10.01.19.16.42_veh-28",
+      "scene_token": "5ccc8d66797d5e00"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/178349bbd015540c.npz",
+      "panel_artifact_sha256": "07ea78bb593ecf03555289ac085d767fad8ad9fa3633ab0c02523f5b0a9eee37",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "178349bbd015540c"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/8efcca2ee04450d5.npz",
+      "panel_artifact_sha256": "b081dde4aa8359a2bcb512865a2a3dbd22589a79ebea12bb44d8b6ffb61a354d",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "8efcca2ee04450d5"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/d5ffc7be802051cd.npz",
+      "panel_artifact_sha256": "2e2c71f409e4ef0551629f4690b7b0b2b79c1d9dca644786a1d89e1db2f7cef4",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "d5ffc7be802051cd"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/68412cefe7eb5dbf.npz",
+      "panel_artifact_sha256": "5fb31e241c7d49d607b35c1d515672d3af44a27b016596add00a6429fcc8d490",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "68412cefe7eb5dbf"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/4d680e6adf7f5b81.npz",
+      "panel_artifact_sha256": "8048727a5a04718ca07832f7f21b906b7d2471a045ab2e9715f96620b46f582d",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "4d680e6adf7f5b81"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/65e7c7eabf2e5d1d.npz",
+      "panel_artifact_sha256": "95f6fce791ab5fdaaf6ae3200055a0f600cdac69827867d85904a09382df5abb",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "65e7c7eabf2e5d1d"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/275e8959d7d8526a.npz",
+      "panel_artifact_sha256": "4cfcdca2a443b391c3c4db8326ca2393ae849a9334c5faf5a7be1a9dda0fc416",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "275e8959d7d8526a"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/66b6d152b3ba5079.npz",
+      "panel_artifact_sha256": "970165610fa1786b1ded7dba698b669d61170d389677390934c4435f7edc3298",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "66b6d152b3ba5079"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/783ca98d85dd564a.npz",
+      "panel_artifact_sha256": "cc62c0851b7ab05609c074379035dd5e5a697f71f77dba8f2da98b6b08164717",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "783ca98d85dd564a"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/596d777da0925d8a.npz",
+      "panel_artifact_sha256": "1b885397df8510684fef5a4753356c1aa6c2158506fde98c6284fdbb39b8571b",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "596d777da0925d8a"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/e889ad0969ff5c80.npz",
+      "panel_artifact_sha256": "c0ad663d5fc07fe75696c800aa47418c76b9faaad646a5d4c082e2c0c82c9bcf",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "e889ad0969ff5c80"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/d7587000e0675895.npz",
+      "panel_artifact_sha256": "f9ed1e4e3e77688033c06e378173dea07c42d9b6b31a267372495e48437dbfbc",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "d7587000e0675895"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/d3ab9d8c9d215e24.npz",
+      "panel_artifact_sha256": "e25bbcaeef563d760897f2e6fe2c8f7dd16288f7b5cf8c12eefadbbabf81d341",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "d3ab9d8c9d215e24"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/9bc425de3f665d0b.npz",
+      "panel_artifact_sha256": "18482ae4263a41b727d353af1d0ea835a2ffb137435eb441ef57f5398f834e9e",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "9bc425de3f665d0b"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/adb70ab30a2a54aa.npz",
+      "panel_artifact_sha256": "3a6b8ed7a3abb622c4b2f6ee83b1e7b107debcb008eba2ce822d9368c21d0cd6",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "adb70ab30a2a54aa"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/4ee684df37ac5a49.npz",
+      "panel_artifact_sha256": "cb36f77f97ea9163455f0faff4204938aa823f0d24addb6441342841537c7fb4",
+      "recording_group": "2021.10.05.04.03.05_veh-50",
+      "scene_token": "4ee684df37ac5a49"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/a6558db75cae5e56.npz",
+      "panel_artifact_sha256": "4e50c4cfe9d5e1b748f115bdb4201a36c9bfcfa4d36672e1471d65b58c6bced8",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "a6558db75cae5e56"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/5e642f6705ae5996.npz",
+      "panel_artifact_sha256": "66e30924aa1e4d1ba6aaaa91f586ac5092cbe841c020323467959a6f86347a9f",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "5e642f6705ae5996"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/3460439af5675b38.npz",
+      "panel_artifact_sha256": "8faa589256e9f16e778eea45a3ac54802dcc0e747074d9b8e5fd36b5ea701293",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "3460439af5675b38"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/6e2e8223756455c0.npz",
+      "panel_artifact_sha256": "e982e87795cdb3aa6ba20b5d6e44d9de901188898a1501600628f27b9d68ea01",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "6e2e8223756455c0"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/88612f54e59253b6.npz",
+      "panel_artifact_sha256": "f59e72dc8cd144b43852f1c36c04cfe18c4117d63f4d1186af2b74f07008fa10",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "88612f54e59253b6"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/ed4537c324da549f.npz",
+      "panel_artifact_sha256": "47a000bd0e644093932405d07d4298647b5986e951f346c8d443f7d438effd4e",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "ed4537c324da549f"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/20ec6d7b5ee755fb.npz",
+      "panel_artifact_sha256": "1da0ce507a2bb881050a83e6c6d09a01d2ffdf77c37c9c43b284e1ebfea48b62",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "20ec6d7b5ee755fb"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/18790cb5cf3a5163.npz",
+      "panel_artifact_sha256": "02ba4ad6032866604a8c93ab895e9e6382480a2be12c936bb5ab86273a0b4b62",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "18790cb5cf3a5163"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/0c039e510d625111.npz",
+      "panel_artifact_sha256": "47640a79fd49b96fbd4a4b814965725514e3f421697190359974c7e75943c822",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "0c039e510d625111"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/86cd55059a025a05.npz",
+      "panel_artifact_sha256": "fba4107ff7358c186f64f3e6179382fdb6ed5553231354070eca04021b760771",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "86cd55059a025a05"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/4cec28ee4cea559b.npz",
+      "panel_artifact_sha256": "05ed31200ee9d7806104afb7d5492b9175071ac43076d0b752b87db13ce99c37",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "4cec28ee4cea559b"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/c0eb333b4a7a5fbf.npz",
+      "panel_artifact_sha256": "f824fb8e60c219b818c39e3a4cab42fd9ce589bb5b279c3d7faf1c1da64d529e",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "c0eb333b4a7a5fbf"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/08d8ba53c9a65e7e.npz",
+      "panel_artifact_sha256": "05ceff1b18882b327b9dd17e205ee9218b4f71fbd44a49b800384939a12f931a",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "08d8ba53c9a65e7e"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/754bafcb8d7b5bbb.npz",
+      "panel_artifact_sha256": "b490a6714677cb0cafdeed6e4bacfa0bcbb5014482de56452133e39298afc2c5",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "754bafcb8d7b5bbb"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/f9869b5b71c05d32.npz",
+      "panel_artifact_sha256": "6a3d01174a2a1e098e67e906015546ecccc330c2a01233e01e879847a2942034",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "f9869b5b71c05d32"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/f97e8e913e0f53cf.npz",
+      "panel_artifact_sha256": "49ef15f6026c1204954c30b44f15401af5f3b657d5d446b37ca0b484372cd41d",
+      "recording_group": "2021.10.06.13.21.47_veh-28",
+      "scene_token": "f97e8e913e0f53cf"
+    },
+    {
+      "anchor_index": 0,
+      "panel_artifact": "panels/ba1b460bba935c24.npz",
+      "panel_artifact_sha256": "966bcac8f0bdb0f6a3b874b25a8435e9fdaf8794f37976edb203c60ddea3dd31",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "ba1b460bba935c24"
+    },
+    {
+      "anchor_index": 1,
+      "panel_artifact": "panels/c39fcedb6f5d5952.npz",
+      "panel_artifact_sha256": "77c853076e95fbed45ce69c01f824c888b480acf9a2d8c9552fb8f4f6f1ca57b",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "c39fcedb6f5d5952"
+    },
+    {
+      "anchor_index": 2,
+      "panel_artifact": "panels/f48fdd498c9d54e3.npz",
+      "panel_artifact_sha256": "66d9b99008ba7cafd59502edbe0ab97c9330d497d47ad387a6d9a672d5f4e76d",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "f48fdd498c9d54e3"
+    },
+    {
+      "anchor_index": 3,
+      "panel_artifact": "panels/3868dcc581e75592.npz",
+      "panel_artifact_sha256": "80c7013839893425cf55fd020219f2870cbd4789685e38b379fa544925820746",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "3868dcc581e75592"
+    },
+    {
+      "anchor_index": 4,
+      "panel_artifact": "panels/132e9017490a5977.npz",
+      "panel_artifact_sha256": "14e6eb8e3bb83677b0e0536160a8c7b6a7d601148268c25420778f011ec31234",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "132e9017490a5977"
+    },
+    {
+      "anchor_index": 5,
+      "panel_artifact": "panels/67fb24bc51455269.npz",
+      "panel_artifact_sha256": "8220f04309b1d2594289109a4bc6bd0288e0ff5156052296d918ee607f891d8a",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "67fb24bc51455269"
+    },
+    {
+      "anchor_index": 6,
+      "panel_artifact": "panels/1295232b65bf5f8d.npz",
+      "panel_artifact_sha256": "d6e93e5f0f58ad683ef37dc0cf2d04b1b6a8a2304c4fe2575ba5346c19d6e767",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "1295232b65bf5f8d"
+    },
+    {
+      "anchor_index": 7,
+      "panel_artifact": "panels/95eb8e4d26ac5b77.npz",
+      "panel_artifact_sha256": "5987360cd74862335a0ce8f8890266e9d4a93ef8367081cbd82f99c4156a3fad",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "95eb8e4d26ac5b77"
+    },
+    {
+      "anchor_index": 8,
+      "panel_artifact": "panels/cfd2ce4e362e5abd.npz",
+      "panel_artifact_sha256": "86dec990e8bd95c84dbad3d0d09ad7614b0a5ef0f0f56a786770edf0d502bb28",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "cfd2ce4e362e5abd"
+    },
+    {
+      "anchor_index": 9,
+      "panel_artifact": "panels/5cd067c5b0305971.npz",
+      "panel_artifact_sha256": "deb19d8bc9b93c53914c65730f498c4be4f5d7a7324b131b8c9d3a2d7af1cd70",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "5cd067c5b0305971"
+    },
+    {
+      "anchor_index": 10,
+      "panel_artifact": "panels/046e508317c7507e.npz",
+      "panel_artifact_sha256": "cb48411d2e7453bddcc712cb62eec862e4c8e3fbea9df6353c578472ba31ba19",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "046e508317c7507e"
+    },
+    {
+      "anchor_index": 11,
+      "panel_artifact": "panels/33d66a4477385483.npz",
+      "panel_artifact_sha256": "750fea0891dda781d16d559e82835f3633755f96fa90e864fd3f188ac0198ac4",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "33d66a4477385483"
+    },
+    {
+      "anchor_index": 12,
+      "panel_artifact": "panels/551e688d805759df.npz",
+      "panel_artifact_sha256": "ffc1151a6fca5171a4e0c81d8c7f42f927cd966718d67e819e2196b00b780c32",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "551e688d805759df"
+    },
+    {
+      "anchor_index": 13,
+      "panel_artifact": "panels/44ea696dda7d50ff.npz",
+      "panel_artifact_sha256": "81eb503d624996498f2fa853fb26aeba74ebaeeb095aa795e0223e18f390ea91",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "44ea696dda7d50ff"
+    },
+    {
+      "anchor_index": 14,
+      "panel_artifact": "panels/d4a5764b2fdc5938.npz",
+      "panel_artifact_sha256": "7f7093bcc1e2fdfd3d26eece8fa2f0687445e3d6e8ef41a084e037cbe6cb3fb5",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "d4a5764b2fdc5938"
+    },
+    {
+      "anchor_index": 15,
+      "panel_artifact": "panels/bcfceb45c0985922.npz",
+      "panel_artifact_sha256": "14c5af34f0cb6b96ddddc412ea44535da93411f94c3f6a3028704fdbd5e1791e",
+      "recording_group": "2021.10.11.07.47.13_veh-50",
+      "scene_token": "bcfceb45c0985922"
+    }
+  ],
+  "source_result_sha256": "64e80d90124a2d88b60cd55339970d03677d04262ddb74ec3ba4b019196f7488"
+}
