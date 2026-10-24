@@ -1,0 +1,119 @@
+experiment_id: R004H7BS2-candidate-information-and-roi-diagnosis-v1
+date: 2026-10-24
+status: preregistered_fit_only
+
+H7BS2:
+  scientific_role: outcome_blind_candidate_information_and_support_diagnosis
+  independent_unit: recording_group
+  fit_groups: 42
+  anchors_per_group: 16
+  minimum_valid_anchors_per_group: 12
+  prefix_index: 25
+  complete_horizon_index: 40
+  sample_interval_s: 0.1
+  primary_divergence_threshold_m: 0.5
+  divergence_thresholds_m: [0.25, 0.5, 1.0]
+  divergence_threshold_provenance:
+    primary: smallest_frozen_challenger_amplitude
+    sensitivity_only: [half_primary, twice_primary]
+    post_result_threshold_selection: prohibited
+  pair_population: native_versus_each_full_horizon_intent_eligible_challenger
+  lattice:
+    resolution_m: 1.0
+    center_origin_x_m: 0.5
+    center_origin_y_m: 0.5
+    provenance: exact_phase_of_original_minus32_to32_one_metre_grid
+    continuous_certificate_claim: prohibited
+  vehicle:
+    rear_overhang_m: 1.127
+    front_extent_m: 4.049
+    half_width_m: 1.1485
+  roi_candidates:
+    - id: original_centered_64x64
+      design_role: frozen_baseline
+      x_min_m: -32.0
+      y_min_m: -32.0
+      columns: 64
+      rows: 64
+      resolution_m: 1.0
+    - id: forward_shift_64x64
+      design_role: constant_node_budget_quarter_rear_three_quarters_forward
+      x_min_m: -16.0
+      y_min_m: -32.0
+      columns: 64
+      rows: 64
+      resolution_m: 1.0
+    - id: forward_extend_80x64
+      design_role: preserve_original_rear_and_lateral_add_16m_forward
+      x_min_m: -32.0
+      y_min_m: -32.0
+      columns: 80
+      rows: 64
+      resolution_m: 1.0
+    - id: forward_extend_96x64
+      design_role: preserve_original_rear_and_lateral_add_32m_forward
+      x_min_m: -32.0
+      y_min_m: -32.0
+      columns: 96
+      rows: 64
+      resolution_m: 1.0
+    - id: forward_extend_128x64
+      design_role: preserve_original_rear_and_lateral_add_64m_forward
+      x_min_m: -32.0
+      y_min_m: -32.0
+      columns: 128
+      rows: 64
+      resolution_m: 1.0
+    - id: symmetric_128x128
+      design_role: isotropic_expansion_control_same_forward_limit_as_96x64
+      x_min_m: -64.0
+      y_min_m: -64.0
+      columns: 128
+      rows: 128
+      resolution_m: 1.0
+  roi_selection_rule: minimum_node_count_then_frozen_list_precedence_among_candidates_with_42_of_42_groups_at_least_12_of_16_valid
+  no_feasible_roi_action: stop_fixed_uniform_grid_route
+  prefix_information_rule:
+    universal_sufficiency_falsifier: any_eligible_pair_with_equal_prefix_lattice_sets_and_distinct_complete_lattice_sets
+    no_counterexample_interpretation: absence_on_fit_is_not_proof
+    h7b2_status_before_result: hold
+  statistics:
+    aggregation: equal_weight_recording_group
+    bootstrap_seed: 20261024
+    bootstrap_replicates: 10000
+    interval: percentile_95
+    pair_level_independence_claim: prohibited
+  frozen_input_sha256:
+    h7bs1_fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+    group_role_manifest: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  implementation_sha256:
+    candidate_information_source: 15fdd3a281ab2135f8cb302cd7e0f1186a175aeea8464f08ec790a1323741205
+    shadow_decision_source: 9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5
+    runner_source: bc6455a98624878322e906fe1c669e940a3df078d4034ec3a571abd3a06474e1
+    audit_source: 77e5c7838dd3a3799e64e4e3e986d7a887f07782ab484facd3a0fd14ad321b88
+  forbidden_inputs:
+    - visual_fields
+    - DINO_features
+    - teacher_labels_or_margins
+    - H7B_ranking_or_regret_outcomes
+    - official_calibration
+    - test
+    - NavDream
+    - target
+  resources:
+    device: cpu
+    maximum_wall_minutes: 30
+    maximum_output_mib: 64
+
+claim_boundary:
+  permitted:
+    - discrete_time_candidate_divergence_on_frozen_fit_panels
+    - exact_set_min_indistinguishability_for_equal_prefix_lattice_sets
+    - full_horizon_geometric_support_cost_frontier_on_fit
+  prohibited:
+    - visual_correctness_or_robustness
+    - teacher_or_decision_relevance
+    - driving_or_safety_gain
+    - continuous_swept_footprint_certificate
+    - development_test_target_or_NavDream_generalization
+    - architecture_novelty
