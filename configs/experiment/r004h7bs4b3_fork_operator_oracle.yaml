@@ -1,0 +1,91 @@
+experiment_id: R004H7BS4B3-fork-operator-oracle-v1
+date: 2026-10-25
+status: preregistered_not_run
+
+H7BS4B3:
+  scientific_role: fit_only_post_b2_fork_operator_oracle_qualification
+  parent_decision: COMMON_MIN_DOMINANCE_ELIGIBLE_FOR_FORK_OPERATOR_DESIGN
+  parent_decision_must_remain_unchanged: true
+  frozen_input_sha256:
+    h7bs4b2_result: beb61ad987b5c8afcaacc01a4316bdb62ddc966f9d76d10726dd46f98998f64e
+    h7bs1_fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+    fit_forward96_teacher_manifest: 65e686e06522fddf4950f1fe772fbcbea0547cec3d54fb383a8ee33d208b9fd0
+  expected_scope_counts:
+    anchor_count: 672
+    recording_group_count: 42
+    pair_count: 3864
+    common_minimum_pair_count: 2033
+  primary_factorization:
+    name: temporal_first_exact_discrete_footprint_difference
+    fork_definition: first_time_index_whose_integer_footprint_set_differs
+    shared_definition: union_of_exactly_equal_footprints_before_fork
+    branch_definition: full_suffix_union_from_fork_inclusive
+    invalid_if: no_fork_or_empty_shared_or_empty_branch
+  sensitivity_factorization:
+    name: spatial_exact_support_factorization
+    shared_definition: exact_full_horizon_set_intersection
+    branch_definition: exact_full_horizon_exclusive_sets
+    may_not_replace_failed_primary: true
+  fixed_suffix_control:
+    start_index: 25
+    nominal_start_seconds: 2.5
+    role: frozen_H7BS1_prefix_complement_control_not_method_selection
+  decision_protocol:
+    independent_unit: recording_group
+    repeated_unit: anchor_and_candidate_pair
+    bootstrap_seed: 20261025
+    bootstrap_resamples: 10000
+    minimum_valid_fraction: 0.95
+    minimum_recovery_rate: 0.5
+    recovery_rule: valid_factorization_and_exact_nonzero_branch_contrast
+    minimum_affected_groups: 21
+    strict_rule: temporal_valid_fraction_at_least_0_95_and_group_equal_recovery_bootstrap_lower_strictly_above_0_5_and_at_least_21_groups_affected
+    if_temporal_pass: TEMPORAL_FORK_OPERATOR_NONDEGENERATE_ON_FIT__DECISION_RELEVANCE_HOLD
+    if_only_spatial_pass: SPATIAL_ONLY_SIGNAL_REQUIRES_THEORY_REVIEW__NO_OPERATOR_SELECTED
+    otherwise: STOP_ROAD_MARGIN_AS_GENERAL_RERANKER
+  identifiability_contract:
+    primary_quantity: branch_minimum_contrast
+    branch_contrast_gauge_invariant: true
+    absolute_teacher_zero_is_quotient_identifiable: false
+    absolute_teacher_sign_role: descriptive_oracle_context_only
+    no_safety_claim: true
+  roi:
+    x_min_m: -32.0
+    y_min_m: -32.0
+    columns: 96
+    rows: 64
+    resolution_m: 1.0
+  vehicle:
+    rear_overhang_m: 1.127
+    front_extent_m: 4.049
+    half_width_m: 1.1485
+  implementation_sha256:
+    operator_anatomy_source: 4d36d1b87e613118f00b7d701fe626ec4d466b5c26d6c5e0d27364f8456db541
+    shadow_decision_source: 9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5
+    runner_source: b0a7eb34d85b8af48ce06a2c46759ba87eed4f0508659476a96da0ec27ad21ed
+    audit_source: 8bf2bef47a118faf46c55b83e76b740274a9ea1141a1b998d46d521ca116771a
+  forbidden_inputs:
+    - learned_visual_field_values
+    - DINO_feature_values
+    - planner_outcomes_or_driving_scores
+    - development
+    - calibration
+    - official_test
+    - NavDream
+    - target_domain
+  resources:
+    device: cpu
+    maximum_wall_minutes: 30
+    maximum_output_mib: 128
+
+claim_boundary:
+  permitted:
+    - fit_only_oracle_operator_nondegeneracy
+    - exact_attribution_of_recovered_branch_contrasts
+    - authorization_or_rejection_of_matched_capacity_operator_design
+  prohibited:
+    - learned_model_or_network_benefit
+    - decision_driving_or_safety_gain
+    - independent_confirmation_or_generalization
+    - NavDream_or_target_robustness
+    - architecture_optimality_or_top_venue_readiness

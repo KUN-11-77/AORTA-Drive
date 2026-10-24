@@ -48,8 +48,15 @@ exact zeros，因此 task operator 必须先于网络修改。
 G_{ij}(d)=\min_{q\in C_{ij}}d_q-m_0.
 \]
 
-共同部分是两种行为都必须经历的资格条件。若其 robust lower bound 不通过，则不能借分支比较宣称
-某个 challenger 更安全；系统应 abstain 或保持 native。
+共同部分是两种行为都必须经历的结构条件。但这里必须区分两种命题：
+
+1. **相对 non-degradation：**若两候选具有完全相同的时间前缀，则切换分支不会改变此前共同经历；
+2. **绝对 road safety：**要求 (\min_C d>0)，但该命题不具有 gauge invariance，不能从 quotient
+   potential 单独识别。
+
+因此 B3 的主资格只能使用可辨识的“exact shared temporal prefix + gauge-invariant branch
+contrast”。teacher 的绝对正负仅作 oracle 分层。未来若要声明绝对 shared safety，必须增加具有
+独立监督和校准责任的 absolute feasibility 接口；在其必要性得到证据前，不把它塞入主方法。
 
 ### 3.2 Branch contrast
 
@@ -65,8 +72,9 @@ L_{ij}^{\mathrm{fork}}
 =\inf_{d\in\mathcal U(X,O)}D_{ij}(d).
 \]
 
-干预还需要 challenger branch 自身的绝对或外部合法性资格；(L_{ij}^{\mathrm{fork}}>0) 只表示
-model-relative branch preference，不是现实安全证书。
+干预还需要冻结 candidate legality；(L_{ij}^{\mathrm{fork}}>0) 只表示 model-relative branch
+preference，不是现实安全证书。任何绝对合法性/安全性接口必须单列假设、监督与校准，不能由
+quotient branch score 暗示。
 
 ## 4. 两种“共同部分”不能混同
 

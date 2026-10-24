@@ -40,6 +40,28 @@ class TrajectoryPairAnatomy:
     first_center_separation_index_gt_one_grid_m: int | None
 
 
+@dataclass(frozen=True)
+class ForkSetMinEvaluation:
+    """Shared qualification and branch contrast for one factorization."""
+
+    valid: bool
+    reason: str
+    fork_index: int | None
+    shared_node_count: int
+    reference_branch_node_count: int
+    comparison_branch_node_count: int
+    shared_minimum: float | None
+    reference_branch_minimum: float | None
+    comparison_branch_minimum: float | None
+    branch_contrast: float | None
+    shared_strictly_safe: bool
+    reference_branch_strictly_safe: bool
+    comparison_branch_strictly_safe: bool
+    nonzero_branch_contrast: bool
+    road_rescue_opportunity: bool
+    road_induction_risk: bool
+
+
 def _unique_nodes(values: npt.ArrayLike, node_count: int, name: str) -> tuple[int, ...]:
     nodes = tuple(int(value) for value in np.asarray(values, dtype=np.int64).reshape(-1))
     if not nodes:
@@ -154,4 +176,137 @@ def analyze_trajectory_pair(
         first_center_separation_index_gt_one_grid_m=_first_index_greater(
             center_separation, grid_resolution_m
         ),
+    )
+
+
+def _node_set(values: npt.ArrayLike, node_count: int, name: str) -> set[int]:
+    return set(_unique_nodes(values, node_count, name))
+
+
+def _fork_evaluation(
+    shared: set[int],
+    reference_branch: set[int],
+    comparison_branch: set[int],
+    labels: npt.NDArray[np.float64],
+    *,
+    fork_index: int | None,
+    invalid_reason: str | None = None,
+) -> ForkSetMinEvaluation:
+    if invalid_reason is not None or not shared or not reference_branch or not comparison_branch:
+        reason = invalid_reason or "empty_shared_or_branch_support"
+        return ForkSetMinEvaluation(
+            valid=False,
+            reason=reason,
+            fork_index=fork_index,
+            shared_node_count=len(shared),
+            reference_branch_node_count=len(reference_branch),
+            comparison_branch_node_count=len(comparison_branch),
+            shared_minimum=None,
+            reference_branch_minimum=None,
+            comparison_branch_minimum=None,
+            branch_contrast=None,
+            shared_strictly_safe=False,
+            reference_branch_strictly_safe=False,
+            comparison_branch_strictly_safe=False,
+            nonzero_branch_contrast=False,
+            road_rescue_opportunity=False,
+            road_induction_risk=False,
+        )
+    shared_minimum = float(np.min(labels[np.asarray(sorted(shared), dtype=np.int64)]))
+    reference_minimum = float(
+        np.min(labels[np.asarray(sorted(reference_branch), dtype=np.int64)])
+    )
+    comparison_minimum = float(
+        np.min(labels[np.asarray(sorted(comparison_branch), dtype=np.int64)])
+    )
+    contrast = comparison_minimum - reference_minimum
+    shared_safe = shared_minimum > 0.0
+    reference_safe = reference_minimum > 0.0
+    comparison_safe = comparison_minimum > 0.0
+    return ForkSetMinEvaluation(
+        valid=True,
+        reason="valid",
+        fork_index=fork_index,
+        shared_node_count=len(shared),
+        reference_branch_node_count=len(reference_branch),
+        comparison_branch_node_count=len(comparison_branch),
+        shared_minimum=shared_minimum,
+        reference_branch_minimum=reference_minimum,
+        comparison_branch_minimum=comparison_minimum,
+        branch_contrast=contrast,
+        shared_strictly_safe=shared_safe,
+        reference_branch_strictly_safe=reference_safe,
+        comparison_branch_strictly_safe=comparison_safe,
+        nonzero_branch_contrast=contrast != 0.0,
+        road_rescue_opportunity=shared_safe and not reference_safe and comparison_safe,
+        road_induction_risk=shared_safe and reference_safe and not comparison_safe,
+    )
+
+
+def evaluate_spatial_fork(
+    reference_nodes: npt.ArrayLike,
+    comparison_nodes: npt.ArrayLike,
+    labels: npt.ArrayLike,
+) -> ForkSetMinEvaluation:
+    """Factor complete supports into exact spatial overlap and exclusive branches."""
+
+    field = np.asarray(labels, dtype=np.float64).reshape(-1)
+    if field.size == 0 or not np.all(np.isfinite(field)):
+        raise ValueError("labels must be a nonempty finite vector")
+    reference = _node_set(reference_nodes, field.size, "reference_nodes")
+    comparison = _node_set(comparison_nodes, field.size, "comparison_nodes")
+    shared = reference & comparison
+    return _fork_evaluation(
+        shared,
+        reference - shared,
+        comparison - shared,
+        field,
+        fork_index=None,
+    )
+
+
+def evaluate_temporal_fork(
+    reference_nodes_by_time: tuple[npt.ArrayLike, ...],
+    comparison_nodes_by_time: tuple[npt.ArrayLike, ...],
+    labels: npt.ArrayLike,
+) -> ForkSetMinEvaluation:
+    """Use the first exact per-time footprint-set difference as the fork index."""
+
+    field = np.asarray(labels, dtype=np.float64).reshape(-1)
+    if field.size == 0 or not np.all(np.isfinite(field)):
+        raise ValueError("labels must be a nonempty finite vector")
+    if not reference_nodes_by_time or len(reference_nodes_by_time) != len(
+        comparison_nodes_by_time
+    ):
+        raise ValueError("temporal node sequences must be aligned and nonempty")
+    reference = tuple(
+        _node_set(nodes, field.size, f"reference_nodes_by_time[{index}]")
+        for index, nodes in enumerate(reference_nodes_by_time)
+    )
+    comparison = tuple(
+        _node_set(nodes, field.size, f"comparison_nodes_by_time[{index}]")
+        for index, nodes in enumerate(comparison_nodes_by_time)
+    )
+    fork_index = next(
+        (index for index, (left, right) in enumerate(zip(reference, comparison, strict=True)) if left != right),
+        None,
+    )
+    if fork_index is None:
+        return _fork_evaluation(
+            set(),
+            set(),
+            set(),
+            field,
+            fork_index=None,
+            invalid_reason="no_discrete_temporal_fork",
+        )
+    shared = set().union(*reference[:fork_index]) if fork_index > 0 else set()
+    reference_branch = set().union(*reference[fork_index:])
+    comparison_branch = set().union(*comparison[fork_index:])
+    return _fork_evaluation(
+        shared,
+        reference_branch,
+        comparison_branch,
+        field,
+        fork_index=fork_index,
     )

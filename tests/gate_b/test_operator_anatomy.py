@@ -6,6 +6,8 @@ import pytest
 from aorta_drive.evaluation.operator_anatomy import (
     analyze_set_min_pair,
     analyze_trajectory_pair,
+    evaluate_spatial_fork,
+    evaluate_temporal_fork,
 )
 
 
@@ -59,3 +61,69 @@ def test_invalid_duplicate_or_empty_nodes_fail_closed() -> None:
         analyze_set_min_pair((), (0,), np.ones(2))
     with pytest.raises(ValueError):
         analyze_set_min_pair((0, 0), (1,), np.ones(2))
+
+
+def test_spatial_fork_retains_shared_gate_and_branch_contrast() -> None:
+    result = evaluate_spatial_fork(
+        (0, 1),
+        (0, 2),
+        np.array((0.5, -0.2, 0.4), dtype=np.float64),
+    )
+    assert result.valid
+    assert result.shared_strictly_safe
+    assert not result.reference_branch_strictly_safe
+    assert result.comparison_branch_strictly_safe
+    assert result.road_rescue_opportunity
+    assert result.branch_contrast == pytest.approx(0.6)
+
+
+def test_spatial_fork_does_not_call_unsafe_shared_region_a_rescue() -> None:
+    result = evaluate_spatial_fork(
+        (0, 1),
+        (0, 2),
+        np.array((-0.1, -0.2, 0.4), dtype=np.float64),
+    )
+    assert result.valid
+    assert not result.shared_strictly_safe
+    assert not result.road_rescue_opportunity
+
+
+def test_temporal_fork_uses_first_exact_footprint_difference() -> None:
+    result = evaluate_temporal_fork(
+        ((0, 1), (1, 2), (2, 3)),
+        ((1, 0), (1, 4), (4, 5)),
+        np.array((1.0, 0.8, -0.2, -0.4, 0.3, 0.5), dtype=np.float64),
+    )
+    assert result.valid
+    assert result.fork_index == 1
+    assert result.shared_node_count == 2
+    assert result.reference_branch_minimum == pytest.approx(-0.4)
+    assert result.comparison_branch_minimum == pytest.approx(0.3)
+    assert result.road_rescue_opportunity
+
+
+def test_temporal_fork_rejects_no_fork_and_empty_trunk() -> None:
+    no_fork = evaluate_temporal_fork(
+        ((0,), (1,)),
+        ((0,), (1,)),
+        np.ones(2),
+    )
+    assert not no_fork.valid
+    assert no_fork.reason == "no_discrete_temporal_fork"
+    empty_trunk = evaluate_temporal_fork(
+        ((0,), (1,)),
+        ((2,), (3,)),
+        np.ones(4),
+    )
+    assert not empty_trunk.valid
+    assert empty_trunk.reason == "empty_shared_or_branch_support"
+
+
+def test_fork_contrast_is_gauge_invariant_but_absolute_flags_are_not() -> None:
+    labels = np.array((0.1, -0.2, 0.4), dtype=np.float64)
+    shifted = labels - 1.0
+    original = evaluate_spatial_fork((0, 1), (0, 2), labels)
+    translated = evaluate_spatial_fork((0, 1), (0, 2), shifted)
+    assert original.branch_contrast == pytest.approx(translated.branch_contrast)
+    assert original.shared_strictly_safe
+    assert not translated.shared_strictly_safe
