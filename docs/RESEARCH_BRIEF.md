@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：注册 realized-trajectory fit-only preflight。继续使用同一官方执行算子与既有 fit denominator，预先冻结 realized intent 资格、swept-footprint non-inclusion、真实 NAVSIM preprocessing 下的 `epsilon_map` 审计和机会分母。不得因122/128诊断结果调整阈值或 provider，不得读取 development、calibration、test 或 target-domain 数据。
+- 下一阶段：R004H4P5I 已注册，先以八个 fit recording-group blocks 的 anchor 0 闭合 realized geometry 实现。它强制 metric-cache/label-cache SHA-256 同源、official vehicle/corner 兼容、41点 realized sweep、non-inclusion 与 `epsilon_map` 账本，并至少实际执行一次 teacher bound。通过后才可注册128-anchor fit-only preflight；不得因122/128诊断结果调整阈值或 provider，不得读取 development、calibration、test 或 target-domain 数据。

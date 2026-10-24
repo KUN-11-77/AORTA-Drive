@@ -572,3 +572,22 @@ The first hardened-audit replay also failed because the manually pinned config d
 one extra hexadecimal `d`. That failed `audit_v2` is retained. The only permitted correction
 was to match the digest to both the raw result field and an independent hash of the frozen
 config; the unchanged raw result was then audited as `audit_v3`.
+
+## ADR-0051 — Qualify realized geometry with one sentinel per recording-group block
+
+- **Status:** accepted before R004H4P5I
+- **Design:** use anchor index zero from each of the first eight frozen fit recording groups.
+  Recording group is the experimental unit; these deterministic sentinels are an interface
+  exercise and make no prevalence, significance or performance claim.
+- **Implementation gate:** require exact metric-cache/label-cache hash identity, frozen
+  source hashes, official Pacifica dimensions, rear-axle analytic corners agreeing with
+  NAVSIM preprocessing within 32 global-coordinate ULPs, deterministic realized execution,
+  and a complete candidate/failure ledger.
+- **Geometry gate:** use all 41 official realized states, an arithmetic-safe disk sweep with
+  certified pose error, inner-cell non-inclusion witnesses and the exact-cache polygon
+  teacher error ledger. At least one sentinel must reach an actual teacher-bound computation;
+  otherwise diagnose the geometry architecture before any 128-anchor expansion.
+- **Boundary:** PASS permits only registration of the expanded fit-only preflight. It cannot
+  estimate supply/opportunity prevalence, change the provider, thresholds, grid or ROI, or
+  open development. The exact polygon teacher is relative to the frozen cache object and is
+  not asserted equivalent to Shapely boundary semantics or real-world map truth.

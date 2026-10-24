@@ -30,6 +30,13 @@ development access. H3 is a historically exposed proxy rehearsal and must freeze
 scale controls, finite-sample threshold rules, common denominators and abort conditions
 before any proxy payload is opened.
 
+R004H4P4E has now closed the official desired-to-realized execution operator on all 128
+frozen fit anchors. The registered interface gates passed, while desired final-segment
+identity survived official LQR/bicycle execution on `0/128` anchors. All later intent and
+geometry quantities are therefore defined on official realized states. The next executable
+block is R004H4P5I, an eight-recording-group geometry-interface sentinel; development and
+all later roles remain sealed.
+
 ## Claim map
 
 | ID | Claim candidate | Minimum evidence | Falsifier |
@@ -170,6 +177,38 @@ a provider change.
 - **Adequate supply:** at least `0.90` anchor supply and at least `0.75` in every group.
   PASS permits only a fit-only geometry preflight. Failure permits one principled provider
   revision, not threshold relaxation or development access.
+
+### H4P4E — official execution-operator audit
+
+- **Data:** the unchanged eight fit groups × sixteen anchors; no geometry teacher,
+  prediction, image or development payload.
+- **Object:** paired native/challenger desired references transformed, resampled at `0.1 s`,
+  tracked by official batch LQR and propagated by the official kinematic bicycle model.
+- **Primary:** source hashes, `7 x 41` shape, finiteness, common initial state, coordinate
+  roundtrip and bit-exact repeated simulation.
+- **Result:** PASS on 128/128 anchors. Realized supply `122/128` is diagnostic only.
+- **Theory consequence:** desired endpoint copying is not a realized-trajectory invariant.
+
+### H4P5I — eight-block realized-geometry interface sentinel
+
+- **Design:** first eight frozen fit recording groups as blocks; anchor index zero in each
+  block. Recording group is the experimental unit. The eight sentinels do not estimate
+  prevalence, effect size or statistical significance.
+- **Implementation contracts:** exact metric-cache/label-cache SHA-256 binding; official
+  vehicle parameters and rear-axle convention; analytic corners versus NAVSIM preprocessing
+  within 32 global-coordinate ULPs; deterministic official execution; complete ledgers.
+- **Geometry object:** all 41 realized states; piecewise-linear rear-axle translation with
+  arbitrary yaw; rotation-free disk outer cover and inner-cell witnesses; certified
+  global-to-ego pose error included outward/inward as appropriate.
+- **Teacher contract:** exact frozen raw polygon cover, per-node transform and rational
+  distance errors, polygon error zero only relative to that exact cache object. No
+  equivalence to Shapely `contains` or real-world map truth is claimed.
+- **PASS:** every implementation contract passes and at least one sentinel exercises intent,
+  geometry and teacher-bound stages. PASS permits only registration of the 128-anchor
+  fit-only geometry preflight. Zero exercise triggers geometry-architecture diagnosis;
+  it cannot authorize threshold, provider or ROI changes.
+- **Cost:** CPU-only, maximum 20 minutes. Exact rational comparisons may expose a runtime
+  bottleneck; runtime is itself a registered diagnostic before expansion.
 
 ### H4 — one-read development qualification
 

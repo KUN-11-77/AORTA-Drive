@@ -162,6 +162,12 @@ R004H4P4E 的实现审计在 128 个冻结 fit anchors 上闭合了该算子，�
 intent 不变量，只能是 provider 构造属性。后续资格必须直接比较
 \(\mathcal S_{x_0}(\hat\tau_j)\) 与 realized native，不能从 desired 端点替代推导。
 
+几何证据还要求 teacher artifact 与本次 `MetricCache` 具有完全相同的 cache SHA-256；
+仅凭 `log_name/scene_token` 相同不足以闭合同源性。车辆矩形必须从该 cache 的 official
+vehicle parameters 推导，并与 NAVSIM `state_array_to_coords_array` 的 rear-axle 四角点
+约定通过独立数值审计。若二者不满足，\(\varepsilon_{map}\) 与 swept-set 合同均视为
+未定义，而不是增加一个经验容差后继续。
+
 ## 5. Data partition and calibration
 
 source train、development、calibration、test sessions 严格分离。模型、checkpoint、图、\(\alpha\)、\(\gamma_{task}\)、candidate interface 和所有选择规则在首次读取 calibration scores 前冻结。

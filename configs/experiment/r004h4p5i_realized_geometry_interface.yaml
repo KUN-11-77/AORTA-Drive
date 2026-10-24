@@ -1,0 +1,119 @@
+experiment_id: R004H4P5I-realized-geometry-interface-v1
+date: 2026-10-24
+scope: fit_only_eight_group_realized_geometry_sentinel
+
+predecessor:
+  experiment: R004H4P4E-official-execution-interface-audit-v1
+  decision: PASS_OFFICIAL_EXECUTION_INTERFACE
+  implementation_revision: 06284a8fd3f13763fe56ed97cfe38f01b427d106
+  raw_result_sha256: f56a43d60d5cf406c0fa0dced46ec66e9740c22eb791a10894b591b61cd4bbdb
+
+inputs:
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  metric_manifest_sha256: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  allowed_role: fit
+  selected_group_rule: first_eight_fit_rows_in_frozen_role_manifest
+  selected_anchor_rule: anchor_index_zero_in_each_selected_group
+  recording_group_count: 8
+  anchor_count: 8
+  prohibited_roles: [selection, proxy_cal, development, calibration, test, target_domain]
+
+implementation:
+  navsim_geometry_source_sha256: 0f0703a9f3bd692a45f5307f1e91ccd1404dbad455c53007ada34a81852aa1f4
+  navsim_execution_source_sha256: f8ed588568fbeeebaa9c99ffd1d952f29cb490950b9490869bdf869cbdd00717
+  geometry_source_sha256: 3c47d87a79d2e08af12a97000565d05dfcbef56dbf60022945e88c1aa8749025
+  opportunity_source_sha256: 7b433037944677c4af87fef3c961c419ab26ae33ac2b24ff5489338b0623333b
+  native_offset_source_sha256: 76a238a4538f49211ccb24bd30e1b2cda79b0f26fae656e49f184b7adbc2440e
+  official_source_sha256:
+    navsim/planning/simulation/planner/pdm_planner/utils/pdm_array_representation.py: 0104cd2c291a3fb67630d8670b19cf8d2e01d79ca788f55f9b12264f2c2b4e3c
+    navsim/planning/simulation/planner/pdm_planner/utils/pdm_geometry_utils.py: 84ff47a6ef3346b7c89f7cd5580e82a2dfcc1c1bf922bf6227e398e8ba2c1354
+    navsim/planning/simulation/planner/pdm_planner/scoring/pdm_scorer.py: c9132b8b7019cc05c57573a26a8326cd7762dfdff35592046625a7fa895f6b62
+    navsim/planning/simulation/planner/pdm_planner/observation/pdm_occupancy_map.py: 19746b885186b363a964ca8b51ba3591ae7f8c68744df24824e7bdc744b591d3
+
+blocking:
+  experimental_unit: recording_group
+  sentinel_per_block: anchor_index_zero
+  randomization: none_deterministic_interface_audit
+  prevalence_or_significance_claim: prohibited
+
+desired_reference:
+  provider: native_fixed_normal_c2_bump_v1
+  amplitudes_m: [-1.5, -1.0, -0.5, 0.5, 1.0, 1.5]
+  desired_curve_dynamic_screen: disabled_as_non_official_execution_object
+
+official_execution:
+  proposal_interval_s: 0.1
+  proposal_num_poses: 40
+  realized_samples_including_origin: 41
+  native_and_challengers_share_initial_state: true
+
+vehicle:
+  source: MetricCache.ego_state.car_footprint.vehicle_parameters
+  expected_width_m: 2.297
+  expected_length_m: 5.176
+  expected_rear_axle_to_center_m: 1.461
+  derived_rear_overhang_m: 1.127
+  derived_front_extent_m: 4.049
+  derived_half_width_m: 1.1485
+  corner_order: [front_left, rear_left, rear_right, front_right]
+  official_corner_compatibility_ulp_multiplier: 32
+
+intent_eligibility:
+  comparison_samples: realized_0.5_second_subsamples
+  minimum_native_terminal_displacement_m: 2.0
+  progress_ratio: [0.8, 1.2]
+  maximum_terminal_cross_track_m: 3.5
+  maximum_terminal_heading_difference_rad: 0.35
+  maximum_terminal_speed_difference_mps: 4.0
+
+geometry:
+  trajectory_object: official_realized_0.1_second_states
+  interpolation: linear_rear_axle_translation_arbitrary_yaw_between_adjacent_samples
+  grid: {x_min_m: -32.0, y_min_m: -32.0, rows: 64, columns: 64, resolution_m: 1.0}
+  challenger_and_native_outer: rotation_free_rear_axle_disk_sweep
+  challenger_and_native_inner: complete_grid_cells_inside_rear_axle_inner_disks
+  pose_error: maximum_certified_global_to_ego_position_error_over_batch
+  clipping: reject
+  empty_set: reject
+  meaningful_noninclusion:
+    minimum_challenger_minus_native_area_lower_m2: 1.0
+    minimum_native_minus_challenger_area_lower_m2: 1.0
+
+map_teacher:
+  semantic_object: exact_frozen_metric_cache_raw_polygon_cover
+  metric_cache_label_cache_sha256_equality: required
+  selected_layers: [CARPARK_AREA, DRIVABLE_AREA, INTERSECTION, ROADBLOCK]
+  grid_node_artifact_shape: [64, 64]
+  epsilon_map_components:
+    - certified_ego_to_global_transform_error
+    - exact_rational_segment_distance_interval_error
+    - polygon_error_zero_only_relative_to_exact_frozen_cache_object
+  official_shapely_contains_equivalence_claim: prohibited
+  minimum_teacher_improvement_lower_m: 0.5
+
+decision:
+  implementation_pass_requires:
+    - exact_input_and_source_hashes
+    - eight_complete_fit_blocks
+    - exact_metric_cache_to_label_cache_binding
+    - exact_registered_vehicle_parameters
+    - official_corner_compatibility_within_32_global_coordinate_ulps
+    - finite_deterministic_official_execution
+    - complete_candidate_and_failure_ledger
+  pipeline_exercised_requires:
+    - at_least_one_realized_intent_eligible_candidate
+    - at_least_one_continuous_geometry_valid_candidate
+    - at_least_one_teacher_bound_computed
+  pass_authorizes: register_128_anchor_fit_only_realized_geometry_preflight
+  implementation_failure_authorizes: repair_same_interface_only
+  zero_pipeline_exercise_authorizes: geometry_architecture_diagnosis_only
+  prevalence_performance_coverage_or_gate_b_claim: prohibited
+  provider_or_threshold_change_authorized: false
+  development_access_authorized: false
+
+resources:
+  device: cpu
+  maximum_wall_minutes: 20
+  maximum_output_mib: 8
