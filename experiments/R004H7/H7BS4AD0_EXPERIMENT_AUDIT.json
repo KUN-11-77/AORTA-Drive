@@ -1,0 +1,22 @@
+{
+  "experiment_id": "R004H7BS4AD0-contrast-support-attribution-v1",
+  "date": "2026-10-24",
+  "audit_status": "REVIEW_UNAVAILABLE",
+  "mechanical_integrity": "PASS",
+  "scientific_status": "POSTHOC_ATTRIBUTION_ONLY__PARENT_STOP_UNCHANGED",
+  "external_reviewer_backend_available": false,
+  "checks": {
+    "ground_truth_provenance": "NOT_APPLICABLE_OUTCOME_AND_TEACHER_FREE_ATTRIBUTION",
+    "score_normalization": "PASS_EXACT_SET_COUNTS_NO_PERFORMANCE_NORMALIZATION",
+    "result_existence": "PASS_HASH_BOUND_RESULT_AND_MECHANICAL_REPLAY",
+    "dead_code": "PASS_RUNNER_OUTPUT_REPLAYED_BY_AUDIT_ENTRYPOINT",
+    "scope": "PASS_ALL_42_FIT_GROUPS_672_ANCHORS_3864_PAIRS",
+    "evaluation_type": "deterministic_posthoc_support_attribution"
+  },
+  "claim_impact": {
+    "common_only_failure_explanation": "unsupported",
+    "difference_only_interface_sufficiency": "falsified_as_a_direct_evidence_precondition",
+    "partial_observation_uncertainty_interface": "hypothesis_only",
+    "decision_driving_or_safety": "unproven"
+  }
+}

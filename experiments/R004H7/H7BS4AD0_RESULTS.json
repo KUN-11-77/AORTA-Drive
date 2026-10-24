@@ -1,0 +1,30 @@
+{
+  "experiment_id": "R004H7BS4AD0-contrast-support-attribution-v1",
+  "status": "COMPLETED_POSTHOC_ATTRIBUTION",
+  "code_commit": "598464b",
+  "result_sha256": "aa40df441cc73800b64002cd8ac15159f4304f20afb75d20cc396a60fdea3ebf",
+  "mechanical_audit_sha256": "1fe1642a45185ff7796891098117d7d4e480e8f044669a550dc6ae6228080284",
+  "mechanical_audit": "PASS",
+  "external_review": "REVIEW_UNAVAILABLE",
+  "scope": {
+    "fit_groups": 42,
+    "anchors": 672,
+    "native_challenger_pairs": 3864,
+    "geometrically_distinct_pairs": 3678,
+    "geometrically_identical_pairs": 186,
+    "teacher_field_outcome_development_calibration_test_navdream_target_accessed": false
+  },
+  "result": {
+    "attribution": "CONTRAST_INTERFACE_ALSO_HAS_ZERO_EVIDENCE_PAIRS",
+    "distinct_pairs_with_zero_supported_symmetric_difference": 8,
+    "affected_groups": 5,
+    "affected_anchors": 5,
+    "blind_native_candidates": 2,
+    "blind_native_candidates_without_eligible_pair": 2,
+    "zero_support_symmetric_difference_node_count_range": [1, 2],
+    "supported_common_node_count_range_for_eight_pairs": [5, 25],
+    "parent_h7bs4a_decision": "STOP_UNCHANGED"
+  },
+  "next_status": "HOLD_TRAINING__DESIGN_PARTIAL_OBSERVATION_UNCERTAINTY_INTERFACE_AND_TEACHER_CRITICALITY_DIAGNOSTIC",
+  "claim_boundary": "The parent all-candidate gate mixed two no-comparison anchors with decision panels, but a difference-only repair is also insufficient because eight geometrically distinct pairs have no directly supported symmetric-difference nodes. This does not establish teacher criticality, field accuracy, decision relevance, driving benefit, safety, latency, or OOD generalization."
+}

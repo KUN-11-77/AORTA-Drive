@@ -1,5 +1,13 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-24 R004H7-BS4A-D0：difference-only直接证据修复被否定。** 42 fit groups、
+> 672 anchors、3864个native–challenger pairs全部完成精确集合归因；3678个几何不同pair中
+> 有8个非空对称差区域完全无直接projective evidence，分布于5 groups/5 anchors，差异仅
+> 1–2 nodes但公共区有5–25个支持节点。原2个blind native均无合法challenger，说明原门还
+> 混合了candidate supply与decision support。机械重放0失败；H7BS4A STOP不变。下一理论
+> 候选改为部分可观测quotient field的不确定集合与共享变量鲁棒比较/拒判，尚未获teacher、
+> 网络或决策证据；训练继续HOLD。
+
 > **2026-10-24 R004H7-BS4A：`STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE`。** fit-only
 > outcome/teacher-free审计覆盖42 groups、672 anchors、4536个合法候选与261个源日志；
 > 42/42 groups达到12/16门，但有2个native候选的全部查询节点均无直接projective

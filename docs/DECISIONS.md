@@ -836,3 +836,20 @@ the current open-ended geometry certificate iteration remains STOP.
   invariant footprint. This is a hypothesis to test, not yet an algorithmic contribution.
 - **Boundary:** projective support is not occlusion-aware physical visibility or task correctness;
   no NavDream, latency, decision, driving, safety or novelty claim follows.
+
+## ADR-0061 — Reject binary difference-only support; model correlated partial observability
+
+- **Status:** accepted after preregistered post-hoc H7BS4A-D0 and exact mechanical replay.
+- **Evidence:** both H7BS4A blind natives have no eligible challenger, so they diagnose candidate
+  supply rather than an actual pairwise arbitration. Separately, 8/3678 geometrically distinct
+  native–challenger pairs have zero directly supported symmetric-difference nodes. Their discrete
+  differences contain only 1–2 nodes while their common regions contain 5–25 supported nodes.
+- **Decision:** keep the parent STOP and separate no-challenger supply accounting from decision
+  support. Do not adopt a difference-only binary visibility gate. The next admissible theory target
+  is a partially observed quotient-field uncertainty set with shared-variable robust comparison and
+  abstention; training remains HOLD until teacher-criticality and oracle coverage are diagnosed.
+- **Reasoning:** deleting unobserved nodes hallucinates sufficiency, while independent candidate
+  intervals discard the correlation induced by shared field variables. A joint uncertainty set can
+  preserve this dependence and force abstention when the decision sign is not identifiable.
+- **Boundary:** D0 did not read teacher, fields or outcomes. It neither validates the new target nor
+  supports prediction, decision, driving, safety, latency, NavDream, novelty or publication claims.
