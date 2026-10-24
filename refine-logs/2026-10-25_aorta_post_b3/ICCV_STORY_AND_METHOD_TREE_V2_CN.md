@@ -170,6 +170,10 @@ candidate scorer、GTRS-style 和 DA-WAM-style controls。否则这只是“scor
 - DA-WAM 已覆盖 candidate-conditioned future 与 factor/utility head，因此 cross-attention 和多头本身
   不是贡献；
 - TOAD 已覆盖 scorer-as-reward 与 test-time search，因此 rerank/search 本身不是贡献；
+- Expand-and-Prune 已覆盖冻结 planner 上的测试时候选扩展、score-uncertainty 剪枝、跨架构与效率，
+  因此 plug-and-play candidate assistance 或 adaptive candidate budget 也不是贡献；
+- Gen-Drive 与 DriveReward 已覆盖驾驶 pairwise preference / learned reward scoring，因此 preference
+  supervision 和 scalar reward head 本身不是贡献；
 - decision-focused learning、CVaR/EVaR 和分布鲁棒风险图均是可用工具或基线，不是新颖性来源。
 
 AORTA 只有在 **appearance intervention 上的合法 preference estimand + exact relational structure +
