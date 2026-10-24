@@ -19,6 +19,7 @@ import yaml  # type: ignore[import-untyped]
 from aorta_drive.candidates import generate_native_offset_candidates
 from aorta_drive.evaluation.h4 import (
     IntentEligibilityLimits,
+    audit_endpoint_invariant,
     qualify_intent_match,
     sample_cached_native_trajectory,
     terminal_segment_average_speed,
@@ -100,6 +101,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     limits = _limits(config)
     provider_kwargs = _provider_kwargs(config)
     interval_s = float(config["native"]["interval_s"])
+    endpoint_numeric_tolerance = float(
+        config["implementation"]["endpoint_numeric_audit_tolerance"]
+    )
     registered_count = len(provider_kwargs["amplitudes_m"])
 
     rows: list[dict[str, Any]] = []
@@ -138,19 +142,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 native_terminal_speed_mps=native.terminal_segment_average_speed_mps,
                 limits=limits,
             )
-            final_exact = bool(np.array_equal(challenger[7:], native.poses[7:]))
-            final_exact_count += int(final_exact)
+            endpoint_audit = audit_endpoint_invariant(
+                challenger,
+                native.poses,
+                outcome,
+                numeric_tolerance=endpoint_numeric_tolerance,
+            )
+            final_exact_count += int(endpoint_audit.final_segment_bit_exact)
             eligible += int(outcome.eligible)
             if outcome.eligible:
                 eligible_signs.add(math.copysign(1.0, candidate.control.amplitude_m))
-            endpoint_exact = (
-                outcome.progress_ratio == 1.0
-                and outcome.terminal_cross_track_m == 0.0
-                and outcome.terminal_heading_difference_rad == 0.0
-                and outcome.terminal_speed_difference_mps == 0.0
-                and final_exact
-            )
-            if not endpoint_exact:
+            if not endpoint_audit.verified:
                 invariant_failures.append(
                     f"{anchor['recording_group']}/{anchor['anchor_index']}/"
                     f"{candidate.control.provenance}"
@@ -161,7 +163,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     "amplitude_m": candidate.control.amplitude_m,
                     "intent_eligible": outcome.eligible,
                     "intent_reason": outcome.reason,
-                    "endpoint_invariant_exact": endpoint_exact,
+                    "endpoint_invariant_verified": endpoint_audit.verified,
+                    "final_segment_bit_exact": endpoint_audit.final_segment_bit_exact,
+                    "maximum_endpoint_numeric_residual": (
+                        endpoint_audit.maximum_numeric_residual
+                    ),
                     "bernstein_subdivision_count": (
                         candidate.bernstein_subdivision_count
                     ),
@@ -184,7 +190,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "registered_candidate_count": registered_count,
                 "accepted_candidate_count": len(batch.candidates),
                 "eligible_candidate_count": eligible,
-                "final_exact_candidate_count": final_exact_count,
+                "final_segment_bit_exact_candidate_count": final_exact_count,
                 "has_eligible_candidate": supplied,
                 "has_both_signed_eligible_candidates": both_sign,
                 "provider_rejection_counts": batch.rejection_counts,
@@ -222,6 +228,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "implementation_revision": args.implementation_revision,
         "config_sha256": _sha256(args.config),
         "elapsed_seconds": time.perf_counter() - started,
+        "endpoint_numeric_audit_tolerance": endpoint_numeric_tolerance,
         "data_scope": {
             "role": "fit",
             "split": "train",

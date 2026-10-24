@@ -14,7 +14,7 @@
 | R004H4P2S | cached PDM-native speed-semantics audit | DONE — REJECT FIELD | 128/128 cached speeds zero; 113 material moving disagreements; mechanical audit PASS |
 | R004H4P2R1 | comparable-speed candidate-supply replay | DONE — STOP | 82/128 supplied, minimum group 0.50; audit PASS; permits one native-conditioned provider revision only |
 | R004H4P3S | native-conditioned endpoint-invariant provider synthetic qualification | DONE — PASS / PROVISIONAL INTEGRITY | 33/36 accepted; exact endpoint invariants; 2 negative controls; 209 tests; mechanical PASS; external review unavailable |
-| R004H4P3 | native-conditioned endpoint-invariant provider fit supply | REGISTERED | exact prior 128 fit anchors; provider only treatment change; development/geometry sealed |
+| R004H4P3 | native-conditioned endpoint-invariant provider fit supply | REPLAY REGISTERED AFTER AUDIT FIX | first run false-failed literal progress==1 check; structural equality + 64-eps audit repair only; provider/gates unchanged |
 | R004H4 | one-read development mechanism qualification | NOT REGISTERED | common opportunity denominator must decide whether localized learned budgets retain utility |
 
 Official calibration, test and target-domain data remain sealed.

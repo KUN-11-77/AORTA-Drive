@@ -42,6 +42,9 @@ def audit(result: dict[str, Any]) -> dict[str, Any]:
     accepted = 0
     rejections: Counter[str] = Counter()
     nested_candidate_count = 0
+    numeric_tolerance = float(result.get("endpoint_numeric_audit_tolerance", -1.0))
+    if numeric_tolerance != 64.0 * 2.220446049250313e-16:
+        failures.append("endpoint numeric tolerance disagrees with repair registration")
     for value in ledger:
         row = _mapping(value, "anchor row")
         group = row.get("recording_group")
@@ -67,16 +70,22 @@ def audit(result: dict[str, Any]) -> dict[str, Any]:
             for candidate in candidates
         ):
             failures.append("eligible candidate count mismatch")
-        if int(row.get("final_exact_candidate_count", -1)) != sum(
-            int(_mapping(candidate, "candidate").get("endpoint_invariant_exact") is True)
+        if int(row.get("final_segment_bit_exact_candidate_count", -1)) != sum(
+            int(_mapping(candidate, "candidate").get("final_segment_bit_exact") is True)
             for candidate in candidates
         ):
-            failures.append("endpoint-invariant count mismatch")
+            failures.append("bit-exact final-segment count mismatch")
         if any(
-            _mapping(candidate, "candidate").get("endpoint_invariant_exact") is not True
+            _mapping(candidate, "candidate").get("endpoint_invariant_verified") is not True
             for candidate in candidates
         ):
             failures.append("accepted candidate violates endpoint invariant")
+        if any(
+            float(_mapping(candidate, "candidate").get("maximum_endpoint_numeric_residual", -1.0))
+            > numeric_tolerance
+            for candidate in candidates
+        ):
+            failures.append("accepted candidate exceeds endpoint numeric tolerance")
         rejections.update(_mapping(row.get("provider_rejection_counts"), "rejections"))
     if len(keys) != 128 or len(group_counts) != 8 or any(
         count != 16 for count in group_counts.values()

@@ -23,7 +23,9 @@ inputs:
 
 implementation:
   native_offset_source_sha256: 5fd4b849c9b7146edd7be98e90edc44602dcc43f06778a10e68ca9521ae6cd83
-  h4_interface_source_sha256: 059f95c2b1f23c37d77f10b9b7b2da2cc80584b468eb8451cb9de7ed79ea7f38
+  h4_interface_source_sha256: f4271d81c9484e3609bc9715205bda08d8ee9fb909f11a61d5a094dfbc06c034
+  endpoint_numeric_audit_tolerance: 1.4210854715202004e-14
+  tolerance_derivation: 64_times_binary64_machine_epsilon
 
 native:
   source: official_metric_cache_MetricCache.trajectory

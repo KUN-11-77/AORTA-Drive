@@ -465,3 +465,19 @@
 - **Boundary:** no geometry, teacher, learned prediction, image, development, calibration,
   test or target payload may be read. PASS permits only a separately registered fit-only
   continuous-geometry preflight.
+
+## ADR-0045 — Audit endpoint identity structurally, not by literal derived equality
+
+- **Status:** accepted after the first R004H4P3 execution audit
+- **Evidence:** an accepted candidate and native had bit-identical origin and final two pose
+  rows, zero cross-track/heading/speed difference and an eligible decision, but the computed
+  progress ratio was `0.99999999999999989`. The first implementation incorrectly required
+  this derived dot/norm result to equal the literal float `1.0`, producing false endpoint-
+  invariant failures.
+- **Repair:** retain bit-exact origin/final-segment equality as the structural invariant.
+  Audit the four derived eligibility residuals with the frozen bound `64 * eps_binary64 =
+  1.4210854715202004e-14`. Add direct unit tests for one-ulp progress roundoff and a changed
+  final segment. Record every maximum residual in the raw ledger.
+- **Boundary:** no data, provider amplitude, dynamic envelope, intent threshold, anchor or
+  adequacy gate changes. The first raw artifact and its expected mechanical-audit failure
+  remain evidence of the implementation defect. The corrected replay may still fail supply.

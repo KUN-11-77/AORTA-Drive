@@ -53,6 +53,15 @@ class IntentEligibility:
 
 
 @dataclass(frozen=True)
+class EndpointInvariantAudit:
+    """Structural equality plus bounded derived-arithmetic residual."""
+
+    verified: bool
+    final_segment_bit_exact: bool
+    maximum_numeric_residual: float
+
+
+@dataclass(frozen=True)
 class CachedNativeTrajectory:
     """Frozen PDM-Closed samples represented on the current ego graph."""
 
@@ -227,4 +236,52 @@ def qualify_intent_match(
         terminal_cross_track_m=cross_track,
         terminal_heading_difference_rad=heading_difference,
         terminal_speed_difference_mps=speed_difference,
+    )
+
+
+def audit_endpoint_invariant(
+    challenger_poses: npt.ArrayLike,
+    native_poses: npt.ArrayLike,
+    eligibility: IntentEligibility,
+    *,
+    numeric_tolerance: float,
+) -> EndpointInvariantAudit:
+    """Verify the H4 endpoint invariant without demanding ``dot(x,x)==||x||²``.
+
+    The construction claim is structural: origin and the final two pose samples
+    are bit-identical.  Progress ratio is nevertheless computed through a dot
+    product and a norm, so its mathematically exact value one can round by a few
+    ulps.  The derived quantities are therefore audited against a separately
+    registered arithmetic tolerance rather than compared to literals.
+    """
+
+    challenger = np.asarray(challenger_poses, dtype=np.float64)
+    native = np.asarray(native_poses, dtype=np.float64)
+    if challenger.shape != native.shape or challenger.ndim != 2 or challenger.shape[0] < 2:
+        raise ValueError("endpoint audit requires aligned trajectories with at least two rows")
+    if not np.all(np.isfinite(challenger)) or not np.all(np.isfinite(native)):
+        raise ValueError("endpoint audit trajectories must be finite")
+    if not math.isfinite(numeric_tolerance) or numeric_tolerance < 0.0:
+        raise ValueError("numeric tolerance must be finite and non-negative")
+    final_exact = bool(
+        np.array_equal(challenger[0], native[0])
+        and np.array_equal(challenger[-2:], native[-2:])
+    )
+    residuals = (
+        abs(eligibility.progress_ratio - 1.0),
+        abs(eligibility.terminal_cross_track_m),
+        abs(eligibility.terminal_heading_difference_rad),
+        abs(eligibility.terminal_speed_difference_mps),
+    )
+    maximum_residual = max(residuals)
+    verified = (
+        final_exact
+        and eligibility.eligible
+        and math.isfinite(maximum_residual)
+        and maximum_residual <= numeric_tolerance
+    )
+    return EndpointInvariantAudit(
+        verified=verified,
+        final_segment_bit_exact=final_exact,
+        maximum_numeric_residual=maximum_residual,
     )

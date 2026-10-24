@@ -9,6 +9,7 @@ import pytest
 
 from aorta_drive.evaluation.h4 import (
     IntentEligibilityLimits,
+    audit_endpoint_invariant,
     qualify_intent_match,
     terminal_segment_average_speed,
 )
@@ -86,6 +87,44 @@ def test_terminal_segment_average_speed_uses_only_final_position_interval() -> N
 def test_terminal_segment_average_speed_rejects_invalid_interval(interval: float) -> None:
     with pytest.raises(ValueError):
         terminal_segment_average_speed(np.zeros((2, 3)), interval_s=interval)
+
+
+def test_endpoint_invariant_accepts_structural_equality_with_one_ulp_progress_roundoff() -> None:
+    native = np.array([[0.0, 0.0, 0.0], [17.3, -4.2, 0.4], [31.7, 8.9, 0.7]])
+    outcome = qualify_intent_match(
+        native,
+        native,
+        challenger_terminal_speed_mps=5.0,
+        native_terminal_speed_mps=5.0,
+        limits=LIMITS,
+    )
+    audited = audit_endpoint_invariant(
+        native, native, outcome, numeric_tolerance=64.0 * np.finfo(np.float64).eps
+    )
+    assert audited.verified
+    assert audited.final_segment_bit_exact
+    assert audited.maximum_numeric_residual <= 64.0 * np.finfo(np.float64).eps
+
+
+def test_endpoint_invariant_rejects_nonidentical_final_segment() -> None:
+    native = np.array([[0.0, 0.0, 0.0], [5.0, 0.0, 0.0], [10.0, 0.0, 0.0]])
+    challenger = native.copy()
+    challenger[-2, 1] = 0.1
+    outcome = qualify_intent_match(
+        challenger,
+        native,
+        challenger_terminal_speed_mps=5.0,
+        native_terminal_speed_mps=5.0,
+        limits=LIMITS,
+    )
+    audited = audit_endpoint_invariant(
+        challenger,
+        native,
+        outcome,
+        numeric_tolerance=64.0 * np.finfo(np.float64).eps,
+    )
+    assert not audited.verified
+    assert not audited.final_segment_bit_exact
 
 
 def test_origin_and_time_contracts_are_exact() -> None:
