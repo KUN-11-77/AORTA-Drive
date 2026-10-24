@@ -27,6 +27,7 @@
 | C21 | 完整行为margin只需当前帧视觉与当前native/challenger即可估计 | previous selected trajectory作为estimand context；current/history-only、最小geometry token、复杂temporal encoder的matched study | 省略previous context后出现相同当前表示但不同full margin，或held-out full-target regret/false intervention退化 | contradicted as a universal estimand claim：`C2`在函数定义上读取相邻帧重叠轨迹，previous selected trajectory因此必须进入context；只允许由实验决定是否需要复杂temporal encoder，不再决定该变量是否属于输入 |
 
 | C22 | 当前fit anchor roster能够直接用于one-frame到full-target alignment | roster内官方adjacency映射；raw-log previous-token资格；augmented-context replay | roster稀疏导致two-frame权重全关闭，或previous token缺失/跨log/超0.55s | original roster contradicted, augmented interface qualified：0/672 anchors存在roster内合法相邻token，直接聚合会机械退化为one-frame；raw-log recovery 672/672可用、42/42组16/16、gap 0.498078–0.500686s。冻结提交06d3ab0的primary/replay完整ledger逐字节一致，结果SHA-256 2ae90f5c…512c；这不证明one-frame/full alignment |
+| C23 | AORTA 在未见外观与至少三类冻结 planner 上产生决策净收益，同时满足 clean no-harm 与实时预算 | 预冻结 NavDream/target；回归式、diffusion/generative、generate-and-select 三类 planner；组级配对统计；`G_net=(N_rescued-N_new-hard)/N_baseline-hard`及其预注册置信下界/最小有意义效应；false intervention、abstention、candidate supply、selection loss；clean non-inferiority；batch-1 P50/P95/显存 | 任一 planner 类系统性无增益；`G_net`置信下界不高于零或未达预注册效应；收益只来自候选供给或删例；clean 劣化超过冻结边界；时延超预算；development/target 污染 | proposed final behavior claim：当前没有 NavDream、跨 planner、clean no-harm 或在线时延证据，禁止从视觉 MAE、oracle ceiling 或离线 relation 指标回填 |
 
 ## Claim language policy
 

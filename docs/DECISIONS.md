@@ -1169,3 +1169,22 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:**
   `references/2026-10-25_frontier_decision_scorer_novelty_audit.md`；
   `refine-logs/2026-10-25_aorta_post_b3/ICCV_CORE_STORY_V5_AFTER_DJEPA_CN.md`。
+
+## ADR-0080：项目目标与当前方法假设分离，并用统一研究宪法治理
+
+- **Decision:** `IMMUTABLE_MISSION__REPLACEABLE_METHOD__BEHAVIORAL_ENDPOINT`。
+- **Reason:** 历史 `RESEARCH_BRIEF` 仍把 candidate-independent road field、nominal road-margin
+  certificate 和旧 Gate A–D 写成项目本体，但 B1/B2/B3 已否定该 scalar-min family 的一般决策
+  充分性；随后 D-JEPA/World4Scorer 查新又收窄了 generic relation 与 fallback 的新颖性。若继续用
+  旧锚点治理实验，会把阶段性实现误当长期科学目标。
+- **Consequence:** 长期使命固定为：在 NavDream 等未见外观下，为至少三类冻结 planner 学习
+  source-only、任务充分、选择性且实时的视觉决策接口，取得 hard-failure 净改善并满足 clean
+  non-inferiority。最终对象统一为 augmented-context full-task native-relative margin；旧 field、SDF、
+  BEV 与 one-frame score降为先验/对照/资格工具。当前 differential-support relation 只是可替换的
+  候选机制，必须战胜 matched D-JEPA/World4Scorer-style baselines 才保留网络创新主张。
+- **Acceptance:** 最终行为主张使用三类 planner、组级配对、`G_net`、false intervention、abstention、
+  candidate supply、selection loss、clean non-inferiority 与 batch-1 P50/P95 联合裁决。阈值在独立
+  方差与功效分析后预注册，不在本 ADR 中凭经验填写。
+- **Boundary:** 研究宪法只固定问题、数学对象、证据链和停止规则，不证明当前架构已达到 ICCV，
+  也不授权 B4R1。当前仍为 `NOT_ICCV_READY / NOT_ORAL_READY`。
+- **Artifact:** `docs/AORTA_RESEARCH_CONSTITUTION_V1_CN.md`。
