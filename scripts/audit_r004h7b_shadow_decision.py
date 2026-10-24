@@ -30,6 +30,7 @@ from run_r004h7b_shadow_decision import (
     _json_safe,
     _panel_ledger,
     _records_by_scene,
+    _verify_implementation,
     _write_json,
 )
 
@@ -62,6 +63,13 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     config: dict[str, Any] = yaml.safe_load(args.config.read_text(encoding="utf-8"))
     stage = config["H7B"]
     frozen = stage["frozen_inputs"]
+    _verify_implementation(
+        config,
+        repository=Path(__file__).resolve().parents[1],
+        navsim_root=args.navsim_root,
+    )
+    if sha256_file(Path(__file__)) != stage["implementation"]["audit_source_sha256"]:
+        raise ValueError("H7B audit source hash mismatch")
     result = json.loads(args.result.read_text(encoding="utf-8"))
     if result.get("status") != "COMPLETED" or result.get("development_anchor_count") != 384:
         raise ValueError("H7B result is incomplete")
@@ -322,6 +330,7 @@ def main() -> None:
     parser.add_argument("--label-manifest", type=Path, required=True)
     parser.add_argument("--metric-root", type=Path, required=True)
     parser.add_argument("--metric-manifest", type=Path, required=True)
+    parser.add_argument("--navsim-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     output = audit(args)

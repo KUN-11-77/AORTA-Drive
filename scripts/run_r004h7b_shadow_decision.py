@@ -141,6 +141,28 @@ def _vehicle_matches(config: Mapping[str, Any], contract: Any) -> bool:
     )
 
 
+def _verify_implementation(
+    config: Mapping[str, Any], *, repository: Path, navsim_root: Path
+) -> None:
+    frozen = config["H7B"]["implementation"]
+    local = {
+        "shadow_decision_source_sha256": repository
+        / "src/aorta_drive/evaluation/shadow_decision.py",
+        "navsim_execution_source_sha256": repository
+        / "src/aorta_drive/evaluation/navsim_execution.py",
+        "native_offset_source_sha256": repository
+        / "src/aorta_drive/candidates/native_offset.py",
+        "intent_filter_source_sha256": repository / "src/aorta_drive/evaluation/h4.py",
+        "runner_source_sha256": Path(__file__).resolve(),
+    }
+    for key, path in local.items():
+        if sha256_file(path) != frozen[key]:
+            raise ValueError(f"H7B local implementation hash mismatch: {key}")
+    for relative, expected in frozen["official_source_sha256"].items():
+        if sha256_file(navsim_root / relative) != expected:
+            raise ValueError(f"H7B official source hash mismatch: {relative}")
+
+
 def _panel_ledger(panel: ShadowPanel) -> list[dict[str, Any]]:
     return [
         {
@@ -159,6 +181,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     config: dict[str, Any] = yaml.safe_load(args.config.read_text(encoding="utf-8"))
     stage = config["H7B"]
     frozen = stage["frozen_inputs"]
+    _verify_implementation(
+        config,
+        repository=Path(__file__).resolve().parents[1],
+        navsim_root=args.navsim_root,
+    )
     paths = {
         "r004h6_result_sha256": args.h6_result,
         "r004h6_exact_teacher_audit_sha256": args.h6_exact_teacher_audit,
@@ -432,6 +459,7 @@ def main() -> None:
     parser.add_argument("--label-manifest", type=Path, required=True)
     parser.add_argument("--metric-root", type=Path, required=True)
     parser.add_argument("--metric-manifest", type=Path, required=True)
+    parser.add_argument("--navsim-root", type=Path, required=True)
     parser.add_argument("--output-directory", type=Path, required=True)
     parser.add_argument("--implementation-revision", required=True)
     args = parser.parse_args()
