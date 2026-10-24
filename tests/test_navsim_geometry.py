@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -19,10 +18,6 @@ from aorta_drive.evaluation.navsim_geometry import (
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
 @dataclass(frozen=True)
 class _Parameters:
     width: float = 2.297
@@ -30,7 +25,7 @@ class _Parameters:
     rear_axle_to_center: float = 1.461
 
 
-def test_registered_realized_geometry_config_parses_and_pins_local_sources() -> None:
+def test_completed_realized_geometry_config_preserves_registered_source_hashes() -> None:
     config = yaml.safe_load(
         (
             ROOT
@@ -38,14 +33,14 @@ def test_registered_realized_geometry_config_parses_and_pins_local_sources() -> 
         ).read_text(encoding="utf-8")
     )
     implementation = config["implementation"]
-    assert implementation["navsim_geometry_source_sha256"] == _sha256(
-        ROOT / "src/aorta_drive/evaluation/navsim_geometry.py"
+    assert implementation["navsim_geometry_source_sha256"] == (
+        "0f0703a9f3bd692a45f5307f1e91ccd1404dbad455c53007ada34a81852aa1f4"
     )
-    assert implementation["geometry_source_sha256"] == _sha256(
-        ROOT / "src/aorta_drive/certification/geometry.py"
+    assert implementation["geometry_source_sha256"] == (
+        "3c47d87a79d2e08af12a97000565d05dfcbef56dbf60022945e88c1aa8749025"
     )
-    assert implementation["opportunity_source_sha256"] == _sha256(
-        ROOT / "src/aorta_drive/certification/opportunity.py"
+    assert implementation["opportunity_source_sha256"] == (
+        "7b433037944677c4af87fef3c961c419ab26ae33ac2b24ff5489338b0623333b"
     )
     assert config["blocking"]["experimental_unit"] == "recording_group"
     assert config["decision"]["prevalence_performance_coverage_or_gate_b_claim"] == (

@@ -1,0 +1,57 @@
+experiment_id: R004H4P5D-disk-resolution-diagnosis-v1
+date: 2026-10-24
+scope: post_result_fit_only_certificate_mechanism_diagnosis
+
+predecessor:
+  experiment: R004H4P5I-realized-geometry-interface-v1
+  decision: PASS_TO_REGISTER_128_ANCHOR_GEOMETRY_PREFLIGHT
+  raw_result_sha256: ec096a416e530fa9952d91f680bee1c4295989f9bbb0fef9eb3fb97f74274d86
+  observed_geometry_valid_candidate_count: 36
+  observed_bidirectional_zero_candidate_count: 36
+
+inputs:
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  metric_manifest_sha256: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+  allowed_role: fit
+  selected_group_rule: same_eight_R004H4P5I_fit_groups
+  selected_anchor_rule: anchor_index_zero
+  prohibited_roles: [selection, proxy_cal, development, calibration, test, target_domain]
+
+implementation:
+  geometry_source_sha256: 34c17da1f59c18d9b8810abcac7b86865f0d6d0c3c35184204fa57234146fbec
+  navsim_execution_source_sha256: f8ed588568fbeeebaa9c99ffd1d952f29cb490950b9490869bdf869cbdd00717
+  native_offset_source_sha256: 76a238a4538f49211ccb24bd30e1b2cda79b0f26fae656e49f184b7adbc2440e
+
+provider:
+  amplitudes_m: [-1.5, -1.0, -0.5, 0.5, 1.0, 1.5]
+  desired_curve_dynamic_screen: false
+
+geometry:
+  vehicle_source: MetricCache.ego_state.car_footprint.vehicle_parameters
+  grid: {x_min_m: -32.0, y_min_m: -32.0, rows: 64, columns: 64, resolution_m: 1.0}
+  paired_object: official_realized_rear_axle_positions_at_all_41_samples
+  barrier_formula: R_outer_minus_r_inner_plus_2h_plus_2epsilon_pose
+  maximum_separation_rounding: upward
+  no_witness_threshold_rounding: downward
+  theorem_direction: sufficient_only_no_converse
+
+decision:
+  implementation_pass_requires:
+    - exact_frozen_hashes
+    - eight_complete_sentinel_ledgers
+    - forty_eight_candidate_ledgers
+    - bit_exact_official_replay
+    - exact_predecessor_zero_ledger_binding
+  retire_disk_noninclusion_if:
+    - every_predecessor_geometry_valid_bidirectional_zero_candidate_is_below_barrier
+  pass_authorizes: qualify_orientation_aware_rectangle_certificate_on_fit_only_sentinels
+  provider_threshold_grid_or_roi_change_authorized: false
+  expanded_128_anchor_disk_run_required_before_diagnosis: false
+  prevalence_performance_coverage_or_gate_b_claim: prohibited
+  development_access_authorized: false
+
+resources:
+  device: cpu
+  maximum_wall_minutes: 5
+  maximum_output_mib: 4

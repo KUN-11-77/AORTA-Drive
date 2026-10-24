@@ -12,6 +12,7 @@ from aorta_drive.certification.geometry import (
     RectangularGrid,
     VehicleRectangle,
     certify_bidirectional_disk_noninclusion,
+    certify_disk_noninclusion_resolution_barrier,
 )
 from aorta_drive.certification.transform import certify_global_to_ego
 
@@ -93,3 +94,46 @@ def test_pose_error_cannot_increase_a_noninclusion_lower_bound() -> None:
         uncertain.native_minus_challenger_area_lower_m2
         <= exact.native_minus_challenger_area_lower_m2
     )
+
+
+def test_disk_resolution_barrier_proves_zero_witnesses_for_small_shift() -> None:
+    body = VehicleRectangle(rear_overhang=1.127, front_extent=4.049, half_width=1.1485)
+    grid = RectangularGrid(x_min=-16.0, y_min=-16.0, columns=64, rows=64, resolution=1.0)
+    native = (Pose2D(0.5, 0.5, 0.0), Pose2D(5.5, 0.5, 0.0))
+    challenger = (Pose2D(0.5, 2.0, 0.0), Pose2D(5.5, 2.0, 0.0))
+    barrier = certify_disk_noninclusion_resolution_barrier(
+        body, challenger, native, grid
+    )
+    certificate = certify_bidirectional_disk_noninclusion(
+        body, challenger, native, grid
+    )
+    assert barrier.maximum_paired_separation_upper_m == 1.5
+    assert math.isclose(
+        barrier.no_witness_threshold_lower_m,
+        4.49594891280795,
+        rel_tol=0.0,
+        abs_tol=1e-15,
+    )
+    assert barrier.guarantees_zero_witnesses
+    assert certificate.challenger_minus_native_area_lower_m2 == 0.0
+    assert certificate.native_minus_challenger_area_lower_m2 == 0.0
+
+
+def test_disk_resolution_barrier_does_not_claim_the_converse() -> None:
+    body = VehicleRectangle(rear_overhang=1.127, front_extent=4.049, half_width=1.1485)
+    grid = RectangularGrid(x_min=-20.0, y_min=-20.0, columns=80, rows=80, resolution=1.0)
+    native = (Pose2D(0.5, 0.5, 0.0),)
+    challenger = (Pose2D(0.5, 5.5, 0.0),)
+    barrier = certify_disk_noninclusion_resolution_barrier(
+        body, challenger, native, grid
+    )
+    assert barrier.maximum_paired_separation_upper_m == 5.0
+    assert not barrier.guarantees_zero_witnesses
+
+
+def test_disk_resolution_barrier_rejects_empty_inner_cell_contract() -> None:
+    body = VehicleRectangle(rear_overhang=0.5, front_extent=1.0, half_width=0.5)
+    grid = RectangularGrid(x_min=-4.0, y_min=-4.0, columns=8, rows=8, resolution=1.0)
+    poses = (Pose2D(0.0, 0.0, 0.0),)
+    with np.testing.assert_raises_regex(ValueError, "empty for every pose"):
+        certify_disk_noninclusion_resolution_barrier(body, poses, poses, grid)

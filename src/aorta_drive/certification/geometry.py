@@ -308,6 +308,15 @@ class BidirectionalNonInclusionCertificate:
     native_witness_cells: tuple[int, ...]
 
 
+@dataclass(frozen=True)
+class DiskNonInclusionResolutionBarrier:
+    """Sufficient condition under which the disk certificate has no witnesses."""
+
+    maximum_paired_separation_upper_m: float
+    no_witness_threshold_lower_m: float
+    guarantees_zero_witnesses: bool
+
+
 def _validate_pose_sequence(poses: tuple[Pose2D, ...]) -> None:
     if not poses:
         raise ValueError("pose sequence must be non-empty")
@@ -673,6 +682,68 @@ def certify_disk_noninclusion_from_covers(
         ),
         challenger_witness_cells=challenger_witnesses,
         native_witness_cells=native_witnesses,
+    )
+
+
+def certify_disk_noninclusion_resolution_barrier(
+    body: VehicleRectangle,
+    challenger_poses: tuple[Pose2D, ...],
+    native_poses: tuple[Pose2D, ...],
+    grid: RectangularGrid,
+    *,
+    pose_error: float = 0.0,
+) -> DiskNonInclusionResolutionBarrier:
+    """Certify a sufficient zero-witness condition for paired disk sweeps.
+
+    Let ``R`` be the rear-axle outer-body radius, ``r`` the yaw-invariant inner
+    radius, ``h`` the grid-cell radius and ``epsilon`` the common pose-error
+    radius.  Any selected inner cell is centered no farther than
+    ``r - epsilon - h`` from one trajectory sample.  The corresponding sample
+    of the other trajectory belongs to an incident segment disk.  Applying the
+    triangle inequality to that disk proves that neither direction can contain
+    a witness whenever every paired rear-axle separation is at most
+
+    ``R - r + 2 h + 2 epsilon``.
+
+    The returned maximum separation is rounded upward and the threshold is
+    rounded downward, so a true comparison is safe.  This theorem diagnoses
+    the resolution of the certificate; its converse is not claimed.
+    """
+
+    if not challenger_poses or len(challenger_poses) != len(native_poses):
+        raise ValueError("paired pose sequences must have the same positive length")
+    if not np.isfinite(pose_error) or pose_error < 0:
+        raise ValueError("pose_error must be finite and non-negative")
+    available_inner_radius = (
+        _fraction(body.inner_radius)
+        - _fraction(pose_error)
+        - _fraction(grid.cell_radius)
+    )
+    if available_inner_radius <= 0:
+        raise ValueError("inner-cell certificate is empty for every pose")
+
+    maximum_separation = 0.0
+    for challenger, native in zip(challenger_poses, native_poses, strict=True):
+        dx = _fraction(challenger.x) - _fraction(native.x)
+        dy = _fraction(challenger.y) - _fraction(native.y)
+        separation = _sqrt_fraction_upper(dx * dx + dy * dy)
+        maximum_separation = max(maximum_separation, separation)
+
+    exact_threshold = (
+        _fraction(body.radius)
+        - _fraction(body.inner_radius)
+        + 2 * _fraction(grid.cell_radius)
+        + 2 * _fraction(pose_error)
+    )
+    threshold = float(exact_threshold)
+    if _fraction(threshold) > exact_threshold:
+        threshold = math.nextafter(threshold, -math.inf)
+    if not math.isfinite(threshold) or threshold < 0:
+        raise ValueError("disk resolution threshold is not finite and non-negative")
+    return DiskNonInclusionResolutionBarrier(
+        maximum_paired_separation_upper_m=maximum_separation,
+        no_witness_threshold_lower_m=threshold,
+        guarantees_zero_witnesses=maximum_separation <= threshold,
     )
 
 
