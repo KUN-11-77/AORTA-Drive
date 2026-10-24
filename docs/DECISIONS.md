@@ -1005,3 +1005,20 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** exchangeability applies only to the calibration distribution with fixed model and
   candidate mechanism. NavDream, another planner or another candidate policy receives empirical
   coverage and abstention analysis, not the source guarantee.
+
+## ADR-0071：以差异支持关系替代不可识别的 shared-difference / free-interaction 分支解释
+
+- **Decision:** `ADOPT_AS_CONDITIONAL_ARCHITECTURE_HYPOTHESIS__NO_TRAINING_AUTHORIZED`。
+- **Reason:** v1 的 `Psi(Z,A_i)-Psi(Z,A_0)` 只有在非线性查询输出层已满足候选共同加性干扰时才
+  精确消偏；共享参数本身不保证该条件。自由 `Omega` 又可绕过 difference 分支，使分支职责不可
+  识别。B3 的 common-min、BS2 的晚期分叉与 BS4A-D0 的无证据差异共同指向更直接的对象：完整
+  时空占据测度差 `nu_i0=mu_i-mu_0` 的正/负/公共支持。
+- **Consequence:** 新候选架构分别查询 challenger-exclusive、native-exclusive 与 common context，
+  用反对称 relation operator 输出合法 margin；差异支持完全不可观测时硬拒判，部分可见性进入独立
+  scale/calibration。该结构仍需 B4R1、普通 scorer/DA-WAM-style/field matched study、NavDream、跨
+  planner、clean no-harm 与 latency 证明；Jordan decomposition、antisymmetry、cross-attention 与
+  conformal quantile均不作为单独创新。
+- **Artifacts:**
+  `refine-logs/2026-10-25_aorta_post_b3/DIFFERENTIAL_SUPPORT_RELATION_ARCHITECTURE_V2_CN.md`；
+  `refine-logs/2026-10-25_aorta_post_b3/ICCV_STORY_AND_METHOD_TREE_V3_CN.md`；
+  `references/2026-10-25_relation_story_sources.md`。

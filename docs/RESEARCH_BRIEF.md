@@ -1,5 +1,16 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 顶会叙事与网络反方审查：`DIFFERENTIAL_SUPPORT_RELATION_V2__HYPOTHESIS_ONLY`。**
+> 现有 Shared–Difference–Interaction v1 的机制解释不成立为结构保证：非线性共享查询不推出候选
+> 共同外观偏置，自由 interaction 可绕过 difference 分支。B3 common-min、BS2 晚期分叉与
+> BS4A-D0 无证据差异共同导出新的条件候选：用完整时空 signed occupancy contrast
+> `nu_i0=mu_i-mu_0` 分别查询 challenger-exclusive、native-exclusive 与 common visual evidence，
+> 以反对称 relation operator 输出合法 margin，并在差异支持不可观测或同时下界不足时保留 native。
+> DA-WAM 已覆盖 candidate-conditioned scorer，The Constant Eye 已覆盖冻结 DINO/NavDream，
+> RiskWorld/Expand-and-Prune 已覆盖 selective replacement，因此只有 matched scorer 对照、NavDream、
+> 跨 planner、clean no-harm 与时延共同证明差异支持的增量，才有资格写成 ICCV/CVPR 主贡献。B4R1
+> 正式运行仍未获授权，网络训练继续 HOLD。详见 ADR-0071 与 v2/v3 方法故事文档。
+
 > **2026-10-25 selective calibration定理收紧：`GROUP_SIMULTANEOUS__FINITE_SAMPLE_LIMIT_EXPLICIT`。** 校准单位冻结为recording group；每组先对appearance/anchor/legal challenger的归一化误差取最大值，再用`k=ceil((n+1)(1-alpha))`次序统计量。若未来独立calibration有42组，95%覆盖可用有限`k=41`，99%需要`k=43>n`，无额外假设只能给无穷半径并全拒判；现有fit/development不能回收作calibration。禁止把672 anchors当独立样本，也禁止把source exchangeability外推为NavDream或跨planner保证。详见理论命题4.1与ADR-0070。**
 
 > **2026-10-25 R1 scorer语义复检：`CANDIDATE_LOCAL_SCORE_DIFFERENCE__SERVER_PREFLIGHT_PASS__FORMAL_HOLD`。** 官方调用为每条轨迹单独构造`[metric-cache PDM baseline, evaluated trajectory]`并返回pred score；native与challenger不是联合评分。标签现严格定义为两个candidate-local one-frame scores之差。runner在评分前强制`PROGRESS_MODE=eval`，primary/replay/audit均记录核验；提交`08081cc`的服务器11/11合同测试、implementation/official source hashes与`gen_gt` fail-closed反例通过，未调用scorer或读取outcome。正式R1仍未授权。详见`H7BS4B4R1_SCORER_SEMANTICS_AUDIT.md`和ADR-0069。**

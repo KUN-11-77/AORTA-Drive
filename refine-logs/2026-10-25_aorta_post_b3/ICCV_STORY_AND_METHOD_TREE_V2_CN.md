@@ -1,6 +1,10 @@
 # AORTA ICCV 故事与方法树 v2
 
-状态：`POST_B3_CANDIDATE_NARRATIVE__B4_INVALID_INTERFACE__NOT_A_PAPER_CLAIM`
+状态：`SUPERSEDED_BY_V3__HISTORICAL_POST_B3_NARRATIVE__NOT_A_PAPER_CLAIM`
+
+v2 保留了 relation-first 转向的历史逻辑，但其通用 relation decoder 仍与 DA-WAM-style scorer 过近，
+且未处理 v1 shared-difference/free-interaction 的机制漏洞。当前叙事合同见
+`ICCV_STORY_AND_METHOD_TREE_V3_CN.md`。
 
 目的：把问题、数学对象、网络、损失、仲裁与实验约束成一条可证伪主线。本文档不是宣传稿；
 任何未通过对应资格门的句子都不能升级为论文贡献。

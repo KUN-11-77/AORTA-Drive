@@ -1,6 +1,10 @@
 # AORTA relation-first 网络架构候选 v1
 
-状态：`THEORY_DERIVED_CANDIDATE__NO_TRAINING_AUTHORIZED__B4R1_REQUIRED`。
+状态：`SUPERSEDED_BY_DIFFERENTIAL_SUPPORT_V2__NO_TRAINING_AUTHORIZED`。
+
+2026-10-25 反方审查发现：共享非线性查询不保证输出层外观干扰为候选共同加性项，自由
+interaction 又可绕过 difference 分支。本文保留为被否定的候选设计记录；当前条件候选见
+`DIFFERENTIAL_SUPPORT_RELATION_ARCHITECTURE_V2_CN.md`。
 
 本文把外观—决策商理论翻译成可实现的最小网络。它不是已验证架构，也不把 DINO、cross-attention、
 trajectory tokenizer、heteroscedastic head 或 calibration 工具声明为原创。任何模块只有通过对应的
