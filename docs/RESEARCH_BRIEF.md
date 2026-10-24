@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H2R1 与 R004H3 通过各自工程门。R004H4P2S 否定了缓存动态速度字段，R004H4P4E 在128个 fit anchors 上闭合官方0.1秒 LQR+bicycle 执行接口。R004H4P5I 的8组 realized-geometry 哨兵实现门通过：8/8 有 realized supply，6/8 完成连续几何与 teacher bound，2/8 因真实轨迹超出冻结 ROI 被拒绝；但6组共36个可计算候选的双向非包含下界全为0，teacher improvement 下界全为负。该现象尚不能解释为“没有机会”，因为 rotation-free 外接圆与后轴内切圆在1米网格上存在约4.496米的结构性无证据区。外部独立审查仍不可用。当前应先做 fit-only 证书分辨率诊断，再决定是否扩到128 anchors；不得进入 development。正式 coverage、Gate B、OOD、性能与创新性仍未成立。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H4P4E 闭合了128个 fit anchors 的官方执行接口。R004H4P5I 的8组 realized-geometry 哨兵实现门通过，但36个可计算候选的双向 non-inclusion 下界全为0。R004H4P5D 随后证明这是证书分辨率问题：36/36 前序零证据候选都落在充分 no-witness barrier 内，实际最大配对后轴距离1.447620米，而最小屏障4.495949米；机械审计通过。因此 rotation-free disk non-inclusion 被退役，不能扩到128后再解释为“没有机会”。下一步是先完成方向感知矩形连续覆盖与内区证书的数值理论和反例测试，再在相同 fit sentinels 上资格化。外部独立审查仍不可用；development 继续封存。正式 coverage、Gate B、OOD、性能与创新性仍未成立。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：R004H4P5D 已按 revision `f017ef3` 注册。它把 R004H4P5I 的全零 non-inclusion 作为 post-result mechanism signal，而不是方法阴性结果；在相同8个 fit sentinels 上核验 disk outer / inner-cell 组合的解析 no-witness separation barrier，并记录官方 realized candidate 与 native 的逐时刻最大后轴距离。若全部零证据候选均落在解析屏障内，则在128-anchor扩展前退役该 disk non-inclusion 架构，转向方向感知矩形外覆盖；不得调整 provider、资格阈值或读取 development、calibration、test、target-domain 数据。
+- 下一阶段：设计但暂不注册 R004H4P5R。新证书以逐段中点方向矩形加平移、旋转和 pose-error 膨胀作为连续外覆盖，以完整网格 cell 的区间变换作为内区证据，并用保守距离下界证明 cell 与所有对侧段不相交。注册前必须补齐 Taylor 三角区间、向外/向内舍入、末端段、yaw unwrap、ROI fail-closed 和“1.5米平移可检出/相同轨迹为零”等反例测试；provider、intent 阈值、grid 和数据角色保持不变。

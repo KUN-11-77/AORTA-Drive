@@ -1,0 +1,13 @@
+{
+  "experiment_id": "R004H4P5D-mechanical-result-audit-v1",
+  "external_cross_model_review": "REVIEW_UNAVAILABLE",
+  "failures": [],
+  "payload_files_read": 0,
+  "recomputed": {
+    "maximum_paired_separation_upper_m": 1.4476203847423528,
+    "minimum_no_witness_threshold_lower_m": 4.49594891280795,
+    "predecessor_bidirectional_zero_candidates": 36,
+    "zero_candidates_explained_by_barrier": 36
+  },
+  "status": "PASS"
+}

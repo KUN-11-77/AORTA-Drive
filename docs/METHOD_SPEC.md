@@ -239,7 +239,7 @@ geometry checker 必须确定性证明非对称合同：
 - footprints 完全位于认证 ROI，集合非空；
 - reference surface、pose interpolation、vehicle dilation、coordinate transforms 与 protocol hash 一致。
 
-V0.4 的默认证明路径是 rotation-free disk fallback。每段以 rear-axle 平移中点为圆心，
+V0.4 早期实现的证明路径是 rotation-free disk fallback。每段以 rear-axle 平移中点为圆心，
 使用
 
 \[
@@ -254,9 +254,21 @@ r_{in}=\min\{l_{rear},l_{front},w/2\}-\varepsilon_{pose}>0
 \]
 
 中的格心。中点、squared distance 和比较按 binary64 输入对应的精确有理数计算，
-平方根与加法向外舍入，因此正式证书不依赖 scorer 四角点或 libm 三角函数。
+平方根与加法向外舍入，因此该证书不依赖 scorer 四角点或 libm 三角函数。
 
-解析矩形路径可作为更锐利的研究实现：冻结相邻姿态间的线性平移与连续展开 yaw
+R004H4P5D 已证明该 fallback 对当前 vehicle/grid/provider 存在结构性分辨率障碍。
+若两条 realized 轨迹所有配对后轴点的距离不超过
+
+\[
+R_K-r_{in}+2h+2\varepsilon_{pose},
+\]
+
+则 disk outer / inner-cell 组合在两个方向都不可能产生 witness。实际36个前序零证据
+候选的最大配对距离上界为 `1.447620 m`，小于最小障碍下界 `4.495949 m`；36/36均被
+该充分条件解释。因此 rotation-free disk 路径已从生产 non-inclusion 接口退役，不能再
+用于 opportunity absence、coverage 或 Gate B 结论。它只保留为 soundness control。
+
+解析矩形路径是下一候选实现：冻结相邻姿态间的线性平移与连续展开 yaw
 的线性插值。每段使用中点车体的膨胀外包络
 
 \[
@@ -265,7 +277,11 @@ r_{in}=\min\{l_{rear},l_{front},w/2\}-\varepsilon_{pose}>0
 +\varepsilon_{pose}.
 \]
 
-边长为 \(r\) 的固定方格以 \(h_j=r/\sqrt2\) 覆盖外包络。任何 ROI clipping、未展开 yaw、空 challenger/native set 或协议不匹配均返回 reject。
+边长为 \(r\) 的固定方格以 \(h_j=r/\sqrt2\) 覆盖外包络。inner cells 必须通过四角点
+区间变换证明完整落在某个 pose-error-shrunk oriented rectangle 内；non-inclusion witness
+必须通过对所有对侧 segment covers 的保守距离下界。任何 ROI clipping、未展开 yaw、
+空 challenger/native set 或协议不匹配均返回 reject。R004H4P5R 完成 exact-rational
+Taylor 三角区间、directed rounding 与合成反例资格前，该矩形路径不是正式生产证书。
 
 令 \(\varepsilon_{map,j}=\max_{q\in A_j}\varepsilon_{map}(q)\)，native 同理。若 computed lower bound 可能乐观至多 \(\varepsilon_{num}\)，则
 
@@ -380,12 +396,14 @@ R_{selected}=P(D).
 
 meaningful non-inclusion 必须使用连续 footprints \(F_j\setminus F_0\) 与 \(F_0\setminus F_j\) 的双向差面积，或方向正确的 conservative cell-union lower bounds；有限 node sets 没有连续面积。
 
-R004H4 的生产候选采用 rotation-free disk 合同。对轨迹 \(a\)，完整落在任一
+R004H4P5I 曾采用 rotation-free disk 合同。对轨迹 \(a\)，完整落在任一
 rear-axle inner disk 的 1 m 网格单元组成 \(I_a\subseteq F_a\)，连续 sweep disk
 组成 \(O_a\supseteq F_a\)。只有完整 cell 同时满足 \(C\subseteq I_j\) 且
 \(C\cap O_0=\varnothing\) 时，其面积才计入 \(F_j\setminus F_0\) 下界；反方向同理。
 H4P 的冻结 meaningful 门槛是两个方向均至少 `1.0 m^2`，即每个方向至少一个完整
-1 m cell witness。节点集合差、中心点差和四角采样都不构成该证据。
+1 m cell witness。节点集合差、中心点差和四角采样都不构成该证据。R004H4P5D 后，
+此合同只作为保守但可能 vacuous 的历史 control；生产路径必须先通过方向感知矩形证书
+资格，当前尚未注册。
 
 teacher opportunity 使用同一连续合同。若 challenger outer-cover nodes 为 \(A_j\)，
 native inner nodes 为 \(A_0\)，点标签及绝对误差为 \((\tilde d_v,\epsilon_v)\)，则

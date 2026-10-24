@@ -1,0 +1,36 @@
+{
+  "experiment_id": "R004H4P5D-disk-resolution-diagnosis-v1",
+  "status": "COMPLETED",
+  "decision": "RETIRE_DISK_NONINCLUSION_AND_QUALIFY_ORIENTED_RECTANGLE",
+  "implementation_revision": "f017ef3a3edc7564a166715f14458d2651a1d446",
+  "raw_result_sha256": "be7a68eb5818750e7bd856434f9a47e0d9794be512f015021070860e03ef5b92",
+  "mechanical_audit_sha256": "fb5012555abeae20c78601997cb5961ec78f28ade393eb89d62dcab40fdb8fbc",
+  "run_log_sha256": "704bc62dab57845163ab75ce157fef8bf1b648635adf2a76512315a969b12e29",
+  "elapsed_seconds": 11.723928813938983,
+  "diagnostic": {
+    "candidate_count": 48,
+    "all_candidates_below_barrier_count": 48,
+    "predecessor_geometry_valid_candidate_count": 36,
+    "predecessor_bidirectional_zero_candidate_count": 36,
+    "zero_candidates_explained_by_barrier_count": 36,
+    "minimum_maximum_paired_separation_upper_m": 0.13643607056421245,
+    "maximum_paired_separation_upper_m": 1.4476203847423528,
+    "minimum_no_witness_threshold_lower_m": 4.49594891280795,
+    "maximum_no_witness_threshold_lower_m": 4.495948912807957
+  },
+  "integrity": {
+    "repository_tests": "233 passed before registration",
+    "focused_static_type_check": "PASS",
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE"
+  },
+  "claims": {
+    "disk_certificate_resolution_barrier_verified": true,
+    "physical_opportunity_absent": false,
+    "prevalence_estimated": false,
+    "method_performance_evaluated": false,
+    "coverage_established": false,
+    "gate_b_passed": false,
+    "development_access_authorized": false
+  }
+}

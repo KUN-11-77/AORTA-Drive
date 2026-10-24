@@ -616,3 +616,33 @@ config; the unchanged raw result was then audited as `audit_v3`.
 - **Boundary:** this is a post-result mechanism diagnosis. It cannot support prevalence,
   performance, coverage, Gate B or novelty claims and cannot open development,
   calibration, test or target-domain data.
+
+### R004H4P5D outcome
+
+The registered diagnosis passed its implementation and mechanical-audit gates. All `48/48`
+realized candidates were below the sufficient barrier. The `36/36` candidates with valid
+predecessor geometry and bidirectional zero lower bounds were therefore fully explained by
+the certificate-resolution theorem. The maximum paired separation upper bound was
+`1.4476203847423528 m`; the minimum no-witness threshold lower bound was
+`4.49594891280795 m`. The disk non-inclusion construction is retired for this provider.
+This does not assert that a tighter certificate will find a positive opportunity.
+
+## ADR-0053 — Require a numerically certified orientation-aware rectangle interface
+
+- **Status:** proposed after R004H4P5D; not yet registered for data execution
+- **Outer set:** for each adjacent realized pose pair, cover the continuous body sweep by
+  the body rectangle at the midpoint pose dilated by half endpoint translation, the chord
+  bound `2 R sin(|Delta yaw|/4)`, and certified pose error. Linear unwrapped yaw is part of
+  this interpolation contract; it is not described as arbitrary yaw.
+- **Inner set:** accept a grid cell only when interval-certified transforms of all four cell
+  corners lie inside a pose-local body rectangle shrunk by pose error. Convexity then places
+  the whole cell inside the physical footprint.
+- **Disjointness:** accept a witness only when an outward-safe lower bound on distance from
+  the complete cell to every opposite segment cover is positive. Libm-only trigonometry or
+  nearest-rounded threshold comparisons cannot carry the proof claim.
+- **Registration gate:** adversarial synthetic tests must include identical sweeps, lateral
+  shifts around the resolvable boundary, high yaw change, last-sample witnesses, ROI exits,
+  non-finite inputs and monotonic loss of witnesses as pose error grows. Only after these
+  pass may the same eight fit sentinels be read.
+- **Boundary:** no provider, intent threshold, grid, ROI or data-role change is authorized;
+  development remains sealed.

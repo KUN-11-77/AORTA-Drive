@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-24",
+  "auditor": "REVIEW_UNAVAILABLE",
+  "overall_verdict": "review_unavailable",
+  "integrity_status": "provisional",
+  "mechanical_audit": {
+    "status": "pass",
+    "sha256": "fb5012555abeae20c78601997cb5961ec78f28ade393eb89d62dcab40fdb8fbc",
+    "payload_files_read": 0,
+    "failures": []
+  },
+  "external_cross_model_review": "REVIEW_UNAVAILABLE",
+  "claims": [
+    {
+      "id": "disk_certificate_resolution_barrier_verified",
+      "impact": "provisionally_supported"
+    },
+    {
+      "id": "physical_opportunity_absent_or_prevalent",
+      "impact": "unsupported"
+    },
+    {
+      "id": "method_performance_coverage_gate_b_or_development",
+      "impact": "unsupported"
+    }
+  ]
+}

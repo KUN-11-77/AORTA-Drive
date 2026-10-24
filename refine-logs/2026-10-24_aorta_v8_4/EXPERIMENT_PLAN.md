@@ -233,6 +233,26 @@ a provider change.
 - **Claims prohibited:** physical opportunity prevalence, method performance, coverage,
   Gate B, OOD robustness and development access.
 
+- **Result:** the registered sufficient condition explained `36/36` predecessor zero
+  ledgers. Maximum paired separation was `1.4476203847423528 m`, below the minimum
+  no-witness threshold `4.49594891280795 m`. Retire disk non-inclusion; this is not evidence
+  that physical opportunity is absent.
+
+### H4P5R — orientation-aware rectangle certificate qualification
+
+- **Status:** design only; not registered for data execution.
+- **Outer theorem:** midpoint oriented rectangle plus certified translation, yaw-chord and
+  pose-error dilation covers the piecewise-linear-translation, linear-unwrapped-yaw sweep.
+- **Inner theorem:** interval-transform all four grid-cell corners into a frozen pose and
+  require containment in a pose-error-shrunk rectangle; convexity certifies the full cell.
+- **Non-inclusion:** a cell contributes area only if a conservative distance lower bound
+  proves it disjoint from every segment outer cover of the opposite trajectory.
+- **Numerical contract:** use exact-rational/Taylor trigonometric intervals and directed
+  rounding. Nearest-rounded libm distances may be diagnostics but never proof gates.
+- **Qualification:** synthetic positive/negative/adversarial tests first, then the same
+  eight fit sentinels. A positive result only permits a separately registered 128-anchor
+  fit-only preflight.
+
 ### H4 — one-read development qualification
 
 - **Data:** all 24 groups x 16 frozen times, exactly once after every choice above is frozen.

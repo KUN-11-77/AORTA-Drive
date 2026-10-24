@@ -1,0 +1,65 @@
+{"sentinels_completed": 1}
+{"sentinels_completed": 2}
+{"sentinels_completed": 3}
+{"sentinels_completed": 4}
+{"sentinels_completed": 5}
+{"sentinels_completed": 6}
+{"sentinels_completed": 7}
+{"sentinels_completed": 8}
+{
+  "claims": {
+    "coverage_established": false,
+    "development_access_authorized": false,
+    "disk_certificate_resolution_barrier_verified": true,
+    "gate_b_passed": false,
+    "method_performance_evaluated": false,
+    "physical_opportunity_absent": false,
+    "prevalence_estimated": false
+  },
+  "completed_at_utc": "2026-10-24T03:16:31.151083+00:00",
+  "config_sha256": "41877cdfaec1cc31fa49127e88f39e0337d47349eff98e98c1e093417801f16c",
+  "data_scope": {
+    "anchor_count": 8,
+    "candidate_count": 48,
+    "development_calibration_test_or_target_accessed": false,
+    "label_payload_read": false,
+    "prevalence_or_performance_claim": false,
+    "recording_group_count": 8,
+    "role": "fit"
+  },
+  "decision": "RETIRE_DISK_NONINCLUSION_AND_QUALIFY_ORIENTED_RECTANGLE",
+  "diagnostic_counts": {
+    "predecessor_bidirectional_zero_candidates": 36,
+    "zero_candidates_explained_by_barrier": 36
+  },
+  "elapsed_seconds": 11.723928813938983,
+  "experiment_id": "R004H4P5D-disk-resolution-diagnosis-v1",
+  "implementation_failures": [],
+  "implementation_revision": "f017ef3a3edc7564a166715f14458d2651a1d446",
+  "maximum_paired_separation_upper_m": 1.4476203847423528,
+  "minimum_no_witness_threshold_lower_m": 4.49594891280795,
+  "status": "COMPLETED"
+}
+	Command being timed: "/data/jbwang/anaconda3/envs/dinov3/bin/python scripts/diagnose_r004h4p5d_disk_resolution.py --config configs/experiment/r004h4p5d_disk_resolution_diagnosis.yaml --time-set configs/manifests/r004_session_time_set.csv --role-manifest configs/manifests/r004h_group_roles.csv --metric-manifest /data/khsong/aorta_runs/r004e_49139e6/full_train_dev/manifest.json --metric-root /data/khsong/aorta_runs/r004e_49139e6/full_train_dev --predecessor-result experiments/results/R004H4P5I/result.json --implementation-revision f017ef3a3edc7564a166715f14458d2651a1d446 --output /data/khsong/aorta_runs/r004h4p5d_r1_f017ef3/results/result.json"
+	User time (seconds): 22.86
+	System time (seconds): 0.35
+	Percent of CPU this job got: 186%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.46
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 619888
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 206611
+	Voluntary context switches: 304
+	Involuntary context switches: 267
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 104
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

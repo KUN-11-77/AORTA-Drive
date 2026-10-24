@@ -1,0 +1,540 @@
+{
+  "claims": {
+    "coverage_established": false,
+    "development_access_authorized": false,
+    "disk_certificate_resolution_barrier_verified": true,
+    "gate_b_passed": false,
+    "method_performance_evaluated": false,
+    "physical_opportunity_absent": false,
+    "prevalence_estimated": false
+  },
+  "completed_at_utc": "2026-10-24T03:16:31.151083+00:00",
+  "config_sha256": "41877cdfaec1cc31fa49127e88f39e0337d47349eff98e98c1e093417801f16c",
+  "data_scope": {
+    "anchor_count": 8,
+    "candidate_count": 48,
+    "development_calibration_test_or_target_accessed": false,
+    "label_payload_read": false,
+    "prevalence_or_performance_claim": false,
+    "recording_group_count": 8,
+    "role": "fit"
+  },
+  "decision": "RETIRE_DISK_NONINCLUSION_AND_QUALIFY_ORIENTED_RECTANGLE",
+  "diagnostic_counts": {
+    "predecessor_bidirectional_zero_candidates": 36,
+    "zero_candidates_explained_by_barrier": 36
+  },
+  "elapsed_seconds": 11.723928813938983,
+  "experiment_id": "R004H4P5D-disk-resolution-diagnosis-v1",
+  "implementation_failures": [],
+  "implementation_revision": "f017ef3a3edc7564a166715f14458d2651a1d446",
+  "maximum_paired_separation_upper_m": 1.4476203847423528,
+  "minimum_no_witness_threshold_lower_m": 4.49594891280795,
+  "sentinel_ledger": [
+    {
+      "anchor_index": 0,
+      "candidate_ledger": [
+        {
+          "amplitude_m": -1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.9189021421129526,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.5922049474238343,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.2807020438689258,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.3048286023736247,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.5728303431240316,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.8426720502989444,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        }
+      ],
+      "execution_deterministic_replay_bit_exact": true,
+      "log_name": "2021.08.24.14.35.46_veh-45_00011_00162",
+      "recording_group": "2021.08.24.14.35.46_veh-45",
+      "scene_token": "f9c96a10aca65deb"
+    },
+    {
+      "anchor_index": 0,
+      "candidate_ledger": [
+        {
+          "amplitude_m": -1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.6093832952080602,
+          "no_witness_threshold_lower_m": 4.49594891280795,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.3600385266236411,
+          "no_witness_threshold_lower_m": 4.49594891280795,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.17108779945319563,
+          "no_witness_threshold_lower_m": 4.49594891280795,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.13643607056421245,
+          "no_witness_threshold_lower_m": 4.49594891280795,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.26538997387989643,
+          "no_witness_threshold_lower_m": 4.49594891280795,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.4392314363794129,
+          "no_witness_threshold_lower_m": 4.49594891280795,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        }
+      ],
+      "execution_deterministic_replay_bit_exact": true,
+      "log_name": "2021.06.09.11.54.15_veh-12_00015_00259",
+      "recording_group": "2021.06.09.11.54.15_veh-12",
+      "scene_token": "18dd648b34955044"
+    },
+    {
+      "anchor_index": 0,
+      "candidate_ledger": [
+        {
+          "amplitude_m": -1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 1.0117566683794195,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.6245793882936812,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.22946874702696854,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.5959383175988601,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 1.0176026384254706,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 1.4476203847423528,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        }
+      ],
+      "execution_deterministic_replay_bit_exact": true,
+      "log_name": "2021.06.23.15.56.12_veh-16_00066_00818",
+      "recording_group": "2021.06.23.15.56.12_veh-16",
+      "scene_token": "bbbcf2da1ac25c0c"
+    },
+    {
+      "anchor_index": 0,
+      "candidate_ledger": [
+        {
+          "amplitude_m": -1.5,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 1.4099177692061553,
+          "no_witness_threshold_lower_m": 4.495948912807957,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": -1.0,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.9395062314190188,
+          "no_witness_threshold_lower_m": 4.495948912807957,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": -0.5,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.4672282561086628,
+          "no_witness_threshold_lower_m": 4.495948912807957,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": 0.5,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.47958245384035253,
+          "no_witness_threshold_lower_m": 4.495948912807957,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": 1.0,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.9508579397129114,
+          "no_witness_threshold_lower_m": 4.495948912807957,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": 1.5,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 1.42063964523761,
+          "no_witness_threshold_lower_m": 4.495948912807957,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        }
+      ],
+      "execution_deterministic_replay_bit_exact": true,
+      "log_name": "2021.05.12.22.28.35_veh-35_00126_00339",
+      "recording_group": "2021.05.12.22.28.35_veh-35",
+      "scene_token": "185b926e03ad5fc6"
+    },
+    {
+      "anchor_index": 0,
+      "candidate_ledger": [
+        {
+          "amplitude_m": -1.5,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 1.336879875909244,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": -1.0,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.9418686702060776,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": -0.5,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.5391674953065462,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": 0.5,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.2960991245343906,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": 1.0,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.7141720191393331,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        },
+        {
+          "amplitude_m": 1.5,
+          "barrier_explains_predecessor_zero": false,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 1.1370360047126133,
+          "no_witness_threshold_lower_m": 4.495948912807954,
+          "predecessor_bidirectional_zero": false,
+          "predecessor_geometry_valid": false
+        }
+      ],
+      "execution_deterministic_replay_bit_exact": true,
+      "log_name": "2021.08.24.20.03.01_veh-45_00021_00143",
+      "recording_group": "2021.08.24.20.03.01_veh-45",
+      "scene_token": "2af3781aae7959fc"
+    },
+    {
+      "anchor_index": 0,
+      "candidate_ledger": [
+        {
+          "amplitude_m": -1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.8137269860776211,
+          "no_witness_threshold_lower_m": 4.495948912807953,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.5336730756104795,
+          "no_witness_threshold_lower_m": 4.495948912807953,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.2553077008198373,
+          "no_witness_threshold_lower_m": 4.495948912807953,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.302477151873813,
+          "no_witness_threshold_lower_m": 4.495948912807953,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.5802731383379627,
+          "no_witness_threshold_lower_m": 4.495948912807953,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.8592654653940065,
+          "no_witness_threshold_lower_m": 4.495948912807953,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        }
+      ],
+      "execution_deterministic_replay_bit_exact": true,
+      "log_name": "2021.06.07.19.29.59_veh-38_00474_00922",
+      "recording_group": "2021.06.07.19.29.59_veh-38",
+      "scene_token": "5b972af1ae4d57ff"
+    },
+    {
+      "anchor_index": 0,
+      "candidate_ledger": [
+        {
+          "amplitude_m": -1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.8420942265808556,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.5602857725896664,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.2718589351261477,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.3131536665141343,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.6000507938135703,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.8793123393721586,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        }
+      ],
+      "execution_deterministic_replay_bit_exact": true,
+      "log_name": "2021.07.16.01.22.41_veh-14_00015_00547",
+      "recording_group": "2021.07.16.01.22.41_veh-14",
+      "scene_token": "d267c26f57345802"
+    },
+    {
+      "anchor_index": 0,
+      "candidate_ledger": [
+        {
+          "amplitude_m": -1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.613035637157535,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.3982698679170167,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": -0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.19305803801657515,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 0.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.20753357922128718,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.0,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.4110331137464732,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        },
+        {
+          "amplitude_m": 1.5,
+          "barrier_explains_predecessor_zero": true,
+          "barrier_guarantees_zero_witnesses": true,
+          "maximum_paired_separation_upper_m": 0.6232439263740708,
+          "no_witness_threshold_lower_m": 4.495948912807951,
+          "predecessor_bidirectional_zero": true,
+          "predecessor_geometry_valid": true
+        }
+      ],
+      "execution_deterministic_replay_bit_exact": true,
+      "log_name": "2021.07.09.01.37.16_veh-26_00692_00762",
+      "recording_group": "2021.07.09.01.37.16_veh-26",
+      "scene_token": "dc9fe721b06a50d1"
+    }
+  ],
+  "status": "COMPLETED"
+}
