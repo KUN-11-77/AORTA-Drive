@@ -29,6 +29,13 @@ H7B:
   authorization: held_until_H7A_pass_and_implementation_audit
   model_updates: prohibited
   split: historically_exposed_development
+  frozen_inputs:
+    r004h6_result_sha256: 1e33acee0c2b8a82cada772712ed9b394dad5a6f9e9f1f484fb05a5611b698d1
+    r004h6_exact_teacher_audit_sha256: f05d8f9c98ed2af53ae9573ece80400bb9c68e89631ba124c85894dabaccabee
+    source_split_manifest_sha256: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
+    feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+    label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+    metric_manifest_sha256: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
   groups: 24
   anchors_per_group: 16
   independent_unit: recording_group
@@ -42,6 +49,36 @@ H7B:
     native_outside_ROI_empty_or_nondeterministic_execution_invalidates_anchor: true
     invalid_challenger_is_ledgered_without_invalidating_other_challengers: true
   appearances: [clean, low_exposure, low_contrast, cool_cast]
+  candidate_panel:
+    provider: native_fixed_normal_c2_bump_v1
+    challenger_amplitudes_m: [-1.5, -1.0, -0.5, 0.5, 1.0, 1.5]
+    desired_curve_dynamic_screen: disabled
+    official_execution_interval_s: 0.1
+    official_execution_samples_including_origin: 41
+    deterministic_replay: bit_exact_required
+    intent_eligibility:
+      comparison_interval_s: 0.5
+      minimum_native_terminal_displacement_m: 2.0
+      progress_ratio: [0.8, 1.2]
+      maximum_terminal_cross_track_m: 3.5
+      maximum_terminal_heading_difference_rad: 0.35
+      maximum_terminal_speed_difference_mps: 4.0
+    vehicle:
+      width_m: 2.297
+      length_m: 5.176
+      rear_axle_to_center_m: 1.461
+      rear_overhang_m: 1.127
+      front_extent_m: 4.049
+      half_width_m: 1.1485
+    node_grid:
+      x_min_m: -32.0
+      y_min_m: -32.0
+      rows: 64
+      columns: 64
+      resolution_m: 1.0
+    rasterization: union_of_nodes_inside_discrete_0p1s_oriented_rectangles
+    ROI_clipping: reject_candidate
+    continuous_interpolation_or_certificate: prohibited
   diagnostics: [decision_contrast_error, edge_MAE, gauge_centered_node_MAE, DINO_drift]
   outcomes: [teacher_regret, deterministic_ranking_flip]
   bootstrap_seed: 20261024
@@ -55,6 +92,10 @@ H7B:
     - decision_minus_each_control_AUROC_CI95_low_strictly_positive
   exact_ties: retained_under_native_first_then_registered_challenger_order
   failure_action: stop_current_decision_quotient_training_claim
+  resources:
+    device: cpu
+    maximum_wall_minutes: 120
+    maximum_output_mib: 64
 
 H7C:
   authorization: held_until_H7A_and_H7B_supported

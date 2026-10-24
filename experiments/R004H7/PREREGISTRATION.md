@@ -32,6 +32,14 @@
 
 候选集合由冻结 provider 经官方 execution operator 得到 realized trajectory，再在冻结 1m ROI 上形成“离散时刻 oriented vehicle rectangles 覆盖的节点集合”。它是 shadow task proxy，不是连续 swept-footprint certificate。native 必须有效；无效 challenger 保留并标记，不按模型结果过滤。
 
+精确 provider 合同沿用已经登记的 `native_fixed_normal_c2_bump_v1`：normal-offset
+amplitude 顺序固定为 `[-1.5,-1.0,-0.5,0.5,1.0,1.5]m`，关闭 desired-curve
+dynamic screen，统一经 NAVSIM official `0.1s` execution 得到含 origin 的41个 realized
+poses；intent limits、官方车辆长宽/后轴约定和 `[-32,32]^2` 的64×64、1m grid 均逐项写入
+机器可读配置。离散 rectangle 越出完整 ROI 即拒绝该 candidate，不裁剪；不做连续插值，
+也不复活已停止的 geometry certificate。上游 H6 result、exact-teacher audit 与全部 manifests
+以 SHA-256 绑定。
+
 H7-B 完整性门：24/24 groups 均存在；每组至少12/16 anchors 具有 native 与至少一个有效 challenger；否则整个 H7-B 记为 `INSUFFICIENT_PANEL_COVERAGE`，不得删除组后继续。
 
 无效 anchor 必须保留在 panel coverage 分母和失败账本中，不得以任何预测场、teacher
