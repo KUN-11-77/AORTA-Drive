@@ -1,5 +1,7 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-24 ICCV baseline/novelty audit:** FlowDrive and READ are now mandatory closest-method references, but their published headline scores are not treated as direct wins/losses unless sensor, backbone, data, candidate, and scorer contracts are aligned. PEA is eligible only as a frozen driving-adapted TTA baseline; the current AutoVLA and ReCogDrive MG results remain respectively `test-time core adaptation` and `MG-style adaptation`, not strict official MG-Select reproductions. The provisional method thesis moves from graph quotient alone to a decision quotient defined by frozen candidate contrasts; this is not a qualified contribution until R004H6 passes and R004H7 shows that decision-contrast error predicts and reduces ranking flips beyond field MAE, SDF/BEV, direct edge + projection, direct pair, FlowDrive-style, and READ-style controls. Full audit: `refine-logs/2026-10-24_aorta_iccv_positioning/BASELINE_AND_NOVELTY_AUDIT_CN.md`.
+
 > 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H5 首次给出经过机械复算的正向 fit 视觉机制证据：42 groups/672 anchors 全部完成，learned task MAE 约0.324m、zero 0.550m、teacher cosine约0.771，三种受控外观漂移约0.0087–0.0102m；一次性审查中 learned 在42/42组上优于 leave-one-group-out teacher prior。该结果只支持受控 fit 机制。R004H4P5R 在预注册30分钟上限内未完成首个哨兵，当前严格几何迭代因 computability 停止且无科学几何结果。下一步只允许冻结模型的独立视觉泛化资格实验；决策收益保持 HOLD。development、official calibration、test 与 target 仍封存，正式 coverage、真实天气/OOD、驾驶收益、Gate B 与创新性未成立。
 
 ## 1. 问题锚点
