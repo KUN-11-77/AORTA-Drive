@@ -18,6 +18,9 @@ H7BS4B4T0:
   frozen_input_sha256:
     group_role_manifest: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
     metric_manifest: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+  implementation_sha256:
+    temporal_context_roster_source: 13140de5299c1e544d167e1a1a3e941764d8b805c5bb3cb8622766532d39b59f
+    runner_source: 92e6148c9bca5b9c86f95946c892101407e5f147b2db664bed9ddcc52bbb6e38
   required_result:
     all_672_current_tokens_unique_in_raw_logs: true
     all_672_previous_contexts_available: true

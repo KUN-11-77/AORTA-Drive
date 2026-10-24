@@ -33,6 +33,15 @@ def _write_json(path: Path, value: Mapping[str, Any]) -> None:
 def run(args: argparse.Namespace) -> dict[str, Any]:
     config = cast(dict[str, Any], yaml.safe_load(args.config.read_text(encoding="utf-8")))
     stage = cast(dict[str, Any], config["H7BS4B4T0"])
+    repository = Path(__file__).resolve().parents[1]
+    implementation = cast(Mapping[str, str], stage["implementation_sha256"])
+    for name, path in {
+        "temporal_context_roster_source": repository
+        / "src/aorta_drive/evaluation/temporal_context_roster.py",
+        "runner_source": Path(__file__).resolve(),
+    }.items():
+        if sha256_file(path) != implementation[name]:
+            raise ValueError(f"implementation hash mismatch: {name}")
     frozen = cast(Mapping[str, str], stage["frozen_input_sha256"])
     for name, path in {
         "group_role_manifest": args.group_role_manifest,

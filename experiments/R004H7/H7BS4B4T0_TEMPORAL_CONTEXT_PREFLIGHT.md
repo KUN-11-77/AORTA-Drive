@@ -1,6 +1,6 @@
 # R004H7-BS4B4T0 temporal-context roster preflight
 
-状态：**OUTCOME_FREE_INTERFACE_PASS__FORMAL_REPLAY_PENDING**。
+状态：**FORMAL_OUTCOME_FREE_INTERFACE_PASS**。
 
 ## 目的
 
@@ -31,9 +31,18 @@ NavDream/target 数据。
 - gap范围：0.498078–0.500686 s；
 - 逻辑 ledger SHA-256：95d94dd15b68ce28095518d5c9a4f162c4e550c290a8b27158a48fc4c0e67ab0。
 
-该结果说明 augmented-context alignment 可定义，但当前数字来自一次只读服务器检查；新的可复用
-runner、fail-closed core与8项合成测试已经加入仓库，尚需在冻结提交上生成完整 result JSON并机械
-重放，之后才把状态升级为 formal preflight PASS。
+该结果说明 augmented-context alignment 可定义。冻结提交25825c6的正式服务器materialization与
+independent replay各生成672行完整ledger，两份259,835-byte JSON逐字节相同：
+
+- primary/replay SHA-256：
+  54bb1cde17562e7b34e0d57b85113acd273885a156c0a040fb879cb06bdc76c9；
+- source transfer bundle SHA-256：
+  1fb5a51906c404e88937e1835db1b76999e8778e7396ad205216eaa537c418f6；
+- local summary：
+  F:/AORTA-Drive-artifacts/gate-b/R004H7/r004h7bs4b4t0_25825c6_summary.json。
+
+8项合成反例、19项相关测试与strict mypy均通过。完整ledger保留在服务器
+/data/khsong/aorta_runs/r004h7bs4b4t0_25825c6；本地summary记录其哈希、输入和claim boundary。
 
 ## 对后续设计的约束
 

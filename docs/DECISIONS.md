@@ -1061,8 +1061,9 @@ the current open-ended geometry certificate iteration remains STOP.
 
 - **Decision:** AUGMENT_TRUE_PREVIOUS_ROW__ANCHOR_INDEX_IS_NOT_TIME。
 - **Evidence:** 现有672-anchor roster中0个current token在同一roster内具有≤0.55 s predecessor，
-  42/42组均为0 pair；直接官方聚合会对全部样本关闭two-frame权重。逐官方raw log恢复则初检
-  672/672 anchors存在唯一立即前一行，42/42组16/16，gap为0.498078–0.500686 s。
+  42/42组均为0 pair；直接官方聚合会对全部样本关闭two-frame权重。逐官方raw log恢复后，
+  672/672 anchors存在唯一立即前一行，42/42组16/16，gap为0.498078–0.500686 s。冻结提交
+  25825c6的primary/replay完整ledger逐字节一致，SHA-256为54bb1cde…76c9。
 - **Consequence:** future alignment为每个current anchor增加真实previous context row；native与全部legal
   challenger共享相同previous trajectory。不得用anchor index减一、最近抽样anchor或roster-only
   aggregation。部署时若上一帧已被AORTA替换，下一帧应使用实际selected trajectory；是否需要
