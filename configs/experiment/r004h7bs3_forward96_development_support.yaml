@@ -1,0 +1,63 @@
+experiment_id: R004H7BS3-forward96-full-domain-development-gate-v1
+date: 2026-10-24
+status: preregistered_one_shot_not_run
+
+H7BS3:
+  scientific_role: outcome_blind_complete_candidate_domain_qualification
+  independent_unit: recording_group
+  development_groups: 24
+  anchors_per_group: 16
+  minimum_valid_anchors_per_group: 12
+  complete_horizon_index: 40
+  sample_interval_s: 0.1
+  support_rule: every_native_and_every_full_horizon_intent_eligible_challenger_must_be_supported
+  roi:
+    id: forward_extend_96x64
+    x_min_m: -32.0
+    y_min_m: -32.0
+    columns: 96
+    rows: 64
+    resolution_m: 1.0
+    node_count: 6144
+    fit_selection_basis: first_preregistered_dictionary_option_with_3864_of_3864_eligible_queries_supported
+  vehicle:
+    rear_overhang_m: 1.127
+    front_extent_m: 4.049
+    half_width_m: 1.1485
+  frozen_input_sha256:
+    group_role_manifest: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+    development_panel_manifest: f41a7cf2c7e657c7396364aa21674466c743176a427ed5b439ed49b68534dcc8
+    h7bs1_development_support_result: 34fcb15fe995b17534b33ec9f10072834df4c9f48d7e6e03205bb956ae20e0d8
+    h7bs2_fit_result: 92624f4a056f59e66dff816777700532a607bcd1191c004fe54e7c1e823892b7
+    h7bs2_mechanical_audit: 9323012778d09fc540e8d029eb7497b846a6d6a73d3d52e691b1003a4a445eb6
+  implementation_sha256:
+    candidate_information_source: 15fdd3a281ab2135f8cb302cd7e0f1186a175aeea8464f08ec790a1323741205
+    runner_source: 3bf4e41078786d2e0845a091e5048921df310e0295fb741cfbb5aa68b44e3c96
+    audit_source: 3609a2217ea06084a5db26b99432bc5a5428e5d070260618af888049d4e4079d
+  forbidden_inputs:
+    - visual_fields
+    - DINO_features
+    - teacher_labels_or_margins
+    - ranking_regret_or_flip
+    - official_calibration
+    - test
+    - NavDream
+    - target
+  failure_action: stop_forward96_domain_without_roi_or_threshold_change
+  pass_action: register_visual_observability_teacher_coverage_and_latency_preflight_only
+  resources:
+    device: cpu
+    maximum_wall_minutes: 20
+    maximum_output_mib: 16
+
+claim_boundary:
+  permitted: discrete_time_complete_candidate_domain_support_on_historically_exposed_development
+  prohibited:
+    - field_accuracy
+    - visual_robustness
+    - inference_latency
+    - decision_relevance
+    - driving_or_safety_gain
+    - continuous_geometry_certificate
+    - test_target_or_NavDream_generalization
+    - architecture_novelty
