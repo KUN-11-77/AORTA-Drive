@@ -291,3 +291,18 @@
 - **Boundary:** H3 uses historically exposed proxy groups only to rehearse the frozen
   calibration machinery and compare learned, pooled, uniform and evidence-only controls.
   It cannot produce a coverage claim or authorize official calibration by itself.
+
+## ADR-0034 — Calibrate every proxy control independently at the session level
+
+- **Status:** accepted before R004H3 execution
+- **Unit:** one recording group is one calibration observation; its score is the maximum
+  over all 16 registered times and 8064 canonical edges. The 256 anchors are not treated as
+  independent samples.
+- **Threshold:** with `n=16` and `alpha=0.10`, every control uses rank 16, its maximum
+  complete-session score. Learned, pooled, uniform and evidence-only thresholds are
+  separate; threshold sharing is prohibited.
+- **Invalidity:** one invalid group makes the complete affected control variant infinite.
+  No group may be filtered, replaced or winsorized. H4 registration requires all four
+  variants finite and replay-exact.
+- **Boundary:** proxy roles were historically exposed. H3 qualifies execution plumbing
+  only; it is not calibration coverage, utility, Gate B or official-calibration evidence.

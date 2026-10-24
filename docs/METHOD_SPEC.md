@@ -456,8 +456,8 @@ R004H2D 最终得到 activation-scale `8/8`、parameterization `0/8`、LR-primar
 N(h)=h/\max\!\left(\sqrt{\frac{1}{CHW}\sum_{cxy}h_{cxy}^2},\epsilon\right),
 \]
 
-其中实际输入必须非零，ε 仅作数值防护且不得成为可调超参数。(N(h)) 不进入 potential
-path，不中心化，也没有可学习 affine 参数。由 (N(ch)=N(h);(c>0))，尺度头对 trunk 的
+其中实际输入必须非零，ε 仅作数值防护且不得成为可调超参数。\(N(h)\) 不进入 potential
+path，不中心化，也没有可学习 affine 参数。由 \(N(ch)=N(h)\;(c>0)\)，尺度头对 trunk 的
 正 activation gauge 不变，同时保留通道和空间方向结构。这是接口可识别性修复，而不是
 扩大网络容量。
 
@@ -466,3 +466,18 @@ R004H2R1 的 selected proper loss 为 `0.001564`，uniform 为 `0.380000`，两�
 “gauge diagnosis 能解释并修复当前 optimization instance”，并非 calibration。下一门 H3
 只能用 historically exposed proxy roles 排练 calibration 与 control comparison；正式
 coverage 必须等待从未用于设计的 official calibration/future source sessions。
+
+### 12.6 Proxy rehearsal contract
+
+R004H3 对 control \(c\) 与 recording group \(g\) 定义
+
+\[
+E_g^{(c)}=\max_{t\in T(g),e\in E}
+\frac{\overline r_{gte}}{s_{gte}^{(c)}},
+\]
+
+其中 \(\overline r\) 从四个 represented node values 分别作 outward subtraction 后再取绝对残差
+上界；除法同样朝 \(+\infty\) 舍入。16 个 proxy groups 在 `alpha=0.10` 下取 rank 16，
+所以 \(q_c=\max_g E_g^{(c)}\)。四种 controls 独立校准，随后以 outward multiplication
+形成 \(w_{gte}^{(c)}=q_c s_{gte}^{(c)}\)。proxy roles 的历史曝光使该过程只能验证代码、
+数值方向和角色纪律，不能验证 exchangeability 或 coverage。

@@ -1,0 +1,86 @@
+experiment_id: R004H3-proxy-calibration-rehearsal-v1
+date: 2026-10-24
+scope: historically_exposed_proxy_workflow_rehearsal_only
+
+predecessor:
+  experiment: R004H2R1-rms-normalized-scale-fit-v1
+  decision: PASS
+  raw_result_sha256: 42c023f93d010afb702ee5712c04aa08bd00f878e40c52bf10220e6ca8cb9463
+  stage_p_checkpoint_sha256: 8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b
+  stage_p_config_sha256: 1cebf499f7997f0190354b94df5b8982508912ba718c61c33946940db7bcee9d
+  selected_scale_checkpoint_sha256: aacb6bf43ce909860d6e459c9115eb2ca471c84f2426ea560545e0e471cd2b48
+  scale_config_sha256: c8b4e5a2dc48cb909f87e3a831d2e647e24af8aeae881d07d6ae9af0d53458fc
+
+inputs:
+  recording_group_manifest_sha256: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  allowed_payload_roles: [proxy_cal]
+  prohibited_payload_roles: [fit, selection, development, calibration, test, target_domain]
+  proxy_groups: 16
+  anchors_per_group: 16
+  total_anchors: 256
+  historical_exposure: previously_used_by_v8_3_training_or_method_development
+
+model:
+  stage_p_class: QuotientFieldPredictor
+  stage_p_checkpoint_load: strict
+  scale_input_normalization: uncentered_global_rms
+  scale_head_checkpoint_load: strict
+  trainable_parameters: 0
+  parameter_updates: 0
+
+controls:
+  names: [learned, pooled, uniform, evidence_only]
+  learned: selected_r004h2r1_edge_scale
+  pooled: per_observation_geometric_mean_of_learned_broadcast_to_all_edges
+  uniform: one_metre_all_edges
+  evidence_only:
+    node_reliability: valid_slot_fraction
+    edge_reliability: mean_of_endpoint_node_reliabilities
+    floor: one_over_12
+    shape: inverse_square_root_reliability
+    gauge: per_observation_geometric_mean_one
+    final_bounds: [0.0009765625, 16.0]
+  shared_threshold_across_controls: prohibited
+
+score:
+  residual: four_represented_node_values_outward_absolute_edge_residual
+  standardization: outward_divide_residual_upper_by_control_scale
+  session_aggregation: maximum_over_all_16_times_and_8064_edges
+  graph_grid_size: 64
+  edge_count: 8064
+  edge_order: all_rightward_then_all_downward
+  scale_min_m: 0.0009765625
+  scale_max_m: 16.0
+
+calibration:
+  alpha: 0.10
+  independent_sessions: 16
+  order_statistic_rank: 16
+  threshold_per_control: true
+  invalid_group_rule: entire_control_variant_records_infinite_threshold_without_filtering
+  payload_read_passes: 1
+  cached_score_replay_passes: 2
+  proxy_coverage_claim: prohibited
+
+decision:
+  pass_requires:
+    - exact_16_groups_times_16_anchors
+    - all_four_controls_have_16_finite_nonnegative_session_scores
+    - all_four_rank_16_thresholds_are_finite_and_replay_exactly
+    - all_outward_edge_budget_diagnostics_are_finite
+    - no_parameter_updates_or_checkpoint_writes
+    - no_prohibited_payload_access
+  h4_registration_authorized_by_pass: true
+  development_access_authorized_by_registration_alone: false
+  coverage_established: false
+  gate_b_passed: false
+  official_calibration_access_authorized: false
+
+resources:
+  device: cuda:0
+  maximum_peak_gpu_gib: 4.0
+  maximum_wall_minutes: 10
+  maximum_output_gib: 0.05

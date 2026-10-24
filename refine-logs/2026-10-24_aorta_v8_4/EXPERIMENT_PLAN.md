@@ -111,6 +111,25 @@ are historically exposed.
 - **Interpretation:** protocol rehearsal only, no empirical coverage claim.
 - **Fail:** no development read for the failed variant.
 
+**Frozen R004H3 instantiation.** Load H1 Stage P and the selected H2R1 scale checkpoint
+strictly with zero trainable parameters. Read each of the 256 proxy payloads exactly once,
+cache only represented potentials, float64 teacher labels and four scale matrices, then
+replay every session score twice from cache. For each control independently compute
+
+\[
+E_g^{(c)}=\max_{t,e}
+\operatorname{up}\!\left(
+\frac{\operatorname{up}|(u_j-u_i)-(\tilde d_j-\tilde d_i)|}{s_{gte}^{(c)}}
+\right),
+\qquad q_c=E_{(16)}^{(c)}.
+\]
+
+The canonical edge order is all rightward then all downward. `learned`, `pooled`, `uniform`
+and `evidence_only` each receive their own (q_c). Any invalid group sets only that
+variant to `+infinity_due_to_invalid_group`, with no filtering; H4 registration requires
+all four variants finite. Budget min/median/max are diagnostics only and cannot select a
+control. PASS is plumbing qualification, not coverage or utility evidence.
+
 ### H4 — one-read development qualification
 
 - **Data:** all 24 groups x 16 frozen times, exactly once after every choice above is frozen.

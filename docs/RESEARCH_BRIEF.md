@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：冻结 R004H3 proxy-cal workflow rehearsal。只能首次读取 16 个历史暴露 proxy groups，以 selected H2R1 checkpoint 比较 learned、pooled、uniform 与 evidence-only 四种固定 scale controls 的非对称 finite-sample calibration、acceptance 与 common-denominator utility plumbing；该阶段不产生 coverage claim，也不得读取 development 或 official calibration。
+- 下一阶段：执行已冻结的 R004H3 proxy-cal workflow rehearsal。只能首次读取 16 个历史暴露 proxy groups；每组 16 anchors 共同形成一个 session maximum，learned、pooled、uniform 与 evidence-only 分别取 rank-16 阈值。任一非法 group 令对应 variant 为无穷且不得过滤。该阶段不产生 coverage claim，也不得读取 development 或 official calibration。

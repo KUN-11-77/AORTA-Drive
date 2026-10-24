@@ -75,7 +75,7 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform、确定性全节点 label builder，以及已冻结的 R004A–H2R1 协议与完整结果账本。下一步是先设计并注册 H3：只在 16 个历史暴露 proxy groups 上排练四个固定 scale controls 的 calibration/decision 流程，development 与 official calibration 继续封存。
+当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform、确定性全节点 label builder，以及已冻结的 R004A–H3 协议与完整结果账本。R004H3 已注册为 16-group one-read proxy rehearsal：四个 scale controls 独立取 session-level rank-16 阈值，development 与 official calibration 继续封存。
 
 ## 核心文档
 
