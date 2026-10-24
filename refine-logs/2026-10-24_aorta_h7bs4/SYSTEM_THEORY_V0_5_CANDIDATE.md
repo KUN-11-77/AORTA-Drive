@@ -257,3 +257,12 @@ global set-min零差异来源。若共同区域极小值占主导，才考虑共
 - 1/8冻结D0盲差异pair是teacher-critical，但效应仅-0.020322 m且无decision outcome；
 - 时延、NavDream、三planner和clean no-harm均未验证；
 - 外部独立method reviewer不可用，本文不是独立审稿结论。
+
+## 9. B2 后废止与迁移说明
+
+B2 机械确认 2,033/2,219 exact-zero contrasts 来自 common-min domination，覆盖 42/42 groups；
+discrete support duplicate 为 186，distinct-min tie 为 0。故本稿 L4 的单一 global set-min 不再是
+最终 task operator 候选，L3 的 correlated uncertainty 也不能在错误聚合对象上继续扩展。
+
+新的候选对象迁移到 `THEORY_REFINEMENT_AFTER_B2.md`：shared-trunk qualification 与
+branch-specific contrast。该迁移只获得 oracle 设计资格，不授权网络、NavDream 或驾驶实验。

@@ -1,0 +1,53 @@
+{
+  "experiment_id": "R004H7BS4B2-zero-contrast-anatomy-v1",
+  "status": "common_min_dominance_eligible_for_fork_operator_design",
+  "code_commit": "ded010c",
+  "scope": {
+    "anchors": 672,
+    "recording_groups": 42,
+    "native_challenger_pairs": 3864,
+    "exact_zero_teacher_contrasts": 2219
+  },
+  "exact_zero_partition": {
+    "discrete_support_duplicate": 186,
+    "common_minimum_domination": 2033,
+    "distinct_minimum_teacher_tie": 0,
+    "fraction": {
+      "discrete_support_duplicate": 0.08382154123479045,
+      "common_minimum_domination": 0.9161784587652095,
+      "distinct_minimum_teacher_tie": 0.0
+    },
+    "affected_groups": {
+      "discrete_support_duplicate": 36,
+      "common_minimum_domination": 42,
+      "distinct_minimum_teacher_tie": 0
+    }
+  },
+  "continuous_aliasing_ledger": {
+    "duplicate_support_but_continuous_poses_differ": 186,
+    "duplicate_support_with_max_center_separation_gt_half_grid": 0
+  },
+  "decision_rule": {
+    "dominance_fraction_strictly_greater_than": 0.5,
+    "minimum_affected_groups": 21,
+    "decision": "COMMON_MIN_DOMINANCE_ELIGIBLE_FOR_FORK_OPERATOR_DESIGN"
+  },
+  "runtime_seconds": {
+    "primary": 29.236728011863306,
+    "audit_replay": 28.6002853140235
+  },
+  "sha256": {
+    "primary_result": "beb61ad987b5c8afcaacc01a4316bdb62ddc966f9d76d10726dd46f98998f64e",
+    "replay_result": "fbc1bbe8614b8910f0cb02a2d3eb15caea5c5882a623b1dbcc4d1714c44e3b27",
+    "audit": "b45572b31f20d12ae68d13200da72f18c99c5be673c4cfdab731b3b7406d3b6d",
+    "bundle": "e8270eaa5f2ba7609e8aace0ec77812d70cf4d37dbd8dd1d3f936f786de267b9"
+  },
+  "mechanical_audit": "PASS",
+  "external_scientific_review": "REVIEW_UNAVAILABLE",
+  "next_decision": {
+    "fork_aware_operator_oracle_design": "GO",
+    "learned_network_training": "HOLD",
+    "development_navdream_test": "HOLD"
+  },
+  "claim_boundary": "Post-B1 fit-only structural attribution; no independent confirmation, learned model, OOD, driving, safety, latency, or top-venue claim."
+}

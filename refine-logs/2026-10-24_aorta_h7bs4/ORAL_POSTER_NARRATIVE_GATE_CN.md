@@ -133,3 +133,11 @@ H7BS4B1 的预注册 non-vacuity 门未通过：joint Lipschitz 虽缩窄部分�
 box 增加 sign-identifiable pairs，且组级覆盖不足。故第 4 节中的 shared uncertainty 当前仅是
 被检验但未获支持的候选设计，不能进入 Oral/Poster 核心口述。下一版故事是否转向候选共同前缀
 与分支后缀的算子分解，必须由 H7BS4B2 的零差异归因决定。
+
+### B2 后候选记忆点
+
+B2 已确认 common-min domination 解释 2,033/2,219 exact zeros，并覆盖 42/42 fit groups。因此
+候选故事可以进一步收紧为：**普通 global risk minimum 会被所有候选共同经历的 trunk 支配；
+AORTA 先资格化 trunk，再比较未来 forks。** 这一句比“联合不确定性更精确”更有可视化和反常性，
+但只有 fork-aware oracle、匹配容量网络、NavDream/跨planner收益和时延门全部通过，才可进入最终
+Oral/Poster口述。

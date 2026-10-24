@@ -199,3 +199,13 @@ H7BS4B1 已机械通过但科学假设未获支持：三种集合都识别出 1,
 候选设计和可能的 interval-sharpness 对照。论文主线退回更基础的问题：**当前 scalar global set-min
 为什么在冻结候选面板上大量失去区分能力？** 在零差异归因完成前，不冻结 branch-aware operator，
 不训练 uncertainty head，也不把 joint solver 写入最终 30 秒故事。
+
+## 11. B2 后候选主线（待 oracle 验证）
+
+B2 将 2,219 个 exact-zero contrasts 分解为：2,033 个 common-min domination、186 个 discrete
+support duplicates、0 个 distinct-min ties；common-min 覆盖 42/42 groups，并通过机械重放。因此
+下一版唯一获准的主线是 **shared-trunk qualification + branch-specific contrast**。
+
+这不是简单“去掉共同区域”：共同 trunk 必须先通过资格，branch contrast 只能在两侧分支非空时
+使用。spatial overlap 与 temporal prefix 的定义还未裁决，fork-aware oracle 的非退化性也未验证。
+在这些门通过前，30 秒故事只能称候选叙事，不能写成论文已证明贡献。

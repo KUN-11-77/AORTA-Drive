@@ -43,3 +43,9 @@ groups存在unsupported possible minimizer，说明missing evidence可能控制s
 但三者都只识别1301/3864个有符号pair，joint相对box的组级增益为0且仅5/42 groups达到覆盖门。
 裁决为`ORACLE_SUPPORT_SET_NEAR_VACUOUS_REDESIGN_INTERFACE`。H7-C继续HOLD；下一步只允许
 fit-only H7BS4B2归因2219个exact-zero teacher contrasts，不启动新网络训练。
+
+H7BS4B2现已完成：2,033/2,219（91.62%）exact-zero contrasts来自共同区域minimum同时控制
+native与challenger，覆盖42/42 groups；186个来自1 m离散support重复，distinct-min teacher tie为0。
+机械重放672/672 exact。该结果只授予fork-aware task operator的oracle设计资格；下一步必须保留
+共同风险资格门并裁决spatial-overlap与temporal-prefix定义。learned network、H7-C、NavDream与
+驾驶收益继续HOLD。

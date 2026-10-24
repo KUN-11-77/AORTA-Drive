@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-25",
+  "auditor": "internal-mechanical-replay; external-reviewer-unavailable",
+  "overall_verdict": "pass_with_post_result_scope_limit",
+  "mechanical_audit": "pass",
+  "external_scientific_review": "review_unavailable",
+  "checks": {
+    "ground_truth_provenance": {
+      "status": "pass_with_scope",
+      "details": "Exact-token frozen NAVSIM forward96 task-geometry teacher."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "Exact set operations and minima; no prediction-dependent normalization or epsilon tie."
+    },
+    "result_existence_and_replay": {
+      "status": "pass",
+      "details": "672 ledgers, summary, and root contract replay exactly; failure count zero."
+    },
+    "scope_completeness": {
+      "status": "pass",
+      "details": "672 anchors, 42 groups, 3864 pairs, and all 2219 B1 exact-zero contrasts reproduced."
+    },
+    "category_partition": {
+      "status": "pass",
+      "details": "Preregistered mutually exclusive priority partition exhausts all exact-zero pairs."
+    },
+    "role_isolation": {
+      "status": "pass",
+      "details": "Fit candidate geometry and teacher only; forbidden payload access false."
+    },
+    "scientific_scope": {
+      "status": "warn",
+      "details": "Post-B1 fit mechanism attribution grants design eligibility, not method efficacy or independent confirmation."
+    }
+  },
+  "claim": {
+    "common_minimum_domination_on_frozen_fit_panel": "supported",
+    "fork_aware_operator_benefit": "not_evaluated",
+    "learned_model_or_decision_benefit": "not_evaluated"
+  }
+}
