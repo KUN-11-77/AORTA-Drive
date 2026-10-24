@@ -3,8 +3,8 @@
 ## 裁决
 
 - 冻结科学裁决：`SUPPORTED`。
-- 完整研究状态：`SUPPORTED_PROVISIONAL__HOLD_FOR_AUDIT_DISPOSITION`。
-- 后续：`HOLD`；不进行第三次运行，不访问 calibration、test 或 target，不解锁驾驶收益实验。
+- 完整研究状态：`SUPPORTED_ON_HELDOUT_DEVELOPMENT`；R004H6A exact-teacher mechanical audit 已 PASS。
+- 后续：`GO_R004H7_PREREGISTRATION_ONLY`；不进行第三次 R004H6 运行，不访问 calibration、test 或 target，不解锁驾驶收益实验。
 
 ## 范围与 provenance
 
@@ -50,6 +50,8 @@ Clean 对照：fit-only teacher prior `0.453178m`，zero field `0.554261m`。四
 
 ## 审计边界
 
-冻结机械审计未获得 PASS：所有 384 个 artifact hash 均通过，但有一个 secondary salient-edge scalar 未在序列化 artifact 上满足 `1e-6` replay tolerance。详见 `MECHANICAL_AUDIT_R1.md`。该标量不进入两条预注册主 gate，因此科学方向性裁决仍为 `SUPPORTED`；在审计精度合同正式处置前，完整状态只能是 `SUPPORTED_PROVISIONAL`。
+legacy auditor 使用序列化 `float32` teacher 重放 runner 的 `float64` teacher 语义，曾在一个阈值附近的 secondary salient-edge scalar 上产生 `2.86494e-05` 差异。独立登记的 R004H6A exact-teacher audit 已验证 384/384 artifact hashes、384/384 teacher projections 与 384/384 metric bundles，并精确复现 `SUPPORTED`。详见 `MECHANICAL_AUDIT_R1.md` 与 `R004H6A_AUDIT_RESULT.json`。
+
+规定的外部 cross-model reviewer backend 当前仍不可用，因此不能把内部机械 PASS 表述为独立科学复核或完整 cross-model integrity PASS。
 
 本结果不支持 untouched test、NavDream/真实天气、目标域、population、coverage、规划收益、驾驶安全或方法新颖性主张。

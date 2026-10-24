@@ -1,6 +1,18 @@
 # R004H6R1 冻结机械审计
 
-## 状态：WARN（冻结 auditor 未 PASS）
+## 最终处置：PASS（R004H6A exact-teacher audit）
+
+独立登记的 R004H6A 没有重跑模型、修改结果或放宽门槛，而是按 runner 的原始语义重新读取哈希冻结的 source `float64` teacher，并同时验证序列化 teacher 必须与 `exact_teacher.astype(float32)` bit-exact。结果为：
+
+- 384/384 field artifact hashes 匹配；
+- 384/384 teacher float32 projections bit-exact；
+- 384/384 metric bundles 在原 `rtol=1e-6, atol=1e-6` 下复算一致；
+- macro summary 与冻结科学裁决精确复现为 `SUPPORTED`；
+- config、阈值 `0.50m`、统计方案、checkpoint、数据、外观和 decision rules 均未变化。
+
+机器可读结果：`R004H6A_AUDIT_RESULT.json`。审计脚本/合同实现 revision：`02ac19de2238cd80912e33fadd80df6779f775c4`。该 PASS 只解除 artifact fidelity HOLD，不增加科学证据或扩大主张范围。
+
+## 历史状态：WARN（legacy serialized-teacher auditor 未 PASS）
 
 对完整 `result.json` 与 384 个序列化 field artifacts 执行冻结 `scripts/audit_r004h6_result.py`：
 
@@ -30,5 +42,5 @@
 
 - 禁止第三次实验运行；
 - 禁止放宽冻结 tolerance 来制造 PASS；
-- 若后续处置，只能新登记一个独立 audit-contract 修复，明确统一 runner 与 artifact 的 teacher dtype/threshold semantics，并保留本次失败记录；
-- 在处置前，R004H7、calibration/test/target、决策收益均 HOLD。
+- legacy WARN 必须与 R004H6A PASS 同时保留，不能删除失败历史；
+- calibration/test/target 与驾驶收益继续 HOLD；R004H7 只解锁预注册与理论/结构对照设计，不授权训练或读取新数据。

@@ -1,0 +1,15 @@
+{
+  "artifact_hash_failure_count": 0,
+  "audit_config_sha256": "a3aaddfdf0aa0d6058f7e1ee106da277ad6c50a4cc80158a9c3c748de10557ae",
+  "audit_script_sha256": "f8e4f594d4fa452577497988790e33fa1b39581b86e63444d690805c14732de0",
+  "claim_boundary": "audit fidelity only; no new scientific evidence or expanded scope",
+  "completed_at_utc": "2026-10-24T10:43:07.717374+00:00",
+  "experiment_id": "R004H6A-exact-teacher-artifact-audit-v1",
+  "field_artifact_count": 384,
+  "legacy_serialized_teacher_audit_status": "WARN_METRICS_1",
+  "metric_recomputation_failure_count": 0,
+  "recomputed_decision": "SUPPORTED",
+  "result_sha256": "1e33acee0c2b8a82cada772712ed9b394dad5a6f9e9f1f484fb05a5611b698d1",
+  "status": "PASS",
+  "teacher_projection_failure_count": 0
+}

@@ -2,8 +2,8 @@
 
 **Date**: 2026-10-24  
 **Auditor**: `REVIEW_UNAVAILABLE`  
-**Overall Verdict**: `WARN`  
-**Integrity Status**: `warn`
+**Overall Verdict**: `REVIEW_UNAVAILABLE`
+**Integrity Status**: `mechanical_pass_external_unavailable`
 
 规定的独立 cross-model reviewer backend 在当前会话中不可用，因此没有把内部机械复算冒充独立实验完整性审查。本文件只记录可复现的机械事实与审计缺口。
 
@@ -19,7 +19,7 @@
 
 ### C. Result File Existence: WARN
 
-`result.json`、384 个 field artifacts 与 provenance hashes 均存在；冻结机械 auditor 因一个 secondary scalar replay mismatch 未 PASS。
+`result.json`、384 个 field artifacts 与 provenance hashes 均存在。legacy float32 replay 曾有一个 secondary scalar mismatch；独立登记的 exact-teacher audit 已在不改变 tolerance、threshold 或结果的条件下通过 384/384 hashes、projections 与 metric bundles。
 
 ### D. Dead Code Detection: WARN
 
@@ -35,15 +35,15 @@
 
 ## Claim Impact
 
-- held-out visual task mechanism：`supported_provisional`；
-- correct-image scene conditioning：`supported_provisional`；
+- held-out visual task mechanism：`supported_on_heldout_development`；
+- correct-image scene conditioning：`supported_on_heldout_development`；
 - untouched/OOD generalization：`unsupported_by_scope`；
 - driving/safety benefit：`unsupported_by_scope`；
-- integrity PASS：`not established`。
+- internal mechanical fidelity：`pass`；
+- independent cross-model integrity review：`not established`。
 
 ## Action Items
 
-- 保留 frozen mechanical audit 的 `metrics=1` 失败记录；
-- 单独登记 dtype/threshold audit-contract 处置，不修改本次科学合同，不重跑第三次实验；
+- 保留 legacy `metrics=1` 失败记录及 R004H6A exact-teacher PASS；
 - 独立 reviewer 可用后再执行一次只读 cross-model audit；
-- 在此之前保持 `HOLD`。
+- R004H7 只允许预注册；calibration/test/target 与驾驶收益保持 `HOLD`。
