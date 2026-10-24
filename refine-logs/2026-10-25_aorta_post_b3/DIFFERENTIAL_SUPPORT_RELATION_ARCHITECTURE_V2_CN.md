@@ -112,13 +112,21 @@ Z=E_{vis}(X)=\{(z_p,\ell_p,m_p)\}_{p=1}^{P},
 \]
 
 其中 \(\ell_p\) 是 token 的冻结几何定位，\(m_p\in\{0,1\}\) 是直接投影视觉证据 mask。对每个
-候选对，将 \(\nu^+,\nu^-,\mu^\cap\) 通过冻结相机/ego 几何映射为带时间编码的 token query，得到
+候选对，将 \(\nu^+,\nu^-,\mu^\cap\) 通过冻结相机/ego 几何映射为带时间编码的 **query**；这些
+query 可以注意全部视觉 token，而不是把 key/value 硬裁剪为差异区域：
 
 \[
-E^+_{i0}=\operatorname{Agg}_\theta(Z;\nu^+_{i0}),\quad
-E^-_{i0}=\operatorname{Agg}_\theta(Z;\nu^-_{i0}),\quad
-E^\cap_{i0}=\operatorname{Agg}_\theta(Z;\mu^\cap_{i0}).
+E^+_{i0}=\operatorname{Attn}_\theta(Q(\nu^+_{i0}),K(Z),V(Z);b_{geo}),
 \]
+
+\[
+E^-_{i0}=\operatorname{Attn}_\theta(Q(\nu^-_{i0}),K(Z),V(Z);b_{geo}),\quad
+E^\cap_{i0}=\operatorname{Attn}_\theta(Q(\mu^\cap_{i0}),K(Z),V(Z);b_{geo}).
+\]
+
+这里 \(b_{geo}\) 是冻结几何产生的 attention bias，不是硬 visibility mask。这样，差异支持决定
+“问什么”，而交通灯、路牌、远处道路连续性或遮挡上下文仍可从全局 token 回答。若把 key/value
+只限在直接投影区域，反而会把 D0 的诊断误写成感知假设。
 
 正负支持必须分开聚合，禁止先相减高维 feature 后因符号抵消丢失信息。完整相对运动编码为
 \(Q_{i0}=E_{rel}(\tau_i\ominus\tau_0)\)。用一个共享有序比较器 \(G_\theta\) 构造
@@ -151,9 +159,38 @@ candidate-conditioned attention”，而是查询对象由单候选 future laten
 signed differential support，并把不可观测差异显式接入拒判。该区别必须由 matched DA-WAM/GTRS
 style scorer 对照赢得资格。
 
-## 5. 可观测性与拒判不是附加模块
+## 5. 表示充分性、证据来源与拒判
 
-令 \(|\nu|=\nu^++\nu^-\)，定义差异支持的直接证据率
+令 \(R(X,\tau_i,\tau_0)\) 表示 decoder 实际可访问的全部视觉与轨迹表示。先给出比“ROI 内外”
+更准确的充分性条件。
+
+### 命题 2：表示纤维上的精确充分性条件
+
+存在确定性函数 \(f\) 使
+
+\[
+\delta^*_{i0}=f(R(X,\tau_i,\tau_0))
+\]
+
+对某一任务分布的全部 admissible contexts 成立，当且仅当真实 margin 在 \(R\) 的每个纤维上为
+常数，即
+
+\[
+R(x,\tau_i,\tau_0)=R(x',\tau_i,\tau_0)
+\Longrightarrow
+\delta^*_{i0}(x)=\delta^*_{i0}(x').
+\]
+
+**证明。** 必要性由同一个函数输入只能产生同一输出得到；充分性由在每个非空纤维上把 \(f(r)\)
+定义为该纤维唯一的 margin 得到。证毕。
+
+这一定理是标准 factorization 条件，不是原创结果，但它精确说明网络设计目标：差异支持 query、
+全局视觉上下文与完整相对运动共同构成的 \(R\)，必须尽量避免把真实 margin 不同的场景压入同一
+纤维。correct-vs-mismatch/removed 与 held-out regret 是其可执行反证，feature similarity 不是。
+
+### 5.1 直接证据率只是 provenance，不是充分性判据
+
+令 \(|\nu|=\nu^++\nu^-\)，定义差异支持的直接投影证据率
 
 \[
 \kappa_{i0}
@@ -161,20 +198,30 @@ style scorer 对照赢得资格。
 \]
 
 若 \(|\nu|=0\)，两条轨迹在该支持定义下相同，关系只能由相对运动/非占据任务因素决定；该类样本
-单独记账。若 \(|\nu|>0\) 且 \(\kappa=0\)，系统必须拒绝基于视觉差异作正向干预。
+单独记账。若 \(|\nu|>0\) 且 \(\kappa=0\)，只能断言“没有直接投影证据”，不能断言整张图像对
+差异没有信息：区域外的交通灯、道路延续或遮挡上下文可能与该区域状态相关。\(\kappa\) 因而是
+evidence-provenance covariate，必须输入 scale/abstention 并作分层分析，但它不是自动硬阈值。
 
-### 命题 2：不可观测差异上的符号不可识别
+### 命题 3：观测等价世界中的符号不可识别
 
-设观测只决定集合 \(O\subset\mathcal Z\) 上的任务场，而
-\(|\nu_{i0}|(\mathcal Z\setminus O)>0\)。若允许的任务场类包含一个支撑在
-\(\mathcal Z\setminus O\) 上、且 \(\int h\,d\nu_{i0}\ne0\) 的有界函数 \(h\)，则存在两个场
-\(c_+=c_0+\lambda h\) 与 \(c_-=c_0-\lambda h\)，它们在全部已观测证据上完全相同，却对
-\(U_c(\tau_i)-U_c(\tau_0)\) 给出相反符号。因此任何只读取观测证据的确定性模型都不能在该函数类
-上统一保证关系符号正确。
+若存在两个 admissible latent scenes \(s_+,s_-\) 满足
 
-**含义。** D0 的无证据差异不是靠更大 MLP 可以解决的统计误差，而是可识别性缺失。v2 必须把
-support mask、\(\kappa\) 与 missing pattern 输入 scale/拒判路径；完全无差异证据时硬拒判。部分可见
-时不得宣称分布自由保证，只能依赖独立 group-level calibration 与 OOD empirical risk–coverage。
+\[
+R(s_+,\tau_i,\tau_0)=R(s_-,\tau_i,\tau_0),\qquad
+\delta^*_{i0}(s_+)\,\delta^*_{i0}(s_-)<0,
+\]
+
+则任何只读取 \(R\) 的确定性预测器都至少在二者之一上给出错误符号。若观测仅确定集合
+\(O\subset\mathcal Z\) 上的任务场，而未观测区允许一个满足
+\(\int h\,d\nu_{i0}\ne0\) 且不改变全部观测的扰动 \(h\)，则
+\(c_\pm=c_0\pm\lambda h\) 构成这种二世界反例。
+
+**含义。** 真正不可识别的是“全部可访问表示相同而 margin 符号相反”，不是简单的
+\(\kappa=0\)。D0 只证明 8 个 pair 缺少直接差异区投影，尚未构造上述二世界，因此不能据此把
+hard rejection 写成定理。v2 必须记录 support mask、\(\kappa\) 与 missing pattern，并让独立
+group-level calibration、risk–coverage 与 hard/soft support ablation 裁决它们是否需要触发拒判。
+只有未来注册的 observation contract 明确排除了任何 contextual bridge 时，\(\kappa=0\) 才可升级
+为硬拒判。
 
 ## 6. 训练目标：正确、同轨道稳定、非平凡
 
@@ -224,9 +271,10 @@ R_g=\max_{a,i}
 L_i=\widehat\delta_{i0}-r_i.
 \]
 
-只有合法域、差异支持、数值、时延与 calibration contract 全部通过且 \(\max_iL_i>0\) 时才覆盖
-native。support rejection 与 statistical rejection 必须分别报告：前者是可观测性资格，后者是误差
-覆盖资格。
+只有合法域、数值、时延与 calibration contract 全部通过且 \(\max_iL_i>0\) 时才覆盖 native。
+direct-support provenance 与 statistical rejection 必须分别报告；默认由 scale/calibration 吸收
+provenance 风险，而不是先验设定 \(\kappa\) 阈值。若后续实验注册 hard support gate，它必须与
+soft provenance conditioning 匹配比较，并证明没有造成近乎全拒判。
 
 ## 8. 实时复杂度
 
@@ -252,7 +300,8 @@ candidate scorer 在同一 backbone、token 数、参数/FLOP 与 batch-1 环境
 | E | D 去掉公共上下文 | 非线性任务是否需要 shared context |
 | F | D 用 2.5 s prefix | 完整时域是否必要 |
 | G | D 去掉 orbit constraint | relation-level appearance constraint 是否必要 |
-| H | D 忽略 support mask | 可观测性拒判是否降低 false intervention/clean harm |
+| H1 | D 不输入 support provenance | missing pattern 是否改善 scale、risk–coverage 与 false intervention |
+| H2 | soft provenance vs 预注册 hard gate | 硬拒判是否必要且非真空；不得由 D0 事后选择阈值 |
 
 所有 arms 共享合法候选、标签、backbone、训练数据、optimizer、seeds 与近似参数/FLOP。primary
 endpoint 是 held-out/NavDream group-level regret、selection error、false intervention 与
@@ -264,7 +313,8 @@ v2 比 v1 更接近“由失败推出设计”：
 
 - Jordan/signed support 对应共同路径消除；
 - 完整时空 measure 对应晚期分叉；
-- support mask 与不可识别性命题对应 D0 无证据反例；
+- differential query + global keys 避免把 D0 的直接证据缺失误写成全局不可观测；
+- representation-fiber 与二世界命题界定真正的不可识别性；
 - antisymmetric operator 对应 relation 类型；
 - group-simultaneous lower bound 对应 native-preserving action。
 

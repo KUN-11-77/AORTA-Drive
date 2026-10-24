@@ -10,9 +10,9 @@
 **问题。** 外观鲁棒方法通常稳定 feature、BEV、道路场或单候选 future latent，但驾驶决策由候选
 之间的差异决定；共同路径可以淹没真正的分叉，而不可观测分叉根本不允许可靠判断。
 
-**方法假设。** AORTA 不恢复完整世界，也不把每条候选独立评分；它从冻结视觉 token 中只查询
-challenger 相对 native 的完整时空差异支持，学习外观轨道上稳定的任务关系，并在差异证据或同时
-误差界不足时保留 native。
+**方法假设。** AORTA 不恢复完整世界，也不把每条候选独立评分；它用 challenger 相对 native 的
+完整时空差异支持生成问题、再从全部冻结视觉 token 中寻找答案，学习外观轨道上稳定的任务关系；
+只有存在真正的观测等价反例或同时误差界不足时才保留 native。
 
 用户最终应只记住：
 
@@ -76,16 +76,18 @@ challenger 相对 native 的完整时空差异支持，学习外观轨道上稳�
 
 对于加性 task field，公共支持精确抵消；对于非线性 evaluator，公共上下文仍可输入，但不能再次
 通过全局 minimum 支配差异。若 \(|\nu|\) 的关键部分不可观测，则存在两个观测相同、关系符号相反
-的场景，统一可靠判断不可能，拒判是逻辑后果而非工程保险丝。
+的场景，统一可靠判断不可能，拒判是逻辑后果而非工程保险丝。直接投影缺失本身不等于全局
+不可观测；交通灯、道路连续性等区域外上下文仍可能提供证据，必须由全局 token query 与校准实验
+判断。
 
 ### 第三拍：Mechanism
 
 1. 冻结 DINO 对场景只编码一次；
 2. 完整 4 s native/challenger 生成 \(\nu^+,\nu^-,\mu^\cap\)；
-3. 分别查询正、负与公共视觉证据；
+3. 三类差异/公共支持生成 geometry-biased query，但 key/value 保留全部视觉 token；
 4. 反对称 relation operator 输出合法 \(\widehat\delta_{i0}\)；
 5. task loss 保持正确性，appearance-orbit constraint 抑制同场景外观漂移；
-6. support gate 与 group-simultaneous lower bound 决定是否干预。
+6. evidence provenance、可识别性诊断与 group-simultaneous lower bound 决定是否干预。
 
 其中只有 **differential-support decision relation** 是主贡献候选；selective arbitration 是把它接入
 frozen planner 的从属机制。DINO、cross-attention、Jordan decomposition、conformal quantile 和
@@ -114,7 +116,7 @@ trajectory tokenizer 都是现有工具。
 > 现有外观鲁棒驾驶通常稳定视觉特征或道路场，但我们发现，即使用 perfect road field，常见读出
 > 仍会让大量不同候选得到相同决策证据。原因是驾驶需要的不是完整场是否相似，而是候选在何处
 > 分叉、这些分叉是否被正确看见。AORTA 因而把轨迹表示成相对 native 的 signed differential
-> support，直接从冻结视觉 token 查询分歧处的任务关系；分歧不可观测或同时下界不足时保留原
+> support，用分歧生成 query、从完整冻结视觉 token 中查询任务关系；存在观测等价歧义或同时下界不足时保留原
 > planner。我们不只是让感知在天气下稳定，而是让“改变决策的证据”在天气下稳定且可拒判。
 
 在 B4R1、matched scorer、NavDream、跨 planner、clean no-harm 与 latency 通过前，讲稿中的
@@ -127,7 +129,7 @@ trajectory tokenizer 都是现有工具。
    latent 也没有针对 appearance quotient 或证据不可观测性；
 3. **我们的反例：**perfect field + scalar-min 仍大量碰撞；短前缀又删除晚期分叉；
 4. **数学对象：**合法候选域上的 \(\delta^*_{i0}\) 与 signed support \(\nu_{i0}\)；
-5. **方法：**differential-support relation operator + orbit constraint + support/statistical abstention；
+5. **方法：**differential-support relation operator + orbit constraint + provenance-conditioned statistical abstention；
 6. **理论：**加性任务差分恒等式、不可观测符号不可识别、\(2\varepsilon\) regret bound、条件性
    native improvement；
 7. **决定性实验：**普通 scorer/DA-WAM-style/field readout 匹配消融，NavDream 与三 planner 的
@@ -149,9 +151,9 @@ same scene, different appearance
             v
  correct-image relation + appearance-orbit constraint
             |
-       observed? calibrated lower bound > 0?
+ representation ambiguity? calibrated lower bound > 0?
           /                         \
-       no: native fallback       yes: replace native
+      fail: native fallback     pass: replace native
             |
             v
  relation error -> ranking regret -> hard-failure rescue / clean harm / latency
