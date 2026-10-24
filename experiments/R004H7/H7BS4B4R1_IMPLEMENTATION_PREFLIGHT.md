@@ -11,9 +11,9 @@
 - implementation failure 优先于任何正向 oracle signal；
 - recording group 仍为唯一统计独立单位，所有 group mean 固定包含 16 anchors；
 - R1 thresholds、bootstrap 与 sensitivity margins 通过配置测试确认沿用 B4，未根据 B4 outcome 调整；
-- 13 个 B4/R1 core tests 通过，其中 R1 新增 9 项，覆盖 variable panel、zero panel、mask injection、
-  domain drift 与四类 fail-closed gate；
-- 全库 `352 passed`，未破坏既有实验合同；
+- 14 个 B4/R1 core tests 通过，其中 R1 新增 10 项，覆盖 variable panel、zero panel、mask injection、
+  domain drift、四类 fail-closed gate 与独立 summary/audit 复算；
+- 全库 `353 passed`，未破坏既有实验合同；
 - runner/audit 通过 Python compile，配置内本地 source SHA 均由自动测试核验。
 
 ## 服务器 interface smoke
@@ -34,9 +34,22 @@
 - local artifact：
   `F:\AORTA-Drive-artifacts\gate-b\R004H7\r004h7bs4b4r1_preflight_9664e4b\smoke.json`。
 
+随后完成 outcome-free 全 roster 审计：
+
+- 672/672 anchors、42/42 groups × 16 anchors；panel identity、SHA、mask shape/dtype 均零失败；
+- membership histogram：`0:15, 2:8, 3:4, 4:13, 5:8, 6:624`；
+- observed 与 preregistered expected 完全一致：3,864 eligible challengers、657 nonzero/15 zero
+  anchors、4,536 scored candidates、13,402 complete-graph pairs；
+- 每组 eligible challenger 总数范围为 80–96；
+- scorer 未调用、scientific outcomes 未访问、封存数据未访问；
+- roster audit SHA-256：
+  `035f15a3a8be5e7afdcedf06ad1fff334c5e25a10bde0c124ee2ea5b3f88828a`；
+- local artifact：
+  `F:\AORTA-Drive-artifacts\gate-b\R004H7\r004h7bs4b4r1_preflight_9664e4b\domain_roster_audit.json`。
+
 ## 尚未闭合
 
-- 未验证正式 672-anchor membership histogram、candidate/pair totals 与 runner 输出；
+- 未验证正式 672-anchor scorer outputs；membership roster 与 candidate/pair totals 已闭合；
 - 未运行 primary、replay 或 audit；
 - 外部 reviewer unavailable；
 - 未读取新的 source outcome，更未读取 development、calibration、test、NavDream 或 target。
