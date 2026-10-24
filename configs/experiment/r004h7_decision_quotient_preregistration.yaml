@@ -15,6 +15,7 @@ stage_order: [H7A_theory, H7B_read_only_shadow_diagnosis, H7C_conditional_traini
 
 H7A:
   data_access: none
+  implementation_revision: bfd69a01270fd8fab135a7918ade9f31760b728f
   required_oracles:
     - graph_quotient_to_cut_space_isomorphism
     - common_offset_invariance
