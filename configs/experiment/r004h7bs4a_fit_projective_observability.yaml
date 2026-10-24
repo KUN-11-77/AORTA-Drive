@@ -1,0 +1,82 @@
+experiment_id: R004H7BS4A-fit-projective-observability-v1
+date: 2026-10-24
+status: preregistered_not_run
+
+H7BS4A:
+  scientific_role: outcome_free_direct_projective_evidence_precondition
+  independent_unit: recording_group
+  fit_groups: 42
+  anchors_per_group: 16
+  minimum_direct_evidence_anchors_per_group: 12
+  minimum_gate_provenance: inherited_H7_panel_completeness_not_selected_from_observability_results
+  candidate_population: native_and_all_full_horizon_intent_eligible_challengers
+  direct_evidence_rule: at_least_one_queried_node_has_at_least_one_valid_camera_history_patch_slot
+  strict_failure_rule: any_query_candidate_with_zero_direct_projective_evidence
+  forward_extension_start_m: 32.0
+  roi:
+    id: forward_extend_96x64
+    x_min_m: -32.0
+    y_min_m: -32.0
+    columns: 96
+    rows: 64
+    resolution_m: 1.0
+    node_count: 6144
+  vehicle:
+    rear_overhang_m: 1.127
+    front_extent_m: 4.049
+    half_width_m: 1.1485
+  projection:
+    cameras: [cam_l0, cam_f0, cam_r0]
+    history_offsets: [-3, -2, -1, 0]
+    raw_shape: [1080, 1920]
+    resized_shape: [288, 512]
+    patch_size: 16
+    maximum_normalized_radius: 1.0
+    support: bilinear_patch_center_convex_hull_no_padding_clamping_or_extrapolation
+    semantics: projective_token_support_not_physical_visibility
+  frozen_input_sha256:
+    time_set: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+    group_role_manifest: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+    h7bs1_fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+    h7bs3_result: 7a53c4148df46399fd35f073bb5b8b5910891e717a73e3f362b9cbb5555f2426
+    r004b_result: 43535049718150c0948ff5f31d90802ec60fb64db5481f1c9c3dd60747abc1da
+  implementation_sha256:
+    observability_source: 3a76c367279f3220da6e093c3880b7ac2e9b13eb6ac69dd15b443633f029c5a2
+    projection_source: 7812fdd7f0c10831d2aebbc26ca6930513ccff296ec8473349fbd118015f954e
+    shadow_decision_source: 9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5
+    runner_source: a2bab0d63bb1b6dd4292bec4f14a78f105a3fb191fe4f594e2e20c74341c5327
+    audit_source: 4b28d3c6fdd99b025d2da4d593eeea3b66087839bc6adde192b33793ce130b34
+  required_reporting:
+    - all_6144_node_support_fraction_per_anchor
+    - candidate_query_support_fraction
+    - forward_extension_query_support_fraction
+    - zero_direct_evidence_candidates
+    - group_level_completeness
+    - source_log_hashes
+  forbidden_inputs:
+    - teacher_labels_or_margins
+    - learned_visual_fields
+    - DINO_feature_values
+    - ranking_regret_or_flip
+    - calibration
+    - test
+    - NavDream
+    - target
+  resources:
+    device: cpu
+    maximum_wall_minutes: 120
+    maximum_output_mib: 64
+
+claim_boundary:
+  permitted:
+    - direct_projective_token_support_on_fit_candidate_query_nodes
+    - distance_and_forward_extension_stratified_support_description
+  prohibited:
+    - physical_visibility_or_occlusion_resolution
+    - teacher_critical_node_observability
+    - field_accuracy_or_visual_robustness
+    - inference_latency
+    - decision_relevance
+    - driving_or_safety_gain
+    - development_test_target_or_NavDream_generalization
+    - architecture_novelty
