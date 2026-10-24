@@ -210,6 +210,29 @@ a provider change.
 - **Cost:** CPU-only, maximum 20 minutes. Exact rational comparisons may expose a runtime
   bottleneck; runtime is itself a registered diagnostic before expansion.
 
+- **Result:** PASS on the implementation gate. Realized supply was `8/8`; six sentinels
+  completed geometry and teacher bounds; two were rejected for leaving the frozen ROI.
+  All 36 geometry-valid candidates had zero lower bounds in both non-inclusion directions,
+  so no prevalence or method conclusion is drawn.
+
+### H4P5D — post-result disk-certificate resolution diagnosis
+
+- **Purpose:** distinguish a genuinely absent trajectory-set difference from a vacuous
+  rotation-free disk certificate before the permitted 128-anchor scale-up.
+- **Data:** the same eight fit-only sentinels and six frozen candidates; no new role or
+  outcome access.
+- **Primary derivation:** for outer radius `R`, inner radius `r`, cell radius `h` and pose
+  error `epsilon`, prove that matched rear-axle separation no larger than
+  `R-r+2h+2epsilon` precludes an inner-cell witness in either direction.
+- **Primary diagnostic:** recompute official realized trajectories and record the maximum
+  matched rear-axle separation for every candidate. Compare it only with the analytic
+  barrier; do not tune amplitudes, intent limits, grid or ROI.
+- **Decision:** if every zero-witness candidate lies below the barrier, retire disk-based
+  non-inclusion before expansion and qualify an orientation-aware rectangle certificate.
+  Otherwise isolate the unexplained candidates before any geometry redesign.
+- **Claims prohibited:** physical opportunity prevalence, method performance, coverage,
+  Gate B, OOD robustness and development access.
+
 ### H4 — one-read development qualification
 
 - **Data:** all 24 groups x 16 frozen times, exactly once after every choice above is frozen.

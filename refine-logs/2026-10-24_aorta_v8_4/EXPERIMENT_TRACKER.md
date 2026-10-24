@@ -16,7 +16,8 @@
 | R004H4P3S | native-conditioned endpoint-invariant provider synthetic qualification | DONE — PASS / PROVISIONAL INTEGRITY | 33/36 accepted; exact endpoint invariants; 2 negative controls; 209 tests; mechanical PASS; external review unavailable |
 | R004H4P3 | native-conditioned endpoint-invariant provider fit supply | DONE — STOP / FORMULATION MISMATCH | corrected audit: 38/128, 590/768 polynomial-screen rejections, zero invariant failures, mechanical PASS; official scorer uses LQR+bicycle realized trajectories instead |
 | R004H4P4E | official execution-operator interface audit | DONE — PASS / PROVISIONAL INTEGRITY | 128/128 interface gates; realized supply diagnostic 122/128, minimum group 0.875; desired endpoint identity survives 0/128; mechanical PASS, external review unavailable |
-| R004H4P5I | eight-block realized-geometry interface sentinel | REGISTERED | 225 repository tests PASS; cache-label binding, official vehicle/corners, realized sweep, non-inclusion and teacher-error pipeline; no prevalence or performance claim |
+| R004H4P5I | eight-block realized-geometry interface sentinel | DONE — PASS / PROVISIONAL INTEGRITY | 8/8 interface and realized supply; geometry+teacher 6/8; ROI reject 2/8; meaningful non-inclusion 0/8; mechanical PASS, external review unavailable; permits only a registered fit-only preflight or resolution diagnosis |
+| R004H4P5D | post-result disk-certificate resolution diagnosis | NOT REGISTERED | derive and test the no-witness separation barrier before deciding whether 128-anchor disk preflight is informative |
 | R004H4 | one-read development mechanism qualification | NOT REGISTERED | common opportunity denominator must decide whether localized learned budgets retain utility |
 
 Official calibration, test and target-domain data remain sealed.

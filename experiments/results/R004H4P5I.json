@@ -1,0 +1,43 @@
+{
+  "experiment_id": "R004H4P5I-realized-geometry-interface-v1",
+  "status": "COMPLETED",
+  "decision": "PASS_TO_REGISTER_128_ANCHOR_GEOMETRY_PREFLIGHT",
+  "implementation_revision": "49f81900d856530dd5992fd9e98d5babad43e747",
+  "raw_result_sha256": "ec096a416e530fa9952d91f680bee1c4295989f9bbb0fef9eb3fb97f74274d86",
+  "mechanical_audit_sha256": "efbddb6331d01d62819c9e6886661eaf09afb4143abda0fce6228f7742f2c969",
+  "run_log_sha256": "1825967609ddef8c023f86a7b776f3c0633a1aa6c1925dc006768ce262574c5c",
+  "elapsed_seconds": 222.56878919398878,
+  "interface": {
+    "recording_group_count": 8,
+    "anchor_count": 8,
+    "interface_failure_count": 0,
+    "maximum_corner_coordinate_disagreement_m": 9.313225746154785e-10,
+    "maximum_corner_tolerance_m": 2.980232238769531e-08,
+    "maximum_realized_transform_error_m": 3.4582893471604993e-15,
+    "deterministic_replay_bit_exact_on_every_anchor": true
+  },
+  "pipeline": {
+    "anchors_with_realized_intent_supply": 8,
+    "anchors_with_geometry_valid_candidate": 6,
+    "anchors_with_meaningful_noninclusion": 0,
+    "anchors_with_teacher_bound": 6,
+    "anchors_with_teacher_opportunity": 0,
+    "native_roi_rejection_count": 2,
+    "minimum_teacher_improvement_lower_m": -5.705536454708376,
+    "maximum_teacher_improvement_lower_m": -1.108134568793179
+  },
+  "integrity": {
+    "mechanical_audit": "PASS",
+    "mechanical_audit_failures": [],
+    "external_cross_model_review": "REVIEW_UNAVAILABLE"
+  },
+  "claims": {
+    "realized_geometry_implementation_closed": true,
+    "full_pipeline_exercised": true,
+    "prevalence_estimated": false,
+    "method_performance_evaluated": false,
+    "development_access_authorized": false,
+    "coverage_established": false,
+    "gate_b_passed": false
+  }
+}

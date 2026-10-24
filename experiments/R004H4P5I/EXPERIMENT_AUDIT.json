@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-24",
+  "auditor": "REVIEW_UNAVAILABLE",
+  "overall_verdict": "review_unavailable",
+  "integrity_status": "provisional",
+  "mechanical_audit": {
+    "status": "pass",
+    "sha256": "efbddb6331d01d62819c9e6886661eaf09afb4143abda0fce6228f7742f2c969",
+    "payload_files_read": 0,
+    "failures": []
+  },
+  "external_cross_model_review": "REVIEW_UNAVAILABLE",
+  "claims": [
+    {
+      "id": "realized_geometry_implementation_closed",
+      "impact": "provisionally_supported"
+    },
+    {
+      "id": "full_pipeline_exercised",
+      "impact": "provisionally_supported_on_six_sentinels"
+    },
+    {
+      "id": "opportunity_prevalence_or_method_performance",
+      "impact": "unsupported"
+    },
+    {
+      "id": "coverage_gate_b_or_development_access",
+      "impact": "unsupported"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "experiment_id": "R004H4P5I-mechanical-result-audit-v1",
+  "external_cross_model_review": "REVIEW_UNAVAILABLE",
+  "failures": [],
+  "payload_files_read": 0,
+  "recomputed": {
+    "anchors_with_geometry_valid_candidate": 6,
+    "anchors_with_meaningful_noninclusion": 0,
+    "anchors_with_realized_intent_supply": 8,
+    "anchors_with_teacher_bound": 6,
+    "anchors_with_teacher_opportunity": 0
+  },
+  "status": "PASS"
+}

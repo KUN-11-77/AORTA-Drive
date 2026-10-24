@@ -1,0 +1,69 @@
+{"sentinels_completed": 1}
+{"sentinels_completed": 2}
+{"sentinels_completed": 3}
+{"sentinels_completed": 4}
+{"sentinels_completed": 5}
+{"sentinels_completed": 6}
+{"sentinels_completed": 7}
+{"sentinels_completed": 8}
+{
+  "claims": {
+    "coverage_established": false,
+    "development_access_authorized": false,
+    "full_pipeline_exercised": true,
+    "gate_b_passed": false,
+    "method_performance_evaluated": false,
+    "prevalence_estimated": false,
+    "realized_geometry_implementation_closed": true
+  },
+  "completed_at_utc": "2026-10-24T03:03:11.388458+00:00",
+  "config_sha256": "7c5ddb9d29ae73ad5714591743ccaeade20f0404bb365da878c0e13b73b548de",
+  "data_scope": {
+    "anchor_count": 8,
+    "development_calibration_test_or_target_accessed": false,
+    "prevalence_or_significance_claim": false,
+    "recording_group_count": 8,
+    "role": "fit",
+    "sentinel_anchor_index": 0,
+    "split": "train"
+  },
+  "decision": "PASS_TO_REGISTER_128_ANCHOR_GEOMETRY_PREFLIGHT",
+  "elapsed_seconds": 222.56878919398878,
+  "experiment_id": "R004H4P5I-realized-geometry-interface-v1",
+  "geometry_failures": {
+    "native:swept disk cover leaves the certified grid ROI": 2
+  },
+  "implementation_revision": "49f81900d856530dd5992fd9e98d5babad43e747",
+  "interface_failures": [],
+  "pipeline_counts": {
+    "anchors_with_geometry_valid_candidate": 6,
+    "anchors_with_meaningful_noninclusion": 0,
+    "anchors_with_realized_intent_supply": 8,
+    "anchors_with_teacher_bound": 6,
+    "anchors_with_teacher_opportunity": 0
+  },
+  "status": "COMPLETED"
+}
+	Command being timed: "/data/jbwang/anaconda3/envs/dinov3/bin/python scripts/run_r004h4p5i_realized_geometry.py --config configs/experiment/r004h4p5i_realized_geometry_interface.yaml --time-set configs/manifests/r004_session_time_set.csv --role-manifest configs/manifests/r004h_group_roles.csv --metric-manifest /data/khsong/aorta_runs/r004e_49139e6/full_train_dev/manifest.json --metric-root /data/khsong/aorta_runs/r004e_49139e6/full_train_dev --label-manifest /data/khsong/aorta_runs/r004e_49139e6/full_train_dev/labels/manifest.json --label-root /data/khsong/aorta_runs/r004e_49139e6/full_train_dev/labels --navsim-root /home/jbwang/cogatedrive --implementation-revision 49f81900d856530dd5992fd9e98d5babad43e747 --output /data/khsong/aorta_runs/r004h4p5i_r1_49f8190/results/result.json"
+	User time (seconds): 233.51
+	System time (seconds): 0.55
+	Percent of CPU this job got: 104%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:43.33
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 620804
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 337437
+	Voluntary context switches: 311
+	Involuntary context switches: 1335
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 64
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

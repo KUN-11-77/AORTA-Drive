@@ -591,3 +591,28 @@ config; the unchanged raw result was then audited as `audit_v3`.
   estimate supply/opportunity prevalence, change the provider, thresholds, grid or ROI, or
   open development. The exact polygon teacher is relative to the frozen cache object and is
   not asserted equivalent to Shapely boundary semantics or real-world map truth.
+
+## ADR-0052 — Diagnose the disk-certificate resolution barrier before scale-up
+
+- **Status:** accepted after R004H4P5I, before any 128-anchor geometry expansion
+- **Evidence:** all eight interface sentinels passed and six reached geometry plus teacher
+  computation, but every one of the 36 geometry-valid candidate ledgers returned zero in
+  both certified set-difference directions. All teacher improvement lower bounds were
+  negative. Two additional sentinels were correctly rejected when the native disk sweep
+  left the frozen ROI.
+- **Mathematical concern:** the Pacifica rear-axle outer radius is
+  `R=4.208735350434855 m`, its yaw-invariant inner radius is `r=1.127 m`, and the 1 m grid
+  cell radius is `h=0.7071067811865476 m`. For paired samples with certified pose error
+  `epsilon`, the disk construction cannot produce an inner-cell witness whenever the
+  matched rear-axle separation is at most `R-r+2h+2epsilon`, approximately
+  `4.49594891280795 m` here. This follows by the triangle inequality against the
+  corresponding outer segment disk; it is a property of the certificate, not the data.
+- **Decision:** do not interpret zero witnesses as zero physical non-inclusion and do not
+  spend the 128-anchor budget until a registered fit-only diagnosis checks the analytic
+  barrier against every realized sentinel candidate. If the barrier explains all zero
+  ledgers, retire the rotation-free disk non-inclusion architecture and qualify a tighter
+  direction-aware rectangular cover. The official provider and intent thresholds remain
+  frozen.
+- **Boundary:** this is a post-result mechanism diagnosis. It cannot support prevalence,
+  performance, coverage, Gate B or novelty claims and cannot open development,
+  calibration, test or target-domain data.

@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H2R1 与 R004H3 通过各自工程门。R004H4P2S 否定了缓存动态速度字段，R004H4P2R1 修正后原 provider 供给为82/128。native-conditioned provider 的合成接口通过，但 R004H4P3 在错误的 desired-curve 多项式筛查下仅38/128。R004H4P4E 已在128个既有 fit anchors 上闭合官方0.1秒 LQR+bicycle 执行接口，所有实现门通过且机械审计通过；realized supply 诊断为122/128、最低组0.875，但不是本阶段决策端点。desired 末段恒等在 realized 轨迹上0/128保留，因此 intent 与 geometry 必须完全重定义在 realized 对象上。外部独立审查仍不可用。当前只可注册 realized-trajectory fit-only preflight；不得进入 development。正式 coverage、Gate B、OOD 与创新性仍未成立。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H2R1 与 R004H3 通过各自工程门。R004H4P2S 否定了缓存动态速度字段，R004H4P4E 在128个 fit anchors 上闭合官方0.1秒 LQR+bicycle 执行接口。R004H4P5I 的8组 realized-geometry 哨兵实现门通过：8/8 有 realized supply，6/8 完成连续几何与 teacher bound，2/8 因真实轨迹超出冻结 ROI 被拒绝；但6组共36个可计算候选的双向非包含下界全为0，teacher improvement 下界全为负。该现象尚不能解释为“没有机会”，因为 rotation-free 外接圆与后轴内切圆在1米网格上存在约4.496米的结构性无证据区。外部独立审查仍不可用。当前应先做 fit-only 证书分辨率诊断，再决定是否扩到128 anchors；不得进入 development。正式 coverage、Gate B、OOD、性能与创新性仍未成立。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：R004H4P5I 已注册，先以八个 fit recording-group blocks 的 anchor 0 闭合 realized geometry 实现。它强制 metric-cache/label-cache SHA-256 同源、official vehicle/corner 兼容、41点 realized sweep、non-inclusion 与 `epsilon_map` 账本，并至少实际执行一次 teacher bound。通过后才可注册128-anchor fit-only preflight；不得因122/128诊断结果调整阈值或 provider，不得读取 development、calibration、test 或 target-domain 数据。
+- 下一阶段：把 R004H4P5I 的全零 non-inclusion 作为 post-result mechanism signal，而不是方法阴性结果。预注册 R004H4P5D，在相同8个 fit sentinels 上核验 disk outer / inner-cell 组合的解析 no-witness separation barrier，并记录官方 realized candidate 与 native 的逐时刻最大后轴距离。若全部零证据候选均落在解析屏障内，则在128-anchor扩展前退役该 disk non-inclusion 架构，转向方向感知矩形外覆盖；不得调整 provider、资格阈值或读取 development、calibration、test、target-domain 数据。
