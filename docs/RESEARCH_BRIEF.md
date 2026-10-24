@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H2R1 与 R004H3 通过各自工程门。R004H4P2S 否定了缓存动态速度字段，R004H4P2R1 修正后原 provider 供给为82/128。native-conditioned provider 的合成接口通过，但 R004H4P3 在自建多项式动态筛查下仅38/128；端点审计修复后无不变量失败且机械审计通过。官方源码进一步表明 NAVSIM 实际先把 desired poses 经0.1秒重采样、LQR tracker 与自行车模型变成 realized trajectory，因此既有供给/几何接口验证了错误对象。当前必须先关闭官方执行算子接口；不得进入 geometry 或 development。正式 coverage、Gate B、OOD 与创新性仍未成立。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H2R1 与 R004H3 通过各自工程门。R004H4P2S 否定了缓存动态速度字段，R004H4P2R1 修正后原 provider 供给为82/128。native-conditioned provider 的合成接口通过，但 R004H4P3 在错误的 desired-curve 多项式筛查下仅38/128。R004H4P4E 已在128个既有 fit anchors 上闭合官方0.1秒 LQR+bicycle 执行接口，所有实现门通过且机械审计通过；realized supply 诊断为122/128、最低组0.875，但不是本阶段决策端点。desired 末段恒等在 realized 轨迹上0/128保留，因此 intent 与 geometry 必须完全重定义在 realized 对象上。外部独立审查仍不可用。当前只可注册 realized-trajectory fit-only preflight；不得进入 development。正式 coverage、Gate B、OOD 与创新性仍未成立。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：R004H4P4E 已注册，只在既有 fit anchors 上复现官方 `transform_trajectory -> 0.1 s get_trajectory_as_array -> PDMSimulator(LQR+bicycle)` 链，并对 native/challenger 成对输出 realized trajectory。实现侧 214 项测试与静态类型检查已通过；真实环境仍须验证源码哈希、坐标往返、采样、共同初态、确定性、shape 与有限性。desired-to-realized 偏差和 realized intent 仅作诊断，不参与本阶段 PASS。接口闭合后才可注册 realized swept-footprint preflight；不得读取 geometry teacher、prediction 或 development。
+- 下一阶段：注册 realized-trajectory fit-only preflight。继续使用同一官方执行算子与既有 fit denominator，预先冻结 realized intent 资格、swept-footprint non-inclusion、真实 NAVSIM preprocessing 下的 `epsilon_map` 审计和机会分母。不得因122/128诊断结果调整阈值或 provider，不得读取 development、calibration、test 或 target-domain 数据。

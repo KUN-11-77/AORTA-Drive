@@ -1,0 +1,43 @@
+{
+  "experiment_id": "R004H4P4E-official-execution-interface-audit-v1",
+  "status": "COMPLETED",
+  "decision": "PASS_OFFICIAL_EXECUTION_INTERFACE",
+  "implementation_revision": "06284a8fd3f13763fe56ed97cfe38f01b427d106",
+  "result_sha256": "f56a43d60d5cf406c0fa0dced46ec66e9740c22eb791a10894b591b61cd4bbdb",
+  "audit_sha256": "47692683afa0bc3790f0f2714fde8f94b39ad3648f6ab0093b709f13d74086f1",
+  "run_log_sha256": "d92c9b9bab8161efe20669a4cdb735439093000563eb92746299d38c0a0ea7f6",
+  "failed_pre_payload_launch_log_sha256": "424b3d6377aec2e9c64e7406b2ee8a77a66ba27558f72d072f1b1b609d101eca",
+  "interface": {
+    "anchor_count": 128,
+    "failure_count": 0,
+    "maximum_roundtrip_position_error_m": 4.663468337271019e-10,
+    "maximum_roundtrip_heading_error_rad": 1.942890293094024e-15,
+    "maximum_transform_error_m": 3.553624407186646e-15,
+    "deterministic_replay_bit_exact_on_every_anchor": true,
+    "shared_initial_state_bit_exact_on_every_anchor": true
+  },
+  "secondary_diagnostics": {
+    "realized_anchors_with_eligible_candidate": 122,
+    "realized_anchor_supply_fraction": 0.953125,
+    "minimum_group_supply_fraction": 0.875,
+    "realized_anchors_with_both_signed_eligible_candidates": 122,
+    "desired_final_identity_survived_execution_anchor_count": 0,
+    "maximum_native_desired_to_realized_terminal_position_error_m": 2.696515362785154,
+    "maximum_challenger_desired_to_realized_position_error_m": 4.348333243898356,
+    "decision_use": false
+  },
+  "integrity": {
+    "repository_tests": "215 passed",
+    "static_type_check": "PASS",
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE"
+  },
+  "claims": {
+    "official_execution_interface_closed": true,
+    "realized_supply_adequacy_established_by_registered_endpoint": false,
+    "geometry_evaluated": false,
+    "development_access_authorized": false,
+    "coverage_established": false,
+    "gate_b_passed": false
+  }
+}

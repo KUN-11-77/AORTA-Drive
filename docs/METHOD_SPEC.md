@@ -157,6 +157,11 @@ Provider 输出 desired reference \(\hat\tau_j\)，但 NAVSIM 不直接评分该
 \(\tau_j\) 上，而不是 \(\hat\tau_j\) 上。任何 desired-curve smoothness screen 仅为诊断，
 除非另证其与 \(\mathcal S\) 等价。
 
+R004H4P4E 的实现审计在 128 个冻结 fit anchors 上闭合了该算子，但同时发现 desired
+末段恒等在 realized 轨迹上 `0/128` 保留。故“复制 desired 最后两点”不再是 realized
+intent 不变量，只能是 provider 构造属性。后续资格必须直接比较
+\(\mathcal S_{x_0}(\hat\tau_j)\) 与 realized native，不能从 desired 端点替代推导。
+
 ## 5. Data partition and calibration
 
 source train、development、calibration、test sessions 严格分离。模型、checkpoint、图、\(\alpha\)、\(\gamma_{task}\)、candidate interface 和所有选择规则在首次读取 calibration scores 前冻结。

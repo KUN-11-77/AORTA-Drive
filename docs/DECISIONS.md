@@ -534,3 +534,22 @@
   revision. No threshold, data, provider or decision endpoint changes.
 - **Boundary:** this is an implementation-integrity repair. The failed launch carries no
   scientific result and cannot support or reject the theory.
+
+## ADR-0049 — Retire desired endpoint identity as a realized-trajectory invariant
+
+- **Status:** accepted after R004H4P4E
+- **Evidence:** all 128 official execution-interface gates passed with maximum coordinate
+  roundtrip errors `4.6635e-10 m` and `1.9429e-15 rad`; the payload-free mechanical audit
+  passed. Nevertheless, bit-exact desired final-segment identity survived the stateful
+  LQR+bicycle execution for all candidates on `0/128` anchors. Maximum desired-to-realized
+  differences reached `2.6965 m` for native terminal position and `4.3483 m` over challenger
+  trajectories.
+- **Decision:** provider endpoint copying remains a desired-reference construction property,
+  not a physical or mathematical invariant of the realized candidate. All H4 intent,
+  non-inclusion, swept footprints, map-error budgets and opportunity labels must be evaluated
+  from paired official realized trajectories. The diagnostic realized supply `122/128` and
+  minimum group `14/16` may motivate a preregistered preflight but cannot be promoted to a
+  passed supply endpoint after the fact.
+- **Boundary:** only a fit-only realized-trajectory preflight may be registered next. No
+  provider/threshold revision and no development, calibration, test or target access is
+  authorized. External cross-model integrity review remains unavailable.
