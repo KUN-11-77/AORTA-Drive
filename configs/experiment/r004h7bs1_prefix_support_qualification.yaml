@@ -1,0 +1,84 @@
+experiment_id: R004H7BS1-fixed-prefix-support-qualification-v1
+date: 2026-10-24
+status: fit_phase_preregistered_and_authorized
+
+H7BS1:
+  scientific_role: outcome_blind_support_qualification
+  independent_unit: recording_group
+  fit_groups: 42
+  development_groups: 24
+  anchors_per_group: 16
+  minimum_valid_anchors_per_group: 12
+  prefix_indices: [10, 15, 20, 25, 30, 35, 40]
+  prefix_seconds: [1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0]
+  fit_selection_rule: largest_prefix_with_42_of_42_groups_at_least_12_of_16_valid
+  no_feasible_fit_prefix_action: stop_current_fixed_grid_shadow_route_without_development_access
+  development_rule: one_shot_selected_prefix_only_24_of_24_groups_at_least_12_of_16_valid
+  development_failure_action: stop_current_fixed_grid_shadow_route_without_threshold_change
+  forbidden_inputs:
+    - visual_fields
+    - DINO_features
+    - teacher_labels_or_margins
+    - H7B_ranking_or_regret_outcomes
+    - official_calibration
+    - test
+    - NavDream
+    - target
+  frozen_input_sha256:
+    group_role_manifest: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+    metric_manifest: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+    h7b_config: 26716748bf8329d448fa6024896af9cb8d0897b37c9ef98bbf28e3f6c97be660
+  implementation_sha256:
+    support_adequacy_source: 772c76740cf02887359ef125f281082c1020ce86bdfbf428d0807fbac45eedab
+    runner_source: fe133267ba7cd81fb94b981b05aa745c355756ddb0ef3836c7cd0459dc4a4751
+    audit_source: 56ca4ebb83ca20ab1abe133e1bc5cee0586c941e92df97a28aa66cb6889318e3
+    navsim_execution_source: f8ed588568fbeeebaa9c99ffd1d952f29cb490950b9490869bdf869cbdd00717
+    native_offset_source: 76a238a4538f49211ccb24bd30e1b2cda79b0f26fae656e49f184b7adbc2440e
+    intent_filter_source: f4271d81c9484e3609bc9715205bda08d8ee9fb909f11a61d5a094dfbc06c034
+    official_source:
+      navsim/evaluate/pdm_score.py: 7d0b82b8420c52dfedfda2a56b4aa44bd371cd1adbac58f001c19ccda60cf99c
+      navsim/planning/simulation/planner/pdm_planner/simulation/pdm_simulator.py: 30efc69ffc36409a496c84f560ba7201727c5e87c6a13d3f7a8e79f19ab6df4a
+  candidate_panel:
+    provider: native_fixed_normal_c2_bump_v1
+    challenger_amplitudes_m: [-1.5, -1.0, -0.5, 0.5, 1.0, 1.5]
+    desired_curve_dynamic_screen: disabled
+    official_execution_interval_s: 0.1
+    official_execution_samples_including_origin: 41
+    deterministic_replay: bit_exact_required
+    intent_eligibility:
+      source_horizon: complete_4_second_execution_fixed_for_all_prefixes
+      comparison_interval_s: 0.5
+      minimum_native_terminal_displacement_m: 2.0
+      progress_ratio: [0.8, 1.2]
+      maximum_terminal_cross_track_m: 3.5
+      maximum_terminal_heading_difference_rad: 0.35
+      maximum_terminal_speed_difference_mps: 4.0
+    vehicle:
+      width_m: 2.297
+      length_m: 5.176
+      rear_axle_to_center_m: 1.461
+      rear_overhang_m: 1.127
+      front_extent_m: 4.049
+      half_width_m: 1.1485
+    node_grid:
+      x_min_m: -32.0
+      y_min_m: -32.0
+      rows: 64
+      columns: 64
+      resolution_m: 1.0
+    ROI_clipping: reject_candidate
+    continuous_interpolation_or_certificate: prohibited
+  resources:
+    device: cpu
+    maximum_wall_minutes: 120
+    maximum_output_mib: 96
+
+claim_boundary:
+  fit_pass_only_authorizes: freeze_selected_prefix_then_one_shot_development_support_qualification
+  development_pass_only_authorizes: preregister_H7B2_prefix_decision_relevance
+  prohibited_claims:
+    - full_4_second_decision_relevance
+    - visual_robustness_gain
+    - driving_or_safety_gain
+    - test_or_target_generalization
+    - architecture_necessity_or_novelty
