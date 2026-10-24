@@ -1,6 +1,17 @@
 # AORTA-Drive Research Brief
 
-> **2026-10-24 R004H7-BS0：`FORWARD_HORIZON_SUPPORT_MISMATCH_OBSERVED_POSTHOC`。** outcome-blind归因重读384个已审计panels：110个native越界与770个candidate ROI failure均只越过前向`x_max`；native首次越界最早在2.1s、中位3.05s，所需前向扩张中位10.016m、最大26.693m；所有初始pose平移/yaw残差为0。23个可配对groups内，native-invalid相对valid的path length平均高24.300m而曲率proxy未增加，说明complete-case样本明显偏向短行程。panel在appearance fields前构建，故视觉证据不能解释本次119个invalid，但ROI内视觉证据充分性仍未测。独立机械audit复现119 identities与全部边界归因，0失败；外部reviewer unavailable。新增定理明确：若候选集合越出网络定义域，完整set-min在无域外假设时不可识别，裁剪会改变estimand。prefix选择、H7-B2和H7-C继续HOLD。完整记录见`experiments/R004H7/H7BS0_RESULTS.md`。
+> **2026-10-24 R004H7-BS1：`DEVELOPMENT_SUPPORT_PASS`。** outcome-blind fit选择在冻结的
+> 1.0--4.0秒字典中选出2.5秒为最大共同可行前缀：622/672 anchors有效且42/42 groups
+> 达到至少12/16；3.0秒仅37/42 groups通过。随后一次性development资格复核得到
+> 360/384有效anchors、24/24 groups通过，机械审计对384 artifacts复算0失败。fit首次结果
+> 写入因辅助intent字段含NaN而失败；672个既有artifacts随后经official execution逐bit重放
+> 与第二层机械audit恢复，未重生成科学panel。外部reviewer unavailable。该结果只支持
+> 2.5秒prefix的离散查询定义域充分；它不证明2.5秒包含4秒候选排序所需的信息，因此
+> H7-B2继续HOLD，先完成outcome-blind晚期分叉、set-min不可区分性与完整时域ROI诊断；
+> 不证明decision relevance、视觉正确性、驾驶/安全收益、完整4秒支持或创新性。完整记录见
+> `experiments/R004H7/H7BS1_RESULTS.md`。
+
+> **2026-10-24 R004H7-BS0：`FORWARD_HORIZON_SUPPORT_MISMATCH_OBSERVED_POSTHOC`。** outcome-blind归因重读384个已审计panels：110个native越界与770个candidate ROI failure均只越过前向`x_max`；native首次越界最早在2.1s、中位3.05s，所需前向扩张中位10.016m、最大26.693m；所有初始pose平移/yaw残差为0。23个可配对groups内，native-invalid相对valid的path length平均高24.300m而曲率proxy未增加，说明complete-case样本明显偏向短行程。panel在appearance fields前构建，故视觉证据不能解释本次119个invalid，但ROI内视觉证据充分性仍未测。独立机械audit复现119 identities与全部边界归因，0失败；外部reviewer unavailable。新增定理明确：若候选集合越出网络定义域，完整set-min在无域外假设时不可识别，裁剪会改变estimand。该阶段当时保持prefix选择、H7-B2和H7-C为HOLD；后续状态见上方H7BS1。完整记录见`experiments/R004H7/H7BS0_RESULTS.md`。
 
 > **2026-10-24 R004H7-B：`INSUFFICIENT_PANEL_COVERAGE`。** 冻结24-group/384-anchor shadow run已完成且机械重算384/384通过，但只有265 anchors有效、11/24 groups达到每组至少12/16有效anchors的预注册完整性门；110 anchors因native越出冻结ROI而无效，另9个无有效challenger。candidate级770次失败来自oriented footprint离开64×64、1m、`[-32,32]^2`查询域，冻结provider四类rejection均为0。按协议未计算Spearman/AUROC，因此C13既未获得支持也未被关联性结果否定；H7-C继续HOLD。只允许先注册不读取outcome的support-adequacy diagnosis，不得事后删组、降阈值或改候选。calibration/test/NavDream/target仍封存，外部reviewer为`REVIEW_UNAVAILABLE`。完整记录见 `experiments/R004H7/H7B_RESULTS.md`。
 

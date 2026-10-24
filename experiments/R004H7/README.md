@@ -19,4 +19,8 @@ H7-B coverage failure后的唯一已注册下一步是
 `H7BS_SUPPORT_ADEQUACY_PLAN.md`：先在fit groups上以outcome-blind规则选择最大固定前缀，
 再一次性检查development coverage。其H7BS-0 post-hoc归因阶段已经完成并通过独立机械
 复算：全部ROI失败均为晚时刻前向`x_max`越界，origin合同闭合，且invalid样本明显偏向
-长前向行程。完整结果见`H7BS0_RESULTS.md`。fixed-prefix选择、H7-B2与H7-C仍HOLD。
+长前向行程。完整结果见`H7BS0_RESULTS.md`。H7BS1随后以fit-only规则选择2.5秒为最大
+共同可行前缀，并在24/24 development groups上一次性通过支持资格：360/384 anchors有效，
+机械复算0失败。完整记录见`H7BS1_RESULTS.md`。该结果只证明2.5秒prefix可查询，不证明
+完整候选的决策信息充分；H7-B2继续HOLD，必须先完成H7BS2候选晚期分叉、prefix
+node-set不可区分性与完整时域ROI诊断。H7-C训练仍HOLD。

@@ -196,3 +196,18 @@ M_\Omega(\tau)=\min_{q\in F(\tau)\cap\Omega}u_\Omega(q)
 
 H7BS-0进一步观察到当前越界全部发生在前向`x_max`且集中于长行程anchor。这是post-hoc
 机制证据，不是上述命题的前提，也不能单独选择prefix或新ROI。
+
+H7BS1使用不读取field、teacher或decision outcome的fit-only规则，在冻结字典中选出
+`k=25`（2.5秒）为最大共同可行前缀，并在24/24 development groups上通过一次性支持
+资格。因此当前唯一已知可查询的固定网格estimand是
+
+\[
+M_{2.5}(\tau;u)=\min_{q\in F_{25}(\tau)}u(q),
+\]
+
+而不是原完整4秒的 \(M_4\)。支持包含成立只消除了定义域不可识别性；它既不推出
+\(M_{2.5}\) 的视觉误差足够小，也不推出其误差与ranking regret或flip相关，更不推出
+2.5秒包含区分完整4秒候选所需的信息。若
+\(F_{25}(\tau_i)=F_{25}(\tau_j)\)，则对任意场 \(u\) 都有
+\(M_{2.5}(\tau_i;u)=M_{2.5}(\tau_j;u)\)；后段分叉不能由任何更强视觉backbone或更低
+预测误差恢复。这一结构性不可区分性必须在读取decision outcome前单独审查。

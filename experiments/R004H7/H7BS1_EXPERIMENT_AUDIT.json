@@ -1,0 +1,19 @@
+{
+  "experiment_id": "R004H7BS1-fixed-prefix-support-qualification-v1",
+  "audit_status": "REVIEW_UNAVAILABLE",
+  "mechanical_integrity": "PASS",
+  "external_reviewer_backend_available": false,
+  "checks": {
+    "ground_truth_provenance": "NOT_APPLICABLE_SUPPORT_ONLY",
+    "score_normalization": "PASS_NO_SCORES_COMPUTED",
+    "result_existence": "PASS_HASH_BOUND",
+    "dead_code": "PASS_RUNNER_AND_AUDIT_OUTPUTS_PRESENT",
+    "scope": "PASS_42_FIT_GROUPS_THEN_24_DEVELOPMENT_GROUPS",
+    "evaluation_type": "deterministic_support_qualification"
+  },
+  "claim_impact": {
+    "prefix_support_adequacy": "provisionally_supported_with_mechanical_audit",
+    "decision_relevance": "unproven",
+    "driving_or_safety": "unproven"
+  }
+}

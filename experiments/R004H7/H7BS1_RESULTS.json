@@ -1,0 +1,46 @@
+{
+  "experiment_id": "R004H7BS1-fixed-prefix-support-qualification-v1",
+  "status": "COMPLETED",
+  "decision": "DEVELOPMENT_SUPPORT_PASS",
+  "selected_prefix_index": 25,
+  "selected_prefix_seconds": 2.5,
+  "fit": {
+    "group_count": 42,
+    "anchor_count": 672,
+    "valid_anchor_count_at_selected_prefix": 622,
+    "groups_meeting_12_of_16_at_selected_prefix": 42,
+    "groups_meeting_12_of_16_by_prefix": {
+      "10": 42,
+      "15": 42,
+      "20": 42,
+      "25": 42,
+      "30": 37,
+      "35": 29,
+      "40": 25
+    },
+    "result_sha256": "41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38",
+    "mechanical_audit_sha256": "7674d9fe36c2e8cb8c40abce620450a9962093626c75591767011e3a85f1b970",
+    "mechanical_audit_status": "PASS",
+    "serialization_recovery": "REGISTERED__672_ARTIFACTS_REPLAYED_BIT_EXACT"
+  },
+  "development": {
+    "group_count": 24,
+    "anchor_count": 384,
+    "valid_anchor_count": 360,
+    "groups_meeting_12_of_16": 24,
+    "panel_reason_counts": {
+      "valid": 360,
+      "native_invalid": 15,
+      "no_valid_challenger": 9
+    },
+    "minimum_group_valid_anchor_count": 12,
+    "result_sha256": "34fcb15fe995b17534b33ec9f10072834df4c9f48d7e6e03205bb956ae20e0d8",
+    "mechanical_audit_sha256": "7604f26537a38616f2879605b26a868c61ccb4f8637c34dfca3b2126fd83c59c",
+    "mechanical_audit_status": "PASS"
+  },
+  "field_teacher_or_decision_outcome_accessed": false,
+  "calibration_test_navdream_or_target_accessed": false,
+  "external_review_status": "REVIEW_UNAVAILABLE",
+  "next_status": "HOLD_H7B2_PENDING_H7BS2_CANDIDATE_INFORMATION_DIAGNOSIS",
+  "claim_boundary": "The frozen 2.5-second prefix is query-support-qualified on fit and historically exposed development groups. This does not establish that the prefix preserves the information needed to rank complete 4-second candidates, full-horizon support, visual correctness, decision relevance, driving benefit, safety, target generalization, or novelty."
+}

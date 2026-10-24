@@ -1,6 +1,6 @@
 # R004H7-BS 预注册：shadow-query 支撑充分性诊断
 
-状态：`H7BS1_FIT_PHASE_PREREGISTERED_AND_AUTHORIZED`。本阶段只回答固定视觉任务图能否完整承载冻结
+状态：`H7BS1_COMPLETED__DEVELOPMENT_SUPPORT_PASS`。本阶段只回答固定视觉任务图能否完整承载冻结
 候选的离散查询，不读取预测场、teacher margin、regret、ranking flip 或任何 H7-B outcome，
 也不训练网络。
 
@@ -44,8 +44,14 @@ H7BS-0现已完成：所有110个native越界和770个candidate ROI failure均�
 增加24.300m而曲率proxy未增加。机械审计复现全部119个无效anchor，0失败。该结果支持
 完整4秒前向支撑失配并揭示短行程选择性，但仍属post-hoc。H7BS1 已另行冻结为
 `configs/experiment/r004h7bs1_prefix_support_qualification.yaml`：先在42个fit groups选择最大
-可行前缀；不存在可行前缀则不访问development。fit结果完成机械审计并以哈希锁定前，
-development资格复核继续HOLD。
+可行前缀；不存在可行前缀则不访问development。执行时fit结果完成机械审计并以哈希锁定
+之后，才解除development资格复核的HOLD。
+
+H7BS1现已按冻结顺序完成：fit阶段选出最大共同可行前缀`k=25`（2.5秒），该前缀
+在42/42 fit groups达到至少12/16；3.0秒只有37/42，故未被选择。随后一次性development
+资格复核得到360/384有效anchors，24/24 groups达到至少12/16，独立机械复算0失败。
+本结果只证明2.5秒前缀可查询。由于可查询不等于决策信息充分，H7-B2预注册与outcome读取
+继续HOLD；先完成独立登记的H7BS2晚期分叉、set-min不可区分性及完整时域ROI诊断。
 
 ## 1. 问题与数学对象
 
@@ -127,7 +133,7 @@ shadow路线，不降低门槛、不按group选择不同前缀。
 - 所有384 anchors保留在coverage分母；candidate失效不删除；
 - 任何看到development coverage后的字典、门槛、ROI或prefix修改，都必须成为新的探索，
   不能回写本预注册；
-- 通过只授权H7-B2的独立预注册和实现资格，不自动读取预测outcome，更不授权H7-C。
+- 通过只证明选定prefix可查询；在H7BS2审查决策信息充分性前不授权H7-B2，更不授权H7-C。
 
 ## 6. 解释边界
 

@@ -762,3 +762,27 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** H7BS-0 is post-hoc descriptive evidence. It cannot establish visual evidence
   quality, decision relevance, driving benefit, safety or novelty. Prefix selection, H7-B2 and
   H7-C remain on hold pending review of the estimand and architecture trade-off.
+
+## ADR-0057 — Qualify a 2.5-second prefix as a queryable diagnostic domain, not a sufficient decision horizon
+
+- **Status:** accepted after outcome-blind fit selection, one-shot development qualification and
+  two mechanical artifact replays.
+- **Selection:** the frozen prefix dictionary was evaluated on 42 fit groups without fields,
+  teacher margins or decision outcomes. Prefixes through 2.5 seconds passed 42/42 groups at the
+  registered 12/16 anchor threshold; 3.0 seconds passed only 37/42. The maximum-feasible rule
+  therefore selected 2.5 seconds.
+- **Qualification:** the selected prefix produced 360/384 valid anchors and 24/24 qualifying
+  development groups. All 384 panel hashes and prefix statuses were independently reproduced.
+- **Implementation event:** the original fit execution wrote all 672 artifacts but failed strict
+  JSON serialization on an auxiliary NaN. Recovery regenerated no scientific panel: all 672
+  official executions and intent decisions had to replay bit exactly before the result was
+  materialized and audited.
+- **Decision:** retain 2.5 seconds only as a mechanically qualified near-horizon diagnostic domain.
+  H7-B2 remains on hold until an outcome-blind H7BS2 audit measures late candidate divergence,
+  exact prefix node-set equivalence and full-horizon ROI requirements. H7-C remains prohibited.
+- **Boundary:** this changes the estimand from the complete 4-second query to a near-horizon
+  query. It establishes support containment only, not that 2.5 seconds preserves the information
+  needed to rank 4-second candidates. In particular, equal prefix swept sets imply equal set-min
+  scores for every possible field even when candidates diverge later. It does not establish visual
+  correctness, decision relevance, driving benefit, safety, target generalization or novelty.
+  External review remains unavailable.
