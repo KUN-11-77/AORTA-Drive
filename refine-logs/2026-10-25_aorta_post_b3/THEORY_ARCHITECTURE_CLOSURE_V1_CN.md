@@ -330,3 +330,8 @@ scorer 并降低论文定位；若 selective arm 近乎全拒判或不降低 fal
 
 当前不能说：该网络比最近方法更好、能在 NavDream 泛化、能改善 official driving outcome、满足
 clean no-harm 或具备实时部署资格。下一步仍是 B4R1；未经明确授权不得运行。
+
+数据无关参考实现位于 `src/aorta_drive/theory/relation_guarantees.py`。它与历史绝对安全区间仲裁
+严格分离，并由 `tests/gate_b/test_relation_closure_theory.py` 验证严格正 lower-bound 选择、同时
+事件上的真实改善、task correctness 到 `2 epsilon` appearance drift、稳定不推出正确的坍缩反例、
+group maximum 以及42组95%有限/99%无穷的样本量边界。这些测试只验证合同，不增加经验主张。

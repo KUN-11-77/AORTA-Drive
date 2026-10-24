@@ -10,6 +10,15 @@
 > clean no-harm 和 batch-1 latency 仍全部是硬门。详见
 > `refine-logs/2026-10-25_aorta_post_b3/THEORY_ARCHITECTURE_CLOSURE_V1_CN.md`。
 
+> **2026-10-25 relation仲裁语义分离：`DATA_FREE_CONTRACT_PASS__NO_EMPIRICAL_CLAIM`。** 历史
+> `native_preserving` 处理绝对安全区间并要求先证明native不安全；新理论处理
+> `challenger-minus-native` margin，只要求同时lower bound严格为正。两者已禁止复用同一接口。
+> 新增数据无关参考实现及7项性质测试；与既有decision-quotient、legacy arbitration和calibration
+> 合计20项定向测试通过，strict mypy通过。测试覆盖条件性真实改善、NaN/Inf fail-closed、零
+> challenger、`2 epsilon` appearance drift与常数坍缩反例，以及42-group 95%有限/99%全拒判边界。
+> 本地`dinov3` conda入口失效，验证使用Python 3.13 +显式`PYTHONPATH=src`；未修改环境，服务器正式
+> 环境不受影响。该结果不证明coverage、NavDream、网络或驾驶收益，也不授权B4R1。
+
 > **2026-10-25 two-frame上下文roster审查：FORMAL_OUTCOME_FREE_INTERFACE_PASS。**
 > 现有672-anchor fit roster内0/672存在≤0.55 s相邻token，直接调用官方aggregator会把two-frame
 > 权重全部置零并伪造full=one-frame的100%对齐；但从261个官方raw logs逐token恢复时，672/672

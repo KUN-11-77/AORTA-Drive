@@ -1090,3 +1090,20 @@ the current open-ended geometry certificate iteration remains STOP.
   仍为 `NOT_ICCV_READY / NOT_ORAL_READY`。
 - **Artifact:**
   `refine-logs/2026-10-25_aorta_post_b3/THEORY_ARCHITECTURE_CLOSURE_V1_CN.md`。
+
+## ADR-0076：旧绝对安全区间仲裁与新native-relative relation仲裁严格分离
+
+- **Decision:** `SEPARATE_ESTIMANDS__NO_SEMANTIC_REUSE`。
+- **Reason:** 历史 `arbitration.native_preserving.arbitrate` 接收每条候选的绝对上下界，要求先证明
+  native 上界低于零，再寻找安全 challenger；新方法则直接估计
+  `delta_i0 = F(tau_i) - F(tau_0)`，其条件定理只要求 challenger 的同时 lower bound 严格大于零。
+  两种规则的零点、输入和保证不同，复用旧函数会把新理论错误翻译为“必须先证明 native 不安全”。
+- **Consequence:** 保留旧函数供历史实验复现；新增
+  `theory.relation_guarantees.arbitrate_native_relative` 作为数据无关参考。它允许零 challenger、对
+  NaN/Inf/负半径 fail closed、按最大严格正 lower bound 选择，并使用冻结向量顺序打破平局。
+  42-group split quantile 在95%返回第41次序统计量，在99%返回无穷并触发全拒判。
+- **Evidence:** 新增穷举性质测试验证：在同时误差事件上每次 intervention 的真实 relative margin
+  都严格为正；还验证 task correctness 推出 `2 epsilon` appearance drift、反向不成立，以及
+  group maximum 不把组内比较冒充独立样本。
+- **Boundary:** 这些是数学/软件合同测试，不证明模型 residual 满足半径、不证明 source 或
+  NavDream coverage，也不授权 B4R1 或网络训练。
