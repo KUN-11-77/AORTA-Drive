@@ -1,0 +1,23 @@
+{
+  "experiment_id": "R004H7BS1-fit-serialization-recovery-v1",
+  "registered_at": "2026-10-24",
+  "scientific_panel_regeneration_permitted": false,
+  "original_implementation_revision": "81129838c8035a06ee837ae6bd7c2a28fcdf84cc",
+  "original_config_sha256": "315d71499356f69775fc501d6a7e6d88b8e75461e3387a5fe6325210f9c8bd16",
+  "original_runner_sha256": "fe133267ba7cd81fb94b981b05aa745c355756ddb0ef3836c7cd0459dc4a4751",
+  "support_adequacy_sha256": "772c76740cf02887359ef125f281082c1020ce86bdfbf428d0807fbac45eedab",
+  "failed_run_log_sha256": "14d208326b108b45abb8d0d74f14d69fbc37f7f44ce67b866f3011014636ed22",
+  "panel_manifest_sha256": "eec5d09e555a822cc16ff7470fd8156096a19ecba4d23d1204430f19d08f4232",
+  "panel_artifact_count": 672,
+  "result_json_present_at_freeze": false,
+  "materializer_sha256": "1a452d8c243af3bbbdd5e6f3049944a5fa52349b6f4a6f356c3373a24d1b09ab",
+  "recovered_auditor_sha256": "199e61809d2b75209692615b12ab3356a2f6c5e48754736a794b964720573c15",
+  "required_recovery_checks": [
+    "all_672_artifact_hashes_match_frozen_manifest",
+    "official_execution_replays_match_stored_trajectories_bit_exact",
+    "full_horizon_intent_eligibility_matches_stored_artifacts",
+    "all_seven_prefix_statuses_are_recomputed",
+    "maximum_feasible_prefix_rule_is_unchanged",
+    "field_teacher_outcome_and_development_remain_unread"
+  ]
+}
