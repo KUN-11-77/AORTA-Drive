@@ -83,8 +83,8 @@ U_theta + {F_i}
 
 ### 3.2 候选网络参数化
 
-令冻结视觉编码器产生多相机历史token (Z)，投影与支撑审计产生局部证据(O)。共享图解码器
-输出未定gauge的node logits (a_\theta)和edge scale logits (s_\phi)：
+令冻结视觉编码器产生多相机历史token \(Z\)，投影与支撑审计产生局部证据\(O\)。共享图解码器
+输出未定gauge的node logits \(a_\theta\)和edge scale logits \(s_\phi\)：
 
 \[
 u_\theta=P_\perp a_\theta,
@@ -92,8 +92,8 @@ u_\theta=P_\perp a_\theta,
 \qquad z_\theta=B_0u_\theta .
 \]
 
-因此(u_\theta)选取mean-zero代表元，真正进入监督与决策的是exact 1-cochain
-(z_\theta\in\operatorname{im}B_0)，并由架构恒有(B_1z_\theta=0)。这比给direct-edge
+因此\(u_\theta\)选取mean-zero代表元，真正进入监督与决策的是exact 1-cochain
+\(z_\theta\in\operatorname{im}B_0\)，并由架构恒有\(B_1z_\theta=0\)。这比给direct-edge
 head事后增加cycle penalty更强：可积性不是软偏好，而是可行域。
 
 edge预算采用硬方向参数化
@@ -148,14 +148,14 @@ cycle loss。候选排序loss仅作后续消融，因为把它放入主loss会�
 ### 3.4 核心推理算法
 
 一次视觉前向产生\((u_\theta,w_\phi,O)\)，一次multi-source图solver构造共享不确定包络；所有
-完整4秒candidate复用该包络。对challenger (j) 与native (0)，计算
+完整4秒candidate复用该包络。对challenger \(j\) 与native \(0\)，计算
 
 \[
 L_{j0}=\inf_{d\in\mathcal U_\theta(X,O)}
 \left[\min_{q\in F_j}d_q-\min_{q\in F_0}d_q\right].
 \]
 
-只有(L_{j0}\ge\gamma\)、几何/资格合同通过且candidate存在时才替换native。没有合法候选、
+只有\(L_{j0}\ge\gamma\)、几何/资格合同通过且candidate存在时才替换native。没有合法候选、
 证据不足、集合过宽或数值审计失败都映射到同一个明确动作：abstain并保留native。该算法的
 创新候选不是Dijkstra本身，而是“结构化任务表示—相关集合—共享比较—选择性干预”的闭环。
 

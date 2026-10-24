@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-25",
+  "auditor": "internal-mechanical-replay; external-reviewer-unavailable",
+  "overall_verdict": "provisional_scope_warn",
+  "integrity_status": "warn",
+  "mechanical_audit": "pass",
+  "checks": {
+    "gt_provenance": {"status": "pass", "details": "Exact-token NAVSIM cache polygons."},
+    "score_normalization": {"status": "pass", "details": "No model score is computed."},
+    "result_existence": {"status": "pass", "details": "672 artifacts and 4128768 nodes audited."},
+    "role_isolation": {"status": "pass", "details": "672 train fit anchors joined exactly."},
+    "scope": {"status": "warn", "details": "Artifact qualification only; no method endpoint."},
+    "eval_type": "real_gt_dataset_cache_geometry_artifact_qualification"
+  },
+  "claims": [
+    {"id": "fit_forward96_teacher_artifacts", "impact": "supported_mechanically"},
+    {"id": "teacher_critical_observability", "impact": "not_evaluated_until_B0B"}
+  ]
+}

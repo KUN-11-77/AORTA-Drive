@@ -138,6 +138,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     args.output_directory.mkdir(parents=True)
 
     source = cast(dict[str, Any], json.loads(args.h7bs4a_result.read_text(encoding="utf-8")))
+    if source.get("forbidden_payload_accessed") is not False:
+        raise ValueError("H7BS4A source violated its forbidden-payload boundary")
     source_rows = cast(list[dict[str, Any]], source["anchor_ledgers"])
     fit = cast(dict[str, Any], json.loads(args.fit_result.read_text(encoding="utf-8")))
     fit_rows = cast(list[dict[str, Any]], fit["anchor_ledgers"])
@@ -331,6 +333,16 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
 
     summary = _summarize(rows)
+    expected = cast(Mapping[str, int], stage["expected_scope_counts"])
+    for key in (
+        "anchor_count",
+        "candidate_count",
+        "native_challenger_pair_count",
+        "geometrically_distinct_pair_count",
+        "zero_supported_symmetric_difference_pair_count",
+    ):
+        if int(summary[key]) != int(expected[key]):
+            raise ValueError(f"frozen scope count mismatch: {key}")
     elapsed = time.perf_counter() - started
     if elapsed > float(stage["resources"]["maximum_wall_minutes"]) * 60.0:
         raise RuntimeError("H7BS4B0B exceeded frozen wall-time cap")

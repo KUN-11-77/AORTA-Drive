@@ -1,0 +1,87 @@
+experiment_id: R004H7BS4B0B-teacher-critical-observability-v1
+date: 2026-10-25
+status: preregistered_not_run
+
+H7BS4B0B:
+  scientific_role: fit_only_teacher_critical_projective_observability_diagnosis
+  parent_decision: H7BS4A_STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE
+  parent_decision_must_remain_unchanged: true
+  independent_unit: recording_group
+  frozen_input_sha256:
+    h7bs4a_result: 4671032f4d22d37d067c83e0c298e592467e13601788b55dae53f8a7055cc8cc
+    h7bs1_fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+    fit_forward96_teacher_manifest: 65e686e06522fddf4950f1fe772fbcbea0547cec3d54fb383a8ee33d208b9fd0
+  expected_scope_counts:
+    anchor_count: 672
+    candidate_count: 4536
+    native_challenger_pair_count: 3864
+    geometrically_distinct_pair_count: 3678
+    zero_supported_symmetric_difference_pair_count: 8
+  interval_definition:
+    lower_q: nextafter(label_q_minus_total_error_q_toward_negative_infinity)
+    upper_q: nextafter(label_q_plus_total_error_q_toward_positive_infinity)
+    possible_minimizer: q_in_F_iff_lower_q_le_min_p_in_F_upper_p
+    ties: retained_as_possible_minimizers
+    threshold_tuning: forbidden
+  strict_candidate_precondition:
+    pass_iff: every_possible_minimizer_has_direct_projective_evidence
+    tolerance: zero_unobserved_possible_minimizers
+  registered_questions:
+    - how_many_candidates_and_groups_contain_unsupported_possible_minimizers
+    - whether_any_of_the_8_D0_zero_evidence_difference_regions_can_control_set_min
+    - whether_critical_blindness_is_pair_common_or_candidate_distinguishing
+  registered_interpretation:
+    any_candidate_critical_blindness: current_projective_interface_is_teacher_critically_incomplete_on_fit
+    no_candidate_critical_blindness: original_all_node_gate_was_overconservative_on_fit_teacher
+    any_critical_D0_blind_difference: D0_contrast_blindness_can_control_set_min
+    no_critical_D0_blind_difference: D0_eight_pair_failure_is_not_teacher_critical_on_fit
+  roi:
+    x_min_m: -32.0
+    y_min_m: -32.0
+    columns: 96
+    rows: 64
+    resolution_m: 1.0
+  vehicle:
+    rear_overhang_m: 1.127
+    front_extent_m: 4.049
+    half_width_m: 1.1485
+  projection:
+    cameras: [cam_l0, cam_f0, cam_r0]
+    history_offsets: [-3, -2, -1, 0]
+    raw_shape: [1080, 1920]
+    resized_shape: [288, 512]
+    patch_size: 16
+    maximum_normalized_radius: 1.0
+    semantics: projective_token_support_not_occlusion_aware_physical_visibility
+  implementation_sha256:
+    criticality_source: aac60d2e18112e1013d2bdaa0257fe7f901df4b1f3a02d366afd3e6e01af70b9
+    observability_source: ccb3ff2fb2fc8cf49bb9a6696eb9d0f690635609704685bc590f712a9d804299
+    shadow_decision_source: 9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5
+    projection_runner_source: a2bab0d63bb1b6dd4292bec4f14a78f105a3fb191fe4f594e2e20c74341c5327
+    runner_source: 613bce4c2375ca76dcc67a433fab3ca4f37a1db8e262cf4f1e8890c5ce5cb1dd
+    audit_source: 6e4c74f439755d45beee38f08d2b292862e7660e5fbcd1a78bc7ab25425c6821
+  forbidden_inputs:
+    - learned_visual_field_values
+    - DINO_feature_values
+    - planner_outcomes_or_driving_scores
+    - development
+    - calibration
+    - official_test
+    - NavDream
+    - target_domain
+  resources:
+    device: cpu
+    maximum_wall_minutes: 120
+    maximum_output_mib: 128
+
+claim_boundary:
+  permitted:
+    - fit_only_teacher_criticality_of_the_frozen_projective_support_interface
+    - mechanism_evidence_for_uncertainty_abstention_or_support_redesign
+  prohibited:
+    - reversal_or_upgrade_of_H7BS4A_STOP
+    - learned_model_accuracy_or_visual_robustness
+    - development_test_target_or_NavDream_generalization
+    - decision_driving_or_safety_gain
+    - inference_latency
+    - architecture_novelty_or_top_venue_readiness
