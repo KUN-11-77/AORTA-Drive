@@ -10,6 +10,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from fractions import Fraction
+from functools import lru_cache
 from typing import Final
 
 import numpy as np
@@ -74,6 +75,7 @@ def _sqrt_fraction_upper(value: Fraction) -> float:
         estimate = predecessor
 
 
+@lru_cache(maxsize=4096)
 def _sin_cos_intervals(angle: Fraction) -> tuple[RationalInterval, RationalInterval]:
     """Enclose exact sin/cos on the registered heading domain."""
 
