@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H1 fresh potential 通过 selection 中心信号门；首个 R004H2 scale-only proper-loss 训练 STOP。R004H2D 以 8/8 票定位 activation gauge；唯一修订 R004H2R1 通过 proper-loss 与 cap gates（`0.001564 < 0.380000`，cap 为 0），授权 H3 注册。正式 calibration、coverage、Gate B、OOD 与创新性仍未成立，proxy-cal、development 与官方 calibration 均未读取。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H2D 定位 activation gauge，R004H2R1 通过 proper-loss/cap gates。R004H3 完成 16-group proxy rehearsal，四控制均有限，但 learned rank-max threshold `14.8486` 使 calibrated budget median `5.7849 m`，高于 uniform `2.6315 m`。H4 注册获准但尚未冻结。正式 coverage、Gate B、OOD 与创新性仍未成立，development 与官方 calibration 未读取。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：执行已冻结的 R004H3 proxy-cal workflow rehearsal。只能首次读取 16 个历史暴露 proxy groups；每组 16 anchors 共同形成一个 session maximum，learned、pooled、uniform 与 evidence-only 分别取 rank-16 阈值。任一非法 group 令对应 variant 为无穷且不得过滤。该阶段不产生 coverage claim，也不得读取 development 或 official calibration。
+- 下一阶段：冻结 R004H4 one-read development qualification。必须先定义与 control 无关的 teacher opportunity denominator、连续 footprint non-inclusion、teacher improvement threshold、invalid/fallback 计数、四控制固定 proxy thresholds、group-cluster bootstrap 与 practical recall margin；不得依据 H3 budget warning 改 loss、clip threshold 或选择 pooled。冻结后才允许首次读取 24 个 development groups。

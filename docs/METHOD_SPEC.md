@@ -481,3 +481,9 @@ E_g^{(c)}=\max_{t\in T(g),e\in E}
 所以 \(q_c=\max_g E_g^{(c)}\)。四种 controls 独立校准，随后以 outward multiplication
 形成 \(w_{gte}^{(c)}=q_c s_{gte}^{(c)}\)。proxy roles 的历史曝光使该过程只能验证代码、
 数值方向和角色纪律，不能验证 exchangeability 或 coverage。
+
+R004H3 四个 \(q_c\) 均有限并 exact replay，但 learned 的 calibrated budget 中位数为
+`5.7849 m`，uniform 为 `2.6315 m`。因此 proper loss 在平均意义上的成功不足以推出
+simultaneous envelope sharpness。这个观察不允许从 proxy 反向选择 control；H4 必须固定
+同一 teacher opportunity denominator，分别应用四个已冻结阈值，并把 invalid/fallback
+留在分母中，以 task-level certificate recall 判断空间异质性是否仍有价值。

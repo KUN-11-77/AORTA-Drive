@@ -306,3 +306,17 @@
   variants finite and replay-exact.
 - **Boundary:** proxy roles were historically exposed. H3 qualifies execution plumbing
   only; it is not calibration coverage, utility, Gate B or official-calibration evidence.
+
+## ADR-0035 — Preserve the task endpoint despite proxy tail inflation
+
+- **Status:** accepted after R004H3 PASS
+- **Evidence:** all four proxy variants were finite and mechanically replayed. Learned
+  threshold was `14.8486` and its median calibrated edge budget `5.7849 m`, versus uniform
+  `2.6315 m`; learned nevertheless had a lower minimum budget `1.0733 m` because it remains
+  spatially heterogeneous.
+- **Decision:** do not redesign the scale objective, clip the threshold or select pooled
+  scale from proxy diagnostics. Register H4 exactly as predeclared and let candidate-level
+  common-denominator certificate recall decide whether localized low budgets offset the
+  inflated joint tail.
+- **Boundary:** H3 groups were historically exposed, and budget summaries are not task
+  utility. Development remains sealed until every H4 denominator and decision rule is frozen.

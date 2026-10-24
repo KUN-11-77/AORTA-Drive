@@ -1,0 +1,37 @@
+{
+  "experiment_id": "R004H3-proxy-calibration-rehearsal-v1",
+  "status": "COMPLETED",
+  "decision": "PASS",
+  "implementation_revision": "65eec09a1b9cc6403b987f1a88195089e9bc8622",
+  "audit_revision": "092b95ba0f7ce6ee14b6b522ff83da61e4bb2491",
+  "result_sha256": "edcea4ec3e08168328e8e18c401b52e8444cc898d86ea22ab068870c78e41204",
+  "audit_sha256": "0adf753fc8b0fdc13d0b325e236abbe1eac1bbf7ae2c41ae3b7034cf24695ddc",
+  "evidence_manifest_sha256": "0eb90c39aec08822b634eec21fe70b857fa3561045c5babb05b6b8c03b873e84",
+  "proxy_group_count": 16,
+  "proxy_anchor_count": 256,
+  "thresholds": {
+    "learned": 14.848582844278628,
+    "pooled": 6.707951269386933,
+    "uniform": 2.631492318172118,
+    "evidence_only": 3.8865395734012473
+  },
+  "median_edge_budgets_m": {
+    "learned": 5.784936759618748,
+    "pooled": 2.5084261132734413,
+    "uniform": 2.6314923181721186,
+    "evidence_only": 3.5059913918702357
+  },
+  "integrity": {
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE",
+    "payload_files_read_by_audit": 0
+  },
+  "claims": {
+    "proxy_workflow_qualified": true,
+    "r004h4_registration_authorized": true,
+    "coverage_established": false,
+    "task_utility_established": false,
+    "gate_b_passed": false,
+    "official_calibration_access_authorized": false
+  }
+}

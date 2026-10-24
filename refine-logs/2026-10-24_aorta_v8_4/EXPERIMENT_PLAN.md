@@ -125,10 +125,16 @@ E_g^{(c)}=\max_{t,e}
 \]
 
 The canonical edge order is all rightward then all downward. `learned`, `pooled`, `uniform`
-and `evidence_only` each receive their own (q_c). Any invalid group sets only that
+and `evidence_only` each receive their own \(q_c\). Any invalid group sets only that
 variant to `+infinity_due_to_invalid_group`, with no filtering; H4 registration requires
 all four variants finite. Budget min/median/max are diagnostics only and cannot select a
 control. PASS is plumbing qualification, not coverage or utility evidence.
+
+R004H3 completed with all four variants finite and replay-exact. The learned threshold was
+`14.8486`, and its median calibrated edge budget `5.7849 m` exceeded uniform `2.6315 m`.
+This is a preregistered diagnostic, not a control-selection rule. H4 must preserve all four
+thresholds and use a method-independent teacher opportunity denominator to test whether the
+learned scale's localized low budgets have candidate-level value despite tail inflation.
 
 ### H4 — one-read development qualification
 

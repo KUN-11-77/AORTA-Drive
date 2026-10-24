@@ -6,7 +6,7 @@
 
 面向 NAVSIM v1/v2 的 source-only 外观鲁棒驾驶研究：学习 candidate-free 道路差分场，为冻结 planner 的 challenger 相对 native 提供 nominal road-margin non-degradation 证书。
 
-> **研究状态：** AORTA-v8.3.2 的 Gate A 与 R004E-A/B/C 已完成；R004E-D/E/F 表明冻结 predictor 具有平均视觉信号，却因稀疏 tail 在统一全图最大误差上输给零场。R004E-G/H0 已关闭异质 envelope 的数学与结构接口，R004H1 fresh potential 通过中心信号门；首个 R004H2 失败后，R004H2D 以 8/8 锚点定位 activation gauge，唯一修订 R004H2R1 随即将 proper loss 从 uniform `0.380000` 降到 `0.001564` 且无 cap。现在只授权注册 H3 proxy rehearsal；仍无 calibration、coverage、Gate B、OOD 或顶会原创性结论。
+> **研究状态：** AORTA-v8.3.2 的 Gate A 与 R004E-A/B/C 已完成；R004E-D/E/F 表明冻结 predictor 具有平均视觉信号，却因稀疏 tail 在统一全图最大误差上输给零场。R004E-G/H0 已关闭异质 envelope 的数学与结构接口，R004H1 fresh potential 通过中心信号门；R004H2D 定位 activation gauge 后，R004H2R1 通过 scale-fit 门。R004H3 四控制 proxy rehearsal 也通过，但 learned calibrated budget 中位数 `5.7849 m` 高于 uniform `2.6315 m`，暴露 mean proper fit 与 session-tail sharpness 的错配。下一步只授权 H4 注册；仍无 coverage、Gate B、OOD 或顶会原创性结论。
 
 ## 核心方法
 
@@ -75,7 +75,7 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform、确定性全节点 label builder，以及已冻结的 R004A–H3 协议与完整结果账本。R004H3 已注册为 16-group one-read proxy rehearsal：四个 scale controls 独立取 session-level rank-16 阈值，development 与 official calibration 继续封存。
+当前 source code 包含 Gate A exact graph solver、校准/风险合同、raw-cover teacher、rotation-free geometry checker、rational-interval coordinate transform、确定性全节点 label builder，以及已冻结的 R004A–H3 协议与完整结果账本。下一步必须先冻结 H4 的 candidate-independent opportunity denominator、连续 non-inclusion、teacher improvement、四控制证书率与 group-cluster uncertainty；在此之前 development 与 official calibration 继续封存。
 
 ## 核心文档
 

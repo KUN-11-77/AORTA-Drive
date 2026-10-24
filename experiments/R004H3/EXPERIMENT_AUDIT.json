@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-24",
+  "auditor": "external-reviewer-unavailable",
+  "overall_verdict": "REVIEW_UNAVAILABLE",
+  "integrity_status": "unavailable",
+  "mechanical_audit_status": "PASS",
+  "mechanical_audit_sha256": "0adf753fc8b0fdc13d0b325e236abbe1eac1bbf7ae2c41ae3b7034cf24695ddc",
+  "claims": [
+    {
+      "id": "H3-proxy-workflow",
+      "impact": "qualified_for_h4_registration"
+    },
+    {
+      "id": "coverage-task-utility-gate-b-novelty",
+      "impact": "unsupported"
+    }
+  ]
+}

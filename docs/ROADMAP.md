@@ -33,6 +33,8 @@
 - [x] R004H2：首个 scale-only proper-loss 配置完成并 STOP；learned loss 显著差于 uniform，H3 未授权
 - [x] R004H2D：read-only conditioning 诊断完成；8/8 支持 trunk activation scale 为主因
 - [x] R004H2R1：RMS gauge removal 修复通过 proper-loss 与 cap gates；H3 registration 获准
+- [x] R004H3：四控制 proxy calibration plumbing 通过；learned joint-tail budget inflation 已记录
+- [ ] R004H4：冻结 common-denominator task utility 后一次性读取 development
 - [ ] R004H3–H4：仅在修订 H2 通过后执行 proxy rehearsal 与 one-read development
 - [ ] 固定具体 CDF/joint-field 最近邻
 - [x] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)（主 \(\alpha=0.10\)，次 \(\alpha=0.05\)）

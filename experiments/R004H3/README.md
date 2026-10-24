@@ -15,4 +15,4 @@
   may be filtered. H4 registration requires all four variants to remain finite.
 - **Prohibited:** fitting, parameter updates, checkpoint writes, shared thresholds,
   development/official-calibration/test/target reads, and any coverage interpretation.
-- **Status:** REGISTERED; not yet executed.
+- **Status:** COMPLETED — workflow PASS. See `experiments/results/R004H3.md`.
