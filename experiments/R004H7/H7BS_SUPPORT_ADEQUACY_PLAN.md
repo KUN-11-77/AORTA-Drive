@@ -1,8 +1,42 @@
 # R004H7-BS 预注册：shadow-query 支撑充分性诊断
 
-状态：`PREREGISTERED__IMPLEMENTATION_HOLD`。本阶段只回答固定视觉任务图能否完整承载冻结
+状态：`PREREGISTERED__H7BS0_ATTRIBUTION_IMPLEMENTATION_GO`。本阶段只回答固定视觉任务图能否完整承载冻结
 候选的离散查询，不读取预测场、teacher margin、regret、ranking flip 或任何 H7-B outcome，
 也不训练网络。
+
+## 0. 已观察事实与 post-hoc 边界
+
+H7-B 已观察到 265/384 anchors 有效、119 无效；110 个无效原因是 native footprint
+越出冻结 ROI，9 个是没有有效 challenger。以下 H7BS-0 归因是在看到该 coverage
+结果之后提出，必须标为 post-hoc descriptive diagnosis，不能冒充原 H7-B 的预注册检验。
+它只重读已经产生的 realized-trajectory panel artifacts，不产生新的科学 outcome。
+
+### 竞争解释与可区分预测
+
+| 候选解释 | H7BS-0 可观察预测 | 不相容模式 | 状态边界 |
+|---|---|---|---|
+| H-S：合法轨迹的空间/时间支撑超过固定 ROI | 越界集中在晚时刻；方向与真实行驶进展一致；所需单侧扩张量可由角点包围盒解释 | 初始姿态即大范围越界、方向随机或尺度异常 | 可检验 |
+| H-B：坐标、尺度或锚点中心绑定错误 | 初始 realized pose 不是局部原点；早期越界普遍；边界方向与米制 NAVSIM 合同不一致 | 初始原点闭合且越界随时间单调出现 | 可进行 fail-closed 审计，但不能证明所有上游绑定绝对正确 |
+| H-V：ROI 内视觉证据不足 | 需要视觉有效性/置信 mask 才能观察 | 当前 panel validity 在读取任何 field 前已决定，且只由几何与 intent 合同产生 | 不能解释本次119个 invalid；未来约束可用性仍未测量 |
+| H-Sel：缺失集中于困难驾驶几何 | invalid anchors/groups 具有更大路径长度、横向偏移、总 yaw variation 或曲率 proxy | valid/invalid 的组级几何分布相近 | 仅探索性关联，不作因果或显著性主张 |
+
+appearance 不是本次 coverage 的分层因素：每个 anchor 的 panel 在四个 appearance fields
+之前只构建一次，四个条件共享同一 validity。H7BS-0 必须明确报告这一代码与数据事实，
+不得把几何缺失误写成某个 appearance 的视觉失败。
+
+### H7BS-0 冻结输出
+
+对全部384 anchors和每个注册候选，确定性计算并保存：
+
+- 四个边界方向的最小 support slack、最大所需扩张量、首次越界时间索引；
+- 初始 pose 到局部原点的平移/yaw 残差，检查米/弧度和锚点中心合同；
+- native path length、terminal progress、最大横向位移、总 yaw variation、最大离散曲率 proxy；
+- valid/invalid 和24个groups的完整计数；
+- invalid 与 valid 的 group-equal描述性差异；不计算p值，不把anchors当独立样本；
+- 119个 invalid anchors 的只含几何元数据清单，不写入RGB、特征、field或teacher。
+
+H7BS-0 只允许归因并提出后续合同，不允许选择新 ROI、prefix 或阈值。其结果完成机械
+复算后，才决定是否继续执行下文的 fixed-prefix support qualification。
 
 ## 1. 问题与数学对象
 
