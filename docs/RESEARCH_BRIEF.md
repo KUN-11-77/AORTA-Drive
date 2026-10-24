@@ -1,5 +1,13 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 ICCV/Oral叙事与完整目标审查：`COHERENT_HYPOTHESIS__NOT_YET_ORAL_READY`。**
+> 当前唯一故事收紧为“稳定感知不推出可区分决策；应在完整时域native–challenger差异支持上学习
+> 外观稳定的任务关系，并在不可识别或同时下界不足时保留native”。官方源码进一步确认完整分数
+> 含相邻帧two-frame extended comfort：`F_full=(7/8)F_one+(1/8)H*C2`，因此previous-action
+> context可能是任务定义强制的必要输入，而不是任意加模块。B4R1通过后必须先做冻结alignment；
+> matched scorer、NavDream、跨planner、clean no-harm与时延未通过前，状态仍非ICCV/Oral ready。
+> 详见`ICCV_ORAL_STORY_READINESS_V4_CN.md`与`OFFICIAL_TARGET_DISCOVERY_AND_ALIGNMENT_V1_CN.md`。
+
 > **2026-10-25 scorer因子与surrogate对齐审查：`ONE_FRAME_ORACLE_ONLY__TRAINING_TARGET_HOLD`。**
 > 官方源码确认B4R1 one-frame score为NC/DAC/DDC/TLC乘积与EP/TTC/LK/HC加权平均的乘积，并省略
 > two-frame extended comfort。差异支持因此只作为comparison query geometry，不能等同完整utility；

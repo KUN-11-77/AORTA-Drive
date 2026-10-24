@@ -1039,3 +1039,20 @@ the current open-ended geometry certificate iteration remains STOP.
   context 或收窄研究范围，不得用 surrogate 结果冒充 official behavior gain。
 - **Artifact:**
   `refine-logs/2026-10-25_aorta_post_b3/SCORER_ALIGNMENT_AND_FACTOR_THEORY_V1_CN.md`。
+
+## ADR-0073：以单一决策差异故事约束方法，并把two-frame context设为条件复杂度
+
+- **Decision:** `ONE_STORY__TEMPORAL_CONTEXT_ONLY_IF_ALIGNMENT_REQUIRES`。
+- **Reason:** B3与BS2已经给出“稳定/perfect field仍不保留候选差异”的反例，足以把论文收紧为
+  differential-support relation，而不是继续并列field、Hodge、geometry certificate与adaptation故事。
+  进一步源码审计得到`F_full=(7/8)F_one+(1/8)H*C2`，且`C2`依赖相邻帧重叠轨迹；完整行为目标
+  可能需要previous-action context。
+- **Consequence:** Oral/poster只讲“decision-difference evidence”这一条脊柱。当前网络保持最小
+  current-frame v2；只有冻结surrogate-alignment显示two-frame引起不可接受翻转时，才加入previous-
+  action/transition-support条件分支。任何新模块都必须对应新的反例、定理假设或官方目标依赖，并有
+  删除消融。
+- **Boundary:** 故事连贯不等于创新成立。B4R1、full-target alignment、matched scorer、NavDream、
+  跨planner、clean no-harm与latency未通过前，状态仍为`NOT_ICCV_READY / NOT_ORAL_READY`。
+- **Artifacts:**
+  `refine-logs/2026-10-25_aorta_post_b3/ICCV_ORAL_STORY_READINESS_V4_CN.md`；
+  `refine-logs/2026-10-25_aorta_post_b3/OFFICIAL_TARGET_DISCOVERY_AND_ALIGNMENT_V1_CN.md`。
