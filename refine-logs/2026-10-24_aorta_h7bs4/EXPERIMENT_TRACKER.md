@@ -7,6 +7,7 @@
 | R004H7BS4B0A | M2a | 前向96×64精确teacher生成器双构建资格 | 164 source qualification caches | MUST | COMPLETE_PASS_LIMITED | 每次164/164与1,007,616节点；机械PASS；token不匹配fit，禁止跨token使用 |
 | R004H7BS4B0A2 | M2b | 672精确fit token的forward96 teacher工件 | 42 train fit groups | MUST | COMPLETE_PASS_LIMITED | 672/672、4,128,768节点、672前缀bitwise exact；机械PASS；只资格工件 |
 | R004H7BS4B0B | M2c | interval-critical teacher节点可观测性 | 同一42 fit groups | MUST | COMPLETE_SUPPORTED_LIMITED | 596/4536 candidates、39/42 groups关键盲；1/8 D0盲差异可控min；机械PASS |
-| R004H7BS4B1 | M2d | Oracle联合不确定集合非空洞性 | 同一42 fit groups | MUST | PREREGISTERED | joint/shared-box/candidate-independent同包含对照；训练与outcome禁止 |
+| R004H7BS4B1-R0 | M2d-preflight | Oracle联合集合首次启动 | 无结果 | MUST | STOPPED_PRE_RESULT | 发现可行势数值放宽未进入PASS门；无result artifact；不可解释 |
+| R004H7BS4B1 | M2d | Oracle联合不确定集合非空洞性 | 同一42 fit groups | MUST | PREREGISTERED_AMENDED_PRE_RESULT | 新增>1e-9m数值放宽fail-closed；其余合同不变 |
 | R004H7BS4C | M3 | 64/96/128同步时延与显存 | source-only | MUST | HOLD | 周期预算需先核验 |
 | R004H7BS4D | M4 | 一次性development确认 | 24 exposed development groups | MUST | HOLD | A/B/C冻结后 |

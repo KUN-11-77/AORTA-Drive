@@ -28,7 +28,9 @@ outcome 或驾驶分数。目标是先判断：在当前视觉支持拓扑下，
 
 hidden teacher 值不得用于集合构造；它们只在集合构造完成后检查包含性和候选 contrast。
 实现使用 observed upper intervals 的 McShane 型上延拓作为可行 potential，再把一般 difference
-constraints 做 Johnson reweighting；任何所需 binary64 widening 单独记账。
+constraints 做 Johnson reweighting；任何所需 binary64 widening 单独记账。若任一 anchor 的
+feasible-potential widening 超过冻结的 (10^{-9}) m，实验按实现无效停止，不能把明显不一致的
+observed intervals 静默放宽成一个更容易通过的集合。
 
 ## 2. 三个同覆盖对照
 
@@ -83,6 +85,7 @@ interval width、sign identifiability 与 teacher containment；每个 anchor �
 `PASS` 必须同时满足：
 
 - teacher inclusion、contrast containment、两级集合嵌套和 oracle intervention harm 均零失败；
+- feasible-potential widening 超过 (10^{-9}) m 的 anchor 数为零；
 - 42/42 groups 各至少 12/16 anchors 有一个 joint-identifiable pair；
 - 以 42 groups 为独立单位，10,000 次 paired bootstrap 后，joint 相对 shared-node-box 的
   identifiable-pair fraction 差异 95% CI 下界严格大于 0。

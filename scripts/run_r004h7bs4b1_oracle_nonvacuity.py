@@ -99,6 +99,7 @@ def _summarize(
     group_names: tuple[str, ...],
     anchors_per_group: int,
     minimum_anchors_per_group: int,
+    numerical_widening_limit_m: float,
     strict_improvement_lower_bound: float,
     bootstrap_seed: int,
     bootstrap_resamples: int,
@@ -119,6 +120,13 @@ def _summarize(
     joint_box_dominance_failures = 0
     box_independent_dominance_failures = 0
     teacher_inclusion_failures = 0
+    maximum_numerical_widening = max(
+        float(row["maximum_numerical_widening"]) for row in rows
+    )
+    numerical_widening_failures = sum(
+        float(row["maximum_numerical_widening"]) > numerical_widening_limit_m
+        for row in rows
+    )
     harmful_interventions = {
         "joint_lipschitz": 0,
         "shared_node_box": 0,
@@ -217,7 +225,12 @@ def _summarize(
     nonvacuous = passing_groups == len(group_names)
     graph_strictly_useful = difference_ci[0] > strict_improvement_lower_bound
     no_harm = all(value == 0 for value in harmful_interventions.values())
-    if not all_teacher_included or not arithmetic_valid or not no_harm:
+    if (
+        not all_teacher_included
+        or not arithmetic_valid
+        or not no_harm
+        or numerical_widening_failures > 0
+    ):
         decision = "INVALID_ORACLE_SET_OR_NUMERICS"
     elif not nonvacuous:
         decision = "ORACLE_SUPPORT_SET_NEAR_VACUOUS_REDESIGN_INTERFACE"
@@ -230,6 +243,9 @@ def _summarize(
         "recording_group_count": len(group_names),
         "pair_count": pair_count,
         "teacher_inclusion_failure_count": teacher_inclusion_failures,
+        "maximum_numerical_widening_m": maximum_numerical_widening,
+        "numerical_widening_limit_m": numerical_widening_limit_m,
+        "numerical_widening_failure_count": numerical_widening_failures,
         "contrast_containment_failure_count": containment_failures,
         "joint_box_dominance_failure_count": joint_box_dominance_failures,
         "box_independent_dominance_failure_count": box_independent_dominance_failures,
@@ -496,6 +512,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         group_names=groups,
         anchors_per_group=int(protocol["anchors_per_group"]),
         minimum_anchors_per_group=int(protocol["minimum_identifiable_anchors_per_group"]),
+        numerical_widening_limit_m=float(
+            stage["numerics"]["maximum_feasible_potential_widening_m"]
+        ),
         strict_improvement_lower_bound=float(
             protocol["strict_group_bootstrap_improvement_lower_bound"]
         ),

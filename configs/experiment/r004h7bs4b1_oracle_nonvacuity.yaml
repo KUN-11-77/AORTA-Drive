@@ -34,6 +34,7 @@ H7BS4B1:
     strict_group_bootstrap_improvement_lower_bound: 0.0
     pass_requires:
       - zero_teacher_inclusion_failures
+      - zero_feasible_potential_widening_failures_above_1e-9_m
       - zero_contrast_containment_failures
       - zero_joint_to_box_nesting_failures_beyond_frozen_numerical_tolerance
       - zero_box_to_candidate_independent_nesting_failures_beyond_tolerance
@@ -43,6 +44,7 @@ H7BS4B1:
   numerics:
     arithmetic: outward_binary64
     comparison_tolerance_m: 1.0e-9
+    maximum_feasible_potential_widening_m: 1.0e-9
     ties: unidentified
     strict_sign: lower_gt_zero_or_upper_lt_zero
   roi:
@@ -68,7 +70,7 @@ H7BS4B1:
     lipschitz_oracle_source: 31d13f72aa2b61476034678fa43e039ff64f000d1c2d12ad55cfd38f93d031f6
     shadow_decision_source: 9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5
     projection_runner_source: a2bab0d63bb1b6dd4292bec4f14a78f105a3fb191fe4f594e2e20c74341c5327
-    runner_source: 2f01aff1cb26e8f96558b4a0636ff31d3ed62b3decbb780be26491b5a4e4348c
+    runner_source: 4cd411ea406e0c27409e8d33fbdcd540b426b3326d25f01b0bc37efea72adc81
     audit_source: 1bda86e0ad99f080a2314a22628e82b8b01e7900d50b1b897c23f37fbc9662f6
   forbidden_inputs:
     - learned_visual_field_values

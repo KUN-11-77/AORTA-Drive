@@ -22,6 +22,7 @@ def _row(group: str, *, joint: bool, box: bool) -> dict[str, Any]:
     return {
         "recording_group": group,
         "anchor_index": 0,
+        "maximum_numerical_widening": 0.0,
         "teacher_included": True,
         "pair_intervals": [
             {
@@ -54,6 +55,7 @@ def _summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
         group_names=("g0", "g1"),
         anchors_per_group=1,
         minimum_anchors_per_group=1,
+        numerical_widening_limit_m=1e-9,
         strict_improvement_lower_bound=0.0,
         bootstrap_seed=20261025,
         bootstrap_resamples=100,
@@ -75,3 +77,19 @@ def test_vacuous_joint_set_forces_interface_redesign() -> None:
         [_row("g0", joint=False, box=False), _row("g1", joint=False, box=False)]
     )
     assert result["decision"] == "ORACLE_SUPPORT_SET_NEAR_VACUOUS_REDESIGN_INTERFACE"
+
+
+def test_material_feasible_potential_widening_invalidates_run() -> None:
+    rows = [_row("g0", joint=True, box=False), _row("g1", joint=True, box=False)]
+    rows[0]["maximum_numerical_widening"] = 1e-3
+    result = _summarize(
+        rows,
+        group_names=("g0", "g1"),
+        anchors_per_group=1,
+        minimum_anchors_per_group=1,
+        numerical_widening_limit_m=1e-9,
+        strict_improvement_lower_bound=0.0,
+        bootstrap_seed=20261025,
+        bootstrap_resamples=100,
+    )
+    assert result["decision"] == "INVALID_ORACLE_SET_OR_NUMERICS"
