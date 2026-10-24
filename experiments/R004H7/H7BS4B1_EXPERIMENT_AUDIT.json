@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-25",
+  "auditor": "internal-mechanical-replay; external-reviewer-unavailable",
+  "overall_verdict": "pass_with_scope_limit_primary_hypothesis_unsupported",
+  "mechanical_audit": "pass",
+  "external_scientific_review": "review_unavailable",
+  "checks": {
+    "ground_truth_provenance": {
+      "status": "pass_with_scope",
+      "details": "Exact-token frozen NAVSIM task-geometry teacher; hidden labels excluded from oracle construction except final containment audit."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "No model or driving score and no prediction-dependent normalization."
+    },
+    "result_existence_and_replay": {
+      "status": "pass",
+      "details": "672 anchor ledgers, summary, and root contract replay exactly; failure count zero."
+    },
+    "scope_completeness": {
+      "status": "pass",
+      "details": "672 anchors, 42 groups, and 3864 pairs match the frozen contract."
+    },
+    "numerical_integrity": {
+      "status": "pass",
+      "details": "Maximum widening 1.04361e-14 m below the 1e-9 m fail-closed limit; containment and nesting failures zero."
+    },
+    "role_isolation": {
+      "status": "pass",
+      "details": "Fit teacher/support only; forbidden payload access false."
+    },
+    "statistical_scope": {
+      "status": "warn",
+      "details": "Fit-only oracle mechanism gate over 42 recording groups, not unseen-scene or population evidence."
+    },
+    "scientific_scope": {
+      "status": "warn",
+      "details": "Sharper intervals did not increase sign identifiability; zero oracle harm is not a deployment safety claim."
+    }
+  },
+  "claim": {
+    "preregistered_joint_nonvacuity": "unsupported",
+    "fit_oracle_mechanical_result": "supported",
+    "learned_model_or_decision_benefit": "not_evaluated",
+    "h7bs4a_parent_decision": "unchanged"
+  }
+}

@@ -188,3 +188,14 @@ Figure 1 只画一个矛盾和一个闭环：
 证据证明本文件中的候选架构优于匹配基线，
 也没有完整时域、NavDream、正式 test 或驾驶安全收益。论文故事的连贯性已经可以冻结，但论文贡献
 仍必须由 B0B、结构必要性、时延、独立泛化和决策效用逐级赢得。
+
+## 10. B1 后状态附录（不改写预结果合同）
+
+H7BS4B1 已机械通过但科学假设未获支持：三种集合都识别出 1,301/3,864 个有符号 pair，joint
+相对 shared box 没有增加任何 sign-identifiable pair，组级差异 CI 为 `[0,0]`，且仅 5/42 groups
+满足最低 anchor coverage。2,219/3,864 teacher contrasts 精确为零。
+
+因此本合同中的“support-conditioned joint uncertainty”不再拥有核心贡献资格；它只保留为被否定的
+候选设计和可能的 interval-sharpness 对照。论文主线退回更基础的问题：**当前 scalar global set-min
+为什么在冻结候选面板上大量失去区分能力？** 在零差异归因完成前，不冻结 branch-aware operator，
+不训练 uncertainty head，也不把 joint solver 写入最终 30 秒故事。

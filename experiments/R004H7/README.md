@@ -36,3 +36,10 @@ H7BS3R1现已在24个historically exposed development groups上通过一次性�
 12/16门槛，机械复算0失败。9个无eligible challenger的anchors属于候选供给而非ROI
 失败。完整记录见`H7BS3_RESULTS.md`。该结果只解锁视觉可观测性与真实时延协议设计；
 网络训练、H7-B2与H7-C仍HOLD。
+
+H7BS4随后区分了空间包含与视觉证据：B0B在fit teacher上确认596/4536 candidates、39/42
+groups存在unsupported possible minimizer，说明missing evidence可能控制set-min。B1进一步用
+最强oracle比较joint Lipschitz、shared-node box与candidate-independent intervals；机械重放通过，
+但三者都只识别1301/3864个有符号pair，joint相对box的组级增益为0且仅5/42 groups达到覆盖门。
+裁决为`ORACLE_SUPPORT_SET_NEAR_VACUOUS_REDESIGN_INTERFACE`。H7-C继续HOLD；下一步只允许
+fit-only H7BS4B2归因2219个exact-zero teacher contrasts，不启动新网络训练。

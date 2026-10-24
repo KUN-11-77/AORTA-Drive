@@ -1,0 +1,69 @@
+{
+  "experiment_id": "R004H7BS4B1-oracle-lipschitz-nonvacuity-v1",
+  "status": "unsupported_for_preregistered_nonvacuity_redesign_task_interface",
+  "code_commit": "15bfd15",
+  "scope": {
+    "anchors": 672,
+    "recording_groups": 42,
+    "native_challenger_pairs": 3864
+  },
+  "integrity": {
+    "teacher_inclusion_failures": 0,
+    "numerical_widening_failures": 0,
+    "maximum_numerical_widening_m": 1.0436096431476473e-14,
+    "contrast_containment_failures": 0,
+    "joint_box_nesting_failures": 0,
+    "box_independent_nesting_failures": 0,
+    "harmful_interventions": {
+      "joint_lipschitz": 0,
+      "shared_node_box": 0,
+      "candidate_independent": 0
+    }
+  },
+  "primary_result": {
+    "identifiable_pairs": {
+      "joint_lipschitz": 1301,
+      "shared_node_box": 1301,
+      "candidate_independent": 1301
+    },
+    "groups_meeting_12_of_16_joint_identifiable_anchor_minimum": 5,
+    "required_groups": 42,
+    "mean_joint_minus_shared_box_identifiable_fraction": 0.0,
+    "joint_minus_shared_box_group_bootstrap_ci95": [0.0, 0.0],
+    "decision": "ORACLE_SUPPORT_SET_NEAR_VACUOUS_REDESIGN_INTERFACE"
+  },
+  "secondary_sharpness": {
+    "mean_interval_width_m": {
+      "joint_lipschitz": 0.08945051673676366,
+      "shared_node_box": 0.13205120796601202,
+      "candidate_independent": 2.1728114318477614
+    },
+    "joint_strictly_narrower_than_shared_box_pairs": 153,
+    "shared_box_strictly_narrower_than_candidate_independent_pairs": 2563,
+    "extra_sign_identifiable_pairs_from_joint_over_shared_box": 0
+  },
+  "post_result_descriptive_tie_ledger": {
+    "exact_zero_teacher_contrasts": 2219,
+    "absolute_teacher_contrast_below_0_01_m": 2388,
+    "absolute_teacher_contrast_below_0_10_m": 2892,
+    "role": "motivation_only_not_preregistered_primary_endpoint"
+  },
+  "runtime_seconds": {
+    "primary": 1412.8519512428902,
+    "audit_replay": 1418.34677538206
+  },
+  "sha256": {
+    "primary_result": "9a064fd19c452bea0ba1f11ef58ede57fc03a24f14763f51ab7be500c128f277",
+    "replay_result": "51b29ba19c2e7711b89cb8eb33b22e2e91d1b449d2b38107d8d6e8769983a75d",
+    "audit": "2fc861d4258786c6b40b2864660a965d2bdb24b5e45805e1075417b1d46b99d6",
+    "bundle": "70044737133f77f9fd8fa4ffd309e778efcea2baf31f6f384c5c3b52b2d940f2"
+  },
+  "mechanical_audit": "PASS",
+  "external_scientific_review": "REVIEW_UNAVAILABLE",
+  "next_decision": {
+    "fit_only_zero_contrast_anatomy": "GO",
+    "H7C_network_training": "HOLD",
+    "development_navdream_test": "HOLD"
+  },
+  "claim_boundary": "Fit-only oracle non-vacuity failure for the frozen global set-min interface; no learned-model, OOD, decision, driving, safety, latency, architecture-optimality, or top-venue claim."
+}

@@ -59,8 +59,9 @@ Anti-claim：结果不能仅来自扩大节点数、空间先验或选择性丢�
 | M0 | 实现与合成自检 | B1 tests | tests/mypy/hash全过 | CPU分钟 | 坐标/身份错配 |
 | M1 | fit投影支持 | H7BS4A | PASS才进入B2 | CPU≤120min | 扩展域无直接证据 |
 | M2 | teacher关键点 | H7BS4B | 形成架构必要条件 | CPU并行 | teacher生成成本 |
-| M2.5 | 联合集合非空洞性 | H7BS4B1 | Oracle覆盖与joint必要性同时通过 | CPU≤120min | 可能几乎全拒答 |
-| M3 | 推理代价 | H7BS4C | B1通过后达到冻结周期或报告相对失败 | 单GPU小时级 | DINO主导时延 |
+| M2.5 | 联合集合非空洞性 | H7BS4B1 | **完成但未通过**；仅5/42组达覆盖，joint无额外符号识别 | CPU≤120min | 已确认近空洞 |
+| M2.6 | 零差异结构归因 | H7BS4B2 | 区分离散重复、共同min、teacher tie与task equivalence | CPU分钟级 | post-result诊断不能作独立确认 |
+| M3 | 推理代价 | H7BS4C | B2冻结新接口且重新获得资格后再计时 | 单GPU小时级 | DINO主导时延 |
 | M4 | development确认 | A/B/C冻结后一次性 | 不调阈值 | CPU/GPU | 历史暴露，仅held-out资格 |
 
 ## Compute and Data Budget

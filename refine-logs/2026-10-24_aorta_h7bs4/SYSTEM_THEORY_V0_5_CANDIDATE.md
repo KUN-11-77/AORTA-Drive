@@ -1,7 +1,8 @@
 # AORTA-v0.5 候选理论与系统建筑
 
-状态：`DRAFT_REVISE__EXPERIMENT_GATED`。这是D0后的系统候选，不替代当前`METHOD_SPEC v0.4`，
-也不授权训练或性能主张。
+状态：`B1_UNSUPPORTED__TASK_OPERATOR_REDESIGN_REQUIRED`。这是D0后的历史候选；B1 已否定其
+joint-identifiability 资格，不能按本稿直接训练或作性能主张。后续修正见
+`THEORY_REFINEMENT_AFTER_B1.md`。
 
 ## 1. 建筑原则：最小充分复杂度
 
@@ -236,12 +237,23 @@ pairs中有1个盲差异节点可控制teacher set-min。结论为
 
 只有B1也通过，才进入H7C容量匹配网络结构消融与正式时延实验。
 
+**B1冻结结果（2026-10-25）：**机械审计通过，但预注册科学门失败。三种集合均得到
+1,301/3,864 sign-identifiable pairs；joint 相对 shared box 的组级差异为 0、95% CI `[0,0]`；
+仅 5/42 groups 达到至少12/16 anchors含可识别pair。虽然joint平均区间宽度为0.089451 m，窄于
+shared box的0.132051 m，但没有产生额外sign-identifiability。结果裁决为
+`ORACLE_SUPPORT_SET_NEAR_VACUOUS_REDESIGN_INTERFACE`，H7C保持HOLD。
+
+结果后描述显示2,219/3,864 teacher contrasts精确为0，因此下一门不再优化uncertainty，先分解
+global set-min零差异来源。若共同区域极小值占主导，才考虑共享前缀资格门与分支后缀对比；若
+离散重复或task equivalence占主导，则分别转连续查询/去重或收窄为选择性road-feasibility veto。
+
 ## 8. 当前未闭合项
 
 - 96×64 teacher生成器与672个精确fit-token工件均通过机械资格；
 - fit teacher-critical projective blindness已由B0B支持，但物理visibility与decision harm未闭合；
-- support-conditioned uncertainty的确定性floor尚未定义；
-- graph set在实际误差下是否非平凡未知；
+- support-conditioned uncertainty的确定性floor尚未定义，且B1未获得训练资格；
+- graph set可缩窄区间，但在冻结严格符号端点上没有增加可识别pair；
+- global set-min中2,219/3,864 teacher contrasts精确为0，其结构来源尚未归因；
 - 1/8冻结D0盲差异pair是teacher-critical，但效应仅-0.020322 m且无decision outcome；
 - 时延、NavDream、三planner和clean no-harm均未验证；
 - 外部独立method reviewer不可用，本文不是独立审稿结论。
