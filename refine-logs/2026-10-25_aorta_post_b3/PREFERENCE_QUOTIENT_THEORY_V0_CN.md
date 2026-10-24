@@ -5,6 +5,9 @@
 本文只建立可核查的数学地基，并说明它如何约束网络与 loss。它不证明跨外观泛化、OOD coverage、
 真实驾驶安全或相对已有工作的原创性。B4 未通过时，不授权基于本文训练网络。
 
+查新边界见 `references/2026-10-25_preference_quotient_novelty_boundary.md`：Hodge decomposition、
+graph least squares 与谱隙依赖均有成熟先例，不能单独作为 AORTA 的原创性来源。
+
 ## 1. 合法估计对象
 
 固定物理场景 \(S\)、planner \(\pi\)、native \(\tau_0\) 和候选面板
