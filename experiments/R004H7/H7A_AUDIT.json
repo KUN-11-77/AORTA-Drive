@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-24",
+  "status": "mechanical_pass_external_review_unavailable",
+  "result_sha256": "9cc3898e706a5dfd3cb51f507176ff6c72dd1c6ea806af5b3c6d9e088e850f19",
+  "result_decision": "PASS_DATA_FREE_THEORY_GATE",
+  "focused_tests_passed": 6,
+  "full_repository_tests_passed": 274,
+  "mypy": "pass",
+  "ruff": "unavailable",
+  "external_reviewer": "REVIEW_UNAVAILABLE",
+  "next": "GO_H7B_IMPLEMENTATION_ONLY",
+  "data_access_authorized": false,
+  "training_authorized": false
+}

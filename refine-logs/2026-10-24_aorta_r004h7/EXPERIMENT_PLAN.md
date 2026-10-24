@@ -98,6 +98,6 @@
 - [x] recording group 是独立单位
 - [x] 参数、FLOPs、数据和选择预算要求匹配
 - [x] must-run 与 later-stage 分离
-- [ ] H7-A oracle 实现与审计
+- [x] H7-A oracle 实现与机械审计（外部 reviewer unavailable）
 - [ ] H7-B implementation preregistration
 - [ ] H7-C resource profiling and authorization

@@ -1,0 +1,19 @@
+{
+  "claim_boundary": "finite-graph theory qualification only; no visual, driving, OOD, or safety evidence",
+  "completed_at_utc": "2026-10-24T11:03:57.664570+00:00",
+  "config_sha256": "1092355cdc9e5caddb7c65b1f0966cd4f91517715c250cad921395d101b15619",
+  "data_access": "none",
+  "experiment_id": "R004H7A-decision-quotient-theory-v1",
+  "implementation_revision": "bfd69a01270fd8fab135a7918ade9f31760b728f",
+  "oracle_counts": {
+    "failure_count": 0,
+    "integrable_projection_cases": 27,
+    "nonlinearity_counterexamples": 1,
+    "offset_invariance_cases": 3969,
+    "oscillation_bound_cases": 35721,
+    "tie_policy_cases": 2,
+    "two_eta_regret_cases": 250047
+  },
+  "script_sha256": "94c707bd481e0c280e1f69fbe23e4032d2a7b66725ca50d73dce65ddfa4797b6",
+  "status": "PASS"
+}
