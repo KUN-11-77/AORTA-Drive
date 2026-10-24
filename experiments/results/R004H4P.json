@@ -1,0 +1,45 @@
+{
+  "experiment_id": "R004H4P-continuous-opportunity-preflight-v1",
+  "status": "COMPLETED",
+  "decision": "STOP_NO_INTENT_ELIGIBLE_CANDIDATE",
+  "implementation_revision": "d482f85946468425b118dfd395a975779d67a338",
+  "invalid_initial_revision": "4e0a21900090a55158529d1f8bacf7cd428f7b06",
+  "result_sha256": "c5092c50ee80871b72b1826c86c46b4d2e41601256685028c30281c78ee838eb",
+  "audit_sha256": "a6980f7cd6660ed0864b926a72592ef53113844ff7c729ecfe3d4917ba3bdef1",
+  "invalid_initial_audit_sha256": "aa568f9a50cdecf2ce3d61d4e9d3f1ee4e628c44e56f4076554adb1f753e4ef0",
+  "data_scope": {
+    "role": "fit",
+    "recording_group_count": 1,
+    "anchor_count": 1,
+    "development_calibration_test_or_target_accessed": false
+  },
+  "candidate_counts": {
+    "raw": 35,
+    "intent_eligible": 0,
+    "continuous_geometry_valid": 0,
+    "meaningful_bidirectional_noninclusion": 0,
+    "teacher_opportunity": 0
+  },
+  "diagnosis": {
+    "progress_below_budget": 14,
+    "progress_above_budget": 21,
+    "largest_below_interval_progress_ratio": 0.7444691990238707,
+    "smallest_above_interval_progress_ratio": 1.2782856661692807,
+    "registered_progress_interval": [0.8, 1.2]
+  },
+  "integrity": {
+    "mechanical_audit": "PASS",
+    "initial_decision_artifact_audit": "FAIL_AS_EXPECTED",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE",
+    "payload_files_read_by_audit": 0
+  },
+  "claims": {
+    "native_interface_closed": true,
+    "continuous_noninclusion_interface_closed": false,
+    "candidate_supply_prevalence_estimated": false,
+    "r004h4_registered": false,
+    "development_access_authorized": false,
+    "coverage_established": false,
+    "gate_b_passed": false
+  }
+}

@@ -2,11 +2,16 @@
 
 from __future__ import annotations
 
+import hashlib
 import math
 from dataclasses import dataclass
+from typing import Any
 
 import numpy as np
 import numpy.typing as npt
+
+from aorta_drive.certification.geometry import Pose2D
+from aorta_drive.certification.transform import certify_global_to_ego
 
 
 @dataclass(frozen=True)
@@ -47,8 +52,77 @@ class IntentEligibility:
     terminal_speed_difference_mps: float
 
 
+@dataclass(frozen=True)
+class CachedNativeTrajectory:
+    """Frozen PDM-Closed samples represented on the current ego graph."""
+
+    poses: npt.NDArray[np.float64]
+    terminal_speed_mps: float
+    maximum_transform_error_m: float
+    canonical_sample_sha256: str
+
+
 def _wrap_angle(angle: float) -> float:
     return math.atan2(math.sin(angle), math.cos(angle))
+
+
+def sample_cached_native_trajectory(cache: Any) -> CachedNativeTrajectory:
+    """Sample a NAVSIM metric-cache native at the frozen 0:0.5:4.0 s times."""
+
+    current = cache.ego_state
+    if cache.timepoint != current.time_point or cache.trajectory.start_time != cache.timepoint:
+        raise ValueError("metric-cache native trajectory does not start at the current ego state")
+    samples: list[list[float]] = [[0.0, 0.0, 0.0]]
+    transform_errors = [0.0]
+    canonical_rows = [
+        [
+            float(current.time_point.time_us),
+            float(current.rear_axle.x),
+            float(current.rear_axle.y),
+            float(current.rear_axle.heading),
+        ]
+    ]
+    terminal = current
+    pose = Pose2D(
+        float(current.rear_axle.x),
+        float(current.rear_axle.y),
+        float(current.rear_axle.heading),
+    )
+    for step in range(1, 9):
+        query = type(cache.timepoint)(cache.timepoint.time_us + step * 500_000)
+        terminal = cache.trajectory.get_state_at_time(query)
+        transform = certify_global_to_ego(
+            (float(terminal.rear_axle.x), float(terminal.rear_axle.y)), pose
+        )
+        samples.append(
+            [
+                transform.x,
+                transform.y,
+                _wrap_angle(float(terminal.rear_axle.heading - current.rear_axle.heading)),
+            ]
+        )
+        transform_errors.append(transform.error_radius)
+        canonical_rows.append(
+            [
+                float(terminal.time_point.time_us),
+                float(terminal.rear_axle.x),
+                float(terminal.rear_axle.y),
+                float(terminal.rear_axle.heading),
+            ]
+        )
+    array = np.asarray(samples, dtype=np.float64)
+    if array.shape != (9, 3) or not np.all(np.isfinite(array)):
+        raise ValueError("native trajectory did not produce nine finite local poses")
+    velocity = terminal.dynamic_car_state.rear_axle_velocity_2d
+    terminal_speed = math.hypot(float(velocity.x), float(velocity.y))
+    canonical = np.asarray(canonical_rows, dtype="<f8")
+    native_hash = hashlib.sha256(canonical.tobytes(order="C")).hexdigest()
+    return CachedNativeTrajectory(
+        poses=array,
+        terminal_speed_mps=terminal_speed,
+        maximum_transform_error_m=max(transform_errors),
+        canonical_sample_sha256=native_hash,
+    )
 
 
 def qualify_intent_match(

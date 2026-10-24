@@ -153,6 +153,24 @@ learned scale's localized low budgets have candidate-level value despite tail in
 - **Permission boundary:** Stage 1 can authorize only an expanded fit-only preflight. It
   cannot register H4 or open development, even if the one anchor contains opportunities.
 
+R004H4P stopped with 0/35 intent-eligible candidates. All failed the registered progress
+interval before later gates; the nearest ratios below and above were `0.74447` and
+`1.27829`. Because this is one stopping native, it cannot determine prevalence or authorize
+a provider change.
+
+### H4P2 — eight-group fit-only candidate-supply diagnosis
+
+- **Data:** first eight fit rows in frozen role-manifest order, all 16 anchors each
+  (`8 x 16 = 128`); no labels, images, predictions, development or later roles.
+- **Frozen:** original 35-control R004C provider and every H4P intent threshold.
+- **Primary:** anchor fraction with at least one fully eligible candidate; group fractions
+  preserve recording-group clustering.
+- **Diagnostics:** independent gate pass fractions, sequential first-failure counts, and
+  nearest progress gap to `[0.8,1.2]` per anchor.
+- **Adequate supply:** at least `0.90` anchor supply and at least `0.75` in every group.
+  PASS permits only a fit-only geometry preflight. Failure permits one principled provider
+  revision, not threshold relaxation or development access.
+
 ### H4 — one-read development qualification
 
 - **Data:** all 24 groups x 16 frozen times, exactly once after every choice above is frozen.

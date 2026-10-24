@@ -9,7 +9,8 @@
 | R004H2D | read-only scale-interface conditioning diagnosis | DONE — RESOLVED | activation scale 8/8; parameterization 0/8; LR-primary 0/8; permits one targeted H2 revision only |
 | R004H2R1 | RMS-gauge-repaired scale-only fit | DONE — PASS | selected `0.001564` vs uniform `0.380000`; zero cap; permits H3 registration only |
 | R004H3 | historically exposed proxy-cal rehearsal | DONE — PASS | all four finite; learned median budget `5.7849 m` vs uniform `2.6315 m`; H4 registration only |
-| R004H4P | fit-only native/geometry/opportunity preflight | REGISTERED — STAGE 1 | one anchor only; can permit expanded fit-only preflight, never development |
+| R004H4P | fit-only native/geometry/opportunity preflight | STOP — SUPPLY GAP | 0/35 intent-eligible on one fit anchor; initial false PASS invalidated; permits fit-only diagnosis only |
+| R004H4P2 | eight-group fit-only candidate-supply diagnosis | REGISTERED | thresholds/provider unchanged; 128 anchors; no labels, geometry or development |
 | R004H4 | one-read development mechanism qualification | NOT REGISTERED | common opportunity denominator must decide whether localized learned budgets retain utility |
 
 Official calibration, test and target-domain data remain sealed.

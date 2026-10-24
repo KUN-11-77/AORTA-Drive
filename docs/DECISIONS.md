@@ -352,3 +352,18 @@
 - **Boundary:** the zero-support observation may motivate a separately registered expanded
   fit-only supply diagnosis; it cannot justify relaxing `[0.8,1.2]`, adding acceleration
   values, or reading development.
+
+## ADR-0038 — Diagnose candidate supply before touching geometry or thresholds
+
+- **Status:** accepted before R004H4P2
+- **Decision:** read all 16 anchors from the first eight fit rows in frozen manifest order.
+  Keep the original 35-control provider and every intent threshold unchanged. Report the
+  anchor and group fractions with at least one fully eligible candidate, all independent
+  gate pass fractions, sequential first failures and nearest progress gap.
+- **Adequacy gate:** at least `0.90` of anchors and at least `0.75` within every group must
+  have a fully eligible candidate. This tests whether the provider can represent the frozen
+  native intent before road geometry or learned uncertainty is allowed to influence the
+  analysis.
+- **Boundary:** PASS permits fit-only geometry preflight; failure permits registration of
+  one physically structured provider revision. Neither outcome opens development or
+  authorizes post-hoc threshold relaxation.

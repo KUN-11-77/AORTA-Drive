@@ -7,7 +7,6 @@ import csv
 import hashlib
 import json
 import lzma
-import math
 import pickle
 import time
 from collections import Counter
@@ -32,8 +31,11 @@ from aorta_drive.certification.geometry import (
 from aorta_drive.certification.opportunity import (
     continuous_teacher_improvement_lower_bound,
 )
-from aorta_drive.certification.transform import certify_global_to_ego
-from aorta_drive.evaluation.h4 import IntentEligibilityLimits, qualify_intent_match
+from aorta_drive.evaluation.h4 import (
+    IntentEligibilityLimits,
+    qualify_intent_match,
+    sample_cached_native_trajectory,
+)
 
 
 def _sha256(path: Path) -> str:
@@ -111,64 +113,6 @@ def _load_teacher(
     return label.reshape(-1), error.reshape(-1)
 
 
-def _wrap(angle: float) -> float:
-    return math.atan2(math.sin(angle), math.cos(angle))
-
-
-def _native_trajectory(
-    cache: Any,
-) -> tuple[npt.NDArray[np.float64], float, float, str]:
-    current = cache.ego_state
-    if cache.timepoint != current.time_point or cache.trajectory.start_time != cache.timepoint:
-        raise ValueError("metric-cache native trajectory does not start at the current ego state")
-    samples: list[list[float]] = [[0.0, 0.0, 0.0]]
-    transform_errors = [0.0]
-    canonical_rows = [
-        [
-            float(current.time_point.time_us),
-            float(current.rear_axle.x),
-            float(current.rear_axle.y),
-            float(current.rear_axle.heading),
-        ]
-    ]
-    terminal = current
-    pose = Pose2D(
-        float(current.rear_axle.x),
-        float(current.rear_axle.y),
-        float(current.rear_axle.heading),
-    )
-    for step in range(1, 9):
-        query = type(cache.timepoint)(cache.timepoint.time_us + step * 500_000)
-        terminal = cache.trajectory.get_state_at_time(query)
-        transform = certify_global_to_ego(
-            (float(terminal.rear_axle.x), float(terminal.rear_axle.y)), pose
-        )
-        samples.append(
-            [
-                transform.x,
-                transform.y,
-                _wrap(float(terminal.rear_axle.heading - current.rear_axle.heading)),
-            ]
-        )
-        transform_errors.append(transform.error_radius)
-        canonical_rows.append(
-            [
-                float(terminal.time_point.time_us),
-                float(terminal.rear_axle.x),
-                float(terminal.rear_axle.y),
-                float(terminal.rear_axle.heading),
-            ]
-        )
-    array = np.asarray(samples, dtype=np.float64)
-    if array.shape != (9, 3) or not np.all(np.isfinite(array)):
-        raise ValueError("native trajectory did not produce nine finite local poses")
-    velocity = terminal.dynamic_car_state.rear_axle_velocity_2d
-    terminal_speed = math.hypot(float(velocity.x), float(velocity.y))
-    canonical = np.asarray(canonical_rows, dtype="<f8")
-    native_hash = hashlib.sha256(canonical.tobytes(order="C")).hexdigest()
-    return array, terminal_speed, max(transform_errors), native_hash
-
-
 def _raw_speed(log_path: Path, scene_token: str) -> float:
     with log_path.open("rb") as stream:
         frames = pickle.load(stream)  # noqa: S301 - frozen official NAVSIM input
@@ -216,9 +160,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("selected teacher artifact hash mismatch")
     labels, errors = _load_teacher(label_path)
 
-    native_array, native_terminal_speed, native_pose_error, native_hash = (
-        _native_trajectory(cache)
-    )
+    native = sample_cached_native_trajectory(cache)
+    native_array = native.poses
+    native_terminal_speed = native.terminal_speed_mps
+    native_pose_error = native.maximum_transform_error_m
+    native_hash = native.canonical_sample_sha256
     initial_speed = _raw_speed(args.log_root / f"{log_name}.pkl", scene_token)
     first = generate_kinematic_candidates(initial_speed)
     replay = generate_kinematic_candidates(initial_speed)
