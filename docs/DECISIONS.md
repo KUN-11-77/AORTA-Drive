@@ -398,3 +398,17 @@
   calibration, test or target data. Rejection permits only a same-scope replay where both
   native and challenger use the same position-derived final-segment average-speed quantity;
   it does not permit a threshold or provider change.
+
+## ADR-0041 — Compare native and challenger through the same positional speed observable
+
+- **Status:** accepted after R004H4P2S and before R004H4P2R1
+- **Evidence:** R004H4P2S found zero cached dynamic terminal speed on all 128 anchors, while
+  119 had at least `0.5 m/s` final-segment positional average speed and 113 materially
+  disagreed with the cached field. The raw ledger and payload-free mechanical audit agree.
+- **Decision:** replay the exact R004H4P2 scope and decision rule. For both native and
+  challenger, define the speed observable as
+  `||p(4.0)-p(3.5)|| / 0.5`. Keep the `4.0 m/s` difference budget, all other intent gates,
+  current-speed input and the 35-control provider unchanged.
+- **Boundary:** this is a measurement-interface correction, not threshold tuning. It makes
+  no instantaneous-speed claim and cannot open geometry or development unless the original
+  supply adequacy rule passes.

@@ -11,7 +11,8 @@
 | R004H3 | historically exposed proxy-cal rehearsal | DONE — PASS | all four finite; learned median budget `5.7849 m` vs uniform `2.6315 m`; H4 registration only |
 | R004H4P | fit-only native/geometry/opportunity preflight | STOP — SUPPLY GAP | 0/35 intent-eligible on one fit anchor; initial false PASS invalidated; permits fit-only diagnosis only |
 | R004H4P2 | eight-group fit-only candidate-supply diagnosis | DONE — IMPLEMENTATION SEMANTICS UNDER REVIEW | 26/128 supplied, but cached native terminal speed is zero on all anchors; do not use result to revise theory/provider yet |
-| R004H4P2S | cached PDM-native speed-semantics audit | REGISTERED | same 128 fit anchors; source hashes plus dynamic-field versus final-segment positional speed; no thresholds/provider/development |
+| R004H4P2S | cached PDM-native speed-semantics audit | DONE — REJECT FIELD | 128/128 cached speeds zero; 113 material moving disagreements; mechanical audit PASS |
+| R004H4P2R1 | comparable-speed candidate-supply replay | REGISTERED | exact H4P2 replay; both sides use final-segment positional average speed; all thresholds/provider fixed |
 | R004H4 | one-read development mechanism qualification | NOT REGISTERED | common opportunity denominator must decide whether localized learned budgets retain utility |
 
 Official calibration, test and target-domain data remain sealed.

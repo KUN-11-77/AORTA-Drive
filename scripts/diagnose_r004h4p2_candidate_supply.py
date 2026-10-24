@@ -23,6 +23,7 @@ from aorta_drive.evaluation.h4 import (
     IntentEligibilityLimits,
     qualify_intent_match,
     sample_cached_native_trajectory,
+    terminal_segment_average_speed,
 )
 
 
@@ -136,6 +137,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     metrics = _metric_records(json.loads(args.metric_manifest.read_text(encoding="utf-8")))
     speeds = _raw_speeds(args.log_root, anchors)
     limits = _limits(config)
+    speed_quantity = str(
+        config["intent_eligibility"].get(
+            "speed_quantity", "legacy_exported_terminal_dynamic_state"
+        )
+    )
+    valid_speed_quantities = {
+        "legacy_exported_terminal_dynamic_state",
+        "position_derived_final_segment_average_speed_for_both",
+    }
+    if speed_quantity not in valid_speed_quantities:
+        raise ValueError("unregistered terminal-speed quantity")
 
     anchor_rows: list[dict[str, Any]] = []
     first_failures: Counter[str] = Counter()
@@ -160,11 +172,19 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         candidate_metrics: list[dict[str, Any]] = []
         for candidate in batch.candidates:
             candidate_poses = np.vstack((np.zeros((1, 3)), candidate.poses))
+            if speed_quantity == "position_derived_final_segment_average_speed_for_both":
+                challenger_speed = terminal_segment_average_speed(
+                    candidate_poses, interval_s=0.5
+                )
+                native_speed = native.terminal_segment_average_speed_mps
+            else:
+                challenger_speed = candidate.terminal_speed_mps
+                native_speed = native.terminal_speed_mps
             outcome = qualify_intent_match(
                 candidate_poses,
                 native.poses,
-                challenger_terminal_speed_mps=candidate.terminal_speed_mps,
-                native_terminal_speed_mps=native.terminal_speed_mps,
+                challenger_terminal_speed_mps=challenger_speed,
+                native_terminal_speed_mps=native_speed,
                 limits=limits,
             )
             progress_pass = (
@@ -255,6 +275,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     np.linalg.norm(native.poses[-1, :2])
                 ),
                 "native_terminal_speed_mps": native.terminal_speed_mps,
+                "native_terminal_segment_average_speed_mps": (
+                    native.terminal_segment_average_speed_mps
+                ),
                 "native_transform_error_m": native.maximum_transform_error_m,
                 "raw_candidate_count": len(batch.candidates),
                 "eligible_candidate_count": eligible,
@@ -293,6 +316,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "recording_group_count": 8,
             "anchor_count": 128,
             "development_calibration_test_or_target_accessed": False,
+            "terminal_speed_quantity": speed_quantity,
         },
         "supply": {
             "anchors_with_eligible_candidate": supplied_anchors,

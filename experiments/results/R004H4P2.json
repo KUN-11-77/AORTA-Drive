@@ -1,0 +1,29 @@
+{
+  "experiment_id": "R004H4P2-fit-candidate-supply-diagnosis-v1",
+  "status": "COMPLETED_SEMANTICS_INVALIDATED",
+  "decision": "PROVISIONAL_STOP_PENDING_COMPARABLE_SPEED_REPLAY",
+  "implementation_revision": "62265a6eaf64300669593a94dcc5031f65e40283",
+  "result_sha256": "8e153052a0dac7148256e7a35cceec9d013018e5f1eb1ee7d85451ba66c5904b",
+  "audit_sha256": "25eb434643f646b227293187bb86555135f6fae7d9639d1ae63b6825ee708e4d",
+  "supply": {
+    "anchors_with_eligible_candidate": 26,
+    "anchor_count": 128,
+    "anchor_supply_fraction": 0.203125,
+    "minimum_group_anchor_supply_fraction": 0.0625
+  },
+  "integrity": {
+    "candidate_evaluations": 4256,
+    "first_failure_total": 4256,
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE",
+    "terminal_speed_semantics": "REJECTED_BY_R004H4P2S"
+  },
+  "claims": {
+    "candidate_supply_adequate": false,
+    "provider_revision_authorized": false,
+    "geometry_evaluated": false,
+    "development_access_authorized": false,
+    "coverage_established": false,
+    "gate_b_passed": false
+  }
+}

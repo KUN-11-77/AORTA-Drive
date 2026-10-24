@@ -17,7 +17,12 @@ def _mapping(value: object, name: str) -> dict[str, Any]:
 
 def audit(result: dict[str, Any]) -> dict[str, Any]:
     failures: list[str] = []
-    if result.get("experiment_id") != "R004H4P2-fit-candidate-supply-diagnosis-v1":
+    experiment_id = result.get("experiment_id")
+    valid_ids = {
+        "R004H4P2-fit-candidate-supply-diagnosis-v1",
+        "R004H4P2R1-comparable-speed-supply-replay-v1",
+    }
+    if experiment_id not in valid_ids:
         failures.append("experiment ID mismatch")
     scope = _mapping(result.get("data_scope"), "data_scope")
     if (
@@ -29,6 +34,10 @@ def audit(result: dict[str, Any]) -> dict[str, Any]:
         failures.append("registered data scope mismatch")
     if scope.get("development_calibration_test_or_target_accessed") is not False:
         failures.append("prohibited data-access flag is not false")
+    if experiment_id == "R004H4P2R1-comparable-speed-supply-replay-v1" and scope.get(
+        "terminal_speed_quantity"
+    ) != "position_derived_final_segment_average_speed_for_both":
+        failures.append("comparable positional speed quantity is not declared")
 
     ledger = result.get("anchor_ledger")
     if not isinstance(ledger, list) or len(ledger) != 128:
@@ -113,7 +122,11 @@ def audit(result: dict[str, Any]) -> dict[str, Any]:
         if claims.get(key) is not False:
             failures.append(f"forbidden claim is not false: {key}")
     return {
-        "experiment_id": "R004H4P2-mechanical-result-audit-v1",
+        "experiment_id": (
+            "R004H4P2R1-mechanical-result-audit-v1"
+            if experiment_id == "R004H4P2R1-comparable-speed-supply-replay-v1"
+            else "R004H4P2-mechanical-result-audit-v1"
+        ),
         "status": "PASS" if not failures else "FAIL",
         "failures": failures,
         "payload_files_read": 0,

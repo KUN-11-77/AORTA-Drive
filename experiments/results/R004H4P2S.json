@@ -1,0 +1,27 @@
+{
+  "experiment_id": "R004H4P2S-native-speed-semantics-audit-v1",
+  "status": "COMPLETED",
+  "decision": "REJECT_CACHED_DYNAMIC_SPEED_SEMANTICS",
+  "implementation_revision": "4e57d1bbcbfff555d4372ca9413a3782facedf0b",
+  "result_sha256": "05c8a90c7655beef5c7e6b93751ac06f80802f7b94ee1abd90004559603360a8",
+  "audit_sha256": "0da9ded3d95a60aaf7b3d8699bca5670811b9837e0ca059e3da6094b7fa90e8c",
+  "summary": {
+    "anchor_count": 128,
+    "zero_cached_dynamic_speed_anchor_count": 128,
+    "moving_reference_anchor_count": 119,
+    "material_moving_disagreement_anchor_count": 113,
+    "maximum_absolute_disagreement_mps": 13.400591828950487
+  },
+  "integrity": {
+    "mechanical_audit": "PASS",
+    "payload_files_read_by_audit": 0,
+    "external_cross_model_review": "REVIEW_UNAVAILABLE"
+  },
+  "claims": {
+    "cached_dynamic_terminal_speed_valid": false,
+    "position_derived_quantity_is_instantaneous_speed": false,
+    "provider_or_threshold_changed": false,
+    "development_access_authorized": false,
+    "h4_registered": false
+  }
+}

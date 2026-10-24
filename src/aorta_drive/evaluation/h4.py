@@ -58,6 +58,7 @@ class CachedNativeTrajectory:
 
     poses: npt.NDArray[np.float64]
     terminal_speed_mps: float
+    terminal_segment_average_speed_mps: float
     maximum_transform_error_m: float
     canonical_sample_sha256: str
 
@@ -141,6 +142,9 @@ def sample_cached_native_trajectory(cache: Any) -> CachedNativeTrajectory:
     return CachedNativeTrajectory(
         poses=array,
         terminal_speed_mps=terminal_speed,
+        terminal_segment_average_speed_mps=terminal_segment_average_speed(
+            array, interval_s=0.5
+        ),
         maximum_transform_error_m=max(transform_errors),
         canonical_sample_sha256=native_hash,
     )
