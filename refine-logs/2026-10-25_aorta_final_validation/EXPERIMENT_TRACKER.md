@@ -4,7 +4,7 @@
 
 | Run ID | Milestone | Purpose | System / Variant | Split | Primary Metrics | Priority | Status | Stop / Go |
 |---|---|---|---|---|---|---|---|---|
-| R004H7-BS4B4R1 | M0 | 合法 one-frame oracle | official candidate-local scorer | source fit 42 groups | frozen oracle gates | MUST | HOLD：需明确授权 | GO 才进入 M1 |
+| R004H7-BS4B4R1 | M0 | 合法 one-frame oracle | official candidate-local scorer | source fit 42 groups | frozen oracle gates | MUST | READY/HOLD：readiness audit通过，需明确授权 | GO 才进入 M1 |
 | R004H7-BS4B5F | M1 | full target materialization | augmented previous context | source fit | exact replay、full signal、flip/regret | MUST | LOCKED_BY_M0 | 无信号则停网络 |
 | R005A-PROXY | M2 | 简单代理基线 | trajectory/prior/field-SDF-BEV | source train/dev | relation、sign、regret | MUST | LOCKED_BY_M1 | 建立最低线 |
 | R005A-GENERIC | M2 | 最强最近基线 | D-JEPA/World4Scorer-style matched scorer | source train/dev | relation、sign、regret、latency | MUST | LOCKED_BY_M1 | 必须先于主方法完成 |
