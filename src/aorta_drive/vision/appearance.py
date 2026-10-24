@@ -14,6 +14,13 @@ APPEARANCE_CONDITIONS: Final[tuple[str, ...]] = (
     "cool_cast",
 )
 
+H6_APPEARANCE_CONDITIONS: Final[tuple[str, ...]] = (
+    *APPEARANCE_CONDITIONS,
+    "low_exposure_twice",
+    "low_contrast_twice",
+    "cool_cast_twice",
+)
+
 
 def apply_controlled_appearance(
     image_srgb: npt.ArrayLike,
@@ -47,4 +54,22 @@ def apply_controlled_appearance(
         gains = np.asarray((0.85, 0.95, 1.10), dtype=np.float32)
         output = image * gains
     return np.ascontiguousarray(np.clip(output, 0.0, 1.0), dtype=np.float32)
+
+
+def apply_h6_controlled_appearance(
+    image_srgb: npt.ArrayLike,
+    condition: str,
+) -> npt.NDArray[np.float32]:
+    """Apply an H6 condition; ``*_twice`` is exact operator composition."""
+
+    if condition in APPEARANCE_CONDITIONS:
+        return apply_controlled_appearance(image_srgb, condition)
+    suffix = "_twice"
+    if not condition.endswith(suffix):
+        raise ValueError(f"unknown R004H6 appearance condition: {condition}")
+    base = condition[: -len(suffix)]
+    if base == "clean" or base not in APPEARANCE_CONDITIONS:
+        raise ValueError(f"unknown R004H6 appearance condition: {condition}")
+    once = apply_controlled_appearance(image_srgb, base)
+    return apply_controlled_appearance(once, base)
 

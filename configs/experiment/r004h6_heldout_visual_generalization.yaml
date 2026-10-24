@@ -1,0 +1,139 @@
+experiment_id: R004H6-heldout-visual-generalization-v1
+date: 2026-10-24
+scope: one_read_current_model_heldout_development_visual_generalization
+
+frozen_inputs:
+  source_split_manifest_sha256: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  stage_p_checkpoint_sha256: 8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b
+  stage_p_training_revision: 634f990c7d8cf9598054237a70119c7b0c0773b4
+  backbone_checkpoint_sha256: 7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488
+  backbone_source_sha256: dde435450cdc79eaddcd11039ab90d942f6fb08770b5ee3998a81240d8cf1bf8
+  fit_role: fit
+  fit_groups_for_prior_only: 42
+  evaluation_split: development
+  evaluation_groups: 24
+  anchors_per_group: 16
+  evaluation_anchor_count: 384
+  prohibited_evaluation_splits: [train, calibration, test, target_domain]
+
+independence_boundary:
+  current_stage_p_training_or_checkpoint_selection_used_development: false
+  current_r004h_method_tuning_used_development: false
+  older_v8_3_project_development_used_development: true
+  valid_claim: held_out_generalization_of_the_current_frozen_model_on_the_24_group_development_panel
+  invalid_claims:
+    - untouched_final_test_generalization
+    - population_level_NAVSIM_generalization
+    - target_domain_or_real_weather_generalization
+
+design:
+  experimental_unit: recording_group
+  repeated_measures: all_16_anchors_and_all_conditions_within_group
+  blocking: exact_recipient_scene_camera_history_and_teacher
+  treatment_assignment: deterministic_full_factorial
+  model_training_checkpoint_selection_or_threshold_tuning: prohibited
+  after_result_model_or_transform_changes: prohibited
+  primary_claim_count: 2
+
+appearance_conditions:
+  confirmatory:
+    - {name: clean, operator: identity}
+    - {name: low_exposure, operator: frozen_R004H5_single_application}
+    - {name: low_contrast, operator: frozen_R004H5_single_application}
+    - {name: cool_cast, operator: frozen_R004H5_single_application}
+  secondary_severity_ladder:
+    - {name: low_exposure_twice, operator: compose_low_exposure_with_itself}
+    - {name: low_contrast_twice, operator: compose_low_contrast_with_itself}
+    - {name: cool_cast_twice, operator: compose_cool_cast_with_itself}
+  semantics: geometry_preserving_controlled_sRGB_stress_not_named_weather
+
+scene_information_controls:
+  fit_teacher_prior:
+    definition: pointwise_mean_teacher_field_over_all_672_fit_anchors
+    development_labels_used_to_construct_control: false
+  mismatched_image:
+    definition: same_anchor_index_and_slot_from_a_different_development_recording_group
+    group_order: ascending_sha256_of_recording_group_utf8
+    donor_rule: cyclic_shift_by_one_in_that_order
+    recipient_projection_teacher_and_mask_remain_fixed: true
+    evaluated_condition: clean_only
+  image_removed:
+    definition: every_RGB_pixel_equals_the_frozen_normalization_mean_before_normalization
+    interpretation: off_manifold_removal_probe_not_a_trained_baseline
+    evaluated_condition: clean_only
+  zero_field:
+    definition: identically_zero_potential
+
+frozen_inference:
+  raw_shape: [1080, 1920]
+  resized_shape: [288, 512]
+  resize: bicubic_align_corners_false_antialias_true
+  normalization_mean: [0.485, 0.456, 0.406]
+  normalization_std: [0.229, 0.224, 0.225]
+  dino_feature: normalized_last_4_layer_mean
+  dino_batch_size: 8
+  batch_kernel_contract: reproduce_original_cache_batch_cardinality_per_image
+  quotient_field_output: subtract_spatial_mean
+  edge_order: all_rightward_then_all_downward
+  edge_length_m: 1.0
+
+estimands:
+  primary_claim_1_current_model_heldout_generalization:
+    endpoint: equal_group_weight_macro_mean_edge_MAE_to_teacher
+    comparisons: [learned_minus_zero, learned_minus_fit_teacher_prior]
+    conditions: [clean, low_exposure, low_contrast, cool_cast]
+  primary_claim_2_scene_conditioned_visual_information:
+    endpoint: equal_group_weight_macro_mean_edge_MAE_to_teacher
+    comparisons: [correct_clean_minus_mismatched_clean, correct_clean_minus_image_removed]
+  appearance_stability:
+    endpoint: gauge_invariant_edge_MAE_between_condition_and_clean_prediction
+  perturbation_ledger:
+    pixel_endpoint: mean_absolute_sRGB_difference_from_clean
+    feature_endpoints: [dense_feature_RMS_difference, one_minus_dense_feature_cosine]
+  aggregation:
+    independent_unit: recording_group
+    anchor_as_independent_sample: prohibited
+    within_group: mean_over_16_anchors
+    across_groups: equal_weight_mean_over_24_groups
+
+inference:
+  method: paired_recording_group_cluster_bootstrap
+  seed: 20261024
+  replicates: 10000
+  confidence_interval: 0.95
+  p_values: not_used
+  multiplicity: conjunctive_gate_over_all_preregistered_confirmatory_conditions
+
+decision:
+  supported_requires_all:
+    - every_confirmatory_condition_learned_task_MAE_strictly_below_zero
+    - every_confirmatory_condition_learned_task_MAE_strictly_below_fit_teacher_prior
+    - every_confirmatory_condition_prior_minus_learned_CI95_low_strictly_positive
+    - every_confirmatory_condition_teacher_edge_cosine_strictly_positive
+    - every_nonclean_confirmatory_condition_appearance_MAE_strictly_below_clean_edge_energy
+    - mismatched_minus_correct_clean_CI95_low_strictly_positive
+    - image_removed_minus_correct_clean_CI95_low_strictly_positive
+  mixed_if:
+    - current_model_generalizes_but_scene_information_control_fails
+    - scene_information_control_passes_but_any_confirmatory_generalization_condition_fails
+  unsupported_if:
+    - both_primary_claim_gates_fail
+    - input_identity_pairing_or_provenance_fails
+  severity_ladder_is_secondary_and_cannot_change_the_primary_decision: true
+
+stop_rules:
+  - one_scientific_read_only_after_config_code_and_commit_are_pinned
+  - no_development_result_driven_rerun_or_parameter_change
+  - calibration_test_and_target_payloads_remain_sealed
+  - structural_representation_ablation_requires_a_separate_preregistered_retraining_experiment
+  - driving_and_safety_benefit_remain_hold
+
+resources:
+  device: cuda:0
+  maximum_wall_minutes: 90
+  maximum_peak_gpu_gib: 6.0
+  maximum_output_gib: 2.0
+

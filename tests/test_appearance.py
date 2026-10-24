@@ -5,7 +5,9 @@ import pytest
 
 from aorta_drive.vision.appearance import (
     APPEARANCE_CONDITIONS,
+    H6_APPEARANCE_CONDITIONS,
     apply_controlled_appearance,
+    apply_h6_controlled_appearance,
 )
 
 
@@ -51,4 +53,15 @@ def test_appearance_operators_reject_invalid_inputs(
 ) -> None:
     with pytest.raises(ValueError):
         apply_controlled_appearance(image, condition)
+
+
+def test_h6_twice_conditions_are_exact_compositions() -> None:
+    image = np.linspace(0.0, 1.0, 24, dtype=np.float32).reshape(2, 4, 3)
+    assert H6_APPEARANCE_CONDITIONS[:4] == APPEARANCE_CONDITIONS
+    for base in APPEARANCE_CONDITIONS[1:]:
+        expected = apply_controlled_appearance(
+            apply_controlled_appearance(image, base), base
+        )
+        actual = apply_h6_controlled_appearance(image, f"{base}_twice")
+        np.testing.assert_array_equal(actual, expected)
 
