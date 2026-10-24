@@ -1,6 +1,6 @@
 # R004H7-BS4B4R1 implementation preflight
 
-状态：`LOCAL_SYNTHETIC_QUALIFICATION_PASS__SERVER_SMOKE_NOT_RUN__FORMAL_RUN_NOT_AUTHORIZED`。
+状态：`SERVER_INTERFACE_SMOKE_PASS__FORMAL_RUN_NOT_AUTHORIZED`。
 
 ## 已闭合
 
@@ -16,9 +16,26 @@
 - 全库 `352 passed`，未破坏既有实验合同；
 - runner/audit 通过 Python compile，配置内本地 source SHA 均由自动测试核验。
 
+## 服务器 interface smoke
+
+冻结提交 `9664e4b` 已通过离线 archive 同步到服务器；source archive SHA-256 为
+`5132bfa7b1d751b25e0d779275ea6b89f6af871efee4420dc65cffca8bfb9419`。服务器同一环境中：
+
+- R1 的 9 个合成/合同测试全部通过；
+- 仅按预 B4 membership 选择 anchor-0 sentinel、零 eligible、部分 eligible、全 eligible 四类
+  interface cases；sentinel 与 full 恰为同一个预定义 anchor，因此实际覆盖 3 个唯一 anchors；
+- zero case：`eligible=0`、`scored=1`；partial case：`eligible=4`、`scored=5`；full/sentinel：
+  `eligible=6`、`scored=7`；
+- 每类 `scored_indices_equal_legal_domain=true`、pose bit-exact、membership exact、
+  `ineligible_candidate_score_count=0`、sentinel replay exact；
+- smoke 没有写出 candidate scores、oracle gain、margin、hard outcome 或任何 aggregate；
+- smoke artifact SHA-256：
+  `55813b59c0985689744cb55b8ae901bcf1d92793c9bca98b24da0b6f20634ce2`；
+- local artifact：
+  `F:\AORTA-Drive-artifacts\gate-b\R004H7\r004h7bs4b4r1_preflight_9664e4b\smoke.json`。
+
 ## 尚未闭合
 
-- 未在服务器 NAVSIM 环境执行单 anchor smoke；
 - 未验证正式 672-anchor membership histogram、candidate/pair totals 与 runner 输出；
 - 未运行 primary、replay 或 audit；
 - 外部 reviewer unavailable；
@@ -34,13 +51,7 @@
 
 ## 下一门
 
-下一步只能先把冻结提交同步到服务器，运行一个不输出科学 aggregate 的资格 smoke，检查：
-
-1. pose exact；
-2. membership artifact exact；
-3. scored indices 等于 legal domain；
-4. ineligible score count 为 0；
-5. sentinel replay exact。
-
-smoke 失败只允许修实现错误并更新 source hash、提交与 preflight；不得读取 oracle aggregate。
-smoke 通过也不自动授权第三次正式运行。
+下一步是一次 primary + 一次 independent full replay + mechanical audit 的正式 R1。根据 B4 失败后
+冻结的停止规则，smoke 通过不自动授权第三次正式运行；在明确授权前保持 HOLD。正式运行期间
+禁止读取 partial scientific metrics 或修改 membership、threshold、bootstrap、candidate provider、
+scorer 与统计协议。

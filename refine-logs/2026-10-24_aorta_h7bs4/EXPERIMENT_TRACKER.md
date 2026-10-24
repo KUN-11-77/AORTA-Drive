@@ -12,6 +12,6 @@
 | R004H7BS4B2 | M2e | global set-min零差异结构归因 | 同一42 fit groups | MUST | COMPLETE_COMMON_MIN_DOMINANCE | 2033/2219零差异为共同min，42/42组；机械PASS；fork-aware oracle设计GO |
 | R004H7BS4B3 | M2f | fork-aware task operator oracle资格 | 同一42 fit groups | MUST | COMPLETE_STOP_GENERAL_RERANKER | temporal仅170/2033恢复，group CI 6.34–10.29%；spatial适用率77.13%；机械PASS；不训练网络 |
 | R004H7BS4B4 | M2g | source preference标签合法性与oracle ceiling | 同一42 fit groups；development/test/NavDream封存 | MUST | COMPLETE_INVALID_INTERFACE_HOLD | primary/replay与机械审计exact，但48 anchors、27 groups含168个冻结intent-ineligible challengers仍进入oracle；48/48 pose实际bit-exact。正向diagnostics不可解释；R1新预注册前禁止训练 |
-| R004H7BS4B4R1 | M2h | 合法候选域source preference标签与oracle ceiling | 同一42 fit groups；只用预B4冻结membership；development/test/NavDream封存 | MUST | PREREGISTERED_NOT_RUN | 可变panel；15个零challenger anchors保留；原B4阈值不变；实现与8个合成测试已准备，禁止自动正式运行 |
+| R004H7BS4B4R1 | M2h | 合法候选域source preference标签与oracle ceiling | 同一42 fit groups；只用预B4冻结membership；development/test/NavDream封存 | MUST | SERVER_SMOKE_PASS_FORMAL_RUN_HOLD | 可变panel；15个零challenger anchors保留；原B4阈值不变；352全库测试、9个服务器合同测试与zero/partial/full/sentinel smoke PASS；禁止自动正式运行 |
 | R004H7BS4C | M3 | 64/96/128同步时延与显存 | source-only | MUST | HOLD | 周期预算需先核验 |
 | R004H7BS4D | M4 | 一次性development确认 | 24 exposed development groups | MUST | HOLD | A/B/C冻结后 |

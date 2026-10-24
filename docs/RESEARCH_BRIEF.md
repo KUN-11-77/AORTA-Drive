@@ -6,7 +6,8 @@
 > 冻结eligible challengers；标签、pair graph、Laplacian、oracle与后续loss必须共享同一集合。
 > 15个零challenger anchors保留并贡献零gain/零pair rate，禁止complete-case deletion。R1沿用B4
 > 原阈值和bootstrap，B4 outcome禁止作为设计输入；已实现可变候选域summary、fail-closed门、
-> runner/audit与合成反例测试，但未自动启动第三次正式运行。详见
+> runner/audit与合成反例测试。冻结提交`9664e4b`的服务器zero/partial/full/sentinel interface smoke
+> 已PASS，但未自动启动第三次正式运行。详见
 > `experiments/R004H7/H7BS4B4R1_PREREGISTRATION.md`。
 
 > **2026-10-25 R004H7-BS4B3：`STOP_ROAD_MARGIN_AS_GENERAL_RERANKER`。** 预注册
