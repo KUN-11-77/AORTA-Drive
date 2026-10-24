@@ -1,0 +1,98 @@
+experiment_id: R004H7BS4B1-oracle-lipschitz-nonvacuity-v1
+date: 2026-10-25
+status: preregistered_not_run
+
+H7BS4B1:
+  scientific_role: fit_only_oracle_joint_uncertainty_nonvacuity
+  parent_decision: H7BS4A_STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE
+  parent_decision_must_remain_unchanged: true
+  independent_unit: recording_group
+  frozen_input_sha256:
+    h7bs4a_result: 4671032f4d22d37d067c83e0c298e592467e13601788b55dae53f8a7055cc8cc
+    h7bs4b0b_result: 52b1861fbb3fd39b2a4d549a9d972f181206bfbc377fe930d702eaceaa5a876b
+    h7bs1_fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+    fit_forward96_teacher_manifest: 65e686e06522fddf4950f1fe772fbcbea0547cec3d54fb383a8ee33d208b9fd0
+  expected_scope_counts:
+    anchor_count: 672
+    recording_group_count: 42
+    pair_count: 3864
+  oracle_contract:
+    observed_values: outward_teacher_intervals_at_projectively_supported_nodes_only
+    hidden_values: excluded_from_set_construction_except_final_containment_audit
+    spatial_bound: one_metre_grid_step_plus_both_endpoint_teacher_error_ledgers
+    feasible_reweighting_potential: upper_McShane_extension_from_observed_intervals
+    deployment_status: oracle_ceiling_not_deployable
+  variants:
+    - joint_lipschitz_shared_field
+    - shared_node_marginal_box
+    - candidate_independent_marginal_intervals
+  decision_protocol:
+    anchors_per_group: 16
+    minimum_identifiable_anchors_per_group: 12
+    bootstrap_seed: 20261025
+    bootstrap_resamples: 10000
+    strict_group_bootstrap_improvement_lower_bound: 0.0
+    pass_requires:
+      - zero_teacher_inclusion_failures
+      - zero_contrast_containment_failures
+      - zero_joint_to_box_nesting_failures_beyond_frozen_numerical_tolerance
+      - zero_box_to_candidate_independent_nesting_failures_beyond_tolerance
+      - zero_harmful_oracle_interventions
+      - all_42_groups_have_at_least_12_of_16_anchors_with_a_joint_identifiable_pair
+      - joint_minus_shared_box_identifiable_fraction_group_bootstrap_lower_bound_gt_0
+  numerics:
+    arithmetic: outward_binary64
+    comparison_tolerance_m: 1.0e-9
+    ties: unidentified
+    strict_sign: lower_gt_zero_or_upper_lt_zero
+  roi:
+    x_min_m: -32.0
+    y_min_m: -32.0
+    columns: 96
+    rows: 64
+    resolution_m: 1.0
+  vehicle:
+    rear_overhang_m: 1.127
+    front_extent_m: 4.049
+    half_width_m: 1.1485
+  projection:
+    cameras: [cam_l0, cam_f0, cam_r0]
+    history_offsets: [-3, -2, -1, 0]
+    raw_shape: [1080, 1920]
+    resized_shape: [288, 512]
+    patch_size: 16
+    maximum_normalized_radius: 1.0
+    semantics: projective_token_support_not_occlusion_aware_physical_visibility
+  implementation_sha256:
+    difference_constraint_source: 20a9841052923d2179ead698307de78437122abfe51762c24aea1ae7d47569fd
+    lipschitz_oracle_source: 31d13f72aa2b61476034678fa43e039ff64f000d1c2d12ad55cfd38f93d031f6
+    shadow_decision_source: 9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5
+    projection_runner_source: a2bab0d63bb1b6dd4292bec4f14a78f105a3fb191fe4f594e2e20c74341c5327
+    runner_source: 2f01aff1cb26e8f96558b4a0636ff31d3ed62b3decbb780be26491b5a4e4348c
+    audit_source: 1bda86e0ad99f080a2314a22628e82b8b01e7900d50b1b897c23f37fbc9662f6
+  forbidden_inputs:
+    - learned_visual_field_values
+    - DINO_feature_values
+    - planner_outcomes_or_driving_scores
+    - development
+    - calibration
+    - official_test
+    - NavDream
+    - target_domain
+  resources:
+    device: cpu
+    maximum_wall_minutes: 120
+    maximum_output_mib: 256
+
+claim_boundary:
+  permitted:
+    - fit_only_oracle_identifiability_from_projective_support_and_SDF_structure
+    - necessity_or_rejection_of_joint_graph_dependence_relative_to_matched_marginals
+    - deterministic_support_floor_design_evidence
+  prohibited:
+    - learned_uncertainty_or_model_accuracy
+    - reversal_or_upgrade_of_H7BS4A_STOP
+    - development_test_target_or_NavDream_generalization
+    - decision_driving_or_safety_gain
+    - inference_latency
+    - architecture_optimality_or_top_venue_readiness

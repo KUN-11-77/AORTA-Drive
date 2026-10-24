@@ -221,9 +221,18 @@ pairs中有1个盲差异节点可控制teacher set-min。结论为
 
 ### Gate B1：oracle uncertainty non-vacuity
 
-使用teacher残差或冻结合成误差构造方向正确的联合集合，比较global、independent-node、graph-
-correlated三种uncertainty在相同coverage下的selective coverage与ranking regret。若graph route
-仍近乎全abstain，停止该主创新，不用增加模块挽救。
+使用projectively supported teacher intervals作为不可部署的最强视觉Oracle，并以signed-distance
+的1-Lipschitz性质加两端teacher误差账本约束未观测节点。比较三种完全相同teacher包含条件：
+
+1. 保留edge关系和shared field的joint Lipschitz set；
+2. 删除edge相关性但保留shared node的精确marginal box；
+3. 连candidate间公共节点也复制的independent intervals。
+
+一般directed difference constraints下的set-min contrast infimum由反向multi-source shortest path
+精确求得，并以独立LP随机oracle验证。PASS要求42/42 groups各至少12/16 anchors有可辨识pair，
+且joint相对shared box的组级identifiability差异95% bootstrap下界严格大于0。若Oracle joint route
+仍近乎全abstain，停止当前视觉支持接口；若joint不优于box，删除graph-correlation主创新，
+不用增加模块挽救。
 
 只有B1也通过，才进入H7C容量匹配网络结构消融与正式时延实验。
 
