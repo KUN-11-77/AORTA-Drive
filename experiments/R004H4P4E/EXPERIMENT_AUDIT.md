@@ -11,10 +11,13 @@
 The required independent reviewer backend was not exposed in this execution environment.
 No executor-authored review is substituted for cross-model acquittal.
 
-The separate payload-free mechanical audit passed. It recomputed the 128-row denominator,
+The authoritative fail-closed payload-free mechanical audit passed. It pinned the exact
+implementation revision and config digest and recomputed the 128-row denominator,
 eight complete recording groups, interface gates, secondary diagnostic totals, decision and
 forbidden claims directly from the raw result file without reading metric-cache payloads.
-This establishes internal consistency only.
+It also rejects missing, negative or non-finite diagnostics and impossible candidate counts.
+The initial weaker PASS audit and one hardened replay with a mistyped config digest are
+retained but superseded. This establishes internal consistency only.
 
 ## Files queued for independent review
 

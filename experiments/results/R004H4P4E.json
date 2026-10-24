@@ -4,7 +4,10 @@
   "decision": "PASS_OFFICIAL_EXECUTION_INTERFACE",
   "implementation_revision": "06284a8fd3f13763fe56ed97cfe38f01b427d106",
   "result_sha256": "f56a43d60d5cf406c0fa0dced46ec66e9740c22eb791a10894b591b61cd4bbdb",
-  "audit_sha256": "47692683afa0bc3790f0f2714fde8f94b39ad3648f6ab0093b709f13d74086f1",
+  "audit_sha256": "d9fb05f1d8d08f33249cf077832f20358d03dc8adf2d15840bcedf86c107405a",
+  "initial_weaker_audit_sha256": "47692683afa0bc3790f0f2714fde8f94b39ad3648f6ab0093b709f13d74086f1",
+  "invalid_hardened_audit_sha256": "cca4c5515683c329ceb9d675638329d91dacbcfa6b799c142a2dcb61ce8d184d",
+  "authoritative_audit_revision": "35a242c138fca336828cd7eea313464779958cf0",
   "run_log_sha256": "d92c9b9bab8161efe20669a4cdb735439093000563eb92746299d38c0a0ea7f6",
   "failed_pre_payload_launch_log_sha256": "424b3d6377aec2e9c64e7406b2ee8a77a66ba27558f72d072f1b1b609d101eca",
   "interface": {
@@ -29,7 +32,7 @@
   "integrity": {
     "repository_tests": "215 passed",
     "static_type_check": "PASS",
-    "mechanical_audit": "PASS",
+    "mechanical_audit": "PASS_FAIL_CLOSED_V3",
     "external_cross_model_review": "REVIEW_UNAVAILABLE"
   },
   "claims": {

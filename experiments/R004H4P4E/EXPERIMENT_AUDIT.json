@@ -5,6 +5,9 @@
   "integrity_status": "provisional",
   "mechanical_audit": {
     "status": "pass",
+    "version": "fail_closed_v3",
+    "revision": "35a242c138fca336828cd7eea313464779958cf0",
+    "sha256": "d9fb05f1d8d08f33249cf077832f20358d03dc8adf2d15840bcedf86c107405a",
     "payload_files_read": 0,
     "failures": []
   },
