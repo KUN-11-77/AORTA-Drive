@@ -17,7 +17,7 @@
 | R004H4P3 | native-conditioned endpoint-invariant provider fit supply | DONE — STOP / FORMULATION MISMATCH | corrected audit: 38/128, 590/768 polynomial-screen rejections, zero invariant failures, mechanical PASS; official scorer uses LQR+bicycle realized trajectories instead |
 | R004H4P4E | official execution-operator interface audit | DONE — PASS / PROVISIONAL INTEGRITY | 128/128 interface gates; realized supply diagnostic 122/128, minimum group 0.875; desired endpoint identity survives 0/128; mechanical PASS, external review unavailable |
 | R004H4P5I | eight-block realized-geometry interface sentinel | DONE — PASS / PROVISIONAL INTEGRITY | 8/8 interface and realized supply; geometry+teacher 6/8; ROI reject 2/8; meaningful non-inclusion 0/8; mechanical PASS, external review unavailable; permits only a registered fit-only preflight or resolution diagnosis |
-| R004H4P5D | post-result disk-certificate resolution diagnosis | NOT REGISTERED | derive and test the no-witness separation barrier before deciding whether 128-anchor disk preflight is informative |
+| R004H4P5D | post-result disk-certificate resolution diagnosis | REGISTERED | revision `f017ef3`; 233 tests and focused mypy PASS; same 8 fit sentinels, no labels/new roles; test whether all 36 predecessor zero ledgers lie below the sufficient no-witness barrier |
 | R004H4 | one-read development mechanism qualification | NOT REGISTERED | common opportunity denominator must decide whether localized learned budgets retain utility |
 
 Official calibration, test and target-domain data remain sealed.

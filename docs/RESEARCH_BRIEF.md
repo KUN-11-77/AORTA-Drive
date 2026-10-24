@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：把 R004H4P5I 的全零 non-inclusion 作为 post-result mechanism signal，而不是方法阴性结果。预注册 R004H4P5D，在相同8个 fit sentinels 上核验 disk outer / inner-cell 组合的解析 no-witness separation barrier，并记录官方 realized candidate 与 native 的逐时刻最大后轴距离。若全部零证据候选均落在解析屏障内，则在128-anchor扩展前退役该 disk non-inclusion 架构，转向方向感知矩形外覆盖；不得调整 provider、资格阈值或读取 development、calibration、test、target-domain 数据。
+- 下一阶段：R004H4P5D 已按 revision `f017ef3` 注册。它把 R004H4P5I 的全零 non-inclusion 作为 post-result mechanism signal，而不是方法阴性结果；在相同8个 fit sentinels 上核验 disk outer / inner-cell 组合的解析 no-witness separation barrier，并记录官方 realized candidate 与 native 的逐时刻最大后轴距离。若全部零证据候选均落在解析屏障内，则在128-anchor扩展前退役该 disk non-inclusion 架构，转向方向感知矩形外覆盖；不得调整 provider、资格阈值或读取 development、calibration、test、target-domain 数据。
