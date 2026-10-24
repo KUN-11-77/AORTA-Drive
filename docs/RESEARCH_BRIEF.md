@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：注册 R004H4P4E，只在既有 fit anchors 上复现官方 `transform_trajectory -> 0.1 s get_trajectory_as_array -> PDMSimulator(LQR+bicycle)` 链，并对 native/challenger 成对输出 realized trajectory。先验证坐标、采样、初始状态、确定性、shape、有限性和 desired-to-realized 偏差，再在 realized 轨迹上重新定义 intent 与 swept footprint；不得读取 geometry teacher、prediction 或 development。
+- 下一阶段：R004H4P4E 已注册，只在既有 fit anchors 上复现官方 `transform_trajectory -> 0.1 s get_trajectory_as_array -> PDMSimulator(LQR+bicycle)` 链，并对 native/challenger 成对输出 realized trajectory。实现侧 214 项测试与静态类型检查已通过；真实环境仍须验证源码哈希、坐标往返、采样、共同初态、确定性、shape 与有限性。desired-to-realized 偏差和 realized intent 仅作诊断，不参与本阶段 PASS。接口闭合后才可注册 realized swept-footprint preflight；不得读取 geometry teacher、prediction 或 development。

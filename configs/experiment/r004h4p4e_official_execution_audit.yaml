@@ -1,0 +1,80 @@
+experiment_id: R004H4P4E-official-execution-interface-audit-v1
+date: 2026-10-24
+scope: fit_only_official_navsim_execution_semantics
+
+predecessor:
+  experiment: R004H4P3-native-offset-fit-supply-v1
+  implementation_revision: 81d60b05be9fcb7a4580e3b3d64f660dea697958
+  registered_decision: STOP_CANDIDATE_SUPPLY_COVERAGE
+  raw_result_sha256: 1c88512df416143fb4405ec9756ed511d56869668fa486fbbe192a45d1a0031f
+  formulation_issue: polynomial_desired_curve_is_not_official_realized_trajectory
+
+inputs:
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  metric_manifest_sha256: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+  allowed_role: fit
+  selected_group_rule: first_eight_fit_rows_in_frozen_role_manifest
+  selected_anchor_rule: all_16_anchors_per_selected_group
+  recording_groups: 8
+  anchors_per_group: 16
+  anchor_count: 128
+  prohibited_roles: [selection, proxy_cal, development, calibration, test, target_domain]
+
+implementation:
+  execution_bridge_source_sha256: f8ed588568fbeeebaa9c99ffd1d952f29cb490950b9490869bdf869cbdd00717
+  native_offset_source_sha256: 76a238a4538f49211ccb24bd30e1b2cda79b0f26fae656e49f184b7adbc2440e
+  official_source_sha256:
+    navsim/evaluate/pdm_score.py: 7d0b82b8420c52dfedfda2a56b4aa44bd371cd1adbac58f001c19ccda60cf99c
+    navsim/planning/simulation/planner/pdm_planner/simulation/pdm_simulator.py: 30efc69ffc36409a496c84f560ba7201727c5e87c6a13d3f7a8e79f19ab6df4a
+    navsim/planning/simulation/planner/pdm_planner/simulation/batch_lqr.py: dbfc4b883e9b3358d58b7c5ee7413d90032a1397b62eb49730cf6bc4858721ce
+    navsim/planning/simulation/planner/pdm_planner/simulation/batch_kinematic_bicycle.py: 396d2fe7edd9b660cbbdceee51f940d692b4336616baaaecef92f53afed3694e
+    navsim/planning/script/config/common/default_common.yaml: 2eb8e1c3892a5159c18f4c464d9b143348136d865afb3b089f682cc8b15dd7a7
+
+desired_reference:
+  provider: native_fixed_normal_c2_bump_v1
+  amplitudes_m: [-1.5, -1.0, -0.5, 0.5, 1.0, 1.5]
+  interval_s: 0.5
+  horizon_s: 4.0
+  desired_curve_dynamic_screen: disabled_as_non_official_execution_object
+
+official_execution:
+  desired_transform: navsim.evaluate.pdm_score.transform_trajectory
+  resampling: navsim.evaluate.pdm_score.get_trajectory_as_array
+  proposal_interval_s: 0.1
+  proposal_num_poses: 40
+  tracker: BatchLQRTracker
+  motion_model: BatchKinematicBicycleModel
+  native_and_challenger_share_one_batch_and_initial_ego_state: true
+
+interface_gates:
+  expected_batch_size: 7
+  expected_time_samples_including_origin: 41
+  maximum_desired_roundtrip_position_error_m: 1.0e-8
+  maximum_desired_roundtrip_heading_error_rad: 1.0e-10
+  every_anchor_finite: true
+  every_anchor_deterministic_replay_bit_exact: true
+  every_realized_initial_pose_shared: true
+  source_hashes_exact: true
+
+secondary_diagnostics:
+  - native_desired_to_realized_terminal_position_error_m
+  - challenger_desired_to_realized_max_position_error_m
+  - realized_intent_supply_using_0.5_second_subsamples
+  - realized_both_sign_supply
+  - desired_final_segment_identity_survival_after_execution
+  decision_use: prohibited
+
+decision:
+  pass_authorizes: register_realized_trajectory_intent_and_geometry_preflight
+  failure_authorizes: stop_H4_and_repair_official_execution_bridge_only
+  provider_change_authorized: false
+  threshold_relaxation_authorized: false
+  geometry_teacher_or_prediction_access: false
+  development_access_authorized: false
+  h4_registration_authorized: false
+
+resources:
+  device: cpu
+  maximum_wall_minutes: 20
+  maximum_output_mib: 8

@@ -70,6 +70,18 @@ def test_excessive_offset_is_rejected_by_continuous_envelope() -> None:
     assert batch.rejection_counts["continuous_dynamic_envelope"] == 1
 
 
+def test_official_execution_mode_emits_reference_without_nonofficial_screen() -> None:
+    batch = generate_native_offset_candidates(
+        _straight(),
+        amplitudes_m=(20.0,),
+        enforce_desired_curve_dynamic_screen=False,
+    )
+    assert len(batch.candidates) == 1
+    assert batch.rejection_counts["continuous_dynamic_envelope"] == 0
+    full = np.vstack((np.zeros((1, 3)), batch.candidates[0].poses))
+    assert np.array_equal(full[7:], _straight()[7:])
+
+
 def test_bernstein_screen_accepts_strictly_negative_interior_maximum() -> None:
     passed, _ = _certify_nonpositive(
         Polynomial([-0.3, 1.0, -1.0]), strict_margin=1e-9, maximum_depth=24

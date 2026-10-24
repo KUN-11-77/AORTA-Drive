@@ -299,6 +299,7 @@ def generate_native_offset_candidates(
     minimum_sample_tangent_speed_mps: float = 1e-3,
     bernstein_strict_margin: float = 1e-9,
     bernstein_maximum_depth: int = 24,
+    enforce_desired_curve_dynamic_screen: bool = True,
 ) -> NativeOffsetBatch:
     """Generate endpoint-invariant candidates and fail closed on dynamics.
 
@@ -370,22 +371,23 @@ def generate_native_offset_candidates(
         )
         subdivisions = 0
         dynamics_pass = True
-        for segment in segments[:bump_steps]:
-            passed, count = _segment_dynamics(
-                segment,
-                maximum_speed_mps=maximum_speed_mps,
-                maximum_longitudinal_acceleration_mps2=(
-                    maximum_longitudinal_acceleration_mps2
-                ),
-                maximum_lateral_acceleration_mps2=maximum_lateral_acceleration_mps2,
-                maximum_total_acceleration_mps2=maximum_total_acceleration_mps2,
-                strict_margin=bernstein_strict_margin,
-                maximum_depth=bernstein_maximum_depth,
-            )
-            subdivisions += count
-            if not passed:
-                dynamics_pass = False
-                break
+        if enforce_desired_curve_dynamic_screen:
+            for segment in segments[:bump_steps]:
+                passed, count = _segment_dynamics(
+                    segment,
+                    maximum_speed_mps=maximum_speed_mps,
+                    maximum_longitudinal_acceleration_mps2=(
+                        maximum_longitudinal_acceleration_mps2
+                    ),
+                    maximum_lateral_acceleration_mps2=maximum_lateral_acceleration_mps2,
+                    maximum_total_acceleration_mps2=maximum_total_acceleration_mps2,
+                    strict_margin=bernstein_strict_margin,
+                    maximum_depth=bernstein_maximum_depth,
+                )
+                subdivisions += count
+                if not passed:
+                    dynamics_pass = False
+                    break
         if not dynamics_pass:
             rejected["continuous_dynamic_envelope"] += 1
             continue

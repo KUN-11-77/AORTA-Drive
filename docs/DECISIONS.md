@@ -500,3 +500,23 @@
   array semantics. The polynomial screen result is retained as a failed formulation, not
   evidence about official realized feasibility.
 - **Boundary:** no geometry teacher, prediction, image or development read is authorized.
+
+## ADR-0047 — Make implementation validity the zero gate for realized-trajectory evidence
+
+- **Status:** accepted before R004H4P4E execution
+- **Problem:** the first draft of the interface runner passed global native coordinates to a
+  provider whose contract requires the current-ego local graph. This was detected before
+  registration and execution. Any result from that draft would have been invalid regardless
+  of its metric values.
+- **Repair:** obtain the provider input only through the already audited
+  `sample_cached_native_trajectory` local sampler. Pin the new bridge and provider source
+  hashes, require 214 repository tests plus static type checks, then exercise the bridge
+  against the frozen official NAVSIM modules. On every one of 128 fit anchors, require the
+  expected `7 x 41` batch, finite states, one bit-identical realized initial state, bit-exact
+  repeated simulation, and desired-pose coordinate roundtrip within `1e-8 m` and `1e-10 rad`.
+- **Decision:** only these interface gates decide R004H4P4E. Realized intent supply,
+  desired-to-realized error and endpoint-identity survival are recorded as secondary
+  diagnostics and cannot turn an interface failure into PASS or establish method utility.
+- **Boundary:** PASS authorizes registration of a separate realized-trajectory intent and
+  geometry preflight only. No geometry, teacher, prediction, development, calibration, test
+  or target-domain payload is read here; no provider or threshold change is authorized.
