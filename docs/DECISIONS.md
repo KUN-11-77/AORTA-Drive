@@ -718,3 +718,26 @@ condition passed the fit mechanism gate: macro task MAE stayed near `0.324 m` ve
 prior, pooled probe and uniform probe in all 42 recording groups under every condition. These are
 fit mechanism results only. Independent visual generalization is GO; decision benefit is HOLD;
 the current open-ended geometry certificate iteration remains STOP.
+
+## ADR-0055 — Fail H7-B closed on shadow-panel support coverage
+
+- **Status:** accepted after the frozen R004H7-B execution and mechanical recomputation.
+- **Observed gate:** all 24 groups and 384 anchors remained in the denominator, but only 265
+  anchors had a valid native plus at least one valid challenger. Only 11/24 groups reached the
+  preregistered minimum of 12/16 valid anchors, so the result is
+  `INSUFFICIENT_PANEL_COVERAGE`; association and flip-AUROC endpoints are intentionally absent.
+- **Mechanism evidence:** 110 anchors had an invalid native, nine had no valid challenger, and
+  770 candidate failures were caused by an oriented footprint leaving the frozen 64x64, 1 m
+  ROI. The provider emitted all six registered offsets without its own rejection on every
+  anchor, and 352/384 anchors had all six challengers pass intent eligibility. The dominant
+  defect is therefore the support contract of the discrete query panel, not evidence that the
+  decision quotient is useful or useless.
+- **Decision:** H7-C remains prohibited. Do not delete groups, lower the 12/16 gate, select short
+  trajectories, clip rectangles, or enlarge the ROI after reading outcome metrics. Register one
+  label- and outcome-blind support-adequacy diagnosis that measures the complete support needed
+  by native and challengers and makes the estimand change from ROI expansion versus horizon
+  truncation explicit. Any H7-B2 requires a new frozen common support contract and separate
+  authorization.
+- **Boundary:** the mechanical audit passed 384/384 artifacts and reproduced the coverage
+  verdict, but the required external reviewer backend was unavailable. No decision relevance,
+  driving, safety, NavDream/target, final-test or novelty claim follows.

@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> **2026-10-24 R004H7-B implementation qualification：`PASS_IMPLEMENTATION_QUALIFICATION__PAYLOAD_HOLD`。** 冻结候选经 official NAVSIM execution 后形成真实长宽/yaw 的离散 oriented-rectangle node panel；ROI clipping、空集、非确定 execution fail closed。exact set-min contrast、oscillation bound、`2η` regret bound、group-first Spearman/AUROC、10k paired cluster bootstrap 与独立重算 auditor 已实现；H7B focused 7 tests、H7A+H7B 13 tests、完整仓库281 tests及strict mypy通过，ruff不可用已记录。24-group development payload 尚未读取，因此 C13 仍未获得经验支持，H7-C、calibration/test/NavDream/target继续HOLD。完整记录见 `experiments/R004H7/H7B_IMPLEMENTATION_QUALIFICATION.md`。
+> **2026-10-24 R004H7-B：`INSUFFICIENT_PANEL_COVERAGE`。** 冻结24-group/384-anchor shadow run已完成且机械重算384/384通过，但只有265 anchors有效、11/24 groups达到每组至少12/16有效anchors的预注册完整性门；110 anchors因native越出冻结ROI而无效，另9个无有效challenger。candidate级770次失败来自oriented footprint离开64×64、1m、`[-32,32]^2`查询域，冻结provider四类rejection均为0。按协议未计算Spearman/AUROC，因此C13既未获得支持也未被关联性结果否定；H7-C继续HOLD。只允许先注册不读取outcome的support-adequacy diagnosis，不得事后删组、降阈值或改候选。calibration/test/NavDream/target仍封存，外部reviewer为`REVIEW_UNAVAILABLE`。完整记录见 `experiments/R004H7/H7B_RESULTS.md`。
 
 > **2026-10-24 R004H7-A：`PASS_DATA_FREE_THEORY_GATE`。** exact decision quotient 的共同偏移不变性、set-min oscillation bound、\(2\eta\) regret bound、potential/cut-space等价、全局非线性反例与tie policy共290k+登记案例0失败；完整仓库274 tests与新增模块strict mypy通过。该结果只闭合数学接口，不提供视觉或驾驶证据。当时仅授权 H7-B 实现；其后续实现资格见上一条，24-group payload读取、H7-C训练、calibration/test/target仍HOLD。外部reviewer仍为`REVIEW_UNAVAILABLE`。完整记录见 `experiments/R004H7/RESULTS_H7A.md` 与 `H7A_AUDIT.md`。
 

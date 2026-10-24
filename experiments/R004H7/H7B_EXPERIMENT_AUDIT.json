@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-24",
+  "experiment_id": "R004H7B-shadow-decision-diagnosis-v1",
+  "external_reviewer_status": "REVIEW_UNAVAILABLE",
+  "overall_verdict": "REVIEW_UNAVAILABLE",
+  "mechanical_audit_status": "PASS",
+  "scientific_claim_status": "INCONCLUSIVE_DUE_TO_INSUFFICIENT_PANEL_COVERAGE",
+  "reason": "The required independent reviewer backend was not available; executor mechanical recomputation cannot acquit the experiment.",
+  "result_sha256": "64e80d90124a2d88b60cd55339970d03677d04262ddb74ec3ba4b019196f7488",
+  "mechanical_audit_sha256": "32f1add860afb8e2bc122eed17f3a1c08c7d60625a6e4ed9b4b714f91bfb94c3"
+}

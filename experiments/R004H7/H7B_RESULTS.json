@@ -1,0 +1,39 @@
+{
+  "experiment_id": "R004H7B-shadow-decision-diagnosis-v1",
+  "status": "COMPLETED",
+  "decision": "INSUFFICIENT_PANEL_COVERAGE",
+  "claim_supported": false,
+  "implementation_revision": "c587e1b11fcd3824eaefa52505d270bc99721f96",
+  "completed_at_utc": "2026-10-24T11:49:38.796110+00:00",
+  "development_group_count": 24,
+  "development_anchor_count": 384,
+  "valid_anchor_count": 265,
+  "groups_meeting_minimum_coverage": 11,
+  "required_groups_meeting_minimum_coverage": 24,
+  "minimum_valid_anchors_per_group": 12,
+  "panel_reason_counts": {
+    "valid": 265,
+    "native_invalid": 110,
+    "no_valid_challenger": 9
+  },
+  "candidate_invalid_reason_counts": {
+    "oriented footprint leaves the frozen ROI": 770,
+    "intent_ineligible": 98
+  },
+  "provider_rejection_counts": {
+    "continuous_dynamic_envelope": 0,
+    "duplicate": 0,
+    "native_reference_displacement": 0,
+    "sample_tangent_degeneracy": 0
+  },
+  "association_metrics_computed": false,
+  "elapsed_seconds": 248.60174521896988,
+  "result_sha256": "64e80d90124a2d88b60cd55339970d03677d04262ddb74ec3ba4b019196f7488",
+  "mechanical_audit_sha256": "32f1add860afb8e2bc122eed17f3a1c08c7d60625a6e4ed9b4b714f91bfb94c3",
+  "artifact_bundle_sha256": "5069d36ba5b841193de06f083b7acfbd1faf5667a9a0ddfe2d9e75db764ef65b",
+  "mechanical_audit_status": "PASS",
+  "external_review_status": "REVIEW_UNAVAILABLE",
+  "calibration_test_or_target_accessed": false,
+  "next_status": "HOLD_H7C__REGISTER_SUPPORT_ADEQUACY_DIAGNOSIS_ONLY",
+  "claim_boundary": "Historically exposed development shadow proxy only; coverage failure precluded decision-relevance statistics. No continuous geometry, driving, safety, test, NavDream, target, or novelty claim."
+}

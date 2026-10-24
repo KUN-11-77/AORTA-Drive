@@ -1,0 +1,15 @@
+{
+  "artifact_failure_count": 0,
+  "audit_script_sha256": "5ed8cd59adfcbfd61149b1c141f5868459d980b31daa8502f909666c01f8bbecd",
+  "claim_boundary": "Mechanical fidelity of the frozen development shadow proxy only; no continuous geometry, driving, safety, test, target, or novelty claim.",
+  "completed_at_utc": "2026-10-24T11:50:51.861885+00:00",
+  "config_sha256": "26716748bf8329d448fa6024896af9cb8d0897b37c9ef98bbf28e3f6c97bbe660",
+  "experiment_id": "R004H7B-mechanical-recomputation-audit-v1",
+  "external_review_status": "REVIEW_UNAVAILABLE",
+  "metric_recomputation_failure_count": 0,
+  "panel_artifact_count": 384,
+  "recomputed_decision": "INSUFFICIENT_PANEL_COVERAGE",
+  "result_sha256": "64e80d90124a2d88b60cd55339970d03677d04262ddb74ec3ba4b019196f7488",
+  "runner_sha256": "dac827f3daa84222886f88b8d5b59f47018f072ac852d765c56216610a708c4a",
+  "status": "PASS"
+}
