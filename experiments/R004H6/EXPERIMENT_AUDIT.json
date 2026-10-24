@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-24",
+  "auditor": "REVIEW_UNAVAILABLE",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "reviewer_availability": "unavailable",
+  "checks": {
+    "gt_provenance": {"status": "warn", "details": "Registered provenance exists; no independent line-by-line reviewer was available."},
+    "score_normalization": {"status": "warn", "details": "Frozen metric code exists; independent reviewer unavailable."},
+    "result_existence": {"status": "warn", "details": "Result and 384 artifacts exist, but the frozen mechanical auditor reported one secondary scalar mismatch."},
+    "dead_code": {"status": "warn", "details": "Independent reviewer unavailable."},
+    "scope": {"status": "pass", "details": "Claim is limited to historically exposed current-model-held-out development groups."},
+    "eval_type": "real_gt_heldout_development_mechanism"
+  },
+  "claims": [
+    {"id": "C9-heldout-task", "impact": "supported_provisional"},
+    {"id": "C9-scene-conditioning", "impact": "supported_provisional"},
+    {"id": "OOD-driving-safety", "impact": "unsupported_by_scope"}
+  ]
+}
