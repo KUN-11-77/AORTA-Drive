@@ -5,8 +5,8 @@
 > 权重全部置零并伪造full=one-frame的100%对齐；但从261个官方raw logs逐token恢复时，672/672
 > anchors均有唯一合法previous row，42/42组为16/16，gap为0.498078–0.500686 s。后续alignment
 > 必须使用augmented-context roster，禁止把anchor index当时间。已实现fail-closed resolver、summary、
-> runner与8项测试；冻结提交25825c6的primary/replay 672行ledger逐字节一致，结果SHA-256为
-> 54bb1cde…76c9。该结果只闭合上下文接口，B4R1与网络训练状态不变。
+> runner与8项测试；冻结提交06d3ab0的primary/replay 672行ledger逐字节一致，结果SHA-256为
+> 2ae90f5c…512c。该结果只闭合上下文接口，B4R1与网络训练状态不变。
 
 > **2026-10-25 ICCV/Oral叙事与完整目标审查：`COHERENT_HYPOTHESIS__NOT_YET_ORAL_READY`。**
 > 当前唯一故事收紧为“稳定感知不推出可区分决策；应在完整时域native–challenger差异支持上学习

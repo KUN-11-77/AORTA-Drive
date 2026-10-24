@@ -31,13 +31,13 @@ NavDream/target 数据。
 - gap范围：0.498078–0.500686 s；
 - 逻辑 ledger SHA-256：95d94dd15b68ce28095518d5c9a4f162c4e550c290a8b27158a48fc4c0e67ab0。
 
-该结果说明 augmented-context alignment 可定义。冻结提交25825c6的正式服务器materialization与
+该结果说明 augmented-context alignment 可定义。冻结提交06d3ab0的正式服务器materialization与
 independent replay各生成672行完整ledger，两份259,835-byte JSON逐字节相同：
 
 - primary/replay SHA-256：
-  54bb1cde17562e7b34e0d57b85113acd273885a156c0a040fb879cb06bdc76c9；
+  2ae90f5ca3d566605ae3c64d6efdc61de6eb1cfa1ba7c5c9ed126647a693512c；
 - source transfer bundle SHA-256：
-  1fb5a51906c404e88937e1835db1b76999e8778e7396ad205216eaa537c418f6；
+  f8ef5d7b2290e4b22ed1ca09753cbe373854d61c118fe1c311f0289e2ad62b21；
 - local summary：
   F:/AORTA-Drive-artifacts/gate-b/R004H7/r004h7bs4b4t0_25825c6_summary.json。
 
