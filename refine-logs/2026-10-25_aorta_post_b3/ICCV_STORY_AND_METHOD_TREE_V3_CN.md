@@ -132,7 +132,9 @@ trajectory tokenizer 都是现有工具。
 5. **方法：**differential-support relation operator + orbit constraint + provenance-conditioned statistical abstention；
 6. **理论：**加性任务差分恒等式、不可观测符号不可识别、\(2\varepsilon\) regret bound、条件性
    native improvement；
-7. **决定性实验：**普通 scorer/DA-WAM-style/field readout 匹配消融，NavDream 与三 planner 的
+7. **标签资格：**one-frame oracle 只证明学习机会；其对完整 official target 的 sign/top-choice/
+   two-frame harm 对齐必须先通过；
+8. **决定性实验：**普通 scorer/DA-WAM-style/field readout 匹配消融，NavDream 与三 planner 的
    relation→ranking→behavior 链，clean no-harm 和 batch-1 latency。
 
 ## 7. 一张主图应如何讲完整故事
@@ -203,6 +205,7 @@ Eye、RiskWorld 的边界更清楚。但论文状态仍是 `REVISE / NOT ICCV RE
 - 反例与旧 field 视觉必要性：已有范围内支持；
 - v2 differential-support operator：理论候选，未训练；
 - 合法 preference oracle：B4 无效，B4R1 只完成 preflight，正式运行未授权；
+- one-frame surrogate 对完整 official behavior 的 alignment：未注册、未验证；
 - matched architecture、NavDream、三 planner、clean no-harm、时延：全部未证明。
 
 顶会故事不是现在写得顺就成立。它必须按相同顺序被实验赢得；若差异支持不优于普通 scorer，主

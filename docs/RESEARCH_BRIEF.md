@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 scorer因子与surrogate对齐审查：`ONE_FRAME_ORACLE_ONLY__TRAINING_TARGET_HOLD`。**
+> 官方源码确认B4R1 one-frame score为NC/DAC/DDC/TLC乘积与EP/TTC/LK/HC加权平均的乘积，并省略
+> two-frame extended comfort。差异支持因此只作为comparison query geometry，不能等同完整utility；
+> 主模型继续直接预测native-relative scalar margin，factor head仅作DA-WAM匹配消融。B4R1即使
+> 通过，也必须先预注册one-frame对完整official target的pair-sign、top-choice、regret与two-frame
+> harm alignment gate；通过前禁止用B4R1标签训练主网络。详见ADR-0072与scorer alignment文档。
+
 > **2026-10-25 顶会叙事与网络反方审查：`DIFFERENTIAL_SUPPORT_RELATION_V2__HYPOTHESIS_ONLY`。**
 > 现有 Shared–Difference–Interaction v1 的机制解释不成立为结构保证：非线性共享查询不推出候选
 > 共同外观偏置，自由 interaction 可绕过 difference 分支。B3 common-min、BS2 晚期分叉与

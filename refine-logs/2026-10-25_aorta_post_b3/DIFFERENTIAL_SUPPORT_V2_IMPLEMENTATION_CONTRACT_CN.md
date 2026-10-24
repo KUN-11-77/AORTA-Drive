@@ -142,6 +142,9 @@ scale 读取 provenance 不代表 coverage；coverage 仍来自独立 recording-
 \sum_{b,i:\,legal}\rho(\hat\delta_{bi0}-\delta^*_{bi0}).
 \]
 
+这里的 \(\delta^*\) 必须是 surrogate-alignment gate 通过后冻结的训练 target。B4R1 的 one-frame
+margin 在该 gate 前只可用于 oracle qualification，不得直接填入本式启动主训练。
+
 若 batch 内 `N_legal=0`，该项定义为零并记录 empty batch，不产生 NaN。默认 challenger uniform；
 hard-negative weighting 只有独立 source-only 证据才能启用。
 
@@ -220,10 +223,11 @@ readout，但不得取消 swap test 后仍声称反对称保证。
 ## 11. 解锁顺序
 
 1. B4R1 正式 oracle 通过；
-2. 仅实现 support builder、tensor contract 与上述 metamorphic tests；
-3. source-only 小规模 implementation qualification，不读取 NavDream/development outcome；
-4. 预注册参数/FLOP/token/seed 匹配的普通 scorer 与 DA-WAM/GTRS-style 对照；
-5. 结构 study 通过后才进入外观、选择性仲裁、跨 planner 与行为实验。
+2. 预注册并通过 one-frame surrogate 对完整 official target 的 alignment gate；
+3. 仅实现 support builder、tensor contract 与上述 metamorphic tests；
+4. source-only 小规模 implementation qualification，不读取 NavDream/development outcome；
+5. 预注册参数/FLOP/token/seed 匹配的普通 scorer、factor arms 与 DA-WAM/GTRS-style 对照；
+6. 结构 study 通过后才进入外观、选择性仲裁、跨 planner 与行为实验。
 
 任何阶段失败都删除对应复杂度。本文的目的不是保证 v2 被采用，而是保证它若被检验，检验的确实
 是同一个数学对象。

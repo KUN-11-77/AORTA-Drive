@@ -1025,3 +1025,17 @@ the current open-ended geometry certificate iteration remains STOP.
   `refine-logs/2026-10-25_aorta_post_b3/DIFFERENTIAL_SUPPORT_V2_IMPLEMENTATION_CONTRACT_CN.md`；
   `refine-logs/2026-10-25_aorta_post_b3/ICCV_STORY_AND_METHOD_TREE_V3_CN.md`；
   `references/2026-10-25_relation_story_sources.md`。
+
+## ADR-0072：B4R1 one-frame margin 只作 oracle 资格门；训练前增加 surrogate-alignment gate
+
+- **Decision:** `ONE_FRAME_LABEL_NOT_YET_AUTHORIZED_AS_FINAL_TRAINING_TARGET`。
+- **Reason:** 官方源码显示 one-frame score 是 NC/DAC/DDC/TLC 的乘积与 EP/TTC/LK/HC 加权平均的
+  乘积，且 progress 在每条 `[fixed PDM baseline, trajectory]` 内独立归一化；它省略跨 anchor 的
+  two-frame extended comfort。signed differential support 只能作为 comparison query geometry，不能
+  解析等同于完整 utility。
+- **Consequence:** v2 主输出仍为与动作同型的 scalar native-relative margin；factor head 只作
+  DA-WAM-matched optional arm。B4R1 即使通过，也必须先预注册 one-frame 对完整 official target 的
+  sign/top-choice/regret/two-frame harm alignment，才能授权网络训练。若不对齐，加入 previous-action
+  context 或收窄研究范围，不得用 surrogate 结果冒充 official behavior gain。
+- **Artifact:**
+  `refine-logs/2026-10-25_aorta_post_b3/SCORER_ALIGNMENT_AND_FACTOR_THEORY_V1_CN.md`。
