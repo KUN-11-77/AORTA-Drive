@@ -26,13 +26,20 @@ H=NC\cdot DAC\cdot DDC\cdot TLC
 F^{(1)}=H\frac{5EP+5TTC+2LK+2HC}{14}.
 \]
 
-官方 final-score 注入由相邻帧模拟状态计算的 two-frame extended comfort (C_2\)，权重为2：
+官方 final-score 注入由相邻帧模拟状态计算的 two-frame extended comfort \(C_2\)，权重为2。令
+\(a_t\in\{0,1\}\) 表示当前 evaluation roster 是否含同 log、时间差不超过0.55 s的前一帧，令
+\(A_t=(5EP+5TTC+2LK+2HC)/14\)，则 one-stage 官方实现实际为
 
 \[
-\boxed{F^{(full)}=H\frac{5EP+5TTC+2LK+2HC+2C_2}{16}.}
+\boxed{
+F^{(official)}_t
+=H_t\frac{14A_t+2a_tC_{2,t}}{14+2a_t}.
+}
 \]
 
-其中 (C_2) 不是当前候选的单帧属性；它读取前一帧与当前帧模拟轨迹的重叠段。因此完整目标的
+若 \(a_t=0\)，实现把 two-frame metric 与其权重同时置零，故精确退化为 \(F^{(1)}=HA\)；只有
+\(a_t=1\) 时分母为16。\(C_2\) 不是当前候选的单帧属性；它读取前一帧与当前帧模拟轨迹的重叠段。
+因此完整目标的
 最小上下文是
 
 \[
@@ -44,7 +51,7 @@ F^{(1)}=H\frac{5EP+5TTC+2LK+2HC}{14}.
 
 ## 2. 精确关系与最坏情形符号界
 
-由权重可直接得到
+在 \(a_t=1\) 的相邻帧子域上，由权重可直接得到
 
 \[
 F^{(full)}=\frac78F^{(1)}+\frac18HC_2.
@@ -70,8 +77,23 @@ F^{(full)}=\frac78F^{(1)}+\frac18HC_2.
 \Longrightarrow \Delta F^{(full)}_{i0}>0,
 \]
 
-负向同理。这只是无需上下文的最坏情形充分条件；它不说明小 margin 一定翻转，也不应成为事后
-筛样阈值。实际 alignment 必须显式执行官方 (C_2)。
+负向同理。这只是相邻帧子域上无需读取实际 \(C_2\) 的最坏情形充分条件；它不说明小 margin
+一定翻转，也不应成为事后筛样阈值。实际 alignment 必须显式执行官方 \(C_2\)。
+
+### 2.1 稀疏 roster 的退化反例
+
+对现有42组×16 anchors的冻结 fit roster，只读时间戳审计得到：
+
+- roster 内相邻 current–previous pair：0/672；
+- 具有任一 roster 内相邻 pair 的组：0/42；
+- 同一 raw log 内相邻抽样 anchor 的最小正间隔约1.999267 s，超过0.55 s官方门。
+
+因此直接对该 roster 调用官方 adjacency mapping 会令所有 \(a_t=0\)，full score 与 one-frame
+score 机械相等，不能检验 surrogate alignment。该100%一致若被报告为科学结果将是接口伪证据。
+
+进一步从官方 raw log 的真实顺序恢复前一行，672/672 anchors均存在唯一合法上下文，42/42组均
+为16/16；时间差范围为0.498078–0.500686 s。所以正确方案是为每个 anchor 显式加入真实前一帧
+context row，而不是把 anchor index减一当作时间或放弃 two-frame 目标。
 
 ## 3. 对网络设计的直接约束
 
@@ -93,10 +115,10 @@ target 结果被读取前冻结。
 ### 4.1 冻结域
 
 - 沿用 B4R1 的合法 ragged candidate membership；
-- 每个可获得前帧上下文的 anchor，native 与所有 legal challenger 使用同一个冻结
-  \(\tau^{ctx}_{t-1}\)；
-- 无前帧上下文的 anchor 不静默删除，单列为 structural-unavailable，并预先规定其在总体分母中的
-  处理；
+- 每个 anchor 必须使用 raw log 中已资格化的唯一 previous token；native 与所有 legal challenger
+  使用同一个冻结 \(\tau^{ctx}_{t-1}\)；禁止用稀疏 roster 的上一 anchor 替代；
+- 当前 preflight 显示672/672上下文可用；正式执行仍须 fail-closed 复查。任何缺失不得静默删除，
+  应判定接口漂移；
 - 不读取 development/calibration/test/NavDream/target；不调整候选、外观或 scorer。
 
 ### 4.2 必须复算的量
@@ -123,6 +145,8 @@ C_{2,i},C_{2,0},\quad H_i,H_0.
 - 重新执行官方 `SceneAggregator` 与 `compute_final_scores`，逐候选复算；
 - 检查前后帧 token、时间间隔、轨迹采样、overlap index 与 source hashes；
 - 检查同一 anchor 的所有候选共享相同 previous context；
+- 检查 roster-only aggregation 确实为全 \(a_t=0\)，augmented-context aggregation确实为全
+  \(a_t=1\)，防止两条路径被混淆；
 - 由保存的 factor 独立复算上式，要求逐项数值闭合；
 - primary/replay/audit 三份 materialization 一致后才能读取科学统计。
 
@@ -141,6 +165,8 @@ C_{2,i},C_{2,0},\quad H_i,H_0.
 ## 5. 当前裁决
 
 完整官方目标已经在源码层面定位，并证明 temporal context 可能是被任务定义强制的必要输入。
+现有稀疏 roster 无法直接检验该项，但真实 raw-log previous context 已在 outcome-free 审计中达到
+672/672可用；下一步 alignment 必须采用 augmented-context roster。
 当前没有理由继续把 one-frame margin 当作最终训练真值；也没有理由在看到实际翻转前立即扩展
 网络。正确顺序仍是 B4R1 → frozen alignment → 必要时 temporal redesign → matched architecture。
 

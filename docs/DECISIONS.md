@@ -1056,3 +1056,19 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:**
   `refine-logs/2026-10-25_aorta_post_b3/ICCV_ORAL_STORY_READINESS_V4_CN.md`；
   `refine-logs/2026-10-25_aorta_post_b3/OFFICIAL_TARGET_DISCOVERY_AND_ALIGNMENT_V1_CN.md`。
+
+## ADR-0074：full-target alignment必须扩充真实previous context，禁止在稀疏anchor roster上伪闭合
+
+- **Decision:** AUGMENT_TRUE_PREVIOUS_ROW__ANCHOR_INDEX_IS_NOT_TIME。
+- **Evidence:** 现有672-anchor roster中0个current token在同一roster内具有≤0.55 s predecessor，
+  42/42组均为0 pair；直接官方聚合会对全部样本关闭two-frame权重。逐官方raw log恢复则初检
+  672/672 anchors存在唯一立即前一行，42/42组16/16，gap为0.498078–0.500686 s。
+- **Consequence:** future alignment为每个current anchor增加真实previous context row；native与全部legal
+  challenger共享相同previous trajectory。不得用anchor index减一、最近抽样anchor或roster-only
+  aggregation。部署时若上一帧已被AORTA替换，下一帧应使用实际selected trajectory；是否需要
+  stateful relation由alignment与sequential评估决定。
+- **Boundary:** 当前是outcome-free接口资格；不证明one-frame/full alignment、preference signal、
+  网络收益或驾驶收益。B4R1通过前不运行full-target科学实验。
+- **Artifacts:** experiments/R004H7/H7BS4B4T0_TEMPORAL_CONTEXT_PREFLIGHT.md；
+  src/aorta_drive/evaluation/temporal_context_roster.py；
+  scripts/audit_r004h7bs4b4t0_temporal_context_roster.py。

@@ -1,9 +1,17 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 two-frame上下文roster审查：OUTCOME_FREE_INTERFACE_PASS，formal replay待完成。**
+> 现有672-anchor fit roster内0/672存在≤0.55 s相邻token，直接调用官方aggregator会把two-frame
+> 权重全部置零并伪造full=one-frame的100%对齐；但从261个官方raw logs逐token恢复时，672/672
+> anchors均有唯一合法previous row，42/42组为16/16，gap为0.498078–0.500686 s。后续alignment
+> 必须使用augmented-context roster，禁止把anchor index当时间。已实现fail-closed resolver、summary、
+> runner与8项测试；冻结提交上的formal replay尚待完成，B4R1与网络训练状态不变。
+
 > **2026-10-25 ICCV/Oral叙事与完整目标审查：`COHERENT_HYPOTHESIS__NOT_YET_ORAL_READY`。**
 > 当前唯一故事收紧为“稳定感知不推出可区分决策；应在完整时域native–challenger差异支持上学习
 > 外观稳定的任务关系，并在不可识别或同时下界不足时保留native”。官方源码进一步确认完整分数
-> 含相邻帧two-frame extended comfort：`F_full=(7/8)F_one+(1/8)H*C2`，因此previous-action
+> 在存在合法相邻帧时含two-frame extended comfort：`F_full=(7/8)F_one+(1/8)H*C2`；无相邻帧
+> 时官方实现退化为one-frame。因此previous-action
 > context可能是任务定义强制的必要输入，而不是任意加模块。B4R1通过后必须先做冻结alignment；
 > matched scorer、NavDream、跨planner、clean no-harm与时延未通过前，状态仍非ICCV/Oral ready。
 > 详见`ICCV_ORAL_STORY_READINESS_V4_CN.md`与`OFFICIAL_TARGET_DISCOVERY_AND_ALIGNMENT_V1_CN.md`。

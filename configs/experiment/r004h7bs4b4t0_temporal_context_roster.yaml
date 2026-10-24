@@ -1,0 +1,42 @@
+experiment_id: R004H7BS4B4T0-temporal-context-roster-v1
+date: 2026-10-25
+status: outcome_free_interface_audit
+
+H7BS4B4T0:
+  scientific_role: qualify_true_previous_frame_context_for_future_full_target_alignment
+  scope:
+    role: fit
+    split: train
+    recording_groups: 42
+    anchors_per_group: 16
+    total_anchors: 672
+  adjacency:
+    source: immediate_previous_row_in_same_official_raw_log
+    maximum_gap_s: 0.55
+    anchor_index_is_time: false
+    selected_anchor_roster_may_supply_previous_frame: false
+  frozen_input_sha256:
+    group_role_manifest: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+    metric_manifest: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+  required_result:
+    all_672_current_tokens_unique_in_raw_logs: true
+    all_672_previous_contexts_available: true
+    all_42_groups_have_16_contexts: true
+  forbidden_inputs:
+    - B4_or_B4R1_candidate_scores
+    - teacher_or_learned_field_values
+    - development
+    - calibration
+    - official_test
+    - NavDream
+    - target_domain
+
+claim_boundary:
+  permitted:
+    - raw_log_temporal_context_availability
+    - authorization_to_preregister_full_target_alignment_after_B4R1_pass
+  prohibited:
+    - one_frame_or_full_target_alignment
+    - preference_signal
+    - learned_model_or_driving_gain
+
