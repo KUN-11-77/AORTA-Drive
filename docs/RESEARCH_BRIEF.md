@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H2D 定位 activation gauge，R004H2R1 通过 proper-loss/cap gates。R004H3 完成 16-group proxy rehearsal。R004H4P 未执行 geometry；R004H4P2 的低供给率因 speed gate 语义不一致而不能用于改理论。R004H4P2S 已确认缓存 PDM 动态速度在 128/128 anchors 上为零，并拒绝该字段。当前注册 R004H4P2R1，以双方同定义的末段位置平均速度重放原供给诊断。正式 coverage、Gate B、OOD 与创新性仍未成立，development 与官方 calibration 未读取。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H2D 定位 activation gauge，R004H2R1 通过 proper-loss/cap gates。R004H3 完成 16-group proxy rehearsal。R004H4P 未执行 geometry；R004H4P2S 已确认缓存 PDM 动态速度无效。R004H4P2R1 用同定义的末段位置平均速度重放后，供给从 26/128 修正为 82/128，但仍未通过 90%/每组75% 门。当前只允许设计并验证一个 native-conditioned、端点不变的中段扰动 provider；不得直接进入 geometry 或 development。正式 coverage、Gate B、OOD 与创新性仍未成立，development 与官方 calibration 未读取。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：运行 R004H4P2R1，在完全相同的 128 个 fit anchors、35-control provider 与 intent 阈值上，将双方 speed observable 统一为 `||p(4.0)-p(3.5)||/0.5`。只有原预注册的 `>=0.90` anchor 且每组 `>=0.75` 供给门通过，才能进入 fit-only geometry preflight；失败才允许注册一个有物理依据的 provider revision。不得放宽门或读取 development。
+- 下一阶段：先在合成轨迹上实现并审计 native-conditioned endpoint-invariant provider。候选只在 `0--3.5 s` 施加二阶端点为零的平滑法向扰动，`3.5--4.0 s` 与 native 完全一致；heading 必须来自扰动曲线切向，并显式检查速度、曲率和加速度包络。合成接口通过后才能注册 R004H4P3 fit-only supply run。不得放宽 intent 门、读取 geometry teacher 或 development。

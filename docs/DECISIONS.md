@@ -412,3 +412,20 @@
 - **Boundary:** this is a measurement-interface correction, not threshold tuning. It makes
   no instantaneous-speed claim and cannot open geometry or development unless the original
   supply adequacy rule passes.
+
+## ADR-0042 — Treat the remaining supply gap as route-conditioning failure
+
+- **Status:** accepted after R004H4P2R1
+- **Evidence:** the corrected replay supplies 82/128 anchors (`0.640625`) with a minimum
+  group rate of `0.5`, failing the unchanged `0.90`/`0.75` gate. Among 46 unsupplied anchors,
+  23 nearest-progress candidates already lie inside the progress interval but fail
+  cross-track or heading; another 23 fail progress or the deliberately undefined low-native-
+  displacement case.
+- **Decision:** a denser acceleration grid is not an adequate repair. The one authorized
+  provider revision must condition on the frozen native route and introduce smooth,
+  endpoint-invariant mid-horizon perturbations. It must preserve the final `[3.5,4.0] s`
+  segment, derive heading from the perturbed tangent, and pass physical-envelope and
+  adversarial implementation tests before any fit-data supply run.
+- **Boundary:** no provider revision is registered yet. The four native trajectories below
+  `2 m` remain outside the intent frame; thresholds are not relaxed. Geometry and development
+  remain closed.

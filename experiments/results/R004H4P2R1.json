@@ -1,0 +1,39 @@
+{
+  "experiment_id": "R004H4P2R1-comparable-speed-supply-replay-v1",
+  "status": "COMPLETED",
+  "decision": "STOP_CANDIDATE_SUPPLY_COVERAGE",
+  "implementation_revision": "98ae853c33fc0fe58b4268c70ecdfeaee6d72ddd",
+  "result_sha256": "b6adac68eeace552ab8076e774d35ba684dab7068377fde250cfc3f964f9d29d",
+  "audit_sha256": "5345a790d635e2d7a4d79f2747b475048a9ab2f9a0c13b61a2f4f37fd22a21bc",
+  "supply": {
+    "anchors_with_eligible_candidate": 82,
+    "anchor_count": 128,
+    "anchor_supply_fraction": 0.640625,
+    "minimum_group_anchor_supply_fraction": 0.5,
+    "required_anchor_supply_fraction": 0.9,
+    "required_each_group_supply_fraction": 0.75
+  },
+  "unsupplied_nearest_progress_failure_counts": {
+    "cross_track_above_budget": 14,
+    "progress_below_budget": 12,
+    "progress_above_budget": 11,
+    "heading_above_budget": 5,
+    "native_progress_too_small": 4
+  },
+  "integrity": {
+    "candidate_evaluations": 4256,
+    "first_failure_total": 4256,
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE",
+    "terminal_speed_quantity": "position_derived_final_segment_average_speed_for_both"
+  },
+  "claims": {
+    "candidate_supply_adequate": false,
+    "one_principled_provider_revision_authorized": true,
+    "threshold_relaxation_authorized": false,
+    "geometry_evaluated": false,
+    "development_access_authorized": false,
+    "coverage_established": false,
+    "gate_b_passed": false
+  }
+}
