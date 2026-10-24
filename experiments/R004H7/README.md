@@ -24,3 +24,9 @@ H7-B coverage failure后的唯一已注册下一步是
 机械复算0失败。完整记录见`H7BS1_RESULTS.md`。该结果只证明2.5秒prefix可查询，不证明
 完整候选的决策信息充分；H7-B2继续HOLD，必须先完成H7BS2候选晚期分叉、prefix
 node-set不可区分性与完整时域ROI诊断。H7-C训练仍HOLD。
+
+H7BS2现已完成并否定2.5秒最终路线：36/42 fit groups中存在128个prefix节点集合相同、
+完整集合不同的精确反例。注册的panel-level成本规则虽选出前移64×64，但它仍拒绝
+290/3864 eligible challengers；按候选无关算子的完整定义域要求，首个fit候选是前向
+96×64，保留3864/3864 queries。完整记录见`H7BS2_RESULTS.md`。只允许下一步H7BS3对
+该单一ROI做development支持资格；网络训练、H7-B2与H7-C继续HOLD。

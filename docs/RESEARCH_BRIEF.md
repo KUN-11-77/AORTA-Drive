@@ -1,5 +1,15 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-24 R004H7-BS2：`PREFIX_UNIVERSAL_SUFFICIENCY_FALSIFIED`。** outcome-blind
+> fit诊断覆盖42 groups、672 anchors、3864 eligible native/challenger pairs：128 pairs、
+> 36/42 groups的2.5秒lattice footprint集合完全相同而4秒集合不同，严格否定prefix
+> set-min的通用决策充分性；主0.5m阈值下151 pairs、40/42 groups晚于2.5秒分叉，完整
+> 区分节点平均34.21%未被prefix保留。机械重算0失败。原panel-level规则会选择前移
+> 64×64，但它仍丢290/3864 eligible challengers，故不能作为完整域；冻结字典中首个
+> 100%保留fit候选的是前向96×64（6144节点）。后者仍需development、视觉可观测性与
+> P50/P95时延资格，不是网络效果或创新结论。H7-B2/H7-C继续HOLD。完整记录见
+> `experiments/R004H7/H7BS2_RESULTS.md`。
+
 > **2026-10-24 R004H7-BS1：`DEVELOPMENT_SUPPORT_PASS`。** outcome-blind fit选择在冻结的
 > 1.0--4.0秒字典中选出2.5秒为最大共同可行前缀：622/672 anchors有效且42/42 groups
 > 达到至少12/16；3.0秒仅37/42 groups通过。随后一次性development资格复核得到

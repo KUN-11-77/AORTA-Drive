@@ -786,3 +786,23 @@ the current open-ended geometry certificate iteration remains STOP.
   scores for every possible field even when candidates diverge later. It does not establish visual
   correctness, decision relevance, driving benefit, safety, target generalization or novelty.
   External review remains unavailable.
+
+## ADR-0058 — Retire the 2.5-second final route and qualify full-horizon forward support
+
+- **Status:** accepted after H7BS2 fit-only diagnosis and exact mechanical replay.
+- **Evidence:** among 3864 eligible native/challenger pairs, 128 pairs in 36/42 groups have
+  identical 2.5-second lattice footprint sets but distinct 4-second sets. Their prefix set-min
+  scores are equal for every possible field. At the registered 0.5m threshold, 151 pairs in
+  40/42 groups first diverge after the prefix; 34.21% of complete distinguishing nodes are absent
+  from the prefix on a group-equal basis.
+- **Decision:** stop treating 2.5 seconds as a candidate final method. It may remain a diagnostic
+  endpoint only. H7-B2 and H7-C remain on hold.
+- **ROI correction:** the preregistered panel-level rule selected shifted 64×64, but that domain
+  retains only 3574/3864 eligible challengers. Because the candidate-independent operator requires
+  every compared query set to lie in its domain, that rule is insufficient for the final system.
+  The first frozen fit option with 3864/3864 support is forward 96×64 (`x=[-32,64]`).
+- **Next gate:** preregister one outcome-blind development qualification for exactly forward
+  96×64 with all-eligible-candidate preservation. Passing does not authorize network training;
+  visual observability and synchronized P50/P95 latency/memory gates remain mandatory.
+- **Boundary:** H7BS2 is discrete-time fit geometry. It does not validate field accuracy, teacher
+  relevance, decisions, latency, driving safety, target generalization or novelty.

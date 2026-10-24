@@ -1,0 +1,59 @@
+{
+  "experiment_id": "R004H7BS2-candidate-information-and-roi-diagnosis-v1",
+  "status": "COMPLETED_FIT_ONLY",
+  "code_commit": "7a7fd6a",
+  "result_sha256": "92624f4a056f59e66dff816777700532a607bcd1191c004fe54e7c1e823892b7",
+  "mechanical_audit_sha256": "9323012778d09fc540e8d029eb7497b846a6d6a73d3d52e691b1003a4a445eb6",
+  "mechanical_audit": "PASS",
+  "external_review": "REVIEW_UNAVAILABLE",
+  "scope": {
+    "fit_groups": 42,
+    "anchors": 672,
+    "eligible_native_challenger_pairs": 3864,
+    "visual_teacher_or_decision_outcome_accessed": false,
+    "development_calibration_test_navdream_or_target_accessed": false
+  },
+  "prefix_information": {
+    "prefix_seconds": 2.5,
+    "complete_horizon_seconds": 4.0,
+    "exact_prefix_equal_full_distinct_pairs": 128,
+    "groups_with_exact_counterexample": 36,
+    "group_equal_exact_collapse_rate": 0.033326182354340095,
+    "group_equal_exact_collapse_bootstrap_95": [0.02568573152835307, 0.04151129274099191],
+    "primary_0_5m_late_divergence_pairs": 151,
+    "groups_with_primary_late_divergence": 40,
+    "group_equal_primary_late_divergence_rate": 0.03912825548449131,
+    "group_equal_primary_late_divergence_bootstrap_95": [0.032119173985987695, 0.04650146741128886],
+    "group_equal_full_distinguishing_fraction_absent_from_prefix": 0.3421321422763405,
+    "group_equal_absent_fraction_bootstrap_95": [0.33116989197444674, 0.3529636986039018],
+    "verdict": "PREFIX_UNIVERSAL_SUFFICIENCY_FALSIFIED"
+  },
+  "roi_fit": {
+    "registered_panel_level_selection": "forward_shift_64x64",
+    "registered_selection_interpretation": "PANEL_COVERAGE_ONLY_NOT_COMPLETE_CANDIDATE_SUPPORT",
+    "original_64x64": {
+      "valid_anchors": 491,
+      "groups_meeting_12_of_16": 25,
+      "eligible_challenger_retention": [2878, 3864]
+    },
+    "forward_shift_64x64": {
+      "valid_anchors": 608,
+      "groups_meeting_12_of_16": 42,
+      "eligible_challenger_retention": [3574, 3864]
+    },
+    "forward_extend_96x64": {
+      "valid_anchors": 657,
+      "groups_meeting_12_of_16": 42,
+      "eligible_challenger_retention": [3864, 3864]
+    },
+    "symmetric_128x128": {
+      "valid_anchors": 657,
+      "groups_meeting_12_of_16": 42,
+      "eligible_challenger_retention": [3864, 3864]
+    },
+    "strict_theory_derived_minimum_candidate_complete_option": "forward_extend_96x64",
+    "strict_option_status": "FIT_SELECTED_PENDING_ONE_SHOT_DEVELOPMENT_SUPPORT_AND_LATENCY_QUALIFICATION"
+  },
+  "next_status": "STOP_2_5S_PREFIX_AS_FINAL_METHOD__PREREGISTER_H7BS3_96X64_DEVELOPMENT_SUPPORT_ONLY",
+  "claim_boundary": "The fit geometry falsifies universal 2.5-second set-min sufficiency and identifies 96x64 as the smallest preregistered option retaining all fit eligible candidate queries. It does not establish visual correctness, decision relevance, network quality, latency, driving benefit, safety, or generalization."
+}

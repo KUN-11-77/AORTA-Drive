@@ -211,3 +211,20 @@ M_{2.5}(\tau;u)=\min_{q\in F_{25}(\tau)}u(q),
 \(F_{25}(\tau_i)=F_{25}(\tau_j)\)，则对任意场 \(u\) 都有
 \(M_{2.5}(\tau_i;u)=M_{2.5}(\tau_j;u)\)；后段分叉不能由任何更强视觉backbone或更低
 预测误差恢复。这一结构性不可区分性必须在读取decision outcome前单独审查。
+
+H7BS2在fit上构造了这种反例。令无限、同相位的1m lattice离散集合为
+\(F_k(\tau)\)。若 \(F_{25}(\tau_i)=F_{25}(\tau_j)\)，则对所有 \(u\) 均有相同
+\(M_{2.5}\)。若 \(F_{40}(\tau_i)\ne F_{40}(\tau_j)\)，从集合差取一点赋负值即可构造
+能由完整时域区分两者的场。实验在36/42 groups发现128个这样的eligible pairs，因此
+2.5秒通用充分性已被否定，而不是“尚未证明”。
+
+完整候选域还要求
+
+\[
+\forall \tau\in\mathcal C_{eligible}(I),\qquad F_{40}(\tau)\subseteq\Omega.
+\]
+
+“每个anchor至少一个challenger可查”不蕴含该条件。H7BS2前移64×64虽通过旧panel门，
+却只保留3574/3864 eligible challengers；前向96×64才是冻结字典中首个fit上满足全部
+候选包含的方案。该结论只确定空间定义域候选，视觉网络是否能在该域预测、所需感受野、
+误差随距离的增长及真实推理时延仍是独立假设。
