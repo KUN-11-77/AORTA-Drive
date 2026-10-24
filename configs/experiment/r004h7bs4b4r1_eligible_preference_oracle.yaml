@@ -1,0 +1,138 @@
+experiment_id: R004H7BS4B4R1-eligible-source-preference-oracle-v1
+date: 2026-10-25
+status: preregistered_not_run
+
+H7BS4B4R1:
+  scientific_role: fit_only_legal_candidate_domain_preference_label_and_oracle_qualification
+  parent_b4_decision: INVALID_PREFERENCE_LABEL_INTERFACE
+  parent_b4_positive_diagnostics_may_not_be_used: true
+  design_repair_source: pre_b4_frozen_h7bs1_intent_membership_only
+  estimand:
+    name: legal_domain_native_conditioned_one_frame_NAVSIM_task_utility
+    definition: each_frozen_intent_eligible_candidate_scored_independently_against_the_same_native_context
+    all_registered_but_ineligible_candidates: prohibited
+    full_official_PDMS: false
+    omitted_component: two_frame_extended_comfort_requires_cross_anchor_aggregation
+  scope:
+    role: fit
+    split: train
+    recording_groups: 42
+    anchors_per_group: 16
+    total_anchors: 672
+    registered_challengers_per_anchor: 6
+    statistical_independent_unit: recording_group
+    repeated_units: [anchor, candidate, candidate_pair]
+  frozen_input_sha256:
+    group_role_manifest: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+    metric_manifest: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+    h7bs1_fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+  candidate_panel:
+    provider: native_fixed_normal_c2_bump_v1
+    amplitudes_m: [-1.5, -1.0, -0.5, 0.5, 1.0, 1.5]
+    membership: frozen_h7bs1_challenger_eligible_mask
+    desired_interval_s: 0.5
+    desired_horizon_s: 4.0
+    official_execution_interval_s: 0.1
+    required_pose_reconstruction: bit_exact
+  candidate_domain:
+    vertex_definition: native_union_frozen_intent_eligible_challengers
+    expected_eligible_challengers: 3864
+    expected_zero_eligible_anchors: 15
+    expected_nonzero_eligible_anchors: 657
+    expected_total_scored_candidates: 4536
+    expected_complete_graph_pairs: 13402
+    zero_eligible_anchor_policy: retain_native_only_anchor_with_zero_oracle_gain_and_zero_pair_rate
+    complete_case_deletion: prohibited
+    masked_candidate_scoring: prohibited
+  one_frame_scorer:
+    progress_weight: 5.0
+    ttc_weight: 5.0
+    lane_keeping_weight: 2.0
+    history_comfort_weight: 2.0
+    two_frame_extended_comfort_weight: 2.0
+    driving_direction_horizon: 1.0
+    driving_direction_compliance_threshold: 2.0
+    driving_direction_violation_threshold: 6.0
+    stopped_speed_threshold: 0.005
+    future_collision_horizon_window: 1.0
+    progress_distance_threshold: 5.0
+    lane_keeping_deviation_limit: 0.5
+    lane_keeping_horizon_window: 2.0
+    human_penalty_filter: true
+  reactive_traffic_policy:
+    target_velocity: 10.0
+    min_gap_to_lead_agent: 1.0
+    headway_time: 1.5
+    accel_max: 1.0
+    decel_max: 2.0
+    open_loop_detections_types: []
+    minimum_path_length: 20.0
+    planned_trajectory_samples: null
+    planned_trajectory_sample_interval: null
+    radius: 100.0
+    add_open_loop_parked_vehicles: true
+    idm_snap_threshold: 3.0
+  decision_protocol:
+    independent_unit: recording_group
+    repeated_units: [anchor, candidate, candidate_pair]
+    numerical_tie_tolerance: 1.0e-12
+    diagnostic_absolute_margins: [0.0, 0.001, 0.005, 0.01, 0.02, 0.05]
+    diagnostic_margins_may_not_select_future_threshold: true
+    bootstrap_seed: 20261025
+    bootstrap_resamples: 10000
+    minimum_groups_with_nonzero_pair: 42
+    minimum_groups_with_strict_native_improvement: 21
+    oracle_gain_bootstrap_lower_must_be_strictly_positive: true
+    hard_failure_rescue_role: descriptive_mission_alignment_not_a_posthoc_gate
+    all_sixteen_anchors_remain_in_every_group_mean: true
+    thresholds_identical_to_b4: true
+    if_all_implementation_and_signal_gates_pass: GO_TO_MATCHED_STRUCTURE_PREREGISTRATION__NO_TRAINING_YET
+    if_zero_groups_have_strict_native_improvement: STOP_CURRENT_LEGAL_PANEL_NO_ORACLE_IMPROVEMENT
+    otherwise: HOLD_CURRENT_LEGAL_PANEL_PREFERENCE_SIGNAL_INSUFFICIENT
+  replay:
+    in_run_sentinels: anchor_index_zero_in_each_of_42_groups
+    sentinel_legal_candidate_scores_and_realized_states: bit_exact_required
+    independent_full_materialization: required_before_scientific_conclusion
+  implementation_sha256:
+    eligible_preference_oracle_source: 4c3f73fd3cc1b964faf987081065e680567a6802d4464c4f53f24ceb9fe063c7
+    navsim_execution_source: f8ed588568fbeeebaa9c99ffd1d952f29cb490950b9490869bdf869cbdd00717
+    native_offset_source: 76a238a4538f49211ccb24bd30e1b2cda79b0f26fae656e49f184b7adbc2440e
+    h4_source: f4271d81c9484e3609bc9715205bda08d8ee9fb909f11a61d5a094dfbc06c034
+    b4_runner_dependency: e0db30afd7efaaa6107b8d1f86c55ff25a1f016a22f260e416c3979eee3382f8
+    runner_source: f263608a5522a76654226023b762b80bbffb3c58cebd3ad0b5be2fc6ddac9001
+    audit_source: 28f4395d83d1336e7f09b145530ae49a13c71df023952d974c8009511fc81c79
+    official_source:
+      navsim/evaluate/pdm_score.py: 7d0b82b8420c52dfedfda2a56b4aa44bd371cd1adbac58f001c19ccda60cf99c
+      navsim/planning/simulation/planner/pdm_planner/scoring/pdm_scorer.py: c9132b8b7019cc05c57573a26a8326cd7762dfdff35592046625a7fa895f6b62
+      navsim/planning/simulation/planner/pdm_planner/simulation/pdm_simulator.py: 30efc69ffc36409a496c84f560ba7201727c5e87c6a13d3f7a8e79f19ab6df4a
+      navsim/traffic_agents_policies/navsim_IDM_traffic_agents.py: 77f9063f5155b25781dcd479f3f128ae681ff2af302c5b548c1c177c559b68aa
+      navsim/planning/simulation/observation/navsim_idm_agents.py: b5de798df8d2b43006e4601129320eea66dbfd8ad8024cce5837b082ae3ded67
+      navsim/planning/script/config/pdm_scoring/scorer/pdm_scorer.yaml: 7047ff088ad32bb9c747bdff3248e54c21f29c5ec9b19015f0a602557fe60d1d
+      navsim/planning/script/config/common/traffic_agents_policy/navsim_IDM_traffic_agents.yaml: 9f4770c04acde8b17f3e282153bc5a1f607c7b526d880c0f403481bff6a0c7f8
+  forbidden_inputs:
+    - b4_candidate_scores_or_oracle_statistics
+    - learned_visual_field_values
+    - DINO_feature_values
+    - development
+    - calibration
+    - official_test
+    - NavDream
+    - target_domain
+  resources:
+    device: cpu
+    workers: 8
+    maximum_wall_minutes: 180
+    maximum_output_mib: 128
+
+claim_boundary:
+  permitted:
+    - source_fit_legal_candidate_domain_label_legality
+    - legal_panel_oracle_signal_and_rescue_opportunity
+    - authorization_or_rejection_of_a_separate_matched_structure_preregistration
+  prohibited:
+    - learned_preference_prediction
+    - architecture_or_loss_superiority
+    - held_out_or_cross_planner_generalization
+    - full_official_PDMS_or_driving_gain
+    - NavDream_or_target_robustness
+    - safety_or_top_venue_claim

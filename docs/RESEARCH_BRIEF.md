@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 B4接口失败已转化为B4R1候选域一致性预注册，尚未运行。** B4 的48个失败
+> anchors实际pose全部bit-exact；错误是168个冻结intent-ineligible challengers仍进入oracle。
+> B4R1因此把候选membership提升为estimand的一部分：每个context的合法顶点集为native加预B4
+> 冻结eligible challengers；标签、pair graph、Laplacian、oracle与后续loss必须共享同一集合。
+> 15个零challenger anchors保留并贡献零gain/零pair rate，禁止complete-case deletion。R1沿用B4
+> 原阈值和bootstrap，B4 outcome禁止作为设计输入；已实现可变候选域summary、fail-closed门、
+> runner/audit与合成反例测试，但未自动启动第三次正式运行。详见
+> `experiments/R004H7/H7BS4B4R1_PREREGISTRATION.md`。
+
 > **2026-10-25 R004H7-BS4B3：`STOP_ROAD_MARGIN_AS_GENERAL_RERANKER`。** 预注册
 > temporal first-fork 对2,033个common-min pairs均可定义，但只恢复170个exact-nonzero branch
 > contrasts；组等权恢复率8.26%，95% bootstrap CI为6.34–10.29%，远低于严格多数门。固定

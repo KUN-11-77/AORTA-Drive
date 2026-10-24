@@ -1,6 +1,6 @@
 # AORTA 候选偏好商空间理论 v0
 
-状态：`FORMAL_CANDIDATE_THEORY__B4_RUNNING__NOVELTY_AND_EMPIRICAL_NECESSITY_UNPROVEN`
+状态：`FORMAL_CANDIDATE_THEORY__B4_INVALID__B4R1_PREREGISTERED_NOT_RUN`
 
 本文只建立可核查的数学地基，并说明它如何约束网络与 loss。它不证明跨外观泛化、OOD coverage、
 真实驾驶安全或相对已有工作的原创性。B4 未通过时，不授权基于本文训练网络。
@@ -10,18 +10,24 @@ graph least squares 与谱隙依赖均有成熟先例，不能单独作为 AORTA
 
 ## 1. 合法估计对象
 
-固定物理场景 \(S\)、planner \(\pi\)、native \(\tau_0\) 和候选面板
-\(\mathcal T=\{\tau_0,\ldots,\tau_{K-1}\}\)。当前 evaluator 对每个候选独立使用
+固定物理场景 \(S\)、planner \(\pi\)、native \(\tau_0\) 和六个注册 challenger。令预冻结
+task-intent membership 为 \(e_i(S,\pi)\in\{0,1\}\)，合法候选域为
+
+\[
+V_{S,\pi}=\{0\}\cup\{i:e_i(S,\pi)=1\},\qquad K_{S,\pi}=|V_{S,\pi}|.
+\]
+
+当前 evaluator 对每个合法候选独立使用
 \([\tau_0,\tau_i]\) 面板评分，因此定义
 
 \[
-y_i=U(S;\tau_0,\tau_i),\qquad y\in\mathbb R^K.
+y_i=U(S;\tau_0,\tau_i),\qquad i\in V_{S,\pi}.
 \]
 
 网络输出 native-conditioned 节点分数
 
 \[
-s_i=s_\theta(X,\tau_0,\tau_i),\qquad s\in\mathbb R^K,
+s_i=s_\theta(X,\tau_0,\tau_i),\qquad i\in V_{S,\pi},
 \]
 
 而学习对象是 pair preference
@@ -33,10 +39,16 @@ s_i=s_\theta(X,\tau_0,\tau_i),\qquad s\in\mathbb R^K,
 这里的节点是候选轨迹，不是道路网格节点。由于 evaluator 存在面板归一化，\(y_i\) 不是脱离
 native context 的绝对效用；换 planner 或 native 时，估计对象也随之改变。
 
+**候选域一致性公理。** 标签、score vector、incidence matrix、Laplacian、loss、oracle 与 regret
+必须共享同一个 \(V_{S,\pi}\)。masked candidate 不得以任意常数、负无穷近似或伪标签进入图。
+B4 违反这一公理，故其正向 oracle diagnostics 无效；B4R1 只允许使用 B4 前已冻结的 H7BS1
+membership 修复。
+
 ## 2. 候选图、gauge 与可识别性
 
-令候选比较图为无向加权图 \(G=(V,E,w)\)，任取边方向并定义 incidence matrix
-\(D\in\mathbb R^{|E|\times K}\)：对边 \(e=(i\to j)\)，该行在 \(i\) 处为 \(-1\)，在 \(j\)
+对每个 context 令候选比较图为无向加权图 \(G_{S,\pi}=(V_{S,\pi},E,w)\)，任取边方向并定义
+incidence matrix \(D\in\mathbb R^{|E|\times K_{S,\pi}}\)：对边 \(e=(i\to j)\)，该行在 \(i\)
+处为 \(-1\)，在 \(j\)
 处为 \(+1\)。于是全部边偏好为
 
 \[
@@ -51,7 +63,7 @@ L_w=D^\top W D.
 
 ### 命题 1：商空间可识别性
 
-若正权边子图连通，则
+若 \(K_{S,\pi}\ge2\) 且正权边子图连通，则
 
 \[
 \ker D=\ker L_w=\operatorname{span}\{\mathbf 1\}.
@@ -60,6 +72,9 @@ L_w=D^\top W D.
 因此映射 \([s]\mapsto Ds\) 在商空间
 \(\mathbb R^K/\operatorname{span}\{\mathbf 1\}\) 上是一一的；候选偏好唯一确定节点分数的共同
 offset 等价类，但不能确定绝对零点。
+
+当 \(K_{S,\pi}=1\) 时，商空间维数为 0，没有 pair supervision、cycle 或 \(\lambda_2\)。该
+context 仍必须保留在 candidate-supply 与 oracle-gain 统计中并贡献零增益，但不应伪造图边。
 
 **证明。** \(D\mathbf 1=0\)。若 \(Dv=0\)，每条正权边两端的值相等；图连通推出所有节点值相等，
 故 \(v=c\mathbf 1\)。又
@@ -108,7 +123,7 @@ P_\perp=I-\frac1K\mathbf1\mathbf1^\top.
 
 ### 命题 2：单场景谱 regret 界
 
-若某一固定 context 上
+若某一固定 context 上 \(K_{S,\pi}\ge2\) 且
 
 \[
 \mathcal L_Q(s,y;G)\le \eta^2,
@@ -266,12 +281,15 @@ s_i=W_sh_i.
 6. 不确定性/半径与 point score 分开审计，不能用同一训练误差声称 coverage；
 7. 推理复杂度目标为
    \(O(C_{vision}+K(C_{traj}+C_{query}))\)，并实测 batch-1 P50/P95/P99。
+8. 可变大小面板必须以 ragged/mask-aware batching 实现；mask 在 score、softmax/argmax、edge
+   construction、loss、uncertainty 与 arbitration 全路径一致，并通过 permutation/mask metamorphic
+   tests。
 
 ## 9. 与实验一一对应的反证门
 
 | 理论/设计 | 最小验证 | 失败后的裁决 |
 |---|---|---|
-| 合法 \(y_i\) 与非平凡 preference | B4 双 materialization + oracle ceiling | 停止当前 panel/estimand |
+| 合法 \(y_i\) 与非平凡 preference | B4R1 合法域双 materialization + oracle ceiling | 停止当前 panel/estimand |
 | quotient loss 有任务信息 | correct image vs mismatch/removed/prior | 停止视觉必要性主张 |
 | exact-gradient 归纳偏置有必要 | matched direct-pair / ordinary scorer | 删除 Hodge/结构贡献 |
 | 完整时域有必要 | full 4 s vs prefix/fixed field | 若无差异，简化架构 |
@@ -293,6 +311,6 @@ s_i=W_sh_i.
 - 声称该 loss 或 architecture 已有经验优势或文献原创性；
 - 从训练平均 loss 推出 NavDream regret 保证；
 - 把 conditional native improvement 写成真实驾驶安全保证；
-- 在 B4 通过前训练或按 B4 结果调整图权重；
+- 在 B4R1 通过前训练或按 B4/B4R1结果调整图权重；
 - 用公式复杂度掩盖 matched baseline 可能等效的事实。
 
