@@ -82,7 +82,7 @@ H7BS4B4:
     navsim_execution_source: f8ed588568fbeeebaa9c99ffd1d952f29cb490950b9490869bdf869cbdd00717
     native_offset_source: 76a238a4538f49211ccb24bd30e1b2cda79b0f26fae656e49f184b7adbc2440e
     h4_source: f4271d81c9484e3609bc9715205bda08d8ee9fb909f11a61d5a094dfbc06c034
-    runner_source: be6b14f2e75b0d79b56f5b021e8320114532e0380b952432bca60df15da36846
+    runner_source: e0db30afd7efaaa6107b8d1f86c55ff25a1f016a22f260e416c3979eee3382f8
     audit_source: 477778a0a5395e11c2b1af5d195ceffc0b8f0c6d393a787b0426abb2c6904001
     official_source:
       navsim/evaluate/pdm_score.py: 7d0b82b8420c52dfedfda2a56b4aa44bd371cd1adbac58f001c19ccda60cf99c

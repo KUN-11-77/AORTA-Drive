@@ -259,7 +259,12 @@ def _process_anchor(task: tuple[dict[str, Any], dict[str, Any], str, str]) -> di
         and np.all(frozen_eligible)
     )
 
-    candidate_poses = [np.asarray(native.poses, dtype=np.float64), *challenger_poses]
+    # ``sample_cached_native_trajectory`` includes the exact current origin,
+    # whereas NAVSIM ``Trajectory`` stores only the eight future poses.
+    candidate_poses = [
+        np.asarray(native.poses[1:], dtype=np.float64),
+        *challenger_poses,
+    ]
     proposal, simulator, scorer, policy = _scoring_objects(stage)
     candidates: list[dict[str, Any]] = []
     primary_states: list[np.ndarray[Any, np.dtype[np.float64]]] = []
