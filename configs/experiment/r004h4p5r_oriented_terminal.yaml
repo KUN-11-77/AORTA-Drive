@@ -90,6 +90,10 @@ formal_certificates:
     - empty_input_rejection
     - temporal_refinement
 
+implementation:
+  legacy_geometry_source_sha256: 34c17da1f59c18d9b8810abcac7b86865f0d6d0c3c35184204fa57234146fbec
+  predecessor_hash_difference_scope: additive_disk_resolution_barrier_only
+
 required_outputs:
   - reference_area_and_convergence_per_candidate
   - disk_lower_bounds_as_retired_control

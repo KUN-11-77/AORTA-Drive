@@ -663,6 +663,14 @@ This does not assert that a tighter certificate will find a positive opportunity
 - **Boundary:** no provider, intent threshold, teacher graph, area threshold, ROI or data-role
   change is authorized. Development remains sealed.
 
+The first terminal launch failed closed before payload access because the legacy
+`geometry.py` hash no longer matched R004H4P5I. The exact revision diff contained only the
+additive `DiskNonInclusionResolutionBarrier` diagnostic introduced by R004H4P5D; none of the
+disk cover, official execution, teacher or candidate semantics changed. R004H4P5R therefore
+pins the new complete file hash explicitly while retaining exact predecessor hashes for every
+other local and official source. This is a provenance repair, not permission to accept an
+arbitrary source mismatch.
+
 ## ADR-0054 — Start fit-only visual mechanism validation in parallel with the terminal geometry gate
 
 - **Status:** accepted and registered before R004H5 data execution

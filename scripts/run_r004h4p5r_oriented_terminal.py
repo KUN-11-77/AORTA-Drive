@@ -46,7 +46,6 @@ from run_r004h4p5i_realized_geometry import (
     _load_teacher,
     _manifest_record,
     _selected_sentinels,
-    _verify_sources,
 )
 
 
@@ -63,6 +62,37 @@ def _phase_grid(
         rows=base_cells + int(phase_y > 0.0),
         resolution=resolution,
     )
+
+
+def _verify_frozen_sources(
+    terminal_config: dict[str, Any],
+    predecessor_config: dict[str, Any],
+    repository: Path,
+    navsim_root: Path,
+) -> None:
+    local = {
+        "navsim_geometry_source_sha256": repository
+        / "src/aorta_drive/evaluation/navsim_geometry.py",
+        "navsim_execution_source_sha256": repository
+        / "src/aorta_drive/evaluation/navsim_execution.py",
+        "opportunity_source_sha256": repository
+        / "src/aorta_drive/certification/opportunity.py",
+        "native_offset_source_sha256": repository
+        / "src/aorta_drive/candidates/native_offset.py",
+    }
+    for key, path in local.items():
+        if _sha256(path) != predecessor_config["implementation"][key]:
+            raise ValueError(f"unchanged predecessor source hash mismatch: {key}")
+    geometry_path = repository / "src/aorta_drive/certification/geometry.py"
+    if _sha256(geometry_path) != terminal_config["implementation"][
+        "legacy_geometry_source_sha256"
+    ]:
+        raise ValueError("terminal legacy geometry source hash mismatch")
+    for relative, expected in predecessor_config["implementation"][
+        "official_source_sha256"
+    ].items():
+        if _sha256(navsim_root / relative) != expected:
+            raise ValueError(f"official source hash mismatch: {relative}")
 
 
 def _candidate_geometry(
@@ -256,7 +286,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         if _sha256(path) != config["frozen_scope"][f"{name}_sha256"]:
             raise ValueError(f"{name} hash disagrees with terminal registration")
     repository = Path(__file__).resolve().parents[1]
-    _verify_sources(predecessor_config, repository, args.navsim_root)
+    _verify_frozen_sources(config, predecessor_config, repository, args.navsim_root)
 
     anchors = _selected_sentinels(args.time_set, args.role_manifest)
     metric_records = _metric_records(
