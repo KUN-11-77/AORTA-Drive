@@ -104,6 +104,23 @@ H7BS2:
     device: cpu
     maximum_wall_minutes: 30
     maximum_output_mib: 64
+  downstream_architecture_latency_gate:
+    status: required_before_any_roi_is_called_final
+    hardware: same_gpu_same_precision_same_batch_and_synchronized_execution
+    warmup_and_repetitions: must_be_preregistered_before_timing
+    required_breakdown:
+      - DINO_encoder
+      - spatial_decoder
+      - candidate_query_and_set_aggregation
+      - arbitration
+      - end_to_end
+    required_statistics: [p50_ms, p95_ms, peak_gpu_memory_mib, throughput_hz]
+    comparisons:
+      - frozen_64x64_baseline
+      - selected_minimum_support_roi
+      - symmetric_128x128_control
+      - any_multiscale_or_coordinate_query_candidate
+    acceptance_budget: must_come_from_frozen_control_loop_or_baseline_relative_contract_not_posthoc_results
 
 claim_boundary:
   permitted:
@@ -117,3 +134,4 @@ claim_boundary:
     - continuous_swept_footprint_certificate
     - development_test_target_or_NavDream_generalization
     - architecture_novelty
+    - inference_latency_or_deployability
