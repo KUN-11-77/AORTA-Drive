@@ -63,12 +63,15 @@ decision:
     - cached_native_is_PDM_Closed_and_not_human_future
     - nine_finite_native_samples_with_certified_inverse_transform
     - deterministic_candidate_replay
+    - at_least_one_intent_eligible_candidate
+    - at_least_one_continuous_geometry_valid_candidate
     - geometry_and_opportunity_pipeline_completes_without_contract_error
     - no_prohibited_role_access
   stage1_pass_only_authorizes: expanded_fit_only_preflight
   development_access_authorized: false
   h4_registration_authorized: false
   zero_geometry_pairs_or_zero_opportunities: report_as_design_evidence_not_silently_filter
+  zero_intent_eligible_candidates: stop_as_candidate_supply_gap
 
 resources:
   device: cpu

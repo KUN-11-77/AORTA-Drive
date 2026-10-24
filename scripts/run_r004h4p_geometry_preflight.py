@@ -302,6 +302,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "control": candidate.control.provenance,
             "intent_eligible": eligibility.eligible,
             "intent_reason": eligibility.reason,
+            "progress_ratio": eligibility.progress_ratio,
+            "terminal_cross_track_m": eligibility.terminal_cross_track_m,
+            "terminal_heading_difference_rad": (
+                eligibility.terminal_heading_difference_rad
+            ),
+            "terminal_speed_difference_mps": eligibility.terminal_speed_difference_mps,
         }
         if not eligibility.eligible:
             candidate_rows.append(row)
@@ -360,11 +366,24 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
         candidate_rows.append(row)
 
-    stage1_pass = len(candidate_rows) == len(first.candidates)
+    ledger_complete = len(candidate_rows) == len(first.candidates)
+    stage1_pass = ledger_complete and intent_count > 0 and geometry_count > 0
+    if not ledger_complete:
+        decision = "FAIL_INCOMPLETE_LEDGER"
+        next_step = "repair_before_any_further_data_access"
+    elif intent_count == 0:
+        decision = "STOP_NO_INTENT_ELIGIBLE_CANDIDATE"
+        next_step = "registered_expanded_fit_only_candidate_supply_diagnosis"
+    elif geometry_count == 0:
+        decision = "STOP_NO_CONTINUOUS_GEOMETRY_VALID_CANDIDATE"
+        next_step = "registered_expanded_fit_only_geometry_diagnosis"
+    else:
+        decision = "PASS"
+        next_step = "expanded_fit_only_preflight"
     result: dict[str, Any] = {
         "experiment_id": config["experiment_id"],
         "status": "COMPLETED",
-        "decision": "PASS" if stage1_pass else "FAIL",
+        "decision": decision,
         "completed_at_utc": datetime.now(timezone.utc).isoformat(),
         "implementation_revision": args.implementation_revision,
         "config_sha256": _sha256(args.config),
@@ -386,6 +405,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "terminal_displacement_m": float(np.linalg.norm(native_array[-1, :2])),
             "terminal_speed_mps": native_terminal_speed,
         },
+        "initial_speed_mps": initial_speed,
         "candidate_counts": {
             "raw": len(first.candidates),
             "intent_eligible": intent_count,
@@ -396,15 +416,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "geometry_failures": dict(sorted(geometry_failures.items())),
         "candidate_ledger": candidate_rows,
         "claims": {
-            "native_interface_closed": stage1_pass,
-            "continuous_noninclusion_interface_closed": stage1_pass,
+            "native_interface_closed": ledger_complete,
+            "continuous_noninclusion_interface_closed": geometry_count > 0,
             "opportunity_prevalence_estimated": False,
             "r004h4_registered": False,
             "development_access_authorized": False,
             "coverage_established": False,
             "gate_b_passed": False,
         },
-        "next_step": "expanded_fit_only_preflight",
+        "next_step": next_step,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

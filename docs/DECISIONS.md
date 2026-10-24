@@ -339,3 +339,16 @@
 - **Boundary:** the registered single fit anchor is an interface/runtime preflight only. It
   cannot estimate opportunity frequency, register H4, open development, establish coverage
   or support method claims.
+
+## ADR-0037 — Reject an unexercised geometry branch as H4P PASS
+
+- **Status:** accepted after the first H4P execution integrity check
+- **Evidence:** all 35 frozen challengers failed the intent/progress filter, so no challenger
+  entered continuous geometry. The initial implementation nevertheless emitted `PASS` and
+  marked the non-inclusion interface closed.
+- **Decision:** retain that raw artifact as invalid, change no scientific threshold, and
+  replay the same fit anchor after making PASS require at least one intent-eligible and one
+  continuous-geometry-valid challenger. Record all four intent metrics for every candidate.
+- **Boundary:** the zero-support observation may motivate a separately registered expanded
+  fit-only supply diagnosis; it cannot justify relaxing `[0.8,1.2]`, adding acceleration
+  values, or reading development.
