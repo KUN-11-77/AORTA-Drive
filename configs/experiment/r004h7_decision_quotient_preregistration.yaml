@@ -1,0 +1,77 @@
+experiment_id: R004H7-decision-quotient-structure-necessity-v1
+date: 2026-10-24
+status: preregistered_not_authorized_to_train
+
+claims:
+  primary: decision_contrast_error_is_more_relevant_to_ranking_failure_than_global_representation_error
+  supporting: decision_quotient_supervision_reduces_ranking_regret_under_matched_budget
+  anti_claims:
+    - gain_is_only_from_DINO_or_capacity
+    - node_potential_has_more_expressive_power_than_projected_edges
+    - development_shadow_ranking_implies_driving_safety
+
+stage_order: [H7A_theory, H7B_read_only_shadow_diagnosis, H7C_conditional_training]
+
+H7A:
+  data_access: none
+  required_oracles:
+    - graph_quotient_to_cut_space_isomorphism
+    - common_offset_invariance
+    - active_cell_linearization_and_global_counterexample
+    - set_min_oscillation_bound
+    - two_eta_regret_bound
+    - deterministic_tie_policy
+  failure_action: stop_before_H7B
+
+H7B:
+  authorization: held_until_H7A_pass_and_implementation_audit
+  model_updates: prohibited
+  split: historically_exposed_development
+  groups: 24
+  anchors_per_group: 16
+  independent_unit: recording_group
+  repeated_measures: [anchor, candidate, appearance]
+  panel_validity:
+    required_groups: 24
+    minimum_valid_anchors_per_group: 12
+    invalid_group_exclusion: prohibited
+  appearances: [clean, low_exposure, low_contrast, cool_cast]
+  diagnostics: [decision_contrast_error, edge_MAE, gauge_centered_node_MAE, DINO_drift]
+  outcomes: [teacher_regret, deterministic_ranking_flip]
+  bootstrap_seed: 20261024
+  bootstrap_replicates: 10000
+  failure_action: stop_current_decision_quotient_training_claim
+
+H7C:
+  authorization: held_until_H7A_and_H7B_supported
+  fit_groups: 42
+  selection_groups: 8
+  one_read_proxy_groups: 16
+  prohibited_splits: [development_for_selection, official_calibration, test, NavDream, target]
+  arms: [QP_EDGE, EDGE_PROJ, SDF_NODE, QP_DQ, EDGE_PROJ_DQ, DIRECT_PAIR]
+  seeds: [20261024, 20261025, 20261026]
+  parameter_match_relative_tolerance: 0.10
+  flop_match_relative_tolerance: 0.10
+  primary_endpoint: equal_group_weight_teacher_regret
+  secondary_endpoints:
+    - ranking_flip_rate
+    - decision_contrast_MAE
+    - appearance_ranking_drift
+    - edge_MAE
+    - parameter_count
+    - FLOPs
+    - latency
+  training_objective:
+    QP_DQ: edge_loss_plus_DQ_loss_plus_0p25_appearance_loss
+    EDGE_PROJ_DQ: edge_loss_plus_DQ_loss_plus_0p25_appearance_loss
+    DIRECT_PAIR: DQ_loss_plus_0p25_appearance_loss
+  no_result_driven_hyperparameter_expansion: true
+
+claim_boundary:
+  supported_scope: historically_exposed_source_method_formation_panels
+  prohibited_claims:
+    - untouched_test_generalization
+    - arbitrary_OOD_guarantee
+    - continuous_geometry_safety
+    - collision_or_closed_loop_safety
+    - ICCV_novelty_established_by_R004H7_alone

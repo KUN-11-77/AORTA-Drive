@@ -16,6 +16,8 @@
 | C10 | observation-conditioned bounded edge scale 可在冻结 potential 上被稳定学习 | proper-loss fit、cap diagnostics、pooled/uniform controls 与后续 common-denominator task endpoint | learned proper loss 不优于 uniform、边界塌缩或 learned 不优于 pooled | partial：raw-interface H2 falsified；gauge-repaired H2R1 `0.001564 < 0.380000` 且 zero cap；pooled/task endpoint 未验证 |
 | C11 | frozen Stage-P activation magnitude is the dominant conditioning defect in first H2 | fixed-anchor exact gradients and non-mutating first-step raw/RMS counterfactual | fewer than 6/8 activation-scale votes or normalization does not remove first-step cap entry | supported for registered instance：R004H2D 8/8 votes; not yet a scale-quality claim |
 | C12 | mean proper-scale fit translates into sharper simultaneous calibrated budgets | independent session-max proxy thresholds and common-denominator task endpoint | rank-max threshold cancels scale gains or learned utility ≤ controls | proxy warning：learned median budget `5.7849 m` > uniform `2.6315 m`; task-level status unresolved until H4 |
+| C13 | exact decision-contrast error 比全局 field/DINO error 更贴近候选 ranking flip 与 regret | R004H7A theory oracle；R004H7B 24-group read-only shadow diagnosis | 数学 oracle 失败、panel coverage不足或组级关联不优于 controls | registered；未执行 |
+| C14 | decision-quotient supervision 在公平容量与预算下减少候选 ranking regret/flip | R004H7C six-arm three-seed matched study；potential/projected-edge/direct-pair明确拆分 | QP-DQ 不优于 edge-only/SDF/direct-pair，或优势来自容量/选择不匹配 | HOLD；仅在 C13 通过后授权 |
 
 ## Claim language policy
 

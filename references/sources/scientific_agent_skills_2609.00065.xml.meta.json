@@ -1,0 +1,16 @@
+{
+  "requested_url": "http://export.arxiv.org/api/query?id_list=2609.00065",
+  "retrieved_at_utc": "2026-10-24T10:52:22.085740+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://export.arxiv.org/api/query?id_list=2609.00065",
+  "status": 200,
+  "content_type": "application/atom+xml; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 3167,
+  "sha256": "9e077e9077be90e6759aee175842d8b3ed348739b7440d0c46a9bcdc7ad7007b",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\scientific_agent_skills_2609.00065.xml",
+  "elapsed_seconds": 1.13,
+  "pdf_detected": false
+}
