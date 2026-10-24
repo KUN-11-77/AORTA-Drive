@@ -34,6 +34,12 @@
 
 H7-B 完整性门：24/24 groups 均存在；每组至少12/16 anchors 具有 native 与至少一个有效 challenger；否则整个 H7-B 记为 `INSUFFICIENT_PANEL_COVERAGE`，不得删除组后继续。
 
+无效 anchor 必须保留在 panel coverage 分母和失败账本中，不得以任何预测场、teacher
+margin 或 outcome 为依据过滤。只有上述完整性门整体通过后，组内统计才在有效 panel 上
+对四种外观等权求均值；每组仍等权进入组级推断。native footprint 越界、空节点集或
+official execution 非确定均使该 anchor 无效；单个 challenger 无效只将该 challenger 留在
+失败账本中，只要 native 与至少一个其他 challenger 有效，anchor panel 仍可计算。
+
 每个有效 panel 计算：
 
 - teacher margins 与预测 margins；
@@ -50,6 +56,13 @@ H7-B 完整性门：24/24 groups 均存在；每组至少12/16 anchors 具有 na
 3. 决策误差相对每个 control 的关联差异。
 
 H7-B `SUPPORTED` 要求 decision-contrast error 对 regret 的相关为正、其95%组级bootstrap下界大于0，并且相对每个冻结 control 的相关差异下界均大于0；flip AUROC 方向必须一致。否则 `UNSUPPORTED`，不得自动训练新网络。
+
+这里将“flip AUROC 方向一致”在读取 H7-B payload 前冻结为：decision-contrast error 的
+cluster-bootstrap 95% 下界严格大于 `0.5`，且它相对 edge MAE、gauge-centered node MAE
+和 DINO drift 的 AUROC 差值下界分别严格大于 `0`。bootstrap replicate 若不同时包含
+flip 与 non-flip 则不可计算；可计算 replicate 少于总数的95%时整体 fail closed 为
+`UNSUPPORTED`。exact teacher ties 不删除，按已冻结的 native-first、随后 challenger-order
+tie policy 计算并单独报告。
 
 该诊断因 outcome 与 decision contrast 共享查询结构，只能证明 endpoint relevance，不能单独证明算法创新。
 

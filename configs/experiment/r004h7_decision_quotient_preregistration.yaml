@@ -37,11 +37,23 @@ H7B:
     required_groups: 24
     minimum_valid_anchors_per_group: 12
     invalid_group_exclusion: prohibited
+    invalid_anchor_exclusion_from_coverage_denominator: prohibited
+    valid_panel_aggregation_only_after_global_coverage_pass: true
+    native_outside_ROI_empty_or_nondeterministic_execution_invalidates_anchor: true
+    invalid_challenger_is_ledgered_without_invalidating_other_challengers: true
   appearances: [clean, low_exposure, low_contrast, cool_cast]
   diagnostics: [decision_contrast_error, edge_MAE, gauge_centered_node_MAE, DINO_drift]
   outcomes: [teacher_regret, deterministic_ranking_flip]
   bootstrap_seed: 20261024
   bootstrap_replicates: 10000
+  bootstrap_confidence_interval: 0.95
+  minimum_valid_bootstrap_fraction: 0.95
+  supported_requires:
+    - decision_error_regret_spearman_CI95_low_strictly_positive
+    - decision_minus_each_control_spearman_CI95_low_strictly_positive
+    - decision_error_flip_AUROC_CI95_low_strictly_above_0p5
+    - decision_minus_each_control_AUROC_CI95_low_strictly_positive
+  exact_ties: retained_under_native_first_then_registered_challenger_order
   failure_action: stop_current_decision_quotient_training_claim
 
 H7C:
