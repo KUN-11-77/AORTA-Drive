@@ -1,0 +1,82 @@
+experiment_id: R004H7BS4B0A-forward96-exact-teacher-v1
+date: 2026-10-24
+status: preregistered_not_run
+
+H7BS4B0A:
+  scientific_role: exact_teacher_artifact_qualification_only
+  parent_decision: H7BS4A_STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE
+  parent_decision_must_remain_unchanged: true
+  motivation:
+    - H7BS3R1_qualified_the_forward96_geometric_domain_for_full_horizon_candidates
+    - H7BS4AD0_found_eight_geometrically_distinct_pairs_with_zero_supported_difference_nodes
+    - teacher_criticality_cannot_be_tested_until_the_same_forward96_domain_has_certified_labels
+  frozen_source_scope:
+    cache_count: 164
+    cache_role: source_frozen_NAVSIM_metric_caches_only
+    selected_layers: [CARPARK_AREA, DRIVABLE_AREA, INTERSECTION, ROADBLOCK]
+  grid:
+    x_support_m: [-32.0, 64.0]
+    y_support_m: [-32.0, 32.0]
+    resolution_m: 1.0
+    rows: 64
+    columns: 96
+    nodes: 6144
+    undirected_edges: 12128
+  teacher:
+    object: signed_distance_to_frozen_raw_polygon_cover_and_all_raw_boundaries
+    membership_arithmetic: exact_rational_on_binary64_coordinates
+    distance_output: enclosing_binary64_interval
+    transform_error: outward_rounded_analytic_bound
+    polygon_error_m: 0.0
+    polygon_error_scope: exact_frozen_cache_object_only
+    interpolation_or_resizing: forbidden
+  reproducibility:
+    independent_full_builds: 2
+    required_records_exact: true
+    required_artifact_bytes_exact: true
+    required_array_values_exact: true
+    required_cache_count: 164
+    required_total_node_count: 1007616
+  implementation_sha256:
+    builder_source: 2cec3b08c27b9da4dd14866597c58582a364a519d2219c9003b2997d79845569
+    audit_source: 1af4da20e42f272cb73852c2c625f8487945418defbbfa9d7854e83e570e9ae7
+    teacher_source: 62a55e93543dc777699a9e7563fe33fcacb7e630baf36f6de24c769d109923b0
+    transform_source: 4ff1a31d64b511ce25c259b74530386949468f4829a8186e0328dc6157aa64ea
+    geometry_source: 34c17da1f59c18d9b8810abcac7b86865f0d6d0c3c35184204fa57234146fbec
+    base_builder_source: 6af58bd6dc45b2da00b748f1e7cab692602d47ee5b0e0adc1db64512bbd21c4d
+  success_criterion:
+    - both_builds_complete_164_of_164_caches
+    - both_builds_contain_exactly_1007616_node_labels
+    - manifests_records_artifact_bytes_and_arrays_are_exact
+    - all_arrays_are_finite_and_error_ledgers_have_valid_direction
+    - frozen_implementation_hashes_match
+  stop_criterion:
+    - any_source_cache_or_artifact_failure
+    - any_replay_difference
+    - any_nonfinite_or_invalid_error_ledger
+    - wall_time_exceeds_120_minutes
+  forbidden_inputs:
+    - learned_visual_fields
+    - DINO_feature_values
+    - candidate_outcomes_or_planner_scores
+    - calibration
+    - official_test
+    - NavDream
+    - target_domain
+  resources:
+    device: cpu
+    workers: 8
+    maximum_wall_minutes: 120
+
+claim_boundary:
+  permitted:
+    - deterministic_forward96_exact_teacher_artifacts_exist_for_the_frozen_source_cache_objects
+    - forward96_teacher_artifacts_are_qualified_for_a_future_preregistered_criticality_test
+  prohibited:
+    - reversal_or_upgrade_of_H7BS4A_STOP
+    - visual_observability_or_decision_sufficiency
+    - model_accuracy_or_visual_robustness
+    - inference_latency
+    - driving_or_safety_gain
+    - development_test_target_or_NavDream_generalization
+    - architecture_novelty
