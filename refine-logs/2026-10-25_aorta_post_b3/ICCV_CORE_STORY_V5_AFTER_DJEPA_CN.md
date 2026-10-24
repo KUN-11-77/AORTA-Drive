@@ -21,6 +21,27 @@ native 与 challenger 的相对优劣稳定，因为决定排序的信息只存�
 > **Reliable driving under appearance shift requires invariant evidence about where candidate decisions
 > differ, not merely invariant perception or a stronger generic scorer.**
 
+### 2.1 一个容易混淆但决定架构的区分
+
+AORTA 不是“候选无关地预测最终决策量”，也不是“为每个候选重复运行整套视觉网络”。冻结定义为：
+
+- **candidate-independent visual encoding：**同一场景的视觉 token 只编码一次，保证共享证据与实时性；
+- **candidate-conditioned differential query：**每个 native–challenger pair 用完整时空差异提出不同问题，保证决策充分性；
+- **candidate-relative output：**输出 full-task margin，而不是独立绝对安全分数。
+
+这三者缺一不可。完全候选无关的 readout 无法一般地区分候选；完全候选专属的图像编码会令计算随
+候选数爆炸，也更容易把同一场景的外观噪声重复注入比较。
+
+### 2.2 审稿人的 15 秒理解路径
+
+1. **反常现象：**完美道路场也会因 common-min 与短前缀丢失候选排序信息；
+2. **核心 insight：**外观鲁棒性的基本对象不是“稳定场景”，而是“稳定且正确的候选决策差异”；
+3. **最小方法：**共享视觉编码 + 完整时空差异查询 + full-margin 输出 + 证据不足保持 native；
+4. **决定性证据：**相对 matched generic scorer，在 NavDream 和三类 planner 上降低 regret、错误替换与
+   hard failure，同时 clean 非劣且满足 P95 时延。
+
+若 Figure 1、摘要第一页或 poster 顶部不能在这四步内传达论文，就说明故事仍然过度依赖模块细节。
+
 ## 3. 顶会故事的四步闭环
 
 ### 3.1 Tension：两个成熟方向之间仍缺一座桥
@@ -83,6 +104,9 @@ native 与 challenger 的相对优劣稳定，因为决定排序的信息只存�
 这不是因为 antisymmetry 本身新，而是它精确编码了部署 estimand 的方向性。最终训练目标默认使用
 augmented-context full official margin；one-frame score 只作 B4R1 oracle 资格门与 `1/7` sign-certified
 子域。
+
+因此网络的计算形态是一次视觉编码、\(K\) 个轻量差异查询，而不是 \(K\) 次视觉前向。最终 profiling
+必须验证候选数 \(K\) 增长时 query 部分近似线性、视觉主干成本保持常数；否则“实时通用接口”不成立。
 
 点预测与不确定尺度分开。对未来独立 calibration groups，在固定模型与候选机制下对每组全部
 appearance/anchor/challenger normalized residual 取最大值，得到 simultaneous radius `q`。只在
@@ -179,6 +203,11 @@ factor、cycle、smoothness、depth、TTA 或 auxiliary reconstruction loss 必�
    necessity、relation error、ranking regret、false intervention、hard-failure net rescue、clean harm、
    P50/P95/P99 latency。
 
+Figure 1 的阅读顺序冻结为：左侧反例说明“稳定 perception 不充分”；中部只画一次共享视觉编码和
+pair-conditioned differential query；右侧画 positive lower bound 才替换 native。主图禁止加入训练
+细节、校准次序统计量、全部 baseline 名称或历史 road-field 分支，这些属于方法/实验图而不是核心
+insight。
+
 ## 9. 摘要最多两项贡献
 
 1. **主贡献候选：appearance-interventional differential evidence。** 一个由实证反例强制出的
@@ -188,6 +217,9 @@ factor、cycle、smoothness、depth、TTA 或 auxiliary reconstruction loss 必�
 
 不得把 DINO、geometry、JEPA、set attention、antisymmetry、Jordan decomposition、conformal、
 previous-plan token 或 frozen planner 单列为贡献。
+
+严格说，“共享视觉编码”与“候选条件查询”也不是两项贡献；它们共同实现同一个 differential-
+evidence operator。若拆成多个 bullet，会重新退化为模块拼装叙事。
 
 ## 10. 论文资格门
 

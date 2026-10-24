@@ -1188,3 +1188,15 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** 研究宪法只固定问题、数学对象、证据链和停止规则，不证明当前架构已达到 ICCV，
   也不授权 B4R1。当前仍为 `NOT_ICCV_READY / NOT_ORAL_READY`。
 - **Artifact:** `docs/AORTA_RESEARCH_CONSTITUTION_V1_CN.md`。
+
+## ADR-0081：候选无关视觉编码与候选条件决策查询必须分层
+
+- **Decision:** `ENCODE_ONCE__QUERY_BY_DIFFERENCE__OUTPUT_RELATIVE_MARGIN`。
+- **Reason:** “候选无关表示”若被误解成候选无关 readout，会重新产生 B3 的候选不可区分问题；为每个
+  候选重复编码图像虽可条件化，却使主干成本随候选数增长，并削弱同场景共享证据的控制。
+- **Consequence:** 单场景视觉 tokens 只计算一次；每个合法 native–challenger pair 由完整时空 signed
+  support 产生轻量 query；同一共享比较器输出反对称 full-task relative margin。复杂 candidate-specific
+  visual encoder 不进入主架构，除非共享编码在 matched 实验中被证明信息不足且收益足以覆盖时延。
+- **Falsifier:** 普通 matched set scorer 无需 differential query 即达到相同 regret/false-intervention；
+  或 query 成本、显存、P95 latency 随候选数增长超过冻结预算。任一成立都要求删除或收缩该设计。
+- **Boundary:** 分层接口是理论—计算合同，不是新颖性或效果证据；B4R1 和网络训练状态不变。

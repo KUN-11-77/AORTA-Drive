@@ -65,6 +65,8 @@ R_\theta(Z,-\nu,h)=-R_\theta(Z,\nu,h).
 
 这是待证架构假设，不是预先成立的创新。D-JEPA-style set relation、World4Scorer-style candidate state、普通 matched set scorer 和 independent scorer 是强制对照。如果差异支持不能在相同数据、参数、FLOP、token、优化器与 seed 预算下产生稳定增益，删除该网络创新主张。
 
+这里必须区分三个层次：视觉编码对候选无关并在同一场景只执行一次；差异查询由候选 pair 条件化；最终输出是 candidate-relative margin。若连 readout 也候选无关，则不能一般地区分决策；若为每个候选重复视觉编码，则破坏共享证据解释和实时预算。
+
 信息论只承担一个明确的设计职责：寻找对任务关系充分、对合法外观 nuisance 尽可能不敏感的表示 \(R\)。理想条件写为
 
 \[
