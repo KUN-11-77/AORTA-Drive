@@ -69,6 +69,11 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     replay_summary_exact = replay["summary"] == recomputed
     root_keys = (
         "experiment_id",
+        "status",
+        "code_commit",
+        "config_sha256",
+        "frozen_input_sha256",
+        "implementation_sha256",
         "label_estimand",
         "progress_mode",
         "zero_eligible_anchor_policy",
@@ -78,6 +83,22 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         "claim_boundary",
     )
     root_exact = all(primary[key] == replay[key] for key in root_keys)
+    provenance_exact = bool(
+        primary["status"] == "COMPLETED"
+        and replay["status"] == "COMPLETED"
+        and isinstance(primary["code_commit"], str)
+        and bool(primary["code_commit"])
+        and primary["config_sha256"] == sha256_file(args.config)
+        and replay["config_sha256"] == sha256_file(args.config)
+        and primary["frozen_input_sha256"] == stage["frozen_input_sha256"]
+        and replay["frozen_input_sha256"] == stage["frozen_input_sha256"]
+        and primary["implementation_sha256"] == stage["implementation_sha256"]
+        and replay["implementation_sha256"] == stage["implementation_sha256"]
+        and primary["development_calibration_test_navdream_target_accessed"] is False
+        and replay["development_calibration_test_navdream_target_accessed"] is False
+        and primary["full_official_pdms_claimed"] is False
+        and replay["full_official_pdms_claimed"] is False
+    )
     estimand_exact = bool(
         primary["label_estimand"] == stage["estimand"]["result_label"]
         and replay["label_estimand"] == stage["estimand"]["result_label"]
@@ -92,6 +113,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         and primary_summary_exact
         and replay_summary_exact
         and root_exact
+        and provenance_exact
         and estimand_exact
         and progress_mode_exact
     )
@@ -103,6 +125,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         "primary_summary_recomputed_exact": primary_summary_exact,
         "replay_summary_recomputed_exact": replay_summary_exact,
         "root_contract_exact": root_exact,
+        "provenance_contract_exact": provenance_exact,
         "label_estimand_exact": estimand_exact,
         "progress_mode_exact": progress_mode_exact,
         "failure_count": sum(
@@ -112,6 +135,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 primary_summary_exact,
                 replay_summary_exact,
                 root_exact,
+                provenance_exact,
                 estimand_exact,
                 progress_mode_exact,
             )

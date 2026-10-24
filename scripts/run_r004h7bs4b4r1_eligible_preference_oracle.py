@@ -274,6 +274,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "completed_at_utc": datetime.now(timezone.utc).isoformat(),
         "code_commit": args.code_commit,
         "config_sha256": sha256_file(args.config),
+        "frozen_input_sha256": dict(frozen),
+        "implementation_sha256": copy.deepcopy(stage["implementation_sha256"]),
         "label_estimand": str(stage["estimand"]["result_label"]),
         "progress_mode": progress_mode,
         "zero_eligible_anchor_policy": "retain_anchor_with_native_only_and_zero_gain",

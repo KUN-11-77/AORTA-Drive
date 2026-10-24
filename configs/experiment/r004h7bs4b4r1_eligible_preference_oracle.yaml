@@ -103,8 +103,8 @@ H7BS4B4R1:
     native_offset_source: 76a238a4538f49211ccb24bd30e1b2cda79b0f26fae656e49f184b7adbc2440e
     h4_source: f4271d81c9484e3609bc9715205bda08d8ee9fb909f11a61d5a094dfbc06c034
     b4_runner_dependency: e0db30afd7efaaa6107b8d1f86c55ff25a1f016a22f260e416c3979eee3382f8
-    runner_source: c975c8d9e44df575498afaf436ce2455efde1c1f20f5e96784ef842671d84d1d
-    audit_source: dde8f2b5bf8977c19517a5297de6557d842a250f46c4ac6eb6860c3ec6f6c889
+    runner_source: 6ac7e7f575631ede5a0d15c20f8cd5013419c4a19230b02db201773fa5262902
+    audit_source: 43389f6725f893b9775f53bec8c1ba393b15bef7b944b2f42b3101091ba19333
     official_source:
       navsim/evaluate/pdm_score.py: 7d0b82b8420c52dfedfda2a56b4aa44bd371cd1adbac58f001c19ccda60cf99c
       navsim/planning/simulation/planner/pdm_planner/scoring/pdm_scorer.py: c9132b8b7019cc05c57573a26a8326cd7762dfdff35592046625a7fa895f6b62
@@ -125,7 +125,7 @@ H7BS4B4R1:
   resources:
     device: cpu
     workers: 8
-    maximum_wall_minutes: 180
+    maximum_wall_minutes: 120
     maximum_output_mib: 128
 
 claim_boundary:
