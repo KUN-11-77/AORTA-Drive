@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -19,6 +20,18 @@ def audit(result: dict[str, Any]) -> dict[str, Any]:
     failures: list[str] = []
     if result.get("experiment_id") != "R004H4P4E-official-execution-interface-audit-v1":
         failures.append("experiment ID mismatch")
+    if result.get("status") != "COMPLETED":
+        failures.append("experiment status is not completed")
+    if (
+        result.get("implementation_revision")
+        != "06284a8fd3f13763fe56ed97cfe38f01b427d106"
+    ):
+        failures.append("implementation revision mismatch")
+    if (
+        result.get("config_sha256")
+        != "eb3e2ffbcca839c5161a5d246b9e7320850d67fc271cc0bd352982421e8ddd196"
+    ):
+        failures.append("registered config hash mismatch")
     scope = _mapping(result.get("data_scope"), "data_scope")
     if (
         scope.get("role") != "fit"
@@ -51,13 +64,35 @@ def audit(result: dict[str, Any]) -> dict[str, Any]:
         ):
             if row.get(gate) is not True:
                 failures.append(f"interface gate false: {gate}")
-        if float(row.get("maximum_desired_roundtrip_position_error_m", float("inf"))) > 1e-8:
+        numeric_fields = (
+            "maximum_desired_roundtrip_position_error_m",
+            "maximum_desired_roundtrip_heading_error_rad",
+            "maximum_transform_error_m",
+            "native_desired_to_realized_terminal_position_error_m",
+            "maximum_challenger_desired_to_realized_position_error_m",
+        )
+        values = {
+            key: float(row.get(key, float("nan"))) for key in numeric_fields
+        }
+        if any(not math.isfinite(value) or value < 0.0 for value in values.values()):
+            failures.append("anchor contains missing, negative or non-finite diagnostics")
+        if values["maximum_desired_roundtrip_position_error_m"] > 1e-8:
             failures.append("desired position roundtrip exceeds registered tolerance")
-        if float(row.get("maximum_desired_roundtrip_heading_error_rad", float("inf"))) > 1e-10:
+        if values["maximum_desired_roundtrip_heading_error_rad"] > 1e-10:
             failures.append("desired heading roundtrip exceeds registered tolerance")
-        supplied += int(row.get("realized_has_eligible_candidate") is True)
+        eligible_count = row.get("realized_eligible_candidate_count")
+        if not isinstance(eligible_count, int) or not 0 <= eligible_count <= 6:
+            failures.append("realized eligible-candidate count is invalid")
+            eligible_count = -1
+        has_supply = row.get("realized_has_eligible_candidate") is True
+        has_both = row.get("realized_has_both_signed_eligible_candidates") is True
+        if has_supply != (eligible_count > 0):
+            failures.append("realized supply boolean disagrees with eligible count")
+        if has_both and eligible_count < 2:
+            failures.append("both-sign diagnostic is impossible for eligible count")
+        supplied += int(has_supply)
         both_signed += int(
-            row.get("realized_has_both_signed_eligible_candidates") is True
+            has_both
         )
         final_identity += int(
             row.get("desired_final_identity_survived_execution_for_all_candidates")
@@ -79,6 +114,9 @@ def audit(result: dict[str, Any]) -> dict[str, Any]:
         failures.append("secondary diagnostics do not replay from ledger")
     if result.get("interface_failures") != []:
         failures.append("interface failure ledger is not empty")
+    elapsed = float(result.get("elapsed_seconds", float("nan")))
+    if not math.isfinite(elapsed) or elapsed <= 0.0:
+        failures.append("elapsed time is missing or invalid")
 
     interface_passed = not failures
     expected_decision = (

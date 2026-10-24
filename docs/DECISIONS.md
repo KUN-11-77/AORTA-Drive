@@ -553,3 +553,17 @@
 - **Boundary:** only a fit-only realized-trajectory preflight may be registered next. No
   provider/threshold revision and no development, calibration, test or target access is
   authorized. External cross-model integrity review remains unavailable.
+
+## ADR-0050 — Make the payload-free result audit fail closed on non-finite fields
+
+- **Status:** accepted during R004H4P4E evidence sealing
+- **Problem:** the first mechanical checker compared roundtrip fields only with upper
+  thresholds. In IEEE arithmetic, `NaN > threshold` is false, so a corrupted result could
+  evade that isolated check even though the actual raw result contained only finite values.
+- **Repair:** require exact implementation revision and config hash, completed status,
+  finite nonnegative interface/diagnostic values, valid candidate-count ranges, agreement
+  between count and supply booleans, feasible both-sign counts and positive finite elapsed
+  time. Re-audit the unchanged raw result and preserve both audit versions by hash.
+- **Boundary:** this does not rerun or alter the experiment and cannot change scientific
+  endpoints. It strengthens only evidence validation; external independent review remains
+  unavailable.
