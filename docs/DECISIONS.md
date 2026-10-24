@@ -986,3 +986,22 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** these labels are one-frame, independently normalized surrogate scores and omit
   two-frame extended comfort. A positive oracle would not establish complete official PDMS gain,
   an absolute utility, safety, or cross-planner calibration.
+
+## ADR-0070 — Calibrate simultaneous intervention error at the recording-group level
+
+- **Status:** accepted as the only current route from predicted scale to a finite-sample coverage
+  statement; empirical validation remains pending.
+- **Decision:** freeze the point/scale model, reduce every calibration recording group to the maximum
+  normalized residual across its registered appearances, anchors and legal challengers, then use
+  split-calibration order statistic `k = ceil((n+1)(1-alpha))`. If `k > n`, set the radius to infinity
+  and abstain.
+- **Reasoning:** anchors, appearances and candidates inside one recording group are correlated and
+  cannot be counted as independent calibration samples. The group maximum makes the event match the
+  simultaneous arbitration theorem.
+- **Finite-sample consequence:** if a future untouched calibration split has 42 independent groups,
+  95% coverage has finite `k=41`; 99% coverage requires `k=43` and is therefore vacuous without
+  extra assumptions. Existing fit/development groups cannot be relabeled as calibration, and the
+  paper may not inflate the sample size to 672 anchors.
+- **Boundary:** exchangeability applies only to the calibration distribution with fixed model and
+  candidate mechanism. NavDream, another planner or another candidate policy receives empirical
+  coverage and abstention analysis, not the source guarantee.

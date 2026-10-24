@@ -398,6 +398,41 @@ challenger–challenger labels 由 native-conditioned scalar 代数派生，故 
 不能无条件外推到 NavDream、另一 planner 或新 candidate policy。网络输出 uncertainty 也不等于
 上述 coverage，必须单独验证 sharpness、false improvement 与 shift 后失覆盖。
 
+### 命题 4.1：recording-group 级有限样本同时校准
+
+冻结 point/scale model 后，对每个 calibration recording group \(g=1,\ldots,n\) 定义
+
+\[
+R_g=\max_{a,i}
+\frac{|\widehat\delta_{gai0}-\delta^*_{gai0}|}{\sigma_{gai}},
+\qquad \sigma_{gai}>0,
+\]
+
+其中最大值同时覆盖该组预注册的 appearances、anchors 与合法 challengers。若 calibration groups
+与一个新 group 在固定模型、候选机制和非一致性分数下可交换，令
+
+\[
+k=\left\lceil(n+1)(1-\alpha)\right\rceil,
+\qquad q_{1-\alpha}=R_{(k)},
+\]
+
+其中 \(R_{(k)}\) 是第 \(k\) 个次序统计量；若 \(k>n\)，则定义
+\(q_{1-\alpha}=+\infty\)。令 \(r_{gai}=q_{1-\alpha}\sigma_{gai}\)，则新 group 的全部注册比较
+同时被覆盖的概率至少为 \(1-\alpha\)。
+
+**证明要点。** 在可交换性下，新 group 的 score 在 \(n+1\) 个 scores 中的秩均匀；采用上述
+有限样本上取整分位数，超出 \(q_{1-\alpha}\) 的概率不超过 \(\alpha\)。group 内所有比较已经由
+最大值合并，因此结论是 group-level simultaneous coverage，而不是把相关 anchors/candidates
+误当独立样本。证毕。
+
+**样本量边界。** 当 \(n=42\) 时，95% coverage 的 \(k=41\le42\)，存在有限经验分位数；99%
+coverage 的 \(k=43>42\)，无附加分布假设时只能给出无穷半径并全部拒判。论文不得用 672 anchors
+冒充 672 个独立 calibration units 来获得更漂亮的 coverage。
+
+**OOD 边界。** NavDream、另一 planner 或新 candidate policy 通常不满足上述可交换性。它们只能
+报告 empirical coverage、risk–coverage 与 failure stratification；若检测到 shift，默认动作是扩大
+拒判而不是继续沿用 source 保证。
+
 ## 8. 网络实现合同
 
 最小候选网络为

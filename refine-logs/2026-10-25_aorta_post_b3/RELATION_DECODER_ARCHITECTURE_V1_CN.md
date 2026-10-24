@@ -135,8 +135,18 @@ R_g=\max_{a,i}
 \frac{|\widehat\delta_{gai0}-\delta^*_{gai0}|}{\sigma_{gai}}
 \]
 
-冻结 quantile \(q_{1-\alpha}\)，推理半径为 \(r_i=q_{1-\alpha}\sigma_i\)。同分布 exchangeability
-之外只报告 empirical coverage；不得把 source calibration 写成任意 NavDream 保证。
+用 recording group 作为独立单位，令
+
+\[
+k=\left\lceil(n+1)(1-\alpha)\right\rceil,
+\qquad q_{1-\alpha}=R_{(k)},
+\]
+
+并取 \(r_i=q_{1-\alpha}\sigma_i\)。若 \(k>n\)，半径定义为无穷并全部拒判。该 split-calibration
+规则在固定模型、候选机制和 group exchangeability 下给出 group-level simultaneous coverage；
+条件之外只报告 empirical coverage，不得把 source calibration 写成任意 NavDream 保证。若独立
+calibration 有 42 个 groups，则可支持有限的 95% 分位数，但不足以无假设地支持有限 99%
+simultaneous radius；fit/development groups 不能回收充当 calibration。
 
 ## 5. 推理与拒判
 
