@@ -1,8 +1,11 @@
 # R004H7-BS4B0A2 Experiment Audit
 
-**Date:** 2026-10-25  
-**External reviewer:** `REVIEW_UNAVAILABLE`  
-**Mechanical verdict:** `PASS`  
+**Date:** 2026-10-25
+
+**External reviewer:** `REVIEW_UNAVAILABLE`
+
+**Mechanical verdict:** `PASS`
+
 **Scientific integrity verdict:** `PROVISIONAL_SCOPE_WARN`
 
 跨模型 reviewer backend 当前不可用，因此该结果只有内部机械审计，不冒充独立科学复核。
