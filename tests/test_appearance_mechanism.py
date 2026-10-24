@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import numpy as np
 
 from aorta_drive.evaluation.appearance_mechanism import (
@@ -7,6 +10,7 @@ from aorta_drive.evaluation.appearance_mechanism import (
     mechanism_condition_supported,
     oriented_grid_edges,
 )
+from run_r004h5_appearance_mechanism import _original_batch_cardinalities
 
 
 def test_edge_metrics_are_gauge_invariant_and_use_registered_order() -> None:
@@ -50,4 +54,32 @@ def test_constant_field_cannot_support_the_mechanism() -> None:
         clean_edge_energy_mae_m=metrics.edge_energy_mae_m,
         teacher_cosine=metrics.teacher_cosine,
     )
+
+
+def test_original_cache_batch_cardinality_replays_final_short_batch(
+    tmp_path: Path,
+) -> None:
+    hashes = [f"{index:064x}" for index in range(13)]
+    records = [
+        {
+            "slots": [
+                {"image_sha256": image_hash}
+                for image_hash in hashes[:6]
+            ]
+        },
+        {
+            "slots": [
+                {"image_sha256": image_hash}
+                for image_hash in hashes[6:]
+            ]
+        },
+    ]
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(
+        json.dumps({"unique_image_count": 13, "records": records}),
+        encoding="utf-8",
+    )
+    cardinalities = _original_batch_cardinalities(manifest, batch_size=8)
+    assert [cardinalities[value] for value in hashes[:8]] == [8] * 8
+    assert [cardinalities[value] for value in hashes[8:]] == [5] * 5
 

@@ -692,3 +692,12 @@ arbitrary source mismatch.
   transform also beats zero-field task error, retains positive teacher-edge correlation and
   avoids constant-field collapse. A failure redirects work to the visual objective/architecture,
   not to further geometry refinement.
+
+The first full R004H5 launch stopped at anchor 340 on its first clean DINO bit-replay mismatch.
+The preceding 339 anchors and the one-anchor integration smoke were exact. Diagnosis identified
+one image from the original cache builder's final five-image batch: replaying it in a batch of
+eight changed the BF16 output materially, while replaying the exact original batch cardinality
+of five restored bit equality for all five images. The repair freezes, for every image hash, the
+original cache-build batch cardinality and pads incomplete condition batches with duplicate
+inputs whose outputs are discarded. No appearance transform, model, checkpoint, data role,
+metric or decision threshold changes. The failed partial fields cannot enter any summary.

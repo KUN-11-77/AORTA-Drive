@@ -48,6 +48,9 @@ frozen_inference:
   normalization_mean: [0.485, 0.456, 0.406]
   normalization_std: [0.229, 0.224, 0.225]
   dino_feature: normalized_last_4_layer_mean
+  dino_batch_size: 8
+  batch_kernel_contract: reproduce_original_cache_batch_cardinality_per_image
+  incomplete_condition_batch_padding: duplicate_existing_images_and_discard_padding_outputs
   quotient_field_output: subtract_spatial_mean
   edge_order: all_rightward_then_all_downward
   edge_length_m: 1.0

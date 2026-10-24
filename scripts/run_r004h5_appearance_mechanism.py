@@ -98,6 +98,31 @@ def _feature_records(path: Path, fit_groups: frozenset[str]) -> dict[str, dict[s
     return selected
 
 
+def _original_batch_cardinalities(
+    path: Path, *, batch_size: int
+) -> dict[str, int]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    records = payload.get("records")
+    if not isinstance(records, list) or batch_size <= 0:
+        raise ValueError("invalid feature manifest or batch size")
+    hashes = sorted(
+        {
+            str(slot["image_sha256"])
+            for record in records
+            if isinstance(record, dict) and isinstance(record.get("slots"), list)
+            for slot in record["slots"]
+        }
+    )
+    if len(hashes) != int(payload.get("unique_image_count", -1)):
+        raise ValueError("unique image hashes disagree with the frozen feature manifest")
+    cardinalities: dict[str, int] = {}
+    for start in range(0, len(hashes), batch_size):
+        batch = hashes[start : start + batch_size]
+        for image_hash in batch:
+            cardinalities[image_hash] = len(batch)
+    return cardinalities
+
+
 def _load_npy(path: Path) -> GenericArray:
     with path.open("rb") as stream:
         return cast(
@@ -145,38 +170,48 @@ def _extract_variants(
     backbone: Any,
     device: torch.device,
     batch_size: int,
+    original_batch_cardinalities: Sequence[int],
 ) -> dict[str, Float32Array]:
-    tensors: list[torch.Tensor] = []
-    keys: list[tuple[str, int]] = []
+    if len(raw_images) != len(original_batch_cardinalities):
+        raise ValueError("raw images and original batch cardinalities must align")
+    items: dict[tuple[str, int], list[tuple[int, torch.Tensor]]] = defaultdict(list)
     for condition in APPEARANCE_CONDITIONS:
         for slot, image in enumerate(raw_images):
-            tensors.append(_preprocess(image, condition))
-            keys.append((condition, slot))
+            required = int(original_batch_cardinalities[slot])
+            if required <= 0 or required > batch_size:
+                raise ValueError("invalid original cache batch cardinality")
+            items[(condition, required)].append((slot, _preprocess(image, condition)))
     outputs: dict[str, list[Float32Array | None]] = {
         condition: [None] * 12 for condition in APPEARANCE_CONDITIONS
     }
-    for start in range(0, len(tensors), batch_size):
-        batch = torch.cat(tensors[start : start + batch_size], dim=0).to(
-            device=device, dtype=torch.bfloat16
-        )
-        with torch.inference_mode():
-            layers = backbone.get_intermediate_layers(
-                batch,
-                n=4,
-                reshape=True,
-                return_class_token=False,
-                norm=True,
+    for (condition, required), grouped in items.items():
+        for start in range(0, len(grouped), required):
+            chunk = grouped[start : start + required]
+            actual_count = len(chunk)
+            padded = [tensor for _slot, tensor in chunk]
+            padded.extend([padded[-1]] * (required - actual_count))
+            batch = torch.cat(padded, dim=0).to(
+                device=device, dtype=torch.bfloat16
             )
-            features = torch.stack(tuple(layers), dim=0).mean(dim=0)
-        expected = (len(batch), 1280, 18, 32)
-        if features.dtype != torch.bfloat16 or tuple(features.shape) != expected:
-            raise RuntimeError("DINO feature contract changed")
-        if not bool(torch.isfinite(features).all().item()):
-            raise FloatingPointError("DINO produced nonfinite features")
-        features_cpu = features.float().cpu().numpy()
-        for offset, dense in enumerate(features_cpu):
-            condition, slot = keys[start + offset]
-            outputs[condition][slot] = np.ascontiguousarray(dense, dtype=np.float32)
+            with torch.inference_mode():
+                layers = backbone.get_intermediate_layers(
+                    batch,
+                    n=4,
+                    reshape=True,
+                    return_class_token=False,
+                    norm=True,
+                )
+                features = torch.stack(tuple(layers), dim=0).mean(dim=0)
+            expected = (required, 1280, 18, 32)
+            if features.dtype != torch.bfloat16 or tuple(features.shape) != expected:
+                raise RuntimeError("DINO feature contract changed")
+            if not bool(torch.isfinite(features).all().item()):
+                raise FloatingPointError("DINO produced nonfinite features")
+            features_cpu = features[:actual_count].float().cpu().numpy()
+            for (slot, _tensor), dense in zip(chunk, features_cpu, strict=True):
+                outputs[condition][slot] = np.ascontiguousarray(
+                    dense, dtype=np.float32
+                )
     stacked: dict[str, Float32Array] = {}
     for condition, slots in outputs.items():
         if any(value is None for value in slots):
@@ -340,6 +375,7 @@ def main() -> None:
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--smoke-one-anchor", action="store_true")
+    parser.add_argument("--smoke-scene-token")
     args = parser.parse_args()
     if args.output_directory.exists():
         raise FileExistsError(f"refusing to overwrite {args.output_directory}")
@@ -354,6 +390,8 @@ def main() -> None:
     )
     if registered_conditions != APPEARANCE_CONDITIONS:
         raise ValueError("code and registered appearance conditions disagree")
+    if args.batch_size != int(config["frozen_inference"]["dino_batch_size"]):
+        raise ValueError("DINO batch size disagrees with the frozen R004H5 config")
     input_hashes = {
         "role_manifest_sha256": sha256_file(args.role_manifest),
         "feature_manifest_sha256": sha256_file(args.feature_manifest),
@@ -385,8 +423,20 @@ def main() -> None:
         raise ValueError("R004H5 must use exactly the 672 fit anchors")
     order = {group: index for index, group in enumerate(fit_groups)}
     records = tuple(sorted(records, key=lambda row: (order[row.recording_group], row.anchor_index)))
-    execution_records = records[:1] if args.smoke_one_anchor else records
+    execution_records: tuple[JoinedAnchor, ...]
+    if args.smoke_scene_token is not None:
+        matches = tuple(
+            record for record in records if record.scene_token == args.smoke_scene_token
+        )
+        if len(matches) != 1:
+            raise ValueError("smoke scene token must identify exactly one fit anchor")
+        execution_records = matches
+    else:
+        execution_records = records[:1] if args.smoke_one_anchor else records
     visual_by_token = _feature_records(args.feature_manifest, fit_set)
+    original_cardinalities = _original_batch_cardinalities(
+        args.feature_manifest, batch_size=args.batch_size
+    )
     started = time.perf_counter()
     uniform_feature, loo_teacher = _precompute_fit_priors(records)
 
@@ -431,6 +481,9 @@ def main() -> None:
             backbone=backbone,
             device=device,
             batch_size=args.batch_size,
+            original_batch_cardinalities=[
+                original_cardinalities[str(slot["image_sha256"])] for slot in slots
+            ],
         )
         for slot_index, cached_path in enumerate(record.dense_feature_paths):
             cached_bits = load_dense_bfloat16_bits(cached_path)
@@ -558,7 +611,7 @@ def main() -> None:
             _write_json(args.output_directory / "progress.json", progress)
             print(json.dumps(progress, sort_keys=True), flush=True)
 
-    if args.smoke_one_anchor:
+    if args.smoke_one_anchor or args.smoke_scene_token is not None:
         smoke_result: dict[str, Any] = {
             "experiment_id": "R004H5-one-anchor-integration-smoke-v1",
             "status": "PASS",
