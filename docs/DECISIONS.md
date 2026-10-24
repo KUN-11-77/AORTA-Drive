@@ -448,3 +448,20 @@
 - **Boundary:** the Bernstein implementation is a conservative floating arithmetic screen,
   not a formal real-arithmetic proof. This stage reads no fit data, geometry, teacher,
   prediction or development. PASS can authorize only R004H4P3 registration.
+
+## ADR-0044 — Evaluate the single provider revision on the unchanged fit denominator
+
+- **Status:** accepted before R004H4P3
+- **Precondition:** R004H4P3S passed all registered construction gates with 209 tests and
+  mechanical audit PASS; independent cross-model integrity review remains unavailable and
+  is carried as a provisional qualifier.
+- **Design:** replay exactly the first eight fit groups × sixteen anchors used by
+  R004H4P2R1. Replace only the candidate provider. Keep all intent thresholds and the
+  overall `0.90` / each-group `0.75` adequacy rule. Treat recording group, not candidate,
+  as the independent unit. Report both-sign supply and all continuous-envelope rejections.
+- **Decision:** PASS requires the unchanged adequacy rates and zero endpoint-invariant
+  failures. Failure ends this provider-revision branch; it does not authorize another
+  provider, more amplitudes or relaxed thresholds.
+- **Boundary:** no geometry, teacher, learned prediction, image, development, calibration,
+  test or target payload may be read. PASS permits only a separately registered fit-only
+  continuous-geometry preflight.

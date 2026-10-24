@@ -1,0 +1,85 @@
+experiment_id: R004H4P3-native-offset-fit-supply-v1
+date: 2026-10-24
+scope: fit_only_eight_group_native_conditioned_candidate_supply
+
+predecessor:
+  experiment: R004H4P3S-native-offset-synthetic-qualification-v1
+  implementation_revision: 2cb2ba5bef0c899c5ee1955872ade60f3aecd3c7
+  decision: PASS_TO_REGISTER_R004H4P3_FIT_SUPPLY
+  raw_result_sha256: 15ee2dd08d0fcf984101aad0eb0623fadc6124ad22dd097ccd1661788d875dfe
+  integrity_status: provisional_external_review_unavailable
+
+inputs:
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  metric_manifest_sha256: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+  allowed_role: fit
+  selected_group_rule: first_eight_fit_rows_in_frozen_role_manifest
+  selected_anchor_rule: all_16_anchors_per_selected_group
+  recording_groups: 8
+  anchors_per_group: 16
+  anchor_count: 128
+  prohibited_roles: [selection, proxy_cal, development, calibration, test, target_domain]
+
+implementation:
+  native_offset_source_sha256: 5fd4b849c9b7146edd7be98e90edc44602dcc43f06778a10e68ca9521ae6cd83
+  h4_interface_source_sha256: 059f95c2b1f23c37d77f10b9b7b2da2cc80584b468eb8451cb9de7ed79ea7f38
+
+native:
+  source: official_metric_cache_MetricCache.trajectory
+  identity: cached_PDM_Closed_planner_trajectory
+  human_trajectory_use: prohibited
+  horizon_s: 4.0
+  interval_s: 0.5
+  samples_including_origin: 9
+  global_to_ego_transform: exact_rational_interval_with_outward_radius
+
+provider:
+  family: native_fixed_normal_c2_bump_v1
+  amplitudes_m: [-1.5, -1.0, -0.5, 0.5, 1.0, 1.5]
+  bump_end_s: 3.5
+  final_segment: bit_exact_copy_of_native_3.5_to_4.0_seconds
+  maximum_speed_mps: 20.0
+  maximum_longitudinal_acceleration_mps2: 3.0
+  maximum_lateral_acceleration_mps2: 4.0
+  maximum_total_acceleration_mps2: 5.0
+  bernstein_strict_margin: 1.0e-9
+  bernstein_maximum_depth: 24
+  teacher_map_image_prediction_use: prohibited
+
+intent_eligibility:
+  minimum_native_terminal_displacement_m: 2.0
+  progress_ratio: [0.8, 1.2]
+  maximum_terminal_cross_track_m: 3.5
+  maximum_terminal_heading_difference_rad: 0.35
+  maximum_terminal_speed_difference_mps: 4.0
+  speed_quantity: position_derived_final_segment_average_speed_for_both
+  thresholds_changed_after_r004h4p2r1: false
+
+endpoints:
+  primary: fraction_of_all_128_anchors_with_at_least_one_eligible_accepted_candidate
+  secondary:
+    - minimum_group_anchor_supply_fraction
+    - both_signed_direction_anchor_supply_fraction
+    - continuous_dynamic_envelope_acceptance_fraction
+    - provider_rejection_counts
+    - exact_endpoint_invariant_failures
+  independent_unit: recording_group
+  candidate_rows_are_independent_replicates: false
+
+decision:
+  adequate_supply_requires:
+    minimum_anchor_supply_fraction: 0.90
+    minimum_each_group_supply_fraction: 0.75
+    exact_endpoint_invariant_failure_count: 0
+  pass_authorizes: register_fit_only_continuous_geometry_preflight
+  failure_authorizes: stop_provider_revision_branch_and_reassess_problem_formulation
+  further_provider_revision_authorized: false
+  threshold_relaxation_authorized: false
+  development_access_authorized: false
+  h4_registration_authorized: false
+
+resources:
+  device: cpu
+  maximum_wall_minutes: 10
+  maximum_output_mib: 5
