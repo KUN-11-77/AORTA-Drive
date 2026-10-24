@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://arxiv.org/html/2609.30818",
+  "retrieved_at_utc": "2026-10-24T22:59:05.675670+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://arxiv.org/html/2609.30818",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": "Mon, 28 Sep 2026 00:26:44 GMT",
+  "etag": "\"CMz8i/eBkJcDEAE=\"",
+  "bytes": 330031,
+  "sha256": "81b999b8479eb85f80fbf146c668a5e944093cf00fc176af29e288a6001cf2ed",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\idrivevla_2609.30818.html",
+  "elapsed_seconds": 1.227,
+  "pdf_detected": false,
+  "text_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\idrivevla_2609.30818.html.text.txt",
+  "links_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\idrivevla_2609.30818.html.links.json"
+}

@@ -1,0 +1,542 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/PwdXxw+b7FVgdRmOPMWDFYZ/9Ow</id>
+  <title>arXiv Query: search_query=all:"appearance" AND all:"autonomous driving"&amp;id_list=&amp;start=0&amp;max_results=20</title>
+  <updated>2026-10-24T22:58:31Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22appearance%22+AND+all:%22autonomous+driving%22&amp;start=0&amp;max_results=20&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>20</opensearch:itemsPerPage>
+  <opensearch:totalResults>361</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2610.29200v1</id>
+    <title>NeuralSRender: G-Buffer Guided Video Diffusion for Sim-to-Real Rendering</title>
+    <updated>2026-10-21T04:45:19Z</updated>
+    <link href="https://arxiv.org/abs/2610.29200v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.29200v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The scarcity of high-quality annotated visual data remains a critical bottleneck for autonomous-driving perception. Simulators provide training data at scale, but the limited realism of synthetic videos compromises perception performance in real-world applications. To address this limitation, we propose NeuralSRender, a sim-to-real video translation framework that enhances the photorealism of synthetic videos while maintaining geometric consistency with the source scenes. Built on a pretrained video diffusion transformer (DiT), NeuralSRender uses a lightweight projector to inject geometric and material priors from G-buffers, and LoRA enables parameter-efficient adaptation. The model is trained in two stages: it first learns G-buffer conditioning from synthetic videos with accurate G-buffers, then adapts to real-world appearance using real videos with estimated G-buffers. During the second stage, an additional LoRA module is trained while the projector and first-stage LoRA remain frozen to reduce interference from estimation noise. NeuralSRender introduces only 1.45\% parameter overhead and can be trained on consumer-grade GPUs with 24 GB of memory. To support training and evaluation, we introduce GenReal, a large-scale driving video dataset comprising synthetic and real-world videos with corresponding G-buffers. Experiments demonstrate improved photorealism with competitive geometric consistency. Training perception models on our translated videos instead of raw simulator renders improves detection $\mathrm{AP}_{50}$ on nuImages from 35.1 to 40.6 and segmentation mIoU on Cityscapes from 32.4 to 40.8. Our code, data, and model weights are available at: https://github.com/WHU-USI3DV/NeuralSRender.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-21T04:45:19Z</published>
+    <arxiv:comment>Tech repo</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yipeng Lu</name>
+    </author>
+    <author>
+      <name>Youqi Liao</name>
+    </author>
+    <author>
+      <name>Zhenyu Wang</name>
+    </author>
+    <author>
+      <name>Yuning Peng</name>
+    </author>
+    <author>
+      <name>Zhen Dong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.28829v1</id>
+    <title>HorizonComposer: Spatiotemporally Consistent Driving Video Editing with Enriched Traffic Semantics</title>
+    <updated>2026-10-20T18:51:48Z</updated>
+    <link href="https://arxiv.org/abs/2610.28829v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.28829v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Instruction-guided video generative models offer a scalable solution for stress-testing autonomous driving systems by simulating diverse environmental conditions. However, driving scenes operate within a dense Operational Design Domain (ODD) governed by strict traffic semantics. When applied to global driving-condition edits, general-purpose instruction-guided video editors frequently corrupt these semantics, leading to structural hallucinations and ``temporal shock.'' This work distills and protects traffic semantics during video editing at three levels. First, we construct a hybrid dataset by combining temporally aligned real-world videos with synthetic edits, balancing foundational scene structure with unambiguous appearance signals. Second, during training, we adapt advantage conditioning from offline reinforcement learning to align the model using dense rewards. We extract dense, pixel-level rewards from the hybrid data to serve as a localized signal and actively steer generation toward structurally reliable pixels. Finally, our model mitigates temporal shock by introducing thinking frames, a transition mechanism that seamlessly reconciles static image conditioning with dynamic video context. Extensive experiments demonstrate that our method prevents the corruption of multi-actor dynamics, establishing state-of-the-art spatiotemporal consistency, yielding consistent user preference (39% relative improvement in content preservation and 12% in temporal consistency), and achieving a significant 5% gain in downstream road line segmentation and 7% gain in downstream multi-object detection.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-20T18:51:48Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Mauricio Soroco</name>
+    </author>
+    <author>
+      <name>Yuqiu Liu</name>
+    </author>
+    <author>
+      <name>Zaid Tasneem</name>
+    </author>
+    <author>
+      <name>Francesco Pittaluga</name>
+    </author>
+    <author>
+      <name>Abhishek Aich</name>
+    </author>
+    <author>
+      <name>Wuyang Chen</name>
+    </author>
+    <author>
+      <name>Manmohan Chandraker</name>
+    </author>
+    <author>
+      <name>Ziyu Jiang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.24436v1</id>
+    <title>BodyBridge: Grounded Body Layers for Sim-to-Real Translation of Vulnerable Road Users</title>
+    <updated>2026-10-17T03:53:11Z</updated>
+    <link href="https://arxiv.org/abs/2610.24436v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.24436v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Simulation-to-real driving video diffusion models can translate photorealistic scenes, but they typically represent pedestrians and cyclists, vulnerable road users (VRUs), as generic object classes. This is insufficient for vulnerable road users whose safety-relevant appearance depends on articulated pose and identity. We present BodyBridge and Grounded Body Layers (GBL), a simulator-derived, pixel-aligned representation that combines scene geometry, canonical per-pixel body correspondence, and exact VRU masks. GBL provides explicit articulation to the video diffusion model, emphasizes VRU regions during control-branch post-training, and supports additive composition with scene-geometry control at inference. It also enables per-joint evaluation of generated VRUs and a failure taxonomy for identity errors. On CARLA-to-real translation, BodyBridge improves near-range PCK@0.5 by 22% over the released depth-conditioned baseline. Replacing normal-map body control with canonical correspondence reduces body flips by 18%, while composition reduces near-range facing flips by 27%. These results show that explicit body grounding complements scene-level control and improves pose-faithful VRU generation. All code, data, and model checkpoints will be made publicly available to support reproducible, pedestrian-aware autonomous driving research.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-17T03:53:11Z</published>
+    <arxiv:comment>Accepted to WACV 2027</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Mark Azer</name>
+    </author>
+    <author>
+      <name>Fabian B. Flohr</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.16478v1</id>
+    <title>XAI-Guided Fourier Domain Generalisation for Pure-Simulation Sim-to-Real Deep Reinforcement Learning</title>
+    <updated>2026-10-12T09:31:44Z</updated>
+    <link href="https://arxiv.org/abs/2610.16478v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.16478v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep reinforcement learning has shown strong potential for vision-based autonomous driving, but policies trained in simulation often suffer severe performance degradation when deployed in the real world. Existing sim-to-real methods commonly address this gap through image-transfer-based domain adaptation or policy-agnostic domain randomisation. However, the former requires laborious acquisition of target-domain data and is often limited to the deployment domain, whereas the latter introduces unguided perturbations that may not reflect the underlying sim-to-real discrepancy, leading to suboptimal transfer performance. To overcome these limitations, we propose XFD, an explainable artificial intelligence (XAI)-guided Fourier domain generalisation framework for pure-simulation sim-to-real reinforcement learning. The proposed framework extracts explainability attribution maps from simulated observations, and converts these attributions into policy-conditioned Fourier-domain interventions. By perturbing appearance-sensitive spectral components while preserving task-defining spatial structures, XFD constructs robustness-enhancing visual domains entirely within simulation. Subsequently, the proposed robust policy optimisation guides the policy towards attending to task-critical features while suppressing sensitivity to irrelevant visual information. Extensive experiments in simulation and zero-shot real-world deployment demonstrate that XFD consistently improves traveled distance and reward over standard policy and randomly domain-randomised baseline, especially on unseen maps with cluttered backgrounds. Attribution-based analysis further proves that the proposed policy preserves more consistent task-relevant visual evidence across simulation and real-world observations.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-12T09:31:44Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Wei Yao</name>
+    </author>
+    <author>
+      <name>Chuyao Wang</name>
+    </author>
+    <author>
+      <name>Ziwei Wang</name>
+    </author>
+    <author>
+      <name>Nabil Aouf</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.16139v1</id>
+    <title>Directional Pullback Regularization for Long-Horizon Rollout of Latent World Models in Autonomous Driving</title>
+    <updated>2026-10-12T03:59:30Z</updated>
+    <link href="https://arxiv.org/abs/2610.16139v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.16139v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Learned world models for autonomous driving operate in unconstrained latent spaces, yet the physical systems they represent are governed by strict non-holonomic constraints: ground vehicles cannot realize instantaneous pure lateral motion. We study long-horizon latent rollout modeling for autonomous driving and ask whether rollout quality can be improved by assigning a motion-aware geometry to latent transitions, rather than by redesigning the predictor architecture. Starting from an unconstrained latent rollout baseline, we introduce Directional Pullback Regularization (DPR), a training time method that defines a kinematics-aware anisotropic Riemannian metric in decoded state space and pulls it back through the decoder Jacobian to the latent manifold. The resulting latent-space metric assigns higher cost to latent directions that decode to lateral vehicle motion, while preserving the original encoder-dynamics-decoder backbone. This yields a clean three-way comparison among an Unconstrained Latent Rollout model (ULR), an Euclidean Pullback Regularization ablation (EPR), and the full directional method (DPR). We evaluate all models on open-loop ego-motion rollout over a common 10-second test horizon, using training rollout lengths of 1, 3, 5, and 10 steps. Across all four training regimes, DPR achieves lower 10-second final displacement error than both ULR and EPR. The strongest relative accuracy gain appears for models trained with 3-step rollout supervision, where DPR reduces the 10-second final displacement error by approximately 44 percent relative to ULR. The strongest overall control-relevant tradeoff is obtained for longer rollout-trained models, especially at 10 steps, where DPR simultaneously improves displacement error, lateral motion consistency, and forward motion preservation relative to both ULR and EPR.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-12T03:59:30Z</published>
+    <arxiv:comment>Accepted at IEEE CDC 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Shatadal Mishra</name>
+    </author>
+    <author>
+      <name>Ahmadreza Moradipari</name>
+    </author>
+    <author>
+      <name>Nejib Ammar</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11060v2</id>
+    <title>AffordDrive3D: Affordance-Aware World-Action Modeling with Spatial Understanding</title>
+    <updated>2026-10-13T09:32:26Z</updated>
+    <link href="https://arxiv.org/abs/2610.11060v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11060v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>World-action models have recently improved autonomous driving by jointly learning future scene prediction and trajectory generation. Most existing approaches model the future primarily through RGB appearance, and recent works have begun to incorporate geometric prediction to improve spatial understanding. However, dense geometry describes the spatial layout of the entire scene without indicating which parts are most relevant to the ego vehicle's action. For driving, the model must also identify and anticipate where it can safely move and which regions may pose collision risks. Jointly modeling action-relevant regions and future geometry can provide the policy with both driving-relevant cues and their corresponding spatial structure. We therefore propose AffordDrive3D, an affordance- and geometry-aware world-action model that jointly learns future action-relevant regions and spatial structure. In order to capture the scene semantics and driving context needed for driving affordance prediction, we build AffordDrive3D on a VLM backbone to forecast drivable areas and collision-critical regions that directly affect ego motion, while predicting future geometry from RGB world-model latents. On NAVSIM, AffordDrive3D achieves state-of-the-art performance with 91.3 PDMS and 89.9 EPDMS, demonstrating the effectiveness of jointly modeling future affordances and geometry for trajectory planning. Project Page: https://afforddrive3d.github.io/</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T01:16:38Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Tianhui Cai</name>
+    </author>
+    <author>
+      <name>Xinglong Sun</name>
+    </author>
+    <author>
+      <name>Chao Fang</name>
+    </author>
+    <author>
+      <name>Zhenxin Li</name>
+    </author>
+    <author>
+      <name>Rui Song</name>
+    </author>
+    <author>
+      <name>Jose M. Alvarez</name>
+    </author>
+    <author>
+      <name>Yunxiang Mao</name>
+    </author>
+    <author>
+      <name>Jiaqi Ma</name>
+    </author>
+    <author>
+      <name>Langechuan Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.10116v1</id>
+    <title>A Probabilistic Perspective on Wasserstein-Based Evidential Uncertainty for Out-of-Distribution Segmentation</title>
+    <updated>2026-10-07T14:03:45Z</updated>
+    <link href="https://arxiv.org/abs/2610.10116v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.10116v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Semantic segmentation networks operate on a fixed set of classes and therefore fail when out-of-distribution (OOD) objects appear during deployment, a critical limitation for safety-critical applications such as autonomous driving. Reliably identifying OOD objects requires well-calibrated epistemic uncertainty, yet common softmax-based confidence scores remain overconfident, while Bayesian alternatives such as Monte Carlo dropout or deep ensembles require costly repeated forward passes. Evidential Deep Learning (EDL) offers an efficient alternative by modeling class probabilities as a Dirichlet distribution learned from a single deterministic forward pass. Existing EDL formulations rely on Euclidean objectives that push predictions towards the simplex vertices, encouraging overconfidence rather than preserving uncertainty for unfamiliar inputs. We instead employ Wasserstein-based objectives, which respect the geometry of the probability simplex, and study the influence of the Wasserstein order on segmentation accuracy and OOD detection within a unified evidential framework. We evaluate this framework on a convolutional (DeepLabV3+) and a transformer-based (SegFormer) architecture on the SegmentMeIfYouCan benchmark, including LostAndFound, RoadObstacle21, RoadAnomaly21, and Fishyscapes. Our results show the optimal Wasserstein order is architecture-dependent: second-order objectives dominate on the convolutional backbone, third-order objectives on the transformer backbone, and our framework surpasses comparable baselines on most metrics, with a single deterministic forward pass.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T14:03:45Z</published>
+    <arxiv:comment>20 pages, 6 images, 3 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Arnold Brosch</name>
+    </author>
+    <author>
+      <name>Abdelrahman Eldesokey</name>
+    </author>
+    <author>
+      <name>Michael Felsberg</name>
+    </author>
+    <author>
+      <name>Kira Maag</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.08271v1</id>
+    <title>Reinforcement Learning with Segment Reward Feedback under Linear Function Approximation</title>
+    <updated>2026-10-06T12:45:39Z</updated>
+    <link href="https://arxiv.org/abs/2610.08271v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.08271v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Classical reinforcement learning (RL) assumes that a reward is observed for every visited state-action pair. However, in real-world applications such as autonomous driving, such fine-grained feedback can be costly or difficult to collect, whereas trajectory-level feedback may be too sparse for efficient learning. To provide a general feedback model bridging these two extremes and handle large state spaces, we study RL with segment reward feedback under linear function approximation. Our work answers how the granularity of segment feedback and the choice of segmentation influence learning. For equal-length segments with known transitions, we design algorithms $\bitssegd$ and $\edlinucbsegd$ for binary and sum feedback types, respectively. They adopt posterior sampling with planning to achieve computational efficiency and the E-optimal experimental design to attain near-optimality. Nearly matching lower bounds are established. For equal-length segments with unknown transitions, we develop a unified $\seglsvits$ framework with two instantiations for binary and sum feedback, which carefully integrates the posterior estimated reward parameters into least-squares value iteration. These results reveal a fundamental insight: under binary feedback, increasing the number of segments significantly reduces the regret through an exponential factor, while surprisingly, under sum feedback, the granularity of segments does not affect learning much. Finally, to investigate whether segmenting according to state-action features can further expedite learning, we design an algorithm $\uneqsegbitsd$ that allows arbitrary segmentations. The resulting regret bound shows that under the usual elliptical potential analysis, the influence of state-action features on the regret appears only through logarithmic factors, and equal segmentation achieves the best performance.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-06T12:45:39Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Fengxu Liu</name>
+    </author>
+    <author>
+      <name>Siwei Wang</name>
+    </author>
+    <author>
+      <name>Gal Dalal</name>
+    </author>
+    <author>
+      <name>Shie Mannor</name>
+    </author>
+    <author>
+      <name>Yihan Du</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.05707v1</id>
+    <title>Difference Feature Map Distillation: Transferring Inter-Sample Relational Knowledge Towards Efficient Transformer-Based Tracking</title>
+    <updated>2026-10-05T02:43:46Z</updated>
+    <link href="https://arxiv.org/abs/2610.05707v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.05707v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In autonomous driving perception, visual object tracking systems must satisfy stringent latency and power constraints while remaining robust in complex and dynamic environments. Although transformer-based trackers achieve state-of-the-art accuracy, their substantial computational and memory overheads hinder deployment on real-time, resource-constrained platforms. To move toward this goal, we propose Difference Feature Map Knowledge Distillation (DFM-KD), a novel relational distillation framework tailored for transformer-based visual object tracking. Unlike conventional feature distillation methods that minimize point-wise discrepancies (e.g., mean squared error) between teacher and student feature representations, DFM-KD transfers knowledge through inter-sample feature differences, explicitly aligning the relational structure of the feature space. By distilling how the teacher models appearance variation and consistency across samples, rather than enforcing similarity in absolute activations, DFM-KD enables the student to better capture the structural dynamics of visual changes within a batch. As a result, the distilled model exhibits enhanced feature robustness and improved tracking performance. Extensive experiments demonstrate that DFM-KD consistently outperforms conventional feature-level distillation methods in both tracking precision and success rates.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T02:43:46Z</published>
+    <arxiv:comment>Published in the 2026 IEEE Intelligent Vehicles Symposium (IV)</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <arxiv:journal_ref>2026 IEEE Intelligent Vehicles Symposium (IV), pp. 2032-2037, 2026</arxiv:journal_ref>
+    <author>
+      <name>Zhicheng Ding</name>
+    </author>
+    <author>
+      <name>Xinyu Chu</name>
+    </author>
+    <author>
+      <name>Qing Tian</name>
+    </author>
+    <arxiv:doi>10.1109/IV66570.2026.11624050</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/IV66570.2026.11624050" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.04883v1</id>
+    <title>Reflection-Robust 6DoF Object Tracking with Light Fields</title>
+    <updated>2026-10-04T02:45:31Z</updated>
+    <link href="https://arxiv.org/abs/2610.04883v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.04883v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Tracking the 6DoF pose of a moving rigid object is fundamental to robotics and autonomous driving, but existing trackers assume that object appearance is stable across a sequence, an assumption that breaks down on reflective surfaces whose appearance changes as they mirror the environment. We introduce a light field based reflection-robust 6DoF tracker that turns this apparent nuisance into a pose cue. Per frame, our method recovers depth robustly against reflections, back-projects it into a point cloud, and estimates surface normals. It then decomposes the object's view-dependent appearance into a diffuse albedo and the environment map it reflects, resulting in a relightable surface light field. Starting from a coarse initialization, we relight it by the recovered environment map and optimize the pose on the photometric loss. Because a moving object mirrors new parts of the scene, the environment map fills in as the sequence proceeds, sharpening this signal over time. To evaluate this approach, we introduce a light field tracking dataset re-rendered from a robotic manipulation benchmark at four controlled reflectivity levels, each paired with simulated depth that reproduces how consumer RGB-D sensors fail on shiny surfaces. Additionally, we evaluate on two captured light field sequences. Our method trails the strongest baselines on diffuse objects and is the only one that holds its accuracy on fully reflective objects, where every baseline degrades.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-04T02:45:31Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Nikolai Goncharov</name>
+    </author>
+    <author>
+      <name>Donald G. Dansereau</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37870v1</id>
+    <title>Learning from synthetic photorealistic raindrop for single image raindrop removal</title>
+    <updated>2026-09-29T15:48:00Z</updated>
+    <link href="https://arxiv.org/abs/2609.37870v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37870v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Raindrops adhered to camera lens or windshield are inevitable in rainy scenes and can become an issue for many computer vision systems such as autonomous driving. Because raindrop appearance is affected by too many parameters, therefore it is unlikely to find an effective model based solution. Learning based methods are also problematic, because traditional learning method cannot properly model the complex appearance. Whereas deep learning method lacks sufficiently large and realistic training data. To solve it, in our work, we propose the first photo-realistic dataset of synthetic adherent raindrops for training. The rendering is physics based with consideration of the water dynamic, geometric and photometry. The dataset contains various types of rainy scenes and particularly the rainy driving scenes. Based on the modeling of raindrop imagery, we introduce a detection network which has the awareness of the raindrop refraction as well as its blurring. Based on that, we propose the removal network that can well recover the image structure. Rigorous experiments demonstrate the state-of-the-art performance of our proposed framework.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T15:48:00Z</published>
+    <arxiv:comment>2019 IEEE/CVF International Conference on Computer Vision Workshop (ICCVW)</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <arxiv:journal_ref>2019 IEEE/CVF International Conference on Computer Vision Workshop (ICCVW), pp. 4340-4349</arxiv:journal_ref>
+    <author>
+      <name>Zhixiang Hao</name>
+    </author>
+    <author>
+      <name>Shaodi You</name>
+    </author>
+    <author>
+      <name>Yu Li</name>
+    </author>
+    <author>
+      <name>Kunming Li</name>
+    </author>
+    <author>
+      <name>Feng Lu</name>
+    </author>
+    <arxiv:doi>10.1109/ICCVW.2019.00534</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/ICCVW.2019.00534" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34035v1</id>
+    <title>3D Point Tracking with State Space Models</title>
+    <updated>2026-09-27T23:56:35Z</updated>
+    <link href="https://arxiv.org/abs/2609.34035v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34035v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Tracking any point of a dynamic scene in metric 3D - in absolute meters, not up to an unknown scale - underpins 3D and 4D reconstruction, robot navigation, and autonomous driving, where decisions are made in meters, not pixels. Our objective is a 3D point tracker accurate in those absolute terms and operating within a single commodity GPU, pose-free, monocular budget. Our method rests on one observation: once a point's 2D image trajectory is fixed, the quantity that governs its metric accuracy is the depth along its pixel ray. Rather than learning tracking end-to-end, we therefore compose two frozen front-ends - dense optical flow for 2D correspondence and a monocular metric-depth network for the third dimension - and learn only the residual they cannot supply: that depth, refined by a compact state space model (Mamba-3) conditioned on appearance features (DINOv3). A state space model rather than the transformers the strongest 3D trackers adopt is what makes a single-GPU budget attainable: it summarises a track in a fixed-size recurrent state whose memory cost is constant in the number of frames, whereas attention requires a key-value cache that grows linearly with them. On the TAPVid-3D minival benchmark our best configuration attains the highest absolute metric accuracy among methods evaluated under identical conditions (mean metric Average Jaccard, 0.256), exceeding strong feed-forward trackers, while a companion analysis, reproduced with each competitor's own evaluator, explains why several published trackers lose most of their accuracy under this budget.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-27T23:56:35Z</published>
+    <arxiv:comment>20 pages, 11 figures, 9 tables. Submitted to Computer Vision and Image Understanding</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Masahiro Ogawa</name>
+    </author>
+    <author>
+      <name>Qi An</name>
+    </author>
+    <author>
+      <name>Atsushi Yamashita</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.08281v1</id>
+    <title>SAM3-O2D2: Zero-Shot Object Out-of-Distribution Detection by Object Class Prompting of the SAM3-Image Model</title>
+    <updated>2026-09-08T05:51:04Z</updated>
+    <link href="https://arxiv.org/abs/2609.08281v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.08281v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Object detectors have shown remarkable performance in various fields, among these medical imaging, surveillance, and autonomous driving. However, they are prone to overconfidence when encountering unseen objects in real-world deployments, causing potential safety issues. To address this, detecting out-of-distribution (OOD) objects is essential for reliable object detection. Modern approaches leverage the broad semantic knowledge of foundation models such as CLIP for post-hoc few- and zero-shot OOD detection. However, these methods typically perform OOD assessment in feature space, which can be sensitive to object detector localization errors and variations in object appearance. Moreover, the current state-of-the-art (SOTA) zero-shot method performs computationally costly diffusion in inference. In this work, for our proposed zero-shot object OOD detection method SAM3-O2D2, we employ the SAM3-image foundation model in an efficient manner. Specifically, we prompt SAM3 only with the object detector's predicted classes and compare the predictions of the object detector and SAM3. An object is in-distribution (ID), if SAM3 also detects an object at the corresponding location. If SAM3 does not detect the prompted object, this indicates a mismatch between the detector's prediction and the image content, suggesting that the object is OOD. Experimental results show that our method significantly surpasses the so-far zero-shot SOTA method. Specifically, we achieve new SOTA AuROC and FPR95 metrics over both ID datasets Pascal-VOC and BDD100K and both OOD datasets MS-COCO and OpenImages.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-08T05:51:04Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Lucas Görnhardt</name>
+    </author>
+    <author>
+      <name>Timo Bartels</name>
+    </author>
+    <author>
+      <name>Tim Fingscheidt</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.07547v1</id>
+    <title>Re-engineering SORT-based algorithms for low-cost small object tracking from omnidirectional footage</title>
+    <updated>2026-09-07T14:29:21Z</updated>
+    <link href="https://arxiv.org/abs/2609.07547v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.07547v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-object tracking (MOT) has advanced rapidly in urban surveillance and autonomous driving, yet many trackers rely on ReID- and transformer-based appearance encoders and are designed for standard FoV cameras. These assumptions break down for low-cost omnidirectional deployments, where equirectangular projection introduces seam discontinuities and targets appear to be small and fast-moving. We address multi-object tracking of flying animals captured in remote environments using omnidirectional cameras. We propose a lightweight framework that re-engineers SORT-based tracking for this geometry, including (i) a Seam-Aware Motion Model that keeps the Kalman state continuous across the seam, (ii) a composite seam-aware association cost that pairs a wrapped Euclidean term with GIoU, and (iii) OmniSmall, a new benchmark of omnidirectional wildlife footage. On our new dataset, with ground-truth detections, our modifications improved over OCSORT by +8.51 HOTA, +9.41 MOTA, and +10.17 IDF1; with YOLOX detections the gain narrows to +1.95 HOTA. Our proposed methods improved tracking performance on OmniSmall and remained competitive on JRDB without adding appearance encoders while keeping the tracking stage CPU-only. Our dataset and source code are available at: https://github.com/Xin-Shu/OmniSORT.git.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-07T14:29:21Z</published>
+    <arxiv:comment>Accepted by IEEE 28th International Workshop on Multimedia Signal Processing (MMSP)</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Xin Shu</name>
+    </author>
+    <author>
+      <name>Meegan Gower</name>
+    </author>
+    <author>
+      <name>Yvonne Buckley</name>
+    </author>
+    <author>
+      <name>Anil Kokaram</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.05397v1</id>
+    <title>CrossDepth: Geometry-Constrained Attention for Generalizable Multi-View Surround Depth Estimation</title>
+    <updated>2026-09-04T17:45:06Z</updated>
+    <link href="https://arxiv.org/abs/2609.05397v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.05397v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reliable 3D understanding of the surrounding environment is a core requirement for autonomous driving. Multi-view surround camera rigs provide broad scene coverage, but the spatially adjacent images typically overlap only minimally. Consequently, the depth of most pixels must be inferred from monocular appearance cues. These cues can appear differently across images and may therefore be interpreted differently by the depth estimation model. We target two main sources of cross-image inconsistency: differences in camera intrinsics and the limited receptive field of each image. We address the former by conditioning the features on per-pixel camera-aware ray embeddings, enabling the network to account for camera-dependent variations in monocular cues. We address the latter by extending each pixel's context beyond its own image through cross-image attention constrained to geometrically plausible regions, derived from the calibrated rig setup. The model is trained in a fully self-supervised manner based on photometric consistency. Evaluations on DDAD and nuScenes show improved overall depth accuracy and cross-image depth consistency over state-of-the-art self-supervised methods under in-domain and cross-domain evaluation. Code is available at https://abualhanud.github.io/CrossDepthPage/.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-04T17:45:06Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Samer Abualhanud</name>
+    </author>
+    <author>
+      <name>Max Mehltretter</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.04860v1</id>
+    <title>Mitigating Performance Discrepancy in Cross-Domain 3D Class-Incremental Learning</title>
+    <updated>2026-09-04T08:20:00Z</updated>
+    <link href="https://arxiv.org/abs/2609.04860v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.04860v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>3D perception plays a crucial role in real-world applications such as autonomous driving, robotics, and AR/VR. In practical scenarios, 3D perception models need to continually adapt to newly emerging 3D object categories, making class-incremental learning (CIL) particularly important. However, unlike 2D images, 3D point clouds are inherently heterogeneous: objects from the same class may not only come from the clean CAD domain, but also from RGB-D camera scans of varying quality, video reconstructions, or even corrupted observations. We discover that such heterogeneity introduces a new challenge beyond catastrophic forgetting: the degree of performance degradation can vary substantially across domains, a phenomenon we term performance discrepancy. To investigate this problem, we establish the Domain3D-CIL training and evaluation protocol, which contains point cloud categories from heterogeneous domains. We further adapt a wide range of mainstream CIL methods to the 3D modality. The results demonstrate that this performance discrepancy consistently appears across these baselines. To mitigate this issue, we introduce PolyMem, an exemplar-free approach that implicitly models rich high-order statistics of the feature distribution to enhance cross-domain robustness. Experiments demonstrate that our method effectively alleviates the performance discrepancy while improving the model's performance across domains. Code will be made publicly available upon acceptance.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-04T08:20:00Z</published>
+    <arxiv:comment>29 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jinge Ma</name>
+    </author>
+    <author>
+      <name>Gautham Vinod</name>
+    </author>
+    <author>
+      <name>Bruce Coburn</name>
+    </author>
+    <author>
+      <name>Jui-Feng Chi</name>
+    </author>
+    <author>
+      <name>Siddeshwar Raghavan</name>
+    </author>
+    <author>
+      <name>Fengqing Zhu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.04147v1</id>
+    <title>A Low-Cost, Open Platform for End-to-End Autonomous Driving on a Miniature Ackermann Vehicle</title>
+    <updated>2026-09-03T17:40:20Z</updated>
+    <link href="https://arxiv.org/abs/2609.04147v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.04147v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper presents a low-cost, open experimental platform for research in end-to-end autonomous driving with miniature Ackermann vehicles. The platform combines a physical vehicle, a printed urban track, data collection tools, trajectory registration, and a Webots digital twin, enabling controlled experiments that connect simulation-based autonomous-driving methods to real-world execution. As a first baseline, we implement command-conditioned behavior cloning, in which a neural policy receives an on-board camera image and a high-level navigation command and outputs steering and speed. The system is evaluated both on the physical vehicle and in simulation. In real closed-loop experiments, the learned policy follows lanes and executes commanded turns, reaching a mean cross-track error of 6.1 cm with respect to the reference route, close to the 4.7 cm observed in human demonstrations. In the digital twin, camera field of view has a strong effect on performance, reducing the mean cross-track error from 35.6 to 3.3 cm when widened from 58 to 120 degrees. Using the digital twin to generate synthetic driving data and a learned sim-to-real image translator to reduce the appearance gap, we further show that a higher-capacity policy trained on this synthetic data combined with real demonstrations is the only configuration that completes all four track routes in closed loop, whereas the compact baseline and the same network trained on real data alone complete fewer. These results establish the open platform as a practical testbed for sim-to-real studies and provide an initial command-conditioned imitation-learning baseline; we release it to support reproducible research.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-03T17:40:20Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Gustavo Claudio Karl Couto</name>
+    </author>
+    <author>
+      <name>Eric Aislan Antonelo</name>
+    </author>
+    <author>
+      <name>Gabriel George Zipperer</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.24282v1</id>
+    <title>CARE: Camera-Residual Reserves for First Sightings in Adaptive LiDAR Sensing</title>
+    <updated>2026-08-25T09:06:23Z</updated>
+    <link href="https://arxiv.org/abs/2608.24282v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.24282v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Adaptive LiDAR scanning concentrates a limited sensing budget on regions of interest predicted from past object tracks, lowering data volume in autonomous driving while maintaining detection accuracy. However, existing scanning policies face three challenges. First, history-driven approaches depend on past tracks, so unseen objects are detected late or missed. Second, random or uniform sampling outside the predicted regions has no awareness of where new objects appear. Third, camera-guided alternatives spend budget on all camera detections, resampling objects already covered, costing recall in crowded scenes and range when budgets are scarce. This paper introduces the CAmera-REsidual reserve (CARE), a training-free allocation rule that reserves part of a fixed ray budget for the directions of current camera detections that the track forecasts cannot explain; the rest follows the base history policy, and unused reserve returns to a random floor. The paper makes three contributions. First, a leakage-free ray-budget evaluation on nuScenes (150 scenes, 4,148 events) measuring the first-sighting loss of history-driven scanning, with a strict-causal variant using the preceding keyframe. Second, CARE raises first-sighting recall by 5.2, 5.2, and 4.3 points at 10%, 20%, and 35% budgets over the history policy, with paired intervals excluding zero; the camera cue drives this gain, and the first-sighting versus overall trade-off is a budget-dependent Pareto choice. Third, a safety-bounded forgetting module that releases budget from receding or static tracks beyond a speed-dependent guard distance; at tight budgets, forgetting without the guard significantly harms near-field recall, so the guard is what keeps it safe. The pipeline runs end to end on a real vehicle and, in closed-loop simulation, detects an occluded pedestrian earlier and brakes more reliably than history-driven scanning.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-25T09:06:23Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jiachen Gong</name>
+    </author>
+    <author>
+      <name>Yun Li</name>
+    </author>
+    <author>
+      <name>Ehsan Javanmardi</name>
+    </author>
+    <author>
+      <name>Wencan Mao</name>
+    </author>
+    <author>
+      <name>Manabu Tsukada</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.23486v3</id>
+    <title>GeoWAM: Visual Geometry World Action Models for Autonomous Driving</title>
+    <updated>2026-09-29T18:05:41Z</updated>
+    <link href="https://arxiv.org/abs/2608.23486v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.23486v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>World action models (WAMs) have recently gained increasing attention as a framework for jointly modeling scene evolution and ego actions in autonomous driving. Most existing WAMs learn scene dynamics in pixel space by combining a video-generation backbone for future-observation prediction with an action head for ego-trajectory prediction. Pixels, however, provide only an indirect representation of these dynamics: they entangle geometry and motion with appearance, texture, and illumination, forcing the model to infer three-dimensional transformations from two-dimensional observations. We argue that point-based geometry provides a more natural state space for driving. It explicitly captures spatial structure and both rigid and non-rigid scene dynamics while remaining aligned with the 3D space of driving actions. Building on this insight, we introduce GeoWAM, a visual geometry world action model for autonomous driving. Rather than predicting future images, GeoWAM is pretrained to forecast future scene geometry, yielding representations that jointly encode spatial structure and temporal evolution. A geometry-conditioned action head then leverages these learned geometric dynamics to predict future ego-trajectories. Extensive experiments show that GeoWAM outperforms image-based alternatives, achieving a combined EPDMS of 36.6 on navhard without PDMS supervision and strong zero-shot generalization to nuScenes, with a collision rate of 0.24%. Scaling geometry pretraining with unlabeled data further improves performance, increasing the navhard score by 8.2% to 39.6 and strengthening zero-shot transfer to nuScenes, where the collision rate is reduced by 50% to 0.12%. Together, these results establish geometry as an effective state representation for autonomous driving and geometry pretraining as a general, scalable strategy for downstream planning.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-24T16:49:53Z</published>
+    <arxiv:comment>Project page: https://yiren-lu.com/project_pages/geowam/</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yiren Lu</name>
+    </author>
+    <author>
+      <name>Xin Ye</name>
+    </author>
+    <author>
+      <name>Jiaming Liu</name>
+    </author>
+    <author>
+      <name>Philip Jacobson</name>
+    </author>
+    <author>
+      <name>Jin Yao</name>
+    </author>
+    <author>
+      <name>Yi-chung Chen</name>
+    </author>
+    <author>
+      <name>Liam Merino</name>
+    </author>
+    <author>
+      <name>Dhruva Dixith Kurra</name>
+    </author>
+    <author>
+      <name>Min Cai</name>
+    </author>
+    <author>
+      <name>Tom Lampo</name>
+    </author>
+    <author>
+      <name>Yu Yin</name>
+    </author>
+    <author>
+      <name>Danhua Guo</name>
+    </author>
+    <author>
+      <name>Burhan Yaman</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.20874v1</id>
+    <title>Multi-Modal Traffic Sign Detection with Semantic Attributes for Autonomous Driving</title>
+    <updated>2026-08-21T08:51:39Z</updated>
+    <link href="https://arxiv.org/abs/2608.20874v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.20874v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reliable traffic sign detection is a prerequisite for the global deployment of autonomous driving systems, where regulatory compliance and road safety depend on perceiving signs correctly across regions, ranges, and weather conditions. Despite recent progress, vision-based methods continue to face three fundamental limitations: poor cross-regional generalization due to high diversity across countries, degraded performance on small-object detection at long ranges (traffic signs occupy as little as $10{\times}10$ pixels at 200m), and fragile temporal tracking under the strongly non-linear perspective distortion that occurs as a vehicle approaches a sign. In this paper, we address the problem of robust, long-range, region-agnostic traffic sign perception by combining camera and Light Detection and Ranging (LiDAR) sensing. We present a multi-modal detection framework whose Intensity-Aware Deformable Fusion module aligns retro-reflective LiDAR cues with camera features, anchoring detection on geometric invariants rather than region-specific visual appearance. We further introduce a dual motion-model tracker that explicitly accounts for non-linear perspective transformations during vehicle approach, substantially improving temporal consistency over linear motion assumptions. Additionally, we develop a semantic attribute classification pipeline that estimates occlusion level, readability, sign embeddedness, and road relevance, providing actionable context to downstream planning. Extensive evaluation on our dataset, spanning 60+ countries and 2,500+ hours of driving data, shows that the proposed pipeline achieves an Object Miss Ratio (OMR) of 0.49% across 221,068 evaluation sequences, demonstrating globally generalizable traffic sign perception in commercial-grade autonomous driving systems.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-21T08:51:39Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Meda Lazar</name>
+    </author>
+    <author>
+      <name>Sourab Sridhar</name>
+    </author>
+    <author>
+      <name>Shashwata Gupta</name>
+    </author>
+    <author>
+      <name>Alexandra Tripcea</name>
+    </author>
+    <author>
+      <name>Varun Ravi</name>
+    </author>
+    <author>
+      <name>Senthil Yogamani</name>
+    </author>
+  </entry>
+</feed>

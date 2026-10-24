@@ -1144,3 +1144,28 @@ the current open-ended geometry certificate iteration remains STOP.
   足以反驳current-only普遍充分。B4R1未获授权，full-target materialization未运行。
 - **Artifact:**
   `refine-logs/2026-10-25_aorta_post_b3/OFFICIAL_TARGET_ALIGNMENT_AND_TEMPORAL_CONTEXT_V2_CN.md`。
+
+## ADR-0079：D-JEPA 后将主张收紧为 appearance-interventional differential evidence
+
+- **Decision:** `D_JEPA_IS_MANDATORY_CLOSEST_BASELINE__GENERIC_RELATION_NOVELTY_RETIRED`。
+- **Evidence:** D-JEPA 官方正文已在 driving 接口上使用完整候选集 relation、native-relative bounded
+  correction、candidate-benefit regression、pairwise boundary loss、supervised collision/TTC risk、
+  calibrated margin 与 native fallback。World4Scorer 已使用 trajectory-conditioned candidate state、
+  all-candidate outcome labels、executed-future anchor、negative bank 与 previous-plan inertial reranking。
+  iDriveVLA、ManeuverFlow、PlanWAM、GeoWAM、Expand-and-Prune 又分别覆盖 safety scorer、path-specific
+  future evidence、planning-shaped representation、appearance-disentangled geometry 与 frozen-planner
+  candidate adaptation。
+- **Consequence:** AORTA 不再宣称首次学习 driving relation、首次 native-relative correction、首次
+  selective fallback、首次 candidate-specific visual evidence 或首次用 conformal 资格化 trajectory。
+  唯一主贡献候选是由 B3/BS2 反例导出的 `appearance-interventional differential decision evidence`：
+  以完整时空 signed native/challenger support 生成 query、以相同全局视觉 token 回答，并预测
+  augmented-context full official margin。
+- **Falsifier:** 参数、FLOP、token、数据、optimizer 与 seed 匹配的 D-JEPA-style、World4Scorer-style
+  或普通 set scorer 若在 held-out/NavDream relation error、ranking regret、false intervention、clean
+  harm、跨 planner 与 latency 上相当或更优，则删除 differential-support 网络创新，只保留最强简单
+  scorer并降低论文定位。
+- **Boundary:** 当前只是查新后的假设收紧。B4R1、full-target labels、训练、NavDream、行为和时延
+  仍未运行；状态保持 `NOT_ICCV_READY / NOT_ORAL_READY`。
+- **Artifacts:**
+  `references/2026-10-25_frontier_decision_scorer_novelty_audit.md`；
+  `refine-logs/2026-10-25_aorta_post_b3/ICCV_CORE_STORY_V5_AFTER_DJEPA_CN.md`。

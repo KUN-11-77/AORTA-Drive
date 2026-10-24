@@ -1,0 +1,633 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/SNObVF8cebdNv/parit85SCttzk</id>
+  <title>arXiv Query: search_query=all:"test-time adaptation" AND all:"autonomous driving"&amp;id_list=&amp;start=0&amp;max_results=20</title>
+  <updated>2026-10-24T22:58:34Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22test-time+adaptation%22+AND+all:%22autonomous+driving%22&amp;start=0&amp;max_results=20&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>20</opensearch:itemsPerPage>
+  <opensearch:totalResults>20</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2610.29618v1</id>
+    <title>FogTTA: Online Test-Time Adaptation for Robust Transformer-based Object Detection in Foggy Weather</title>
+    <updated>2026-10-21T11:57:36Z</updated>
+    <link href="https://arxiv.org/abs/2610.29618v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.29618v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Object detection models for autonomous driving commonly experience substantial performance drops when deployed under adverse weather due to the domain shift between training data and real-world operating conditions. This degradation is especially evident when models trained on clear-weather images encounter foggy environments with reduced visibility and contrast. To address this challenge, we introduce FogTTA, an online test-time adaptation framework designed to improve the robustness of Transformer-based object detectors in fog. Using RF-DETR as the underlying object detector, FogTTA enables real-time adaptation to the streaming target domain without requiring source data or retraining. The framework follows a teacher-student design, where the deployed model serves as the teacher and generates pseudo labels from weakly augmented target inputs. These predictions are subsequently refined through non-maximum suppression and confidence filtering. The student model then learns from strongly augmented target sample using the Varifocal loss to mitigate pseudo-label noise. The teacher is updated via exponential moving averaging to ensure stable and continuous adaptation. Experiments show that FogTTA outperforms prior baselines, delivering improved detection accuracy and stability while maintaining real-time performance.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-21T11:57:36Z</published>
+    <arxiv:comment>Published in Proceedings of the 39th Canadian Conference on Artificial Intelligence (Canadian AI 2026), PMLR 318:13-24. Available at https://proceedings.mlr.press/v318/abedi26a.html</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <arxiv:journal_ref>Proceedings of the 39th Canadian Conference on Artificial Intelligence, PMLR 318:13-24, 2026</arxiv:journal_ref>
+    <author>
+      <name>Ali Abedi</name>
+    </author>
+    <author>
+      <name>Q. M. Jonathan Wu</name>
+    </author>
+    <author>
+      <name>Ning Zhang</name>
+    </author>
+    <author>
+      <name>Shiqi Tian</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.15846v1</id>
+    <title>Mobility Helps Learning: Unsupervised Model Adaptation for Object Recognition via Movement</title>
+    <updated>2026-10-11T18:58:29Z</updated>
+    <link href="https://arxiv.org/abs/2610.15846v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.15846v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Movable agents, such as autonomous vehicles and robots, should be able to autonomously adapt their pre-trained object recognition models to new environments without human annotations. While existing test-time adaptation (TTA) methods address label-free model adaptation, they typically treat test data as independent snapshots, without constructively exploiting a rich, unique source of supervision: the significant variance in prediction quality as an agent observes the same object from different distances and viewpoints. To capitalize on this, we propose \texttt{MoCaFe}, a model-agnostic and hyperparameter-insensitive paradigm that leverages motion-induced prediction variance for unsupervised adaptation. Specifically, we first develop mobility-calibrated filtering of pseudo-labels, which constructs reliable pseudo-labels by fusing cross-view predictions using inverse-variance weights. The filtered pseudo-labels then guide the selection of ``hard samples'' for effective learning. To further suppress pseudo-label corruption, we introduce \texttt{p-MoCaFe}, an optional extension that uses a public dataset to assign weighting factors to data samples, yielding an estimator of the clean loss with bounded bias. Extensive experiments on autonomous driving (nuScenes, KITTI) and embodied-agent datasets show that \texttt{MoCaFe} significantly outperforms state-of-the-art TTA schemes, achieving up to approximately 20% accuracy gain.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-11T18:58:29Z</published>
+    <arxiv:comment>24 pages, 3 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <arxiv:journal_ref>The Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS 2026)</arxiv:journal_ref>
+    <author>
+      <name>Yanan Ma</name>
+    </author>
+    <author>
+      <name>Yihang Tao</name>
+    </author>
+    <author>
+      <name>Zhengru Fang</name>
+    </author>
+    <author>
+      <name>Senkang Hu</name>
+    </author>
+    <author>
+      <name>Xianhao Chen</name>
+    </author>
+    <author>
+      <name>Yuguang Fang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.29923v1</id>
+    <title>Towards Continual Test-Time Adaptation of Vision-Language Models in Open-Vocabulary Semantic Segmentation</title>
+    <updated>2026-08-30T17:39:14Z</updated>
+    <link href="https://arxiv.org/abs/2608.29923v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.29923v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Open-vocabulary semantic segmentation (OVSS) relies on vision-language alignment to recognize arbitrary text-defined categories, yet this alignment is fragile under continual test-time distribution shift. Our diagnostic analysis reveals that entropy minimization drives patch-level class collapse, continual updates erode vision-language alignment, and redundant gradients from low-shift samples waste computation. We propose Diversify, Anchor, and Filter (DAF), a stabilization framework that augments entropy-based adaptation with a marginal diversity loss that resists collapse, a cross-modal anchor consistency loss that constrains feature drift relative to a frozen source model, and feature salience filtering that skips low-value backward passes to offset part of the source-anchor overhead. We evaluate on five datasets spanning natural scenes, autonomous driving, underwater imagery, and remote sensing with their corrupted variants. Across the evaluated continual shifts, DAF remains stable where entropy minimization collapses, improving mIoU by over 8 points on Pascal VOC20-C, over 9 points on LoveDA, and over 3 points on Foggy Cityscapes compared to the source model, and is robust to aggressive adaptation and learning rate choices.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-30T17:39:14Z</published>
+    <arxiv:comment>under review. code available at https://github.com/chandlerbing65nm/DAF.git</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Chandler Timm C. Doloriel</name>
+    </author>
+    <author>
+      <name>Yunbei Zhang</name>
+    </author>
+    <author>
+      <name>Sarthak Kumar Maharana</name>
+    </author>
+    <author>
+      <name>Muhammad Salman Siddiqui</name>
+    </author>
+    <author>
+      <name>Tor Kristian Stevik</name>
+    </author>
+    <author>
+      <name>Fadi Al Machot</name>
+    </author>
+    <author>
+      <name>Kristian Hovde Liland</name>
+    </author>
+    <author>
+      <name>Habib Ullah</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.17882v2</id>
+    <title>ControlledShifts: Towards Standardizing Robustness Evaluation in Trajectory Prediction Under Distribution Shifts</title>
+    <updated>2026-08-21T15:04:47Z</updated>
+    <link href="https://arxiv.org/abs/2608.17882v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.17882v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Trajectory prediction is central to safety in autonomous driving, yet learning-based predictors tend to degrade sharply when encountering scenarios poorly represented by their training data. Many methods attempt to mitigate distribution shift degradation through data-centric or test-time adaptation approaches; however, they are typically validated along fragmented axes of generalization, leaving the field without a standardized way to compare robustness across shifts a model may encounter.
+  To address this, we introduce ControlledShifts, a framework and benchmark suite that systematically re-splits existing trajectory datasets into in-distribution (seen) and out-of-distribution (unseen) partitions, via a shared characterization-and-splitting formulation, in which a characterization function fixes the axis of variation a benchmark probes and a splitting function fixes how the tail of that axis is withheld. The suite comprises three benchmarks targeting key topological and behavioral distribution shifts. Furthermore, to aggregate multi-dimensional performance metrics across these benchmarks, we propose a unified robustness score that evaluates models along two complementary dimensions: prediction quality (relative performance gain) and prediction stability (performance preservation under shift). We showcase ControlledShifts by benchmarking prominent transformer-based architectures, exposing critical differences in how models of varying capacities handle latent relevance and environmental structure.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-18T15:16:52Z</published>
+    <arxiv:comment>8 pages, 8 figures, 1 table</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Ingrid Navarro</name>
+    </author>
+    <author>
+      <name>Pablo Ortega-Kral</name>
+    </author>
+    <author>
+      <name>Yutong Duan</name>
+    </author>
+    <author>
+      <name>Jonathan Francis</name>
+    </author>
+    <author>
+      <name>Jean Oh</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.10856v1</id>
+    <title>BridgeSim: Unveiling the OL-CL Gap in End-to-End Autonomous Driving</title>
+    <updated>2026-04-12T23:37:07Z</updated>
+    <link href="https://arxiv.org/abs/2604.10856v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.10856v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Open-loop (OL) to closed-loop (CL) gap (OL-CL gap) exists when OL-pretrained policies scoring high in OL evaluations fail to transfer effectively in closed-loop (CL) deployment. In this paper, we unveil the root causes of this systemic failure and propose a practical remedy. Specifically, we demonstrate that OL policies suffer from Observational Domain Shift and Objective Mismatch. We show that while the former is largely recoverable with adaptation techniques, the latter creates a structural inability to model complex reactive behaviors, which forms the primary OL-CL gap. We find that a wide range of OL policies learn a biased Q-value estimator that neglects both the reactive nature of CL simulations and the temporal awareness needed to reduce compounding errors. To this end, we propose a Test-Time Adaptation (TTA) framework that calibrates observational shift, reduces state-action biases, and enforces temporal consistency. Extensive experiments show that TTA effectively mitigates planning biases and yields superior scaling dynamics than its baseline counterparts. Furthermore, our analysis highlights the existence of blind spots in standard OL evaluation protocols that fail to capture the realities of closed-loop deployment.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-12T23:37:07Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Seth Z. Zhao</name>
+    </author>
+    <author>
+      <name>Luobin Wang</name>
+    </author>
+    <author>
+      <name>Hongwei Ruan</name>
+    </author>
+    <author>
+      <name>Yuxin Bao</name>
+    </author>
+    <author>
+      <name>Yilan Chen</name>
+    </author>
+    <author>
+      <name>Ziyang Leng</name>
+    </author>
+    <author>
+      <name>Abhijit Ravichandran</name>
+    </author>
+    <author>
+      <name>Honglin He</name>
+    </author>
+    <author>
+      <name>Zewei Zhou</name>
+    </author>
+    <author>
+      <name>Xu Han</name>
+    </author>
+    <author>
+      <name>Abhishek Peri</name>
+    </author>
+    <author>
+      <name>Zhiyu Huang</name>
+    </author>
+    <author>
+      <name>Pranav Desai</name>
+    </author>
+    <author>
+      <name>Henrik Christensen</name>
+    </author>
+    <author>
+      <name>Jiaqi Ma</name>
+    </author>
+    <author>
+      <name>Bolei Zhou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.21928v1</id>
+    <title>The Golden Subspace: Where Efficiency Meets Generalization in Continual Test-Time Adaptation</title>
+    <updated>2026-03-23T12:48:38Z</updated>
+    <link href="https://arxiv.org/abs/2603.21928v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.21928v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Continual Test-Time Adaptation (CTTA) aims to enable models to adapt online to unlabeled data streams under distribution shift without accessing source data. Existing CTTA methods face an efficiency-generalization trade-off: updating more parameters improves adaptation but severely reduces online inference efficiency. An ideal solution is to achieve comparable adaptation with minimal feature updates; we call this minimal subspace the golden subspace. We prove its existence in a single-step adaptation setting and show that it coincides with the row space of the pretrained classifier. To enable online maintenance of this subspace, we introduce the sample-wise Average Gradient Outer Product (AGOP) as an efficient proxy for estimating the classifier weights without retraining. Building on these insights, we propose Guided Online Low-rank Directional adaptation (GOLD), which uses a lightweight adapter to project features onto the golden subspace and learns a compact scaling vector while the subspace is dynamically updated via AGOP. Extensive experiments on classification and segmentation benchmarks, including autonomous-driving scenarios, demonstrate that GOLD attains superior efficiency, stability, and overall performance. Our code is available at https://github.com/AIGNLAI/GOLD.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-23T12:48:38Z</published>
+    <arxiv:comment>Accepted to CVPR 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Guannan Lai</name>
+    </author>
+    <author>
+      <name>Da-Wei Zhou</name>
+    </author>
+    <author>
+      <name>Zhenguo Li</name>
+    </author>
+    <author>
+      <name>Han-Jia Ye</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2512.07390v1</id>
+    <title>Towards Reliable Test-Time Adaptation: Style Invariance as a Correctness Likelihood</title>
+    <updated>2025-12-08T10:23:44Z</updated>
+    <link href="https://arxiv.org/abs/2512.07390v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.07390v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Test-time adaptation (TTA) enables efficient adaptation of deployed models, yet it often leads to poorly calibrated predictive uncertainty - a critical issue in high-stakes domains such as autonomous driving, finance, and healthcare. Existing calibration methods typically assume fixed models or static distributions, resulting in degraded performance under real-world, dynamic test conditions. To address these challenges, we introduce Style Invariance as a Correctness Likelihood (SICL), a framework that leverages style-invariance for robust uncertainty estimation. SICL estimates instance-wise correctness likelihood by measuring prediction consistency across style-altered variants, requiring only the model's forward pass. This makes it a plug-and-play, backpropagation-free calibration module compatible with any TTA method. Comprehensive evaluations across four baselines, five TTA methods, and two realistic scenarios with three model architecture demonstrate that SICL reduces calibration error by an average of 13 percentage points compared to conventional calibration approaches.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-12-08T10:23:44Z</published>
+    <arxiv:comment>Accepted to WACV 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Gilhyun Nam</name>
+    </author>
+    <author>
+      <name>Taewon Kim</name>
+    </author>
+    <author>
+      <name>Joonhyun Jeong</name>
+    </author>
+    <author>
+      <name>Eunho Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2512.01300v1</id>
+    <title>RoboDriveVLM: A Novel Benchmark and Baseline towards Robust Vision-Language Models for Autonomous Driving</title>
+    <updated>2025-12-01T05:44:06Z</updated>
+    <link href="https://arxiv.org/abs/2512.01300v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.01300v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Current Vision-Language Model (VLM)-based end-to-end autonomous driving systems often leverage large language models to generate driving decisions directly based on their understanding of the current scene. However, such systems introduce multiple risks in real-world driving scenarios. To evaluate whether VLMs are truly viable for autonomous driving, we introduce RoboDriveBench, the first robustness benchmark focused on end-to-end trajectory prediction tasks. This benchmark systematically evaluates two critical categories of real-world challenges for VLM-based end-to-end autonomous driving systems through 11 simulated scenarios encompassing various corruption types, including 6 scenarios of sensor corruption caused by environmental variations, along with 5 cases of prompt corruption resulting from human intervention and data transmission failures. Each corruption type includes 250 unique driving scenarios and 5,689 frames, resulting in 64,559 total trajectory prediction cases per evaluation. To overcome these real-world challenges, we propose a novel VLM-based autonomous driving framework called RoboDriveVLM, which enhances robustness by mapping more multimodal data-e.g., lidar and radar-into a unified latent space. Furthermore, we introduce a new Test-Time Adaptation (TTA) method based on cross-modal knowledge distillation to improve the robustness of VLM-based autonomous driving systems. Through extensive experiments, our work highlights the limitations of current VLM-based end-to-end autonomous driving systems and provides a more reliable solution for real-world deployment. Source code and datasets will be released.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-12-01T05:44:06Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Dacheng Liao</name>
+    </author>
+    <author>
+      <name>Mengshi Qi</name>
+    </author>
+    <author>
+      <name>Peng Shu</name>
+    </author>
+    <author>
+      <name>Zhining Zhang</name>
+    </author>
+    <author>
+      <name>Yuxin Lin</name>
+    </author>
+    <author>
+      <name>Liang Liu</name>
+    </author>
+    <author>
+      <name>Huadong Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.00078v1</id>
+    <title>Adaptive and Resource-efficient Agentic AI Systems for Mobile and Embedded Devices: A Survey</title>
+    <updated>2025-09-30T02:37:52Z</updated>
+    <link href="https://arxiv.org/abs/2510.00078v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2510.00078v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Foundation models have reshaped AI by unifying fragmented architectures into scalable backbones with multimodal reasoning and contextual adaptation. In parallel, the long-standing notion of AI agents, defined by the sensing-decision-action loop, is entering a new paradigm: with FMs as their cognitive core, agents transcend rule-based behaviors to achieve autonomy, generalization, and self-reflection. This dual shift is reinforced by real-world demands such as autonomous driving, robotics, virtual assistants, and GUI agents, as well as ecosystem advances in embedded hardware, edge computing, mobile deployment platforms, and communication protocols that together enable large-scale deployment. Yet this convergence collides with reality: while applications demand long-term adaptability and real-time interaction, mobile and edge deployments remain constrained by memory, energy, bandwidth, and latency. This creates a fundamental tension between the growing complexity of FMs and the limited resources of deployment environments. This survey provides the first systematic characterization of adaptive, resource-efficient agentic AI systems. We summarize enabling techniques into elastic inference, test-time adaptation, dynamic multimodal integration, and agentic AI applications, and identify open challenges in balancing accuracy-latency-communication trade-offs and sustaining robustness under distribution shifts. We further highlight future opportunities in algorithm-system co-design, cognitive adaptation, and collaborative edge deployment. By mapping FM structures, cognition, and hardware resources, this work establishes a unified perspective toward scalable, adaptive, and resource-efficient agentic AI. We believe this survey can help readers to understand the connections between enabling technologies while promoting further discussions on the fusion of agentic intelligence and intelligent agents.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-30T02:37:52Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Sicong Liu</name>
+    </author>
+    <author>
+      <name>Weiye Wu</name>
+    </author>
+    <author>
+      <name>Xiangrui Xu</name>
+    </author>
+    <author>
+      <name>Teng Li</name>
+    </author>
+    <author>
+      <name>Bowen Pang</name>
+    </author>
+    <author>
+      <name>Bin Guo</name>
+    </author>
+    <author>
+      <name>Zhiwen Yu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.20488v1</id>
+    <title>Adaptive Dual Uncertainty Optimization: Boosting Monocular 3D Object Detection under Test-Time Shifts</title>
+    <updated>2025-08-28T07:09:21Z</updated>
+    <link href="https://arxiv.org/abs/2508.20488v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.20488v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Accurate monocular 3D object detection (M3OD) is pivotal for safety-critical applications like autonomous driving, yet its reliability deteriorates significantly under real-world domain shifts caused by environmental or sensor variations. To address these shifts, Test-Time Adaptation (TTA) methods have emerged, enabling models to adapt to target distributions during inference. While prior TTA approaches recognize the positive correlation between low uncertainty and high generalization ability, they fail to address the dual uncertainty inherent to M3OD: semantic uncertainty (ambiguous class predictions) and geometric uncertainty (unstable spatial localization). To bridge this gap, we propose Dual Uncertainty Optimization (DUO), the first TTA framework designed to jointly minimize both uncertainties for robust M3OD. Through a convex optimization lens, we introduce an innovative convex structure of the focal loss and further derive a novel unsupervised version, enabling label-agnostic uncertainty weighting and balanced learning for high-uncertainty objects. In parallel, we design a semantic-aware normal field constraint that preserves geometric coherence in regions with clear semantic cues, reducing uncertainty from the unstable 3D representation. This dual-branch mechanism forms a complementary loop: enhanced spatial perception improves semantic classification, and robust semantic predictions further refine spatial understanding. Extensive experiments demonstrate the superiority of DUO over existing methods across various datasets and domain shift types.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-28T07:09:21Z</published>
+    <arxiv:comment>Accepted by ICCV 2025 (Highlight)</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Zixuan Hu</name>
+    </author>
+    <author>
+      <name>Dongxiao Li</name>
+    </author>
+    <author>
+      <name>Xinzhu Ma</name>
+    </author>
+    <author>
+      <name>Shixiang Tang</name>
+    </author>
+    <author>
+      <name>Xiaotong Li</name>
+    </author>
+    <author>
+      <name>Wenhan Yang</name>
+    </author>
+    <author>
+      <name>Ling-Yu Duan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2508.02180v1</id>
+    <title>Test-Time Model Adaptation for Quantized Neural Networks</title>
+    <updated>2025-08-04T08:24:19Z</updated>
+    <link href="https://arxiv.org/abs/2508.02180v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2508.02180v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Quantizing deep models prior to deployment is a widely adopted technique to speed up inference for various real-time applications, such as autonomous driving. However, quantized models often suffer from severe performance degradation in dynamic environments with potential domain shifts and this degradation is significantly more pronounced compared with their full-precision counterparts, as shown by our theoretical and empirical illustrations. To address the domain shift problem, test-time adaptation (TTA) has emerged as an effective solution by enabling models to learn adaptively from test data. Unfortunately, existing TTA methods are often impractical for quantized models as they typically rely on gradient backpropagation--an operation that is unsupported on quantized models due to vanishing gradients, as well as memory and latency constraints. In this paper, we focus on TTA for quantized models to improve their robustness and generalization ability efficiently. We propose a continual zeroth-order adaptation (ZOA) framework that enables efficient model adaptation using only two forward passes, eliminating the computational burden of existing methods. Moreover, we propose a domain knowledge management scheme to store and reuse different domain knowledge with negligible memory consumption, reducing the interference of different domain knowledge and fostering the knowledge accumulation during long-term adaptation. Experimental results on three classical architectures, including quantized transformer-based and CNN-based models, demonstrate the superiority of our methods for quantized model adaptation. On the quantized W6A6 ViT-B model, our ZOA is able to achieve a 5.0\% improvement over the state-of-the-art FOA on ImageNet-C dataset. The source code is available at https://github.com/DengZeshuai/ZOA.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-08-04T08:24:19Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Zeshuai Deng</name>
+    </author>
+    <author>
+      <name>Guohao Chen</name>
+    </author>
+    <author>
+      <name>Shuaicheng Niu</name>
+    </author>
+    <author>
+      <name>Hui Luo</name>
+    </author>
+    <author>
+      <name>Shuhai Zhang</name>
+    </author>
+    <author>
+      <name>Yifan Yang</name>
+    </author>
+    <author>
+      <name>Renjie Chen</name>
+    </author>
+    <author>
+      <name>Wei Luo</name>
+    </author>
+    <author>
+      <name>Mingkui Tan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2505.16524v1</id>
+    <title>CodeMerge: Codebook-Guided Model Merging for Robust Test-Time Adaptation in Autonomous Driving</title>
+    <updated>2025-05-22T11:09:15Z</updated>
+    <link href="https://arxiv.org/abs/2505.16524v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2505.16524v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Maintaining robust 3D perception under dynamic and unpredictable test-time conditions remains a critical challenge for autonomous driving systems. Existing test-time adaptation (TTA) methods often fail in high-variance tasks like 3D object detection due to unstable optimization and sharp minima. While recent model merging strategies based on linear mode connectivity (LMC) offer improved stability by interpolating between fine-tuned checkpoints, they are computationally expensive, requiring repeated checkpoint access and multiple forward passes. In this paper, we introduce CodeMerge, a lightweight and scalable model merging framework that bypasses these limitations by operating in a compact latent space. Instead of loading full models, CodeMerge represents each checkpoint with a low-dimensional fingerprint derived from the source model's penultimate features and constructs a key-value codebook. We compute merging coefficients using ridge leverage scores on these fingerprints, enabling efficient model composition without compromising adaptation quality. Our method achieves strong performance across challenging benchmarks, improving end-to-end 3D detection 14.9% NDS on nuScenes-C and LiDAR-based detection by over 7.6% mAP on nuScenes-to-KITTI, while benefiting downstream tasks such as online mapping, motion prediction and planning even without training. Code and pretrained models are released in the supplementary material.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-05-22T11:09:15Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Huitong Yang</name>
+    </author>
+    <author>
+      <name>Zhuoxiao Chen</name>
+    </author>
+    <author>
+      <name>Fengyi Zhang</name>
+    </author>
+    <author>
+      <name>Zi Huang</name>
+    </author>
+    <author>
+      <name>Yadan Luo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2411.18860v1</id>
+    <title>Improving Batch Normalization with TTA for Robust Object Detection in Self-Driving</title>
+    <updated>2024-11-28T01:59:34Z</updated>
+    <link href="https://arxiv.org/abs/2411.18860v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2411.18860v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In current open real-world autonomous driving scenarios, challenges such as sensor failure and extreme weather conditions hinder the generalization of most autonomous driving perception models to these unseen domain due to the domain shifts between the test and training data. As the parameter scale of autonomous driving perception models grows, traditional test-time adaptation (TTA) methods become unstable and often degrade model performance in most scenarios. To address these challenges, this paper proposes two new robust methods to improve the Batch Normalization with TTA for object detection in autonomous driving: (1) We introduce a LearnableBN layer based on Generalized-search Entropy Minimization (GSEM) method. Specifically, we modify the traditional BN layer by incorporating auxiliary learnable parameters, which enables the BN layer to dynamically update the statistics according to the different input data. (2) We propose a new semantic-consistency based dual-stage-adaptation strategy, which encourages the model to iteratively search for the optimal solution and eliminates unstable samples during the adaptation process. Extensive experiments on the NuScenes-C dataset shows that our method achieves a maximum improvement of about 8% using BEVFormer as the baseline model across six corruption types and three levels of severity. We will make our source code available soon.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-11-28T01:59:34Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Dacheng Liao</name>
+    </author>
+    <author>
+      <name>Mengshi Qi</name>
+    </author>
+    <author>
+      <name>Liang Liu</name>
+    </author>
+    <author>
+      <name>Huadong Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.08256v1</id>
+    <title>AdaShadow: Responsive Test-time Model Adaptation in Non-stationary Mobile Environments</title>
+    <updated>2024-10-10T16:41:39Z</updated>
+    <link href="https://arxiv.org/abs/2410.08256v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.08256v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>On-device adapting to continual, unpredictable domain shifts is essential for mobile applications like autonomous driving and augmented reality to deliver seamless user experiences in evolving environments. Test-time adaptation (TTA) emerges as a promising solution by tuning model parameters with unlabeled live data immediately before prediction. However, TTA's unique forward-backward-reforward pipeline notably increases the latency over standard inference, undermining the responsiveness in time-sensitive mobile applications. This paper presents AdaShadow, a responsive test-time adaptation framework for non-stationary mobile data distribution and resource dynamics via selective updates of adaptation-critical layers. Although the tactic is recognized in generic on-device training, TTA's unsupervised and online context presents unique challenges in estimating layer importance and latency, as well as scheduling the optimal layer update plan. AdaShadow addresses these challenges with a backpropagation-free assessor to rapidly identify critical layers, a unit-based runtime predictor to account for resource dynamics in latency estimation, and an online scheduler for prompt layer update planning. Also, AdaShadow incorporates a memory I/O-aware computation reuse scheme to further reduce latency in the reforward pass. Results show that AdaShadow achieves the best accuracy-latency balance under continual shifts. At low memory and energy costs, Adashadow provides a 2x to 3.5x speedup (ms-level) over state-of-the-art TTA methods with comparable accuracy and a 14.8% to 25.4% accuracy boost over efficient supervised methods with similar latency.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-10T16:41:39Z</published>
+    <arxiv:comment>This paper is accepted by SenSys 2024. Copyright may be transferred without notice</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <arxiv:journal_ref>The 22th ACM Conference on Embedded Networked Sensor Systems, 2024</arxiv:journal_ref>
+    <author>
+      <name>Cheng Fang</name>
+    </author>
+    <author>
+      <name>Sicong Liu</name>
+    </author>
+    <author>
+      <name>Zimu Zhou</name>
+    </author>
+    <author>
+      <name>Bin Guo</name>
+    </author>
+    <author>
+      <name>Jiaqi Tang</name>
+    </author>
+    <author>
+      <name>Ke Ma</name>
+    </author>
+    <author>
+      <name>Zhiwen Yu</name>
+    </author>
+    <arxiv:doi>10.1145/3666025.3699339</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3666025.3699339" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.10074v1</id>
+    <title>SoTTA: Robust Test-Time Adaptation on Noisy Data Streams</title>
+    <updated>2023-10-16T05:15:35Z</updated>
+    <link href="https://arxiv.org/abs/2310.10074v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.10074v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Test-time adaptation (TTA) aims to address distributional shifts between training and testing data using only unlabeled test data streams for continual model adaptation. However, most TTA methods assume benign test streams, while test samples could be unexpectedly diverse in the wild. For instance, an unseen object or noise could appear in autonomous driving. This leads to a new threat to existing TTA algorithms; we found that prior TTA algorithms suffer from those noisy test samples as they blindly adapt to incoming samples. To address this problem, we present Screening-out Test-Time Adaptation (SoTTA), a novel TTA algorithm that is robust to noisy samples. The key enabler of SoTTA is two-fold: (i) input-wise robustness via high-confidence uniform-class sampling that effectively filters out the impact of noisy samples and (ii) parameter-wise robustness via entropy-sharpness minimization that improves the robustness of model parameters against large gradients from noisy samples. Our evaluation with standard TTA benchmarks with various noisy scenarios shows that our method outperforms state-of-the-art TTA methods under the presence of noisy samples and achieves comparable accuracy to those methods without noisy samples. The source code is available at https://github.com/taeckyung/SoTTA .</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-16T05:15:35Z</published>
+    <arxiv:comment>Accepted to NeurIPS 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Taesik Gong</name>
+    </author>
+    <author>
+      <name>Yewon Kim</name>
+    </author>
+    <author>
+      <name>Taeckyung Lee</name>
+    </author>
+    <author>
+      <name>Sorn Chottananurak</name>
+    </author>
+    <author>
+      <name>Sung-Ju Lee</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.01926v1</id>
+    <title>DARTH: Holistic Test-time Adaptation for Multiple Object Tracking</title>
+    <updated>2023-10-03T10:10:42Z</updated>
+    <link href="https://arxiv.org/abs/2310.01926v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.01926v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multiple object tracking (MOT) is a fundamental component of perception systems for autonomous driving, and its robustness to unseen conditions is a requirement to avoid life-critical failures. Despite the urge of safety in driving systems, no solution to the MOT adaptation problem to domain shift in test-time conditions has ever been proposed. However, the nature of a MOT system is manifold - requiring object detection and instance association - and adapting all its components is non-trivial. In this paper, we analyze the effect of domain shift on appearance-based trackers, and introduce DARTH, a holistic test-time adaptation framework for MOT. We propose a detection consistency formulation to adapt object detection in a self-supervised fashion, while adapting the instance appearance representations via our novel patch contrastive loss. We evaluate our method on a variety of domain shifts - including sim-to-real, outdoor-to-indoor, indoor-to-outdoor - and substantially improve the source model performance on all metrics. Code: https://github.com/mattiasegu/darth.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-03T10:10:42Z</published>
+    <arxiv:comment>Proceedings of the IEEE/CVF International Conference on Computer Vision</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Mattia Segu</name>
+    </author>
+    <author>
+      <name>Bernt Schiele</name>
+    </author>
+    <author>
+      <name>Fisher Yu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2309.13604v2</id>
+    <title>Distribution-Aware Continual Test-Time Adaptation for Semantic Segmentation</title>
+    <updated>2024-03-29T09:59:34Z</updated>
+    <link href="https://arxiv.org/abs/2309.13604v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.13604v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Since autonomous driving systems usually face dynamic and ever-changing environments, continual test-time adaptation (CTTA) has been proposed as a strategy for transferring deployed models to continually changing target domains. However, the pursuit of long-term adaptation often introduces catastrophic forgetting and error accumulation problems, which impede the practical implementation of CTTA in the real world. Recently, existing CTTA methods mainly focus on utilizing a majority of parameters to fit target domain knowledge through self-training. Unfortunately, these approaches often amplify the challenge of error accumulation due to noisy pseudo-labels, and pose practical limitations stemming from the heavy computational costs associated with entire model updates. In this paper, we propose a distribution-aware tuning (DAT) method to make the semantic segmentation CTTA efficient and practical in real-world applications. DAT adaptively selects and updates two small groups of trainable parameters based on data distribution during the continual adaptation process, including domain-specific parameters (DSP) and task-relevant parameters (TRP). Specifically, DSP exhibits sensitivity to outputs with substantial distribution shifts, effectively mitigating the problem of error accumulation. In contrast, TRP are allocated to positions that are responsive to outputs with minor distribution shifts, which are fine-tuned to avoid the catastrophic forgetting problem. In addition, since CTTA is a temporal task, we introduce the Parameter Accumulation Update (PAU) strategy to collect the updated DSP and TRP in target domain sequences. We conduct extensive experiments on two widely-used semantic segmentation CTTA benchmarks, achieving promising performance compared to previous state-of-the-art methods.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-24T10:48:20Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jiayi Ni</name>
+    </author>
+    <author>
+      <name>Senqiao Yang</name>
+    </author>
+    <author>
+      <name>Ran Xu</name>
+    </author>
+    <author>
+      <name>Jiaming Liu</name>
+    </author>
+    <author>
+      <name>Xiaoqi Li</name>
+    </author>
+    <author>
+      <name>Wenyu Jiao</name>
+    </author>
+    <author>
+      <name>Zehui Chen</name>
+    </author>
+    <author>
+      <name>Yi Liu</name>
+    </author>
+    <author>
+      <name>Shanghang Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2309.10109v2</id>
+    <title>AR-TTA: A Simple Method for Real-World Continual Test-Time Adaptation</title>
+    <updated>2024-10-14T15:32:43Z</updated>
+    <link href="https://arxiv.org/abs/2309.10109v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.10109v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Test-time adaptation is a promising research direction that allows the source model to adapt itself to changes in data distribution without any supervision. Yet, current methods are usually evaluated on benchmarks that are only a simplification of real-world scenarios. Hence, we propose to validate test-time adaptation methods using the recently introduced datasets for autonomous driving, namely CLAD-C and SHIFT. We observe that current test-time adaptation methods struggle to effectively handle varying degrees of domain shift, often resulting in degraded performance that falls below that of the source model. We noticed that the root of the problem lies in the inability to preserve the knowledge of the source model and adapt to dynamically changing, temporally correlated data streams. Therefore, we enhance the well-established self-training framework by incorporating a small memory buffer to increase model stability and at the same time perform dynamic adaptation based on the intensity of domain shift. The proposed method, named AR-TTA, outperforms existing approaches on both synthetic and more real-world benchmarks and shows robustness across a variety of TTA scenarios. The code is available at https://github.com/dmn-sjk/AR-TTA.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-18T19:34:23Z</published>
+    <arxiv:comment>Accepted for BMVC2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Damian Sójka</name>
+    </author>
+    <author>
+      <name>Sebastian Cygert</name>
+    </author>
+    <author>
+      <name>Bartłomiej Twardowski</name>
+    </author>
+    <author>
+      <name>Tomasz Trzciński</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2303.13899v1</id>
+    <title>Robust Test-Time Adaptation in Dynamic Scenarios</title>
+    <updated>2023-03-24T10:19:14Z</updated>
+    <link href="https://arxiv.org/abs/2303.13899v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2303.13899v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Test-time adaptation (TTA) intends to adapt the pretrained model to test distributions with only unlabeled test data streams. Most of the previous TTA methods have achieved great success on simple test data streams such as independently sampled data from single or multiple distributions. However, these attempts may fail in dynamic scenarios of real-world applications like autonomous driving, where the environments gradually change and the test data is sampled correlatively over time. In this work, we explore such practical test data streams to deploy the model on the fly, namely practical test-time adaptation (PTTA). To do so, we elaborate a Robust Test-Time Adaptation (RoTTA) method against the complex data stream in PTTA. More specifically, we present a robust batch normalization scheme to estimate the normalization statistics. Meanwhile, a memory bank is utilized to sample category-balanced data with consideration of timeliness and uncertainty. Further, to stabilize the training procedure, we develop a time-aware reweighting strategy with a teacher-student model. Extensive experiments prove that RoTTA enables continual testtime adaptation on the correlatively sampled data streams. Our method is easy to implement, making it a good choice for rapid deployment. The code is publicly available at https://github.com/BIT-DA/RoTTA</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-03-24T10:19:14Z</published>
+    <arxiv:comment>Accepted by CVPR 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Longhui Yuan</name>
+    </author>
+    <author>
+      <name>Binhui Xie</name>
+    </author>
+    <author>
+      <name>Shuang Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2208.05117v3</id>
+    <title>NOTE: Robust Continual Test-time Adaptation Against Temporal Correlation</title>
+    <updated>2023-01-11T11:03:08Z</updated>
+    <link href="https://arxiv.org/abs/2208.05117v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2208.05117v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Test-time adaptation (TTA) is an emerging paradigm that addresses distributional shifts between training and testing phases without additional data acquisition or labeling cost; only unlabeled test data streams are used for continual model adaptation. Previous TTA schemes assume that the test samples are independent and identically distributed (i.i.d.), even though they are often temporally correlated (non-i.i.d.) in application scenarios, e.g., autonomous driving. We discover that most existing TTA methods fail dramatically under such scenarios. Motivated by this, we present a new test-time adaptation scheme that is robust against non-i.i.d. test data streams. Our novelty is mainly two-fold: (a) Instance-Aware Batch Normalization (IABN) that corrects normalization for out-of-distribution samples, and (b) Prediction-balanced Reservoir Sampling (PBRS) that simulates i.i.d. data stream from non-i.i.d. stream in a class-balanced manner. Our evaluation with various datasets, including real-world non-i.i.d. streams, demonstrates that the proposed robust TTA not only outperforms state-of-the-art TTA algorithms in the non-i.i.d. setting, but also achieves comparable performance to those algorithms under the i.i.d. assumption. Code is available at https://github.com/TaesikGong/NOTE.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-08-10T03:05:46Z</published>
+    <arxiv:comment>NeurIPS 2022 camera-ready version</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Taesik Gong</name>
+    </author>
+    <author>
+      <name>Jongheon Jeong</name>
+    </author>
+    <author>
+      <name>Taewon Kim</name>
+    </author>
+    <author>
+      <name>Yewon Kim</name>
+    </author>
+    <author>
+      <name>Jinwoo Shin</name>
+    </author>
+    <author>
+      <name>Sung-Ju Lee</name>
+    </author>
+  </entry>
+</feed>

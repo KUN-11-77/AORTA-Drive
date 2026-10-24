@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://arxiv.org/html/2609.24749",
+  "retrieved_at_utc": "2026-10-24T22:58:58.743752+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://arxiv.org/html/2609.24749",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": "Tue, 22 Sep 2026 02:09:36 GMT",
+  "etag": "\"CMrY5t2NgZcDEAE=\"",
+  "bytes": 481384,
+  "sha256": "2f04010b394fe8354ed7ebb20789e57fb13af4558f627d24794bf804d5833546",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\d_jepa_2609.24749.html",
+  "elapsed_seconds": 1.554,
+  "pdf_detected": false,
+  "text_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\d_jepa_2609.24749.html.text.txt",
+  "links_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\d_jepa_2609.24749.html.links.json"
+}

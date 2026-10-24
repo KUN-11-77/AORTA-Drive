@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/WuHNC0KI0Z3rr2N2pzPkrT+b4Fc</id>
+  <title>arXiv Query: search_query=all:"decision-aligned" AND all:driving&amp;id_list=&amp;start=0&amp;max_results=20</title>
+  <updated>2026-10-24T22:58:30Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22decision-aligned%22+AND+all:driving&amp;start=0&amp;max_results=20&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>20</opensearch:itemsPerPage>
+  <opensearch:totalResults>7</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2609.24749v1</id>
+    <title>D-JEPA: A Decision-Aligned Latent World Model</title>
+    <updated>2026-09-21T15:17:32Z</updated>
+    <link href="https://arxiv.org/abs/2609.24749v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.24749v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Latent world models predict the consequences of actions, but accurate prediction does not guarantee that latent distance reflects which candidate will execute successfully. We identify a decision-local prediction gap: among the few futures competing for execution, a candidate predicted closer to the goal can produce a worse realized outcome than an available alternative. We introduce D-JEPA, a decision-aligned latent world model that learns decision-relevant relations among candidate futures from executed outcomes. A bounded, permutation-equivariant operator jointly reasons over goal-relative predictive features and ordinal evidence, refining pretrained predictive geometry where action choices are most consequential. Restricted predictor adaptation and a shared ordinal interface extend this alignment across complementary predictive geometries. D-JEPA further realizes the learned decision structure in JEPA-compatible future representations, enabling deployment through native latent-distance planning. Evaluations across latent control, manipulation, pretrained action-producing models, physical robots and autonomous driving demonstrate improved action selection, including 87.89% success on PushT, a 15.04-point average gain on RoboTwin, and a 17-point gain on physical robot tasks. These results establish decision-relevant relational structure as a direct bridge between predictive world modeling and effective control.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-21T15:17:32Z</published>
+    <arxiv:comment>26 pages, including references and appendices. Project website: https://nebulis-lab.com/D-JEPA</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Shuaijun Liu</name>
+    </author>
+    <author>
+      <name>Chengyu Wu</name>
+    </author>
+    <author>
+      <name>Qifu Wen</name>
+    </author>
+    <author>
+      <name>Feiyang You</name>
+    </author>
+    <author>
+      <name>Chenglong Zhang</name>
+    </author>
+    <author>
+      <name>Shuyang Hao</name>
+    </author>
+    <author>
+      <name>Xi Lin</name>
+    </author>
+    <author>
+      <name>Ningxin Su</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.19085v3</id>
+    <title>DA-WAM: Decision-Aligned Future Latents for Driving World Models</title>
+    <updated>2026-10-18T12:20:37Z</updated>
+    <link href="https://arxiv.org/abs/2608.19085v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.19085v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>World models for autonomous driving should anticipate the consequences that matter for driving decisions rather than reconstruct every detail of future scenes. However, predictive representations alone are not guaranteed to distinguish candidate actions that lead to different planning outcomes.We propose DA-WAM, a decision-aligned world action model that couples a Joint-Embedding Predictive Architecture (JEPA) with candidate-level trajectory scoring. During joint training, the JEPA objective grounds future representations in observed scene dynamics, while the planning objectives encourage these representations to capture distinctions relevant to safety and utility. An action-conditioned predictor generates a distinct future latent for each candidate trajectory, and a multi-head trajectory scorer uses the corresponding latent to estimate planning factors and overall utility. In addition, safety-critical post-training with hard negatives further improves discrimination between geometrically similar trajectories with different safety outcomes. DA-WAM achieves state-of-the-art performance among learned camera-based planners on NAVSIM-v1, NAVSIM-v2, and Bench2Drive. Ablation studies demonstrate the effectiveness of each component in driving decision-making.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-19T16:33:02Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Ruiguo Zhong</name>
+    </author>
+    <author>
+      <name>Xiaolong Chen</name>
+    </author>
+    <author>
+      <name>Benshan Ma</name>
+    </author>
+    <author>
+      <name>Lang Zhang</name>
+    </author>
+    <author>
+      <name>Mingyue Feng</name>
+    </author>
+    <author>
+      <name>Yaonong Wang</name>
+    </author>
+    <author>
+      <name>Pei Liu</name>
+    </author>
+    <author>
+      <name>Jun Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.25968v2</id>
+    <title>Neuro-Cognitive Reward Modeling for Human-Centered Autonomous Vehicle Control</title>
+    <updated>2026-03-31T01:56:42Z</updated>
+    <link href="https://arxiv.org/abs/2603.25968v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.25968v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent advancements in computer vision have accelerated the development of autonomous driving. Despite these advancements, training machines to drive in a way that aligns with human expectations remains a significant challenge. Human factors are still essential, as humans possess a sophisticated cognitive system capable of rapidly interpreting scene information and making accurate decisions. Aligning machine with human intent has been explored with Reinforcement Learning with Human Feedback (RLHF). Conventional RLHF methods rely on collecting human preference data by manually ranking generated outputs, which is time-consuming and indirect. In this work, we propose an electroencephalography (EEG)-guided decision-making framework to incorporate human cognitive insights without behaviour response interruption into reinforcement learning (RL) for autonomous driving. We collected EEG signals from 20 participants in a realistic driving simulator and analyzed event-related potentials (ERP) in response to sudden environmental changes. Our proposed framework employs a neural network to predict the strength of ERP based on the cognitive information from visual scene information. Moreover, we explore the integration of such cognitive information into the reward signal of the RL algorithm. Experimental results show that our framework can improve the collision avoidance ability of the RL algorithm, highlighting the potential of neuro-cognitive feedback in enhancing autonomous driving systems. Our project page is: https://alex95gogo.github.io/Cognitive-Reward/.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-26T23:16:16Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Zhuoli Zhuang</name>
+    </author>
+    <author>
+      <name>Yu-Cheng Chang</name>
+    </author>
+    <author>
+      <name>Yu-Kai Wang</name>
+    </author>
+    <author>
+      <name>Thomas Do</name>
+    </author>
+    <author>
+      <name>Chin-Teng Lin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2511.04909v1</id>
+    <title>A Dual Perspective on Decision-Focused Learning: Scalable Training via Dual-Guided Surrogates</title>
+    <updated>2025-11-07T01:15:15Z</updated>
+    <link href="https://arxiv.org/abs/2511.04909v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.04909v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Many real-world decisions are made under uncertainty by solving optimization problems using predicted quantities. This predict-then-optimize paradigm has motivated decision-focused learning, which trains models with awareness of how the optimizer uses predictions, improving the performance of downstream decisions. Despite its promise, scaling is challenging: state-of-the-art methods either differentiate through a solver or rely on task-specific surrogates, both of which require frequent and expensive calls to an optimizer, often a combinatorial one. In this paper, we leverage dual variables from the downstream problem to shape learning and introduce Dual-Guided Loss (DGL), a simple, scalable objective that preserves decision alignment while reducing solver dependence. We construct DGL specifically for combinatorial selection problems with natural one-of-many constraints, such as matching, knapsack, and shortest path. Our approach (a) decouples optimization from gradient updates by solving the downstream problem only periodically; (b) between refreshes, trains on dual-adjusted targets using simple differentiable surrogate losses; and (c) as refreshes become less frequent, drives training cost toward standard supervised learning while retaining strong decision alignment. We prove that DGL has asymptotically diminishing decision regret, analyze runtime complexity, and show on two problem classes that DGL matches or exceeds state-of-the-art DFL methods while using far fewer solver calls and substantially less training time. Code is available at https://github.com/paularodr/Dual-Guided-Learning.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-07T01:15:15Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Paula Rodriguez-Diaz</name>
+    </author>
+    <author>
+      <name>Kirk Bansak Elisabeth Paulson</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.02685v1</id>
+    <title>STOOD-X methodology: using statistical nonparametric test for OOD Detection Large-Scale datasets enhanced with explainability</title>
+    <updated>2025-04-03T15:26:03Z</updated>
+    <link href="https://arxiv.org/abs/2504.02685v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.02685v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Out-of-Distribution (OOD) detection is a critical task in machine learning, particularly in safety-sensitive applications where model failures can have serious consequences. However, current OOD detection methods often suffer from restrictive distributional assumptions, limited scalability, and a lack of interpretability. To address these challenges, we propose STOOD-X, a two-stage methodology that combines a Statistical nonparametric Test for OOD Detection with eXplainability enhancements. In the first stage, STOOD-X uses feature-space distances and a Wilcoxon-Mann-Whitney test to identify OOD samples without assuming a specific feature distribution. In the second stage, it generates user-friendly, concept-based visual explanations that reveal the features driving each decision, aligning with the BLUE XAI paradigm. Through extensive experiments on benchmark datasets and multiple architectures, STOOD-X achieves competitive performance against state-of-the-art post hoc OOD detectors, particularly in high-dimensional and complex settings. In addition, its explainability framework enables human oversight, bias detection, and model debugging, fostering trust and collaboration between humans and AI systems. The STOOD-X methodology therefore offers a robust, explainable, and scalable solution for real-world OOD detection tasks.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-03T15:26:03Z</published>
+    <arxiv:comment>18 pages, 7 Figures</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Iván Sevillano-García</name>
+    </author>
+    <author>
+      <name>Julián Luengo</name>
+    </author>
+    <author>
+      <name>Francisco Herrera</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2412.13238v2</id>
+    <title>SafeDrive: Knowledge- and Data-Driven Risk-Sensitive Decision-Making for Autonomous Vehicles with Large Language Models</title>
+    <updated>2024-12-19T04:30:24Z</updated>
+    <link href="https://arxiv.org/abs/2412.13238v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2412.13238v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent advancements in autonomous vehicles (AVs) use Large Language Models (LLMs) to perform well in normal driving scenarios. However, ensuring safety in dynamic, high-risk environments and managing safety-critical long-tail events remain significant challenges. To address these issues, we propose SafeDrive, a knowledge- and data-driven risk-sensitive decision-making framework to enhance AV safety and adaptability. The proposed framework introduces a modular system comprising: (1) a Risk Module for quantifying multi-factor coupled risks involving driver, vehicle, and road interactions; (2) a Memory Module for storing and retrieving typical scenarios to improve adaptability; (3) a LLM-powered Reasoning Module for context-aware safety decision-making; and (4) a Reflection Module for refining decisions through iterative learning. By integrating knowledge-driven insights with adaptive learning mechanisms, the framework ensures robust decision-making under uncertain conditions. Extensive evaluations on real-world traffic datasets, including highways (HighD), intersections (InD), and roundabouts (RounD), validate the framework's ability to enhance decision-making safety (achieving a 100% safety rate), replicate human-like driving behaviors (with decision alignment exceeding 85%), and adapt effectively to unpredictable scenarios. SafeDrive establishes a novel paradigm for integrating knowledge- and data-driven methods, highlighting significant potential to improve safety and adaptability of autonomous driving in high-risk traffic scenarios. Project Page: https://mezzi33.github.io/SafeDrive/</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.ET" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-12-17T16:45:27Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Zhiyuan Zhou</name>
+    </author>
+    <author>
+      <name>Heye Huang</name>
+    </author>
+    <author>
+      <name>Boqi Li</name>
+    </author>
+    <author>
+      <name>Shiyue Zhao</name>
+    </author>
+    <author>
+      <name>Yao Mu</name>
+    </author>
+    <author>
+      <name>Jianqiang Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2408.13890v1</id>
+    <title>Making Large Language Models Better Planners with Reasoning-Decision Alignment</title>
+    <updated>2024-08-25T16:43:47Z</updated>
+    <link href="https://arxiv.org/abs/2408.13890v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2408.13890v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Data-driven approaches for autonomous driving (AD) have been widely adopted in the past decade but are confronted with dataset bias and uninterpretability. Inspired by the knowledge-driven nature of human driving, recent approaches explore the potential of large language models (LLMs) to improve understanding and decision-making in traffic scenarios. They find that the pretrain-finetune paradigm of LLMs on downstream data with the Chain-of-Thought (CoT) reasoning process can enhance explainability and scene understanding. However, such a popular strategy proves to suffer from the notorious problems of misalignment between the crafted CoTs against the consequent decision-making, which remains untouched by previous LLM-based AD methods. To address this problem, we motivate an end-to-end decision-making model based on multimodality-augmented LLM, which simultaneously executes CoT reasoning and carries out planning results. Furthermore, we propose a reasoning-decision alignment constraint between the paired CoTs and planning results, imposing the correspondence between reasoning and decision-making. Moreover, we redesign the CoTs to enable the model to comprehend complex scenarios and enhance decision-making performance. We dub our proposed large language planners with reasoning-decision alignment as RDA-Driver. Experimental evaluations on the nuScenes and DriveLM-nuScenes benchmarks demonstrate the effectiveness of our RDA-Driver in enhancing the performance of end-to-end AD systems. Specifically, our RDA-Driver achieves state-of-the-art planning performance on the nuScenes dataset with 0.80 L2 error and 0.32 collision rate, and also achieves leading results on challenging DriveLM-nuScenes benchmarks with 0.82 L2 error and 0.38 collision rate.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-08-25T16:43:47Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Zhijian Huang</name>
+    </author>
+    <author>
+      <name>Tao Tang</name>
+    </author>
+    <author>
+      <name>Shaoxiang Chen</name>
+    </author>
+    <author>
+      <name>Sihao Lin</name>
+    </author>
+    <author>
+      <name>Zequn Jie</name>
+    </author>
+    <author>
+      <name>Lin Ma</name>
+    </author>
+    <author>
+      <name>Guangrun Wang</name>
+    </author>
+    <author>
+      <name>Xiaodan Liang</name>
+    </author>
+  </entry>
+</feed>

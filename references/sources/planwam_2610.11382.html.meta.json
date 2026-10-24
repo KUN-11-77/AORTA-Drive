@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://arxiv.org/html/2610.11382",
+  "retrieved_at_utc": "2026-10-24T22:59:02.491279+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://arxiv.org/html/2610.11382",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": "Fri, 09 Oct 2026 00:41:40 GMT",
+  "etag": "\"CL7/wOTZq5cDEAE=\"",
+  "bytes": 449542,
+  "sha256": "67be22fee283aa4bad78578c91d83e6a3085bc8927c63597ee7c9721073bd873",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\planwam_2610.11382.html",
+  "elapsed_seconds": 1.098,
+  "pdf_detected": false,
+  "text_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\planwam_2610.11382.html.text.txt",
+  "links_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\planwam_2610.11382.html.links.json"
+}

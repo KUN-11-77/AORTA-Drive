@@ -1,5 +1,17 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 frontier novelty correction：`D_JEPA_CLOSEST_BASELINE__NOVELTY_NARROWED`。**
+> 官方 arXiv 正文审查确认，D-JEPA 已覆盖 decision-local gap、完整候选关系、native-relative bounded
+> correction、risk penalty、margin gate 与 native fallback；World4Scorer 又覆盖 outcome-grounded
+> candidate state、future anchor、negative bank 与 previous-plan reranking。故 AORTA 不得再以“关系
+> 学习”“冻结 planner 上的 relative head”或“可信 fallback”本身作为创新。当前唯一可防守的主命题
+> 收紧为：在驾驶 appearance intervention 下，以完整时空 signed candidate difference 提出视觉
+> query，是否比 matched D-JEPA/World4Scorer-style scorer 更能保持 full-task relation，并减少 OOD
+> 错误替换而不伤害 clean。若 matched study 不胜，删除 differential-support 网络创新主张。B4R1、
+> 网络训练、NavDream 和行为收益状态均未改变，仍 HOLD。详见
+> `references/2026-10-25_frontier_decision_scorer_novelty_audit.md` 与
+> `refine-logs/2026-10-25_aorta_post_b3/ICCV_CORE_STORY_V5_AFTER_DJEPA_CN.md`。
+
 > **2026-10-25 full-target语义收紧：`FULL_TARGET_IS_FINAL_ESTIMAND__PREVIOUS_CONTEXT_IS_INPUT`。**
 > 官方目标满足`F_full=7/8 F_one+1/8 H*C2`，故上一周期实际selected trajectory属于目标函数上下文，
 > 不能再由经验alignment决定是否存在。最小previous-action geometry token将始终进入最终relation

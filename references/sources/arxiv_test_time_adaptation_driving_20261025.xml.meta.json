@@ -1,0 +1,16 @@
+{
+  "requested_url": "https://export.arxiv.org/api/query?search_query=all%3A%22test-time%20adaptation%22%20AND%20all%3A%22autonomous%20driving%22&start=0&max_results=20&sortBy=submittedDate&sortOrder=descending",
+  "retrieved_at_utc": "2026-10-24T22:58:34.009195+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://export.arxiv.org/api/query?search_query=all%3A%22test-time%20adaptation%22%20AND%20all%3A%22autonomous%20driving%22&start=0&max_results=20&sortBy=submittedDate&sortOrder=descending",
+  "status": 200,
+  "content_type": "application/atom+xml; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 51092,
+  "sha256": "e0f98459dffb88ce216c1b301d68c5bb6691f2c721411b0146ad5d291622f7be",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\arxiv_test_time_adaptation_driving_20261025.xml",
+  "elapsed_seconds": 1.128,
+  "pdf_detected": false
+}

@@ -2,6 +2,12 @@
 
 状态：`FORMAL_CLOSURE_CANDIDATE__EMPIRICAL_CORE_UNPROVEN__B4R1_REQUIRED`。
 
+2026-10-25 前沿查新补充：D-JEPA 已直接覆盖 decision-local relation、native-relative bounded
+correction、risk penalty、margin gate 与 native fallback；World4Scorer 已覆盖 outcome-grounded
+candidate state、future anchor 与 previous-plan reranking。因此本合同中的“relation learning”和
+“选择性保留 native”只能作为严谨地基，不能单独作为新颖性。最新故事边界见
+`ICCV_CORE_STORY_V5_AFTER_DJEPA_CN.md`。
+
 本文把分散的数学命题、网络设计、loss、选择规则、时延和论文故事压到同一条可反驳链上。它不是
 用更多公式包装方法，也不授权训练；任何结构只有在对应失败已经出现、数学接口明确且 matched
 删除实验能够检验时才保留。
@@ -275,7 +281,11 @@ sharpness；最终半径来自独立 group calibration。若 scale arm 不改善
 | The Constant Eye | appearance-only shift、冻结 DINO 接口、跨 planner NavDream | 使用 DINO、零样本外观鲁棒、plug-and-play | 稳定感知之后，decision-difference relation 的必要性与行为增益 |
 | NMP/MP3/FlowDrive/READ | field/cost/occupancy 接规划 | 视觉场、轨迹积分或 planner-aware representation 本身 | field readout 无法保留的候选差异，以及 relation operator 的增量 |
 | GTRS/DA-WAM | trajectory token、candidate-conditioned attention、factor/utility scorer | cross-attention、candidate scorer、hard negative | signed differential query 相对普通 scorer 的 matched advantage |
+| D-JEPA | decision-local gap、完整候选关系、bounded/native-relative correction、risk gate、native fallback、视觉变化 | relation learning、native-relative head、有界修正、margin switch | 驾驶外观干预下 differential evidence 相对 D-JEPA-style matched scorer 的增量；NavDream、多 planner、correct-image necessity |
+| World4Scorer/iDriveVLA/ManeuverFlow | outcome-grounded candidate state、future anchor、safety scorer、path-specific current/future evidence、previous-plan consistency | outcome scorer、future target、factor head、沿轨迹读共享场、temporal reranking | appearance orbit、full-target differential query、错误干预与 clean no-harm 闭环 |
+| GeoWAM/PlanWAM | appearance-disentangled geometry、planning-shaped future representation | geometry state、任务塑造 future latent | 稳定/规划相关 representation 之后仍需 decision-difference interface 的直接证据 |
 | RiskWorld/Expand-and-Prune | candidate reuse、selective replacement、confidence fallback | 冻结 planner 辅助或拒判本身 | relation-level simultaneous error 与不可识别性驱动的可靠仲裁 |
+| SLLCP/Barrier-Conformal | frozen monitor、fixed-pipeline post-selection conformal、session unit/max、有限样本 coverage | conformal、group maximum、order statistic、概率拒判 | calibration 只作支持机制；AORTA 新意必须来自 appearance-conditioned estimand/evidence interface |
 
 文献边界以 `references/2026-10-25_relation_story_sources.md`、
 `references/2026-10-25_b3_decision_operator_sources.md` 和
@@ -283,8 +293,9 @@ sharpness；最终半径来自独立 group calibration。若 scale arm 不改善
 
 ## 7. 一篇顶会论文只保留一主一从贡献
 
-1. **主贡献候选：appearance-interventional differential-support relation learning。** 在完整时域
-   native–challenger 差异支持上查询全局视觉证据，直接预测合法任务 margin。
+1. **主贡献候选：appearance-interventional differential decision evidence。** 在完整时域
+   native–challenger 差异支持上查询全局视觉证据，直接预测合法 full-task margin；其资格完全取决于
+   是否在 matched D-JEPA/World4Scorer-style scorer 上产生不可替代的增量。
 2. **从属机制候选：evidence-qualified native-preserving arbitration。** 使用表示 provenance 与
    group-simultaneous residual 分开记账，只在 lower bound 为正时干预。
 
@@ -297,14 +308,16 @@ scorer 并降低论文定位；若 selective arm 近乎全拒判或不降低 fal
 2. **反常：**稳定甚至 perfect 的道路场仍会把决策不同的候选压成相同 scalar；短前缀还删除晚期
    分叉。
 3. **洞见：**需要稳定的不是整幅感知，而是 native 与 challenger 在哪里产生决策差异的证据。
-4. **方法：**完整时空 signed support 产生 query，全局视觉 token 回答，反对称比较器输出相对
+4. **最近工作转折：**D-JEPA 已能学习一般候选关系；缺口不再是“有没有 scorer”，而是外观干预
+   下什么视觉证据足以保持候选关系。
+5. **方法：**完整时空 signed support 产生 query，全局视觉 token 回答，反对称比较器输出相对
    official-task margin。
-5. **可信动作：**同时 lower bound 不为正就不干预。
-6. **证据：**correct image、matched scorer、NavDream、三 planner、hard-failure net reduction、clean
+6. **可信动作：**同时 lower bound 不为正就不干预。
+7. **证据：**correct image、matched D-JEPA/World4Scorer scorer、NavDream、三 planner、hard-failure net reduction、clean
    no-harm 和 batch-1 latency 共同闭环。
-7. **边界：**非反应式 PDMS 与 source calibration 不被描述为真实道路安全保证。
+8. **边界：**非反应式 PDMS 与 source calibration 不被描述为真实道路安全保证。
 
-如果无法在 90 秒内用这七步解释一个模块，它不属于主方法。
+如果无法在 90 秒内用这八步解释一个模块，它不属于主方法。
 
 ## 9. 决定论文生死的证据链
 

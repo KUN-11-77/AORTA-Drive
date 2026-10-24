@@ -3,6 +3,10 @@
 检索时间：2026-10-25（Asia/Shanghai）  
 状态：`TARGETED_STORY_AND_ARCHITECTURE_AUDIT__NOT_SYSTEMATIC_REVIEW`
 
+> 后续更新：D-JEPA、World4Scorer、iDriveVLA、ManeuverFlow、PlanWAM、GeoWAM 与近期 conformal
+> driving work 的正文审查进一步收窄了边界。最新结论见
+> `2026-10-25_frontier_decision_scorer_novelty_audit.md`；若有冲突，以后者为准。
+
 本轮只审查两件事：一是顶会方法论文如何把问题、机制与证据收成一条主线；二是
 `candidate-conditioned scorer`、`selective replacement` 与 `frozen DINO interface` 是否已经被近邻
 工作占据。摘要只能支持问题与高层方法判断；架构细节仅采用已经保存的官方 arXiv HTML 正文。

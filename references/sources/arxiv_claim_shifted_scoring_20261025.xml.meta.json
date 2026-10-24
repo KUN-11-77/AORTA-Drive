@@ -1,0 +1,16 @@
+{
+  "requested_url": "https://export.arxiv.org/api/query?search_query=all%3A%22trajectory%20scoring%22%20AND%20all%3A%22distribution%20shift%22%20AND%20all%3A%22autonomous%20driving%22&start=0&max_results=20&sortBy=submittedDate&sortOrder=descending",
+  "retrieved_at_utc": "2026-10-24T23:02:22.304130+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://export.arxiv.org/api/query?search_query=all%3A%22trajectory%20scoring%22%20AND%20all%3A%22distribution%20shift%22%20AND%20all%3A%22autonomous%20driving%22&start=0&max_results=20&sortBy=submittedDate&sortOrder=descending",
+  "status": 200,
+  "content_type": "application/atom+xml; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 852,
+  "sha256": "109dfb072fe0931f585be7eb5e1a06aa55c56650e9cb7bb4b90d2348497b9190",
+  "output_path": "F:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\arxiv_claim_shifted_scoring_20261025.xml",
+  "elapsed_seconds": 0.98,
+  "pdf_detected": false
+}

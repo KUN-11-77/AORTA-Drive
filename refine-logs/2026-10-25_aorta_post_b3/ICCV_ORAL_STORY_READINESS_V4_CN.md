@@ -2,6 +2,11 @@
 
 状态：`COHERENT_HYPOTHESIS__NOT_YET_ORAL_READY`。
 
+> 前沿查新更新：本版本写于 D-JEPA / World4Scorer 方法边界完全展开之前。D-JEPA 已覆盖一般
+> decision-relation、native-relative correction、risk gate 与 native fallback，故“关系学习”本身
+> 不再构成新颖性。最新收紧叙事以 `ICCV_CORE_STORY_V5_AFTER_DJEPA_CN.md` 为准；本文件保留为
+> 演化记录。
+
 这不是写作包装，而是方法资格门。一个顶会故事只有在“反常现象—新对象—必要机制—行为结果”
 四步都由同一组可复算证据连接时才成立。不能快速讲清的公式和模块不进入主线；能讲清但未被实验
 支持的内容仍只是假设。

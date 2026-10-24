@@ -1,0 +1,725 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/G+tMPimGzYXJsuih9Ume4skpH+Y</id>
+  <title>arXiv Query: search_query=all:selective AND all:trajectory AND all:"autonomous driving"&amp;id_list=&amp;start=0&amp;max_results=20</title>
+  <updated>2026-10-24T22:58:33Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:selective+AND+(all:trajectory+AND+all:%22autonomous+driving%22)&amp;start=0&amp;max_results=20&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>20</opensearch:itemsPerPage>
+  <opensearch:totalResults>188</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2610.23262v1</id>
+    <title>Expand-and-Prune: Test-Time Candidate-Space Adaptation for End-to-End Autonomous Driving</title>
+    <updated>2026-10-16T10:34:12Z</updated>
+    <link href="https://arxiv.org/abs/2610.23262v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.23262v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Candidate-based end-to-end driving planners reason over a finite set of trajectory hypotheses. However, for sparse planners, a limited candidate set may provide insufficient support for scene-relevant maneuvers, while fixed downstream candidate budgets do not account for prediction uncertainty. To address these challenges, we introduce Expand-and-Prune, a test-time framework that jointly adapts candidate support and capacity without updating learned parameters. The framework expands the native candidate set using semantic driving intent and temporally propagated predictions and then uses uncertainty in intermediate trajectory scores to adaptively prune the resulting candidates. Across four heterogeneous candidate-based planners and four benchmarks, Expand-and-Prune consistently improves planning performance. It achieves state-of-the-art results on LangAuto, increasing the Driving Score from 68.2 to 75.9, while providing further improvement on Bench2Drive, Fail2Drive, and NAVSIMv2, with particularly strong improvements in out-of-distribution scenarios. Moreover, in its full instantiation, 72.5% of selected trajectories originate from the newly introduced intent-guided or temporal candidates, confirming that candidate-space expansion provides useful hypotheses beyond those generated natively by the planner. The code is available at https://github.com/iis-esslingen/Expand-and-Prune.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-16T10:34:12Z</published>
+    <arxiv:comment>Accepted to IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2027</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Fabian Schmidt</name>
+    </author>
+    <author>
+      <name>Karol Fedurko</name>
+    </author>
+    <author>
+      <name>Markus Enzweiler</name>
+    </author>
+    <author>
+      <name>Abhinav Valada</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.21984v1</id>
+    <title>GRID-Planner: Graph-Structured Relational Reward Shaping for Diffusion Planning</title>
+    <updated>2026-10-15T14:34:18Z</updated>
+    <link href="https://arxiv.org/abs/2610.21984v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.21984v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Autonomous driving planning requires selecting trajectories that remain safe, rule-compliant, and comfortable under complex multi-agent interactions, yet robust closed-loop decision making in planning-critical scenes remains challenging. Existing diffusion- and RL-based planners often rely on generic rewards and use relational structure mainly for representation, limiting how planning-critical rollouts shape policy improvement. We present GRID-Planner, a graph--reward integrated diffusion planning framework that aligns generative planning with structured relational signals. Specifically, GRID-Planner combines graph-aware importance weighting, a time-indexed relational reward surrogate, and an advantage-weighted diffusion objective with on-policy self-distillation, forming a rollout-return-advantage-update loop without explicit likelihoods. Experiments on nuPlan and interPlan show that, compared with the diffusion-only baseline, GRID-Planner reduces collision rate, lane deviation, and jerk by 35.8\%, 60.8\%, and 27.4\%, respectively, and improves the planning score by 3.4\%. Project website: https://github.com/yangzhaojason/GRID-Planner.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-15T14:34:18Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Zhao Yang</name>
+    </author>
+    <author>
+      <name>Zezhong Qian</name>
+    </author>
+    <author>
+      <name>Yinan Shi</name>
+    </author>
+    <author>
+      <name>Longjun Liu</name>
+    </author>
+    <author>
+      <name>Yawei Jueluo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.13453v1</id>
+    <title>Reflect-VLA: Internalizing Reflective Guidance via Dual-Path On-Policy Self-Distillation for Autonomous Driving</title>
+    <updated>2026-10-09T11:52:17Z</updated>
+    <link href="https://arxiv.org/abs/2610.13453v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.13453v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reinforcement Learning (RL) substantially improves planning performance in autonomous-driving Vision-Language-Action (VLA) models. However, existing RL methods rely on scalar trajectory rewards that measure overall quality but fail to identify specific planning errors or provide actionable correction signals. In long-tail scenarios, errors in scene understanding, behavior selection, and trajectory execution are compressed into a single score. We observe that Reflective Guidance turns trajectory evaluation into explicit diagnoses and corrective instructions, substantially improving planning accuracy. Yet such guidance requires an initial prediction and its evaluation results, making it unavailable for direct single-pass inference. We propose Reflect-VLA, which treats Reflective Guidance as training-time privileged information and internalizes its planning benefits through Dual-Path On-Policy Self-Distillation (Dual-OPSD). Unlike scalar-reward optimization, Dual-OPSD uses the driving score only to route student-generated trajectories. It distills dense token-level corrective distributions from the teacher for risky trajectories while applying self-imitation to preserve reliable ones. To provide reliable corrective distributions on student rollouts, the teacher is progressively constructed through Driving-Knowledge Pretraining, Planning-and-Refinement SFT, and Self-Refinement Rejection Sampling. At inference time, Reflect-VLA generates trajectories in a single pass without explicit guidance or iterative refinement. Experiments on NAVSIM v1/v2 and Bench2Drive demonstrate competitive planning performance while reducing training time by over 90% compared with RL.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T11:52:17Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Yuechen Luo</name>
+    </author>
+    <author>
+      <name>He Chong</name>
+    </author>
+    <author>
+      <name>Fang Li</name>
+    </author>
+    <author>
+      <name>Shaoqing Xu</name>
+    </author>
+    <author>
+      <name>Hexin Zhang</name>
+    </author>
+    <author>
+      <name>Ruiqi Zhang</name>
+    </author>
+    <author>
+      <name>Ziying Song</name>
+    </author>
+    <author>
+      <name>Lei Yang</name>
+    </author>
+    <author>
+      <name>Zhi-Xin Yang</name>
+    </author>
+    <author>
+      <name>Fuxi Wen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.13409v1</id>
+    <title>ManeuverFlow: Maneuver Hypothesis Generation with Future Evidence for Trajectory Evaluation and Refinement in End-to-End Autonomous Driving</title>
+    <updated>2026-10-09T11:20:55Z</updated>
+    <link href="https://arxiv.org/abs/2610.13409v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.13409v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>End-to-end planning in complex scenes must model diverse driving intentions and select the most appropriate trajectory using scene context and future risks. However, multi-query regression may collapse to one mode, while anchor-based and generative planners share a scaling bottleneck: small candidate sets limit maneuver coverage or discovery of high-quality trajectories, whereas large sets increase generation and scoring costs. We propose ManeuverFlow to generate trajectories for distinct intentions in one step and evaluate and refine them using current and future evidence. The model selects relevant maneuver modes, draws corresponding noise from the Gaussian mixture prior, and maps it to intention-specific trajectories through a maneuver-routed mixture-of-experts MeanFlow field. Current features and future features predicted by the world model are aggregated along each candidate path into trajectory-specific evidence for PDM-factor prediction. Using the same evidence, the refiner predicts local Frenet residuals for selected candidates; refined and retained candidates are then jointly re-scored for selection. With a lightweight TransFuser-style ResNet-34 backbone, ManeuverFlow achieves 90.6 PDMS and 90.1 EPDMS on NAVSIM v1/v2 navtest, respectively. On WorldEngine's recent 3DGS closed-loop benchmark, it attains the highest listed PDMS$^\ast$ scores of 75.19 and 74.58 under logged and IDM-controlled traffic, respectively. Code: https://github.com/wyh-autonomy/maneuverflow.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T11:20:55Z</published>
+    <arxiv:comment>17 pages, 9 figures; includes appendix</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Yuhao Wei</name>
+    </author>
+    <author>
+      <name>Yong Chen</name>
+    </author>
+    <author>
+      <name>Chen Yang</name>
+    </author>
+    <author>
+      <name>Yingchen Wang</name>
+    </author>
+    <author>
+      <name>Delin Ouyang</name>
+    </author>
+    <author>
+      <name>Lingfeng Qi</name>
+    </author>
+    <author>
+      <name>Qi Lan</name>
+    </author>
+    <author>
+      <name>Zhanhua Zhang</name>
+    </author>
+    <author>
+      <name>Jie Li</name>
+    </author>
+    <author>
+      <name>Guofa Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.13232v1</id>
+    <title>FPD-Drive: Future Policy Distillation for End-to-End Autonomous Driving</title>
+    <updated>2026-10-09T08:50:25Z</updated>
+    <link href="https://arxiv.org/abs/2610.13232v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.13232v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>End-to-end autonomous driving models are typically trained on real-world driving logs, which record only the trajectory actually executed in each scene. This provides limited supervision for learning alternative valid behaviors. Multi-target supervision can mitigate this limitation, but broader trajectory coverage makes safe candidate selection more challenging. We propose FPD-Drive, an end-to-end planner that distills privileged future knowledge into a visual driving policy to improve both multi-trajectory supervision and safety selection. Specifically, we introduce Future-Privileged Multi-Target Distillation to transfer diverse, high-quality trajectory targets from a teacher with access to recorded future observations to the student. These targets extend supervision beyond the single recorded human trajectory. For candidate selection, we further introduce Safety-Aware Score Correction to correct ranking errors between nearby safe and unsafe candidates and raise underestimated safety scores of safe candidates. At deployment, the student requires neither future observations nor teacher inference. Our base model achieves 94.9 PDMS on NAVSIM v1 navtest and 55.9 EPDMS on NAVSIM v2 navhard. The scaled FPD-Drive-Pro improves these scores to 95.5 PDMS and 58.1 EPDMS, respectively, achieving SOTA performance among the compared methods on both benchmarks. Zero-shot closed-loop evaluation on HUGSIM further yields an HD-Score of 45.1 and RC of 55.3.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-09T08:50:25Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Li-Heng Chen</name>
+    </author>
+    <author>
+      <name>Qifeng Chen</name>
+    </author>
+    <author>
+      <name>Chengwei Wu</name>
+    </author>
+    <author>
+      <name>Yingjie Zhang</name>
+    </author>
+    <author>
+      <name>Sheng Yang</name>
+    </author>
+    <author>
+      <name>Hongbo Fu</name>
+    </author>
+    <author>
+      <name>Shaoqing Ren</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11662v1</id>
+    <title>Lamarck's Driving School: Discovering Autonomous Driving Training Strategies through Evolutionary Competition</title>
+    <updated>2026-10-08T10:36:41Z</updated>
+    <link href="https://arxiv.org/abs/2610.11662v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11662v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Autonomous driving capabilities depend strongly on the distribution of scenarios encountered during training. Existing methods commonly construct or dynamically adapt training scenario distributions using surrogate criteria such as realism, difficulty, or risk. However, these predefined surrogates may misrepresent training value, leading to inefficient use of training resources. To address this limitation, we propose a Lamarckian evolutionary framework that replaces surrogate-based guidance with competition among candidate distributions. We formulate training strategy discovery as a multi-stage bilevel optimization problem and use Lamarckian evolution algorithm to approximate its solution. At the outer level, Darwinian crossover, mutation, and selection explore the scenario distribution space; at the inner level, policy learning acquires new capabilities, and Lamarckian inheritance transfers them to subsequent stages, allowing scenario distributions and policy capabilities to co-evolve. The resulting evolutionary trajectories reveal recurring stage-wise regularities among high-value distributions, characterized by capability accumulation through stage-wise challenge rotation. We further distill these regularities into a lightweight, reusable Lamarckian Training Strategy. Experiments show that, compared with the baseline, the complete framework reduces performance loss by up to 25.07%, while the lightweight strategy still achieves a 19.13% reduction. These results demonstrate that evolutionary competition can both discover effective training strategies and reveal reusable stage-wise patterns in how the value of training distributions changes with policy capability. Code is available on GitHub.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T10:36:41Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yichun Ye</name>
+    </author>
+    <author>
+      <name>He Zhang</name>
+    </author>
+    <author>
+      <name>Ye Tian</name>
+    </author>
+    <author>
+      <name>Jian Sun</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11382v1</id>
+    <title>PlanWAM: Planning-Shaped Future Representations for End-to-End Autonomous Driving</title>
+    <updated>2026-10-08T07:13:10Z</updated>
+    <link href="https://arxiv.org/abs/2610.11382v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11382v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>World models in end-to-end autonomous driving predict future scene evolution to provide foresight for trajectory planning. Existing methods mainly study how to predict the future and how to use it, but less often ask which future representation is actually most useful for planning. To this end, we propose PlanWAM, a Planning-Shaped World Action Model. The key idea is to let the planning task shape the future-state representation, so that it retains the information most useful for planning. A latent world model then predicts this planning-shaped future latent representation from historical observations and uses it for planning, enabling foresighted planning. Specifically, we first use a Temporal Register Pyramid to compress multi-frame historical information in a recency-aware manner, learning a compact history representation oriented toward future reasoning and planning. We then introduce a privileged future posterior branch that observes ground-truth future frames, and shape its future latent representation with trajectory-planning objectives to obtain a planning-shaped future latent representation. Hindsight-to-Foresight Distillation trains a prior branch that depends only on history to predict this future latent representation. The predicted future latent representation serves as planning context and guides trajectory generation and selection. PlanWAM achieves 93.8 PDMS / 90.9 EPDMS on NAVSIM-v1/v2 navtest and reaches 38.7 HD-Score on closed-loop HUGSIM in a zero-shot setting, demonstrating leading planning performance across both open-loop and closed-loop evaluations. Extensive experiments further demonstrate that planning-shaped future representations provide an effective and deployable form of foresight for world-action models.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T07:13:10Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Jinchang Xu</name>
+    </author>
+    <author>
+      <name>Hongda Yu</name>
+    </author>
+    <author>
+      <name>Fengwei Dong</name>
+    </author>
+    <author>
+      <name>Wenhui Huang</name>
+    </author>
+    <author>
+      <name>Xi Wei</name>
+    </author>
+    <author>
+      <name>Yongzhi Liu</name>
+    </author>
+    <author>
+      <name>Sunan Zhang</name>
+    </author>
+    <author>
+      <name>Jirao Wang</name>
+    </author>
+    <author>
+      <name>Chen Lv</name>
+    </author>
+    <author>
+      <name>Bingbing Li</name>
+    </author>
+    <author>
+      <name>Guodong Yin</name>
+    </author>
+    <author>
+      <name>Weichao Zhuang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09763v2</id>
+    <title>Beyond Policy Support: Interaction Constrained Offline Reinforcement Learning for Autonomous Driving</title>
+    <updated>2026-10-12T19:56:25Z</updated>
+    <link href="https://arxiv.org/abs/2610.09763v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09763v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Offline reinforcement learning enables reward-driven policy improvement from fixed datasets without requiring online exploration, making it particularly attractive in safety-critical domains. A central challenge, however, is distribution shift: policy optimization may favor actions that are weakly supported by the offline data, rendering value estimates unreliable. Existing approaches primarily control this shift in the policy's own action space. In interactive environments such as autonomous driving, this can be insufficient: a candidate ego trajectory may remain well supported under the marginal behavior distribution while being poorly supported jointly with the surrounding-agent behavior observed in the logged interaction. We refer to this degradation in interaction support as \emph{interaction distribution shift} (IDS), and introduce \emph{Interaction-Constrained Drive Policy} (ICDP), an offline reinforcement learning framework that explicitly controls interaction-level distribution shift. Starting from the joint data distribution over ego and surrounding-agent futures, we show that joint-support degradation decomposes exactly into an ego-support component and a residual interaction-support component. We recover the latter through contrastive density-ratio estimation, isolating interaction compatibility without explicit joint-density modeling, surrounding-agent prediction, or rollouts in reactive simulators or learned world models during policy optimization. Closed-loop evaluations on nuPlan, Interplan and real-world truck experiments show that ICDP suppresses high-value yet interaction-unsupported trajectory selections and improves performance in interaction-critical driving scenarios. Project webpage: https://mahmoud-selim.github.io/ICDP/</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T09:48:53Z</published>
+    <arxiv:comment>Corrected affiliation formatting and some typos</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Mahmoud Selim</name>
+    </author>
+    <author>
+      <name>Cristina Cipriani</name>
+    </author>
+    <author>
+      <name>Karl Henrik Johansson</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.09438v1</id>
+    <title>Controllable Crowd Generation through World-Model Planning</title>
+    <updated>2026-10-07T04:50:22Z</updated>
+    <link href="https://arxiv.org/abs/2610.09438v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.09438v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Crowd simulation plays a central role in robot navigation, autonomous driving, and urban planning. For these applications, realistic simulation requires crowds to adapt their behavior to environmental changes and user objectives. However, existing methods that rely on predefined control settings have limited flexibility in accommodating new user-specified objectives. To address this limitation, we propose Ctrl-CWM, a multi-agent Controllable Crowd World Model that integrates crowd generation and run-time control. Our key idea is to adapt the world-model principle of planning using imagined futures to crowd simulation. To this end, Ctrl-CWM consists of an encoder that learns a representation of human motion dynamics, an actor that proposes pedestrian displacements, a critic that evaluates imagined crowd trajectories, and a planner that selects actions. We first learn human motion dynamics through trajectory prediction on real-world pedestrian videos and then freeze the encoder to preserve them. Using this representation, the actor generates imagined crowd trajectories through repeated state updates, and the planner combines the critic's scores with user costs to select actions. Repeated planning advances the simulated crowd, while additional user costs introduce new control objectives without retraining. We extensively evaluate crowd generation under varied agent arrival conditions and run-time control across avoidance and attraction scenarios. Ctrl-CWM outperforms the state-of-the-art method on most crowd realism and collision metrics, and adapts crowd behaviors to user-specified objectives introduced during simulation. The project page is available at https://jungyu0413.github.io/Ctrl-CWM</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-07T04:50:22Z</published>
+    <arxiv:comment>28 pages, 6 figures. Project page: https://jungyu0413.github.io/Ctrl-CWM</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>JunGyu Lee</name>
+    </author>
+    <author>
+      <name>Jisu Shin</name>
+    </author>
+    <author>
+      <name>Seunghyun Shin</name>
+    </author>
+    <author>
+      <name>Hae-Gon Jeon</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38862v1</id>
+    <title>Efficient Multi-Modal Planning with Reward-Guided Preference Optimization for Autonomous Driving</title>
+    <updated>2026-09-30T03:17:37Z</updated>
+    <link href="https://arxiv.org/abs/2609.38862v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38862v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Safe and efficient trajectory planning is essential in autonomous driving. However, existing end-to-end approaches often fall short in both computational efficiency and safety guarantees. Methods based on imitation learning suffer from causal confusion, while rule-based scoring approaches often incur heavy computational overhead and suffer from objective misalignment. Additionally, preference-based methods rely on strict pairwise annotations, limiting data utilization. To overcome these limitations, we propose EMPlan, an efficient multi-modal trajectory planning method powered by reward-guided fine-tuning. We design a hybrid architecture that combines sparse anchors with an offset refinement module for efficient multi-modal trajectory prediction. Sparse anchors provide coarse trajectory candidates with low latency, which are subsequently refined by the offset module for higher prediction accuracy. To enhance safety without incurring additional inference costs, we adopt a two-stage training paradigm consisting of pretraining and reward-guided fine-tuning. During fine-tuning, we leverage rule-based reward signals and unpaired preference supervision to refine the pretrained policy toward safer trajectory selection. We evaluate EMPlan on the non-reactive NAVSIM benchmark, where it strikes a favorable balance between planning accuracy and efficiency, demonstrating superior performance under real-time constraints.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T03:17:37Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Chenglin Chen</name>
+    </author>
+    <author>
+      <name>Lujia Wang</name>
+    </author>
+    <author>
+      <name>Xinhu Zheng</name>
+    </author>
+    <author>
+      <name>Jun Ma</name>
+    </author>
+    <author>
+      <name>Haoang Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.37970v1</id>
+    <title>PhysWAM: Physically Consistent World Action Model for Autonomous Driving</title>
+    <updated>2026-09-29T16:38:13Z</updated>
+    <link href="https://arxiv.org/abs/2609.37970v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.37970v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>World-action models (WAMs) jointly predict how a scene will evolve and how an agent should act, however joint generation alone does not necessarily impose a shared geometric constraint on these predictions. We present PhysWAM, a unified world-action model for autonomous driving that co-denoises multiview video, metric depth, and ego motion within a single flow-matching transformer. To ground world and action generation in measured scene geometry, we introduce Coupled Point Projection (CPP) that unprojects the generated depth into 3D points, transforms them using the generated $\mathrm{SE}(3)$ ego motion, and minimizes their distance to LiDAR points transformed using the recorded ego motion. This geometric constraint promotes physical consistency with the measured scene by jointly supervising generated depth and motion alongside their standard flow-matching objectives. At inference, trajectory selection relies only on a simple label-free consensus rule, with no learned scorer or simulator feedback. We evaluate PhysWAM across NAVSIM v1 and v2 planning, zero-shot closed-loop transfer, and future video and metric-depth prediction. Despite PhysWAM's simple selection procedure, it achieves strong planning performance and transfers zero-shot to unseen driving environments. It also generates accurate metric depth and temporally coherent video, with CPP improving both planning and depth prediction. Together, these results demonstrate that the geometric relationship between scene depth and ego motion provides a direct way to couple world and action generation within a simple unified model.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T16:38:13Z</published>
+    <arxiv:comment>Technical Report</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Dhruv Parikh</name>
+    </author>
+    <author>
+      <name>Fengcheng Yu</name>
+    </author>
+    <author>
+      <name>Quankai Gao</name>
+    </author>
+    <author>
+      <name>Jiawei Yang</name>
+    </author>
+    <author>
+      <name>Junjie Ye</name>
+    </author>
+    <author>
+      <name>Maulik Bhatt</name>
+    </author>
+    <author>
+      <name>Thang Vu</name>
+    </author>
+    <author>
+      <name>Charles Ochoa</name>
+    </author>
+    <author>
+      <name>Rowan McAllister</name>
+    </author>
+    <author>
+      <name>Igor Vasiljevic</name>
+    </author>
+    <author>
+      <name>Rajgopal Kannan</name>
+    </author>
+    <author>
+      <name>Viktor Prasanna</name>
+    </author>
+    <author>
+      <name>Vitor Guizilini</name>
+    </author>
+    <author>
+      <name>Yue Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36438v1</id>
+    <title>World4Scorer: Outcome-Grounded World Modeling for Autonomous Driving</title>
+    <updated>2026-09-29T00:55:12Z</updated>
+    <link href="https://arxiv.org/abs/2609.36438v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36438v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Autonomous driving requires choosing a safe and efficient plan as surrounding traffic evolves. Generate-and-select planners propose multiple trajectories and score them for execution, and they have outperformed representative direct-prediction baselines on NAVSIM. Their scorer must compare plans that were never executed. Driving logs record the future of only the executed trajectory, so matching the logged future can leave predictions for the alternatives unconstrained; a simulator, in contrast, can label the outcome of every candidate. We introduce World4Scorer, which builds the scorer as a trajectory-conditioned JEPA-style predictor: it predicts a state for each candidate and reads the candidate's scores from that state. Simulator outcome labels supervise the states of all candidates, and the observed future of the executed trajectory anchors the predictor to real scene evolution. Because one predictor produces every candidate's state, the anchor can constrain shared parameters used to score unexecuted plans, while the future itself is needed only during training. Generated candidates mostly score well, so a scene-matched bank adds low-scoring plans to the outcome supervision; framewise choices can conflict, so inertial re-ranking keeps consecutive selections consistent. World4Scorer achieves state-of-the-art NAVSIM-v2 performance and a strong adapted-system result on closed-loop Bench2Drive. With the LeWM world model and planning budget fixed, outcome-based scoring also improves manipulation planning on the OGBench-Cube benchmark.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T00:55:12Z</published>
+    <arxiv:comment>28 pages, 14 figures, 13 tables. Project page: https://guobapei.github.io/World4Scorer/</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Jieyuan Pei</name>
+    </author>
+    <author>
+      <name>Meiyi Lu</name>
+    </author>
+    <author>
+      <name>Sining Ang</name>
+    </author>
+    <author>
+      <name>Yubo Zhao</name>
+    </author>
+    <author>
+      <name>Zhangyi Hu</name>
+    </author>
+    <author>
+      <name>Mingwei Xu</name>
+    </author>
+    <author>
+      <name>Haokai Ding</name>
+    </author>
+    <author>
+      <name>Wei Li</name>
+    </author>
+    <author>
+      <name>Zihan You</name>
+    </author>
+    <author>
+      <name>Jianwei Zheng</name>
+    </author>
+    <author>
+      <name>Li Yu</name>
+    </author>
+    <author>
+      <name>Yifeng Pan</name>
+    </author>
+    <author>
+      <name>Ji Tao</name>
+    </author>
+    <author>
+      <name>Rongjunchen Zhang</name>
+    </author>
+    <author>
+      <name>Yan Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34387v2</id>
+    <title>CAR-VLA: Complexity-Aware and Risk-Adaptive Reasoning for Autonomous Driving</title>
+    <updated>2026-09-29T03:32:19Z</updated>
+    <link href="https://arxiv.org/abs/2609.34387v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34387v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Existing adaptive reasoning methods for driving Vision-Language-Action (VLA) models primarily focus on whether to reason, overlooking how reasoning should differ across driving situations. Our key insight is that while scene complexity informs reasoning depth, dynamic risk is equally critical for deciding how to reason in time-critical situations. We therefore propose CAR-VLA, a unified driving VLA model that jointly considers scene complexity and dynamic risk to guide reasoning depth, urgency, and focus. CAR-VLA maps four complexity--risk categories to three reasoning modes: \textit{Fast Intuition} for direct trajectory generation in simple low-risk scenes, \textit{Slow Thinking} for deliberate reasoning in complex low-risk scenes, and \textit{Reflex Response} for compact, hazard-focused reasoning in high-risk scenes regardless of complexity. Rather than merely shortening deliberation, Reflex Response centers reasoning on the most critical hazard and the immediate safe response. We train CAR-VLA through progressive supervised learning that links scene assessment, reasoning-mode selection, and trajectory generation, followed by reasoning-augmented reinforcement learning to improve driving quality and reasoning behavior. Experiments on NAVSIM v1(91.1 PDMS), NAVSIM v2(90.3 EPDMS), and Navhard(35.0 EPDMS) demonstrate competitive driving performance. Qualitative comparisons on navtest and in-house high-risk scenarios further illustrate risk-aware reasoning and hazard-responsive trajectory generation. The code for this paper will be released publicly at: https://github.com/chenxl124578/CAR-VLA.git</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T06:03:13Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Xiaolei Chen</name>
+    </author>
+    <author>
+      <name>Zhuolin He</name>
+    </author>
+    <author>
+      <name>Yuxuan Liang</name>
+    </author>
+    <author>
+      <name>Xu Li</name>
+    </author>
+    <author>
+      <name>Haotian Chen</name>
+    </author>
+    <author>
+      <name>Fan Shi</name>
+    </author>
+    <author>
+      <name>Mengyang Zhao</name>
+    </author>
+    <author>
+      <name>Wenjuan Meng</name>
+    </author>
+    <author>
+      <name>Zisheng Chen</name>
+    </author>
+    <author>
+      <name>Zhihao Zhu</name>
+    </author>
+    <author>
+      <name>Zhounan Jin</name>
+    </author>
+    <author>
+      <name>Hengli Wang</name>
+    </author>
+    <author>
+      <name>Qingfan Wang</name>
+    </author>
+    <author>
+      <name>Jiamei Liang</name>
+    </author>
+    <author>
+      <name>Bin Li</name>
+    </author>
+    <author>
+      <name>Xiangyang Xue</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.23885v1</id>
+    <title>From Likelihood to Utility: Quality-Axis Diffusion for End-to-End Autonomous Driving</title>
+    <updated>2026-09-26T15:03:12Z</updated>
+    <link href="https://arxiv.org/abs/2610.23885v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.23885v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Diffusion models have become a dominant paradigm for end-to-end autonomous driving, yet existing planners organize trajectory generation along the Gaussian-noise axis, treating driving utility only as an auxiliary guidance or selection signal. We instead formulate diffusion along a driving-quality axis. We propose QualiDrive, which constructs scene-specific quality ladders by ranking observed trajectories according to measured driving utility and learns to reverse this ordered degradation through ordered low-to-high-quality refinement. Each reverse step is conditioned on the scene, ego state, current trajectory, and target quality level, progressively refining trajectories toward higher driving quality. On NAVSIM, QualiDrive achieves 94.5 PDMS on v1 and a state-of-the-art 92.74 EPDMS on v2. QualiDrive improves Oracle EPDMS only modestly over endpoint-only quality supervision (98.52 to 98.57), but substantially increases the fractions of candidates above 0.95 and 0.98 EPDMS from 12.94%/9.71% to 21.53%/15.93%, raising selected EPDMS from 92.63 to 92.74. These results suggest that diffusion is not merely a process of denoising, but one of progressive quality-ordered refinement.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T15:03:12Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Junjie Yang</name>
+    </author>
+    <author>
+      <name>Ziyi Shi</name>
+    </author>
+    <author>
+      <name>Shuqi Shen</name>
+    </author>
+    <author>
+      <name>Xinhu Zheng</name>
+    </author>
+    <author>
+      <name>Hongliang Lu</name>
+    </author>
+    <author>
+      <name>Hai Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.32681v1</id>
+    <title>RCVLA: 4D Radar-Grounded Semantic Reasoning and Trajectory Arbitration for Autonomous Driving</title>
+    <updated>2026-09-26T14:40:01Z</updated>
+    <link href="https://arxiv.org/abs/2609.32681v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.32681v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>4D radar provides geometric and motion cues that complement visual semantics, but integrating it into vision-language-action (VLA) models requires both radar--language alignment for semantic reasoning and explicit use of radar measurements for trajectory refinement and selection. To support these capabilities, we construct Cap4DR with 86,016 radar-image-text samples for alignment pretraining and OmniHD-QA with 520,161 question-answer pairs for instruction tuning across scene description, key-object reasoning, occupancy understanding, and trajectory planning. Building on these datasets, we propose RCVLA, a radar-camera VLA framework consisting of a radar-grounded semantic reasoning stage (RCVLA-Sem) and a trajectory arbitration stage (RCVLA-Phys). RCVLA-Sem performs gated bidirectional interaction between camera and radar tokens for driving question answering and reference trajectory generation, while auxiliary heads provide object and occupancy queries. RCVLA-Phys refines reference-guided trajectory candidates through truncated diffusion conditioned on these queries and cluster-level radar measurements, then calibrates candidate scores using radar-derived time-to-collision risk. On OmniHD-QA, RCVLA-Sem improves CIDEr by 9.92 points and reduces key-object velocity error by $21.9\%$ relative to OmniDrive. RCVLA-Phys further reduces average L2 error from $0.348$ to $0.259\,\mathrm{m}$ and average open-loop collision rate from $0.576\%$ to $0.175\%$ relative to RCVLA-Sem. Ablation studies further show that language-aligned radar tokens improve semantic reasoning, while cluster-level radar measurements and risk calibration improve trajectory arbitration. Code will be released.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-26T14:40:01Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Lianqing Zheng</name>
+    </author>
+    <author>
+      <name>Xiaokai Bai</name>
+    </author>
+    <author>
+      <name>Yixuan Luo</name>
+    </author>
+    <author>
+      <name>Runwei Guan</name>
+    </author>
+    <author>
+      <name>Minghao Liu</name>
+    </author>
+    <author>
+      <name>Zhiqiang Wei</name>
+    </author>
+    <author>
+      <name>Hui-liang Shen</name>
+    </author>
+    <author>
+      <name>Xichan Zhu</name>
+    </author>
+    <author>
+      <name>Zhixiong Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.30818v1</id>
+    <title>Evaluation Is All You Need for Multi-Modal Autonomous Driving</title>
+    <updated>2026-09-25T04:56:15Z</updated>
+    <link href="https://arxiv.org/abs/2609.30818v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.30818v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-modal planning is promising for autonomous driving by representing multiple plausible behaviors in ambiguous and long-tail scenarios. Existing methods mainly focus on improving trajectory multi-modality, enhancing trajectory representations, or reshaping the candidate distribution. Nevertheless, we identify a pronounced generation-evaluation asymmetry in multi-modal planning: despite strong oracle performance, existing planners often fail to reliably select the best available candidate, leaving substantial planning potential unrealized. To address this challenge, we propose iDriveVLA, a multi-modal planning framework that improves the candidate trajectory space while enabling more reliable and context-aware trajectory evaluation. Specifically, iDriveVLA introduces a unified trajectory evaluator comprising a Safety-aware Scorer for quality and risk estimation, together with a VLM-guided Modulator for scene-adaptive criterion weighting. We further develop an oracle-aligned progressive training strategy consisting of candidate imitation pretraining, candidate space refinement, and semantic ranking alignment. On the public NAVSIM v1 leaderboard, iDriveVLA achieves a new state-of-the-art performance of 94.95 PDMS, surpassing the human-expert reference.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T04:56:15Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Zeyu He</name>
+    </author>
+    <author>
+      <name>Shiqi Liu</name>
+    </author>
+    <author>
+      <name>Ke Chen</name>
+    </author>
+    <author>
+      <name>Yun Yan</name>
+    </author>
+    <author>
+      <name>Jinzi Wu</name>
+    </author>
+    <author>
+      <name>Dianqiao Lei</name>
+    </author>
+    <author>
+      <name>Sirui Wang</name>
+    </author>
+    <author>
+      <name>ShuRui Peng</name>
+    </author>
+    <author>
+      <name>Tao Chen</name>
+    </author>
+    <author>
+      <name>Zhuo Huang</name>
+    </author>
+    <author>
+      <name>Yu Wu</name>
+    </author>
+    <author>
+      <name>Yadong Shao</name>
+    </author>
+    <author>
+      <name>Zhichao Li</name>
+    </author>
+    <author>
+      <name>Ke Sun</name>
+    </author>
+    <author>
+      <name>Yang Guan</name>
+    </author>
+    <author>
+      <name>Keqiang Li</name>
+    </author>
+    <author>
+      <name>Shengbo Eben Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.29813v1</id>
+    <title>S2Planner: Multi-Scale Semantic Planner for End-to-End Autonomous Driving</title>
+    <updated>2026-09-24T13:48:08Z</updated>
+    <link href="https://arxiv.org/abs/2609.29813v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.29813v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present S2Planner, a trajectory planner that combines three front-facing cameras with ego-motion history and the current driving command. A fine-tuned DINOv3 backbone and a Spatial Tuning Adapter produce multi-scale image features; a coarse-to-fine decoder then uses trajectory self-attention and camera-projected cross-attention to refine candidate waypoints. The contribution is the integration of ego-conditioned trajectory initialization with iterative, geometry-guided sampling of multi-scale image features, rather than a new visual backbone or attention operator. On the NAVSIM v1 non-reactive evaluation, the previously reported navtest run obtained 88.03 PDMS. Because that run was selected using navtest performance, this number is exploratory and cannot be interpreted as an unbiased test estimate. Validation-selected evaluation on unexposed data, repeated runs, and computational measurements are needed to establish generalization and efficiency.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-24T13:48:08Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Zhaowei Lu</name>
+    </author>
+    <author>
+      <name>Liguo Zhou</name>
+    </author>
+    <author>
+      <name>Yujie Guo</name>
+    </author>
+    <author>
+      <name>Lei Yu</name>
+    </author>
+    <author>
+      <name>Alois Knoll</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.23488v1</id>
+    <title>FeasibleFlow: One-Step Joint Transport of Configuration Feasibility and Trajectories for End-to-End Driving</title>
+    <updated>2026-09-20T09:22:01Z</updated>
+    <link href="https://arxiv.org/abs/2609.23488v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.23488v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>End-to-end autonomous driving maps current observations directly to future trajectories, yet those trajectories must remain valid as the scene evolves. Future state modeling aims to address this temporal mismatch, but general representations often contain information unrelated to ego planning and affect trajectory generation only through auxiliary supervision, static conditioning, or proposal evaluation. We propose FeasibleFlow, a one-step end-to-end generative framework that jointly transports a configuration-space feasibility field and multimodal ego trajectories. Our Asymmetric Joint MeanFlow uses the pathwise Jacobian-vector product in the MeanFlow identity to incorporate field evolution into trajectory transport. Because safety feedback is sparser than progress feedback, we further introduce the Anchor-relative ranker (ARR) and Pareto-ReinFlow to balance safety and progress in candidate selection and generation, respectively. Experiments on the NAVSIM benchmark demonstrate the strong performance of FeasibleFlow and validate both the joint transport of feasibility and trajectories and the proposed safety-first mechanisms.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-20T09:22:01Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Xiang Li</name>
+    </author>
+    <author>
+      <name>Bikun Wang</name>
+    </author>
+    <author>
+      <name>Qing Xu</name>
+    </author>
+    <author>
+      <name>Jianjun Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.21486v1</id>
+    <title>Driving on Registers, Reasoning on Risk: Risk-Aware Occupancy for Register-Based End-to-End Autonomous Driving</title>
+    <updated>2026-09-18T08:39:36Z</updated>
+    <link href="https://arxiv.org/abs/2609.21486v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.21486v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multimodal trajectory prediction improves behavioral coverage in end-to-end autonomous driving, but existing methods remain limited by sparse scene representations. Incomplete evidence leads to low-quality candidate generation and unreliable ranking among geometrically similar trajectories. On a register-based baseline, bad and poor candidates constitute 19.74% of the candidate set, while the oracle-best candidate ranks only 33.9th on average. We propose RRDrive, which introduces risk-aware occupancy as a dense, temporally aligned, and trajectory-queryable representation. Its global structure guides high-quality multimodal generation, while candidate-conditioned risk queries support fine-grained selection. We further construct RiskOcc4D-NAVSIM with automatic risk annotations. RRDrive achieves a selected-trajectory PDMS of 0.951, representing a 1.5% relative improvement over the baseline (0.937), and improves the average candidate PDMS by 7.7%. In challenging scenes, it improves candidate PDMS by 30.2% and increases the Spearman correlation among good candidates by 0.41, from 0.26 to 0.67. To move beyond this oracle setting, we further develop an external RiskOcc predictor, a perception module that estimates risk-aware occupancy directly from sensor inputs. The competitive performance validates the representation's feasibility.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-18T08:39:36Z</published>
+    <arxiv:comment>This version of this research was completed in early 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Jiaxing Chen</name>
+    </author>
+    <author>
+      <name>Hengduo Zou</name>
+    </author>
+    <author>
+      <name>YuKai Qin</name>
+    </author>
+    <author>
+      <name>Yiren Zhao</name>
+    </author>
+    <author>
+      <name>Lidong Yu</name>
+    </author>
+    <author>
+      <name>Bolin Gao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.20480v1</id>
+    <title>Worst-Case Hidden-Vehicle Trajectory Search in Spatiotemporal Occlusion Regions</title>
+    <updated>2026-09-17T14:33:23Z</updated>
+    <link href="https://arxiv.org/abs/2609.20480v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.20480v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Occlusion creates fundamental uncertainty in autonomous driving. Existing methods often propagate frame-wise hypotheses or optimize ego behavior against prescribed hidden-agent predictions, leaving the worst history-consistent interaction unexplored. We introduce History-Conditioned Minimax Trajectory Search (HC-MTS), which combines temporal occlusion reasoning with response-aware search. First, HC-MTS constructs finite hidden-state modes, each certified by a backward witness satisfying multi-frame visibility, occupancy, semantic-map support, and class-specific kinematic constraints. It then solves a bilevel minimax problem: an inner finite oracle maximizes the ego driving score over destination attainment and ride comfort, while the outer search selects the legal hidden-vehicle trajectory that minimizes this best-response value. Across eight Waymo Open Motion Dataset scenarios, increasing the visibility-memory horizon from K=1 to K=20 reduces the mean per-scenario vehicle, pedestrian, and total retained hidden-seed counts by 18.12%, 21.67%, and 18.45%, respectively. HC-MTS identifies six avoidable counterexamples, while no legal collision-producing attacker is found in the remaining two scenes within the finite search budget.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-17T14:33:23Z</published>
+    <arxiv:comment>16 pages, 3 figures. Accepted at the ECCV 2026 Workshop on Safe and Defensive Autonomous Driving (SDAD) as an Oral Presentation; Best Paper Award. Workshop website: https://sdad.cc/papers.html</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Ruichen Tan</name>
+    </author>
+    <author>
+      <name>Zengxiang Lei</name>
+    </author>
+    <author>
+      <name>Satish Ukkusuri</name>
+    </author>
+  </entry>
+</feed>

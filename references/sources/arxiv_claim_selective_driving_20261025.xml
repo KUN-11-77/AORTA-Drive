@@ -1,0 +1,483 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/a7ltd4fgIDygzTsMw4+h9pLTGpw</id>
+  <title>arXiv Query: search_query=(all:"selective prediction" OR all:"abstention" OR all:"conformal") AND all:"trajectory" AND all:"driving"&amp;id_list=&amp;start=0&amp;max_results=20</title>
+  <updated>2026-10-24T23:02:24Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(all:%22selective+prediction%22+OR+(all:%22abstention%22+OR+all:%22conformal%22))+AND+(all:%22trajectory%22+AND+all:%22driving%22)&amp;start=0&amp;max_results=20&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>20</opensearch:itemsPerPage>
+  <opensearch:totalResults>58</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2610.25210v1</id>
+    <title>Negative partisanship drives anti-frontrunner volatility in election dynamics</title>
+    <updated>2026-10-18T12:08:42Z</updated>
+    <link href="https://arxiv.org/abs/2610.25210v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.25210v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Negative partisanship---where voter mobilization is driven primarily by aversion toward an opposing candidate rather than positive alignment---profoundly reshapes modern electoral dynamics. Here, we formulate a two-dimensional piecewise map to model campaign opinion dynamics, where voter abstention arises endogenously from a latent spectrum of voter activation barriers. We show that cross-candidate rejection sensitivity triggers a non-smooth collapse of abstention, dividing the phase space into an under-mobilized regime and a fully mobilized campaign regime. In symmetric elections with radicalized voter bases, spontaneous symmetry breaking via a pitchfork bifurcation gives rise to asymmetric polling attractors partitioned by mirror-symmetric basins of attraction, where early public perceptions---encoded in initial campaign conditions---act as a deterministic catalyst selecting candidate lead lock-in long before election day. For elevated cross-rejection, the symmetric equilibrium destabilizes via a period-doubling flip bifurcation, driving persistent anti-frontrunner polling swings. Rather than predicting static candidate hegemony, our model reveals that high negative partisanship turns elections into time-sensitive dynamical systems, where final election outcomes reflect discrete sampling snapshots of an oscillating campaign trajectory.</summary>
+    <category term="physics.soc-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="nlin.AO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-18T12:08:42Z</published>
+    <arxiv:primary_category term="physics.soc-ph"/>
+    <author>
+      <name>José F. Fontanari</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.11580v1</id>
+    <title>Uncertainty-Aware Optimization for Physics-Aware Highway Trajectory Prediction</title>
+    <updated>2026-10-08T09:31:44Z</updated>
+    <link href="https://arxiv.org/abs/2610.11580v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.11580v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Accurate trajectory forecasting and well-defined predictive uncertainty are crucial for reliable, safety-critical applications such as autonomous driving. Most trajectory prediction approaches provide point estimates only, while uncertainty-aware approaches typically quantify uncertainty only in the trajectory space. In physics-aware approaches, uncertainty in the predicted motion variables should be explicitly modeled and propagated through the vehicle dynamics. Otherwise, the resulting trajectory-space uncertainty may not fully reflect the variability introduced by the underlying motion prediction. Therefore, in this work, uncertainty-aware extensions of X-TRACK (X-TRACK-DE and X-TRACK-MCD), a physics-aware trajectory prediction framework, are proposed. The proposed framework predicts future vehicle motion variables and models both aleatoric and epistemic uncertainties by propagating motion space uncertainty to trajectory space. Additionally, conformal prediction is applied to the trajectory space predictive covariance to construct uncertainty regions targeting a desired marginal coverage level. Evaluation on the highD dataset shows that X-TRACK-DE improves trajectory prediction accuracy over the deterministic baseline, while both uncertainty-aware variants provide predictive uncertainty that can be conformally calibrated to the desired marginal coverage level.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-08T09:31:44Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Aanchal Rajesh Chugh</name>
+    </author>
+    <author>
+      <name>Sebastian Dorn</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.07052v1</id>
+    <title>BRACE: Adapting Whole-Body References for Force and Terrain Aware Humanoid Motion Tracking</title>
+    <updated>2026-10-05T03:18:25Z</updated>
+    <link href="https://arxiv.org/abs/2610.07052v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.07052v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Whole-body tracking has become the interface through which operators drive humanoid robots, yet the references it consumes are recorded on level ground and carrying nothing, so the tracker is aware of neither the forces the robot must exchange with objects nor the terrain it must stand on. Existing controllers address one side of this gap: force-capable policies command an end-effector force but prescribe no whole-body pose, while terrain-adaptive trackers treat loads as disturbances to reject rather than wrenches to command. We present BRACE, a whole-body tracker that exerts and compensates commanded hand forces from diverse poses while following a flat-ground reference on sloped terrain. Rather than leaving the tracker to absorb the load and the slope, BRACE folds both into the reference it follows: terrain conformance lifts footholds and root onto the local surface, and a wrench transformation resolves the hand displacement that produces a force jointly with the center-of-mass and center- of-pressure shifts it induces, bounded by teacher-specific arm-effort limits. Separate exertion and compensation teachers are distilled by DAgger into one flow-matching student that runs on proprioception alone, without a height map or measured wrench, so a teleoperator (even in remote locations) can supply a flat- ground trajectory and the robot resolves slope and load onboard. We extensive experiments on the Unitree-G1 to demonstrate the ability of BRACE to exert, compensate force and handle diverse terrain in simulation and real robot experiments.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-05T03:18:25Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Sudarshan Harithas</name>
+    </author>
+    <author>
+      <name>Chen Yu</name>
+    </author>
+    <author>
+      <name>Juan Borbon</name>
+    </author>
+    <author>
+      <name>Shubhankar Mondal</name>
+    </author>
+    <author>
+      <name>Winston Zha</name>
+    </author>
+    <author>
+      <name>Srinath Sridhar</name>
+    </author>
+    <author>
+      <name>Dingqi Zhang</name>
+    </author>
+    <author>
+      <name>Jiuguang Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.02765v1</id>
+    <title>Localized Conformal Safety Monitoring with Vision-Language Models for Autonomous Driving</title>
+    <updated>2026-10-02T03:46:07Z</updated>
+    <link href="https://arxiv.org/abs/2610.02765v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.02765v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Monitoring planned driving trajectories requires accurately estimating the collision likelihood with actors whose motion is itself impacted by the ego motion. Existing classical approaches are often limited by the quality of their forecasting model. Vision-language models (VLMs) have shown promise in reasoning about the consequences of high-level actions, yet their approximate predictions are unsuitable for safety-critical applications such as autonomous driving. Conformal prediction (CP) has emerged as a data-driven framework for quantifying the uncertainty of black-box model predictions. We propose Split Label-Localized Conformal Prediction (SLLCP), a post-hoc calibration layer over frozen VLMs that transforms their unreliable predictions into probabilistically calibrated safety prediction sets. We consider how the ability to estimate safety can depend on the observed driving scene and introduce a localized procedure that upweights relevant past experience when calculating uncertainty thresholds. We provide label-conditional finite-sample distribution-free coverage under exchangeability. Evaluated over 15k CARLA trajectories from unseen scenarios, SLLCP correctly flags 89.6% of collision-causing trajectories with a Qwen backbone and 88.4% with a Cosmos backbone, while the base VLMs only flagged 4.6% and 39.1% of the collision-causing trajectories, respectively. These results indicate that local, label-conditional calibration can reduce missed unsafe trajectories.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-02T03:46:07Z</published>
+    <arxiv:comment>5 pages, 2 figures, 1 table. Extended abstract. Disha Kamale and Dmitry Berenson are joint senior authors</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Luís Marques</name>
+    </author>
+    <author>
+      <name>Rong Fang</name>
+    </author>
+    <author>
+      <name>Disha Kamale</name>
+    </author>
+    <author>
+      <name>Dmitry Berenson</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.38810v2</id>
+    <title>CRAFT: Causal Responsibility and Failure Tracing in Medical Vision Language Models</title>
+    <updated>2026-10-02T15:11:54Z</updated>
+    <link href="https://arxiv.org/abs/2609.38810v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.38810v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As vision language models are increasingly deployed in clinical diagnosis, under standing how they internally resolve competing visual and textual signals becomes a safety imperative. Existing mechanistic analyses remain confined to unimodal text and offer no explanation for why a single misleading sentence can override a correct image based diagnosis, or why a model commits to a confident answer despite insufficient visual evidence. We find that these two safety risks, arbitra tion failure where textual context overrides visual grounding and brake failure where the model commits without adequate evidence, are mediated by spatially disjoint attention head populations: arbitration heads form a mid-to-deep wideband reflecting cross-layer evidence competition, while brake heads concentrate in a narrow middle-to-late layer band that regulates evidence sufficiency and abstention behavior. To ground these observations in causal circuitry, we introduce CRAFT, which localizes each failure mode to a minimal causal head set via dual criteria and verifies necessity and sufficiency through temporal probes and Tuned Lens trajectory analysis. Excising arbitration heads sharply reduces conflict following with negligible degradation on clean inputs, while excising brake heads restores ap propriate abstention under degraded visual evidence. The two interventions target spatially disjoint head sets and produce distinct corrective effects, underscoring the mechanistic separability of the failure modes. Experiments across multiple medical VQA benchmarks and VLM architectures validate both the localization and inter ventions, demonstrating that the identified heads causally drive each failure mode and that targeted modulation generalises without retraining. The code is available at https://github.com/zhcz328/CRAFT.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-30T02:41:33Z</published>
+    <arxiv:comment>NeurIPS 2026 Spotlight, Medical VLM Failure Analysis</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Chunzheng Zhu</name>
+    </author>
+    <author>
+      <name>Jiaqi Zeng</name>
+    </author>
+    <author>
+      <name>Hongbo Zhao</name>
+    </author>
+    <author>
+      <name>Yihang Chen</name>
+    </author>
+    <author>
+      <name>Yijun Wang</name>
+    </author>
+    <author>
+      <name>Jianxin Lin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.30687v1</id>
+    <title>Particle Trajectories Beneath Fully Nonlinear Waves Generated by Horizontal Seabed Motion</title>
+    <updated>2026-09-25T01:47:50Z</updated>
+    <link href="https://arxiv.org/abs/2609.30687v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.30687v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We investigate fully nonlinear water waves and fluid-particle dynamics generated by the horizontal motion of a seabed obstacle with prescribed time-dependent velocity. The governing equations are the full Euler equations, formulated in a time-dependent conformal domain that simultaneously maps the moving free surface and seabed onto fixed boundaries. The main contribution of this work is a Lagrangian formulation for computing particle trajectories in the resulting genuinely unsteady conformal domain. We derive a closed-form trajectory system in the canonical domain in which the time dependence of the conformal map is entirely represented by the real and imaginary parts of an analytic function that can be evaluated spectrally from the surface. We apply the formulation to waves generated by horizontal submarine landslide motion and characterize particle displacements throughout the fluid as functions of the initial particle position and Froude number. Our findings identify distinct regions in which particle motion is predominantly associated with the moving seabed, the generated wave, or the combined action of both. The results reveal a transition in the dominant mechanism driving particle motion: at low Froude numbers, particle displacements are primarily associated with the moving seabed, whereas at high Froude numbers the generated wave becomes increasingly dominant, particularly near the free surface and away from the obstacle path.The numerical predictions are benchmarked against laboratory data available in the literature, showing good agreement and providing a quantitative assessment of the model accuracy. Moreover, laboratory topographies beyond those considered here can be readily incorporated into the numerical framework through a Hermite interpolation procedure.</summary>
+    <category term="physics.flu-dyn" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.NA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-25T01:47:50Z</published>
+    <arxiv:primary_category term="physics.flu-dyn"/>
+    <author>
+      <name>João Vitor P. Poletto</name>
+    </author>
+    <author>
+      <name>David Andrade</name>
+    </author>
+    <author>
+      <name>Marcelo V. Flamarion</name>
+    </author>
+    <author>
+      <name>Roberto Ribeiro-Jr</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.25570v1</id>
+    <title>Recovering Agentic Sovereignty: Mitigating the Consensus Paradox via Contrastive Epistemic Decoding</title>
+    <updated>2026-09-22T02:02:18Z</updated>
+    <link href="https://arxiv.org/abs/2609.25570v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.25570v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) exhibit a parametric vulnerability to adversarial swarm consensus. To mitigate this sycophancy, we introduce Contrastive Epistemic Decoding (CED), a zero-shot inference intervention. Unlike standard Contrastive Decoding (CD) which relies on a weaker secondary model, CED utilizes a dual forward-pass on a single architecture to isolate conformity bias. By introducing a novel asymmetric, zero-bounded probability clamp and discrete top-k truncation mask, CED mathematically suppresses toxic consensus tokens without causing grammatical collapse. Evaluated across 7,200 paired trajectories on complex benchmarks (GAIA, SWE-bench, Multi-Challenge) using Gemma-2 (9B), Llama-3.1 (8B), and Mistral v0.3 (7B), CED successfully neutralizes architectural and positional biases. By reducing cognitive loafing by up to 33.00% absolute, CED drives significant performance gains, yielding up to a 30.75% accuracy recovery. Regaining sovereignty induces distinct architectural behaviors---passive task-focus in Gemma-2 and active refutation of the simulated swarm in Llama-3.1---showing CED decouples compliance from capability without fine-tuning.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-22T02:02:18Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Dahlia Shehata</name>
+    </author>
+    <author>
+      <name>Ming Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.09114v1</id>
+    <title>Hydrodynamic attractors</title>
+    <updated>2026-09-08T17:45:55Z</updated>
+    <link href="https://arxiv.org/abs/2609.09114v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.09114v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Attractors are effective low-dimensional structures, defined in a chosen set of observables, that trajectories from different initial states approach; hydrodynamic attractors are those on which the late-time evolution is governed by hydrodynamic constitutive relations. Motivated by nuclear collisions and ultracold atomic gases, this chapter distinguishes attractorization (the loss of sensitivity to some directions in the space of initial states) from hydrodynamization (the onset of validity of hydrodynamic constitutive relations). Using mainly conformal, boost-invariant Bjorken flow, we compare Müller-Israel-Stewart-type theories, kinetic theory, holography, and classical Yang-Mills fields. Forward attraction, produced by the decay of non-hydrodynamic modes, is distinguished from pullback attraction, which can select a unique regular solution, and from expansion-driven attraction, which can suppress initial-state sensitivity before microscopic relaxation, with or without a subsequent fluid regime. Divergent gradient expansions and their transseries completions, the state-space picture, and adiabatic hydrodynamization provide complementary descriptions. Applications to nuclear collisions include particle production, transverse energy and flow, the initialization of and linear response around attracting backgrounds, jet quenching, and attractor-informed modifications of hydrodynamic models. For ultracold Fermi gases, we review theoretical proposals for bulk-channel attractors under scattering-length drives and distinguish them from recent measurements of short-time contact and momentum-distribution dynamics.</summary>
+    <category term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.quant-gas" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-08T17:45:55Z</published>
+    <arxiv:comment>57 pages, 11 figures. Invited chapter for Encyclopedia of Nuclear Physics. Comments welcome!</arxiv:comment>
+    <arxiv:primary_category term="nucl-th"/>
+    <author>
+      <name>Tilman Enss</name>
+    </author>
+    <author>
+      <name>Michal P. Heller</name>
+    </author>
+    <author>
+      <name>Alexandre Serantes</name>
+    </author>
+    <author>
+      <name>Clemens Werthmann</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.30889v1</id>
+    <title>Safety Screening for Voltage Control in Active Distribution Grids via Distributionally Robust Conformal Screening</title>
+    <updated>2026-08-31T14:43:37Z</updated>
+    <link href="https://arxiv.org/abs/2608.30889v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.30889v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deploying a new control policy for voltage control in active distribution grids requires evidence that physical limits will be satisfied before the policy is tested on the physical grid. This assessment is difficult for two reasons. First, simulations cannot capture every disturbance, modeling error, and device interaction present in the real grid. Second, historical measurements reflect operation under existing control policies, whereas a new policy may drive the grid into different operating conditions. To address these challenges, we propose Distributionally Robust Conformal Safety Screening (DR-CSS), a policy-agnostic framework for pre-deployment, scenario-by-scenario screening of a new control policy using historical data and a nominal simulator. For each new scenario, the simulator predicts a future voltage trajectory for the whole grid; DR-CSS then constructs a conformal safety interval around this prediction using historical simulation-to-reality errors. The interval is further enlarged to account for closed-loop changes induced by the deployment of the new policy and its interactions with the remaining controllers. To the best of our knowledge, DR-CSS is the first framework in power systems to combine historical data from an existing control policy with an imperfect simulator for pre-deployment safety screening of a new policy. Experiments on the IEEE 33-bus and IEEE 141-bus systems evaluate the deployment of learning-based voltage control policies and show that DR-CSS identifies all unsafe test scenarios. To reduce unnecessary warnings on safe scenarios, we adapt the safety intervals to different operating conditions and gradually introduce new policies with recalibration after each stage. These extensions increase the informational value of the safety screening and support safer deployment decisions in active distribution grids.</summary>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-31T14:43:37Z</published>
+    <arxiv:comment>Sarra Bouchkati, Petros Ellinas, and Adriana Geisler contributed equally to this work</arxiv:comment>
+    <arxiv:primary_category term="eess.SY"/>
+    <author>
+      <name>Sarra Bouchkati</name>
+    </author>
+    <author>
+      <name>Petros Ellinas</name>
+    </author>
+    <author>
+      <name>Adriana Geisler</name>
+    </author>
+    <author>
+      <name>Steffen Kortmann</name>
+    </author>
+    <author>
+      <name>Johanna Vorwerk</name>
+    </author>
+    <author>
+      <name>Spyros Chatzivasiliadis</name>
+    </author>
+    <author>
+      <name>Andreas Ulbig</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.26533v1</id>
+    <title>Barrier Function Conformal Safety Clearance Certification with CVaR for Driving Trajectory Selection</title>
+    <updated>2026-08-27T02:11:43Z</updated>
+    <link href="https://arxiv.org/abs/2608.26533v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.26533v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Autonomous driving motion planners generate and select candidate trajectories while accounting for interactions with surrounding agents. However, these evaluations do not certify the actual safety clearance of the selected trajectory. The framework evaluates the trajectory selected by ant planners and calibrates the gap between its plan time margin and realized safety clearance. A differentiable separating axis barrier margin deterministically lower bounds exact signed oriented-bounding-box (OBB) safety clearance, connecting the statistical certificate to safety margin. At plan time, the margin is evaluated using either a nominal prediction and sampled lower tail Conditional Value-at-Risk (CVaR), while post-selection conformal calibration over exchangeable drive sessions absorbs prediction and sampling errors. Conformal calibration provides statistical validity independently of predictor correctness. The method is evaluated on a frozen 300 session nuPlan study using native Predictive Driver Model (PDM) Closed loop proposals. At 10% target miscoverage, sampled lower CVaR reduces the conformal correction from 1.43m to 0.03m and increases the rate of nonnegative safety clearance certificates from 68.7% to 87.3%. Across all evaluated statistics, exact-clearance coverage remains above the 90% target at 93.3--96.7%.</summary>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-27T02:11:43Z</published>
+    <arxiv:primary_category term="eess.SY"/>
+    <author>
+      <name>Pei Yu Chang</name>
+    </author>
+    <author>
+      <name>Qadeer Ahmed</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.26074v1</id>
+    <title>Gating Before Commitment: Anticipating Intent Divergence to Prevent Post-Interaction Decision Failures in Autonomous Driving</title>
+    <updated>2026-08-26T17:42:03Z</updated>
+    <link href="https://arxiv.org/abs/2608.26074v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.26074v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Intent misinterpretation during vehicle interactions causes recurring planning failures. We study a decision layer in which a language-guided intent module reads structured descriptors, computes a smoothed intent-geometry divergence score, and gates the planned maneuver before commitment, upstream of a corridor envelope. On a replayed off-road departure and four crash clips under a frozen, disclosed implementation, gating is the only layer that repairs the plan: on the main case it fires 72 ms after the drift onset but 161 ms before the corridor exit, keeping the trajectory in the corridor in all ten replays. The first calibration draws nine false triggers in 5.9 minutes, each from scoring uncertainty as half a conflict; a preregistered redesign treating uncertainty as abstention cuts this to 0.341 per minute. Two ablations bound the model's contribution: the full score detects fastest on four of five failures under the deployed eligibility, three of five against the unvetoed rule (000871 by one cycle; 000228 by a pre-onset fire on an uncertain stretch that five clips cannot classify as signal or coincidence; dropping the confidence term costs two detections), while on in-domain tracks at equal false positives the geometric rule more than triples its detection. The evidence supports the gating mechanism; the model's demonstrated roles are the fastest detection on these failures and an uncertainty veto on the geometric rule.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-26T17:42:03Z</published>
+    <arxiv:comment>8 pages, 4 figures. Submitted to the 16th Workshop on Planning, Perception and Navigation for Intelligent Vehicles (PPNIV) at IROS 2026. Supplementary video included as ancillary material</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Cong Xu</name>
+    </author>
+    <author>
+      <name>Ravi Sankar</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2608.19298v1</id>
+    <title>SceneGTMM: A Conformal Mapping-based Scene-Aware Transferable GNN-Transformer Dual-Graph Interaction Framework for Map Matching</title>
+    <updated>2026-08-19T16:46:20Z</updated>
+    <link href="https://arxiv.org/abs/2608.19298v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2608.19298v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Map matching is a key technology connecting positioning data with high precision road networks, but it faces challenges in noise robustness, cross regional transfer, and interpretability. To addr ess the limitations of existing methods in local global fusion, dynamic road network adaptation, and reliance on black box mod els, this paper proposes SceneGTMM, a transferable GNN Transformer dual graph interaction map matching framework based on a conformal mapping based scene relative strategy. 1) Conformal mapping based scene relative strategy: constructs trajectory centric local coordinate systems to reduce dependence on the training road network, supporting cross regional transfer and dynamic road network updates; 2) GNN Transformer dual graph interaction architecture: a GNN modeled road graph captures local topological constraints, while a Transformer modeled trajectory graph captures global temporal dependencies, and cross graph attention achieves noise suppression and semantic alignment; 3) CRF enhanced structured prediction: combines the global context of the Transformer with the topological transition constraints of CRF to improve path connectivity and robustness. Experiments show that SceneGTM achieves over 80% accuracy on multi source trajectories with positioning errors of 16 50 meters, representing a 5.3% improvement over HMM. In cross city transfer scenarios, it outperforms MTrajRec, GraphMM, and TMM, and enhances interpretability through attention and relative coordinate visualization. This study provides a new paradigm for high precision, transferable map matching for real time traffic perception and autonomous driving path planning.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-08-19T16:46:20Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yongliang Zhang</name>
+    </author>
+    <author>
+      <name>Feng Song</name>
+    </author>
+    <author>
+      <name>Ji Chen</name>
+    </author>
+    <author>
+      <name>Lishuai Guo</name>
+    </author>
+    <author>
+      <name>Yong Deng</name>
+    </author>
+    <author>
+      <name>Yue Zheng</name>
+    </author>
+    <author>
+      <name>Tianyi Liu</name>
+    </author>
+    <author>
+      <name>Zhixiong Chen</name>
+    </author>
+    <author>
+      <name>Qixin Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.26493v1</id>
+    <title>Chaotic Imprints in Gravitational Waves from Conformal-Anomaly-Corrected Extreme-Mass-Ratio Inspirals</title>
+    <updated>2026-07-29T05:40:59Z</updated>
+    <link href="https://arxiv.org/abs/2607.26493v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.26493v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this work, we investigate the effect of chaotic orbits on the extreme mass ratio inspiral (EMRI) gravitational wave signals where the central black hole is corrected by quantum conformal anomaly. We utilize the numerical kludge method to compute gravitational waveforms produced by the compact object along different orbital trajectories, and also derive the corresponding frequency distribution and energy spectra of gravitational waves. Our calculations reveal that variations in orbital energy or anomaly coefficient drive the orbital evolution from regular integrable motion to chaotic motion, and such dynamical transition leaves clear imprints on gravitational-wave signal. Specifically, gravitational waves originating from chaotic orbits feature pronounced irregular and time-varying amplitude fluctuations, accompanied by abundant fine spectral spikes and extended continuous spectral distributions in both frequency and energy domains, which differ drastically from the gravitational radiation generated by the regular non-chaotic orbits. Moreover, we evaluate the detectability by comparing the calculated characteristic strain of gravitational waves emitted by the compact object on different orbits with the sensitivity curves of future space-based GW detectors, including LISA, Taiji and TianQin. The results demonstrate that these detectors are capable of capturing gravitational-wave signals from chaotic systems modified by conformal anomalies, which provide a potential pathway for detecting conformal anomaly correction in astronomical observation.</summary>
+    <category term="gr-qc" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-29T05:40:59Z</published>
+    <arxiv:comment>v1: 16 pages, 10 figures</arxiv:comment>
+    <arxiv:primary_category term="gr-qc"/>
+    <author>
+      <name>Wei-Hao Zhang</name>
+    </author>
+    <author>
+      <name>Yu-Sen An</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.22409v1</id>
+    <title>Conformal Constraint Tightening for Chance-Constrained Motion Planning with Unknown Dynamics</title>
+    <updated>2026-07-24T15:27:07Z</updated>
+    <link href="https://arxiv.org/abs/2607.22409v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.22409v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Motion planning algorithms compute control sequences that drive autonomous robots to goal regions while avoiding unsafe states. Existing methods, from sampling-based planning to deep reinforcement learning, typically provide task-completion guarantees only with respect to a nominal model or simulator, which may be invalidated when the true dynamics are unknown or difficult to model accurately. This letter addresses this limitation for systems with unknown dynamics and an available approximate nominal model, contributing a planner-agnostic constraint-tightening procedure that equips existing planners with a probabilistic task-completion guarantee on the true system. We leverage conformal prediction to provide a probabilistic bound on the nominal-to-true trajectory deviation over a distribution of planning problems. We tighten the planning constraints using that bound, and show that solving the tightened problem under the nominal model is a sufficient condition for solving the original problem on the true system with a prescribed probability. We validate the theoretical guarantees empirically and demonstrate substantially improved task completion relative to nominal-model planning.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-24T15:27:07Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Shubham Natraj</name>
+    </author>
+    <author>
+      <name>Bruno Sinopoli</name>
+    </author>
+    <author>
+      <name>Yiannis Kantaros</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.14838v1</id>
+    <title>Density-driven reentrant polymer transitions via saturable bridging crowders</title>
+    <updated>2026-07-16T11:02:58Z</updated>
+    <link href="https://arxiv.org/abs/2607.14838v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.14838v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reentrant coil-globule-coil transitions, in which a polymer collapses and then reexpands as a single parameter is varied, have been observed across diverse soft matter systems, yet the minimal ingredients required to produce them remain unclear. Using molecular dynamics simulations of coarse-grained polymers interacting with a single species of attractive crowder, we show that crowder volume fraction $φ_c$ alone is sufficient to drive a complete reentrant transition. At low $φ_c$, crowders bridge distant monomers and drive cooperative collapse; at high $φ_c$, saturation of monomer binding sites suppresses bridging connectivity and produces reentrant expansion. This density-driven transition is absent with purely repulsive crowders, which produce only monotonic compaction while preserving self-avoiding walk (SAW) chain statistics. In contrast, bridging breaks SAW universality: the rescaled size distributions no longer collapse onto a universal curve, and the conformational distributions trace the full coil-globule-coil trajectory as $φ_c$ is varied. For charged polymers with explicit counterions, electrostatics amplifies rather than suppresses reentrance: bridging crowders displace counterions from the chain, and upon saturation the unscreened backbone charges drive expansion well beyond the original chain size. Saturable geometric bridging thus emerges as a minimal mechanism linking reentrant phenomena across neutral and charged polymers in crowded environments.</summary>
+    <category term="cond-mat.soft" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.bio-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.chem-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-16T11:02:58Z</published>
+    <arxiv:comment>12 pages, 7 main figures, 6 supp figures</arxiv:comment>
+    <arxiv:primary_category term="cond-mat.soft"/>
+    <author>
+      <name>Monmee Phukan</name>
+    </author>
+    <author>
+      <name>Hitesh Garg</name>
+    </author>
+    <author>
+      <name>Satyavani Vemparala</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.19655v1</id>
+    <title>Equalized Coverage in Motion Control Performance Prediction for Self-Adaptive Road Vehicles</title>
+    <updated>2026-05-19T10:46:12Z</updated>
+    <link href="https://arxiv.org/abs/2605.19655v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.19655v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Automated driving systems require monitoring mechanisms to ensure operation as intended, especially when system elements degrade and/or fail. Hence, capability monitoring is crucial in order to evaluate the system's remaining performance and implement capability-based behavior. In this paper, we investigate the dynamics of a highly over-actuated automated vehicle under actuator degradations and failures, affecting the vehicle's motion control capabilities. We propose a lightweight prediction model based on conformalized quantile regression that predicts whether an automated vehicle can be controlled with sufficiently low lateral deviation from a planned trajectory under nominal, degraded, and failed actuator conditions. We recognize that statistical guarantees should hold not only across all data (marginal coverage) but also for different regimes within the data (conditional coverage). We therefore employ equalized coverage methods to address this challenge. During runtime behavior generation our predictor can provide a heuristic for determining the admissible action space. Its application and limitations are discussed in this paper.</summary>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-19T10:46:12Z</published>
+    <arxiv:comment>Accepted to be published in 2026 IEEE 29th International Conference on Intelligent Transportation Systems (ITSC), Naples, Italy, September 15-18, 2026</arxiv:comment>
+    <arxiv:primary_category term="eess.SY"/>
+    <author>
+      <name>Ole Reuter</name>
+    </author>
+    <author>
+      <name>Richard Schubert</name>
+    </author>
+    <author>
+      <name>Marvin Loba</name>
+    </author>
+    <author>
+      <name>Markus Maurer</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2605.02373v2</id>
+    <title>Geometric QCD III: Exact transition amplitudes and the glueball spectrum</title>
+    <updated>2026-06-20T02:09:25Z</updated>
+    <link href="https://arxiv.org/abs/2605.02373v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2605.02373v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We complete the analysis of planar Makeenko--Migdal loop equations in the Lorentz-invariant continuum limit. Using our confining twistor-string representation, we compute the quantum fluctuation determinant, which in Minkowski space reduces to a discrete product of finite-dimensional matrix quadratures. The $ζ$-regularized weight is independent of winding number $w$. Near the mass shell, the pole singularity is generated by $w \to \infty$, suppressing fluctuation variance as $1/w$. The path integral localizes on the classical trajectory, rendering the pole spectrum and transition residues parametrically exact in the large-winding WKB limit. For the open-string meson sector, we fit 40 observed states across five topological boundary sectors ($h=0, \pm 1, \pm 2$). The holonomy shift $h$ accounts for exact geometric degeneracies between parity families, reproducing mass splittings without phenomenological spin-orbit parameters. Evaluated one-loop residues yield theoretical transition cross-sections capturing heavy-mass quenching and phase-space enhancement for high-spin light states. Applying this framework to the pure Yang--Mills closed string, we demonstrate the dynamical stability of the pure-gauge minimal surface: the conformal Liouville anomaly drives the string strictly to the trigonometric minimum ($q=0$). The complex elliptic geometry analytically collapses, yielding linear Regge trajectories. The translation zero-mode measure dynamically nullifies the transition amplitude of the massless scalar ghost, providing an analytic mechanism for a purely gluonic mass gap. Anchoring parameter-free glueball trajectories to the open-string tension natively recovers the exact L"uscher intercept $α(0)=1/12$, perfectly matching established PDG unassigned isoscalar candidates and large-$N_c$ lattice QCD extrapolations.</summary>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-05-04T09:15:30Z</published>
+    <arxiv:comment>69 pages, 11 figures, 7 tables</arxiv:comment>
+    <arxiv:primary_category term="hep-th"/>
+    <author>
+      <name>Alexander Migdal</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.10815v2</id>
+    <title>MeloTune: On-Device Arousal Learning and Peer-to-Peer Mood Coupling for Proactive Music Curation</title>
+    <updated>2026-04-14T02:07:29Z</updated>
+    <link href="https://arxiv.org/abs/2604.10815v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.10815v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>MeloTune is an iPhone-deployed music agent that instantiates the Mesh Memory Protocol (MMP) and Symbolic-Vector Attention Fusion (SVAF) as a production system for affect-aware music curation with peer-to-peer mood coupling. Each device runs two closed-form continuous-time (CfC) networks: a private listener-level CfC that predicts a short-horizon affective trajectory on Russell's circumplex and drives proactive curation, and a shared mesh-runtime CfC at MMP Layer 6 that integrates Cognitive Memory Blocks (CMBs) from co-listening peers. CfC hidden states never cross the wire; only structured CMBs do. A Personal Arousal Function (PAF) replaces the standard linear mapping from audio intensity to psychological arousal with a per-listener learned adjustment, trained from behavioral signals (skip, completion, favorite, volume) and from drift between user-declared mood and machine inference. The same track receives different arousal predictions for different listeners. The model (94,552 parameters) achieves trajectory MAE 0.414, pattern accuracy 96.6%, and intent accuracy 69.4% on held-out validation. PAF evidence from a live deployment session (46 observations across 11 genres) demonstrates that the learning loop operates end-to-end, with pop reaching full confidence after 22 observations. All inference runs on-device via CoreML. To our knowledge, this is the first production deployment of MMP/SVAF on consumer mobile hardware. The accompanying SDK (sym-swift v0.3.78, SYMCore v0.3.7) enforces strict protocol conformance. Music is the case study; the substrate is the contribution.</summary>
+    <category term="cs.SD" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.MA" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-12T20:56:36Z</published>
+    <arxiv:comment>31 pages, 1 figures, 3 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.SD"/>
+    <author>
+      <name>Hongwei Xu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2512.05682v1</id>
+    <title>Scenario-aware Uncertainty Quantification for Trajectory Prediction with Statistical Guarantees</title>
+    <updated>2025-12-05T12:54:39Z</updated>
+    <link href="https://arxiv.org/abs/2512.05682v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2512.05682v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Reliable uncertainty quantification in trajectory prediction is crucial for safety-critical autonomous driving systems, yet existing deep learning predictors lack uncertainty-aware frameworks adaptable to heterogeneous real-world scenarios. To bridge this gap, we propose a novel scenario-aware uncertainty quantification framework to provide the predicted trajectories with prediction intervals and reliability assessment. To begin with, predicted trajectories from the trained predictor and their ground truth are projected onto the map-derived reference routes within the Frenet coordinate system. We then employ CopulaCPTS as the conformal calibration method to generate temporal prediction intervals for distinct scenarios as the uncertainty measure. Building upon this, within the proposed trajectory reliability discriminator (TRD), mean error and calibrated confidence intervals are synergistically analyzed to establish reliability models for different scenarios. Subsequently, the risk-aware discriminator leverages a joint risk model that integrates longitudinal and lateral prediction intervals within the Frenet coordinate to identify critical points. This enables segmentation of trajectories into reliable and unreliable segments, holding the advantage of informing downstream planning modules with actionable reliability results. We evaluated our framework using the real-world nuPlan dataset, demonstrating its effectiveness in scenario-aware uncertainty quantification and reliability assessment across diverse driving contexts.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-12-05T12:54:39Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Yiming Shu</name>
+    </author>
+    <author>
+      <name>Jiahui Xu</name>
+    </author>
+    <author>
+      <name>Linghuan Kong</name>
+    </author>
+    <author>
+      <name>Fangni Zhang</name>
+    </author>
+    <author>
+      <name>Guodong Yin</name>
+    </author>
+    <author>
+      <name>Chen Sun</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2511.21953v1</id>
+    <title>Learning Neural Network Safe Tracking Controllers from Backward Reachable Sets</title>
+    <updated>2025-11-26T22:27:04Z</updated>
+    <link href="https://arxiv.org/abs/2511.21953v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.21953v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The design of tracking controllers that closely follow a reference trajectory while ensuring safety and robustness against disturbances is a challenging problem in the control of autonomous systems. In this work, we propose a neural network-based safe tracking control framework for nonlinear discrete-time systems with reach-avoid specifications in the presence of disturbances. Our approach begins with generation of a nominal trajectory using standard trajectory synthesis approaches, followed by construction of safe zonotopic backward reachable sets along the nominal trajectory. The states lying within the backward reachable sets are guaranteed to satisfy safe reachability specifications. Then, our key insight is to leverage the computed backward reachable sets to inform the architecture and training of a neural network-based tracking controller such that the neural network drives the system's states through these backward reachable sets, thereby improving the likelihood of safe reachability. We perform formal verification with conformal prediction to achieve statistical safety guarantees on the performance of the learned neural controller. The performance of our approach is illustrated through a numerical example on the discrete-time Dubin's car model.</summary>
+    <category term="eess.SY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-26T22:27:04Z</published>
+    <arxiv:primary_category term="eess.SY"/>
+    <author>
+      <name>Yuezhu Xu</name>
+    </author>
+    <author>
+      <name>Mohamed Serry</name>
+    </author>
+    <author>
+      <name>Jun Liu</name>
+    </author>
+    <author>
+      <name>S. Sivaranjani</name>
+    </author>
+  </entry>
+</feed>

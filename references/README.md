@@ -4,6 +4,15 @@ Store only redistributable metadata and reading notes here. Do not commit copyri
 
 Each literature claim should record title, authors, year, venue, DOI/arXiv identifier, access date, and the exact proposition it supports or challenges.
 
+## Research-positioning audits
+
+- `2026-10-25_frontier_decision_scorer_novelty_audit.md`: targeted official-source audit of D-JEPA,
+  World4Scorer, iDriveVLA, ManeuverFlow, PlanWAM, GeoWAM, Expand-and-Prune and recent conformal
+  driving monitors. It retires generic relation/scorer/fallback novelty and defines the matched closest-work
+  falsifier for AORTA's remaining differential-evidence hypothesis.
+- `2026-10-25_relation_story_sources.md`: earlier candidate scorer and story audit.
+- `2026-10-25_preference_quotient_novelty_boundary.md`: graph ranking/Hodge novelty boundary.
+
 ## Procedural references
 
 - Timothy Kassis, Vinayak Agarwal, Yuhuan He, Darshil Patel, and Aubrey M. Brueckner. “Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents.” arXiv:2609.00065, 2026. https://doi.org/10.48550/arXiv.2609.00065. Accessed 2026-10-24 from the current arXiv record. Used in R004A for the experimental-design requirement that replication and calibration be counted at the independent recording-group level rather than at the repeated frame or exported-fragment level; it is not evidence for AORTA's method claims.
