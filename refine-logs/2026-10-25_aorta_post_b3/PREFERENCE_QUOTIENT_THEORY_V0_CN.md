@@ -202,6 +202,24 @@ D^\top q_{cycle}=0
 不会伤害 regret/泛化，那么 exact-gradient 反而可能是不合适的归纳偏置。matched-structure 实验必须
 直接检验这一点。
 
+### 命题 2.5：native-star 空泛性
+
+若部署与监督只包含 native edges \(E_\star=\{(0,i):i>0\}\)，则对任意自由 edge vector
+\(q\in\mathbb R^{K-1}\)，取 \(s_0=0,s_i=q_i\) 即有 \(D_\star s=q\)。所以
+
+\[
+\operatorname{Im}(D_\star)=\mathbb R^{K-1},
+\]
+
+且 star 没有 cycle。此时 node-score difference 与直接输出 \(K-1\) 个 native-relative deltas
+只是重参数化，exactness 不限制假设空间。
+
+**方法边界。** Hodge/coboundary 只有在 complete candidate graph 的额外边具有独立统计价值，且
+matched experiments 显示其改善 held-out regret/泛化时才可能成为结构贡献。当前
+challenger–challenger labels 由 native-conditioned scalar 代数派生，故 cycle consistency 首先是
+标签恒等式，不能在结果前被写成创新。完整反驳见
+`STRUCTURAL_NOVELTY_PREMORTEM_V1_CN.md`。
+
 ## 6. 外观商目标与坍缩反例
 
 对保持 \((S,\tau_0,\mathcal T,y)\) 不变的合法外观干预 \(T_a\)，定义
@@ -291,7 +309,7 @@ s_i=W_sh_i.
 |---|---|---|
 | 合法 \(y_i\) 与非平凡 preference | B4R1 合法域双 materialization + oracle ceiling | 停止当前 panel/estimand |
 | quotient loss 有任务信息 | correct image vs mismatch/removed/prior | 停止视觉必要性主张 |
-| exact-gradient 归纳偏置有必要 | matched direct-pair / ordinary scorer | 删除 Hodge/结构贡献 |
+| exact-gradient 归纳偏置有必要 | native-vector vs star-score vs complete-score vs free complete-edge matched study | 若star-score≈native-vector且complete structure无held-out收益，删除Hodge/结构贡献 |
 | 完整时域有必要 | full 4 s vs prefix/fixed field | 若无差异，简化架构 |
 | 谱误差关联 decision | per-group \(\mathcal L_Q\)、top margin、regret | 不把 loss 写成 decision bridge |
 | selective rule 非真空且可靠 | simultaneous coverage + sharpness + harm | 只保留条件定理 |

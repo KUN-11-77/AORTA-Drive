@@ -10,10 +10,37 @@
 > **天气改变图像，却不改变同一场景中候选驾驶行为的真实优劣。外观鲁棒驾驶真正应保持的，
 > 不是特征或稠密道路场本身，而是正确图像所支持的候选偏好。**
 
+论文只允许一个主命题：**把外观鲁棒性的学习对象从代理表征改为合法候选域上的决策充分关系。**
+选择性仲裁是把该对象安全接入 frozen planner 的从属机制；DINO、trajectory encoder、graph
+parameterization、uncertainty head 和 candidate generation 都不是并列贡献。
+
 这一定义同时排除两个错误捷径：
 
 - 表示跨外观不变但不含场景信息，例如常数表示；
 - 道路场正确且稳定，但下游读出删除候选差异。B3 已用 perfect teacher 给出第二类反例。
+
+### 顶会叙事的四拍结构
+
+1. **Surprise：**外观不变的 feature/field 可以很稳定，甚至 field 可以是 perfect，但候选决策仍
+   不可区分；
+2. **Insight：**鲁棒性定义错了位置——应定义在 task quotient 后的合法候选关系，而不是上游
+   代理表征；
+3. **Mechanism：**同一网络接口同时读取正确图像、native context 与完整候选轨迹，只对
+   native-relative relation 施加 appearance intervention consistency，并在证据不足时拒绝干预；
+4. **Consequence：**评价终点必须是未见外观/场景上的 ranking regret、错误干预、clean harm 与
+   实时时延，而不是更低的 feature/field distance。
+
+四拍必须连续：实验若不能从 Surprise 支持到 Consequence，就不能靠增加模块或公式补故事。
+主图也应按这四拍组织，而不是按“backbone—head—loss—planner”模块清单组织。
+
+### 贡献层级合同
+
+| 层级 | 当前允许的表述 | 升级条件 |
+|---|---|---|
+| 主贡献候选 | appearance intervention 下的合法 decision-quotient learning | B4R1 合法 oracle + correct-image necessity + held-out/NavDream decision gain |
+| 从属机制候选 | simultaneous lower-bound selective arbitration | 独立 calibration 上 non-vacuous coverage/sharpness、低 false intervention 与 clean harm |
+| 条件结构贡献 | complete-graph relation parameterization | matched native-vector/star/free-edge 对照上可靠降低 held-out regret |
+| 非贡献 | DINO、cross-attention、trajectory tokenizer、candidate expansion、Hodge 名词本身 | 不因系统需要而升级为 novelty |
 
 ## 2. 反常现象与技术缺口
 
@@ -69,7 +96,7 @@ E_{S,\pi}\subseteq V_{S,\pi}\times V_{S,\pi}.
 oracle summary，而实现门又把 `all(e_i)` 混入 pose-reconstruction 布尔量。这个失败把“候选域
 一致性”从工程细节提升为方法的 type-safety 条件。
 
-## 4. 从对象必然推出的架构
+## 4. 从对象推出的最小架构候选
 
 \[
 Z=E_{vision}(X),\quad a_0=E_{traj}(\tau_0),\quad a_i=E_{traj}(\tau_i),
@@ -85,19 +112,24 @@ h_i=H_\theta(Z,a_0,a_i),\quad s_i=W_sh_i,
 | 共享视觉编码 | 外观证据对同一候选面板共享，且需要实时 | 避免每候选重复视觉网络 | 相同 backbone 下的延迟与候选数缩放 |
 | 完整 4 s trajectory encoder | 2.5 s 前缀可删除晚期分叉 | 保留候选完整决策差异 | prefix、fixed-grid 与完整时域对照 |
 | native-conditioned interaction | evaluator 标签本身依赖 native-candidate panel | 与真实 estimand 对齐 | 去掉 native context 后的 label/regret 退化 |
-| shared scalar node score | 真值若来自标量 utility，其 pair preference 应可积 | 精确反对称与 cycle consistency | 容量匹配 direct-pair head 的 cycle residual、regret、迁移 |
+| shared scalar node score | 对complete candidate graph提供可积参数化；在native-star上仅是重参数化 | 精确反对称与cycle consistency，但其必要性未证 | native-vector、star-score、complete-score、free complete-edge容量/计算匹配的held-out regret对照 |
 | permutation-equivariant candidate processing | 候选列表顺序不是语义 | 防止位置记忆 | 候选置乱等变性测试 |
 | selective lower-bound arbitration | 预测正确性不等于可靠替换 | 证据不足时保持 native | coverage、sharpness、false improvement、abstention、clean harm |
 
-共享 score 使
+若采用共享 score，它使
 
 \[
 \widehat\Delta_{ij}=-\widehat\Delta_{ji},\qquad
 \widehat\Delta_{ij}+\widehat\Delta_{jk}+\widehat\Delta_{ki}=0
 \]
 
-成为参数化恒等式，而非软正则。Hodge/coboundary 只用于说明这个结构；若 matched direct-pair
-head 没有结构性失败，必须删除该叙事，不能把数学术语当作创新本身。
+成为参数化恒等式，而非软正则。但这不是当前对象唯一推出的实现：直接 native-relative vector
+head 具有相同的 star-domain 表示能力。Hodge/coboundary 只用于描述 complete-graph 候选结构；若
+matched direct-pair/vector head 没有结构性失败，必须删除该叙事，不能把数学术语当作创新本身。
+
+更严格地说，若只使用 native edges，则星图无 cycle，任意 native-relative vector 都可写成
+\(s_i-s_0\)；此时 exactness 完全不限制函数类。只有 complete-graph extra edges 被证明具有独立
+统计价值时，结构贡献才可能成立。当前主故事不能预设这一点。
 
 ## 5. 训练目标与其职责边界
 
@@ -161,13 +193,14 @@ native。该结论是带假设的 model-relative 保证，不是现实驾驶安�
 与非平凡 oracle ceiling，才可继续。随后 correct image
 必须在未见场景和外观下优于 mismatch、removed 与无图像先验。
 
-### C2：候选图上的 exact preference architecture
+### C2：候选关系解码器的结构必要性（尚未成立）
 
-用 score coboundary 把 antisymmetry、cycle consistency 和 gauge invariance 变为硬结构，同时保持
-\(O(K)\) 推理。
+候选假设是：complete-graph score parameterization 能以 \(O(K)\) 推理利用额外 pair structure，
+改善未见场景/外观的 ranking regret。但 native-star 空泛性已经证明，“score 做差”本身不是贡献。
 
-**生死门：**在相同输入、参数量、训练数据、计算和 seeds 下，必须优于 direct-pair、普通
-candidate scorer、GTRS-style 和 DA-WAM-style controls。否则这只是“scores 相减”。
+**生死门：**在相同输入、参数/FLOP、训练数据、计算和 seeds 下，complete-score 必须优于
+native-vector、star-score、free complete-edge、GTRS-style 和 DA-WAM-style controls，且优势落在
+held-out regret/selection，而非仅 train cycle residual。否则删除 Hodge/结构贡献。
 
 ### C3：选择性 native-preserving arbitration
 
@@ -190,8 +223,9 @@ candidate scorer、GTRS-style 和 DA-WAM-style controls。否则这只是“scor
   supervision 和 scalar reward head 本身不是贡献；
 - decision-focused learning、CVaR/EVaR 和分布鲁棒风险图均是可用工具或基线，不是新颖性来源。
 
-AORTA 只有在 **appearance intervention 上的合法 preference estimand + exact relational structure +
-selective native-relative decision rule** 三者由同一证据链支持时，才与这些近邻形成实质区别。
+AORTA 的最低可成立区别是 **appearance intervention 上的合法 decision-quotient estimand +
+selective native-relative decision rule**。complete-graph relational structure 只有在匹配消融证明其
+额外降低 held-out regret 后，才允许升级为第二项结构贡献。
 
 ## 9. 30 秒、2 分钟与 Poster 合同
 
@@ -199,8 +233,8 @@ selective native-relative decision rule** 三者由同一证据链支持时，�
 
 > 外观鲁棒驾驶通常稳定图像特征或道路场，但我们发现，即使使用正确的道路场，一个不充分的
 > 读出也会删除几乎全部候选决策差异。AORTA 因而直接学习冻结 planner 候选图上的外观商偏好：
-> 它以 native 为上下文，用一个可积的 score potential 精确保持偏好结构，并只在同时误差下界证明
-> challenger 优于 native 时干预。我们稳定的不是代理表征，而是真正决定轨迹选择的关系。
+> 它以 native 为上下文，读取正确图像与完整候选轨迹，只在同时误差下界证明 challenger 优于
+> native 时干预。我们稳定的不是代理表征，而是真正决定轨迹选择的关系。
 
 在 B4R1、结构消融、NavDream、跨 planner 和时延门全部通过前，上述后两句只能称方法假设。
 
@@ -211,14 +245,16 @@ selective native-relative decision rule** 三者由同一证据链支持时，�
    不只是视觉精度。
 3. **对象：**真实应保持的是 fixed native context 下的 \(\Delta_{ij}^*\)，绝对 score 只在共同
    gauge 等价类中可辨识。
-4. **方法：**共享视觉编码 + 完整轨迹条件 + exact score coboundary + selective lower bound。
+4. **方法：**共享视觉编码 + 完整轨迹条件 + native-relative relation decoder + selective lower
+   bound；complete-graph structure 只有经消融成立后才进入该句。
 5. **证据：**oracle ceiling、correct-vs-mismatch、matched structure、NavDream/跨 planner decision
    gain、clean harm/abstention 与端到端 P50/P95/P99。
 
 ### Poster 第一眼结构
 
 1. 左栏只展示“stable representation / perfect field, wrong decision relation”的反例；
-2. 中栏只展示 \(\Delta_{ij}=s_j-s_i\) 及 native-conditioned network；
+2. 中栏展示合法域上的 native-relative \(\Delta_{i0}\) 与 native-conditioned network；只有结构
+   消融通过后，才改为 complete-graph \(\Delta_{ij}=s_j-s_i\)；
 3. 右栏只展示 ranking/regret、选择性干预与 latency，不堆砌历史几何模块；
 4. 每个主结果旁直接放最强竞争解释的控制，而不是把消融藏到补充材料。
 
@@ -228,7 +264,8 @@ Poster 竞争力至少要求：
 
 - B4R1 在合法候选域上的非平凡 oracle ceiling；
 - 未见组与 NavDream 上同时 task-correct、appearance-stable、correct-image necessary；
-- exact head 对容量匹配自由 pair head 的结构优势；
+- relation decoder 对容量匹配普通 scorer 的必要性；若主张 complete-graph structure，则还需其对
+  native-vector/star-score/free-edge 的 held-out 优势；
 - 至少两个冻结 planner 上的排序/官方行为收益；
 - clean harm、abstention、最差组、候选规模和 P50/P95/P99 完整报告。
 
@@ -269,7 +306,8 @@ Oral 候选还要求：
 
 1. **一句反常现象：**perfect/stable representation 为什么仍给出错误 decision relation？
 2. **一个不可回避的数学缺口：**候选差异在哪个算子或域定义中被删除/污染？
-3. **一个由缺口推出的设计：**若删掉 exact relational structure，哪条恒等式或 regret 条件失效？
+3. **一个由缺口推出的设计：**若退回 feature/field invariance 或普通无外观约束 scorer，哪项
+   held-out decision relation、regret 或 abstention 性质会失败？
 4. **一个最强竞争解释：**普通 scorer、更强 DINO、更多参数或候选扩展能否解释全部收益？
 5. **一个改变行为的终点：**在合法 panel、完整时域与实时预算内，是否减少 regret/clean harm，
    而不只是改善 feature/field 指标？

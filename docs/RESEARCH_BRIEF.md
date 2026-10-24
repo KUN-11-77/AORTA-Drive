@@ -1,5 +1,7 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 preference结构创新预死亡审查：`STAR_GRAPH_EXACTNESS_VACUOUS__HODGE_NOT_A_CORE_CLAIM`。** 若监督/部署只比较native与各challenger，star incidence \(D_\star\) 对任意relative vector均满射：取`s0=0, si=q_i`即可，因此node-score difference与直接输出native-relative vector只是重参数化，star上没有cycle可约束。complete-graph edges又由native-conditioned scalar代数派生，不能在实验前宣称独立任务结构。后续只有在B4R1通过后，以native-vector、star-score、complete-score、free complete-edge进行参数/FLOP/数据/seed匹配，并在held-out regret/selection而非train cycle residual上证明优势，才允许保留Hodge/结构贡献；否则主线收缩为appearance-quotient relation target + simultaneous-uncertainty selective arbitration。详见`refine-logs/2026-10-25_aorta_post_b3/STRUCTURAL_NOVELTY_PREMORTEM_V1_CN.md`。**
+
 > **2026-10-25 B4接口失败已转化为B4R1候选域一致性预注册，尚未运行。** B4 的48个失败
 > anchors实际pose全部bit-exact；错误是168个冻结intent-ineligible challengers仍进入oracle。
 > B4R1因此把候选membership提升为estimand的一部分：每个context的合法顶点集为native加预B4
@@ -23,8 +25,8 @@
 > cost volume沿轨迹累加，故signed occupancy integral不是新贡献；CVaR/EVaR已有成熟风险规划；
 > GTRS、DA-WAM与TOAD已覆盖trajectory tokenizer、candidate-conditioned latent、hard negatives、
 > off-proposal scorer与test-time search。当前唯一值得继续查验的候选是appearance-quotient
-> preference：直接学习外观干预下的native-relative task score differences，并用scalar-score
-> coboundary保证antisymmetry与cycle consistency。但它尚未通过标签合法性、oracle ceiling、
+> preference：直接学习外观干预下的native-relative task score differences。scalar-score
+> coboundary仅是待检验的complete-graph参数化，在native-star上不构成结构约束。该方向尚未通过标签合法性、oracle ceiling、
 > direct-pair/GTRS/DA-WAM匹配消融、NavDream或时延门，不授权实现。详见
 > `refine-logs/2026-10-25_aorta_post_b3/LITERATURE_AND_METHOD_PIVOT.md`。
 
@@ -35,12 +37,13 @@
 > 独立重放和group-level oracle-gain裁决；two-frame comfort、完整official PDMS、跨planner、NavDream
 > 与网络收益均不在本轮主张内。详见`experiments/R004H7/H7BS4B4_PREREGISTRATION.md`。
 
-> **2026-10-24 post-D0理论迁移审查：复杂度按必要性而非模块数量治理。** 候选核心链冻结为
+> **2026-10-24 post-D0理论迁移审查（已被B3/B4与ADR-0067收紧）：复杂度按必要性而非模块数量治理。** 当时候选核心链为
 > Hodge-consistent quotient representation、support-conditioned correlated graph uncertainty、
 > exact shared-variable robust readout与selective Simplex fallback。离散外微分解释potential
 > 的gauge与可积性；信息充分性排除“稳定但无用”；联合集合保留公共候选相关性；拒判把证据
 > 不足变成正式行为。Sheaf、连续operator、PEA升级、depth和diffusion/RL均为条件模块，须由
-> 独立失败证据授权。最近资格门为96×64 teacher-critical observability与oracle uncertainty
+> 独立失败证据授权。B3 已停止该 scalar-road-margin readout；ADR-0067 又证明 native-star exactness
+> 空泛，因此这段只保留为历史设计记录，不代表当前采用架构。最近资格门为96×64 teacher-critical observability与oracle uncertainty
 > non-vacuity；二者通过前不训练新架构。详见`THEORY_TRANSFER_AUDIT.md`与
 > `SYSTEM_THEORY_V0_5_CANDIDATE.md`。
 

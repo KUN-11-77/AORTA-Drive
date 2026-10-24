@@ -856,14 +856,16 @@ the current open-ended geometry certificate iteration remains STOP.
 
 ## ADR-0062 — Govern complexity by falsified simpler alternatives, not module count
 
-- **Status:** accepted as the post-D0 architecture policy.
+- **Status:** historical post-D0 policy; its Hodge/core-chain content is superseded by B3, B4 and
+  ADR-0067, while the general complexity-governance principle remains accepted.
 - **Decision:** retain complex deterministic structure when it is required by a counterexample,
   theorem assumption, auditable error direction or shared-compute requirement. Limit trainable
   novelty to the quotient decoder and correlated uncertainty mechanism unless a later registered
   failure proves another component necessary.
-- **Adopt now as theory candidates:** discrete-exterior/Hodge consistency, additive-gauge quotient,
+- **Historical theory candidates:** discrete-exterior/Hodge consistency, additive-gauge quotient,
   support-conditioned graph uncertainty, exact shared-variable robust readout and selective
-  Simplex-style fallback.
+  Simplex-style fallback. These are not current adopted contributions; B3 retired the scalar
+  road-margin readout and ADR-0067 removed native-star Hodge exactness from the novelty claim.
 - **Conditional only:** sheaf fusion, continuous neural fields, PEA-style adaptation, learned depth,
   diffusion/RL candidate generation and target-shift weighting. Each needs its own failure evidence
   and capacity/latency-matched deletion test.
@@ -935,3 +937,19 @@ the current open-ended geometry certificate iteration remains STOP.
   observing them is prohibited.
 - **Boundary:** this is an interface/type-safety correction, not a validated architecture innovation
   or evidence of preference signal, generalization, NavDream robustness, driving benefit or safety.
+
+## ADR-0067 — Do not claim Hodge/coboundary novelty on a native-star interface
+
+- **Status:** accepted before any preference-network training.
+- **Proof:** for the star incidence operator \(D_\star s=(s_i-s_0)_{i>0}\), every
+  \(q\in\mathbb R^{K-1}\) is representable by \(s_0=0,s_i=q_i\). Hence
+  `image(D_star)=R^(K-1)` and the star has no cycle; a node-score difference head and a direct
+  native-relative vector head have the same output hypothesis space.
+- **Decision:** Hodge/cycle consistency is not a core claim. Complete-graph structure remains only
+  a falsifiable hypothesis and must beat capacity/FLOP/data/seed-matched native-vector, star-score
+  and free complete-edge controls on held-out regret/selection, not merely training cycle residual.
+- **Consequence:** if that matched study is null, delete the Hodge narrative and retain at most the
+  appearance-quotient relation target plus selective simultaneous-uncertainty arbitration.
+- **Boundary:** the proof does not show that a shared scorer is ineffective; it shows only that its
+  exactness is not structurally restrictive on the deployed star. No learned or driving result
+  follows.
