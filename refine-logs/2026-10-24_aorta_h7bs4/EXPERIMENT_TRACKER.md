@@ -11,6 +11,6 @@
 | R004H7BS4B1 | M2d | Oracle联合不确定集合非空洞性 | 同一42 fit groups | MUST | COMPLETE_UNSUPPORTED_REDESIGN | 机械PASS；仅5/42组达覆盖；joint-box sign-identifiability差0、CI [0,0]；转零差异归因 |
 | R004H7BS4B2 | M2e | global set-min零差异结构归因 | 同一42 fit groups | MUST | COMPLETE_COMMON_MIN_DOMINANCE | 2033/2219零差异为共同min，42/42组；机械PASS；fork-aware oracle设计GO |
 | R004H7BS4B3 | M2f | fork-aware task operator oracle资格 | 同一42 fit groups | MUST | COMPLETE_STOP_GENERAL_RERANKER | temporal仅170/2033恢复，group CI 6.34–10.29%；spatial适用率77.13%；机械PASS；不训练网络 |
-| R004H7BS4B4 | M2g | source preference标签合法性与oracle ceiling | 同一42 fit groups；development/test/NavDream封存 | MUST | PREREGISTERED_NOT_RUN | 每候选独立与native成对复现one-frame PDM；先验裁决oracle gain与组级支持；不训练网络 |
+| R004H7BS4B4 | M2g | source preference标签合法性与oracle ceiling | 同一42 fit groups；development/test/NavDream封存 | MUST | COMPLETE_INVALID_INTERFACE_HOLD | primary/replay与机械审计exact，但48 anchors、27 groups含168个冻结intent-ineligible challengers仍进入oracle；48/48 pose实际bit-exact。正向diagnostics不可解释；R1新预注册前禁止训练 |
 | R004H7BS4C | M3 | 64/96/128同步时延与显存 | source-only | MUST | HOLD | 周期预算需先核验 |
 | R004H7BS4D | M4 | 一次性development确认 | 24 exposed development groups | MUST | HOLD | A/B/C冻结后 |

@@ -15,3 +15,16 @@
 - scientific interpretation: none。该失败是接口形状错误，不支持或否定 preference hypothesis。
 
 修复后必须更新 runner SHA、提交并推送，随后用相同第一 anchor 重做不输出科学数值的资格预检。
+
+## Full materialization — reproducible but scientifically invalid
+
+- frozen protocol commit：`599a2a0`；primary 与完整 replay 均完成 672/672 anchors；
+- mechanical audit：两次 anchor ledgers、summary 与 root contract exact，`failure_count=0`；
+- formal decision：`INVALID_PREFERENCE_LABEL_INTERFACE`；
+- exact cause：48 anchors 的冻结 `challenger_eligible` 非全真，但 runner 一方面把
+  `pose_exact AND all_eligible` 合并命名为 `panel_reconstruction_bit_exact`，另一方面又将 168 个
+  intent-ineligible challengers 纳入 oracle summary；
+- failure-only attribution：48/48 的 realized poses 实际逐 bit exact、最大误差 0；15 anchors
+  全部 challenger 不合格，33 anchors 部分不合格，影响 27 groups；
+- action：不解释正向 oracle diagnostics，不自动第三次正式运行，不授权训练。若继续必须以新的
+  R1 预注册统一 panel membership、pair domain 与统计分母。

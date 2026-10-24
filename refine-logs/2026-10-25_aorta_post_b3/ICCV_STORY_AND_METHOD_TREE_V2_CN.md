@@ -1,6 +1,6 @@
 # AORTA ICCV 故事与方法树 v2
 
-状态：`POST_B3_CANDIDATE_NARRATIVE__B4_RUNNING__NOT_A_PAPER_CLAIM`
+状态：`POST_B3_CANDIDATE_NARRATIVE__B4_INVALID_INTERFACE__NOT_A_PAPER_CLAIM`
 
 目的：把问题、数学对象、网络、损失、仲裁与实验约束成一条可证伪主线。本文档不是宣传稿；
 任何未通过对应资格门的句子都不能升级为论文贡献。
@@ -55,6 +55,19 @@ planner 无条件成立的绝对 candidate utility。绝对节点分数只在等
 \]
 
 中可辨识，而 \(\Delta_{ij}\) 对共同 gauge 完全不变。
+
+这里还必须把候选域写进对象。令 \(e_i(S,\pi)\in\{0,1\}\) 表示 candidate 是否满足预冻结的
+task-intent membership，合法图为
+
+\[
+V_{S,\pi}=\{0\}\cup\{i:e_i(S,\pi)=1\},\qquad
+E_{S,\pi}\subseteq V_{S,\pi}\times V_{S,\pi}.
+\]
+
+偏好标签、incidence matrix、Laplacian、loss、oracle gain 与 regret theorem 必须全部定义在同一
+\(V_{S,\pi}\) 上。B4 的实现可重复但科学无效，正是因为 168 个 \(e_i=0\) 的 challengers 进入
+oracle summary，而实现门又把 `all(e_i)` 混入 pose-reconstruction 布尔量。这个失败把“候选域
+一致性”从工程细节提升为方法的 type-safety 条件。
 
 ## 4. 从对象必然推出的架构
 
@@ -144,7 +157,8 @@ native。该结论是带假设的 model-relative 保证，不是现实驾驶安�
 
 从 feature/field invariance 转向 native-conditioned preference invariance。
 
-**生死门：**B4 必须先证明标签接口合法、当前候选面板有非平凡 oracle ceiling；随后 correct image
+**生死门：**B4 已因候选域不一致判 INVALID；只有新预注册 R1 在同一合法候选域上证明标签接口
+与非平凡 oracle ceiling，才可继续。随后 correct image
 必须在未见场景和外观下优于 mismatch、removed 与无图像先验。
 
 ### C2：候选图上的 exact preference architecture
@@ -188,7 +202,7 @@ selective native-relative decision rule** 三者由同一证据链支持时，�
 > 它以 native 为上下文，用一个可积的 score potential 精确保持偏好结构，并只在同时误差下界证明
 > challenger 优于 native 时干预。我们稳定的不是代理表征，而是真正决定轨迹选择的关系。
 
-在 B4、结构消融、NavDream、跨 planner 和时延门全部通过前，上述后两句只能称方法假设。
+在 B4R1、结构消融、NavDream、跨 planner 和时延门全部通过前，上述后两句只能称方法假设。
 
 ### 2 分钟
 
@@ -212,7 +226,7 @@ selective native-relative decision rule** 三者由同一证据链支持时，�
 
 Poster 竞争力至少要求：
 
-- B4 非平凡 oracle ceiling；
+- B4R1 在合法候选域上的非平凡 oracle ceiling；
 - 未见组与 NavDream 上同时 task-correct、appearance-stable、correct-image necessary；
 - exact head 对容量匹配自由 pair head 的结构优势；
 - 至少两个冻结 planner 上的排序/官方行为收益；
@@ -239,12 +253,28 @@ Oral 候选还要求：
 
 - 问题真实性与旧 scalar readout 反例：`SUPPORTED`；
 - held-out development 视觉正确性/必要性：`SUPPORTED_WITH_SCOPE`；
-- preference label 合法性与 oracle ceiling：`B4_RUNNING`；
+- preference label 合法性与 oracle ceiling：`B4_INVALID_INTERFACE`；正向 diagnostics 不可解释；
 - exact architecture 必要性、NavDream、跨 planner、决策收益、时延：`UNPROVEN`。
 
 严格顺序只有三步：
 
-1. B4 完成独立重放和机械审计，裁决 preference object 是否值得学习；
-2. 若 B4 通过，只预注册 matched-structure study，不直接训练；
+1. 先新预注册 B4R1，统一 candidate membership、pair domain、Laplacian 与统计分母；不得依据
+   B4 已看见的正向 diagnostics 选择规则；
+2. 若 B4R1 通过，只预注册 matched-structure study，不直接训练；
 3. 只有结构必要性成立，才进入外观泛化、选择性决策和部署时延闭环。
+
+## 13. 顶会叙事的反牵强检查
+
+每个 oral/poster 版本在写作前必须通过五问；任一答案依赖术语堆砌或事后挑选，就不进入主线：
+
+1. **一句反常现象：**perfect/stable representation 为什么仍给出错误 decision relation？
+2. **一个不可回避的数学缺口：**候选差异在哪个算子或域定义中被删除/污染？
+3. **一个由缺口推出的设计：**若删掉 exact relational structure，哪条恒等式或 regret 条件失效？
+4. **一个最强竞争解释：**普通 scorer、更强 DINO、更多参数或候选扩展能否解释全部收益？
+5. **一个改变行为的终点：**在合法 panel、完整时域与实时预算内，是否减少 regret/clean harm，
+   而不只是改善 feature/field 指标？
+
+当前最短真实故事仍是“稳定表征不等于稳定决策；应学习合法候选域上的外观商偏好”，但 B4
+证明我们尚未把“合法候选域”做对。因此现阶段最有价值的顶会行为不是润色故事，而是让定义、
+代码、统计与图结构使用同一个数学对象。
 

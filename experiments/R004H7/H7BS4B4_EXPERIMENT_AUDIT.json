@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-25",
+  "auditor": "internal-mechanical-audit__external-review-unavailable",
+  "overall_verdict": "fail",
+  "integrity_status": "fail",
+  "mechanical_audit": "pass",
+  "scientific_decision": "INVALID_PREFERENCE_LABEL_INTERFACE",
+  "checks": {
+    "gt_provenance": {
+      "status": "pass_with_scope",
+      "details": "Source-fit exact-token NAVSIM cache and candidate-specific one-frame PDM; not full official PDMS or real-world safety ground truth."
+    },
+    "score_normalization": {
+      "status": "pass_with_scope",
+      "details": "Each challenger was independently scored with the same native; official pair-relative progress normalization remains part of the frozen estimand."
+    },
+    "result_existence": {
+      "status": "pass",
+      "details": "Primary, replay, mechanical audit, logs, failure attribution and hashes exist; ledgers and summaries replay exactly."
+    },
+    "candidate_domain_integrity": {
+      "status": "fail",
+      "details": "168 frozen intent-ineligible challengers across 48 anchors entered oracle aggregation; candidate membership and implementation gate did not use the same domain."
+    },
+    "reconstruction": {
+      "status": "pass_as_separate_fact",
+      "details": "All 48 flagged anchors reproduce frozen realized poses bit exactly with maximum absolute error 0.0; the combined boolean failed only because eligibility was not all true."
+    },
+    "scope": {
+      "status": "pass_for_execution",
+      "details": "42 fit groups times 16 anchors; no held-out, NavDream, target, full-PDMS or safety claim is supported."
+    },
+    "external_review": "unavailable"
+  },
+  "claims": [
+    {"id": "C15_label_legality", "impact": "unsupported_for_current_run"},
+    {"id": "C15_oracle_ceiling", "impact": "invalid_not_interpretable"},
+    {"id": "C16_structure_necessity", "impact": "hold_no_training"}
+  ]
+}

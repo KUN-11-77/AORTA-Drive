@@ -916,3 +916,22 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** the B4 label excludes two-frame extended comfort and is not full official PDMS.
   It does not yet establish label signal, learned prediction, architecture necessity, planner
   transfer, OOD robustness, driving benefit or safety.
+
+## ADR-0066 — Treat candidate membership as part of the preference estimand
+
+- **Status:** accepted after R004H7BS4B4 completed with
+  `INVALID_PREFERENCE_LABEL_INTERFACE`.
+- **Evidence:** primary and replay were mechanically exact, but 168 challengers across 48 anchors
+  were marked ineligible by the frozen intent-match interface and still entered oracle aggregation.
+  All 48 flagged anchors reconstructed their realized poses bit exactly; the apparent reconstruction
+  failure came from conjoining pose equality with `all(challenger_eligible)`.
+- **Decision:** define the vertex set before labels: native is always present and only candidates
+  admitted by the frozen membership rule may define graph vertices, pair edges, Laplacian losses,
+  oracle gains and regret statements. Pose reconstruction and candidate eligibility are independent
+  audit fields. Variable-size panels and zero-challenger anchors require explicit denominators and
+  fail-closed handling.
+- **Consequence:** B4 positive diagnostics are invalid and cannot authorize training. A corrected
+  run requires a new preregistration; deleting the eligibility conjunct or filtering results after
+  observing them is prohibited.
+- **Boundary:** this is an interface/type-safety correction, not a validated architecture innovation
+  or evidence of preference signal, generalization, NavDream robustness, driving benefit or safety.
