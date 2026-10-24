@@ -17,4 +17,6 @@ panels通过，外部reviewer不可用。H7-C不得训练。完整合同和结�
 
 H7-B coverage failure后的唯一已注册下一步是
 `H7BS_SUPPORT_ADEQUACY_PLAN.md`：先在fit groups上以outcome-blind规则选择最大固定前缀，
-再一次性检查development coverage。当前仅完成设计，implementation与payload均HOLD。
+再一次性检查development coverage。其H7BS-0 post-hoc归因阶段已经完成并通过独立机械
+复算：全部ROI失败均为晚时刻前向`x_max`越界，origin合同闭合，且invalid样本明显偏向
+长前向行程。完整结果见`H7BS0_RESULTS.md`。fixed-prefix选择、H7-B2与H7-C仍HOLD。

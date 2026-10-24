@@ -1,6 +1,6 @@
 # R004H7-BS 预注册：shadow-query 支撑充分性诊断
 
-状态：`PREREGISTERED__H7BS0_ATTRIBUTION_IMPLEMENTATION_GO`。本阶段只回答固定视觉任务图能否完整承载冻结
+状态：`H7BS0_COMPLETED__PREFIX_SELECTION_HOLD`。本阶段只回答固定视觉任务图能否完整承载冻结
 候选的离散查询，不读取预测场、teacher margin、regret、ranking flip 或任何 H7-B outcome，
 也不训练网络。
 
@@ -37,6 +37,13 @@ appearance 不是本次 coverage 的分层因素：每个 anchor 的 panel 在�
 
 H7BS-0 只允许归因并提出后续合同，不允许选择新 ROI、prefix 或阈值。其结果完成机械
 复算后，才决定是否继续执行下文的 fixed-prefix support qualification。
+
+H7BS-0现已完成：所有110个native越界和770个candidate ROI failure均首先越过前向
+`x_max`；native首次越界索引中位为30.5/40，所需前向扩张中位为10.016m；初始pose
+平移/yaw残差均为0。23个可配对groups内，native-invalid相对valid的path length平均
+增加24.300m而曲率proxy未增加。机械审计复现全部119个无效anchor，0失败。该结果支持
+完整4秒前向支撑失配并揭示短行程选择性，但仍属post-hoc。fixed-prefix选择在单独审查
+前继续HOLD。
 
 ## 1. 问题与数学对象
 

@@ -1,5 +1,7 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-24 R004H7-BS0：`FORWARD_HORIZON_SUPPORT_MISMATCH_OBSERVED_POSTHOC`。** outcome-blind归因重读384个已审计panels：110个native越界与770个candidate ROI failure均只越过前向`x_max`；native首次越界最早在2.1s、中位3.05s，所需前向扩张中位10.016m、最大26.693m；所有初始pose平移/yaw残差为0。23个可配对groups内，native-invalid相对valid的path length平均高24.300m而曲率proxy未增加，说明complete-case样本明显偏向短行程。panel在appearance fields前构建，故视觉证据不能解释本次119个invalid，但ROI内视觉证据充分性仍未测。独立机械audit复现119 identities与全部边界归因，0失败；外部reviewer unavailable。新增定理明确：若候选集合越出网络定义域，完整set-min在无域外假设时不可识别，裁剪会改变estimand。prefix选择、H7-B2和H7-C继续HOLD。完整记录见`experiments/R004H7/H7BS0_RESULTS.md`。
+
 > **2026-10-24 R004H7-B：`INSUFFICIENT_PANEL_COVERAGE`。** 冻结24-group/384-anchor shadow run已完成且机械重算384/384通过，但只有265 anchors有效、11/24 groups达到每组至少12/16有效anchors的预注册完整性门；110 anchors因native越出冻结ROI而无效，另9个无有效challenger。candidate级770次失败来自oriented footprint离开64×64、1m、`[-32,32]^2`查询域，冻结provider四类rejection均为0。按协议未计算Spearman/AUROC，因此C13既未获得支持也未被关联性结果否定；H7-C继续HOLD。只允许先注册不读取outcome的support-adequacy diagnosis，不得事后删组、降阈值或改候选。calibration/test/NavDream/target仍封存，外部reviewer为`REVIEW_UNAVAILABLE`。完整记录见 `experiments/R004H7/H7B_RESULTS.md`。
 
 > **2026-10-24 R004H7-A：`PASS_DATA_FREE_THEORY_GATE`。** exact decision quotient 的共同偏移不变性、set-min oscillation bound、\(2\eta\) regret bound、potential/cut-space等价、全局非线性反例与tie policy共290k+登记案例0失败；完整仓库274 tests与新增模块strict mypy通过。该结果只闭合数学接口，不提供视觉或驾驶证据。当时仅授权 H7-B 实现；其后续实现资格见上一条，24-group payload读取、H7-C训练、calibration/test/target仍HOLD。外部reviewer仍为`REVIEW_UNAVAILABLE`。完整记录见 `experiments/R004H7/RESULTS_H7A.md` 与 `H7A_AUDIT.md`。

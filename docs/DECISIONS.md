@@ -741,3 +741,24 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** the mechanical audit passed 384/384 artifacts and reproduced the coverage
   verdict, but the required external reviewer backend was unavailable. No decision relevance,
   driving, safety, NavDream/target, final-test or novelty claim follows.
+
+## ADR-0056 — Treat task-support containment as a decision-quotient domain condition
+
+- **Status:** accepted after the post-hoc, outcome-blind R004H7-BS0 attribution.
+- **Observed mechanism:** every one of the 110 native ROI failures and 770 candidate ROI
+  failures first crossed the forward `x_max` boundary. Native first crossings occurred only at
+  indices 21--40, with median 30.5; initial translation and yaw residuals were exactly zero.
+  Within 23 paired groups, native-invalid anchors had 24.300 m greater mean path length than
+  valid anchors, while yaw variation and curvature proxies were not larger. This is consistent
+  with a full-horizon forward-support mismatch and a short-reach complete-case bias, not with a
+  demonstrated coordinate-origin defect or difficult-turn concentration.
+- **Theory:** a field observed only on `Omega` cannot identify a set-min over `F(tau)` when
+  `F(tau)` leaves `Omega` unless an extension class and its error are specified. Clipping to
+  `F(tau) intersect Omega` changes the estimand and has unbounded discrepancy without such an
+  assumption. Fail-closed support checking is therefore part of the mathematical interface.
+- **Decision:** preserve the original H7-B result. Do not pad, extrapolate, clip, remove groups,
+  or tune ROI/horizon on decision outcomes. A fixed prefix is a different near-horizon claim;
+  a larger ROI is an architectural retraining decision. Both require separate qualification.
+- **Boundary:** H7BS-0 is post-hoc descriptive evidence. It cannot establish visual evidence
+  quality, decision relevance, driving benefit, safety or novelty. Prefix selection, H7-B2 and
+  H7-C remain on hold pending review of the estimand and architecture trade-off.

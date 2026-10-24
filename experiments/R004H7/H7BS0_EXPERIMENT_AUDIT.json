@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-24",
+  "experiment_id": "R004H7BS0-posthoc-coverage-attribution-v1",
+  "external_reviewer_status": "REVIEW_UNAVAILABLE",
+  "overall_verdict": "REVIEW_UNAVAILABLE",
+  "mechanical_audit_status": "PASS",
+  "scientific_claim_status": "POSTHOC_DESCRIPTIVE_ONLY",
+  "reason": "The required independent reviewer backend was unavailable; mechanical recomputation cannot be presented as independent scientific review.",
+  "attribution_result_sha256": "c6589beb33dbd67504072f8dd98bac52d13ca6f177b38c719638dab1f4e77c99",
+  "mechanical_audit_sha256": "db81ac7807298e6331b977e51c568834b39ab7c1bd4d4287bdac8512b23d695e"
+}

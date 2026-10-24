@@ -159,3 +159,40 @@ R004H7 不允许宣称：
 - 离散 shadow ranking 等同连续几何安全；
 - source appearance consistency 等同 NavDream 或任意 OOD 保证；
 - 一次实验胜出即可证明 ICCV 新颖性。
+
+## 7. 有限输出域上的可识别性条件
+
+令网络只在有限节点域 \(\Omega\) 上输出任务场 \(u_\Omega\)，候选离散查询集合为
+\(F(\tau)\)。完整候选margin写成
+
+\[
+M(\tau;u)=\min_{q\in F(\tau)}u(q).
+\]
+
+**命题（域外set-min不可识别）。** 若 \(F(\tau)\not\subseteq\Omega\)，且没有给定
+\(u\) 在 \(\Omega^c\) 上的延拓类、边界条件或有效误差界，则
+\(M(\tau;u)\) 不能由 \(u_\Omega\) 唯一确定。
+
+**证明。** 取任意域内场 \(u_\Omega\) 以及一个
+\(q^*\in F(\tau)\setminus\Omega\)。构造两个与 \(u_\Omega\) 完全一致的延拓
+\(u^{(1)},u^{(2)}\)，只令 \(u^{(1)}(q^*)=a\)、\(u^{(2)}(q^*)=b\)，其中 \(a,b\)
+可任意选择为小于域内最小值的不同数。则两者具有相同观测 \(u_\Omega\)，但完整set-min
+分别由 \(a,b\) 决定，故不可识别。证毕。
+
+直接使用裁剪集合得到
+
+\[
+M_\Omega(\tau)=\min_{q\in F(\tau)\cap\Omega}u_\Omega(q)
+\]
+
+是另一个estimand。没有域外假设时，\(|M_\Omega-M|\)无有限统一上界。因此完整footprint
+越界时fail closed是定义域条件，不是可通过数值tolerance放宽的启发式。
+
+这给出三种互斥的合法接口：
+
+1. 固定prefix使所有注册查询满足 \(F_k(\tau)\subseteq\Omega\)，但结论只针对该近时域；
+2. 扩展 \(\Omega\) 并同步重建投影、teacher、网络输出与容量匹配训练；
+3. 对域外候选abstain，并显式报告由 \(\tau\) 决定的选择性覆盖。
+
+H7BS-0进一步观察到当前越界全部发生在前向`x_max`且集中于长行程anchor。这是post-hoc
+机制证据，不是上述命题的前提，也不能单独选择prefix或新ROI。
