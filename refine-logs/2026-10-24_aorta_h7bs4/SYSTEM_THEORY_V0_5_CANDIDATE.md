@@ -114,7 +114,8 @@ source保证。
 
 ### Gate B0：teacher-critical observability
 
-构建带数值误差账本的96×64 fit teacher，定义候选possible-minimizer集合
+先以B0A在164个资格cache上审计96×64生成器，再以B0A2对H7BS4A的672个精确fit token
+一一重建带数值误差账本的teacher；两者禁止跨token替代。随后定义候选possible-minimizer集合
 
 \[
 C(F)=\{q\in F:\ell_q\le\min_{p\in F}r_p\}.
@@ -133,7 +134,7 @@ correlated三种uncertainty在相同coverage下的selective coverage与ranking r
 
 ## 8. 当前未闭合项
 
-- 96×64 teacher及其map/error ledger尚未生成和审计；
+- 96×64 teacher生成器已在164个资格cache上双构建PASS，但672个精确fit-token工件尚待B0A2；
 - support-conditioned uncertainty的确定性floor尚未定义；
 - graph set在实际误差下是否非平凡未知；
 - 1m差异节点是否是teacher-critical未知；

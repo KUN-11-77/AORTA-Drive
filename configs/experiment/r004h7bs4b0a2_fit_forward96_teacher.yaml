@@ -1,0 +1,84 @@
+experiment_id: R004H7BS4B0A2-fit-forward96-exact-teacher-v1
+date: 2026-10-25
+status: preregistered_not_run
+
+H7BS4B0A2:
+  scientific_role: exact_fit_token_teacher_artifact_qualification_only
+  dependency:
+    b0a_mechanical_audit: PASS
+    b0a_audit_sha256: 57f0b8213c6a653189042fbcfb6eac58d9b30272e650a1e9b2e9b9f61b40995d
+    b0a_primary_manifest_sha256: e196c00ad71d665a422069f059000f6b0e11d339c00dc9d9a550ae75353575bc7
+    b0a_replay_manifest_sha256: 17b2068e71d9b413b79d71b9025fed342360d589e27d8cd72d886a8558e3afb49
+  parent_decision: H7BS4A_STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE
+  parent_decision_must_remain_unchanged: true
+  frozen_input_sha256:
+    h7bs4a_result: 4671032f4d22d37d067c83e0c298e592467e13601788b55dae53f8a7055cc8cc
+    r004e_metric_manifest: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+    r004e_label_manifest: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  exact_join:
+    key: [log_name, scene_token]
+    required_anchor_count: 672
+    required_recording_group_count: 42
+    allowed_split: train
+    cross_token_reuse: forbidden
+    nearest_scene_reuse: forbidden
+  grid:
+    x_support_m: [-32.0, 64.0]
+    y_support_m: [-32.0, 32.0]
+    resolution_m: 1.0
+    rows: 64
+    columns: 96
+    nodes: 6144
+    undirected_edges: 12128
+  teacher:
+    object: signed_distance_to_frozen_raw_polygon_cover_and_all_raw_boundaries
+    full_forward96_recomputation: true
+    interpolation_or_resizing: forbidden
+    old_64x64_role: exact_same_token_prefix_replay_only
+    required_prefix_equality: bit_exact_for_all_four_arrays
+    per_artifact_internal_byte_replay: required
+  implementation_sha256:
+    builder_source: f6454b812e45093e26454ccead5a4dae274f615af4de683d7d71bccf044a9af6
+    audit_source: 4947912fd7698e36945a9d75b6a5477a9e40959f577704f28a7b75b646177a06
+    teacher_source: 62a55e93543dc777699a9e7563fe33fcacb7e630baf36f6de24c769d109923b0
+    transform_source: 4ff1a31d64b511ce25c259b74530386949468f4829a8186e0328dc6157aa64ea
+    geometry_source: 34c17da1f59c18d9b8810abcac7b86865f0d6d0c3c35184204fa57234146fbec
+    base_builder_source: 6af58bd6dc45b2da00b748f1e7cab692602d47ee5b0e0adc1db64512bbd21c4d
+  success_criterion:
+    - exact_672_of_672_train_anchor_join
+    - exact_42_of_42_fit_groups
+    - exact_4128768_node_labels
+    - all_672_artifacts_pass_internal_byte_replay
+    - all_four_arrays_match_the_same_token_64x64_prefix_bit_exactly
+    - independent_audit_reopens_all_672_artifacts_with_zero_failure
+  stop_criterion:
+    - any_role_or_hash_mismatch
+    - any_missing_duplicate_or_nontrain_anchor
+    - any_prefix_replay_difference
+    - any_nonfinite_or_invalid_error_ledger
+    - wall_time_exceeds_120_minutes
+  forbidden_inputs:
+    - learned_visual_fields
+    - DINO_feature_values
+    - candidate_outcomes_or_planner_scores
+    - development
+    - calibration
+    - official_test
+    - NavDream
+    - target_domain
+  resources:
+    device: cpu
+    workers: 8
+    maximum_wall_minutes: 120
+
+claim_boundary:
+  permitted:
+    - exact_forward96_teacher_artifacts_exist_for_the_672_frozen_fit_tokens
+    - artifacts_are_qualified_for_a_separately_preregistered_teacher_criticality_test
+  prohibited:
+    - reversal_or_upgrade_of_H7BS4A_STOP
+    - teacher_critical_observability_or_decision_sufficiency
+    - model_accuracy_visual_robustness_or_inference_latency
+    - driving_or_safety_gain
+    - development_test_target_or_NavDream_generalization
+    - architecture_novelty

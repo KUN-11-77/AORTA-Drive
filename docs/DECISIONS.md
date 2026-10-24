@@ -873,3 +873,12 @@ the current open-ended geometry certificate iteration remains STOP.
   relations.
 - **Boundary:** the literature mapping and candidate architecture do not validate novelty or any
   theorem assumptions on NAVSIM/NavDream; B0/B1 remain required before training.
+## ADR-0063：teacher生成器资格与机制实验token必须分离（2026-10-25）
+
+- **Status:** accepted
+- **Evidence:** R004H7BS4B0A在164个R002G资格cache上完成两次forward96构建并机械PASS；
+  同时角色审计确认这些token不等于H7BS4A-D0的672个fit anchors。
+- **Decision:** B0A只资格化生成器实现。teacher-critical observability必须先运行B0A2，用
+  H7BS4A冻结的`(log_name, scene_token)`精确连接R004E cache；禁止近邻、跨token或旧标签插值。
+- **Reason:** 实现可重复性不能替代实验对象对齐；否则会用错误场景的道路几何解释视觉盲区。
+- **Boundary:** B0A/B0A2都不证明可观测性、决策充分性、模型收益或OOD泛化。

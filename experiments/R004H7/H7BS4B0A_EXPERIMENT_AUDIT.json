@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-25",
+  "auditor": "internal-mechanical-replay; external-reviewer-unavailable",
+  "overall_verdict": "provisional_scope_warn",
+  "integrity_status": "warn",
+  "mechanical_audit": "pass",
+  "checks": {
+    "gt_provenance": {
+      "status": "pass",
+      "details": "Frozen NAVSIM cache polygon geometry; no model-derived target."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "No model score or normalization is computed."
+    },
+    "result_existence": {
+      "status": "pass",
+      "details": "Two manifests and server audit exist; 164 records and 1007616 nodes per build."
+    },
+    "dead_code": {
+      "status": "pass",
+      "details": "Both builder calls and the artifact-reopening audit executed."
+    },
+    "scope": {
+      "status": "warn",
+      "details": "The 164 qualification caches do not match the 672 H7BS4A fit anchors."
+    },
+    "eval_type": "real_gt_dataset_cache_geometry_artifact_qualification"
+  },
+  "claims": [
+    {
+      "id": "forward96_generator_determinism",
+      "impact": "supported_mechanically"
+    },
+    {
+      "id": "teacher_critical_observability",
+      "impact": "unsupported_until_exact_fit_token_artifacts_exist"
+    }
+  ]
+}
