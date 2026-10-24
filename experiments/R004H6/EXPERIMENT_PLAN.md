@@ -26,3 +26,5 @@
 - 强度阶梯非单调：只限制对 stress-response 的解释，不改写 confirmatory 主裁决。
 - 通过：只授权下一项独立、预注册的结构必要性实验；驾驶收益仍为 HOLD。
 
+每个 group 均输出 correct、mismatch、removed、zero、fit teacher prior、pooled 与 uniform 的 task MAE；另输出固定高 teacher-gradient 边误差、全部配对差分和输入/DINO 扰动账本。最差组和失败组由完整 24-group 表直接计算，不进行有利样本筛选。
+

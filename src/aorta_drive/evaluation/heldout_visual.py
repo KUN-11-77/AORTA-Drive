@@ -59,20 +59,34 @@ def summarize_heldout_ledgers(
 
     condition_summaries: dict[str, dict[str, Any]] = {}
     group_names = tuple(sorted(grouped))
+    per_group: dict[str, dict[str, Any]] = {group: {"conditions": {}} for group in group_names}
     for condition_index, condition in enumerate(all_conditions):
         rows_by_group: list[tuple[float, float, float, float, float, float]] = []
         for group in group_names:
             rows = grouped[group]
-            rows_by_group.append(
-                (
-                    float(np.mean([r["conditions"][condition]["task_mae_m"] for r in rows])),
-                    float(np.mean([r["zero_task_mae_m"] for r in rows])),
-                    float(np.mean([r["fit_teacher_prior"]["task_mae_m"] for r in rows])),
-                    float(np.mean([r["conditions"][condition]["appearance_mae_m"] for r in rows])),
-                    float(np.mean([r["conditions"]["clean"]["edge_energy_mae_m"] for r in rows])),
-                    float(np.mean([r["conditions"][condition]["teacher_cosine"] for r in rows])),
-                )
+            values = (
+                float(np.mean([r["conditions"][condition]["task_mae_m"] for r in rows])),
+                float(np.mean([r["zero_task_mae_m"] for r in rows])),
+                float(np.mean([r["fit_teacher_prior"]["task_mae_m"] for r in rows])),
+                float(np.mean([r["conditions"][condition]["appearance_mae_m"] for r in rows])),
+                float(np.mean([r["conditions"]["clean"]["edge_energy_mae_m"] for r in rows])),
+                float(np.mean([r["conditions"][condition]["teacher_cosine"] for r in rows])),
             )
+            rows_by_group.append(values)
+            per_group[group]["conditions"][condition] = {
+                "task_mae_m": values[0],
+                "zero_task_mae_m": values[1],
+                "fit_teacher_prior_task_mae_m": values[2],
+                "appearance_mae_m": values[3],
+                "clean_edge_energy_mae_m": values[4],
+                "teacher_cosine": values[5],
+                "salient_edge_mae_m": float(np.mean([
+                    r["conditions"][condition]["salient_edge_mae_m"] for r in rows
+                ])),
+                "spatial_pool_task_mae_m": float(np.mean([
+                    r["spatial_pool"][condition]["task_mae_m"] for r in rows
+                ])),
+            }
         array = np.asarray(rows_by_group, dtype=np.float64)
         prior_margin = array[:, 2] - array[:, 0]
         zero_margin = array[:, 1] - array[:, 0]
@@ -111,6 +125,25 @@ def summarize_heldout_ledgers(
         correct.append(float(np.mean([r["conditions"]["clean"]["task_mae_m"] for r in rows])))
         mismatch.append(float(np.mean([r["mismatched_clean"]["task_mae_m"] for r in rows])))
         removed.append(float(np.mean([r["image_removed"]["task_mae_m"] for r in rows])))
+        per_group[group]["scene_information_controls"] = {
+            "correct_clean_task_mae_m": correct[-1],
+            "mismatched_clean_task_mae_m": mismatch[-1],
+            "image_removed_task_mae_m": removed[-1],
+            "mismatch_minus_correct_m": mismatch[-1] - correct[-1],
+            "removed_minus_correct_m": removed[-1] - correct[-1],
+            "uniform_fit_mean_DINO_task_mae_m": float(np.mean([
+                r["uniform_fit_mean_DINO"]["task_mae_m"] for r in rows
+            ])),
+            "fit_teacher_prior_salient_edge_mae_m": float(np.mean([
+                r["fit_teacher_prior"]["salient_edge_mae_m"] for r in rows
+            ])),
+            "mismatched_salient_edge_mae_m": float(np.mean([
+                r["mismatched_clean"]["salient_edge_mae_m"] for r in rows
+            ])),
+            "removed_salient_edge_mae_m": float(np.mean([
+                r["image_removed"]["salient_edge_mae_m"] for r in rows
+            ])),
+        }
     correct_array = np.asarray(correct)
     mismatch_margin = np.asarray(mismatch) - correct_array
     removed_margin = np.asarray(removed) - correct_array
@@ -124,7 +157,33 @@ def summarize_heldout_ledgers(
         "mismatch_minus_correct_ci95_m": list(mismatch_ci),
         "removed_minus_correct_m": float(np.mean(removed_margin)),
         "removed_minus_correct_ci95_m": list(removed_ci),
+        "uniform_fit_mean_DINO_task_mae_m": float(np.mean([
+            per_group[group]["scene_information_controls"]["uniform_fit_mean_DINO_task_mae_m"]
+            for group in group_names
+        ])),
     }
+    perturbation_summary: dict[str, dict[str, float]] = {}
+    for condition in (*all_conditions, "mismatched_clean", "image_removed"):
+        group_values = []
+        for group in group_names:
+            rows = grouped[group]
+            item = {
+                key: float(np.mean([r["perturbation_ledger"][condition][key] for r in rows]))
+                for key in ("pixel_srgb_mae", "dense_feature_rms", "dense_feature_one_minus_cosine")
+            }
+            per_group[group].setdefault("perturbation_ledger", {})[condition] = item
+            group_values.append(item)
+        perturbation_summary[condition] = {
+            key: float(np.mean([row[key] for row in group_values]))
+            for key in ("pixel_srgb_mae", "dense_feature_rms", "dense_feature_one_minus_cosine")
+        }
+    severity_checks = {}
+    for base in ("low_exposure", "low_contrast", "cool_cast"):
+        strong = f"{base}_twice"
+        severity_checks[base] = {
+            key: perturbation_summary[strong][key] > perturbation_summary[base][key]
+            for key in ("pixel_srgb_mae", "dense_feature_rms", "dense_feature_one_minus_cosine")
+        }
     claim_1 = all(
         condition_summaries[name]["task_mae_m"] < condition_summaries[name]["zero_task_mae_m"]
         and condition_summaries[name]["task_mae_m"] < condition_summaries[name]["fit_teacher_prior_task_mae_m"]
@@ -135,9 +194,37 @@ def summarize_heldout_ledgers(
     )
     claim_2 = mismatch_ci[0] > 0.0 and removed_ci[0] > 0.0
     decision = "SUPPORTED" if claim_1 and claim_2 else "MIXED" if claim_1 or claim_2 else "UNSUPPORTED"
+    failure_counts = {
+        condition: {
+            "learned_not_better_than_zero": sum(
+                per_group[group]["conditions"][condition]["task_mae_m"]
+                >= per_group[group]["conditions"][condition]["zero_task_mae_m"]
+                for group in group_names
+            ),
+            "learned_not_better_than_fit_prior": sum(
+                per_group[group]["conditions"][condition]["task_mae_m"]
+                >= per_group[group]["conditions"][condition]["fit_teacher_prior_task_mae_m"]
+                for group in group_names
+            ),
+        }
+        for condition in CONFIRMATORY_CONDITIONS
+    }
+    failure_counts["scene_information_controls"] = {
+        "mismatch_not_worse_than_correct": int(np.sum(mismatch_margin <= 0.0)),
+        "removed_not_worse_than_correct": int(np.sum(removed_margin <= 0.0)),
+    }
+    worst_group = max(
+        group_names,
+        key=lambda group: per_group[group]["conditions"]["clean"]["task_mae_m"],
+    )
     return {
         "conditions": condition_summaries,
         "scene_information_controls": controls,
+        "perturbation_summary": perturbation_summary,
+        "stronger_than_base_checks": severity_checks,
+        "per_group": per_group,
+        "failure_group_counts": failure_counts,
+        "worst_clean_task_group": worst_group,
         "claim_1_heldout_generalization_supported": bool(claim_1),
         "claim_2_scene_conditioning_supported": bool(claim_2),
         "decision": decision,

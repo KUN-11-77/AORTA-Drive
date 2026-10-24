@@ -29,6 +29,7 @@ from aorta_drive.models.quotient_field import QuotientFieldPredictor
 from aorta_drive.training.r004ec import JoinedAnchor, load_joined_anchors, load_teacher_arrays, sample_dense_features_torch
 from aorta_drive.vision.appearance import H6_APPEARANCE_CONDITIONS, apply_h6_controlled_appearance
 from aorta_drive.vision.feature_cache import (
+    bfloat16_bits_to_float32,
     dino_python_tree_sha256,
     load_dense_bfloat16_bits,
     sha256_file,
@@ -167,13 +168,46 @@ def _predict(model: QuotientFieldPredictor, dense: Float32Array, patch_xy: Float
     return np.asarray(prediction.cpu().numpy(), dtype=np.float32)
 
 
-def _fit_teacher_prior(records: Sequence[JoinedAnchor]) -> Float64Array:
+def _fit_controls(records: Sequence[JoinedAnchor]) -> tuple[Float64Array, Float32Array]:
     if len(records) != 672:
-        raise ValueError("fit prior requires exactly 672 fit anchors")
-    return np.asarray(
+        raise ValueError("fit controls require exactly 672 fit anchors")
+    teacher_prior = np.asarray(
         np.mean(np.stack([load_teacher_arrays(record).label_m for record in records]), axis=0),
         dtype=np.float64,
     )
+    feature_sum = np.zeros(1280, dtype=np.float64)
+    feature_count = 0
+    seen: set[Path] = set()
+    for record in records:
+        for path in record.dense_feature_paths:
+            if path in seen:
+                continue
+            seen.add(path)
+            dense = bfloat16_bits_to_float32(load_dense_bfloat16_bits(path))
+            feature_sum += np.sum(dense, axis=(1, 2), dtype=np.float64)
+            feature_count += dense.shape[1] * dense.shape[2]
+    if len(seen) != 8064 or feature_count != 8064 * 18 * 32:
+        raise ValueError("uniform fit feature control used an unexpected image set")
+    return teacher_prior, np.asarray(feature_sum / feature_count, dtype=np.float32)
+
+
+def _predict_materialized(
+    model: QuotientFieldPredictor, features: torch.Tensor, mask: torch.Tensor
+) -> Float32Array:
+    with torch.inference_mode():
+        prediction = model(features.unsqueeze(0), mask.unsqueeze(0))[0]
+    if not bool(torch.isfinite(prediction).all().item()):
+        raise FloatingPointError("nonfinite materialized-probe prediction")
+    return np.asarray(prediction.cpu().numpy(), dtype=np.float32)
+
+
+def _salient_edge_mae(prediction: Float32Array, teacher: Float64Array) -> float:
+    predicted_edges = oriented_grid_edges(prediction)
+    teacher_edges = oriented_grid_edges(teacher)
+    selected = np.abs(teacher_edges) >= 0.50
+    if not np.any(selected):
+        return float("nan")
+    return float(np.mean(np.abs(predicted_edges[selected] - teacher_edges[selected])))
 
 
 def _perturbation(raw: Sequence[Float32Array], clean: Float32Array, changed: Float32Array, condition: str) -> dict[str, float]:
@@ -189,6 +223,26 @@ def _perturbation(raw: Sequence[Float32Array], clean: Float32Array, changed: Flo
         "pixel_srgb_mae": float(pixel),
         "dense_feature_rms": float(np.sqrt(np.mean(np.square(changed64 - clean64)))),
         "dense_feature_one_minus_cosine": float(1.0 - numerator / denominator) if denominator > 0 else 0.0,
+    }
+
+
+def _input_shift(
+    recipient_raw: Sequence[Float32Array], changed_raw: Sequence[Float32Array],
+    clean: Float32Array, changed: Float32Array,
+) -> dict[str, float]:
+    if len(recipient_raw) != len(changed_raw):
+        raise ValueError("input-shift images must align by slot")
+    clean64 = clean.astype(np.float64, copy=False)
+    changed64 = changed.astype(np.float64, copy=False)
+    denominator = float(np.linalg.norm(clean64) * np.linalg.norm(changed64))
+    cosine = float(np.sum(clean64 * changed64) / denominator) if denominator > 0 else 1.0
+    return {
+        "pixel_srgb_mae": float(np.mean([
+            np.mean(np.abs(left / np.float32(255.0) - right / np.float32(255.0)))
+            for left, right in zip(recipient_raw, changed_raw, strict=True)
+        ])),
+        "dense_feature_rms": float(np.sqrt(np.mean(np.square(changed64 - clean64)))),
+        "dense_feature_one_minus_cosine": float(1.0 - cosine),
     }
 
 
@@ -259,7 +313,7 @@ def main() -> None:
     donor_map = deterministic_group_derangement(development_groups)
     visual = _feature_records(args.feature_manifest, frozenset(development_groups), 384)
     original_cardinalities = _original_batch_cardinalities(args.feature_manifest, args.batch_size)
-    fit_prior = _fit_teacher_prior(fit_records)
+    fit_prior, uniform_fit_feature = _fit_controls(fit_records)
 
     torch.manual_seed(20261024)
     torch.cuda.manual_seed_all(20261024)
@@ -308,13 +362,46 @@ def main() -> None:
         clean_prediction = predictions["clean"]
         mismatch_prediction = _predict(model, mismatched_dense, patch_xy, mask, device)
         removed_prediction = _predict(model, removed_dense, patch_xy, mask, device)
+        mask_tensor = torch.from_numpy(mask).to(device=device)
+        pooled_predictions: dict[str, Float32Array] = {}
+        for condition, dense_value in dense.items():
+            pooled = torch.from_numpy(np.mean(dense_value, axis=(2, 3))).to(device=device)
+            pooled_nodes = pooled.unsqueeze(0).expand(4096, -1, -1).contiguous()
+            pooled_nodes = torch.where(mask_tensor.unsqueeze(-1), pooled_nodes, 0.0)
+            pooled_predictions[condition] = _predict_materialized(model, pooled_nodes, mask_tensor)
+        uniform = torch.from_numpy(uniform_fit_feature).to(device=device)
+        uniform_nodes = uniform.view(1, 1, -1).expand(4096, 12, -1).contiguous()
+        uniform_nodes = torch.where(mask_tensor.unsqueeze(-1), uniform_nodes, 0.0)
+        uniform_prediction = _predict_materialized(model, uniform_nodes, mask_tensor)
         condition_metrics = {name: asdict(measure_field_mechanism(value, teacher, clean_prediction)) for name, value in predictions.items()}
+        for name, value in predictions.items():
+            condition_metrics[name]["salient_edge_mae_m"] = _salient_edge_mae(value, teacher)
         prior_metrics = asdict(measure_field_mechanism(fit_prior, teacher, clean_prediction))
         mismatch_metrics = asdict(measure_field_mechanism(mismatch_prediction, teacher, clean_prediction))
         removed_metrics = asdict(measure_field_mechanism(removed_prediction, teacher, clean_prediction))
+        pooled_metrics = {
+            name: asdict(measure_field_mechanism(value, teacher, clean_prediction))
+            for name, value in pooled_predictions.items()
+        }
+        uniform_metrics = asdict(measure_field_mechanism(uniform_prediction, teacher, clean_prediction))
+        prior_metrics["salient_edge_mae_m"] = _salient_edge_mae(np.asarray(fit_prior, dtype=np.float32), teacher)
+        mismatch_metrics["salient_edge_mae_m"] = _salient_edge_mae(mismatch_prediction, teacher)
+        removed_metrics["salient_edge_mae_m"] = _salient_edge_mae(removed_prediction, teacher)
+        uniform_metrics["salient_edge_mae_m"] = _salient_edge_mae(uniform_prediction, teacher)
+        for name, value in pooled_predictions.items():
+            pooled_metrics[name]["salient_edge_mae_m"] = _salient_edge_mae(value, teacher)
         perturbations = {name: _perturbation(raw, dense["clean"], value, name) for name, value in dense.items()}
+        perturbations["mismatched_clean"] = _input_shift(raw, donor_raw, dense["clean"], mismatched_dense)
+        perturbations["image_removed"] = _input_shift(raw, [neutral] * 12, dense["clean"], removed_dense)
         field_path = fields_root / f"{record.scene_token}.npz"
-        np.savez_compressed(field_path, teacher=teacher.astype(np.float32), fit_teacher_prior=fit_prior.astype(np.float32), mismatched_clean=mismatch_prediction, image_removed=removed_prediction, **{name: value for name, value in predictions.items()})
+        np.savez_compressed(
+            field_path,
+            teacher=teacher.astype(np.float32), fit_teacher_prior=fit_prior.astype(np.float32),
+            mismatched_clean=mismatch_prediction, image_removed=removed_prediction,
+            uniform_fit_mean_DINO=uniform_prediction,
+            **{name: value for name, value in predictions.items()},
+            **{f"spatial_pool_{name}": value for name, value in pooled_predictions.items()},
+        )
         ledgers.append({
             "recording_group": record.recording_group,
             "anchor_index": record.anchor_index,
@@ -327,6 +414,8 @@ def main() -> None:
             "fit_teacher_prior": prior_metrics,
             "mismatched_clean": mismatch_metrics,
             "image_removed": removed_metrics,
+            "spatial_pool": pooled_metrics,
+            "uniform_fit_mean_DINO": uniform_metrics,
             "field_artifact": field_path.relative_to(args.output_directory).as_posix(),
             "field_artifact_sha256": sha256_file(field_path),
         })

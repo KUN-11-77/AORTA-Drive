@@ -64,6 +64,15 @@ scene_information_controls:
     definition: every_RGB_pixel_equals_the_frozen_normalization_mean_before_normalization
     interpretation: off_manifold_removal_probe_not_a_trained_baseline
     evaluated_condition: clean_only
+  spatially_pooled_DINO:
+    definition: each_slot_dense_feature_spatially_averaged_then_broadcast_to_recipient_nodes
+    evaluated_conditions: all_registered_appearance_conditions
+    interpretation: off_manifold_spatial_relation_probe_not_a_fair_retrained_baseline
+  uniform_fit_mean_DINO:
+    definition: channel_mean_over_all_unique_fit_dense_tokens_broadcast_to_all_slots_and_recipient_nodes
+    development_features_or_labels_used_to_construct_control: false
+    evaluated_condition: clean_only
+    interpretation: off_manifold_source_only_feature_probe_not_a_fair_retrained_baseline
   zero_field:
     definition: identically_zero_potential
 
@@ -93,6 +102,11 @@ estimands:
   perturbation_ledger:
     pixel_endpoint: mean_absolute_sRGB_difference_from_clean
     feature_endpoints: [dense_feature_RMS_difference, one_minus_dense_feature_cosine]
+    mismatch_and_removal_shift_reported_separately: true
+  task_structure_diagnostics:
+    teacher_salient_edge_definition: absolute_teacher_edge_at_least_0p50_m
+    endpoints: [salient_edge_MAE, teacher_edge_cosine, predicted_edge_energy]
+    decision_role: descriptive_not_an_additional_post_hoc_gate
   aggregation:
     independent_unit: recording_group
     anchor_as_independent_sample: prohibited
@@ -123,6 +137,7 @@ decision:
     - both_primary_claim_gates_fail
     - input_identity_pairing_or_provenance_fails
   severity_ladder_is_secondary_and_cannot_change_the_primary_decision: true
+  pooled_uniform_salient_and_worst_group_reports_cannot_change_the_primary_decision: true
 
 stop_rules:
   - one_scientific_read_only_after_config_code_and_commit_are_pinned

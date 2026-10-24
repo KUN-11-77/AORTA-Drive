@@ -18,6 +18,7 @@ R004H6 只回答两个问题：
 - 空间先验对照：只用 42 个 fit 组 teacher 的逐节点均值，不读取 development label 构造先验。
 - 图像错配：development group 先按 group ID 的 SHA-256 排序，再循环平移一位；保持相同 anchor index 与 slot，recipient 的投影、mask、teacher 不变。
 - 图像移除：原始 RGB 设为冻结归一化均值，属于 off-manifold 机制探针，不冒充公平重训基线。
+- pooled DINO：逐 slot 抹除空间关系后广播；uniform DINO：只由 fit 缓存构造全局特征常数。两者都是 off-manifold 探针，不冒充容量匹配的重训基线。
 
 主指标都在有向 1 m 网格边上计算，因此不受势函数共同常数偏移影响。先在 anchor 内汇总，再在 recording group 内平均，最后对 24 个组等权平均。置信区间只按 recording group 成簇 bootstrap，禁止把 384 个 anchors 当作独立样本。
 
@@ -26,6 +27,8 @@ R004H6 只回答两个问题：
 主张 1 要求四个 confirmatory 条件下 learned 均优于 zero 与 fit-only teacher prior；其中 prior-minus-learned 的 95% 组级 bootstrap 下界必须大于零，teacher-edge cosine 必须为正，三个非 clean 条件的 edge drift 必须小于 clean field edge energy。
 
 主张 2 要求 mismatched-minus-correct 与 removed-minus-correct 的 95% 组级 bootstrap 下界都大于零。两条主张只有全部通过才记为 `SUPPORTED`；只通过一条记为 `MIXED`；两条都失败记为 `UNSUPPORTED`。本轮禁止根据结果修改模型、算子、阈值或 donor 配对后重跑。
+
+输出还必须包含 24 个组的完整配对差分、最差组、逐条件失败组数、teacher 边幅值至少 0.50 m 的固定高梯度区域误差、pooled/uniform 探针，以及原/双次扰动在 RGB 与 DINO 层的幅度。它们用于解释主裁决，不能在看到结果后变成新的通过门槛。错配分支的特征位移单独报告，避免把额外分布偏移误解成道路几何学习证据。
 
 完整机器可读规范：`configs/experiment/r004h6_heldout_visual_generalization.yaml`。
 
