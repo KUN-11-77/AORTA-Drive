@@ -422,3 +422,29 @@ scale-only gradient isolation。R004H1 再用 fresh initialization、42 fit/8 se
 1x1-head + `3e-4` AdamW 实例，不否定 heterogeneous-envelope 定理；下一步必须先区分
 activation scale、parameterization 与 optimizer conditioning。proxy-cal、development one-read
 和 official calibration 仍由后续独立门禁控制。
+
+### 12.5 Conditioning diagnosis after the first Stage-S failure
+
+在初始 (s_0=1\mathrm m) 处，每条边的 proper loss 对尺度 logit 的导数为
+
+\[
+\frac{\partial \ell_e}{\partial a_e}
+=\frac{s_0-r_e}{s_0^2}\,(s_{max}-s_{min})p_0(1-p_0),
+\qquad
+p_0=\frac{s_0-s_{min}}{s_{max}-s_{min}}.
+\]
+
+当前界限下 bounded-sigmoid 与 log-scale 的初始导数比约为 `0.94`，故 bounded map
+不能解释 (10^5) 量级的初始梯度放大。对 1x1 权重还有
+
+\[
+\frac{\partial\mathcal L}{\partial W_{kc}}
+=\sum_x \frac{\partial\mathcal L}{\partial a_k(x)}h_c(x),
+\]
+
+因此冻结 trunk 的任意 activation gauge 会直接进入权重 Jacobian。R004H2D 仅比较原始
+(h) 与 (h/\sqrt{\mathbb E[h^2]})，不居中、不改 potential，也不学习参数；同时解析
+重放 AdamW 的首个 bias-corrected update。若至少 6/8 anchors 在 raw 分支首步进入 cap、
+RMS 分支完全不进入 cap、logit jump 至少缩小 10 倍且归一化 jump 不超过 1，则只支持
+“activation scale 是当前实例的主导 conditioning 原因”。其余原因使用各自预注册 vote，
+不足 6/8 一律 `UNRESOLVED`。

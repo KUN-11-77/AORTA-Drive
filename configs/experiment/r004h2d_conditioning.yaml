@@ -1,0 +1,72 @@
+experiment_id: R004H2D-scale-interface-conditioning-v1
+date: 2026-10-24
+scope: read_only_initial_gradient_and_first_step_counterfactual
+
+predecessor:
+  experiment: R004H2-scale-only-proper-fit-v1
+  decision: STOP
+  implementation_revision: aa404cece22f564d0956fad4954cf475e3a93b95
+  raw_result_sha256: 6141aa0f754caeb819850a39c2734952da55000713ed44125a8a84bbacabb92a
+  selected_stage_p_checkpoint_sha256: 8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b
+  h1_config_sha256: 1cebf499f7997f0190354b94df5b8982508912ba718c61c33946940db7bcee9d
+
+inputs:
+  recording_group_manifest_sha256: 42268014b4580d0369c54ba3c230887febbc9be22e339c3d5875e105b3360fb7
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  allowed_payload_roles: [fit, selection]
+  prohibited_payload_roles: [proxy_cal, development, calibration, test, target_domain]
+
+sample:
+  roles: [fit, selection]
+  group_choice: first_group_in_frozen_role_ledger
+  groups_per_role: 1
+  anchor_choice: lowest_anchor_index
+  anchors_per_group: 4
+  total_anchors: 8
+
+scale_interface:
+  input_channels: 96
+  scale_min_m: 0.0009765625
+  scale_max_m: 16.0
+  initial_scale_m: 1.0
+  normalization_counterfactual: per_observation_uncentered_global_rms
+  normalization_epsilon: none_nonzero_rms_required
+
+first_step_counterfactual:
+  optimizer: analytic_bias_corrected_adamw_first_step
+  parameter_mutation: prohibited
+  checkpoint_write: prohibited
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  epsilon: 1.0e-8
+  global_gradient_clip_norm: 1.0
+  cap_position_tolerance: 0.0001
+  target_maximum_absolute_logit_change: 0.25
+
+diagnosis:
+  minimum_supporting_anchors: 6
+  total_anchors: 8
+  activation_scale_vote_requires:
+    raw_first_step_cap_fraction_at_least: 0.05
+    normalized_first_step_cap_fraction_exactly: 0.0
+    raw_to_normalized_max_logit_change_ratio_at_least: 10.0
+    normalized_maximum_absolute_logit_change_at_most: 1.0
+  parameterization_vote_requires:
+    bounded_to_log_scale_initial_derivative_ratio_at_least: 10.0
+  learning_rate_vote_requires:
+    activation_scale_vote_false: true
+    raw_first_step_cap_fraction_at_least: 0.05
+    derived_safe_learning_rate_at_most_fraction_of_registered: 0.1
+  decision_precedence: [parameterization, activation_scale, learning_rate, unresolved]
+
+resources:
+  device: cuda:0
+  maximum_peak_gpu_gib: 4.0
+  maximum_wall_minutes: 5
+  maximum_output_gib: 0.01
+
+claim_boundary:
+  permits: one_conditioning_cause_diagnosis_and_one_subsequent_h2_revision_registration
+  prohibits: [scale_fit, proxy_calibration, coverage, task_utility, gate_b, ood, novelty]

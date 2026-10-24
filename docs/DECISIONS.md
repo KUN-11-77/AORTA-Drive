@@ -244,3 +244,20 @@
 - **Boundary:** this falsifies the first architecture/optimization instance, not the
   heterogeneous-envelope theorem. No proxy-cal, development or official calibration data
   were opened.
+
+## ADR-0031 — Freeze an analytic first-step diagnosis before any H2 repair
+
+- **Status:** accepted before R004H2D execution
+- **Reason:** global gradient clipping does not by itself bound AdamW's first effective
+  coordinate update because the first-moment scale and square-root second-moment scale
+  cancel a common gradient multiplier. A large frozen activation can therefore turn a
+  nominal `3e-4` weight update into an arbitrarily large scale-logit change.
+- **Decision:** inspect four deterministic anchors from one fit group and four from one
+  selection group. Compare raw and uncentered-RMS-normalized feature Jacobians, verify the
+  analytic gradient against autograd, and replay the first AdamW update without constructing
+  an optimizer or mutating parameters. Require at least 6/8 cause-specific votes.
+- **Precedence:** derivative amplification first, activation scale second, learning rate
+  third, otherwise unresolved. Activation scale wins over learning rate only when the same
+  registered step becomes stable under magnitude-only normalization.
+- **Boundary:** this is a cause diagnosis, not a scale-fit result. It may authorize one
+  targeted H2 revision but never H3, coverage, task utility, Gate B, OOD or novelty claims.

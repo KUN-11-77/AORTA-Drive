@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：先冻结 R004H2D read-only conditioning 诊断，不得直接调学习率重跑。诊断必须在固定少量 fit/selection anchors 上同时记录 raw trunk feature 范数、bias-only 与 full-head 初始梯度、以及 normalization-only counterfactual，区分 trunk magnitude、bounded parameterization 与 learning-rate 三个竞争解释。只有诊断给出可证伪结论，才允许注册一次 H2 修订；proxy-cal、development 与官方 calibration 继续封存。
+- 下一阶段：执行已冻结的 R004H2D read-only conditioning 诊断，不得直接调学习率重跑。诊断固定 8 个 fit/selection anchors，同时记录 raw trunk feature 范数、bias-only 与 full-head 初始梯度、normalization-only counterfactual 和解析 AdamW 首步。只有至少 6/8 预注册因果票支持同一解释，才允许注册一次 H2 修订；proxy-cal、development 与官方 calibration 继续封存。

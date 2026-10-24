@@ -9,6 +9,12 @@ diagnostic; **no H2 retry, proxy-cal or development read is authorized until com
 failure explanations are discriminated and a new revision is separately frozen**.
 Official calibration, test and target remain sealed.
 
+R004H2D is now registered on eight deterministic anchors: four from the first fit group and
+four from the first selection group. It measures exact initial gradients and analytically
+replays, without parameter mutation, the registered AdamW first step on raw versus
+uncentered-RMS-normalized spatial features. A cause requires at least 6/8 preregistered
+votes; otherwise the result is `UNRESOLVED` and no revision is authorized.
+
 ## Claim map
 
 | ID | Claim candidate | Minimum evidence | Falsifier |
