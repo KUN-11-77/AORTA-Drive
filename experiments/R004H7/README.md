@@ -30,3 +30,9 @@ H7BS2现已完成并否定2.5秒最终路线：36/42 fit groups中存在128个pr
 290/3864 eligible challengers；按候选无关算子的完整定义域要求，首个fit候选是前向
 96×64，保留3864/3864 queries。完整记录见`H7BS2_RESULTS.md`。只允许下一步H7BS3对
 该单一ROI做development支持资格；网络训练、H7-B2与H7-C继续HOLD。
+
+H7BS3R1现已在24个historically exposed development groups上通过一次性完整域资格：
+384/384 native与2206/2206 eligible challengers全部受前向96×64支持，24/24 groups达到
+12/16门槛，机械复算0失败。9个无eligible challenger的anchors属于候选供给而非ROI
+失败。完整记录见`H7BS3_RESULTS.md`。该结果只解锁视觉可观测性与真实时延协议设计；
+网络训练、H7-B2与H7-C仍HOLD。

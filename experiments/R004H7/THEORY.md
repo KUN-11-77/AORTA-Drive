@@ -228,3 +228,16 @@ H7BS2在fit上构造了这种反例。令无限、同相位的1m lattice离散�
 却只保留3574/3864 eligible challengers；前向96×64才是冻结字典中首个fit上满足全部
 候选包含的方案。该结论只确定空间定义域候选，视觉网络是否能在该域预测、所需感受野、
 误差随距离的增长及真实推理时延仍是独立假设。
+
+H7BS3R1在不读取视觉场、teacher或decision outcome的条件下，对前向96×64进行一次性
+development资格，得到
+
+\[
+\forall \tau\in\mathcal C_{eligible}^{dev},\qquad
+F_{40}(\tau)\subseteq\Omega_{96},
+\]
+
+其中384/384 native与2206/2206 eligible challengers均满足包含。故该离散候选集合上的
+完整4秒set-min现在具有已验证的查询定义域；这不推出相机观测能识别\(u\)在整个
+\(\Omega_{96}\)上的值。若远距投影缺失、teacher误差随距离增长或decoder延迟超门，空间
+包含仍不能形成可用方法。因此视觉可观测性与计算可实现性是下一阶段独立必要条件。

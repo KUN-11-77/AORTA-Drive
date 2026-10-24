@@ -1,0 +1,37 @@
+{
+  "experiment_id": "R004H7BS3R1-forward96-full-domain-development-gate-v1",
+  "status": "COMPLETED_DEVELOPMENT_FULL_DOMAIN_PASS",
+  "code_commit": "6bbefc5",
+  "result_sha256": "0015b3bc74755161eba2ffa6a1e087412d302ef87b4cbbcf92903ffebb3ef350",
+  "mechanical_audit_sha256": "08b5bf838a5457bdaf29165886bbb4e625a6082192d384ed2db12663575542ea",
+  "mechanical_audit": "PASS",
+  "external_review": "REVIEW_UNAVAILABLE",
+  "scope": {
+    "development_groups": 24,
+    "anchors": 384,
+    "historically_exposed_development": true,
+    "visual_fields_teacher_or_decision_outcomes_accessed": false,
+    "calibration_test_navdream_or_target_accessed": false
+  },
+  "domain": {
+    "name": "forward_extend_96x64",
+    "x_bounds_m": [-32.0, 64.0],
+    "y_bounds_m": [-32.0, 32.0],
+    "resolution_m": 1.0,
+    "nodes": 6144,
+    "horizon_s": 4.0
+  },
+  "result": {
+    "native_supported": [384, 384],
+    "eligible_challengers_supported": [2206, 2206],
+    "anchors_with_any_candidate_support_failure": 0,
+    "valid_panels": [375, 384],
+    "anchors_without_eligible_challenger_supply": 9,
+    "groups_meeting_12_of_16": [24, 24],
+    "worst_group_valid_anchors": 12,
+    "decision": "DEVELOPMENT_FULL_DOMAIN_PASS",
+    "runtime_seconds": 16.0327474609949
+  },
+  "next_status": "GO_VISUAL_OBSERVABILITY_AND_LATENCY_PREREGISTRATION_ONLY__H7B2_H7C_HOLD",
+  "claim_boundary": "Forward 96x64 contains every frozen discrete 4-second native and eligible challenger query on historically exposed development. This does not establish visual observability, teacher coverage, field accuracy, resolution sufficiency, inference latency, decision relevance, driving benefit, safety, test/target/NavDream generalization, or architectural novelty."
+}

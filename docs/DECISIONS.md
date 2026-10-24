@@ -806,3 +806,17 @@ the current open-ended geometry certificate iteration remains STOP.
   visual observability and synchronized P50/P95 latency/memory gates remain mandatory.
 - **Boundary:** H7BS2 is discrete-time fit geometry. It does not validate field accuracy, teacher
   relevance, decisions, latency, driving safety, target generalization or novelty.
+
+## ADR-0059 — Freeze forward 96×64 as the qualified discrete query domain
+
+- **Status:** accepted after H7BS3R1 one-shot development execution and mechanical replay.
+- **Evidence:** all 384 native queries and all 2206 intent-eligible challenger queries on 24
+  historically exposed development groups lie inside `x=[-32,64]`, `y=[-32,32]` at 1m for the
+  complete four-second horizon. Zero anchors have a support failure; 24/24 groups satisfy the
+  12/16 panel gate. Nine anchors lack an eligible challenger and remain candidate-supply cases.
+- **Decision:** forward 96×64 becomes the only qualified discrete query-domain candidate for the
+  next architecture preflight. Do not train it yet. First preregister distance-stratified visual
+  observability/teacher coverage and synchronized end-to-end P50/P95 latency, memory and throughput.
+- **Boundary:** domain containment is necessary but not sufficient for task sufficiency. It does
+  not establish visual information at long range, decoder accuracy, 1m resolution adequacy,
+  decision relevance, driving benefit, safety, final-test/target generalization or novelty.

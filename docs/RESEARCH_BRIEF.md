@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-24 R004H7-BS3R1：`DEVELOPMENT_FULL_DOMAIN_PASS`。** 固定前向96×64、
+> 1m、完整4秒域在24个historically exposed development groups上支持384/384 native与
+> 2206/2206 eligible challengers，0 anchors发生候选域越界；24/24 groups达到至少12/16
+> 有效panel。另9个anchors无eligible challenger，属于供给而非ROI失败。机械审计重放
+> 384 ledgers为0失败，外部reviewer unavailable。该结果只闭合离散空间定义域；视觉
+> 可观测性、预测精度、1m分辨率、真实P50/P95时延、决策相关性、驾驶/安全收益和
+> test/NavDream/target泛化均未成立。下一步仅允许预注册视觉可观测性和时延资格；
+> H7-B2/H7-C与训练继续HOLD。完整记录见`experiments/R004H7/H7BS3_RESULTS.md`。
+
 > **2026-10-24 R004H7-BS2：`PREFIX_UNIVERSAL_SUFFICIENCY_FALSIFIED`。** outcome-blind
 > fit诊断覆盖42 groups、672 anchors、3864 eligible native/challenger pairs：128 pairs、
 > 36/42 groups的2.5秒lattice footprint集合完全相同而4秒集合不同，严格否定prefix
