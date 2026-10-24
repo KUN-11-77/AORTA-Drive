@@ -671,6 +671,14 @@ pins the new complete file hash explicitly while retaining exact predecessor has
 other local and official source. This is a provenance repair, not permission to accept an
 arbitrary source mismatch.
 
+The second legal launch was terminated at the registered 30-minute wall-time cap before
+one sentinel completed. It therefore produced no scientific geometry result: polygon area,
+formal non-inclusion and teacher improvement are all unobserved, not zero. This is a
+computability failure of the current exact-rational per-cell implementation. In accordance
+with the terminal scope, geometry work is now frozen: no finer grid, threshold adjustment,
+candidate reselection, 128-anchor expansion or open-ended certificate refactor is authorized
+in this stage. The visual mechanism decision takes priority.
+
 ## ADR-0054 — Start fit-only visual mechanism validation in parallel with the terminal geometry gate
 
 - **Status:** accepted and registered before R004H5 data execution

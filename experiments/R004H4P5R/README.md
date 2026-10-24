@@ -8,3 +8,9 @@
 
 配置：`configs/experiment/r004h4p5r_oriented_terminal.yaml`。
 
+## 执行裁定（2026-10-24）
+
+第二次合法启动在预注册的 30 分钟 wall-time 上限内没有完成第一个哨兵，因而被外部终止并记为 `STOPPED_RESOURCE_CAP`。没有生成任何完整哨兵记录，也没有可解释的 polygon reference、正式非包含下界或 teacher improvement 结果。该次运行只能证明当前逐单元精确有理实现不满足本资格实验的可计算性要求，不能据此判断连续非包含面积存在或不存在。
+
+按照终止规则，本阶段不继续细化网格、修改候选、调整阈值或开放式重构几何证书，也不启动 128-anchor 扩展。原始停止记录见 `experiments/results/R004H4P5R_RESOURCE_STOP.json`，标准输出仅含 `nohup` 启动行。
+
