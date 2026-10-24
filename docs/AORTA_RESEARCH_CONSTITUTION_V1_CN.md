@@ -111,6 +111,8 @@ L_{i0}=\widehat\Delta_{i0}-r_{i0}
 
 ## 3. 三个条件命题与边界
 
+完整定义、证明、最小反例及“标准理论/项目贡献”边界见 refine-logs/2026-10-25_aorta_post_b3/FORMAL_THEORY_APPENDIX_V1_CN.md。本节只保留项目级摘要。
+
 ### 命题 A：任务关系的外观不变性
 
 若 \(g_a\) 保持潜在任务状态 \((S,h)\)，候选域相同，且 \(F_{\mathrm{full}}\) 只依赖该任务状态，则

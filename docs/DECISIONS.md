@@ -1200,3 +1200,17 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Falsifier:** 普通 matched set scorer 无需 differential query 即达到相同 regret/false-intervention；
   或 query 成本、显存、P95 latency 随候选数增长超过冻结预算。任一成立都要求删除或收缩该设计。
 - **Boundary:** 分层接口是理论—计算合同，不是新颖性或效果证据；B4R1 和网络训练状态不变。
+
+## ADR-0082：标准数学只作为设计约束，理论主张必须附证明、反例与经验前提
+
+- **Decision:** PROVE_CONDITIONAL_CLAIMS__NAME_STANDARD_RESULTS__TEST_EMPIRICAL_PREMISES。
+- **Reason:** quotient/factorization、signed-measure decomposition、三角不等式、regret bound、
+  antisymmetrization 与 split conformal 都有明确数学基础，但其正确性不证明 AORTA 网络有效，也不
+  构成独立新颖性。若不区分定理与经验前提，容易把严谨性误写成创新性。
+- **Consequence:** 正式附录逐条固定对象、假设、证明、最小反例、网络后果与实验 falsifier。主论文
+  可以用这些结果解释“为什么这样设计”，但主贡献资格只来自 B3/BS2/official-target 等任务反例，
+  以及 differential evidence 相对 matched scorer 的不可替代增量和最终行为证据。
+- **Boundary:** conditional theorem pass 不授权 B4R1、训练、NavDream 或安全主张；source group
+  calibration 不外推任意 OOD，真空全拒判必须作为失败模式报告。
+- **Artifact:**
+  refine-logs/2026-10-25_aorta_post_b3/FORMAL_THEORY_APPENDIX_V1_CN.md。
