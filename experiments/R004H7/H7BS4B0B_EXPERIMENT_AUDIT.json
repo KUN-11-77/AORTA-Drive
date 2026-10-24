@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-25",
+  "auditor": "internal-mechanical-replay; external-reviewer-unavailable",
+  "overall_verdict": "pass_with_scope_limit",
+  "mechanical_audit": "pass",
+  "external_scientific_review": "review_unavailable",
+  "checks": {
+    "ground_truth_provenance": {
+      "status": "pass_with_scope",
+      "details": "Exact-token frozen NAVSIM cache geometry teacher, not model output or real-world safety truth."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "No model or driving score and no normalization; outward intervals with ties retained."
+    },
+    "result_existence_and_replay": {
+      "status": "pass",
+      "details": "672 anchor ledgers and summary exact; failure count zero."
+    },
+    "scope_completeness": {
+      "status": "pass",
+      "details": "672 anchors, 4536 candidates, 3864 pairs, 3678 distinct pairs, 8 frozen D0 pairs."
+    },
+    "role_isolation": {
+      "status": "pass",
+      "details": "Train fit geometry/support only; forbidden payload access false."
+    },
+    "statistical_scope": {
+      "status": "warn",
+      "details": "Deterministic fit mechanism observation, not a population-rate guarantee."
+    },
+    "scientific_scope": {
+      "status": "warn",
+      "details": "Teacher-critical projective blindness is not decision harm, safety, OOD, latency, or architecture evidence."
+    }
+  },
+  "claim": {
+    "fit_teacher_critical_projective_incompleteness": "supported",
+    "learned_model_or_decision_benefit": "not_evaluated",
+    "h7bs4a_parent_decision": "unchanged"
+  }
+}

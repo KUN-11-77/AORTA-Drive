@@ -1,0 +1,40 @@
+{
+  "experiment_id": "R004H7BS4B0B-teacher-critical-observability-v1",
+  "status": "supported_on_fit_parent_stop_unchanged",
+  "code_commit": "6567b1a",
+  "scope": {
+    "anchors": 672,
+    "recording_groups": 42,
+    "candidates": 4536,
+    "native_challenger_pairs": 3864,
+    "geometrically_distinct_pairs": 3678
+  },
+  "result": {
+    "candidates_with_unsupported_possible_minimizer": 596,
+    "candidate_fraction": 0.13139329805996472,
+    "groups_with_teacher_critical_blindness": 39,
+    "group_fraction": 0.9285714285714286,
+    "zero_supported_symmetric_difference_pairs": 8,
+    "teacher_critical_zero_supported_symmetric_difference_pairs": 1,
+    "scientific_decision": "TEACHER_CRITICAL_PROJECTIVE_BLINDNESS_PRESENT",
+    "d0_specific_decision": "D0_BLIND_DIFFERENCE_CAN_CONTROL_SET_MIN",
+    "parent_h7bs4a_decision": "STOP_OR_REDESIGN_VISUAL_SUPPORT_INTERFACE_UNCHANGED"
+  },
+  "runtime_seconds": {
+    "primary": 96.65938566601835,
+    "audit_replay": 75.33009780105203
+  },
+  "sha256": {
+    "primary_result": "52b1861fbb3fd39b2a4d549a9d972f181206bfbc377fe930d702eaceaa5a876b",
+    "replay_result": "26ad70e044b62e7898fa7577b0454a8db674d4888d3e3f6ea946f830b2210d54",
+    "audit": "3dce90014c9a48dba5727e9ddaf5c98b13facd991a3239441aab56f32e437afc"
+  },
+  "mechanical_audit": "PASS",
+  "external_scientific_review": "REVIEW_UNAVAILABLE",
+  "next_decision": {
+    "B1_oracle_uncertainty_design": "GO",
+    "H7C_network_training": "HOLD",
+    "development_navdream_test": "HOLD"
+  },
+  "claim_boundary": "Fit teacher-critical projective incompleteness only; no learned-model, OOD, decision, driving, safety, latency, or architecture-optimality claim."
+}

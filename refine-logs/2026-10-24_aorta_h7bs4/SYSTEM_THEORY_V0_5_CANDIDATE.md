@@ -213,19 +213,26 @@ C(F)=\{q\in F:\ell_q\le\min_{p\in F}r_p\}.
 检查D0的8个blind difference regions是否与\(C(F_i)\cup C(F_j)\)相交，并在全部pair报告
 none/partial/full visual support。该实验只回答未观测节点是否可能控制teacher set-min，不训练网络。
 
+**B0冻结结果（2026-10-25）：**672 anchors、4536 candidates和3864 pairs完整机械重放；
+596/4536 candidates、39/42 groups存在未支撑possible minimizer，且D0的8个blind-difference
+pairs中有1个盲差异节点可控制teacher set-min。结论为
+`FIT_TEACHER_CRITICAL_PROJECTIVE_INCOMPLETENESS_SUPPORTED`。它证明missing evidence必须进入
+下一版集合/接口设计，但不选择具体网络，也不证明decision harm、OOD或驾驶收益。
+
 ### Gate B1：oracle uncertainty non-vacuity
 
 使用teacher残差或冻结合成误差构造方向正确的联合集合，比较global、independent-node、graph-
 correlated三种uncertainty在相同coverage下的selective coverage与ranking regret。若graph route
 仍近乎全abstain，停止该主创新，不用增加模块挽救。
 
-只有B0/B1通过，才进入H7C容量匹配网络结构消融与正式时延实验。
+只有B1也通过，才进入H7C容量匹配网络结构消融与正式时延实验。
 
 ## 8. 当前未闭合项
 
-- 96×64 teacher生成器已在164个资格cache上双构建PASS，但672个精确fit-token工件尚待B0A2；
+- 96×64 teacher生成器与672个精确fit-token工件均通过机械资格；
+- fit teacher-critical projective blindness已由B0B支持，但物理visibility与decision harm未闭合；
 - support-conditioned uncertainty的确定性floor尚未定义；
 - graph set在实际误差下是否非平凡未知；
-- 1m差异节点是否是teacher-critical未知；
+- 1/8冻结D0盲差异pair是teacher-critical，但效应仅-0.020322 m且无decision outcome；
 - 时延、NavDream、三planner和clean no-harm均未验证；
 - 外部独立method reviewer不可用，本文不是独立审稿结论。
