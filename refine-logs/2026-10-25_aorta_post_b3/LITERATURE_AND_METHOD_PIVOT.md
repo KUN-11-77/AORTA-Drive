@@ -174,6 +174,29 @@ p=B^\top s+r_{cycle},\qquad B r_{cycle}=0,
 \(r_{cycle}=0\)。这只在标签来自标量 utility、因此真值位于 gradient subspace 时具有合理性；
 Hodge 术语不能被用来掩盖这个可检验前提。
 
+### 3.4 信息论解释的使用边界
+
+令 \(A\) 为外观变量、\(Y\) 为冻结 candidate panel 上的真实偏好、\(R\) 为网络用于仲裁的表示。
+理想目标同时包含两项不同要求：
+
+\[
+I(R;A\mid S,\mathcal T)=0,
+\qquad
+I(Y;X\mid R,\mathcal T)=0.
+\]
+
+第一项是给定物理场景与候选后的 appearance invariance；第二项是表示对目标偏好的统计充分性。
+常数表示可以满足第一项却明显违反第二项，所以“不随天气变化”本身不是鲁棒驾驶证据。
+
+若现有链写成 \(X\to Z_{DINO}\to F_{field}\to M_{readout}\)，数据处理不等式只说明后续表示
+不会凭空增加关于 \(Y\) 的信息；它不保证稳定的 \(Z_{DINO}\) 经 field 和 scalar minimum 后仍保留
+候选偏好。B3 的 exact-zero collisions 是确定性 readout 丢失区分能力的直接反例，但本项目没有
+估计高维 mutual information，因此不得把上述式子包装成已经实证的 MI 定理。
+
+可执行代理仍是：合法 task-difference supervision 排除坍缩，paired appearance intervention 检查
+偏好漂移，mismatch/removed-image 检查视觉必要性，并最终用 ranking regret/behavior outcome 检验
+充分性。信息论在这里解释设计目标，不额外引入 MI estimator 或 information-bottleneck loss。
+
 ## 4. 候选网络与 loss（只作可证伪设计）
 
 ### 4.1 Architecture
