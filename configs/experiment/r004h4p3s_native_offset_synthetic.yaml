@@ -1,0 +1,77 @@
+experiment_id: R004H4P3S-native-offset-synthetic-qualification-v1
+date: 2026-10-24
+scope: deterministic_synthetic_provider_interface_and_counterexamples
+
+predecessor:
+  experiment: R004H4P2R1-comparable-speed-supply-replay-v1
+  implementation_revision: 98ae853c33fc0fe58b4268c70ecdfeaee6d72ddd
+  decision: STOP_CANDIDATE_SUPPLY_COVERAGE
+  raw_result_sha256: b6adac68eeace552ab8076e774d35ba684dab7068377fde250cfc3f964f9d29d
+
+design:
+  type: deterministic_exhaustive_paired_construction_audit
+  independent_statistical_replicates: 0
+  statistical_inference_authorized: false
+  randomization_required: false
+  rationale: analytic cases and algebraic invariants have no stochastic run-order effect
+  analytic_native_cases:
+    - straight_constant_speed
+    - left_constant_curvature
+    - right_constant_curvature
+    - straight_acceleration
+    - straight_deceleration
+    - smooth_s_curve
+  positive_control_amplitudes_m: [-1.5, -1.0, -0.5, 0.5, 1.0, 1.5]
+  negative_controls:
+    excessive_amplitude_m: 20.0
+    insufficient_native_terminal_displacement_m: 0.8
+
+provider:
+  family: native_fixed_normal_c2_bump_v1
+  interval_s: 0.5
+  horizon_s: 4.0
+  bump_end_s: 3.5
+  bump: 64_u3_1minus_u3
+  reference_normal: native_terminal_displacement_normal
+  final_segment: bit_exact_copy_of_native_3.5_to_4.0_seconds
+  heading: perturbed_curve_tangent_before_3.5_seconds
+  map_teacher_image_prediction_use: prohibited
+
+physical_envelope:
+  maximum_speed_mps: 20.0
+  maximum_longitudinal_acceleration_mps2: 3.0
+  maximum_lateral_acceleration_mps2: 4.0
+  maximum_total_acceleration_mps2: 5.0
+  continuous_screen: recursive_Bernstein_bounds_on_each_active_polynomial_segment
+  bernstein_strict_margin: 1.0e-9
+  bernstein_maximum_depth: 24
+
+intent_eligibility:
+  minimum_native_terminal_displacement_m: 2.0
+  progress_ratio: [0.8, 1.2]
+  maximum_terminal_cross_track_m: 3.5
+  maximum_terminal_heading_difference_rad: 0.35
+  maximum_terminal_speed_difference_mps: 4.0
+  speed_quantity: position_derived_final_segment_average_speed_for_both
+
+decision:
+  pass_requires:
+    every_analytic_case_has_both_signed_accepted_candidates: true
+    every_accepted_candidate_is_intent_eligible: true
+    every_accepted_candidate_has_bit_exact_final_segment: true
+    every_accepted_candidate_has_nontrivial_mid_horizon_displacement: true
+    deterministic_replay_is_bit_exact: true
+    excessive_amplitude_is_rejected: true
+    insufficient_displacement_is_rejected: true
+    full_repository_tests_pass: true
+    minimum_repository_test_count: 209
+  pass_authorizes: register_R004H4P3_fit_only_supply_evaluation
+  fit_data_access_during_this_stage: prohibited
+  geometry_teacher_or_prediction_access: prohibited
+  development_access_authorized: false
+  h4_registration_authorized: false
+
+resources:
+  device: cpu
+  maximum_wall_minutes: 5
+  maximum_output_mib: 2

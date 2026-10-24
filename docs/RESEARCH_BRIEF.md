@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：先在合成轨迹上实现并审计 native-conditioned endpoint-invariant provider。候选只在 `0--3.5 s` 施加二阶端点为零的平滑法向扰动，`3.5--4.0 s` 与 native 完全一致；heading 必须来自扰动曲线切向，并显式检查速度、曲率和加速度包络。合成接口通过后才能注册 R004H4P3 fit-only supply run。不得放宽 intent 门、读取 geometry teacher 或 development。
+- 下一阶段：执行已注册的 R004H4P3S。候选只在 `0--3.5 s` 沿 native 终端位移法向施加二阶端点为零的平滑扰动，`3.5--4.0 s` 与 native 完全一致；heading 来自扰动曲线切向，完整多项式段通过递归 Bernstein 速度/加速度包络筛查。六类解析轨迹、六个幅值、过大幅值与低位移反例及至少209项仓库测试全部通过后，才允许注册 R004H4P3 fit-only supply run。不得放宽 intent 门、读取 geometry teacher 或 development。

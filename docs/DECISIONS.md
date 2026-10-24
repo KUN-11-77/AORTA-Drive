@@ -429,3 +429,22 @@
 - **Boundary:** no provider revision is registered yet. The four native trajectories below
   `2 m` remain outside the intent frame; thresholds are not relaxed. Geometry and development
   remain closed.
+
+## ADR-0043 — Qualify a fixed-normal C2 bump before any fit-data provider run
+
+- **Status:** accepted before R004H4P3S
+- **Design:** cross six analytic native families with six signed amplitudes. These are
+  deterministic paired construction cases, not statistical replicates; no randomization,
+  significance or prevalence estimate is applicable. Freeze excessive-amplitude and
+  insufficient-displacement negative controls before execution.
+- **Implementation contract:** reconstruct a C2 piecewise-quintic native position curve;
+  perturb it along the normal to native terminal displacement using
+  `64 u^3(1-u)^3` until `3.5 s`; derive active-horizon heading from the perturbed tangent;
+  copy `[3.5,4.0] s` native samples bit-for-bit. Screen complete active polynomial segments
+  with recursive Bernstein bounds for speed and acceleration envelopes.
+- **Decision:** PASS requires both amplitude signs in every analytic case, exact endpoint
+  intent invariants for every accepted candidate, nontrivial middle displacement, bit-exact
+  deterministic replay, both negative controls, and at least 209 repository tests passing.
+- **Boundary:** the Bernstein implementation is a conservative floating arithmetic screen,
+  not a formal real-arithmetic proof. This stage reads no fit data, geometry, teacher,
+  prediction or development. PASS can authorize only R004H4P3 registration.

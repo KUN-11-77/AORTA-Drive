@@ -14,11 +14,17 @@ lateral/heading half of this gap.
 
 ## Proposed family
 
-Let the frozen planner's native rear-axle curve be (r_N(t)), with unit tangent (T_N(t))
-and normal (N_N(t)). A native-conditioned challenger has
+Let the frozen planner's native terminal displacement be \(q_N=r_N(T)-r_N(0)\), and define
+one route-conditioned but time-independent normal
 
 \[
-r_\delta(t)=r_N(t)+\delta b(t)N_N(t),
+N_*=\frac{(-q_{N,y},q_{N,x})}{\|q_N\|_2}.
+\]
+
+A native-conditioned challenger has
+
+\[
+r_\delta(t)=r_N(t)+\delta b(t)N_*,
 \]
 
 where the bump is supported strictly before the final comparison interval:
@@ -27,13 +33,18 @@ where the bump is supported strictly before the final comparison interval:
 b(t)=64u^3(1-u)^3,\quad u=t/T_b,\quad T_b=3.5\text{ s},
 \]
 
-for (0\le t\le T_b), and (b(t)=0) for (t\ge T_b). Thus
+for \(0\le t\le T_b\), and \(b(t)=0\) for \(t\ge T_b\). Thus
 
 \[
 b(0)=b'(0)=b''(0)=b(T_b)=b'(T_b)=b''(T_b)=0.
 \]
 
-For a differentiable native curve, these equalities imply that challenger and native share
+The fixed normal is deliberate: after piecewise-quintic reconstruction, both challenger
+coordinates remain piecewise polynomials of degree at most six. This makes the continuous
+dynamic screen auditable through Bernstein bounds and avoids hiding a normalization or
+time-varying-frame approximation inside the provider.
+
+For a differentiable native curve, the bump equalities imply that challenger and native share
 the initial state, the entire final `[3.5,4.0] s` positional segment, terminal position,
 terminal tangent and the registered final-segment average-speed observable. Hence their
 endpoint intent metrics are progress ratio 1, cross-track 0, heading difference 0 and speed
@@ -58,6 +69,24 @@ real-data supply run it must pass all of the following on synthetic and fit-only
 7. prove with analytic and adversarial unit cases that no endpoint guarantee depends on
    floating-point equality alone;
 8. report candidate supply separately from continuous non-inclusion and teacher opportunity.
+
+For each active polynomial segment, the implementation rewrites the dynamic limits as
+scalar polynomial inequalities in local time:
+
+\[
+\|v\|^2\le v_{\max}^2,\qquad
+(v^\top a)^2\le a_{\parallel,\max}^2\|v\|^2,
+\]
+
+\[
+(v_xa_y-v_ya_x)^2\le a_{\perp,\max}^2\|v\|^2,
+\qquad \|a\|^2\le a_{\max}^2.
+\]
+
+Recursive Bernstein convex-hull bounds must place every constraint below a strict negative
+margin over the complete segment; unresolved intervals are rejected. This is a conservative
+floating-point arithmetic screen, not a formal real-arithmetic proof, and the claim ledger
+must preserve that distinction.
 
 ## Non-claims
 
