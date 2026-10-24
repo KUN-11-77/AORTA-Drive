@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：设计但暂不注册 R004H4P5R。新证书以逐段中点方向矩形加平移、旋转和 pose-error 膨胀作为连续外覆盖，以完整网格 cell 的区间变换作为内区证据，并用保守距离下界证明 cell 与所有对侧段不相交。注册前必须补齐 Taylor 三角区间、向外/向内舍入、末端段、yaw unwrap、ROI fail-closed 和“1.5米平移可检出/相同轨迹为零”等反例测试；provider、intent 阈值、grid 和数据角色保持不变。
+- 下一阶段：R004H4P5R 仍未注册读取数据，但方向感知理论原语和首轮合成反例已经实现。新证书以逐段中点方向矩形加平移、旋转和 pose-error 膨胀作为连续外覆盖，以完整 cell 的区间变换作为内区证据，并用保守距离下界证明 cell 与所有对侧段不相交。合成测试进一步证明1米 cell 在1.5米侧移下仍可因网格相位失效，因此 teacher 的冻结1米节点图与 non-inclusion 的拟议0.25米几何网格必须分离；这不是更改 teacher 或 meaningful area 阈值。下一步先审计该分离的数学/数值合同和计算成本，再决定是否注册相同8个 fit sentinels。provider、intent 阈值、teacher grid、ROI 和数据角色保持不变。

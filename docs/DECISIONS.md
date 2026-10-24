@@ -631,18 +631,25 @@ This does not assert that a tighter certificate will find a positive opportunity
 
 - **Status:** proposed after R004H4P5D; not yet registered for data execution
 - **Outer set:** for each adjacent realized pose pair, cover the continuous body sweep by
-  the body rectangle at the midpoint pose dilated by half endpoint translation, the chord
-  bound `2 R sin(|Delta yaw|/4)`, and certified pose error. Linear unwrapped yaw is part of
-  this interpolation contract; it is not described as arbitrary yaw.
+  the body rectangle at the midpoint pose dilated by half endpoint translation, certified
+  pose error and the rational upper bound `R |Delta yaw| / 2` on the exact chord term
+  `2 R sin(|Delta yaw|/4)`. Stored-midpoint translation/yaw rounding is also added. Linear
+  unwrapped yaw is part of this interpolation contract; it is not described as arbitrary yaw.
 - **Inner set:** accept a grid cell only when interval-certified transforms of all four cell
   corners lie inside a pose-local body rectangle shrunk by pose error. Convexity then places
   the whole cell inside the physical footprint.
 - **Disjointness:** accept a witness only when an outward-safe lower bound on distance from
   the complete cell to every opposite segment cover is positive. Libm-only trigonometry or
   nearest-rounded threshold comparisons cannot carry the proof claim.
+- **Resolution separation:** the frozen 1 m teacher graph and continuous-area witness grid
+  are distinct mathematical objects. Synthetic qualification showed that 1 m cells can be
+  vacuous for a 1.5 m lateral shift purely from grid phase, while a separately frozen
+  0.25 m geometry grid certifies both directions at the unchanged `1.0 m^2` area threshold.
+  The finer grid reads no labels and must be fixed before any sentinel execution.
 - **Registration gate:** adversarial synthetic tests must include identical sweeps, lateral
   shifts around the resolvable boundary, high yaw change, last-sample witnesses, ROI exits,
   non-finite inputs and monotonic loss of witnesses as pose error grows. Only after these
   pass may the same eight fit sentinels be read.
-- **Boundary:** no provider, intent threshold, grid, ROI or data-role change is authorized;
-  development remains sealed.
+- **Boundary:** no provider, intent threshold, teacher grid, area threshold, ROI or data-role
+  change is authorized. The independent geometry resolution remains a proposed interface
+  choice until its numerical and resource audits pass; development remains sealed.

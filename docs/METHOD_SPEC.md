@@ -277,11 +277,21 @@ R_K-r_{in}+2h+2\varepsilon_{pose},
 +\varepsilon_{pose}.
 \]
 
+当前 proof primitive 不直接计算该正弦项，而使用
+\(2R_K\sin(|\Delta\theta|/4)\le R_K|\Delta\theta|/2\)；右侧以精确
+binary64 有理数乘法向外舍入。stored midpoint 相对精确有理中点的平移误差与 yaw
+误差也分别以 Euclidean radius 与 \(R_K|\varepsilon_\theta|\) 加入 inflation。
+
 边长为 \(r\) 的固定方格以 \(h_j=r/\sqrt2\) 覆盖外包络。inner cells 必须通过四角点
 区间变换证明完整落在某个 pose-error-shrunk oriented rectangle 内；non-inclusion witness
 必须通过对所有对侧 segment covers 的保守距离下界。任何 ROI clipping、未展开 yaw、
 空 challenger/native set 或协议不匹配均返回 reject。R004H4P5R 完成 exact-rational
 Taylor 三角区间、directed rounding 与合成反例资格前，该矩形路径不是正式生产证书。
+teacher outer-cover nodes 保持冻结1米图；meaningful non-inclusion 的 cell-union 面积证据
+可以使用独立、预注册的更细 geometry grid，因为它不读取 teacher labels。首轮合成反例
+显示1米 cell 在1.5米平移下仍可能因 grid phase 双向全零，而0.25米 geometry cells 在
+相同物理构型和同一 `1.0 m^2` 面积门槛下可检出。该分离必须先做计算成本与数值审计，
+不能从真实结果自适应选择 resolution。
 
 令 \(\varepsilon_{map,j}=\max_{q\in A_j}\varepsilon_{map}(q)\)，native 同理。若 computed lower bound 可能乐观至多 \(\varepsilon_{num}\)，则
 

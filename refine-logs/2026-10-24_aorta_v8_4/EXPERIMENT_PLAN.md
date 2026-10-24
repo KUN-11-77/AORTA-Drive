@@ -241,14 +241,18 @@ a provider change.
 ### H4P5R — orientation-aware rectangle certificate qualification
 
 - **Status:** design only; not registered for data execution.
-- **Outer theorem:** midpoint oriented rectangle plus certified translation, yaw-chord and
-  pose-error dilation covers the piecewise-linear-translation, linear-unwrapped-yaw sweep.
+- **Outer theorem:** midpoint oriented rectangle plus certified translation, the rational
+  upper bound `R |Delta yaw| / 2`, midpoint-storage error and pose-error dilation covers the
+  piecewise-linear-translation, linear-unwrapped-yaw sweep.
 - **Inner theorem:** interval-transform all four grid-cell corners into a frozen pose and
   require containment in a pose-error-shrunk rectangle; convexity certifies the full cell.
 - **Non-inclusion:** a cell contributes area only if a conservative distance lower bound
   proves it disjoint from every segment outer cover of the opposite trajectory.
 - **Numerical contract:** use exact-rational/Taylor trigonometric intervals and directed
   rounding. Nearest-rounded libm distances may be diagnostics but never proof gates.
+- **Two grids:** keep the teacher graph at frozen 1 m resolution. Pre-register a separate
+  0.25 m geometry grid for continuous-area cells after synthetic and runtime qualification;
+  retain the same ROI and `1.0 m^2` bidirectional meaningful threshold.
 - **Qualification:** synthetic positive/negative/adversarial tests first, then the same
   eight fit sentinels. A positive result only permits a separately registered 128-anchor
   fit-only preflight.

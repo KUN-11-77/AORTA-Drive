@@ -18,7 +18,7 @@
 | R004H4P4E | official execution-operator interface audit | DONE — PASS / PROVISIONAL INTEGRITY | 128/128 interface gates; realized supply diagnostic 122/128, minimum group 0.875; desired endpoint identity survives 0/128; mechanical PASS, external review unavailable |
 | R004H4P5I | eight-block realized-geometry interface sentinel | DONE — PASS / PROVISIONAL INTEGRITY | 8/8 interface and realized supply; geometry+teacher 6/8; ROI reject 2/8; meaningful non-inclusion 0/8; mechanical PASS, external review unavailable; permits only a registered fit-only preflight or resolution diagnosis |
 | R004H4P5D | post-result disk-certificate resolution diagnosis | DONE — RETIRE DISK / PROVISIONAL INTEGRITY | 36/36 predecessor zero ledgers explained; max paired separation 1.447620 m vs min barrier 4.495949 m; mechanical PASS, external review unavailable |
-| R004H4P5R | orientation-aware rectangle certificate qualification | NOT REGISTERED | first prove interval-safe inner cells, continuous oriented outer cover, disjointness and ROI semantics; then use the same fit sentinels only |
+| R004H4P5R | orientation-aware rectangle certificate qualification | THEORY PRIMITIVES — NOT DATA-REGISTERED | interval-safe outer/inner/disjointness implemented; synthetic tests expose 1 m phase failure and support separate 0.25 m geometry grid; full numerical/runtime qualification still required before same fit sentinels |
 | R004H4 | one-read development mechanism qualification | NOT REGISTERED | common opportunity denominator must decide whether localized learned budgets retain utility |
 
 Official calibration, test and target-domain data remain sealed.
