@@ -1,0 +1,47 @@
+experiment_id: R004H4P2S-native-speed-semantics-audit-v1
+date: 2026-10-24
+scope: fit_only_cached_native_speed_semantics
+
+predecessor:
+  experiment: R004H4P2-fit-candidate-supply-diagnosis-v1
+  implementation_revision: 62265a6eaf64300669593a94dcc5031f65e40283
+  decision: STOP_CANDIDATE_SUPPLY_COVERAGE
+  raw_result_sha256: 8e153052a0dac7148256e7a35cceec9d013018e5f1eb1ee7d85451ba66c5904b
+
+inputs:
+  time_set_sha256: 33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  metric_manifest_sha256: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+  allowed_role: fit
+  selected_group_rule: first_eight_fit_rows_in_frozen_role_manifest
+  selected_anchor_rule: all_16_anchors_per_selected_group
+  recording_groups: 8
+  anchors_per_group: 16
+  anchor_count: 128
+  prohibited_roles: [selection, proxy_cal, development, calibration, test, target_domain]
+
+quantities:
+  suspect: norm_of_cached_terminal_dynamic_state_rear_axle_velocity_2d
+  reference: final_segment_rear_axle_displacement_divided_by_interval
+  reference_interval_s: 0.5
+  reference_semantics: average_speed_over_3.5_to_4.0_seconds
+  instantaneous_speed_claim: prohibited
+
+source_files:
+  - navsim/planning/simulation/planner/pdm_planner/proposal/pdm_generator.py
+  - navsim/planning/simulation/planner/pdm_planner/utils/pdm_array_representation.py
+
+decision:
+  moving_reference_minimum_mps: 0.5
+  material_disagreement_mps: 1.0
+  reject_suspect_if_any_material_moving_disagreement: true
+  rejection_authorizes: register_same_scope_supply_replay_using_position_derived_final_segment_average_speed_for_both_native_and_challenger
+  threshold_relaxation_authorized: false
+  candidate_provider_change_authorized: false
+  development_access_authorized: false
+  h4_registration_authorized: false
+
+resources:
+  device: cpu
+  maximum_wall_minutes: 5
+  maximum_output_mib: 2

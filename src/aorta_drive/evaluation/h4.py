@@ -66,6 +66,27 @@ def _wrap_angle(angle: float) -> float:
     return math.atan2(math.sin(angle), math.cos(angle))
 
 
+def terminal_segment_average_speed(
+    poses: npt.ArrayLike, *, interval_s: float
+) -> float:
+    """Return a representation-neutral speed over the final sampled interval.
+
+    The quantity is derived only from consecutive rear-axle positions, so it is
+    comparable even when a trajectory container does not populate dynamic-state
+    velocity fields.  It is an interval average, not an instantaneous speed.
+    """
+
+    array = np.asarray(poses, dtype=np.float64)
+    if array.ndim != 2 or array.shape[0] < 2 or array.shape[1] < 2:
+        raise ValueError("poses must have shape [time>=2, dimensions>=2]")
+    if not np.all(np.isfinite(array[:, :2])):
+        raise ValueError("pose positions must be finite")
+    if not math.isfinite(interval_s) or interval_s <= 0.0:
+        raise ValueError("interval_s must be finite and positive")
+    displacement = float(np.linalg.norm(array[-1, :2] - array[-2, :2]))
+    return displacement / interval_s
+
+
 def sample_cached_native_trajectory(cache: Any) -> CachedNativeTrajectory:
     """Sample a NAVSIM metric-cache native at the frozen 0:0.5:4.0 s times."""
 

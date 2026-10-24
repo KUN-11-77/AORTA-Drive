@@ -380,3 +380,21 @@
   128 fit anchors.
 - **Boundary:** this repair cannot change provider controls, thresholds, selected anchors or
   scientific decision; it only makes the diagnostic evidence exhaustive.
+
+## ADR-0040 — Audit terminal-speed semantics before revising candidate supply
+
+- **Status:** accepted before R004H4P2S
+- **Evidence:** all 128 H4P2 cached PDM-native terminal dynamic-state speeds were reported as
+  zero despite nonzero trajectory displacement; one inspected native travels `54.188953 m`
+  over four seconds and `5.970444 m` in its final half-second while its exported dynamic
+  velocity remains exactly zero. NAVSIM's PDM generator initializes the exported state array
+  to zero and writes its SE2 fields, while the longitudinal speed is held separately in the
+  IDM state array.
+- **Decision:** do not interpret H4P2's speed gate as a valid physical comparison yet. Audit
+  the same 128 fit anchors by comparing the cached terminal dynamic field with rear-axle
+  displacement over `[3.5,4.0] s`. Reject the cached field if any moving anchor has more than
+  `1.0 m/s` disagreement. Hash the two NAVSIM source files that define this conversion.
+- **Boundary:** the audit reads no labels, images, predictions, geometry, development,
+  calibration, test or target data. Rejection permits only a same-scope replay where both
+  native and challenger use the same position-derived final-segment average-speed quantity;
+  it does not permit a threshold or provider change.

@@ -2,10 +2,16 @@
 
 from __future__ import annotations
 
+import math
+
 import numpy as np
 import pytest
 
-from aorta_drive.evaluation.h4 import IntentEligibilityLimits, qualify_intent_match
+from aorta_drive.evaluation.h4 import (
+    IntentEligibilityLimits,
+    qualify_intent_match,
+    terminal_segment_average_speed,
+)
 
 
 LIMITS = IntentEligibilityLimits(
@@ -69,6 +75,17 @@ def test_low_progress_native_has_no_well_defined_intent_frame() -> None:
     )
     assert not result.eligible
     assert result.reason == "native_progress_too_small"
+
+
+def test_terminal_segment_average_speed_uses_only_final_position_interval() -> None:
+    poses = np.array([[0.0, 0.0, 7.0], [3.0, 4.0, -2.0], [3.0, 8.0, 1.0]])
+    assert terminal_segment_average_speed(poses, interval_s=0.5) == 8.0
+
+
+@pytest.mark.parametrize("interval", [0.0, -0.5, math.inf, math.nan])
+def test_terminal_segment_average_speed_rejects_invalid_interval(interval: float) -> None:
+    with pytest.raises(ValueError):
+        terminal_segment_average_speed(np.zeros((2, 3)), interval_s=interval)
 
 
 def test_origin_and_time_contracts_are_exact() -> None:

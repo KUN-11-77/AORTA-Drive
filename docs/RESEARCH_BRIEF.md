@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H2D 定位 activation gauge，R004H2R1 通过 proper-loss/cap gates。R004H3 完成 16-group proxy rehearsal。R004H4P 的 native 变换接口通过，但单个 fit anchor 上 35/35 challengers 均在 progress gate 失败，geometry 未被执行；初始 false PASS 已由机械审计否定并修复。当前注册 R004H4P2，在八个完整 fit groups 上判断供给缺口是否系统存在。正式 coverage、Gate B、OOD 与创新性仍未成立，development 与官方 calibration 未读取。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004E-D/E/F 将失败收敛为稀疏 tail 与统一全图极值接口失配，R004E-G/H0 已关闭异质 envelope 的数学与结构接口。R004H2D 定位 activation gauge，R004H2R1 通过 proper-loss/cap gates。R004H3 完成 16-group proxy rehearsal。R004H4P 未执行 geometry；R004H4P2 在 128 个 fit anchors 上仅有 26 个具备合格候选，但其 speed gate 使用了缓存 PDM 轨迹中恒为零的动态字段，因而该结果尚不能驱动 provider 或理论修正。当前注册 R004H4P2S，先核验该字段与位置导出的末段平均速度是否语义一致。正式 coverage、Gate B、OOD 与创新性仍未成立，development 与官方 calibration 未读取。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,4 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：运行 R004H4P2，保持原 35-control provider 与全部 intent thresholds 不变，在 role manifest 前八个 fit groups 的 128 anchors 上报告至少一个合格候选的 anchor/group 覆盖率、独立 gate 通过率与最近 progress gap。只有供给达到预注册的 `>=0.90` anchor 且每组 `>=0.75`，才进入 fit-only 连续几何预检；失败只允许注册一个有物理依据的 provider revision，不得直接放宽资格门或读取 development。
+- 下一阶段：运行 R004H4P2S，对与 R004H4P2 完全相同的 128 个 fit anchors 核验缓存 terminal dynamic velocity 与 `[3.5,4.0] s` 位移导出的平均速度。若语义审计拒绝缓存字段，只允许注册一次同范围重放，并让 native/challenger 都使用同一定义的末段位置平均速度；在该重放完成前，不得归因于 candidate provider、放宽 intent 门、执行 geometry 或读取 development。
