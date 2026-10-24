@@ -367,3 +367,16 @@
 - **Boundary:** PASS permits fit-only geometry preflight; failure permits registration of
   one physically structured provider revision. Neither outcome opens development or
   authorizes post-hoc threshold relaxation.
+
+## ADR-0039 — Require candidate-level diagnosis totals to close exactly
+
+- **Status:** accepted after the first R004H4P2 accounting audit
+- **Evidence:** the anchor-level supply result was internally consistent, but the
+  first-failure histogram added zero for eligible candidates and therefore summed to 4157
+  instead of all 4256 candidate evaluations.
+- **Decision:** invalidate that accounting artifact, change the increment to count every
+  candidate's terminal category exactly once, add a payload-free audit requiring histogram
+  sum = raw evaluations and eligible category = ledger eligible count, then replay the same
+  128 fit anchors.
+- **Boundary:** this repair cannot change provider controls, thresholds, selected anchors or
+  scientific decision; it only makes the diagnostic evidence exhaustive.

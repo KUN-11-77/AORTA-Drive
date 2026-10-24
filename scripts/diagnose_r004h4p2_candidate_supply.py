@@ -194,7 +194,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 ("speed", speed_pass),
             ):
                 independent_passes[gate] += int(passed)
-            first_failures[outcome.reason] += int(not outcome.eligible)
+            first_failures[outcome.reason] += 1
             eligible += int(outcome.eligible)
             progress_gap = (
                 _interval_gap(

@@ -9,3 +9,8 @@ candidate. The run reads cached PDM-Closed trajectories and current raw ego velo
 it does not read visual features, teacher labels, map fields, predictions, development,
 calibration, test, or target data. PASS can authorize only a separate fit-only geometry
 preflight.
+
+The first execution at revision `670b8c2` correctly computed anchor supply but omitted
+eligible candidates from the candidate-level first-failure histogram. Its raw output is
+retained as an invalid accounting artifact. The repair changes only that counter and adds a
+payload-free mechanical audit; data, provider, thresholds and decisions remain fixed.
