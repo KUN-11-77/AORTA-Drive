@@ -371,16 +371,20 @@ def _cells_disjoint_from_oriented_cover(
     grid: RectangularGrid,
 ) -> tuple[int, ...]:
     centers = grid.centers()
+    bounded_covers = tuple(
+        (
+            segment,
+            _cover_global_bounds(body, segment, extra_radius=grid.cell_radius),
+        )
+        for segment in covers
+    )
     witnesses: list[int] = []
     for index in cells:
         center = (float(centers[index, 0]), float(centers[index, 1]))
         cell_x = _fraction(center[0])
         cell_y = _fraction(center[1])
         disjoint = True
-        for segment in covers:
-            x_min, x_max, y_min, y_max = _cover_global_bounds(
-                body, segment, extra_radius=grid.cell_radius
-            )
+        for segment, (x_min, x_max, y_min, y_max) in bounded_covers:
             if not (x_min <= cell_x <= x_max and y_min <= cell_y <= y_max):
                 continue
             threshold_squared = (
