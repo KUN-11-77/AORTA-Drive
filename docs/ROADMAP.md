@@ -30,7 +30,9 @@
 - [x] R004E-G：冻结并通过 observation-conditioned heterogeneous edge envelope 的四项残差、outward arithmetic、proxy 角色与 synthetic falsification gates
 - [x] R004H0：候选无关尺度接口、旧势场精确回放、角色 ledger 与 scale-only 梯度结构审计通过
 - [x] R004H1：fresh fit-only potential 完成；selection macro edge-MAE 严格优于 zero field，授权 H2 注册
-- [ ] R004H2–H4：依次冻结并执行 scale-only head、proxy rehearsal 与 one-read development；不得跨门并跑
+- [x] R004H2：首个 scale-only proper-loss 配置完成并 STOP；learned loss 显著差于 uniform，H3 未授权
+- [ ] R004H2D：冻结并执行 read-only conditioning 诊断；在因果归因前不得重跑 H2
+- [ ] R004H3–H4：仅在修订 H2 通过后执行 proxy rehearsal 与 one-read development
 - [ ] 固定具体 CDF/joint-field 最近邻
 - [x] 核验 calibration sessions 与 train/development/test 互斥且满足 \(n\ge\lceil1/\alpha\rceil-1\)（主 \(\alpha=0.10\)，次 \(\alpha=0.05\)）
 

@@ -417,5 +417,8 @@ oracle、scale gauge 与 heterogeneous graph readout。R004H0 随后通过旧势
 194 参数 right/down scale head、bounded initialization、candidate-free signature 与
 scale-only gradient isolation。R004H1 再用 fresh initialization、42 fit/8 selection roles
 完成 20 epochs，并在冻结 primary 上严格优于 zero field；但其 exact group maximum 仍大，
-因此只授权注册 Stage S。proxy-cal、development one-read 和 official calibration 仍由后续
-独立门禁控制。
+因此只授权注册 Stage S。首个 R004H2 Stage S 配置虽保持 Stage P 零更新并通过硬 cap 门，
+但 learned proper loss 为 uniform 的 `6.76×`，正式 STOP。该负结果否定当前 raw-trunk
+1x1-head + `3e-4` AdamW 实例，不否定 heterogeneous-envelope 定理；下一步必须先区分
+activation scale、parameterization 与 optimizer conditioning。proxy-cal、development one-read
+和 official calibration 仍由后续独立门禁控制。

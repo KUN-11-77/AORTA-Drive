@@ -224,3 +224,23 @@
   This supports a narrow mechanism-formation claim, not confirmation, tail control,
   uncertainty calibration, task utility, Gate B, OOD robustness or novelty. External
   cross-model integrity review was unavailable; the mechanical audit is not a substitute.
+
+## ADR-0030 — Stop the first scale fit and diagnose conditioning before redesign
+
+- **Status:** accepted after R004H2 STOP
+- **Evidence:** the legal 10-epoch run updated only 194 scale parameters and selected epoch
+  9, but its selection proper loss was `2.5669707581` versus uniform 1 m
+  `0.3800000343`. The selected geometric-mean scale was `10.4165 m`; 44.1% of scales were
+  within the registered upper-cap neighborhood. Pre-clip gradient norms reached
+  `714,505.625` and stayed at `10^5` scale despite unit clipping.
+- **Decision:** H3 proxy rehearsal is prohibited. Do not reinterpret cap-gate PASS as model
+  success and do not tune learning rate post hoc. First register a read-only diagnostic that
+  measures frozen trunk activation scale and compares bias-only, raw full-head and
+  normalization-only initial gradients on fixed fit/selection anchors.
+- **Rival explanations:** (A) the unnormalized Stage-P spatial representation makes the
+  1x1 weight Jacobian ill-conditioned; (B) the linear bounded-sigmoid scale map is itself
+  ill-conditioned; (C) the registered optimizer step is too large despite gradient clipping.
+  A revision must target the supported explanation rather than add arbitrary complexity.
+- **Boundary:** this falsifies the first architecture/optimization instance, not the
+  heterogeneous-envelope theorem. No proxy-cal, development or official calibration data
+  were opened.

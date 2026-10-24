@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-24",
+  "auditor": "external-reviewer-unavailable",
+  "overall_verdict": "REVIEW_UNAVAILABLE",
+  "integrity_status": "unavailable",
+  "mechanical_audit_status": "PASS",
+  "claims": [
+    {
+      "id": "H2-scale-fit",
+      "impact": "falsified_by_registered_gate"
+    },
+    {
+      "id": "coverage-utility-novelty",
+      "impact": "unsupported"
+    }
+  ]
+}

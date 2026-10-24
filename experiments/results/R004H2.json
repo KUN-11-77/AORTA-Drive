@@ -1,0 +1,49 @@
+{
+  "experiment_id": "R004H2-scale-only-proper-fit-v1",
+  "status": "COMPLETED",
+  "decision": "STOP",
+  "training_revision": "aa404cece22f564d0956fad4954cf475e3a93b95",
+  "audit_revision": "7f9cad21295ea967d84dee922f329572c0a686fc",
+  "config_sha256": "88075650edce0dda48a815e3ae9916257106f47c1d97a24a93cc96867324377e",
+  "script_sha256": "4141bb4e6306ffa7e79c1b270199d70b0e565ebdf90118aae15ebad5aad73221",
+  "raw_result_sha256": "6141aa0f754caeb819850a39c2734952da55000713ed44125a8a84bbacabb92a",
+  "mechanical_audit_sha256": "7438873f477539a35c5f9ed6e5930bf08f282048df80f0795b547e193622b45f",
+  "evidence_manifest_sha256": "ae863315682742b8199f7d4103d4b54e40845750c0b37094068f456ba73e113e",
+  "stage_p_checkpoint_sha256": "8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b",
+  "execution": {
+    "fit_groups": 42,
+    "selection_groups": 8,
+    "completed_epochs": 10,
+    "optimizer_updates": 6720,
+    "scale_head_trainable_parameters": 194,
+    "potential_parameter_updates": 0,
+    "prohibited_payload_accessed": false
+  },
+  "selection": {
+    "selected_epoch": 9,
+    "selected_primary": 2.566970758140087,
+    "uniform_primary": 0.38000003434717655,
+    "learned_over_uniform": 6.755185595048776,
+    "proper_loss_improvement_gate_passed": false,
+    "geometric_mean_scale_m": 10.416507386299898,
+    "lower_cap_fraction": 0.0002044193328373016,
+    "upper_cap_fraction": 0.44071742466517855,
+    "scale_cap_gate_passed": true
+  },
+  "resources": {
+    "peak_cuda_bytes": 1534212096,
+    "elapsed_seconds": 532.3312473170226,
+    "output_bytes": 28092
+  },
+  "integrity": {
+    "mechanical_audit": "PASS",
+    "external_cross_model_review": "REVIEW_UNAVAILABLE"
+  },
+  "claims": {
+    "scale_fit_qualified": false,
+    "r004h3_registration_authorized": false,
+    "coverage_established": false,
+    "gate_b_passed": false,
+    "official_calibration_access_authorized": false
+  }
+}

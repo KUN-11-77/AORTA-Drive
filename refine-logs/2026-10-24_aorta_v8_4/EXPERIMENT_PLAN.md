@@ -2,11 +2,12 @@
 
 ## Current gate position
 
-R004E-G and R004H0 passed. R004H1 then completed and passed its selection-side zero-field
-central-signal gate. The next executable block is R004H2, but **no scale optimization is
-authorized until its exact proper-loss configuration, selected H1 checkpoint, cap-collapse
-rule, controls and compute budget are committed and pinned**. Proxy-cal, development,
-official calibration, test and target remain sealed.
+R004E-G/H0 passed, and R004H1 passed its selection-side zero-field central-signal gate.
+The first registered R004H2 completed with `STOP`: learned proper loss was `2.566971`
+versus uniform `0.380000`. The next executable block is a read-only H2D conditioning
+diagnostic; **no H2 retry, proxy-cal or development read is authorized until competing
+failure explanations are discriminated and a new revision is separately frozen**.
+Official calibration, test and target remain sealed.
 
 ## Claim map
 

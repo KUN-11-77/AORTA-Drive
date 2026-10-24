@@ -17,5 +17,4 @@
   proxy/development/calibration/test/target payloads, search and metric early stopping.
 - **Interpretation:** PASS only authorizes H3 proxy-cal workflow rehearsal. It does not
   establish calibration, coverage, task utility, Gate B or novelty.
-- **Status:** REGISTERED at implementation revision
-  `aa404cece22f564d0956fad4954cf475e3a93b95`; not yet executed.
+- **Status:** STOP — proper-loss fit gate failed. See `experiments/results/R004H2.md`.
