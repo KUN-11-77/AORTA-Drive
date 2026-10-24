@@ -70,6 +70,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     root_keys = (
         "experiment_id",
         "label_estimand",
+        "progress_mode",
         "zero_eligible_anchor_policy",
         "full_official_pdms_claimed",
         "development_calibration_test_navdream_target_accessed",
@@ -77,7 +78,23 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         "claim_boundary",
     )
     root_exact = all(primary[key] == replay[key] for key in root_keys)
-    passed = ledgers_exact and primary_summary_exact and replay_summary_exact and root_exact
+    estimand_exact = bool(
+        primary["label_estimand"] == stage["estimand"]["result_label"]
+        and replay["label_estimand"] == stage["estimand"]["result_label"]
+    )
+    progress_mode_exact = bool(
+        primary["progress_mode"] == stage["one_frame_scorer"]["required_progress_mode"]
+        and replay["progress_mode"]
+        == stage["one_frame_scorer"]["required_progress_mode"]
+    )
+    passed = (
+        ledgers_exact
+        and primary_summary_exact
+        and replay_summary_exact
+        and root_exact
+        and estimand_exact
+        and progress_mode_exact
+    )
     result = {
         "experiment_id": config["experiment_id"],
         "primary_result_sha256": sha256_file(args.primary_result),
@@ -86,6 +103,8 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         "primary_summary_recomputed_exact": primary_summary_exact,
         "replay_summary_recomputed_exact": replay_summary_exact,
         "root_contract_exact": root_exact,
+        "label_estimand_exact": estimand_exact,
+        "progress_mode_exact": progress_mode_exact,
         "failure_count": sum(
             not value
             for value in (
@@ -93,6 +112,8 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 primary_summary_exact,
                 replay_summary_exact,
                 root_exact,
+                estimand_exact,
+                progress_mode_exact,
             )
         ),
         "mechanical_audit": "PASS" if passed else "FAIL",

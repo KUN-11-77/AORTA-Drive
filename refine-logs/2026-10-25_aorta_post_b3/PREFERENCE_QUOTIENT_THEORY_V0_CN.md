@@ -1,12 +1,65 @@
-# AORTA 候选偏好商空间理论 v0
+# AORTA 外观—决策商关系理论 v1
 
-状态：`FORMAL_CANDIDATE_THEORY__B4_INVALID__B4R1_PREREGISTERED_NOT_RUN`
+状态：`RELATION_FIRST_FORMAL_CANDIDATE__B4_INVALID__B4R1_PREREGISTERED_NOT_RUN`
 
 本文只建立可核查的数学地基，并说明它如何约束网络与 loss。它不证明跨外观泛化、OOD coverage、
 真实驾驶安全或相对已有工作的原创性。B4 未通过时，不授权基于本文训练网络。
 
 查新边界见 `references/2026-10-25_preference_quotient_novelty_boundary.md`：Hodge decomposition、
 graph least squares 与谱隙依赖均有成熟先例，不能单独作为 AORTA 的原创性来源。
+
+## 0. 因果与信息论锚点
+
+令 \(S\) 为物理场景，\(A\) 为天气/光照等外观因素，\(X=g(S,A,\xi)\) 为视觉观测，
+\(C=(\pi,\tau_0,\mathcal T,V_{S,\pi})\) 为冻结 planner 决策上下文，\(Y\) 为该上下文中的真实
+native-relative task relation。合法外观干预只改变 \(A\)，保持 \((S,C,Y)\) 不变。
+
+理想表示 \(R(X,C)\) 同时满足：
+
+1. **外观商不变性：**同一 \((S,C)\) 的合法外观轨道上 \(R(T_aX,C)=R(X,C)\)；
+2. **决策充分性：**\(Y\perp X\mid R,C\)，即给定 \(R,C\) 后，原图像不再提供额外 task-relation
+   信息；
+3. **场景条件性：**正确图像的条件风险严格优于 mismatch/removed-image control，排除固定道路
+   先验或常数表示。
+
+若第 1 条精确成立，则 \(R\) 可通过外观等价类商映射 \(q_A:X\mapsto[X]_A\) 分解为
+\(R=\bar R\circ q_A\)。这是标准 quotient factorization，不是 AORTA 的原创定理。AORTA 的候选
+贡献在于把商后的统计量明确限定为 frozen planner 合法候选域上的 task relation，并使训练目标、
+网络查询和选择性行为使用同一单位。
+
+信息论上，理想目标可写成
+
+\[
+\min_R I(R;A\mid S,C)
+\quad\text{s.t.}\quad
+I(R;Y\mid C)=I(X;Y\mid C).
+\]
+
+它表示在保持 task sufficiency 前提下尽量删除外观信息。该表达只给出设计原则；\(S\) 未完全
+观测，有限样本中不能直接估计或宣称达到该等式。实际实验用 task loss、paired-appearance
+relation drift、correct-vs-mismatch 和 downstream regret 分别检验其不同后果，不能用其中一个
+指标替代全部条件。
+
+### 命题 0.1：共同外观偏置的相对消除
+
+若某一候选证据在合法外观变化下可分解为
+
+\[
+f_i(S,A,C)=u_i(S,C)+c(S,A,C),
+\]
+
+其中外观项 \(c\) 对同一候选面板中的所有候选共同，则
+
+\[
+f_i(S,A,C)-f_0(S,A,C)=u_i(S,C)-u_0(S,C),
+\]
+
+因而 native-relative relation 对该共同外观偏置精确不变。
+
+**边界与反例。** 若外观产生 candidate-dependent distortion \(c_i(S,A,C)\)，差分后仍残留
+\(c_i-c_0\)，相对化本身不能保证鲁棒性。因此 native conditioning 只提供“共享干扰可消除”的
+结构机会；paired appearance loss、correct-image necessity 与 NavDream relation drift 必须验证
+剩余非共同干扰是否被模型控制。该命题解释设计动机，不构成任意天气下的泛化定理。
 
 ## 1. 合法估计对象
 
@@ -17,42 +70,53 @@ task-intent membership 为 \(e_i(S,\pi)\in\{0,1\}\)，合法候选域为
 V_{S,\pi}=\{0\}\cup\{i:e_i(S,\pi)=1\},\qquad K_{S,\pi}=|V_{S,\pi}|.
 \]
 
-当前 evaluator 对每个合法候选独立使用
-\([\tau_0,\tau_i]\) 面板评分，因此定义
+当前 evaluator 对每条合法轨迹 \(\tau\) 独立构造
+\([\tau_{PDM}(S),\tau]\) proposal set，并返回被评分轨迹的 one-frame PDM score。定义
 
 \[
-y_i=U(S;\tau_0,\tau_i),\qquad i\in V_{S,\pi}.
+F_S(\tau)=\operatorname{PDM}_{1f}([\tau_{PDM}(S),\tau])_{pred},\qquad
+y_i=F_S(\tau_i).
 \]
 
-网络输出 native-conditioned 节点分数
+native 与 challenger 分别调用 scorer；native \(\tau_0\) 是候选生成、membership 与差分 reference，
+不是 challenger 调用中的 progress-normalization baseline。该语义由正式 R1 前的官方源码审计确认。
+
+部署所需的最小估计对象是 ragged native-relative margin vector
 
 \[
-s_i=s_\theta(X,\tau_0,\tau_i),\qquad i\in V_{S,\pi},
+\delta^*_{i0}=y_i-y_0,\qquad
+\widehat\delta_{i0}=r_\theta(X,C,i),\qquad i\in V_{S,\pi}\setminus\{0\}.
 \]
 
-而学习对象是 pair preference
+它不要求先定义跨 context 的绝对 candidate utility。完整 pair relation
 
 \[
-\Delta_{ij}=s_j-s_i,qquad \Delta_{ij}^{*}=y_j-y_i.
+\Delta_{ij}^{*}=y_j-y_i
 \]
 
-这里的节点是候选轨迹，不是道路网格节点。由于 evaluator 存在面板归一化，\(y_i\) 不是脱离
-native context 的绝对效用；换 planner 或 native 时，估计对象也随之改变。
+可作为额外结构研究对象；共享节点分数 \(s_i=s_\theta(X,C,i)\) 并令
+\(\widehat\Delta_{ij}=s_j-s_i\) 只是其中一种参数化，不是由最小 estimand 唯一推出的架构。
+
+这里的索引是候选轨迹，不是道路网格节点。由于每个 \(F_S(\tau_i)\) 都在自己的
+\([\tau_{PDM}(S),\tau_i]\) 集合中归一化，\(y_i\) 是冻结 scorer 定义的 candidate-local surrogate，
+不是现实世界绝对效用或完整 official PDMS；换场景、planner/native 或 candidate provider 时，
+估计上下文也随之改变。
 
 **候选域一致性公理。** 标签、score vector、incidence matrix、Laplacian、loss、oracle 与 regret
 必须共享同一个 \(V_{S,\pi}\)。masked candidate 不得以任意常数、负无穷近似或伪标签进入图。
 B4 违反这一公理，故其正向 oracle diagnostics 无效；B4R1 只允许使用 B4 前已冻结的 H7BS1
 membership 修复。
 
-## 2. 候选图、gauge 与可识别性
+## 2. 可选完整候选图、gauge 与可识别性
 
-对每个 context 令候选比较图为无向加权图 \(G_{S,\pi}=(V_{S,\pi},E,w)\)，任取边方向并定义
+若研究 complete-graph 结构，则对每个 context 令候选比较图为无向加权图
+\(G_{S,\pi}=(V_{S,\pi},E,w)\)，任取边方向并定义
 incidence matrix \(D\in\mathbb R^{|E|\times K_{S,\pi}}\)：对边 \(e=(i\to j)\)，该行在 \(i\)
 处为 \(-1\)，在 \(j\)
 处为 \(+1\)。于是全部边偏好为
 
 \[
-p=Ds,qquad p^{*}=Dy.
+p=Ds,\qquad p^{*}=Dy.
 \]
 
 令 \(W=\operatorname{diag}(w_e)\)，候选图 Laplacian 为
@@ -83,7 +147,23 @@ context 仍必须保留在 candidate-supply 与 oracle-gain 统计中并贡献�
 **架构含义。** 网络无需、也不应被迫学习跨场景共享的绝对 score 零点。训练与评估应使用
 \(Ds\) 或等价的 mean-zero representative，而不是 absolute-score MAE。
 
-## 3. 一个由商空间推出的核心 loss
+## 3. 与部署 estimand 对齐的核心 loss
+
+主 loss 首先定义在 native-relative margin 上：
+
+\[
+\boxed{
+\mathcal L_{native}
+=\sum_{i\in V\setminus\{0\}}w_i\,
+\rho\!\left(\widehat\delta_{i0}-\delta^*_{i0}\right).
+}
+\]
+
+它直接对应部署时“是否替换 native”的问题，不依赖 Hodge 或 complete graph。稳健函数 \(\rho\)、
+权重 \(w_i\) 与尺度必须在 source protocol 冻结；若不能证明 task-critical weighting 改善 held-out
+regret，则使用 uniform 权重。
+
+下面的 weighted quotient loss 只属于 complete-graph 参数化候选。
 
 令节点误差 \(e=s-y\)。定义 weighted quotient loss
 
@@ -118,10 +198,32 @@ P_\perp=I-\frac1K\mathbf1\mathbf1^\top.
 
 ## 4. loss 到 decision regret 的确定性桥梁
 
+### 命题 2A：native-relative 同时误差的直接 regret 界
+
+若对同一 context 的全部合法 challenger 有
+
+\[
+\max_{i\in V\setminus\{0\}}
+|\widehat\delta_{i0}-\delta^*_{i0}|\le\varepsilon,
+\]
+
+并令 \(\hat i=\arg\max_{i\in V}\widehat\delta_{i0}\)、
+\(i^*=\arg\max_{i\in V}\delta^*_{i0}\)，其中 native 的两种 margin 均定义为 0，则
+
+\[
+\boxed{y_{i^*}-y_{\hat i}\le2\varepsilon.}
+\]
+
+**证明。** 由 \(\widehat\delta_{\hat i0}\ge\widehat\delta_{i^*0}\)，加减两项预测误差即得
+\(\delta^*_{i^*0}-\delta^*_{\hat i0}\le2\varepsilon\)。证毕。
+
+该界与实际部署动作直接对齐，不需要完整图或谱隙。下面的谱界仅说明 complete-graph quotient
+loss 在其假设成立时如何控制同一 regret，不能反向证明 complete graph 是必要结构。
+
 令 \(\lambda_2(L_w)>0\) 为候选图的谱隙，\(i^*=\arg\max_i y_i\)，
 \(\hat i=\arg\max_i s_i\)。
 
-### 命题 2：单场景谱 regret 界
+### 命题 2B：单场景谱 regret 界
 
 若某一固定 context 上 \(K_{S,\pi}\ge2\) 且
 
@@ -186,7 +288,7 @@ q=q_{grad}+q_{cycle},
 其中
 
 \[
-q_{grad}=D L^\dagger D^\top q,qquad
+q_{grad}=D L^\dagger D^\top q,\qquad
 D^\top q_{cycle}=0
 \]
 
@@ -225,20 +327,38 @@ challenger–challenger labels 由 native-conditioned scalar 代数派生，故 
 对保持 \((S,\tau_0,\mathcal T,y)\) 不变的合法外观干预 \(T_a\)，定义
 
 \[
-\mathcal L_{app,Q}
-=\left\|W^{1/2}D
-\left[s_\theta(T_aX)-\operatorname{sg}(s_\theta(X))\right]
-\right\|_2^2.
+\mathcal L_{app,native}
+=\sum_{i\in V\setminus\{0\}}w_i\,
+\rho\!\left(
+\widehat\delta_{i0}(T_aX,C)-
+\operatorname{sg}[\widehat\delta_{i0}(X,C)]
+\right).
 \]
 
-这只要求 preference 在外观轨道上稳定，允许共同 scene score 偏移。
+这只要求部署所需的 native-relative relation 在外观轨道上稳定。若结构实验选择 complete-score
+参数化，可等价地对 \(D[s_\theta(T_aX)-\operatorname{sg}(s_\theta(X))]\) 施加图关系损失；该扩展
+不能预先作为核心方法。
+
+训练目标采用“任务正确性优先、外观漂移受约束”的形式：
+
+\[
+\min_\theta\ \mathbb E[\mathcal L_{native}]
+\quad\text{s.t.}\quad
+\mathbb E[\mathcal L_{app,native}]\le\delta_{app}.
+\]
+
+其非负 Lagrange multiplier 形式可用于实现，但 \(\delta_{app}\) 必须在 source-only fit protocol
+中冻结，不能根据 NavDream 或最终行为结果选择。这样设计的目的不是增加一个任意 loss 权重，而是
+明确两项职责：task objective 保留决策信息，appearance constraint 只删除对同场景任务关系无关的
+外观变化。该 constrained formulation 属于标准优化工具，创新性仍来自学习对象与闭环证据，而
+不是 primal–dual 名称。
 
 ### 命题 3：不变性不足
 
-常数 scorer \(s_\theta(X,\tau_0,\tau_i)=c(X)\) 对所有候选给出相同值，因而对任意外观变换都有
-\(Ds=0\) 和 \(\mathcal L_{app,Q}=0\)，却不能表示任何非零真实偏好。
+常数 relation \(r_\theta(X,C,i)=0\) 对任意外观变换都有
+\(\mathcal L_{app,native}=0\)，却不能表示任何非零真实偏好。
 
-因此必须同时具有合法的 \(\mathcal L_Q(s,y;G)\) 或等价 decision supervision；跨外观漂移小不能
+因此必须同时具有合法的 \(\mathcal L_{native}\) 或等价 decision supervision；跨外观漂移小不能
 单独证明任务信息存在。correct-image、mismatch、removed-image 与 prior controls 仍是不可省略的
 视觉必要性反证。
 
@@ -247,8 +367,8 @@ challenger–challenger labels 由 native-conditioned scalar 代数派生，故 
 对每个 challenger 定义
 
 \[
-\Delta_{i0}^*=y_i-y_0,qquad
-\widehat\Delta_{i0}=s_i-s_0.
+\Delta_{i0}^*=y_i-y_0,\qquad
+\widehat\Delta_{i0}=\widehat\delta_{i0}.
 \]
 
 假设存在同时误差事件
@@ -286,7 +406,7 @@ challenger–challenger labels 由 native-conditioned scalar 代数派生，故 
 Z=E_{vision}(X),\quad
 a_i=E_{traj}(\tau_i),\quad
 h_i=H_\theta(Z,a_0,a_i),\quad
-s_i=W_sh_i.
+\widehat\delta_{i0}=W_rh_i.
 \]
 
 为了使理论和实现同构，必须满足：
@@ -295,7 +415,8 @@ s_i=W_sh_i.
 2. \(E_{traj}\) 编码完整时域 pose、yaw、time 与相对 native 几何；
 3. \(H_\theta\) 对所有 challenger 参数共享；
 4. 非 native 候选置乱时，score 同步置乱；
-5. pair preference 只能由 score difference 产生，主模型不另设自由 edge head；
+5. 主输出必须与 ragged native-relative estimand 同型；node-score/complete-edge 参数化由后续
+   matched study 裁决，不在理论中预设赢家；
 6. 不确定性/半径与 point score 分开审计，不能用同一训练误差声称 coverage；
 7. 推理复杂度目标为
    \(O(C_{vision}+K(C_{traj}+C_{query}))\)，并实测 batch-1 P50/P95/P99。
@@ -320,9 +441,10 @@ s_i=W_sh_i.
 
 允许：
 
-- 上述四个命题作为带明确假设的数学事实；
-- weighted quotient loss 是与候选比较图一致的 gauge-invariant 目标；
-- 图谱隙给出 per-context loss 到 regret 的确定性桥梁。
+- 上述命题作为带明确假设的数学事实；
+- native-relative simultaneous error 给出与部署对齐的直接 regret 界；
+- weighted quotient loss 是与 complete candidate graph 一致的 gauge-invariant 候选目标；
+- 在完整图假设成立时，图谱隙给出 per-context loss 到 regret 的另一条确定性桥梁。
 
 禁止：
 

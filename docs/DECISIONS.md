@@ -953,3 +953,21 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** the proof does not show that a shared scorer is ineffective; it shows only that its
   exactness is not structurally restrictive on the deployed star. No learned or driving result
   follows.
+
+## ADR-0068 — Define the minimal estimand before choosing a relation parameterization
+
+- **Status:** accepted as a theory correction before preference-network training.
+- **Decision:** the deployed estimand is the ragged vector of legal native-relative task margins
+  `delta_i0 = y_i - y_0`. It does not require an absolute candidate utility or a complete candidate
+  graph. A node-score difference head and complete-edge losses are optional parameterizations to be
+  decided only by matched held-out regret experiments.
+- **Reasoning:** this ordering keeps label, loss, inference and arbitration in the same unit and
+  prevents a convenient architecture from being mistaken for the mathematical problem. It also
+  yields the direct bound `regret <= 2 * max_i |delta_hat_i0 - delta_i0|` without a graph spectral
+  assumption.
+- **Learning contract:** optimize native-relative task correctness subject to a source-frozen
+  paired-appearance relation-drift constraint. Task supervision prevents constant collapse;
+  correct/mismatched/removed-image controls test scene-conditional visual necessity.
+- **Boundary:** quotient factorization, conditional mutual information and constrained optimization
+  are standard tools, not novelty claims. No generalization, calibration, NavDream, driving benefit
+  or real-time result follows until their registered experiments pass.

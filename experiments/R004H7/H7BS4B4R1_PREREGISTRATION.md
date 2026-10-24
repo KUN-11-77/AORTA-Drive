@@ -48,6 +48,32 @@ G_g=\frac1{16}\sum_{a=1}^{16}G_{ga}.
 candidate-conditioned reactive traffic 与 human penalty filter 保持不变。一次把所有候选交给 scorer
 或对 ineligible candidate 评分均为协议失败。
 
+### 3.1 正式运行前的 scorer 语义勘误（未读取 outcome）
+
+源码检查确认 `pdm_score_from_interpolated_trajectory` 对每条被评分轨迹 \(\tau\) 构造的是
+
+\[
+[\tau_{PDM}(S),\tau],
+\]
+
+随后返回 `pred_idx=1` 的分数；progress 在该内部二元 proposal set 内归一化。runner 对 native 与
+每个合法 challenger 分别调用该函数，并未把 `[native, challenger]` 联合送入 scorer。因此本轮
+estimand 精确定义为
+
+\[
+F_S(\tau)=\operatorname{PDM}_{1f}([\tau_{PDM}(S),\tau])_{pred},\qquad
+\delta_{i0}^*=F_S(\tau_i)-F_S(\tau_0).
+\]
+
+native 仍然是候选生成、membership 和最终差分的 reference，但不是 challenger scorer 调用中的
+progress-normalization baseline。旧 B4 文档中的 `[native, candidate]` 表述作废，不能用于论文。
+该勘误不改变任何 candidate、threshold、seed、统计分母或 scorer 调用；它在正式 R1 outcome 前
+由官方源码与现有 runner 静态核对得到。
+
+由于 `PDMScorer` 会读取 `PROGRESS_MODE`，正式 runner 必须在任何 scoring 前 fail-closed 要求
+`PROGRESS_MODE=eval`（环境变量未设置时官方默认同样为 `eval`），并把实际模式写入 primary/replay
+与机械审计。`gen_gt` 或其他模式一律使接口无效。
+
 该标签不含跨 anchor 的 two-frame extended comfort，因此不是完整 official PDMS。它只用于判断
 source-fit 上是否存在值得学习的 preference 信号。
 
@@ -62,7 +88,8 @@ source-fit 上是否存在值得学习的 preference 信号。
 5. 全部合法 outcomes 有限且位于合法范围；
 6. 42 个 anchor-0 sentinel 对合法 candidates 的 outcome/state bit-exact；
 7. primary 后再做一次完整 materialization，两份 672-anchor ledger exact；
-8. 独立 audit 从 ledger 重算 summary 和裁决。
+8. `PROGRESS_MODE` 与冻结 `eval` 合同 exact；
+9. 独立 audit 从 ledger 重算 summary 和裁决。
 
 任一失败即 `INVALID_PREFERENCE_LABEL_INTERFACE`，科学值不可解释。
 
@@ -96,7 +123,8 @@ recording group 是唯一独立单位；anchor、candidate、pair 均为组内�
 
 ## 7. 论文与理论边界
 
-R1 若通过，只支持“合法候选域上存在 source-fit preference supervision 与 oracle opportunity”。
+R1 若通过，只支持“合法候选域上存在 source-fit candidate-local score-difference supervision 与
+oracle opportunity”。
 它不支持 exact coboundary head 必要性、视觉泛化、NavDream、跨 planner、完整 PDMS、实时性、
 clean no-harm、驾驶收益、安全或 ICCV readiness。
 

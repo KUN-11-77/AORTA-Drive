@@ -19,6 +19,10 @@ parameterization、uncertainty head 和 candidate generation 都不是并列贡�
 - 表示跨外观不变但不含场景信息，例如常数表示；
 - 道路场正确且稳定，但下游读出删除候选差异。B3 已用 perfect teacher 给出第二类反例。
 
+其数学动机是条件性的：若外观只给同一候选面板的证据加入共同偏置，native-relative difference
+会精确消去该偏置；若外观效应随候选变化，差分不能自动消除，必须由 paired-appearance loss 与
+NavDream 实验验证。因而“相对关系更稳定”是带反例的结构假设，不是未经验证的口号。
+
 ### 顶会叙事的四拍结构
 
 1. **Surprise：**外观不变的 feature/field 可以很稳定，甚至 field 可以是 perfect，但候选决策仍
@@ -65,23 +69,29 @@ X\rightarrow Z_{vision}\rightarrow F_{field}\rightarrow M(\tau)\rightarrow\opera
 ## 3. 唯一数学对象
 
 令物理场景为 \(S\)，外观为 \(A\)，观测 \(X=g(S,A)\)，冻结 planner \(\pi\) 产生 native
-轨迹 \(\tau_0^\pi\) 和候选面板 \(\mathcal T=\{\tau_0,\ldots,\tau_{K-1}\}\)。当前 NAVSIM
-evaluator 的 progress normalization 依赖 native-candidate 评分面板，因此合法效用必须写成
+轨迹 \(\tau_0^\pi\) 和候选面板 \(\mathcal T=\{\tau_0,\ldots,\tau_{K-1}\}\)。当前 one-frame NAVSIM
+调用对每条轨迹分别在固定 PDM baseline 下评分：
 
 \[
-U_i^*=U(S;\tau_0^\pi,\tau_i),
-\qquad
-\Delta_{ij}^*=U_j^*-U_i^*.
+F_S(\tau)=\operatorname{PDM}_{1f}([\tau_{PDM}(S),\tau])_{pred},\qquad
+\delta_{i0}^*=F_S(\tau_i)-F_S(\tau_0).
 \]
 
-方法估计的是固定 native context 下的 **appearance-quotient preference operator**，而不是跨
-planner 无条件成立的绝对 candidate utility。绝对节点分数只在等价类
+方法估计的是固定 native context 下的 **appearance-quotient decision operator**，而不是跨
+planner 无条件成立的绝对 candidate utility。native 是差分 reference，不是 challenger scorer
+内部的 normalization baseline。完整 pair relation
+
+\[
+\Delta_{ij}^*=F_S(\tau_j)-F_S(\tau_i)
+\]
+
+只是可选结构扩展。若使用 scalar node scores，其绝对值只在等价类
 
 \[
 [s]=\{s+c(S,\pi)\mathbf 1:c(S,\pi)\in\mathbb R\}
 \]
 
-中可辨识，而 \(\Delta_{ij}\) 对共同 gauge 完全不变。
+中可辨识，而 \(\Delta_{ij}\) 对共同 gauge 完全不变；但这种参数化不是最小对象唯一推出的架构。
 
 这里还必须把候选域写进对象。令 \(e_i(S,\pi)\in\{0,1\}\) 表示 candidate 是否满足预冻结的
 task-intent membership，合法图为
@@ -103,8 +113,8 @@ Z=E_{vision}(X),\quad a_0=E_{traj}(\tau_0),\quad a_i=E_{traj}(\tau_i),
 \]
 
 \[
-h_i=H_\theta(Z,a_0,a_i),\quad s_i=W_sh_i,
-\quad \widehat\Delta_{ij}=s_j-s_i.
+h_i=H_\theta(Z,a_0,a_i),\quad
+\widehat\delta_{i0}=W_rh_i.
 \]
 
 | 设计 | 为什么必须存在 | 它解决的挑战 | 必须由什么消融证明 |
@@ -112,7 +122,8 @@ h_i=H_\theta(Z,a_0,a_i),\quad s_i=W_sh_i,
 | 共享视觉编码 | 外观证据对同一候选面板共享，且需要实时 | 避免每候选重复视觉网络 | 相同 backbone 下的延迟与候选数缩放 |
 | 完整 4 s trajectory encoder | 2.5 s 前缀可删除晚期分叉 | 保留候选完整决策差异 | prefix、fixed-grid 与完整时域对照 |
 | native-conditioned interaction | evaluator 标签本身依赖 native-candidate panel | 与真实 estimand 对齐 | 去掉 native context 后的 label/regret 退化 |
-| shared scalar node score | 对complete candidate graph提供可积参数化；在native-star上仅是重参数化 | 精确反对称与cycle consistency，但其必要性未证 | native-vector、star-score、complete-score、free complete-edge容量/计算匹配的held-out regret对照 |
+| ragged native-relative output | 与合法域上的最小部署 estimand 同型 | 不伪造 masked candidate 或绝对 utility | mask/permutation metamorphic tests 与 B4R1 domain replay |
+| shared scalar node score（条件） | 对complete candidate graph提供可积参数化；在native-star上仅是重参数化 | 精确反对称与cycle consistency，但其必要性未证 | native-vector、star-score、complete-score、free complete-edge容量/计算匹配的held-out regret对照 |
 | permutation-equivariant candidate processing | 候选列表顺序不是语义 | 防止位置记忆 | 候选置乱等变性测试 |
 | selective lower-bound arbitration | 预测正确性不等于可靠替换 | 证据不足时保持 native | coverage、sharpness、false improvement、abstention、clean harm |
 
@@ -133,36 +144,38 @@ matched direct-pair/vector head 没有结构性失败，必须删除该叙事，
 
 ## 5. 训练目标与其职责边界
 
-对冻结 evaluator 的合法 source-only 标签 \(y_i\)，任务差分损失为
+对冻结 evaluator 的合法 source-only 标签 \(y_i\)，最小任务差分损失为
 
 \[
-\mathcal L_{task}=\sum_{i\ne j}w_{ij}\,
-\rho\!\left(\widehat\Delta_{ij}(X,\tau_0)-(y_j-y_i)\right).
+\mathcal L_{task}=\sum_{i\in V\setminus\{0\}}w_i\,
+\rho\!\left(\widehat\delta_{i0}(X,C)-(y_i-y_0)\right).
 \]
 
 同一物理场景的外观干预 \(T_a\) 只约束 preference，而不是全部 feature：
 
 \[
-\mathcal L_{app}=\sum_a\sum_{i\ne j}w_{ij}\,
-\rho\!\left(\widehat\Delta_{ij}(T_aX,\tau_0)-
-\operatorname{sg}[\widehat\Delta_{ij}(X,\tau_0)]\right).
+\mathcal L_{app}=\sum_a\sum_{i\in V\setminus\{0\}}w_i\,
+\rho\!\left(\widehat\delta_{i0}(T_aX,C)-
+\operatorname{sg}[\widehat\delta_{i0}(X,C)]\right).
 \]
 
-候选总目标是
+训练原则写成 task correctness 优先、appearance drift 受约束：
 
 \[
-\mathcal L=\mathcal L_{task}+\lambda_{app}\mathcal L_{app}
-+\lambda_{factor}\mathcal L_{factor}.
+\min_\theta\ \mathbb E[\mathcal L_{task}]
+\quad\mathrm{s.t.}\quad
+\mathbb E[\mathcal L_{app}]\le\delta_{app}.
 \]
 
 职责必须分清：
 
 - \(\mathcal L_{task}\) 排除“稳定但无信息”的常数解；
 - \(\mathcal L_{app}\) 只约束同场景外观扰动下的关系稳定；
-- \(\mathcal L_{factor}\) 只有在 factor label 合法且带来匹配容量优势时才保留；
-- 不加入 cycle loss，因为架构已经精确满足 cycle；
+- \(\delta_{app}\) 在 source-only protocol 中冻结；primal–dual 只是标准求解工具，不是创新；
+- factor head 只有在 factor label 合法且带来匹配容量优势时才保留；
+- 默认不加入 cycle loss；只有 complete-score 结构经实验保留时，cycle 才是参数化性质；
 - mismatch/removed-image 是视觉必要性反证，不应被偷换成训练技巧；
-- \(w_{ij}\)、稳健函数和温度必须在 source protocol 中冻结，不能按结果挑选。
+- \(w_i\)、稳健函数和温度必须在 source protocol 中冻结，不能按结果挑选。
 
 ## 6. 从预测到干预的条件闭环
 
@@ -232,7 +245,8 @@ selective native-relative decision rule**。complete-graph relational structure 
 ### 30 秒
 
 > 外观鲁棒驾驶通常稳定图像特征或道路场，但我们发现，即使使用正确的道路场，一个不充分的
-> 读出也会删除几乎全部候选决策差异。AORTA 因而直接学习冻结 planner 候选图上的外观商偏好：
+> 读出也会删除几乎全部候选决策差异。AORTA 因而直接学习冻结 planner 合法候选域上的
+> native-relative 外观商关系：
 > 它以 native 为上下文，读取正确图像与完整候选轨迹，只在同时误差下界证明 challenger 优于
 > native 时干预。我们稳定的不是代理表征，而是真正决定轨迹选择的关系。
 
@@ -243,8 +257,8 @@ selective native-relative decision rule**。complete-graph relational structure 
 1. **矛盾：**同一路只换天气，feature 仍相似，候选排序却翻转；稳定也可能只是常数先验。
 2. **反例：**perfect road field 经 scalar minimum 后仍删除候选差异，证明问题位于学习对象与读出，
    不只是视觉精度。
-3. **对象：**真实应保持的是 fixed native context 下的 \(\Delta_{ij}^*\)，绝对 score 只在共同
-   gauge 等价类中可辨识。
+3. **对象：**最小部署对象是 fixed native context 下的 \(\delta_{i0}^*\)；complete pair relation
+   和共同 gauge 只是可选结构扩展。
 4. **方法：**共享视觉编码 + 完整轨迹条件 + native-relative relation decoder + selective lower
    bound；complete-graph structure 只有经消融成立后才进入该句。
 5. **证据：**oracle ceiling、correct-vs-mismatch、matched structure、NavDream/跨 planner decision

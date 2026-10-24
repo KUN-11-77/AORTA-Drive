@@ -14,6 +14,7 @@ from aorta_drive.evaluation.eligible_preference_oracle import (
 )
 from aorta_drive.vision.feature_cache import sha256_file
 from audit_r004h7bs4b4r1_eligible_preference_oracle import audit
+from run_r004h7bs4b4r1_eligible_preference_oracle import _require_progress_mode
 
 
 def _candidate(index: int, score: float, *, hard: float = 1.0) -> dict[str, Any]:
@@ -199,6 +200,21 @@ def test_r1_contract_freezes_implementation_and_retains_b4_thresholds() -> None:
     assert domain["expected_zero_eligible_anchors"] + domain[
         "expected_nonzero_eligible_anchors"
     ] == 672
+    assert r1["one_frame_scorer"]["required_progress_mode"] == "eval"
+    assert r1["estimand"]["native_and_challenger_jointly_scored"] is False
+    assert r1["estimand"]["internal_reference_trajectory"] == (
+        "metric_cache_fixed_PDM_baseline"
+    )
+
+
+def test_progress_mode_contract_fails_closed(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("PROGRESS_MODE", raising=False)
+    assert _require_progress_mode("eval") == "eval"
+    monkeypatch.setenv("PROGRESS_MODE", "eval")
+    assert _require_progress_mode("eval") == "eval"
+    monkeypatch.setenv("PROGRESS_MODE", "gen_gt")
+    with pytest.raises(RuntimeError, match="PROGRESS_MODE"):
+        _require_progress_mode("eval")
 
 
 def test_r1_auditor_recomputes_variable_domain_summary(tmp_path: Path) -> None:
@@ -230,7 +246,8 @@ def test_r1_auditor_recomputes_variable_domain_summary(tmp_path: Path) -> None:
     )
     result = {
         "experiment_id": experiment_id,
-        "label_estimand": "synthetic-contract-test",
+        "label_estimand": config["H7BS4B4R1"]["estimand"]["result_label"],
+        "progress_mode": "eval",
         "zero_eligible_anchor_policy": (
             "retain_anchor_with_native_only_and_zero_gain"
         ),

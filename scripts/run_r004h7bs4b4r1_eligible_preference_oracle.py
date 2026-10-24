@@ -6,6 +6,7 @@ import argparse
 import copy
 import json
 import lzma
+import os
 import pickle
 import time
 from concurrent.futures import ProcessPoolExecutor
@@ -32,6 +33,17 @@ from run_r004h7bs4b4_preference_oracle import (
     _scoring_objects,
     _write_json,
 )
+
+
+def _require_progress_mode(required: str) -> str:
+    """Fail closed before scoring if NAVSIM would use a different estimand."""
+
+    observed = os.environ.get("PROGRESS_MODE", "eval")
+    if observed != required:
+        raise RuntimeError(
+            f"PROGRESS_MODE must be {required!r}, observed {observed!r}"
+        )
+    return observed
 
 
 def _process_anchor(task: tuple[dict[str, Any], dict[str, Any], str, str]) -> dict[str, Any]:
@@ -189,6 +201,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     started = time.perf_counter()
     config = cast(dict[str, Any], yaml.safe_load(args.config.read_text(encoding="utf-8")))
     stage = cast(dict[str, Any], config["H7BS4B4R1"])
+    scorer_contract = cast(Mapping[str, Any], stage["one_frame_scorer"])
+    progress_mode = _require_progress_mode(
+        str(scorer_contract["required_progress_mode"])
+    )
     repository = Path(__file__).resolve().parents[1]
     _verify_sources(stage, repository=repository, navsim_root=args.navsim_root)
     frozen = cast(Mapping[str, str], stage["frozen_input_sha256"])
@@ -258,10 +274,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "completed_at_utc": datetime.now(timezone.utc).isoformat(),
         "code_commit": args.code_commit,
         "config_sha256": sha256_file(args.config),
-        "label_estimand": (
-            "candidate-specific one-frame NAVSIM PDM score on the frozen intent-eligible "
-            "native-conditioned candidate domain"
-        ),
+        "label_estimand": str(stage["estimand"]["result_label"]),
+        "progress_mode": progress_mode,
         "zero_eligible_anchor_policy": "retain_anchor_with_native_only_and_zero_gain",
         "full_official_pdms_claimed": False,
         "development_calibration_test_navdream_target_accessed": False,

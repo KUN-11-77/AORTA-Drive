@@ -1,6 +1,12 @@
 # R004H7-BS4B4R1 implementation preflight
 
-状态：`SERVER_INTERFACE_SMOKE_PASS__FORMAL_RUN_NOT_AUTHORIZED`。
+状态：`LOCAL_SCORER_SEMANTICS_AMENDMENT_PASS__SERVER_REPREFLIGHT_REQUIRED__FORMAL_RUN_NOT_AUTHORIZED`。
+
+> 2026-10-25 pre-run source audit 发现旧文档把 official scorer 误写为 `[native, challenger]`
+> 联合评分。实际实现对 native 和每个 challenger 分别在固定 `[PDM baseline, trajectory]` proposal
+> set 中评分。该勘误发生在 formal R1 前且未读取 outcome；runner/audit 已增加
+> `PROGRESS_MODE=eval` fail-closed 合同。下述 `9664e4b` server smoke 仍是合法的候选域证据，但其
+> source bundle 已被新 runner/audit 取代，不能作为当前代码的最终服务器 preflight。
 
 ## 已闭合
 
@@ -11,14 +17,14 @@
 - implementation failure 优先于任何正向 oracle signal；
 - recording group 仍为唯一统计独立单位，所有 group mean 固定包含 16 anchors；
 - R1 thresholds、bootstrap 与 sensitivity margins 通过配置测试确认沿用 B4，未根据 B4 outcome 调整；
-- 14 个 B4/R1 core tests 通过，其中 R1 新增 10 项，覆盖 variable panel、zero panel、mask injection、
+- 15 个 B4/R1 core tests 通过，其中 R1 新增 11 项，覆盖 variable panel、zero panel、mask injection、
   domain drift、四类 fail-closed gate 与独立 summary/audit 复算；
-- 全库 `353 passed`，未破坏既有实验合同；
+- 全库 `354 passed`，未破坏既有实验合同；
 - runner/audit 通过 Python compile，配置内本地 source SHA 均由自动测试核验。
 
 ## 服务器 interface smoke
 
-冻结提交 `9664e4b` 已通过离线 archive 同步到服务器；source archive SHA-256 为
+历史冻结提交 `9664e4b` 已通过离线 archive 同步到服务器；source archive SHA-256 为
 `5132bfa7b1d751b25e0d779275ea6b89f6af871efee4420dc65cffca8bfb9419`。服务器同一环境中：
 
 - R1 的 9 个合成/合同测试全部通过；
@@ -54,7 +60,7 @@
 - 外部 reviewer unavailable；
 - 未读取新的 source outcome，更未读取 development、calibration、test、NavDream 或 target。
 
-## 冻结摘要
+## 历史冻结摘要（已被 scorer-semantics amendment 取代）
 
 - config SHA-256：`ed0f9969f7f2aa80da94e0f2ebee8f959efd94dbf0bd76e93c1b50636a732ed2`；
 - preregistration SHA-256：`2e81cfebd6d12bfa37e379387c386908c8a8d31840a6422956f77337e88fbebb`；
@@ -64,7 +70,8 @@
 
 ## 下一门
 
-下一步是一次 primary + 一次 independent full replay + mechanical audit 的正式 R1。根据 B4 失败后
+先对新提交重新执行 outcome-free server tests/interface smoke 与 source hashes；通过后，下一步才是
+一次 primary + 一次 independent full replay + mechanical audit 的正式 R1。根据 B4 失败后
 冻结的停止规则，smoke 通过不自动授权第三次正式运行；在明确授权前保持 HOLD。正式运行期间
 禁止读取 partial scientific metrics 或修改 membership、threshold、bootstrap、candidate provider、
 scorer 与统计协议。

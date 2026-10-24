@@ -1,5 +1,7 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 minimal-estimand correction：`RELATION_FIRST__PARAMETERIZATION_LATER`。** 当前部署对象正式收紧为合法ragged候选域上的native-relative task margin向量，而不是预设node potential或complete graph。其因果/信息论目标是在保持decision sufficiency时删除同场景无关外观信息；核心loss直接监督relative margin，appearance项作为source-frozen约束，correct/mismatch/removed controls排除常数与道路先验。由同时margin误差可直接得到`regret <= 2 epsilon`，无需谱隙。complete-score/Hodge只保留为matched消融候选。详见`PREFERENCE_QUOTIENT_THEORY_V0_CN.md`与ADR-0068。**
+
 > **2026-10-25 preference结构创新预死亡审查：`STAR_GRAPH_EXACTNESS_VACUOUS__HODGE_NOT_A_CORE_CLAIM`。** 若监督/部署只比较native与各challenger，star incidence \(D_\star\) 对任意relative vector均满射：取`s0=0, si=q_i`即可，因此node-score difference与直接输出native-relative vector只是重参数化，star上没有cycle可约束。complete-graph edges又由native-conditioned scalar代数派生，不能在实验前宣称独立任务结构。后续只有在B4R1通过后，以native-vector、star-score、complete-score、free complete-edge进行参数/FLOP/数据/seed匹配，并在held-out regret/selection而非train cycle residual上证明优势，才允许保留Hodge/结构贡献；否则主线收缩为appearance-quotient relation target + simultaneous-uncertainty selective arbitration。详见`refine-logs/2026-10-25_aorta_post_b3/STRUCTURAL_NOVELTY_PREMORTEM_V1_CN.md`。**
 
 > **2026-10-25 B4接口失败已转化为B4R1候选域一致性预注册，尚未运行。** B4 的48个失败
@@ -33,7 +35,7 @@
 > **2026-10-25 H7BS4B4预注册：先验证标签与oracle，不训练网络。** 新候选数学对象只有在
 > source-fit 上存在合法、可复算且非平凡的native-relative task utility时才有实现资格。由于NAVSIM
 > progress在当前评分面板内归一化，7个候选不得一次批量评分；每个候选必须独立与同一native构成
-> 二元面板，复现candidate-specific reactive traffic与one-frame PDM。B4冻结42组×16 anchors、完整
+> candidate-local `[PDM baseline, trajectory]` proposal set，复现candidate-specific reactive traffic与one-frame PDM；native和challenger分别评分后作差，并非联合评分。B4冻结42组×16 anchors、完整
 > 独立重放和group-level oracle-gain裁决；two-frame comfort、完整official PDMS、跨planner、NavDream
 > 与网络收益均不在本轮主张内。详见`experiments/R004H7/H7BS4B4_PREREGISTRATION.md`。
 
