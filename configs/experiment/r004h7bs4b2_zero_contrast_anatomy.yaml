@@ -1,0 +1,75 @@
+experiment_id: R004H7BS4B2-zero-contrast-anatomy-v1
+date: 2026-10-25
+status: preregistered_not_run
+
+H7BS4B2:
+  scientific_role: fit_only_post_b1_zero_contrast_mechanism_attribution
+  parent_decision: ORACLE_SUPPORT_SET_NEAR_VACUOUS_REDESIGN_INTERFACE
+  parent_decision_must_remain_unchanged: true
+  frozen_input_sha256:
+    h7bs4a_result: 4671032f4d22d37d067c83e0c298e592467e13601788b55dae53f8a7055cc8cc
+    h7bs4b1_result: 9a064fd19c452bea0ba1f11ef58ede57fc03a24f14763f51ab7be500c128f277
+    h7bs1_fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+    fit_forward96_teacher_manifest: 65e686e06522fddf4950f1fe772fbcbea0547cec3d54fb383a8ee33d208b9fd0
+  expected_scope_counts:
+    anchor_count: 672
+    recording_group_count: 42
+    pair_count: 3864
+    exact_zero_contrast_pair_count: 2219
+  classification_priority:
+    - discrete_support_duplicate
+    - common_minimum_domination
+    - distinct_minimum_teacher_tie
+    - nonzero_contrast
+  equality_contract:
+    teacher_zero: exact_binary64_difference_equal_zero
+    node_support: exact_integer_set_equality
+    continuous_pose: exact_array_equality_plus_fixed_distance_ledgers
+    no_posthoc_epsilon: true
+  decision_protocol:
+    dominance_fraction: 0.5
+    minimum_affected_groups: 21
+    strict_rule: dominant_category_fraction_gt_half_and_at_least_half_of_groups_affected
+    if_discrete_support_duplicate: DISCRETE_QUERY_ALIASING_ELIGIBLE_FOR_CONTINUOUS_QUERY_STUDY
+    if_common_minimum_domination: COMMON_MIN_DOMINANCE_ELIGIBLE_FOR_FORK_OPERATOR_DESIGN
+    if_distinct_minimum_teacher_tie: DISTINCT_MIN_TIES_REQUIRE_TEACHER_TASK_AUDIT
+    otherwise: MIXED_ZERO_CONTRAST_CAUSES_NO_SINGLE_REDESIGN_AUTHORIZED
+  roi:
+    x_min_m: -32.0
+    y_min_m: -32.0
+    columns: 96
+    rows: 64
+    resolution_m: 1.0
+  vehicle:
+    rear_overhang_m: 1.127
+    front_extent_m: 4.049
+    half_width_m: 1.1485
+  implementation_sha256:
+    operator_anatomy_source: dd649952ba0dd51de79dd369d97b3af3b0c2f6ed50557b898981be110bb0bc31
+    shadow_decision_source: 9753d13a4f172a8a6155ade09d448657fae127a1e8d4c707f2cf10e38ac5d1b5
+    runner_source: 92f351f909fc37d90d405f07f9160e92adf4b6d9615ba763a31c085054108e56
+    audit_source: 013ee3d45b0358859137710908a8c6a8458103138a3c2ac5f50cacc97d3a6f5e
+  forbidden_inputs:
+    - learned_visual_field_values
+    - DINO_feature_values
+    - planner_outcomes_or_driving_scores
+    - development
+    - calibration
+    - official_test
+    - NavDream
+    - target_domain
+  resources:
+    device: cpu
+    maximum_wall_minutes: 30
+    maximum_output_mib: 128
+
+claim_boundary:
+  permitted:
+    - fit_only_exact_zero_contrast_mechanism_attribution
+    - eligibility_of_one_operator_redesign_branch_under_frozen_majority_rule
+  prohibited:
+    - independent_confirmation_or_generalization
+    - learned_model_or_network_benefit
+    - decision_driving_or_safety_gain
+    - NavDream_or_target_robustness
+    - architecture_optimality_or_top_venue_readiness
