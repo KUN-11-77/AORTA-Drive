@@ -77,6 +77,45 @@ def test_roi_exit_is_rejected_instead_of_clipped() -> None:
         certify_oriented_swept_outer_cover(BODY, poses, GRID)
 
 
+def test_shifted_witness_grid_cannot_expand_the_certified_physical_roi() -> None:
+    shifted_partition = RectangularGrid(
+        x_min=-16.5,
+        y_min=-16.5,
+        columns=33,
+        rows=33,
+        resolution=1.0,
+    )
+    poses = (Pose2D(14.0, 0.0, 0.0), Pose2D(15.0, 0.0, 0.0))
+    with pytest.raises(ValueError, match="leaves the certified grid ROI"):
+        certify_oriented_swept_outer_cover(
+            BODY,
+            poses,
+            shifted_partition,
+            certification_support=GRID,
+        )
+
+
+def test_shifted_witness_partition_keeps_same_support_contract() -> None:
+    shifted_partition = RectangularGrid(
+        x_min=-4.125,
+        y_min=-3.125,
+        columns=33,
+        rows=25,
+        resolution=0.25,
+    )
+    native = (Pose2D(0.0, -0.75, 0.0),)
+    challenger = (Pose2D(0.0, 0.75, 0.0),)
+    result = certify_oriented_bidirectional_noninclusion(
+        BODY,
+        challenger,
+        native,
+        shifted_partition,
+        certification_support=FINE_GEOMETRY_GRID,
+    )
+    assert result.challenger_minus_native_area_lower_m2 > 0.0
+    assert result.native_minus_challenger_area_lower_m2 > 0.0
+
+
 def test_unwrapped_yaw_jump_above_pi_is_rejected() -> None:
     poses = (Pose2D(0.0, 0.0, 0.0), Pose2D(0.0, 0.0, math.pi + 0.01))
     with pytest.raises(ValueError, match="unwrapped"):

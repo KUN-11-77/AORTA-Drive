@@ -219,8 +219,13 @@ def certify_oriented_segment_covers(
     grid: RectangularGrid,
     *,
     pose_error: float = 0.0,
+    certification_support: RectangularGrid | None = None,
 ) -> tuple[OrientedSegmentCover, ...]:
-    """Build continuous segment covers and reject any cover leaving the ROI."""
+    """Build continuous segment covers and reject any cover leaving the fixed ROI.
+
+    ``grid`` defines the witness-cell partition. ``certification_support`` may
+    separately freeze the physical ROI when diagnostic grid phases are shifted.
+    """
 
     if not poses:
         raise ValueError("pose sequence must be non-empty")
@@ -228,7 +233,8 @@ def certify_oriented_segment_covers(
     covers = tuple(
         _segment_cover(body, start, end, pose_error=pose_error) for start, end in pairs
     )
-    if any(not _body_cover_inside_grid(body, cover, grid) for cover in covers):
+    support = grid if certification_support is None else certification_support
+    if any(not _body_cover_inside_grid(body, cover, support) for cover in covers):
         raise ValueError("oriented swept cover leaves the certified grid ROI")
     return covers
 
@@ -239,11 +245,16 @@ def certify_oriented_swept_outer_cover(
     grid: RectangularGrid,
     *,
     pose_error: float = 0.0,
+    certification_support: RectangularGrid | None = None,
 ) -> OrientedSweptCoverCertificate:
     """Certify an h-cover of a piecewise-linear oriented rectangle sweep."""
 
     covers = certify_oriented_segment_covers(
-        body, poses, grid, pose_error=pose_error
+        body,
+        poses,
+        grid,
+        pose_error=pose_error,
+        certification_support=certification_support,
     )
     centers = grid.centers()
     selected = np.zeros(centers.shape[0], dtype=bool)
@@ -401,14 +412,23 @@ def certify_oriented_bidirectional_noninclusion(
     grid: RectangularGrid,
     *,
     pose_error: float = 0.0,
+    certification_support: RectangularGrid | None = None,
 ) -> OrientedBidirectionalNonInclusion:
     """Lower-bound both continuous set differences with oriented certificates."""
 
     challenger_outer = certify_oriented_segment_covers(
-        body, challenger_poses, grid, pose_error=pose_error
+        body,
+        challenger_poses,
+        grid,
+        pose_error=pose_error,
+        certification_support=certification_support,
     )
     native_outer = certify_oriented_segment_covers(
-        body, native_poses, grid, pose_error=pose_error
+        body,
+        native_poses,
+        grid,
+        pose_error=pose_error,
+        certification_support=certification_support,
     )
     challenger_inner = certify_oriented_inner_cells(
         body, challenger_poses, grid, pose_error=pose_error
