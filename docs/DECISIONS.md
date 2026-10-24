@@ -1214,3 +1214,17 @@ the current open-ended geometry certificate iteration remains STOP.
   calibration 不外推任意 OOD，真空全拒判必须作为失败模式报告。
 - **Artifact:**
   refine-logs/2026-10-25_aorta_post_b3/FORMAL_THEORY_APPENDIX_V1_CN.md。
+
+## ADR-0083：最终实验只保留五个 claim-driven blocks，并按门顺序解锁
+
+- **Decision:** ESTIMAND__NOVELTY__OOD_MECHANISM__CROSS_PLANNER_BEHAVIOR__RELIABILITY_RUNTIME。
+- **Reason:** 当前历史实验很多，但最终论文必须用紧凑因果链回答“为什么有效、为什么需要、改变了
+  什么”。继续增加孤立 sanity、弱 baseline 或工程测试会稀释决定性证据。
+- **Consequence:** 最终验证固定为五块：B0 estimand/oracle，B1 matched 网络创新，B2 NavDream 视觉
+  机制，B3 三类 planner 行为与 clean no-harm，B4 simultaneous reliability 与 batch-1 runtime。
+  每块均有前置门、成功标准和失败后删除的主张。三类 planner 分别裁决，pooled 结果不得掩盖任何
+  一类失败；GPU-hours 与时延阈值在合法 dry-run/baseline 方差后冻结，不凭经验填写。
+- **Boundary:** 该计划不授权运行。B4R1 仍需用户明确授权，后续 run 全部保持 LOCKED；正式 split
+  开封前必须另有 preregistration、commit/config/input hashes、统计规则与异常停止条件。
+- **Artifacts:** refine-logs/2026-10-25_aorta_final_validation/EXPERIMENT_PLAN.md；
+  refine-logs/2026-10-25_aorta_final_validation/EXPERIMENT_TRACKER.md。

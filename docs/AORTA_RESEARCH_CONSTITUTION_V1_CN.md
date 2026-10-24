@@ -229,6 +229,8 @@ clean 使用预注册的非劣效边界；边界必须由独立 baseline 方差�
 
 ## 9. 研究治理与当前门
 
+最终 claim-driven 路线与锁定状态由 refine-logs/2026-10-25_aorta_final_validation/EXPERIMENT_PLAN.md 和 EXPERIMENT_TRACKER.md 管理。
+
 1. 每轮先写可证伪命题、竞争解释和停止规则，再读取科学结果。
 2. 失败先区分实现错误、协议错误、统计功效不足与理论对象错误；只在证据指向后两者时改方法。
 3. 新复杂模块必须由新反例、官方目标依赖或 matched baseline 缺口授权。
