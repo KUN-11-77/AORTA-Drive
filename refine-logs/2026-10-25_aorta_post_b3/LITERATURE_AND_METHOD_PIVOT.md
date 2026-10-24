@@ -132,6 +132,32 @@ absolute candidate utility 不满足 independence of irrelevant alternatives。�
 \(U(S,\pi,\tau_i)\equiv U(S;\tau_0^\pi,\tau_i)\)。这直接决定网络必须显式读取 native context，
 也禁止把 7 个候选一次批量评分后当作训练真值。若未来 evaluator 改变，estimand 必须重新审查。
 
+**命题 5（选择性 native 改善）。** 令
+\(\Delta_{i0}^{*}=U(S,\pi,\tau_i)-U(S,\pi,\tau_0)\)。若某个同时置信事件
+
+\[
+\mathcal E=\left\{
+\left|\widehat\Delta_{i0}-\Delta_{i0}^{*}\right|\le r_i,
+\ \forall i=1,\ldots,K-1
+\right\}
+\]
+
+成立，并定义下界 \(L_i=\widehat\Delta_{i0}-r_i\)，则规则
+
+\[
+\hat i=\arg\max_i L_i,qquad
+\text{intervene only if }L_{\hat i}>0
+\]
+
+在 \(\mathcal E\) 上保证 \(U(S,\pi,\tau_{\hat i})>U(S,\pi,\tau_0)\)；否则保留 native。
+若校准分布上 \(\Pr(\mathcal E)\ge1-\alpha\)，错误宣称改善的概率至多为 \(\alpha\)。这是条件性
+选择保证，不是任意 NavDream OOD 的分布自由保证：appearance、planner 或 candidate-policy shift
+破坏交换性时，必须重新验证 coverage，不能把 source calibration 外推为安全证明。
+
+命题 5 只规定最终仲裁器需要什么置信事件，不预先决定用 learned uncertainty、split conformal、
+ensemble 还是解析误差界。B1 已经否定当前 graph uncertainty 的非真空性，因此新的 uncertainty
+实现必须单独通过 sharpness、coverage、policy transfer 与 latency 门，不能由该命题自动获得资格。
+
 **失效条件。** 上述命题不保证跨场景泛化、外观干预真实性、置信度校准或 evaluator 与真实驾驶
 安全的一致性；也不证明 exact-gradient 模型优于自由 pairwise 模型。若 oracle preference 大量为
 零、真实标签呈非传递性，或 matched direct-pair head 没有出现结构性缺陷，则停止该方向。
