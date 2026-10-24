@@ -13,6 +13,32 @@ from aorta_drive.evaluation.appearance_mechanism import mechanism_condition_supp
 CONFIRMATORY_CONDITIONS = ("clean", "low_exposure", "low_contrast", "cool_cast")
 
 
+def validate_serialized_teacher_projection(
+    serialized_teacher: np.ndarray[Any, Any],
+    exact_teacher: np.ndarray[Any, Any],
+) -> np.ndarray[Any, np.dtype[np.float64]]:
+    """Validate a float32 field artifact against its authoritative float64 teacher.
+
+    R004H6 computed metrics from the source float64 teacher and stored a float32 copy
+    inside each portable field artifact.  A hard salient-edge threshold can therefore
+    select a different edge after serialization.  Audits must first prove that the
+    artifact is the exact float32 projection, then replay metrics with the authoritative
+    float64 array used by the runner.
+    """
+
+    serialized = np.asarray(serialized_teacher)
+    exact = np.asarray(exact_teacher)
+    if serialized.dtype != np.float32 or exact.dtype != np.float64:
+        raise ValueError("teacher replay requires float32 artifact and float64 source")
+    if serialized.shape != exact.shape or serialized.ndim != 2:
+        raise ValueError("serialized and exact teacher shapes disagree")
+    if not np.all(np.isfinite(serialized)) or not np.all(np.isfinite(exact)):
+        raise ValueError("teacher replay arrays must be finite")
+    if not np.array_equal(serialized, exact.astype(np.float32)):
+        raise ValueError("serialized teacher is not the exact float32 source projection")
+    return np.ascontiguousarray(exact)
+
+
 def deterministic_group_derangement(groups: Iterable[str]) -> dict[str, str]:
     """Map each group to a different donor using a result-independent order."""
 

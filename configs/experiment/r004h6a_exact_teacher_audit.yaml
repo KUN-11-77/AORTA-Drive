@@ -1,0 +1,30 @@
+experiment_id: R004H6A-exact-teacher-artifact-audit-v1
+date: 2026-10-24
+scope: audit_only_no_experiment_rerun
+
+frozen_inputs:
+  result_sha256: 1e33acee0c2b8a82cada772712ed9b394dad5a6f9e9f1f484fb05a5611b698d1
+  original_config_sha256: 84ba758e6bc1f48b5e189695d29c94b13b62ecdbeae73f249673c14bd8dba20a
+  original_runner_sha256: 93e22befa27fbed6b47fd02aea75052fecfa42229118eb232cb6c4fe8d0b282f
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  development_anchor_count: 384
+
+precision_contract:
+  runner_metric_teacher: authoritative_source_float64
+  portable_artifact_teacher: exact_float32_projection_of_source_teacher
+  audit_metric_teacher: authoritative_source_float64
+  required_projection_check: bit_exact_array_equal_after_float32_cast
+  salient_edge_threshold_m: 0.50
+  numeric_comparison_rtol: 1.0e-6
+  numeric_comparison_atol: 1.0e-6
+  thresholds_metrics_statistics_and_decision_rules_changed: false
+  experiment_inference_or_artifact_regeneration: prohibited
+
+success_criterion:
+  artifact_hash_failures: 0
+  teacher_projection_failures: 0
+  metric_recomputation_failures: 0
+  recomputed_decision_must_equal_stored: true
+
+claim_boundary: audit fidelity only; no new scientific evidence or expanded scope

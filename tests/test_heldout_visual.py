@@ -2,10 +2,15 @@ from __future__ import annotations
 
 from typing import Any
 
+import numpy as np
+import pytest
+
+from aorta_drive.evaluation.appearance_mechanism import oriented_grid_edges
 from aorta_drive.evaluation.heldout_visual import (
     CONFIRMATORY_CONDITIONS,
     deterministic_group_derangement,
     summarize_heldout_ledgers,
+    validate_serialized_teacher_projection,
 )
 from aorta_drive.vision.appearance import H6_APPEARANCE_CONDITIONS
 
@@ -78,3 +83,30 @@ def test_summary_uses_group_level_conjunctive_gate() -> None:
     assert summary["claim_1_heldout_generalization_supported"] is True
     assert summary["claim_2_scene_conditioning_supported"] is True
     assert summary["decision"] == "SUPPORTED"
+
+
+def test_exact_teacher_replay_preserves_hard_threshold_semantics() -> None:
+    exact = np.zeros((64, 64), dtype=np.float64)
+    exact[0, 1] = 0.49999999
+    exact[0, 2] = 1.2
+    serialized = exact.astype(np.float32)
+    prediction = np.zeros((64, 64), dtype=np.float32)
+
+    replay_teacher = validate_serialized_teacher_projection(serialized, exact)
+    exact_edges = oriented_grid_edges(replay_teacher)
+    serialized_edges = oriented_grid_edges(serialized)
+
+    assert replay_teacher.dtype == np.float64
+    assert np.count_nonzero(np.abs(exact_edges) >= 0.50) != np.count_nonzero(
+        np.abs(serialized_edges) >= 0.50
+    )
+    assert prediction.dtype == np.float32
+
+
+def test_exact_teacher_replay_rejects_nonprojection() -> None:
+    exact = np.zeros((64, 64), dtype=np.float64)
+    serialized = exact.astype(np.float32)
+    serialized[0, 0] = np.float32(1.0)
+
+    with pytest.raises(ValueError, match="exact float32 source projection"):
+        validate_serialized_teacher_projection(serialized, exact)
