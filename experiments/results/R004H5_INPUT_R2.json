@@ -1,0 +1,19 @@
+{
+  "claim_boundary": "Raw-image identity and exact fit pairing only. No model inference, appearance stability, task accuracy, held-out generalization, OOD, or driving claim.",
+  "completed_at_utc": "2026-10-24T04:24:12.569086+00:00",
+  "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a",
+  "experiment_id": "R004H5-input-replay-preflight-v1",
+  "feature_manifest_sha256": "85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93",
+  "fit_anchor_count": 672,
+  "fit_group_count": 42,
+  "hash_mismatch_count": 0,
+  "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853",
+  "missing_raw_image_count": 0,
+  "prohibited_payload_accessed": false,
+  "raw_image_bytes": 1661211801,
+  "role_manifest_sha256": "bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7",
+  "script_sha256": "5d40b480f819798a908a4f9487364c392419d995a7d308421453d576031b74ef",
+  "slot_reference_count": 8064,
+  "status": "PASS",
+  "unique_raw_image_count": 8064
+}

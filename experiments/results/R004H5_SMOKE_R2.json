@@ -1,0 +1,22 @@
+{
+  "all_registered_inference_and_probe_branches_exercised": true,
+  "appearance_condition_count": 4,
+  "backbone_checkpoint_sha256": "7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488",
+  "claim_boundary": "One fit-anchor integration smoke only. Scientific metric values are not reported or used; no mechanism or performance claim is supported.",
+  "clean_replay_mismatch_count": 0,
+  "completed_at_utc": "2026-10-24T04:23:16.122557+00:00",
+  "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a",
+  "elapsed_seconds": 30.375023136963136,
+  "experiment_id": "R004H5-one-anchor-integration-smoke-v1",
+  "feature_manifest_sha256": "85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93",
+  "fit_anchor_count": 1,
+  "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853",
+  "label_manifest_sha256": "1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537",
+  "peak_cuda_bytes": 3216257536,
+  "prohibited_payload_accessed": false,
+  "role_manifest_sha256": "bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7",
+  "scientific_metrics_reported_or_used_for_tuning": false,
+  "script_sha256": "61620883c05834a78db71496181072eccbb365496e5045fca01bb053fc6b1aa6",
+  "stage_p_checkpoint_sha256": "8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b",
+  "status": "PASS"
+}

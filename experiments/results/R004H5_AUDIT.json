@@ -1,0 +1,11 @@
+{
+  "claim_boundary": "Mechanical replay and consistency audit only; external reviewer backend was unavailable and no self-acquittal was substituted.",
+  "completed_at_utc": "2026-10-24T05:03:03.278686+00:00",
+  "experiment_id": "R004H5-mechanical-result-audit-v1",
+  "external_cross_model_review": "REVIEW_UNAVAILABLE",
+  "failure_count": 0,
+  "failures": [],
+  "raw_result_sha256": "8a37f05556407f1ef32ba6f7834e305a23a5ab43ca1b222a52480842e0807a0b",
+  "reopened_field_artifact_count": 672,
+  "status": "PASS"
+}

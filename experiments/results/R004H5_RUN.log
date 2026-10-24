@@ -1,0 +1,132 @@
+nohup: ignoring input
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 16, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 77.66886228101794, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 32, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 129.42972586699761, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 48, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 182.203827860998, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 64, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 234.04979572095908, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 80, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 285.9557425560197, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 96, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 338.2982970899902, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 112, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 389.84621307393536, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 128, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 441.2814419779461, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 144, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 492.7910569430096, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 160, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 544.9769813329913, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 176, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 596.7209764029831, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 192, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 647.8789232659619, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 208, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 698.8638117420487, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 224, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 750.8344741369365, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 240, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 802.6618733890355, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 256, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 853.9015293000266, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 272, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 905.7346901929704, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 288, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 959.0996505769435, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 304, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1014.1042113839649, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 320, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1068.7912043100223, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 336, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1122.989011063939, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 352, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1177.9952217389364, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 368, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1231.883829806, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 384, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1287.0981169990264, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 400, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1341.940507352003, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 416, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1395.4792775620008, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 432, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1450.1428580359789, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 448, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1504.2523097959347, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 464, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1558.6295621090103, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 480, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1613.2788658130448, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 496, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1667.8458633959526, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 512, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1722.1764463030268, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 528, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1776.5842562200269, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 544, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1831.266932580038, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 560, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1886.0617768879747, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 576, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1940.6136084529571, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 592, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 1995.626521211001, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 608, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 2049.9538186759455, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 624, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 2104.35520402994, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 640, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 2159.2607378800167, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 656, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 2213.8598741360474, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{"clean_replay_mismatch_count": 0, "completed_anchor_count": 672, "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a", "elapsed_seconds": 2267.6853298429633, "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1", "fit_anchor_count": 672, "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853", "peak_cuda_bytes": 3719689728, "prohibited_payload_accessed": false, "status": "IN_PROGRESS"}
+{
+  "appearance_conditions": [
+    "clean",
+    "low_exposure",
+    "low_contrast",
+    "cool_cast"
+  ],
+  "backbone_checkpoint_sha256": "7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488",
+  "claim_boundary": "Fit-role controlled photometric mechanism diagnostic only. It does not establish held-out source generalization, named weather, target OOD, conformal coverage, driving benefit, safety improvement, Gate B, or novelty.",
+  "clean_replay_mismatch_count": 0,
+  "completed_at_utc": "2026-10-24T05:02:45.002404+00:00",
+  "config_sha256": "d785e0fca55fd6248e286283e4cebbff5194db6541952f42540f4f39aa75865a",
+  "decision": "MECHANISM_SUPPORTED_ON_FIT_CONTROLLED_APPEARANCE",
+  "dino_source_sha256": "dde435450cdc79eaddcd11039ab90d942f6fb08770b5ee3998a81240d8cf1bf8",
+  "elapsed_seconds": 2267.725405307021,
+  "experiment_id": "R004H5-fit-paired-appearance-mechanism-v1",
+  "feature_manifest_sha256": "85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93",
+  "fit_anchor_count": 672,
+  "fit_group_count": 42,
+  "implementation_revision": "51ff17207637c69845976a99888a7d9bc2b12853",
+  "label_manifest_sha256": "1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537",
+  "macro_group_summary": {
+    "all_nonclean_conditions_supported": true,
+    "conditions": {
+      "clean": {
+        "appearance_mae_m": 0.0,
+        "clean_edge_energy_mae_m": 0.3370407367251487,
+        "stability_margin_ci95_high_m": 0.3441139281663338,
+        "stability_margin_ci95_low_m": 0.33047456049176976,
+        "supported": true,
+        "task_mae_m": 0.32429445784905536,
+        "task_margin_ci95_high_m": 0.234772124888109,
+        "task_margin_ci95_low_m": 0.21823064660852087,
+        "teacher_cosine": 0.7714385408334943,
+        "teacher_cosine_ci95_high": 0.7818281595200566,
+        "teacher_cosine_ci95_low": 0.7617627648351941,
+        "zero_task_mae_m": 0.5503324315208185
+      },
+      "cool_cast": {
+        "appearance_mae_m": 0.010211086925762475,
+        "clean_edge_energy_mae_m": 0.3370407367251487,
+        "stability_margin_ci95_high_m": 0.3341031540290465,
+        "stability_margin_ci95_low_m": 0.3202668248607701,
+        "supported": true,
+        "task_mae_m": 0.3244904154180801,
+        "task_margin_ci95_high_m": 0.2345978133883297,
+        "task_margin_ci95_low_m": 0.21822181434241672,
+        "teacher_cosine": 0.770996960937353,
+        "teacher_cosine_ci95_high": 0.7815175679482441,
+        "teacher_cosine_ci95_low": 0.7613795074310814,
+        "zero_task_mae_m": 0.5503324315208185
+      },
+      "low_contrast": {
+        "appearance_mae_m": 0.008680104227399474,
+        "clean_edge_energy_mae_m": 0.3370407367251487,
+        "stability_margin_ci95_high_m": 0.3357727099342327,
+        "stability_margin_ci95_low_m": 0.3216338567330422,
+        "supported": true,
+        "task_mae_m": 0.324550393265296,
+        "task_margin_ci95_high_m": 0.23460277491641107,
+        "task_margin_ci95_low_m": 0.21793781618613575,
+        "teacher_cosine": 0.7712907502650639,
+        "teacher_cosine_ci95_high": 0.7817072955331863,
+        "teacher_cosine_ci95_low": 0.7616949719479067,
+        "zero_task_mae_m": 0.5503324315208185
+      },
+      "low_exposure": {
+        "appearance_mae_m": 0.00979936908998331,
+        "clean_edge_energy_mae_m": 0.3370407367251487,
+        "stability_margin_ci95_high_m": 0.33462754506506737,
+        "stability_margin_ci95_low_m": 0.3205193438366095,
+        "supported": true,
+        "task_mae_m": 0.3242391401888456,
+        "task_margin_ci95_high_m": 0.234872564039214,
+        "task_margin_ci95_low_m": 0.21827994947958987,
+        "teacher_cosine": 0.771442856090421,
+        "teacher_cosine_ci95_high": 0.7819323176433448,
+        "teacher_cosine_ci95_low": 0.7616520297231356,
+        "zero_task_mae_m": 0.5503324315208185
+      }
+    }
+  },
+  "peak_cuda_bytes": 3719689728,
+  "prohibited_payload_accessed": false,
+  "role_manifest_sha256": "bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7",
+  "script_sha256": "61620883c05834a78db71496181072eccbb365496e5045fca01bb053fc6b1aa6",
+  "stage_p_checkpoint_sha256": "8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b",
+  "status": "COMPLETED"
+}

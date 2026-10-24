@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H4P4E 闭合了128个 fit anchors 的官方执行接口。R004H4P5I 的8组 realized-geometry 哨兵实现门通过，但36个可计算候选的双向 non-inclusion 下界全为0。R004H4P5D 随后证明这是证书分辨率问题：36/36 前序零证据候选都落在充分 no-witness barrier 内，实际最大配对后轴距离1.447620米，而最小屏障4.495949米；机械审计通过。因此 rotation-free disk non-inclusion 被退役。当前冻结为两条并行、互不替代的验证线：R004H4P5R 只允许在相同8个 fit sentinels 上完成一次带停止规则的方向感知几何终止资格；R004H5 立即在42个 fit recording groups 上验证冻结 QuotientFieldPredictor 的同场景受控外观稳定性与任务信息保留。development、official calibration、test 与 target 继续封存。正式 coverage、真实天气/OOD、驾驶收益、Gate B 与创新性仍未成立。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H5 首次给出经过机械复算的正向 fit 视觉机制证据：42 groups/672 anchors 全部完成，learned task MAE 约0.324m、zero 0.550m、teacher cosine约0.771，三种受控外观漂移约0.0087–0.0102m；一次性审查中 learned 在42/42组上优于 leave-one-group-out teacher prior。该结果只支持受控 fit 机制。R004H4P5R 在预注册30分钟上限内未完成首个哨兵，当前严格几何迭代因 computability 停止且无科学几何结果。下一步只允许冻结模型的独立视觉泛化资格实验；决策收益保持 HOLD。development、official calibration、test 与 target 仍封存，正式 coverage、真实天气/OOD、驾驶收益、Gate B 与创新性未成立。
 
 ## 1. 问题锚点
 
@@ -66,5 +66,5 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段 A（视觉机制）：R004H5 已预注册但尚未执行。冻结 R004H1 checkpoint、DINO、投影与 teacher，只读42个 fit groups 的原始图像。对严格配对的同一 scene/camera/history 施加三种确定性光度变换，在 edge domain 报告 gauge-invariant appearance distance、teacher task error、zero/mean-prior 与 pooled/uniform evidence probes。低 appearance distance 必须与非塌缩和任务信息保留同时成立；这些变换不冒充真实 rain/snow/dusk，也不支持 held-out/OOD 或驾驶收益主张。
-- 下一阶段 B（几何终止资格）：R004H4P5R 已预注册但尚未读取数据。方向感知理论原语和合成反例已实现并通过243项仓库测试。该实验冻结相同8个 fit sentinels、候选、1米 teacher 图、阈值与 ROI；比较独立 polygon diagnostic、退役 disk control、方向矩形在固定分辨率和相位上的严格下界。若 polygon diagnostic 有差异而最细网格仍全零，停止细化并评估保守 polygon 证书；若几何通过但 teacher improvement 仍全负，停止几何工程并转查 provider/task margin；两项资格未通过前禁止扩到128 anchors。
+- 下一阶段 A（独立视觉泛化资格）：冻结 R004H5 的 checkpoint、外观算子、metrics 与阈值，只允许在预注册的未见 source recording groups 上一次性检验任务保持；同时冻结错配图像/场景置乱与输入/DINO 扰动强度账本。不得用该阶段调模型，也不得把受控外观命名为真实天气。
+- 下一阶段 B（决策收益）：HOLD。R004H4P5R 已在30分钟资源上限内停止且没有完整哨兵结果；当前不恢复细网格、候选修改或128-anchor扩展。只有独立视觉泛化与可计算的决策接口分别闭合后，才注册驾驶收益实验。

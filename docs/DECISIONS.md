@@ -709,3 +709,12 @@ of five restored bit equality for all five images. The repair freezes, for every
 original cache-build batch cardinality and pads incomplete condition batches with duplicate
 inputs whose outputs are discarded. No appearance transform, model, checkpoint, data role,
 metric or decision threshold changes. The failed partial fields cannot enter any summary.
+
+The repaired run completed all 672 anchors with zero clean replay mismatches. Mechanical audit
+reopened and recomputed all 672 field artifacts with zero failures. Every registered non-clean
+condition passed the fit mechanism gate: macro task MAE stayed near `0.324 m` versus zero-field
+`0.550 m`, appearance edge MAE was `0.0087--0.0102 m`, and teacher-edge cosine stayed near
+`0.771`. A frozen one-shot follow-up found learned task MAE below the leave-one-group-out teacher
+prior, pooled probe and uniform probe in all 42 recording groups under every condition. These are
+fit mechanism results only. Independent visual generalization is GO; decision benefit is HOLD;
+the current open-ended geometry certificate iteration remains STOP.

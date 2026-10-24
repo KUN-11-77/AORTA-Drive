@@ -10,3 +10,9 @@
 
 输入资格状态：`PASS`。42 groups、672 anchors、8064 unique raw images 已逐文件重放，0 missing、0 hash mismatch；详见 `experiments/results/R004H5_INPUT.md`。该结果只授权冻结模型推理。
 
+## 冻结结果
+
+修复原始 DINO cache batch-cardinality 重放合同后，完整运行完成 672/672 anchors，clean bit mismatch 为 0。预注册裁决为 `MECHANISM_SUPPORTED_ON_FIT_CONTROLLED_APPEARANCE`，随后机械审计重新打开全部 672 个场文件并复算指标，0 failures。
+
+一次性机制审查显示 learned field 在 clean 与三种外观条件下均在 42/42 recording groups 上优于 zero、leave-one-group-out teacher prior、spatially pooled 和 uniform-DINO 对照。pooled、uniform 与 slot-drop 仅为 off-manifold 探针，不称为公平重训基线。完整边界与 GO/HOLD/STOP 裁决见 `experiments/results/R004H5.md`。
+

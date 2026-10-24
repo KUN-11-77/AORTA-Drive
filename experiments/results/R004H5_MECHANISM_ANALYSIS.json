@@ -1,0 +1,416 @@
+{
+  "analysis_script_sha256": "de60227008020bd6ad4d30c552d43ea419c6f7139f32cf7853d8cef3d1406e8e",
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 20261024,
+  "claim_boundary": "Frozen fit-only post-hoc mechanism analysis. Pooled, uniform and slot-drop results are off-manifold probes, not retrained fair baselines. Confidence intervals describe 42 observed fit groups and do not establish generalization.",
+  "completed_at_utc": "2026-10-24T05:09:42.369150+00:00",
+  "condition_control_summary": {
+    "clean": {
+      "appearance_mae_m": 0.0,
+      "controls": {
+        "pooled": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.1451876803497002,
+            "ci95_low_m": 0.1342087446147969,
+            "mean_m": 0.13975820673628628
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.46405266458534156,
+          "tied_group_count": 0
+        },
+        "prior": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.1357256956164542,
+            "ci95_low_m": 0.12758216688636345,
+            "mean_m": 0.13165754227653684
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.45595200012559206,
+          "tied_group_count": 0
+        },
+        "uniform": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.19785177367617618,
+            "ci95_low_m": 0.18233187788801253,
+            "mean_m": 0.18977881207224265
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.514073269921298,
+          "tied_group_count": 0
+        },
+        "zero": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.234772124888109,
+            "ci95_low_m": 0.21823064660852087,
+            "mean_m": 0.22603797367176298
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.5503324315208183,
+          "tied_group_count": 0
+        }
+      },
+      "learned_task_mae_m": 0.3242944578490553,
+      "teacher_cosine": 0.7714385408334941
+    },
+    "cool_cast": {
+      "appearance_mae_m": 0.010211086925762478,
+      "controls": {
+        "pooled": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.14556783364984213,
+            "ci95_low_m": 0.13440501860594087,
+            "mean_m": 0.13994457562053586
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.464434991038616,
+          "tied_group_count": 0
+        },
+        "prior": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.13552528045372075,
+            "ci95_low_m": 0.1274436948176146,
+            "mean_m": 0.13146158470751199
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.45595200012559206,
+          "tied_group_count": 0
+        },
+        "uniform": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.19746527237459915,
+            "ci95_low_m": 0.1820900547959015,
+            "mean_m": 0.1895828545032178
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.514073269921298,
+          "tied_group_count": 0
+        },
+        "zero": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.23428636326501398,
+            "ci95_low_m": 0.21804699453717244,
+            "mean_m": 0.22584201610273807
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.5503324315208183,
+          "tied_group_count": 0
+        }
+      },
+      "learned_task_mae_m": 0.32449041541808016,
+      "teacher_cosine": 0.7709969609373528
+    },
+    "low_contrast": {
+      "appearance_mae_m": 0.008680104227399474,
+      "controls": {
+        "pooled": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.14442168564267097,
+            "ci95_low_m": 0.13358817755802233,
+            "mean_m": 0.13903167165375124
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.4635820649190472,
+          "tied_group_count": 0
+        },
+        "prior": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.1354397738165511,
+            "ci95_low_m": 0.1273041673076387,
+            "mean_m": 0.13140160686029617
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.45595200012559206,
+          "tied_group_count": 0
+        },
+        "uniform": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.1977487991498011,
+            "ci95_low_m": 0.18225554857753698,
+            "mean_m": 0.18952287665600198
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.514073269921298,
+          "tied_group_count": 0
+        },
+        "zero": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.23439746091974006,
+            "ci95_low_m": 0.21811575873255962,
+            "mean_m": 0.22578203825552226
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.5503324315208183,
+          "tied_group_count": 0
+        }
+      },
+      "learned_task_mae_m": 0.324550393265296,
+      "teacher_cosine": 0.7712907502650639
+    },
+    "low_exposure": {
+      "appearance_mae_m": 0.00979936908998331,
+      "controls": {
+        "pooled": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.14486472118783567,
+            "ci95_low_m": 0.13388041363777564,
+            "mean_m": 0.13945525462145703
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.46369439481030267,
+          "tied_group_count": 0
+        },
+        "prior": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.1358433719771249,
+            "ci95_low_m": 0.1276873967443016,
+            "mean_m": 0.13171285993674647
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.45595200012559206,
+          "tied_group_count": 0
+        },
+        "uniform": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.19788237702795686,
+            "ci95_low_m": 0.18234671755616916,
+            "mean_m": 0.18983412973245228
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.514073269921298,
+          "tied_group_count": 0
+        },
+        "zero": {
+          "control_minus_learned": {
+            "ci95_high_m": 0.2347620889732904,
+            "ci95_low_m": 0.2183098399004575,
+            "mean_m": 0.22609329133197265
+          },
+          "learned_better_group_count": 42,
+          "task_mae_m": 0.5503324315208183,
+          "tied_group_count": 0
+        }
+      },
+      "learned_task_mae_m": 0.3242391401888457,
+      "teacher_cosine": 0.771442856090421
+    }
+  },
+  "experiment_id": "R004H5-frozen-mechanism-followup-v1",
+  "fit_anchor_count": 672,
+  "fit_group_count": 42,
+  "raw_result_sha256": "8a37f05556407f1ef32ba6f7834e305a23a5ab43ca1b222a52480842e0807a0b",
+  "slot_drop_probes": {
+    "drop_camera_0": {
+      "field_change_from_clean_mae_m": 0.142810308711324,
+      "task_mae_m": 0.387532297476715,
+      "teacher_cosine": 0.6580576122954985
+    },
+    "drop_camera_1": {
+      "field_change_from_clean_mae_m": 0.08917502460769597,
+      "task_mae_m": 0.35118311721553247,
+      "teacher_cosine": 0.7265643221151065
+    },
+    "drop_camera_2": {
+      "field_change_from_clean_mae_m": 0.16200078292889938,
+      "task_mae_m": 0.4011294630634928,
+      "teacher_cosine": 0.6567422076242609
+    },
+    "drop_history_0": {
+      "field_change_from_clean_mae_m": 0.05556505562813865,
+      "task_mae_m": 0.3369670848726283,
+      "teacher_cosine": 0.7537716779000615
+    },
+    "drop_history_1": {
+      "field_change_from_clean_mae_m": 0.015843863158626133,
+      "task_mae_m": 0.32541605606442187,
+      "teacher_cosine": 0.770036157628609
+    },
+    "drop_history_2": {
+      "field_change_from_clean_mae_m": 0.015262137951092056,
+      "task_mae_m": 0.32537375436882143,
+      "teacher_cosine": 0.770164873326024
+    },
+    "drop_history_3": {
+      "field_change_from_clean_mae_m": 0.05153972934174361,
+      "task_mae_m": 0.3337523238109018,
+      "teacher_cosine": 0.7579694294266865
+    }
+  },
+  "status": "COMPLETED",
+  "teacher_salient_edge_proxy": {
+    "anchors_with_at_least_one_salient_edge": 672,
+    "claim_limit": "Teacher-gradient salience is not a trajectory footprint, causal decision region, or safety metric. This post-hoc diagnostic cannot establish driving benefit.",
+    "conditions": {
+      "clean": {
+        "appearance_mae_m": 0.0,
+        "clean_edge_energy_mae_m": 0.506349807936341,
+        "task_mae_m": 0.4473568830175261,
+        "teacher_cosine": 0.807543302540658,
+        "zero_task_mae_m": 0.9101227676479281
+      },
+      "cool_cast": {
+        "appearance_mae_m": 0.011593898941858631,
+        "clean_edge_energy_mae_m": 0.506349807936341,
+        "task_mae_m": 0.44768475730309953,
+        "teacher_cosine": 0.8071259802040762,
+        "zero_task_mae_m": 0.9101227676479281
+      },
+      "low_contrast": {
+        "appearance_mae_m": 0.009812820347464344,
+        "clean_edge_energy_mae_m": 0.506349807936341,
+        "task_mae_m": 0.44759033012709554,
+        "teacher_cosine": 0.80757690513058,
+        "zero_task_mae_m": 0.9101227676479281
+      },
+      "low_exposure": {
+        "appearance_mae_m": 0.011004629488189208,
+        "clean_edge_energy_mae_m": 0.506349807936341,
+        "task_mae_m": 0.44688190465683714,
+        "teacher_cosine": 0.8076986169315153,
+        "zero_task_mae_m": 0.9101227676479281
+      }
+    },
+    "definition": "absolute_teacher_edge_at_least_0p5m_posthoc_geometry_salience_proxy",
+    "salient_edge_count": 2957951,
+    "salient_edge_fraction": 0.5458473211333145,
+    "threshold_m": 0.5,
+    "total_edge_count": 5419008
+  },
+  "unresolved_by_existing_artifacts": [
+    "mismatched_image_or_scene_permutation_causal_test",
+    "input_pixel_and_DINO_feature_perturbation_magnitude",
+    "held_out_source_group_generalization",
+    "real_weather_or_target_OOD_robustness",
+    "trajectory_footprint_decision_relevance",
+    "driving_or_safety_improvement"
+  ],
+  "worst_group_diagnostics": {
+    "clean": {
+      "highest_appearance_drift": {
+        "appearance_mae_m": 0.0,
+        "learned_task_mae_m": 0.30656811937335887,
+        "pooled_task_mae_m": 0.43491747168843675,
+        "prior_task_mae_m": 0.42767332203271835,
+        "recording_group": "2021.05.12.22.28.35_veh-35",
+        "teacher_cosine": 0.79699507118859,
+        "uniform_task_mae_m": 0.49201803791328835,
+        "zero_task_mae_m": 0.5531035970544249
+      },
+      "highest_task_mae": {
+        "appearance_mae_m": 0.0,
+        "learned_task_mae_m": 0.3796373777814911,
+        "pooled_task_mae_m": 0.4994098202800201,
+        "prior_task_mae_m": 0.49813438722325476,
+        "recording_group": "2021.06.09.11.54.15_veh-12",
+        "teacher_cosine": 0.7139095547162666,
+        "uniform_task_mae_m": 0.528612395397734,
+        "zero_task_mae_m": 0.5671088758627505
+      },
+      "lowest_teacher_cosine": {
+        "appearance_mae_m": 0.0,
+        "learned_task_mae_m": 0.3796373777814911,
+        "pooled_task_mae_m": 0.4994098202800201,
+        "prior_task_mae_m": 0.49813438722325476,
+        "recording_group": "2021.06.09.11.54.15_veh-12",
+        "teacher_cosine": 0.7139095547162666,
+        "uniform_task_mae_m": 0.528612395397734,
+        "zero_task_mae_m": 0.5671088758627505
+      }
+    },
+    "cool_cast": {
+      "highest_appearance_drift": {
+        "appearance_mae_m": 0.012052274026260305,
+        "learned_task_mae_m": 0.3378015098556784,
+        "pooled_task_mae_m": 0.47224349550082434,
+        "prior_task_mae_m": 0.468999087302738,
+        "recording_group": "2021.06.09.17.37.09_veh-12",
+        "teacher_cosine": 0.7541527813758983,
+        "uniform_task_mae_m": 0.5049931337065614,
+        "zero_task_mae_m": 0.5554829195260405
+      },
+      "highest_task_mae": {
+        "appearance_mae_m": 0.009649319792544471,
+        "learned_task_mae_m": 0.37961560093638247,
+        "pooled_task_mae_m": 0.5002493088679456,
+        "prior_task_mae_m": 0.49813438722325476,
+        "recording_group": "2021.06.09.11.54.15_veh-12",
+        "teacher_cosine": 0.7133928969701676,
+        "uniform_task_mae_m": 0.528612395397734,
+        "zero_task_mae_m": 0.5671088758627505
+      },
+      "lowest_teacher_cosine": {
+        "appearance_mae_m": 0.009649319792544471,
+        "learned_task_mae_m": 0.37961560093638247,
+        "pooled_task_mae_m": 0.5002493088679456,
+        "prior_task_mae_m": 0.49813438722325476,
+        "recording_group": "2021.06.09.11.54.15_veh-12",
+        "teacher_cosine": 0.7133928969701676,
+        "uniform_task_mae_m": 0.528612395397734,
+        "zero_task_mae_m": 0.5671088758627505
+      }
+    },
+    "low_contrast": {
+      "highest_appearance_drift": {
+        "appearance_mae_m": 0.01244811853249548,
+        "learned_task_mae_m": 0.34354712050103364,
+        "pooled_task_mae_m": 0.48667334204375046,
+        "prior_task_mae_m": 0.46138952296597086,
+        "recording_group": "2021.10.06.19.27.33_veh-28",
+        "teacher_cosine": 0.7534845489741508,
+        "uniform_task_mae_m": 0.527891959864381,
+        "zero_task_mae_m": 0.5514222614550616
+      },
+      "highest_task_mae": {
+        "appearance_mae_m": 0.008701288171857688,
+        "learned_task_mae_m": 0.380090253916316,
+        "pooled_task_mae_m": 0.4985004853715011,
+        "prior_task_mae_m": 0.49813438722325476,
+        "recording_group": "2021.06.09.11.54.15_veh-12",
+        "teacher_cosine": 0.7135566390414253,
+        "uniform_task_mae_m": 0.528612395397734,
+        "zero_task_mae_m": 0.5671088758627505
+      },
+      "lowest_teacher_cosine": {
+        "appearance_mae_m": 0.008701288171857688,
+        "learned_task_mae_m": 0.380090253916316,
+        "pooled_task_mae_m": 0.4985004853715011,
+        "prior_task_mae_m": 0.49813438722325476,
+        "recording_group": "2021.06.09.11.54.15_veh-12",
+        "teacher_cosine": 0.7135566390414253,
+        "uniform_task_mae_m": 0.528612395397734,
+        "zero_task_mae_m": 0.5671088758627505
+      }
+    },
+    "low_exposure": {
+      "highest_appearance_drift": {
+        "appearance_mae_m": 0.013608687621175675,
+        "learned_task_mae_m": 0.343369177199327,
+        "pooled_task_mae_m": 0.48780768577100325,
+        "prior_task_mae_m": 0.46138952296597086,
+        "recording_group": "2021.10.06.19.27.33_veh-28",
+        "teacher_cosine": 0.7537890663780734,
+        "uniform_task_mae_m": 0.527891959864381,
+        "zero_task_mae_m": 0.5514222614550616
+      },
+      "highest_task_mae": {
+        "appearance_mae_m": 0.009402075042811386,
+        "learned_task_mae_m": 0.37925455381119366,
+        "pooled_task_mae_m": 0.49949322902716126,
+        "prior_task_mae_m": 0.49813438722325476,
+        "recording_group": "2021.06.09.11.54.15_veh-12",
+        "teacher_cosine": 0.7141818679767084,
+        "uniform_task_mae_m": 0.528612395397734,
+        "zero_task_mae_m": 0.5671088758627505
+      },
+      "lowest_teacher_cosine": {
+        "appearance_mae_m": 0.009402075042811386,
+        "learned_task_mae_m": 0.37925455381119366,
+        "pooled_task_mae_m": 0.49949322902716126,
+        "prior_task_mae_m": 0.49813438722325476,
+        "recording_group": "2021.06.09.11.54.15_veh-12",
+        "teacher_cosine": 0.7141818679767084,
+        "uniform_task_mae_m": 0.528612395397734,
+        "zero_task_mae_m": 0.5671088758627505
+      }
+    }
+  }
+}
