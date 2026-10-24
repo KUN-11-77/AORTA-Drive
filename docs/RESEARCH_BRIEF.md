@@ -18,6 +18,13 @@
 > direct-pair/GTRS/DA-WAM匹配消融、NavDream或时延门，不授权实现。详见
 > `refine-logs/2026-10-25_aorta_post_b3/LITERATURE_AND_METHOD_PIVOT.md`。
 
+> **2026-10-25 H7BS4B4预注册：先验证标签与oracle，不训练网络。** 新候选数学对象只有在
+> source-fit 上存在合法、可复算且非平凡的native-relative task utility时才有实现资格。由于NAVSIM
+> progress在当前评分面板内归一化，7个候选不得一次批量评分；每个候选必须独立与同一native构成
+> 二元面板，复现candidate-specific reactive traffic与one-frame PDM。B4冻结42组×16 anchors、完整
+> 独立重放和group-level oracle-gain裁决；two-frame comfort、完整official PDMS、跨planner、NavDream
+> 与网络收益均不在本轮主张内。详见`experiments/R004H7/H7BS4B4_PREREGISTRATION.md`。
+
 > **2026-10-24 post-D0理论迁移审查：复杂度按必要性而非模块数量治理。** 候选核心链冻结为
 > Hodge-consistent quotient representation、support-conditioned correlated graph uncertainty、
 > exact shared-variable robust readout与selective Simplex fallback。离散外微分解释potential
