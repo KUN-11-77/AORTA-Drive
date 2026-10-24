@@ -1,6 +1,11 @@
 # R004H7-BS4B4R1 implementation preflight
 
-状态：`SERVER_SCORER_SEMANTICS_REPREFLIGHT_PASS__FORMAL_RUN_NOT_AUTHORIZED`。
+状态：`SERVER_PROVENANCE_REPREFLIGHT_PASS__FORMAL_RUN_NOT_AUTHORIZED`。
+
+> 2026-10-25 provenance hardening：冻结提交 `53f16c1` 在正式 outcome 前补齐 primary/replay 的
+> `status`、`code_commit`、config hash、frozen-input hash、implementation hash、sealed-role 与
+> full-PDMS boundary 审计，并按用户要求把 wall cap 从180分钟收紧为120分钟。服务器同一 NAVSIM
+> 环境12/12合同测试通过，未调用 scorer、未访问任何科学 outcome。
 
 > 2026-10-25 pre-run source audit 发现旧文档把 official scorer 误写为 `[native, challenger]`
 > 联合评分。实际实现对 native 和每个 challenger 分别在固定 `[PDM baseline, trajectory]` proposal
@@ -40,6 +45,26 @@
 旧 `9664e4b` payload interface smoke 与 roster audit 仍用于候选域证据，因为 core、membership、
 candidate provider、NAVSIM execution 与 B4 dependency hashes 未变；新提交只修正 estimand 文字并在
 runner/audit 增加 progress-mode fail-closed 合同。
+
+## 服务器 provenance re-preflight
+
+冻结提交 `53f16c1` 的最小 delta bundle SHA-256 为
+`3cd759512916eea5d3e9b73207cd15dedaf60e84288168010a862b840f5c779f`。服务器同一 NAVSIM
+环境中：
+
+- R1 合同测试 `12/12` 通过；
+- runner/auditor Python compile 通过；本地 strict mypy 同样通过；
+- config、runner、audit hashes 与冻结值 exact；
+- formal wall cap 为120分钟；
+- 新机械审计会拒绝 primary/replay 的 commit、config、frozen input、implementation source、
+  sealed-role 或 full-PDMS boundary 漂移；
+- scorer 未调用，scientific outcomes 未访问，development/calibration/test/NavDream/target 未访问；
+- preflight artifact SHA-256：
+  `4477fe2799bc71145d3a8cee21d55611328db99f5f641d73e07685aaf48b9191`；
+- server artifact：
+  `/data/khsong/aorta_runs/r004h7bs4b4r1_preflight_53f16c1/preflight.json`；
+- local mirror：
+  `F:/AORTA-Drive-artifacts/gate-b/R004H7/r004h7bs4b4r1_preflight_53f16c1.json`。
 
 ## 服务器 interface smoke
 
@@ -89,12 +114,13 @@ runner/audit 增加 progress-mode fail-closed 合同。
 
 ## 当前冻结摘要
 
-- source commit：`08081cc`；
-- config SHA-256：`9eb2a0f112333b2b2cba06cb0b9d52e131cc43277ebc30b85c182ad9d175e3f0`；
+- source contract commit：`53f16c1`；
+- config SHA-256：`7a79e85b81c89b2741f8a6784612cf4233effbbd5fa43d75a9fa54d483ad9c27`；
 - preregistration SHA-256：`9db3afe2069936cb87d8c6a074ee205fe347c952cccbd801dd42290b59ce3bab`；
 - core SHA-256：`4c3f73fd3cc1b964faf987081065e680567a6802d4464c4f53f24ceb9fe063c7`；
-- runner SHA-256：`c975c8d9e44df575498afaf436ce2455efde1c1f20f5e96784ef842671d84d1d`；
-- audit SHA-256：`dde8f2b5bf8977c19517a5297de6557d842a250f46c4ac6eb6860c3ec6f6c889`。
+- runner SHA-256：`6ac7e7f575631ede5a0d15c20f8cd5013419c4a19230b02db201773fa5262902`；
+- audit SHA-256：`43389f6725f893b9775f53bec8c1ba393b15bef7b944b2f42b3101091ba19333`；
+- maximum wall time：120分钟。
 
 ## 下一门
 

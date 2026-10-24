@@ -1107,3 +1107,17 @@ the current open-ended geometry certificate iteration remains STOP.
   group maximum 不把组内比较冒充独立样本。
 - **Boundary:** 这些是数学/软件合同测试，不证明模型 residual 满足半径、不证明 source 或
   NavDream coverage，也不授权 B4R1 或网络训练。
+
+## ADR-0077：B4R1正式开封前强制primary/replay来源闭合并使用120分钟上限
+
+- **Decision:** `PROVENANCE_FIELDS_ARE_GATES__WALL_CAP_120_MINUTES`。
+- **Reason:** 原 auditor 能重算 ledger 与 summary，却未把 status、source commit、config hash、
+  frozen-input hash 和 implementation hash 纳入主重放 exact gate；同时配置仍保留180分钟上限，
+  与用户已要求的120分钟不一致。两项都能在任何 scorer outcome 产生前修正，不构成结果驱动调参。
+- **Consequence:** runner把冻结输入与实现哈希写入结果；auditor要求 primary/replay 的 provenance、
+  sealed-role、full-PDMS boundary、estimand、progress mode 和完整 ledger 全部一致。wall cap固定为120
+  分钟，超时即失败，不自动续跑。服务器来源提交`53f16c1`的12项合同测试和compile通过。
+- **Boundary:** provenance PASS不提供 preference signal。formal B4R1仍需用户明确授权；运行期间
+  不读取partial scientific metrics、不修改candidate、membership、threshold或统计协议。
+- **Artifact:** `experiments/R004H7/H7BS4B4R1_IMPLEMENTATION_PREFLIGHT.md`；本地镜像
+  `F:/AORTA-Drive-artifacts/gate-b/R004H7/r004h7bs4b4r1_preflight_53f16c1.json`。

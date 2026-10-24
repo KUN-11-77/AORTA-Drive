@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 B4R1开封前来源审计：`SERVER_PROVENANCE_REPREFLIGHT_PASS__FORMAL_HOLD`。**
+> 正式 outcome 前已补齐 primary/replay 的status、commit、config、frozen-input、implementation、
+> sealed-role与full-PDMS boundary核验，并将wall cap从180分钟收紧为用户要求的120分钟。冻结来源
+> 提交`53f16c1`在服务器同一NAVSIM环境12/12合同测试通过；scorer未调用，任何科学outcome与
+> development/calibration/test/NavDream/target均未访问。preflight artifact SHA-256为
+> `4477fe27…b9191`。该结果只说明正式B4R1已经具备更强的可审计执行资格，明确授权前仍HOLD。
+
 > **2026-10-25 理论—网络—行为闭环合同：`FORMAL_CLOSURE_CANDIDATE__EMPIRICAL_CORE_UNPROVEN`。**
 > 当前主线已压成五层建筑：合法外观干预、native-relative estimand、完整时域差异支持、同时关系
 > 不确定集合、native-preserving 实时执行。六个条件命题分别约束 relation 输出、signed support、
