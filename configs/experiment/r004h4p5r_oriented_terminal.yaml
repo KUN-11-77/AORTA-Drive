@@ -1,0 +1,124 @@
+experiment_id: R004H4P5R-oriented-geometry-terminal-v1
+date: 2026-10-24
+scope: one_bounded_fit_only_qualification_of_oriented_continuous_noninclusion
+
+predecessors:
+  interface:
+    experiment: R004H4P5I-realized-geometry-interface-v1
+    raw_result_sha256: ec096a416e530fa9952d91f680bee1c4295989f9bbb0fef9eb3fb97f74274d86
+  disk_diagnosis:
+    experiment: R004H4P5D-disk-resolution-diagnosis-v1
+    raw_result_sha256: be7a68eb5818750e7bd856434f9a47e0d9794be512f015021070860e03ef5b92
+    decision: RETIRE_DISK_NONINCLUSION_AND_QUALIFY_ORIENTED_RECTANGLE
+
+frozen_scope:
+  role: fit
+  selected_group_rule: first_eight_fit_rows_in_frozen_role_manifest
+  selected_anchor_rule: anchor_index_zero_in_each_selected_group
+  recording_group_count: 8
+  anchor_count: 8
+  candidate_provider: native_fixed_normal_c2_bump_v1
+  amplitudes_m: [-1.5, -1.0, -0.5, 0.5, 1.0, 1.5]
+  teacher_grid_resolution_m: 1.0
+  teacher_graph_shape: [64, 64]
+  intent_thresholds: inherited_exactly_from_R004H4P5I
+  meaningful_area_threshold_each_direction_m2: 1.0
+  teacher_improvement_threshold_m: 0.5
+  prohibited_roles: [selection, proxy_cal, development, calibration, test, target_domain]
+  candidate_threshold_or_sentinel_reselection: prohibited
+
+estimand:
+  experimental_unit: recording_group
+  nested_units: [anchor, candidate, grid_phase, grid_resolution]
+  prevalence_or_population_significance_claim: prohibited
+  purpose: determine_geometry_interface_validity_not_method_performance
+
+continuous_object:
+  vehicle: exact_R004H4P5I_vehicle_rectangle
+  trajectory: official_realized_0.1_second_states
+  interpolation:
+    translation: linear
+    yaw: shortest_continuous_unwrapped_linear
+  roi: exact_R004H4P5I_support
+  clipping: reject
+  empty_trajectory_or_set: reject
+
+polygon_reference:
+  role: independent_high_resolution_diagnostic_not_formal_ground_truth
+  implementation: polygon_union_of_exact_pose_rectangles_on_dyadic_time_mesh
+  temporal_subdivisions_per_official_interval: [1, 2, 4, 8, 16, 32]
+  report:
+    - challenger_minus_native_area_m2_at_every_level
+    - native_minus_challenger_area_m2_at_every_level
+    - last_two_level_absolute_change_m2
+    - topology_or_numeric_failure
+  interpretation:
+    exact_true_area_claim: prohibited
+    positive_existence_claim_requires_formal_cell_certificate: true
+
+formal_certificates:
+  historical_control:
+    name: rotation_free_disk
+    production_use: prohibited
+  candidate:
+    name: interval_safe_oriented_rectangle
+    segment_outer_cover: midpoint_rectangle_plus_translation_yaw_and_pose_inflation
+    inner_set: complete_cells_proved_inside_a_pose_error_shrunk_rectangle
+    noninclusion: inner_cell_disjoint_from_every_opposing_segment_outer_cover
+    arithmetic: exact_binary64_rationals_plus_directed_rounding
+  geometry_resolutions_m: [1.0, 0.5, 0.25, 0.125]
+  primary_grid_phase_fraction: [0.0, 0.0]
+  diagnostic_grid_phase_fractions:
+    - [0.0, 0.0]
+    - [0.5, 0.0]
+    - [0.0, 0.5]
+    - [0.5, 0.5]
+  phase_selection_after_results: prohibited
+  primary_decision_uses_canonical_phase_only: true
+  required_adversarial_cases:
+    - identical_trajectories
+    - known_lateral_translation
+    - grid_phase_translation
+    - yaw_only_change
+    - translation_plus_yaw
+    - roi_boundary_rejection
+    - empty_input_rejection
+    - temporal_refinement
+
+required_outputs:
+  - reference_area_and_convergence_per_candidate
+  - disk_lower_bounds_as_retired_control
+  - oriented_lower_bounds_by_resolution_and_phase
+  - certificate_to_reference_area_ratio_when_denominator_positive
+  - teacher_improvement_lower_bound_for_every_geometry_valid_candidate
+  - wall_time_peak_memory_and_witness_count
+  - complete_rejection_reason_ledger
+
+qualification:
+  soundness_pass_requires:
+    - all_registered_synthetic_and_adversarial_cases_pass
+    - every_positive_formal_witness_is_a_subset_proof_not_a_sampled_point_heuristic
+    - no_roi_clipping_empty_set_fallback_or_nonfinite_value
+    - no_formal_lower_bound_exceeds_the_corresponding_diagnostic_reference_beyond_reported_reference_discretization_change
+  nontriviality_pass_requires:
+    - at_least_one_frozen_real_candidate_has_positive_formal_area_in_both_directions_at_canonical_0p25m_or_0p125m_resolution
+  resolution_assessment:
+    - report_all_frozen_resolutions_without_post_hoc_selection
+    - positive_bounds_should_not_decrease_under_nested_canonical_refinement_except_for_a_declared_implementation_error
+  teacher_outcome:
+    - report_separately_from_geometry
+    - geometry_pass_does_not_imply_teacher_opportunity
+
+terminal_rules:
+  - if_polygon_reference_is_positive_but_all_fine_grid_bounds_are_zero_stop_grid_refinement_and_evaluate_conservative_polygon_certification
+  - if_no_polygon_reference_difference_exists_stop_geometry_and_review_candidate_provider
+  - if_geometry_is_nontrivial_but_all_teacher_improvement_bounds_are_below_0p5m_stop_geometry_and_review_provider_or_task_margin
+  - do_not_change_candidates_thresholds_sentinels_or_grid_phases_after_results
+  - do_not_expand_to_128_anchors_unless_soundness_and_nontriviality_both_pass
+  - this_is_the_last_geometry_representation_iteration_before_a_keep_or_retire_decision
+
+resources:
+  device: cpu
+  maximum_wall_minutes: 30
+  maximum_output_mib: 32
+

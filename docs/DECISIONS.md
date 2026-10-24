@@ -629,7 +629,7 @@ This does not assert that a tighter certificate will find a positive opportunity
 
 ## ADR-0053 — Require a numerically certified orientation-aware rectangle interface
 
-- **Status:** proposed after R004H4P5D; not yet registered for data execution
+- **Status:** accepted for one terminal qualification after R004H4P5D; data not yet read
 - **Outer set:** for each adjacent realized pose pair, cover the continuous body sweep by
   the body rectangle at the midpoint pose dilated by half endpoint translation, certified
   pose error and the rational upper bound `R |Delta yaw| / 2` on the exact chord term
@@ -650,6 +650,35 @@ This does not assert that a tighter certificate will find a positive opportunity
   shifts around the resolvable boundary, high yaw change, last-sample witnesses, ROI exits,
   non-finite inputs and monotonic loss of witnesses as pose error grows. Only after these
   pass may the same eight fit sentinels be read.
-- **Boundary:** no provider, intent threshold, teacher grid, area threshold, ROI or data-role
-  change is authorized. The independent geometry resolution remains a proposed interface
-  choice until its numerical and resource audits pass; development remains sealed.
+- **Terminal design:** R004H4P5R freezes the same eight sentinels and all existing candidates,
+  compares a dyadically refined polygon diagnostic, the retired disk control and the oriented
+  certificate at `1.0/0.5/0.25/0.125 m`. Four fixed grid phases are diagnostic; only the
+  canonical phase enters the primary decision. Polygon output is not called exact ground truth.
+- **Stop rules:** if polygon differences persist but the finest grid remains vacuous, stop grid
+  refinement and evaluate a conservative polygon certificate. If geometry becomes nontrivial
+  while all teacher bounds remain below `0.5 m`, stop geometry work and review the provider or
+  task margin. No 128-anchor expansion occurs before both soundness and nontriviality pass.
+- **Boundary:** no provider, intent threshold, teacher graph, area threshold, ROI or data-role
+  change is authorized. Development remains sealed.
+
+## ADR-0054 — Start fit-only visual mechanism validation in parallel with the terminal geometry gate
+
+- **Status:** accepted and registered before R004H5 data execution
+- **Reason:** R004H1 shows fit/selection mean edge signal but does not show that the frozen field
+  is stable under appearance changes or that any observed stability retains road-task content.
+  Completing every geometry detail first would leave the central visual hypothesis untested.
+- **Design:** freeze the R004H1 checkpoint, DINO, projection, teacher and all 42 fit groups.
+  Apply three deterministic RGB photometric operators to the exact same scene/camera/history
+  images and rerun the frozen feature pipeline. Measure field change only in graph-edge space,
+  task error against the unchanged teacher, field energy/correlation, and predefined zero,
+  leave-one-group-out mean-field, pooled-token and uniform-token controls.
+- **Statistical unit:** recording group. Sixteen anchors and all appearance variants are paired
+  repeated measurements within each group; treating 672 anchors as independent is prohibited.
+- **Interpretation:** this is a training-role mechanism diagnostic. It cannot establish held-out
+  source generalization, real weather, target OOD, conformal coverage, driving benefit or safety.
+  The transforms are not named rain, snow or dusk. Feature noise is not an acceptable substitute
+  if raw-image replay fails.
+- **Decision:** low appearance distance supports the mechanism only when every registered
+  transform also beats zero-field task error, retains positive teacher-edge correlation and
+  avoids constant-field collapse. A failure redirects work to the visual objective/architecture,
+  not to further geometry refinement.

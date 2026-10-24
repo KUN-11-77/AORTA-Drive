@@ -384,6 +384,27 @@ safe-native-to-unsafe-challenger event 在 \(\gamma_{task}\ge0\) 时只是推论
 
 因此应检验 graph potential differences 的 appearance stability，而不是 token 或 node values 完全不变。经验小 \(\rho\) 不产生 target coverage；target 只报告 empirical results。
 
+R004H5 将该机制拆成两个不可互相替代的条件。令
+
+\[
+D_{app}^{(1)}(X,X')=|E|^{-1}\lVert D u_\theta(X')-D u_\theta(X)\rVert_1,
+\]
+
+\[
+E_{task}^{(1)}(X)=|E|^{-1}\lVert D u_\theta(X)-D\widetilde d\rVert_1.
+\]
+
+前者是 gauge-invariant 的外观敏感度，后者验证稳定的是否仍是任务信息。只报告小
+\(D_{app}\) 而不比较 zero field、无图像 prior 和场能量属于 collapse-compatible 证据，
+不能支持机制主张。统计汇总先在每个 recording group 内聚合16个 anchors，再对 group
+等权；anchor、camera、history 和 appearance copy 均不是独立样本。
+
+首轮只使用 fit groups 和预注册的确定性光度算子，作用在原始 RGB 后再完整重跑冻结
+DINO。它是训练内机制诊断，不是 held-out generalization。feature-space noise、直接修改
+cached token 或把低曝光/色偏命名为真实雨雪黄昏均被禁止。spatially pooled 和 uniform
+DINO 只作为不重训的 off-manifold sensitivity probes；公平视觉 baseline 仍需独立训练和
+held-out 验证。
+
 ## 10. Usefulness decomposition
 
 评估单位 \(U=(Z,t)\) 由“均匀抽 session，再均匀抽冻结时刻”定义，推断按 session 聚类。

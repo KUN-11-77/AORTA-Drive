@@ -1,0 +1,128 @@
+experiment_id: R004H5-fit-paired-appearance-mechanism-v1
+date: 2026-10-24
+scope: fit_only_paired_controlled_appearance_diagnostic_of_the_frozen_quotient_field
+
+frozen_inputs:
+  role_manifest_sha256: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  feature_manifest_sha256: 85299cba3416a866d209df812d85912b8f4af82f826429bb9ed67b5efaea4c93
+  label_manifest_sha256: 1ad3283ff42133c3c04d848b54514a29d5983c2b57f4f7fca38bd69fa781c537
+  stage_p_checkpoint_sha256: 8b5110b312341f1516067c55d6bb5a9cdec9b230de3837f451f993d5dbc0906b
+  stage_p_training_revision: 634f990c7d8cf9598054237a70119c7b0c0773b4
+  backbone_checkpoint_sha256: 7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488
+  backbone_source_sha256: dde435450cdc79eaddcd11039ab90d942f6fb08770b5ee3998a81240d8cf1bf8
+  allowed_role: fit
+  fit_groups: 42
+  anchors_per_group: 16
+  anchor_count: 672
+  prohibited_roles: [selection, proxy_cal, development, calibration, test, target_domain]
+
+design:
+  experimental_unit: recording_group
+  repeated_measures: all_16_anchors_and_all_appearance_conditions_within_group
+  blocking: paired_by_exact_scene_camera_and_history_image
+  randomization: none_deterministic_full_factorial
+  model_training_or_checkpoint_selection: prohibited
+  corruption_parameter_tuning_after_results: prohibited
+  target_or_real_weather_claim: prohibited
+
+appearance_conditions:
+  - name: clean
+    operator: identity
+  - name: low_exposure
+    operator: clip_srgb_0_1
+    formula: x_prime_equals_clip_0p50_times_x
+  - name: low_contrast
+    operator: clip_srgb_0_1
+    formula: x_prime_equals_clip_0p50_plus_0p55_times_x_minus_0p50
+  - name: cool_cast
+    operator: clip_srgb_0_1
+    formula: x_prime_rgb_equals_clip_x_times_0p85_0p95_1p10
+appearance_semantics:
+  scope: controlled_geometry_preserving_photometric_stress_only
+  rain_snow_dusk_labeling: prohibited
+
+frozen_inference:
+  raw_shape: [1080, 1920]
+  resized_shape: [288, 512]
+  resize: bicubic_align_corners_false_antialias_true
+  normalization_mean: [0.485, 0.456, 0.406]
+  normalization_std: [0.229, 0.224, 0.225]
+  dino_feature: normalized_last_4_layer_mean
+  quotient_field_output: subtract_spatial_mean
+  edge_order: all_rightward_then_all_downward
+  edge_length_m: 1.0
+
+estimands:
+  appearance_distance:
+    primary: macro_group_mean_of_anchor_mean_absolute_edge_difference_m
+    diagnostics:
+      - macro_group_mean_of_anchor_edge_rms_difference_m
+      - per_group_maximum_edge_difference_m
+      - per_anchor_rho_infinity_m
+    definition: edge_domain_D_of_u_variant_minus_u_clean
+    gauge_invariant: true
+  task_error:
+    primary: macro_group_mean_edge_mae_to_frozen_teacher_m
+    diagnostics:
+      - exact_group_maximum_edge_error_m
+      - corrupted_minus_clean_edge_mae_m
+      - edge_cosine_with_teacher
+      - predicted_edge_rms_m
+  independent_summary:
+    aggregate: equal_weight_per_recording_group
+    anchor_as_independent_sample: prohibited
+
+controls:
+  - name: zero_field
+    purpose: detect_constant_field_collapse
+  - name: leave_one_group_out_fit_label_mean_field
+    purpose: no_image_scene_prior_control
+  - name: spatially_pooled_DINO_probe
+    purpose: destroy_within_image_spatial_relations_without_retraining
+    claim_limit: off_manifold_sensitivity_probe_not_a_fair_trained_baseline
+  - name: uniform_fit_mean_DINO_probe
+    purpose: remove_scene_specific_visual_evidence_without_retraining
+    claim_limit: off_manifold_sensitivity_probe_not_a_fair_trained_baseline
+  - name: camera_and_history_slot_drop_probes
+    purpose: localize_dependence_on_evidence_slots
+    claim_limit: sensitivity_only
+
+mechanism_decision:
+  supported_requires_for_every_nonclean_condition:
+    - visual_task_error_macro_mean_strictly_below_zero_field
+    - paired_appearance_distance_macro_mean_strictly_below_clean_field_edge_energy_macro_mean
+    - edge_cosine_with_teacher_remains_positive
+    - no_constant_or_near_constant_field_collapse
+  consistency_report:
+    method: recording_group_cluster_bootstrap
+    seed: 20261024
+    replicates: 10000
+    confidence_interval: 0.95
+    interpretation: descriptive_fit_group_consistency_not_held_out_generalization
+  unsupported_if:
+    - stability_is_obtained_only_by_zero_or_constant_collapse
+    - any_condition_fails_to_beat_zero_field_on_primary_task_error
+    - any_prohibited_role_or_unpaired_scene_is_read
+
+claim_boundary:
+  establishes_if_supported: frozen_fit_group_controlled_appearance_mechanism_evidence
+  does_not_establish:
+    - held_out_source_generalization
+    - real_rain_snow_or_dusk_robustness
+    - target_domain_coverage
+    - driving_or_safety_improvement
+    - Gate_B_pass
+
+stop_rules:
+  - reject_if_raw_image_hash_or_scene_camera_history_pairing_cannot_be_replayed
+  - reject_if_any_transform_changes_geometry_projection_or_teacher
+  - do_not_replace_image_appearance_with_feature_noise
+  - do_not_modify_model_architecture_loss_checkpoint_or_transforms_after_results
+  - if_mechanism_is_unsupported_review_visual_objective_or_architecture_before_decision_evaluation
+
+resources:
+  device: cuda:0
+  maximum_wall_minutes: 90
+  maximum_peak_gpu_gib: 6.0
+  maximum_output_gib: 2.0
+

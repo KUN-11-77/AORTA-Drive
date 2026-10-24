@@ -1,6 +1,6 @@
 # AORTA-Drive Research Brief
 
-> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H4P4E 闭合了128个 fit anchors 的官方执行接口。R004H4P5I 的8组 realized-geometry 哨兵实现门通过，但36个可计算候选的双向 non-inclusion 下界全为0。R004H4P5D 随后证明这是证书分辨率问题：36/36 前序零证据候选都落在充分 no-witness barrier 内，实际最大配对后轴距离1.447620米，而最小屏障4.495949米；机械审计通过。因此 rotation-free disk non-inclusion 被退役，不能扩到128后再解释为“没有机会”。下一步是先完成方向感知矩形连续覆盖与内区证书的数值理论和反例测试，再在相同 fit sentinels 上资格化。外部独立审查仍不可用；development 继续封存。正式 coverage、Gate B、OOD、性能与创新性仍未成立。
+> 状态：AORTA-v8.3.2 V0 的 Gate A 与 R004E-A/B/C 已完成。R004H4P4E 闭合了128个 fit anchors 的官方执行接口。R004H4P5I 的8组 realized-geometry 哨兵实现门通过，但36个可计算候选的双向 non-inclusion 下界全为0。R004H4P5D 随后证明这是证书分辨率问题：36/36 前序零证据候选都落在充分 no-witness barrier 内，实际最大配对后轴距离1.447620米，而最小屏障4.495949米；机械审计通过。因此 rotation-free disk non-inclusion 被退役。当前冻结为两条并行、互不替代的验证线：R004H4P5R 只允许在相同8个 fit sentinels 上完成一次带停止规则的方向感知几何终止资格；R004H5 立即在42个 fit recording groups 上验证冻结 QuotientFieldPredictor 的同场景受控外观稳定性与任务信息保留。development、official calibration、test 与 target 继续封存。正式 coverage、真实天气/OOD、驾驶收益、Gate B 与创新性仍未成立。
 
 ## 1. 问题锚点
 
@@ -66,4 +66,5 @@ Gate A/B 失败则不进入完整评测；公平 baseline 或查新失败则降�
 - Gate A primitive/生成器：通过；R004 anchor-aligned teacher instantiation：R004E-A 通过；
 - 实际系统：未验证；
 - 顶会方法原创性：未授权；
-- 下一阶段：R004H4P5R 仍未注册读取数据，但方向感知理论原语和首轮合成反例已经实现。新证书以逐段中点方向矩形加平移、旋转和 pose-error 膨胀作为连续外覆盖，以完整 cell 的区间变换作为内区证据，并用保守距离下界证明 cell 与所有对侧段不相交。合成测试进一步证明1米 cell 在1.5米侧移下仍可因网格相位失效，因此 teacher 的冻结1米节点图与 non-inclusion 的拟议0.25米几何网格必须分离；这不是更改 teacher 或 meaningful area 阈值。下一步先审计该分离的数学/数值合同和计算成本，再决定是否注册相同8个 fit sentinels。provider、intent 阈值、teacher grid、ROI 和数据角色保持不变。
+- 下一阶段 A（视觉机制）：R004H5 已预注册但尚未执行。冻结 R004H1 checkpoint、DINO、投影与 teacher，只读42个 fit groups 的原始图像。对严格配对的同一 scene/camera/history 施加三种确定性光度变换，在 edge domain 报告 gauge-invariant appearance distance、teacher task error、zero/mean-prior 与 pooled/uniform evidence probes。低 appearance distance 必须与非塌缩和任务信息保留同时成立；这些变换不冒充真实 rain/snow/dusk，也不支持 held-out/OOD 或驾驶收益主张。
+- 下一阶段 B（几何终止资格）：R004H4P5R 已预注册但尚未读取数据。方向感知理论原语和合成反例已实现并通过243项仓库测试。该实验冻结相同8个 fit sentinels、候选、1米 teacher 图、阈值与 ROI；比较独立 polygon diagnostic、退役 disk control、方向矩形在固定分辨率和相位上的严格下界。若 polygon diagnostic 有差异而最细网格仍全零，停止细化并评估保守 polygon 证书；若几何通过但 teacher improvement 仍全负，停止几何工程并转查 provider/task margin；两项资格未通过前禁止扩到128 anchors。
