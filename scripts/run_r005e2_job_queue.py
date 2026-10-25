@@ -1,4 +1,4 @@
-"""Four-GPU, fail-closed scheduler for all frozen R005E2 jobs and replay."""
+"""Multi-GPU, fail-closed scheduler for all frozen R005E2 jobs and replay."""
 
 from __future__ import annotations
 
@@ -37,6 +37,12 @@ def _jobs() -> list[dict[str, Any]]:
         for arm in ARMS
         for seed in SEEDS
     ]
+
+
+def _slot_keys(gpus: list[int], jobs_per_gpu: int) -> list[tuple[int, int]]:
+    if jobs_per_gpu <= 0:
+        raise ValueError("jobs_per_gpu must be positive")
+    return [(gpu, slot) for gpu in gpus for slot in range(jobs_per_gpu)]
 
 
 def _gpu_memory() -> dict[int, int]:
@@ -108,16 +114,18 @@ def _run_phase(
         path = phase_root / str(job["name"])
         if path.exists():
             raise RuntimeError(f"partial job requires manual adjudication: {path}")
-    running: dict[int, tuple[subprocess.Popen[bytes], dict[str, Any], Any]] = {}
+    running: dict[
+        tuple[int, int], tuple[subprocess.Popen[bytes], dict[str, Any], Any]
+    ] = {}
     completed_count = len(jobs) - len(pending)
     while pending or running:
         failed: list[tuple[str, int]] = []
-        for gpu, (process, job, log_handle) in list(running.items()):
+        for slot_key, (process, job, log_handle) in list(running.items()):
             return_code = process.poll()
             if return_code is None:
                 continue
             log_handle.close()
-            del running[gpu]
+            del running[slot_key]
             if return_code != 0 or not _complete(phase_root / str(job["name"])):
                 failed.append((str(job["name"]), int(return_code or -1)))
             else:
@@ -137,8 +145,15 @@ def _run_phase(
             )
             raise RuntimeError(f"R005E2 job failure: {failed}")
         memory = _gpu_memory()
-        for gpu in args.gpus:
-            if gpu in running or memory.get(gpu, 10**9) > args.maximum_idle_memory_mib:
+        for gpu, slot in _slot_keys(args.gpus, args.jobs_per_gpu):
+            slot_key = (gpu, slot)
+            if slot_key in running:
+                continue
+            owned_jobs_on_gpu = sum(key[0] == gpu for key in running)
+            if (
+                owned_jobs_on_gpu == 0
+                and memory.get(gpu, 10**9) > args.maximum_idle_memory_mib
+            ):
                 continue
             selected_index = next(
                 (
@@ -167,7 +182,7 @@ def _run_phase(
                 stderr=subprocess.STDOUT,
                 env=environment,
             )
-            running[gpu] = (process, job, log_handle)
+            running[slot_key] = (process, job, log_handle)
         _write_json(
             args.output_root / "progress.json",
             {
@@ -199,11 +214,12 @@ def run(args: argparse.Namespace) -> None:
     if blocked:
         raise RuntimeError(f"registered GPUs are not idle at launch: {blocked}")
     contract = {
-        "schema": "aorta.r005e2.job_queue.v1",
+        "schema": "aorta.r005e2.job_queue.v2",
         "job_count_per_phase": 54,
         "phase_order": ["primary", "replay"],
         "registered_gpus": args.gpus,
-        "one_job_per_gpu": True,
+        "one_job_per_gpu": args.jobs_per_gpu == 1,
+        "maximum_jobs_per_gpu": args.jobs_per_gpu,
         "same_job_gpu_for_replay": True,
         "workers_per_job": args.workers,
         "code_commit": args.code_commit,
@@ -259,6 +275,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--code-commit", required=True)
     parser.add_argument("--gpus", type=int, nargs="+", default=[0, 1, 2, 3])
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--jobs-per-gpu", type=int, default=1)
     parser.add_argument("--maximum-idle-memory-mib", type=int, default=256)
     parser.add_argument("--poll-seconds", type=float, default=2.0)
     parser.add_argument("--resume", action="store_true")
