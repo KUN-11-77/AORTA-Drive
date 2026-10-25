@@ -1,0 +1,57 @@
+{
+  "anchor_count": 672,
+  "audit_role": "outcome_free_source_history_candidate_and_mapping_qualification",
+  "candidate_count": 4536,
+  "challenger_count": 3864,
+  "claim_boundary": {
+    "permitted": [
+      "source_fit_contextual_target_definition_qualification",
+      "previous_metric_cache_readiness",
+      "official_two_stage_mapping_coverage"
+    ],
+    "prohibited": [
+      "contextual_oracle_headroom",
+      "RGB_recoverability",
+      "network_training_or_superiority",
+      "NavDream_or_driving_gain",
+      "safety_claim"
+    ]
+  },
+  "completed_at_utc": "2026-10-25T06:47:46.860800+00:00",
+  "config_sha256": "2046cf0b27d7dc429be866f1cf10c65622ac2c00857cb1e92a8a9dcad3230108",
+  "context_available_count": 672,
+  "current_previous_pair_count": 672,
+  "decision": "E1A_PASS_UCTX_READY__Q_PI_REF_UNDEFINED_ON_SOURCE_FIT",
+  "development_calibration_test_navdream_target_accessed": false,
+  "experiment_id": "R005E1A-R1-repaired-contextual-target-qualification-v1",
+  "filter_difference_candidate_count": 506,
+  "frozen_input_sha256": {
+    "b4r1_primary_result": "dad4e7faafe3da4b8703307668dc90f16659c3be8ae4348843843c10def06987",
+    "group_role_manifest": "bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7",
+    "h7bs1_fit_result": "41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38",
+    "metric_manifest": "1912f45ac84d63ef2d608ff2b1b83b55671d04f7f9a78eac19ee9498eb72e3a2",
+    "temporal_context_roster": "3e43ae4d62ef6a8f4a2e6ecd8dadf6e6be4c48827d96f3b78bd5a2be8ec0b4f5"
+  },
+  "group_count": 42,
+  "official_source_sha256": {
+    "navsim/evaluate/pdm_score.py": "7d0b82b8420c52dfedfda2a56b4aa44bd371cd1adbac58f001c19ccda60cf99c",
+    "navsim/planning/script/run_pdm_score.py": "c0a3a0648b72178203a8d6559a41e8993e81860d9e0367eac91dd94c26a06ecf",
+    "navsim/planning/simulation/planner/pdm_planner/scoring/pdm_comfort_metrics.py": "883b606cc5f98285bd6ff917e9a4129c608b709d58fe6c2435f6b7bd27c2e6ce",
+    "navsim/planning/simulation/planner/pdm_planner/scoring/pdm_scorer.py": "c9132b8b7019cc05c57573a26a8326cd7762dfdff35592046625a7fa895f6b62",
+    "navsim/planning/simulation/planner/pdm_planner/scoring/scene_aggregator.py": "13dec362355a41c4a6e7386301efe05bcb6774a598a79026cf371ebdd3bc8e65"
+  },
+  "official_two_stage_mapping_pair_count": 225,
+  "pair_count": 13402,
+  "previous_metric_cache_available_count": 672,
+  "previous_metric_cache_required_count": 672,
+  "q_pi_ref_counterfactual_mapping_valid": false,
+  "scientific_outcomes_emitted": false,
+  "source_fit_mapping_covered_pair_count": 0,
+  "status": "PASS",
+  "two_stage_mapping_sha256": {
+    "/data/khsong/cogatedrive_por/src/por_remote_package_20260827_114121/navsim/planning/script/config/common/train_test_split/navhard_two_stage.yaml": "03c0eb24bab11fa66cb7c22b65b177e9e962d6733de79374d47886f799e3d74f",
+    "/data/khsong/cogatedrive_por/src/por_remote_package_20260827_114121/navsim/planning/script/config/common/train_test_split/warmup_two_stage.yaml": "aee25e6f3a6c727884297ad6fa391d9999a6e5c10f1f642d17996af449b85f38"
+  },
+  "uctx_definition_valid": true,
+  "uctx_materialization_ready": true
+}

@@ -1,0 +1,46 @@
+{
+  "experiment_id": "R005E1B",
+  "date": "2026-10-25",
+  "source_commit": "1e5362ef6d65dd7e568466317ed347aef312fa75",
+  "overall": "WARN",
+  "integrity_status": "warn",
+  "scientific_decision": "SUPPORTED_ON_SOURCE_FIT_NATIVE_HISTORY_UCTX__GO_TO_VISUAL_RECOVERABILITY_PREREGISTRATION__NO_TRAINING_YET",
+  "reviewer_independence": "fresh_context_but_cross_family_unavailable",
+  "dimensions": {
+    "ground_truth_provenance": "WARN",
+    "score_normalization": "PASS",
+    "result_existence": "PASS_WITH_DOCUMENTATION_FIX",
+    "dead_code_and_verification_coverage": "WARN",
+    "scope": "WARN",
+    "classification": "PASS"
+  },
+  "classification": "simulation_only_evaluator_derived_proxy",
+  "verified": {
+    "primary_replay_anchor_ledgers_exact": true,
+    "primary_replay_summary_exact": true,
+    "primary_replay_decision_exact": true,
+    "all_archived_values_finite": true,
+    "sha256_archives_match": true,
+    "zero_challenger_anchors_retained": 15,
+    "candidate_count": 4536,
+    "pair_count": 13402,
+    "group_count": 42,
+    "anchor_count": 672
+  },
+  "limitations": [
+    "two_frame_extended_comfort_not_independently_recomputed_from_raw_state_arrays",
+    "runtime_import_provenance_not_fully_reconstructable_from_archive",
+    "sealed_access_flags_are_run_declarations_not_system_level_access_proof",
+    "cross_family_external_reviewer_unavailable",
+    "previous_action_token_encoding_necessity_not_established"
+  ],
+  "not_supported": [
+    "rgb_recoverability",
+    "differential_query_architecture_superiority",
+    "q_pi_ref_or_full_pseudo_closed_loop_value",
+    "navdream_or_cross_planner_generalization",
+    "driving_or_safety_gain"
+  ],
+  "rerun_required": false,
+  "next_authorized_action": "R005E2_PREREGISTRATION_ONLY_NO_TRAINING"
+}

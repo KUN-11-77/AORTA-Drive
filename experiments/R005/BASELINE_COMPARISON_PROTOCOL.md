@@ -173,7 +173,7 @@ DriveTeach-VLA、DA-WAM、TOAD、DriveSuprim、VLA 与 sparse-query 文献只作
 ## 9. 当前状态
 
 - B4R1：已完成并审计；只支持pre-filter `F_raw^{1f}`；
-- R005E0：source-scope audit完成；R005E1设计已预注册但未授权；
+- R005E0、R005E1A与R005E1B已完成；R005E1C因官方mapping覆盖为零而fail-closed；R005E2仅解锁预注册、尚未授权训练；
 - E1 materialization–E4：全部 LOCKED；
 - calibration/test/NavDream/target：保持封存；
 - 本协议冻结方法身份和公平性原则，但不预填任何实验结果。

@@ -1,0 +1,25 @@
+{
+  "experiment_id": "R005E1B-source-fit-contextual-oracle-v1",
+  "status": "PASS",
+  "completed_at_utc": "2026-10-25T08:18:45.887032+00:00",
+  "config_sha256": "5fc24d7beeb4cf909811ceec3d0017841706201beed4591dbe3a40eaaccefc76",
+  "primary_sha256": "7673f6fe216db7b91e90aaabc2eba48311c6432c96bbb4769691f06dda8dfd5f",
+  "replay_sha256": "69ce08609f791e99a3b961eb151124fc28fb096a0f881920c4afdafaae0cb20d",
+  "primary_replay_anchor_ledgers_exact": true,
+  "mechanically_recomputed_candidate_count": 4536,
+  "summary_exact": true,
+  "decision_exact": true,
+  "decision": "GO_TO_VISUAL_RECOVERABILITY_PREREGISTRATION__NO_TRAINING_YET",
+  "q_pi_ref_materialized": false,
+  "development_calibration_test_navdream_target_accessed": false,
+  "claim_boundary": "Mechanically audited source-fit contextual oracle only; not learned, held-out, policy-level, driving-safety, or robustness evidence.",
+  "frozen_input_sha256": {
+    "e1a_result": "4e8834166a42eda5fbdf5e67089cf64651492416e7307bd02ec73b00dbe1a874",
+    "b4r1_config": "76de67c4aa35059cc069b18fcad0682c81caa7c51d1710012023cd81c7678cfd",
+    "b4r1_primary_result": "dad4e7faafe3da4b8703307668dc90f16659c3be8ae4348843843c10def06987",
+    "temporal_context_roster": "3e43ae4d62ef6a8f4a2e6ecd8dadf6e6be4c48827d96f3b78bd5a2be8ec0b4f5",
+    "current_metric_manifest": "1912f45ac84d63ef2d608ff2b1b83b55671d04f7f9a78eac19ee9498eb72e3a2",
+    "previous_metric_manifest": "cbab090ab6b49004435dd5eb020a20014a41b61f91d8c84d3566250c5cea06f0",
+    "group_role_manifest": "bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7"
+  }
+}
