@@ -60,7 +60,10 @@
   recipient-donor边完全不重合。它们是non-gating解释性分析，不能挽救主门失败；
 - 单fold真实I/O资源演练使用28 inner-fit groups、448 anchors、零科学target与native-shape history替身，
   完成448/448 backward steps；loss/gradient有限，峰值显存365,554,176 bytes，总耗时37.999 s，
-  训练step P95为80.900 ms，按三arm×三seed×六fold的朴素串行投影为0.570 GPU-hours；
+  训练step P95为80.900 ms。原result中的`0.570 GPU-hours`仅覆盖每个arm/seed/fold一次448-step
+  selection epoch，漏计refit和最多40 epochs，不能作为完整预算；按同一实测重算，训练-only的
+  一次selection+一次refit下界为1.282 GPU-hours，40+40 epochs最坏上界为51.299 GPU-hours，均不含
+  validation/test/I/O/audit。提交后的runner与auditor已把epoch和448/560 step比例写成硬合同；
 - checkpoint恢复后的模型tensor、AdamW状态与同batch前向均精确一致。首次审计因错误假定
   `P95 >= mean`而fail-closed；冷启动离群值使data-wait mean高于P95，这是合法统计形态。提交
   `81a2cb5`修正为只要求maximum不低于mean和P95，新增反例测试，443项全量测试通过；对原始同一
@@ -68,6 +71,9 @@
 - 训练资源audit SHA-256与原始产物哈希见
   `experiments/results/R005E2A_C957AA0/training_rehearsal_SHA256SUMS.txt`。外部cross-model reviewer当前
   不可用，因此独立科学复核状态为`REVIEW_UNAVAILABLE`；本阶段没有科学endpoint可供解释。
+- 完整runner冻结前的预算复核发现上述epoch漏乘问题；它不改变已完成448-step运行与checkpoint证据，
+  但原`0.570`字段被明确退役。纠正账本见
+  `experiments/results/R005E2A_C957AA0/resource_projection_correction.json`。
 
 ## 资格裁决与下一步边界
 

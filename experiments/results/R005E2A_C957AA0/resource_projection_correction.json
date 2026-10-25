@@ -1,0 +1,22 @@
+{
+  "schema": "aorta.r005e2.training_resource_projection_correction.v1",
+  "status": "CORRECTED_BEFORE_SCIENTIFIC_RUNNER_FREEZE",
+  "source_result_sha256": "cf24ad83ddeb7c70c4509a858e3a64c5d1332403b2ffe1abe83cc583b27551bf0",
+  "measured_selection_epoch_anchor_count": 448,
+  "measured_total_runtime_seconds": 37.99946145596914,
+  "arm_seed_fold_combination_count": 54,
+  "selection_train_anchor_count": 448,
+  "refit_train_anchor_count": 560,
+  "maximum_selection_epochs": 40,
+  "maximum_refit_epochs": 40,
+  "minimum_one_selection_plus_one_refit_gpu_hours": 1.2824818241389585,
+  "worst_case_max_epochs_gpu_hours": 51.29927296555834,
+  "scope": "training_steps_only_excludes_validation_test_io_and_audit",
+  "retired_source_field": {
+    "name": "projected_three_arm_three_seed_six_fold_gpu_hours",
+    "value": 0.5699919218395371,
+    "reason": "multiplied one 448-step epoch by 54 combinations but omitted refit and epoch counts"
+  },
+  "scientific_metrics_accessed": false,
+  "sealed_roles_accessed": false
+}

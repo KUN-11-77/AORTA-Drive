@@ -95,10 +95,32 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("resource-rehearsal provenance hashes differ")
     _positive_finite(result.get("peak_cuda_bytes"), "peak_cuda_bytes")
     _positive_finite(result.get("total_runtime_seconds"), "total_runtime_seconds")
-    _positive_finite(
-        result.get("projected_three_arm_three_seed_six_fold_gpu_hours"),
-        "projected resource hours",
+    projection = cast(dict[str, Any], result.get("resource_projection"))
+    expected_projection_contract = {
+        "scope": "training_steps_only_excludes_validation_test_io_and_audit",
+        "arm_seed_fold_combination_count": 54,
+        "maximum_selection_epochs": 40,
+        "maximum_refit_epochs": 40,
+        "selection_train_anchor_count": 448,
+        "refit_train_anchor_count": 560,
+    }
+    for field, expected_value in expected_projection_contract.items():
+        if projection.get(field) != expected_value:
+            raise ValueError(f"resource projection contract mismatch: {field}")
+    minimum_hours = _positive_finite(
+        projection.get("minimum_one_selection_plus_one_refit_gpu_hours"),
+        "minimum projected resource hours",
     )
+    maximum_hours = _positive_finite(
+        projection.get("worst_case_max_epochs_gpu_hours"),
+        "maximum projected resource hours",
+    )
+    expected_minimum = float(result["total_runtime_seconds"]) * 2.25 * 54 / 3600.0
+    expected_maximum = expected_minimum * 40
+    if not math.isclose(minimum_hours, expected_minimum, rel_tol=0.0, abs_tol=1.0e-12):
+        raise ValueError("minimum resource projection arithmetic mismatch")
+    if not math.isclose(maximum_hours, expected_maximum, rel_tol=0.0, abs_tol=1.0e-12):
+        raise ValueError("maximum resource projection arithmetic mismatch")
     for section in ("data_wait_ms", "train_step_ms"):
         values = cast(dict[str, Any], result.get(section))
         _audit_timing_summary(values, section)
@@ -120,6 +142,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         "registered_fold_cardinality_exact": True,
         "finite_resource_measurements": True,
         "checkpoint_recovery_exact": True,
+        "resource_projection_arithmetic_exact": True,
         "scientific_metrics_emitted": False,
         "scientific_labels_accessed": False,
         "development_calibration_test_navdream_target_accessed": False,

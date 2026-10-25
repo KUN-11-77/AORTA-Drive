@@ -29,7 +29,9 @@ from aorta_drive.vision.feature_cache import sha256_file
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False)
+        json.dumps(
+            payload, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False
+        )
         + "\n",
         encoding="utf-8",
     )
@@ -49,8 +51,7 @@ def _resolve_panel(roots: list[Path], scene_token: str, expected_hash: str) -> P
 
 def _to_device(batch: dict[str, Tensor], device: torch.device) -> dict[str, Tensor]:
     return {
-        key: value.to(device=device, non_blocking=True)
-        for key, value in batch.items()
+        key: value.to(device=device, non_blocking=True) for key, value in batch.items()
     }
 
 
@@ -98,13 +99,21 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if args.device == "cuda" and not torch.cuda.is_available():
         raise RuntimeError("CUDA was requested but is unavailable")
     if os.environ.get("CUBLAS_WORKSPACE_CONFIG") != ":4096:8":
-        raise RuntimeError("resource rehearsal requires CUBLAS_WORKSPACE_CONFIG=:4096:8")
+        raise RuntimeError(
+            "resource rehearsal requires CUBLAS_WORKSPACE_CONFIG=:4096:8"
+        )
     args.output_directory.mkdir(parents=True)
     started = time.perf_counter()
 
-    roster = cast(dict[str, Any], json.loads(args.panel_roster.read_text(encoding="utf-8")))
-    crossfit = cast(dict[str, Any], json.loads(args.crossfit_manifest.read_text(encoding="utf-8")))
-    visual = cast(dict[str, Any], json.loads(args.visual_manifest.read_text(encoding="utf-8")))
+    roster = cast(
+        dict[str, Any], json.loads(args.panel_roster.read_text(encoding="utf-8"))
+    )
+    crossfit = cast(
+        dict[str, Any], json.loads(args.crossfit_manifest.read_text(encoding="utf-8"))
+    )
+    visual = cast(
+        dict[str, Any], json.loads(args.visual_manifest.read_text(encoding="utf-8"))
+    )
     fold = next(
         row
         for row in cast(list[dict[str, Any]], crossfit["outer_folds"])
@@ -175,7 +184,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         if first_cpu_batch is None:
             first_cpu_batch = {key: value.clone() for key, value in cpu_batch.items()}
         batch = _to_device(cpu_batch, device)
-        zero_challenger_count += int((batch["candidate_mask"].sum(dim=1) == 1).sum().item())
+        zero_challenger_count += int(
+            (batch["candidate_mask"].sum(dim=1) == 1).sum().item()
+        )
         step_started = time.perf_counter()
         optimizer.zero_grad(set_to_none=True)
         with torch.autocast(device_type="cuda", dtype=torch.bfloat16):
@@ -189,7 +200,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             raise FloatingPointError("resource-rehearsal loss is nonfinite")
         loss.backward()  # type: ignore[no-untyped-call]
         if any(
-            parameter.grad is not None and not bool(torch.isfinite(parameter.grad).all())
+            parameter.grad is not None
+            and not bool(torch.isfinite(parameter.grad).all())
             for parameter in model.parameters()
         ):
             raise FloatingPointError("resource-rehearsal gradient is nonfinite")
@@ -217,7 +229,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     state = torch.load(checkpoint_path, map_location=device, weights_only=False)
     restored.load_state_dict(state["model"])
     restored_optimizer.load_state_dict(state["optimizer"])
-    if int(state["completed_steps"]) != completed_steps or int(state["seed"]) != args.seed:
+    if (
+        int(state["completed_steps"]) != completed_steps
+        or int(state["seed"]) != args.seed
+    ):
         raise ValueError("checkpoint scalar state did not recover exactly")
     if not _state_exact(model, restored):
         raise ValueError("checkpoint model tensors did not recover exactly")
@@ -226,13 +241,21 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     restore_batch = _to_device(first_cpu_batch, device)
     model.eval()
     restored.eval()
-    with torch.inference_mode(), torch.autocast(device_type="cuda", dtype=torch.bfloat16):
+    with (
+        torch.inference_mode(),
+        torch.autocast(device_type="cuda", dtype=torch.bfloat16),
+    ):
         reference = _forward(model, restore_batch)
         recovered = _forward(restored, restore_batch)
     if not torch.equal(reference, recovered):
         raise ValueError("checkpoint forward recovery is not bit exact")
 
     total_runtime = time.perf_counter() - started
+    combination_count = 3 * 3 * 6
+    maximum_epochs = 40
+    selection_train_anchor_count = 448
+    refit_train_anchor_count = 560
+    refit_step_ratio = refit_train_anchor_count / selection_train_anchor_count
     result: dict[str, Any] = {
         "schema": "aorta.r005e2.training_resource_rehearsal.v1",
         "status": "PASS",
@@ -263,9 +286,24 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "maximum": float(np.max(train_step_ms)),
         },
         "total_runtime_seconds": total_runtime,
-        "projected_three_arm_three_seed_six_fold_gpu_hours": (
-            total_runtime * 3 * 3 * 6 / 3600.0
-        ),
+        "resource_projection": {
+            "scope": "training_steps_only_excludes_validation_test_io_and_audit",
+            "arm_seed_fold_combination_count": combination_count,
+            "maximum_selection_epochs": maximum_epochs,
+            "maximum_refit_epochs": maximum_epochs,
+            "selection_train_anchor_count": selection_train_anchor_count,
+            "refit_train_anchor_count": refit_train_anchor_count,
+            "minimum_one_selection_plus_one_refit_gpu_hours": (
+                total_runtime * (1.0 + refit_step_ratio) * combination_count / 3600.0
+            ),
+            "worst_case_max_epochs_gpu_hours": (
+                total_runtime
+                * maximum_epochs
+                * (1.0 + refit_step_ratio)
+                * combination_count
+                / 3600.0
+            ),
+        },
         "checkpoint_sha256": sha256_file(checkpoint_path),
         "checkpoint_tensor_state_exact": True,
         "checkpoint_optimizer_state_exact": True,
@@ -282,7 +320,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "runner_sha256": sha256_file(Path(__file__)),
         },
     }
-    if not math.isfinite(result["projected_three_arm_three_seed_six_fold_gpu_hours"]):
+    projection = cast(dict[str, Any], result["resource_projection"])
+    if not all(
+        math.isfinite(float(projection[key]))
+        for key in (
+            "minimum_one_selection_plus_one_refit_gpu_hours",
+            "worst_case_max_epochs_gpu_hours",
+        )
+    ):
         raise FloatingPointError("resource projection is nonfinite")
     _write_json(args.output_directory / "result.json", result)
     return result

@@ -23,6 +23,10 @@
    bit-exact；结果只包含资源测量，不含relation MSE、regret或任何scientific decision。
 6. **已发现问题**：旧审计器把`P95 >= mean`错误当作普适不变量；冷启动长尾构成明确反例。旧失败
    日志被保留，修复提交`81a2cb5`新增反例测试并对同一不可变结果重审PASS，没有重跑或筛选数据。
+7. **资源投影纠正**：原`0.570 GPU-hours`漏乘epoch并漏计35-group refit，只是一次selection epoch
+   乘54 combinations的数值。基于同一37.999 s测量，训练-only的一次selection+refit下界为
+   `1.282` GPU-hours，40+40 epochs最坏上界为`51.299` GPU-hours，且仍不含validation/test/I/O/audit。
+   原始结果不改写；另存纠正账本，并把正确算术写入未来runner/auditor硬门。
 
 ## 防舞弊与范围判断
 
