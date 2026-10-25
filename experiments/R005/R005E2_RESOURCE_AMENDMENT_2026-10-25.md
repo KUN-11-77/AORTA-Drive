@@ -12,8 +12,8 @@ epoch ledger 或任何科学 endpoint。用户随后明确要求提高每卡利�
 
 ## 修订
 
-- 正式 GPU roster：`[0,1,2,3]`；
-- 每张 GPU 最多并行 4 个相互独立的 fold/arm/seed job，总并发上限 16；
+- 正式 GPU roster：`[1,2]`；启动前 GPU 0/3 已被其他任务占用，因此未纳入本实验；
+- 每张 GPU 最多并行 4 个相互独立的 fold/arm/seed job，总并发上限 8；
 - 每个 job 的 primary 与 replay 仍绑定同一物理 GPU；
 - 每个进程仍使用原冻结 `batch_size=1`、4 个 DataLoader workers、相同 deterministic/CUBLAS 合同；
 - GPU 在没有本队列作业时仍必须低于冻结 idle-memory 门，防止占用他人卡；
