@@ -73,6 +73,7 @@ def main() -> None:
     parser.add_argument("--navsim-root", type=Path, required=True)
     parser.add_argument("--implementation-revision", required=True)
     parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--num-history-frames", type=int, default=4)
     parser.add_argument("--max-anchors", type=int)
     parser.add_argument("--max-recording-groups", type=int)
     parser.add_argument("--resume", action="store_true")
@@ -88,6 +89,8 @@ def main() -> None:
             raise FileNotFoundError(f"{name} does not exist: {path}")
     if args.workers <= 0:
         raise ValueError("workers must be positive")
+    if args.num_history_frames <= 0:
+        raise ValueError("num_history_frames must be positive")
 
     output = args.output_directory.resolve()
     if output.exists() and any(output.iterdir()) and not args.resume:
@@ -109,7 +112,7 @@ def main() -> None:
             "scene_filter": {
                 "_target_": "navsim.common.dataclasses.SceneFilter",
                 "_convert_": "all",
-                "num_history_frames": 4,
+                "num_history_frames": args.num_history_frames,
                 "num_future_frames": 10,
                 "frame_interval": 1,
                 "has_route": True,
@@ -206,6 +209,7 @@ def main() -> None:
         "recording_group_count": len({anchor.recording_group for anchor in selected}),
         "log_count": len({anchor.log_name for anchor in selected}),
         "worker_count": worker_count,
+        "num_history_frames": args.num_history_frames,
         "resume": args.resume,
         "logical_manifest_sha256": logical_hash,
         "navsim_source_sha256": {
