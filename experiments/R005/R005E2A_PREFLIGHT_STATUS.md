@@ -1,7 +1,7 @@
 # R005E2A outcome-free preflight status
 
 日期：2026-10-25。  
-状态：`IN_PROGRESS__CROSSFIT_AND_DONOR_DESIGN_PASS__DONOR_MATERIALIZATION_PENDING__NO_SCIENTIFIC_TRAINING`。
+状态：`IN_PROGRESS__CROSSFIT_AND_DONOR_MANIFEST_PASS__NO_SCIENTIFIC_TRAINING`。
 
 ## 已完成
 
@@ -16,7 +16,7 @@
   `f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878`；
 - R005E1B source result SHA-256在manifest中绑定为
   `7673f6fe216db7b91e90aaabc2eba48311c6432c96bbb4769691f06dda8dfd5f`；
-- 定向协议测试8项通过；连同R005E1B contextual tests共16项通过。
+- 定向协议测试8项通过；连同R005E1B contextual tests共16项通过；
 - 已从冻结context roster、R005E1B identity和B4R1 panel hash提取outcome-free panel identity roster；
   该文件不含utility、candidate score、RGB、DINO或模型输出；
 - panel identity roster：`experiments/R005/inputs/r005e2_panel_identity_roster.json`；
@@ -25,22 +25,29 @@
 - donor算法已冻结为native几何描述子上的全局线性和分配：训练映射是跨组一一置换，validation/test
   映射从相应训练池无放回取donor；因此训练visual token经验边际严格不变，且禁止same-group与
   outer-test donor；
-- donor core新增11项测试；与cross-fit协议合计19项通过；strict mypy通过。
+- donor core新增11项测试；与cross-fit协议合计19项通过；strict mypy通过；
+- 服务器冻结提交`998d85a`的28/28定向测试通过；两个frozen panel roots按SHA精确解析为
+  base `671` + replacement `1`；
+- donor primary/replay byte-exact，SHA-256均为
+  `9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093`；
+- 6 folds、24 stages、7,392 assignments全部通过独立机械复算：recipient roster、donor pool、
+  same-group禁边、无放回约束和训练边际精确置换均闭合；
+- audit SHA-256：`5c05ccbd320b00e0e4388300b4f23e0411f384a58e635c664abc8c902f0d519d`；
+- 可读manifest：`experiments/R005/inputs/r005e2_mismatch_donor_manifest.json`；完整压缩bundle：
+  `experiments/results/R005E2A_998D85A/r005e2a_outputs.tar.gz`。
 
 ## 尚未完成，继续阻止训练
 
-1. 在服务器672个冻结panel artifacts上物化geometry-matched mismatch donor manifest，并完成
-   hash replay、无label、无same-group、无outer-test donor与训练边际精确置换审计；
-2. runtime imported module、DINO源码/权重/preprocess/cache provenance；
-3. V0/V1/V2 scorer的ragged mask、zero-challenger、permutation、finite、seed replay测试；
-4. 三arm逐层参数完全相同、token相同、forward FLOPs比不超过1.01；
-5. 单fold资源 rehearsal 与GPU/wall/memory合同；
-6. outcome-free mechanical audit与独立复核。
+1. runtime imported module、DINO源码/权重/preprocess/cache provenance；
+2. V0/V1/V2 scorer的ragged mask、zero-challenger、permutation、finite、seed replay测试；
+3. 三arm逐层参数完全相同、token相同、forward FLOPs比不超过1.01；
+4. 单fold资源 rehearsal 与GPU/wall/memory合同；
+5. 剩余outcome-free资格门的统一机械审计与独立复核。
 
-在上述六项全部关闭、配置与源码再次冻结并获得单独运行授权前，不得启动R005E2B科学训练，不得
+在上述五项全部关闭、配置与源码再次冻结并获得单独运行授权前，不得启动R005E2B科学训练，不得
 读取任何correct/mismatch/removed科学比较。
 
 首次物化尝试在任何assignment或科学指标产生前fail-closed：672个anchor中有1个经R005E1A修复的
 replacement panel，不在原H7BS1单一artifact root。该失败不改变fold或donor规则。解析器现要求在
 冻结base与replacement roots中按预登记panel SHA-256精确查找；同token但hash不符、缺失或多份同hash
-但bytes不一致都会失败。正式manifest仍待新提交服务器replay。
+但bytes不一致都会失败。该修复后的正式manifest已由提交`998d85a`完成primary、完整replay与独立审计。

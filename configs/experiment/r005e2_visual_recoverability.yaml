@@ -140,6 +140,14 @@ preflight:
     path: experiments/R005/inputs/r005e2_panel_identity_roster.json
     sha256: b0c5b14a7bb935f381ca246c568b616d24c58b5c8e88a737824b4e498731d62f
     utility_candidate_or_visual_fields_used: false
+  mismatch_donor_manifest:
+    path: experiments/R005/inputs/r005e2_mismatch_donor_manifest.json
+    sha256: 9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093
+    source_commit: 998d85a
+    primary_replay_exact: true
+    independent_mechanical_audit: PASS
+    labels_images_dino_or_model_outputs_used: false
+    development_calibration_test_navdream_target_accessed: false
   required:
     - outer_inner_fold_manifest_and_sha256
     - geometry_matched_donor_manifest_and_sha256
