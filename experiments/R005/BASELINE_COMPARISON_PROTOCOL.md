@@ -105,6 +105,32 @@ clean no-harm、actual-history rollout 与在线 P95。
 | E3 | full/prefix、signed、RGB、history、orbit loss | 定位增量的最小必要机制 | 删除无证据模块，保留最简单获胜者 |
 | E4 | NavDream、三 planner、sequential、clean、P95 | 表征增量转化为系统价值 | 收缩主张或停止投稿主线 |
 
+### 6.1 E1 与 E2 之间的瓶颈分支：视觉信息还是决策接口
+
+B4R1 与 full-context oracle 只回答“合法候选域是否存在可监督、可改善的任务关系”，不能决定最终
+方法应修改视觉编码器还是候选关系接口。E1 通过后、训练 B2--B6 前，必须用同一冻结视觉输入、
+候选域与 contextual target 做一次预注册的因果诊断：
+
+| 诊断 | 最小对照 | 允许的解释 |
+|---|---|---|
+| 正确 RGB 是否包含额外任务信息 | correct RGB vs geometry-matched mismatch、removed RGB、trajectory-only | correct 显著更好才支持视觉必要性 |
+| 冻结视觉表示是否仍保留该信息 | frozen feature probe vs RGB/feature corruption；同容量读出 | 区分信息在编码阶段丢失，还是读出阶段未利用 |
+| 普通完整上下文 scorer 是否能利用信息 | B4 vs B2/B3，预算匹配 | B4 能利用则瓶颈不在视觉编码本身 |
+| differential query 是否提供额外归纳偏置 | B6 vs B4，预算匹配 | 只有 B6 稳定降低 held-out regret 才支持核心算法 |
+
+分支规则冻结为：
+
+1. 若 correct RGB 不优于 mismatch/removed，则停止视觉主张，先排查标签、候选与轨迹先验捷径；
+2. 若 RGB 有信息但冻结表示的容量匹配 probe 无法恢复，则转向任务约束的视觉鲁棒算子，并与
+   DINOv3、PEA-style alignment、普通 Adapter/LoRA 做 matched comparison；
+3. 若冻结表示可恢复信息而 B4 仍失败，则研究视觉到决策关系的 evidence interface；
+4. 若 B4 已与 B6 相当或更优，则删除 differential-query 核心创新，不把既有投入当作保留理由；
+5. 不允许在同一轮同时引入复杂视觉校正器和复杂仲裁器，否则无法归因核心贡献。
+
+该分支把论文的长期目标固定为“从 RGB 获取真正影响驾驶决策的证据”，而不是预先保证某个
+具体模块获胜。任何路线都必须最终回到 correct-image necessity、official utility、clean no-harm、
+跨 planner 与 batch-1 端到端时延。
+
 ## 7. Failure-to-Decision Matrix
 
 | 观察 | 结论 | 下一动作 |
