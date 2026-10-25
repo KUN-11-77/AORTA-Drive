@@ -98,6 +98,7 @@ training:
   seeds: [20261025, 20261026, 20261027]
   model_family_or_loss_search: prohibited
   deterministic_algorithms: true
+  cublas_workspace_config: ":4096:8"
   mixed_precision: bfloat16
   flash_or_memory_efficient_SDPA: disabled_for_replay
 

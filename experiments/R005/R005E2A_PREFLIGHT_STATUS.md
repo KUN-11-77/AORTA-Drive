@@ -56,3 +56,7 @@
 replacement panel，不在原H7BS1单一artifact root。该失败不改变fold或donor规则。解析器现要求在
 冻结base与replacement roots中按预登记panel SHA-256精确查找；同token但hash不符、缺失或多份同hash
 但bytes不一致都会失败。该修复后的正式manifest已由提交`998d85a`完成primary、完整replay与独立审计。
+
+首次真实shape GPU演练在输出前被deterministic-algorithm gate拒绝：CuBLAS workspace未在进程启动前
+冻结。未产生resource结果或科学指标。协议保持deterministic模式，新增硬门
+`CUBLAS_WORKSPACE_CONFIG=:4096:8`；禁止通过关闭确定性算法绕过。

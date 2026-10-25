@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import platform
 import time
 from contextlib import nullcontext
@@ -159,6 +160,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if args.device == "cuda" and not torch.cuda.is_available():
         raise RuntimeError("CUDA was requested but is unavailable")
     device = torch.device(args.device)
+    cublas_workspace_config = os.environ.get("CUBLAS_WORKSPACE_CONFIG")
+    if device.type == "cuda" and cublas_workspace_config not in {":4096:8", ":16:8"}:
+        raise RuntimeError(
+            "deterministic CUDA requires CUBLAS_WORKSPACE_CONFIG=:4096:8 or :16:8"
+        )
     torch.manual_seed(args.seed)
     if device.type == "cuda":
         torch.cuda.manual_seed_all(args.seed)
@@ -252,6 +258,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "torch_version": torch.__version__,
         "cuda_version": torch.version.cuda,
         "gpu_name": torch.cuda.get_device_name(device) if device.type == "cuda" else None,
+        "cublas_workspace_config": cublas_workspace_config,
         "scorer_source_sha256": sha256_file(source_file),
         "runner_source_sha256": sha256_file(Path(__file__)),
         "batch_size": 1,
