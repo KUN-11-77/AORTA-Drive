@@ -1,0 +1,15 @@
+{
+  "experiment_id": "R004H7BS4B4R1-eligible-source-preference-oracle-v1",
+  "external_scientific_review": "REVIEW_UNAVAILABLE",
+  "failure_count": 0,
+  "full_anchor_ledgers_exact": true,
+  "label_estimand_exact": true,
+  "mechanical_audit": "PASS",
+  "primary_result_sha256": "800e2c1b8f2cbf0db5d4614e53d8d5bd1b188ed5e8a7dd3433224f4caf2a4255",
+  "primary_summary_recomputed_exact": true,
+  "progress_mode_exact": true,
+  "provenance_contract_exact": true,
+  "replay_result_sha256": "51c23fa7e181154c72b9bcc93e63dbd54495683dfacb1ce898d84a7c6c40d692",
+  "replay_summary_recomputed_exact": true,
+  "root_contract_exact": true
+}

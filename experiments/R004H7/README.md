@@ -56,3 +56,10 @@ H7BS4B3现已完成并否定fork-aware scalar minimum的一般reranker资格。t
 但总体适用率仅77.13%，不能用complete-case子集替代一般panel。机械重放672/672 exact，按预注册
 裁决`STOP_ROAD_MARGIN_AS_GENERAL_RERANKER`。H7-C、network、NavDream与decision evaluation继续
 HOLD；下一步先做决策充分对象的文献与oracle理论审查，不自动搜索新架构。
+
+H7BS4B4因把168个intent-ineligible challengers纳入oracle而永久INVALID；候选域类型修复后的
+H7BS4B4R1现已完成。合法ragged domain上42/42 groups存在nonzero pair并至少有一个strict native
+improvement，group-equal one-frame oracle gain为0.0202745，95% CI为0.0117815–0.0301722；
+primary/replay、本地复算与封存角色审计全部PASS。裁决只为
+`GO_TO_MATCHED_STRUCTURE_PREREGISTRATION__NO_TRAINING_YET`：下一步先预注册scoped contextual
+target，不授权RGB网络训练、NavDream或驾驶收益主张。

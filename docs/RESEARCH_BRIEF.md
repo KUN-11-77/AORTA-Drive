@@ -1,5 +1,7 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 B4R1正式结果：`SUPPORTED_ON_SOURCE_FIT_ONE_FRAME__GO_TO_CONTEXTUAL_PREREGISTRATION__NO_TRAINING_YET`。** 合法ragged candidate domain上primary/replay与本地复算全部PASS；42/42 groups存在nonzero pair并至少有一个strict native improvement，group-equal oracle gain为`0.0202745`，42-group bootstrap 95% CI `[0.0117815,0.0301722]`。该证据只资格化candidate-local one-frame oracle，不支持RGB、full contextual target、NavDream、训练、驾驶收益或安全。下一步仅解锁evaluator-scope/contextual materialization的独立预注册。
+
 > **2026-10-25 投稿版理论审核：`SCOPED_TARGET__INTEGRABLE_STAR__ROLLOUT_HISTORY`。**
 > rapidPeer 式 P0 审核修正三处边界：`7/8+1/8` 只在冻结 evaluator 逐项核验的两帧候选效用层
 > 使用，不未经证明称完整 EPDMS；部署输出改为同一 native-star margin 向量，任意 challenger

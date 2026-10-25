@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-25",
+  "auditor": "internal-mechanical-audit__external-review-unavailable",
+  "overall_verdict": "pass_with_scope",
+  "integrity_status": "pass",
+  "mechanical_audit": "pass",
+  "scientific_decision": "GO_TO_MATCHED_STRUCTURE_PREREGISTRATION__NO_TRAINING_YET",
+  "scientific_scope": "source_fit_candidate_local_one_frame_oracle_only",
+  "checks": {
+    "gt_provenance": {
+      "status": "pass_with_scope",
+      "details": "Source-fit exact-token NAVSIM cache and candidate-local one-frame PDM; not contextual official EPDMS or safety ground truth."
+    },
+    "candidate_domain_integrity": {
+      "status": "pass",
+      "details": "3864 frozen eligible challengers scored; 15 zero-challenger anchors retained; no ineligible candidate scored."
+    },
+    "replay_and_recompute": {
+      "status": "pass",
+      "details": "Primary/replay ledgers exact; both summaries recompute exactly; provenance, root, estimand and progress-mode contracts exact."
+    },
+    "finite_values": {
+      "status": "pass",
+      "details": "No non-finite values in either complete result JSON; exit code 0."
+    },
+    "role_isolation": {
+      "status": "pass",
+      "details": "Development, calibration, test, NavDream and target remained sealed."
+    },
+    "scope": {
+      "status": "pass_for_registered_question",
+      "details": "42 fit groups times 16 anchors; no RGB, held-out, contextual-target, behavior, latency or safety claim is supported."
+    },
+    "external_review": "unavailable"
+  },
+  "claims": [
+    {"id": "C15_label_legality", "impact": "supported_on_source_fit"},
+    {"id": "C15_one_frame_oracle_ceiling", "impact": "supported_on_source_fit"},
+    {"id": "C20_final_contextual_target", "impact": "not_supported"},
+    {"id": "C16_C19_structure_necessity", "impact": "not_tested_no_training"}
+  ]
+}

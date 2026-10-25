@@ -1,11 +1,11 @@
 # AORTA Final Validation Tracker
 
-状态：**B4R1_FORMAL_RUNNING__LATER_RUNS_LOCKED**
+状态：**B4R1_GO__M1_PREREGISTRATION_ONLY__TRAINING_LOCKED**
 
 | Run ID | Milestone | Purpose | System / Variant | Split | Primary Metrics | Priority | Status | Stop / Go |
 |---|---|---|---|---|---|---|---|---|
-| R004H7-BS4B4R1 | M0 | 合法 one-frame oracle | official candidate-local scorer | source fit 42 groups | frozen oracle gates | MUST | RUNNING：`7050c6e`，无固定 wall cutoff | interface valid 才进入 M1；科学 outcome 只裁决 one-frame |
-| R004H7-BS4B5F | M1 | scoped contextual target materialization | evaluator-scope audit + augmented previous context | source fit | exact replay、contextual signal、flip/regret | MUST | LOCKED_BY_M0_INTERFACE_VALID | contextual 无信号才停当前 panel |
+| R004H7-BS4B4R1 | M0 | 合法 one-frame oracle | official candidate-local scorer | source fit 42 groups | frozen oracle gates | MUST | COMPLETED_GO：42/42 nonzero、42/42 strict improvement、gain `0.0202745 [0.0117815,0.0301722]`；机械 PASS | 只支持 source-fit one-frame；不授权训练 |
+| R004H7-BS4B5F | M1 | scoped contextual target materialization | evaluator-scope audit + augmented previous context | source fit | exact replay、contextual signal、flip/regret | MUST | UNLOCKED_FOR_PREREGISTRATION_ONLY | scope audit 与预注册完成后才可另行授权运行；contextual 无信号才停当前 panel |
 | R005A-PROXY | M2 | 简单代理基线 | trajectory/prior/field-SDF-BEV | source train/dev | relation、sign、regret | MUST | LOCKED_BY_M1 | 建立最低线 |
 | R005A-GENERIC | M2 | 最强最近基线 | D-JEPA/World4Scorer-style matched scorer | source train/dev | relation、sign、regret、latency | MUST | LOCKED_BY_M1 | 必须先于主方法完成 |
 | R005A-AORTA | M2 | 主方法 | differential evidence relation | source train/dev | relation、sign、regret、false intervention | MUST | LOCKED_BY_M1 | 不胜 generic 删除主创新 |
@@ -25,7 +25,7 @@
 ## Tracker Rules
 
 1. LOCKED 不得因“代码已经准备好”自动改为 RUNNING。
-2. B4R1 的 HOLD 只有用户明确授权才能解除。
+2. B4R1 已按明确授权完成；M1 当前只解锁预注册，运行仍需单独冻结与授权。
 3. 任一 run 开始前补齐 commit、config、input hashes、role ledger、seed、wall cap 与异常停止规则。
 4. partial scientific metrics 不用于修改同一 run 的 threshold、model、candidate 或 split。
 5. 失败 run 永久保留；修正版使用新 ID，不能覆盖原裁决。

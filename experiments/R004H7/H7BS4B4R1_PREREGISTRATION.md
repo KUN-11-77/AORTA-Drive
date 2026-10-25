@@ -1,7 +1,7 @@
 # R004H7-BS4B4R1：合法候选域 preference oracle 预注册
 
-状态：`PREREGISTERED_NOT_RUN`。本轮只修正 B4 的候选域类型错误，不训练网络，不读取新的科学
-结果，不自动启动正式运行。
+状态：`COMPLETED_GO__NO_TRAINING_YET`。预注册内容保持冻结；正式结果与审计见
+`H7BS4B4R1_RESULTS.md` 和 `H7BS4B4R1_EXPERIMENT_AUDIT.md`。
 
 > 2026-10-25、正式 scorer outcome 产生前，用户明确要求取消固定运行时间上限。该资源合同修订
 > 不改变候选、标签、阈值、seed、bootstrap、统计分母或裁决；配置以

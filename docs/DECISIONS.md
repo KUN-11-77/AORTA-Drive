@@ -1280,3 +1280,21 @@ the current open-ended geometry certificate iteration remains STOP.
   utility；`1/7` 符号界只在该对象上使用。最终行为主张必须由官方完整 evaluator 独立验证。
 - **Boundary:** 此决策收缩措辞，不否定已证明的代数界；它要求先证明代码对象与公式对象相同。
 - **Artifact:** `AORTA_PAPER_BLUEPRINT_V1_CN.md`。
+
+## ADR-0088：B4R1 通过合法 one-frame oracle 门，但不直接授权训练
+
+- **Decision:** `SOURCE_FIT_ONE_FRAME_ORACLE_SUPPORTED__CONTEXTUAL_PREREGISTRATION_ONLY`。
+- **Evidence:** 冻结提交 `7050c6e` 在42个fit groups×16 anchors上完成primary、完整replay与
+  独立本地复算；3,864个eligible challengers、4,536个scored candidates与13,402个pairs均位于
+  同一冻结ragged domain。42/42 groups有nonzero pair且有strict native improvement；group-equal
+  oracle gain为`0.0202745`，42-group bootstrap 95% CI为`[0.0117815,0.0301722]`。候选membership、
+  pose、sentinel、`PROGRESS_MODE=eval`、provenance、estimand和summary重算全部exact；封存split未访问。
+- **Consequence:** M1只解锁evaluator-scope audit与augmented-context target materialization的独立
+  预注册。最终网络不得直接用B4R1 one-frame标签训练；matched generic scorer与differential query
+  仍保持LOCKED，直至contextual target本身合法且有非平凡oracle opportunity。
+- **Boundary:** 本结果不证明RGB可恢复性、视觉鲁棒性、结构必要性、NavDream泛化、完整EPDMS、
+  planner行为、clean no-harm、时延或安全。external scientific reviewer不可用，科学结论保持内部
+  provisional；禁止自动第三次B4R1运行。
+- **Artifacts:** `experiments/R004H7/H7BS4B4R1_RESULTS.md`；
+  `experiments/R004H7/H7BS4B4R1_EXPERIMENT_AUDIT.md`；
+  `experiments/results/R004H7BS4B4R1_7050C6E/`。
