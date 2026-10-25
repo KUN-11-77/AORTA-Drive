@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 训练前理论再核验：`THEORY_COHERENT__VALID_FALSIFICATION_GATE__POSITIVE_RESULT_NOT_GUARANTEED`。**
+> 当前链条已严格区分 `U_ctx`、完整 policy value 与驾驶收益，并以带 ragged mask 的 Bayes 风险恒等式
+> 证明 R005E2 检验的是“给定候选/历史后，视觉是否改变 margin 条件均值”。有限网络仍含逼近、估计
+> 与优化误差，故任何严谨理论都不能预告 correct visual 必然胜出；可以保证的是 GO/MIXED/STOP/INVALID
+> 均有冻结解释。合成无真实 endpoint 的 learnability sanity 已证明视觉—候选通路可学习简单关系，
+> 但不构成真实科学证据。另已澄清 `rho_vis` 的分子是 decision-regret 降低而非 relation MSE，量纲
+> 一致且未改变门槛。完整核验见
+> `refine-logs/2026-10-25_aorta_theory_revalidation/AORTA_THEORY_SYSTEM_REVALIDATION_V1_CN.md`。
+
 > **2026-10-25 R005E2 history-semantics fail-closed repair：** 首次scientific bundle资格构建在
 > 任何GPU训练或科学指标产生前失败，因为原实现错误地把9点、0.5秒的previous native planner
 > 输出当作41点输入。服务器只读核验确认：R005E1B登记的previous official simulated states为

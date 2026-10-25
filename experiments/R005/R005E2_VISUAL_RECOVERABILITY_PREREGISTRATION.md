@@ -200,10 +200,13 @@ primary结束后才开始54个replay，机械审计前不得读取或解释部�
 4. **oracle-normalized visual recovery**：
 
 \[
-\rho_{vis}=\frac{R_{V0}-R_{V2}}{0.01665036604823182}.
+\rho_{vis}=\frac{\bar r_{V0}-\bar r_{V2}}{0.01665036604823182},
 \]
 
-其中分母是冻结的 group-equal contextual oracle gain，只作机会尺度归一化，不把它当可完全实现的上界。
+其中 \(\bar r\) 明确定义为 group-equal decision regret，而不是 relation MSE；分子与冻结的
+group-equal contextual oracle gain 使用相同 utility 单位，因此该比值无量纲。分母只作机会尺度
+归一化，不把它当可完全实现的上界。该处是在任何科学训练或 endpoint 产生前对既有审计实现的
+符号澄清，不改变数值、门槛、arm、统计或裁决。
 
 42个 out-of-fold group paired differences 使用固定 seed `20261025` 的10,000次 group bootstrap，报告
 双侧95% CI、完整42组分布、最差组、负收益组数和三个训练 seeds。该CI是在冻结cross-fit训练流程
