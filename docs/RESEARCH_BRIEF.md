@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 Best Paper readiness audit：`STRONG_PROBLEM_AND_THEORY_SEED__BEST_PAPER_EVIDENCE_NOT_YET_PRESENT`。**
+> 以高于普通ICCV接收的标准审查后，当前具备有价值的问题重述、第一性理论入口和严格实验纪律，
+> 但尚缺三项决定性发现：可推广的decision-sufficiency gap、Differential Query对matched closest
+> scorers的不可替代优势，以及NavDream×跨planner×sequential×latency的行为闭环。后续不增加并列
+> 模块，只按R005E2→matched architecture→OOD/behavior顺序裁决。详见
+> `refine-logs/2026-10-25_aorta_best_paper_audit/AORTA_BEST_PAPER_READINESS_AUDIT_V1_CN.md`。
+
 > **2026-10-25 第一性原理 canonical 化：`FIRST_PRINCIPLES_RELATION_SYSTEM_RECORDED__EMPIRICAL_CORE_UNPROVEN`。**
 > 当前主线已从潜在世界、外观干预、合法候选与上下文效用出发，统一推出 native-relative estimand、
 > 视觉条件增量、观测纤维可辨识性、完整时空 signed differential query、全局视觉回答、条件分布、

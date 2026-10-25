@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://www.thecvf.com/?page_id=413",
+  "retrieved_at_utc": "2026-10-25T15:12:31.865891+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://www.thecvf.com/?page_id=413",
+  "status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 101253,
+  "sha256": "13a7eeef8b1e67fde46da08bcdc9bf1781f58c40ee5ab11a4b23ce2c755a25ee",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-25_iccv_best_paper_audit\\sources\\cvf_awards.html",
+  "elapsed_seconds": 2.217,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-25_iccv_best_paper_audit\\sources\\cvf_awards.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-25_iccv_best_paper_audit\\sources\\cvf_awards.html.links.json"
+}

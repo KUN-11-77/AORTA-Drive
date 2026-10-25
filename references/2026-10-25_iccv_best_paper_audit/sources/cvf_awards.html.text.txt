@@ -1,0 +1,1251 @@
+Computer Vision Awards – The Computer Vision Foundation
+The Computer Vision Foundation
+A non-profit organization that fosters and supports research in all aspects of computer vision
+Search
+Search
+Computer Vision Awards
+The computer vision community gives out a variety of awards at major vision meetings. These awards are explained below, with a complete listing of winners for each following.
+Career Awards
+PAMI Young Researcher Award
+PAMI Thomas S. Huang Memorial Prize
+PAMI Mark Everingham Prize
+PAMI Azriel Rosenfeld Lifetime Achievement Award
+PAMI Distinguished Researcher Award
+PAMI Appreciation Award
+Test of Time Awards
+Longuet-Higgins Prize
+Koenderink Prize
+Helmholtz Prize
+Conference Best Paper Awards
+CVPR Best Paper Award
+CVPR Best Student Paper Award
+CVPR Best Paper Honorable Mention Award
+ICCV Best Paper Award (Marr Prize)
+ICCV Best Student Paper Award
+ICCV Best Paper Honorable Mention Award
+ECCV Best Paper Award
+ECCV Best Paper Honorable Mention Award
+Note: the authoritative source for the PAMI (IEEE-CS) awards is at https://tc.computer.org/tcpami/awards/
+PAMI Young Researcher Award
+The Pattern Analysis and Machine Intelligence (PAMI) Young Researcher Award is an award given by the Technical Committee on Pattern Analysis and Machine Intelligence (TCPAMI) of the IEEE Computer Society to a researcher within 7 years of completing their Ph.D. for outstanding early career research contributions. Candidates are nominated by the computer vision community, with winners selected by a committee of senior researchers in the field. This award was originally instituted in 2012 by the journal Image and Vision Computing, also presented at the CVPR, and the IVC continues to sponsor the award.
+More information about this award can be found here.
+2026
+Deepak Pathak
+2026
+Vincent Sitzmann
+2025
+Saining Xie
+2025
+Hao Su
+2025
+Ishan Misra (Honorable Mention)
+2024
+Angjoo Kanazawa
+2024
+Carl Vondrick
+2024
+Katie Bouman (Honorable Mention)
+2023
+Judy Hoffman
+2023
+Christoph Feichtenhofer
+2022
+Bharath Hariharan
+2022
+Olga Russakovsky
+2021
+Georgia Gkioxari
+2021
+Phillip Isola
+2020
+Jon Barron
+2020
+Deqing Sun
+2019
+Karen Simonyan
+2018
+Andreas Geiger
+2018
+Kaiming He
+2017
+Ross Girshick
+2017
+Julien Mairal
+2016
+Ce Liu
+2016
+Abhinav Gupta
+2015
+John Wright
+2014
+Derek Hoiem
+2014
+Jamie Shotton
+2013
+Anat Levin
+2013
+Kristen Grauman
+2012
+Deva Ramanan
+PAMI Thomas S. Huang Memorial Prize
+The Thomas S. Huang Memorial Award was established at CVPR 2020 and will be awarded annually starting from CVPR 2021 to honor researchers who are recognized as examples in research, teaching/mentoring and service to the computer vision community. The award is given in memory of the late Prof. Thomas S. Huang, a pioneering scholar who left deep impressions in multiple fields including computer vision and image processing, and a role model who contributed to the growth and well-being of several generations of researchers in the community.
+More information about this award can be found here.
+2026
+Noah Snavely
+2025
+Kristen Grauman
+2024
+Andrea Vedaldi
+2023
+Alyosha Efros
+2022
+Fei-Fei Li
+2021
+Antonio Torralba
+PAMI Mark Everingham Prize
+This Prize is to commemorate Mark Everingham and to encourage others to follow in his footsteps by acting to further progress in the computer vision community as a whole. An appreciation of Mark Everingham’s contributions is at http://bit.ly/markever. The prize shall be given to a researcher, or a team of researchers, who have made a selfless contribution of significant benefit to other members of the computer vision community. The award is given out by the IEEE Pattern Analysis and Machine Intelligence (PAMI) Technical Committee. Candidates are nominated by the community in a window preceding ECCV or ICCV determined by the TCPAMI chair. Winners are decided by a committee appointed by the TCPAMI Awards Committee. The Prize is awarded annually at a major computer vision conference. In even numbered years it is awarded at the European Conference on Computer Vision (ECCV), and in odd numbered years it is awarded at the International Conference on Computer Vision (ICCV).
+More information on this award can be found here.
+2025
+The SMPL Body Model Team
+“For a family of foundation models that have enabled body pose research.”
+M. J. Black, N. Mahmood, M. Loper, J. Romero, G. Pons-Moll
+2025
+The VQA Series of Challenges
+“For stimulating a new strand of vision and language research.”
+A. Agrawal, Y. Goyal, A. Shrivastava, D. Batra, D. Parikh and collaborators
+2024
+The CelebA team
+“For a family of datasets that has accelerated the progress in generative image modeling and many other tasks.”
+Z. Liu, P. Luo, X. Wang, X. Tang
+2024
+David Forsyth
+“For continual advice and wisdom in overseeing the computer vision community’s conferences and journals.”
+D. Forsyth
+2023
+The Common Objects in Context (COCO) Dataset
+“For developing and maintaining the The Common Objects in Context (COCO) dataset.”
+T.-Y. Lin, G. Patterson, M. Ronchi, Y. Cui, M. Maire, S. Belongie, L. Bourdev, R. Girshick, J. Hays, P. Perona, D. Ramanan, L. Zitnick, P. Dollár
+2023
+The Ceres Solver
+“For developing and maintaining the Ceres Solver open source non-linear optimization software library.”
+S. Agarwal, K. Mierle and Collaborators
+2022
+Walter J. Scheirer
+“Outstanding long-term service to the computer vision community.”
+W. Scheirer
+2022
+The UCF101 and HMD51 dataset teams
+“For pioneering human action recognition datasets.”
+K. Soomro, A. Zamir, M. Shah, H. Kuehne, H. Jhuang, E. Garrote, T. Poggio, T. Serre
+2021
+The Detectron object detection and segmentation software
+“For developing and maintaining the Detectron object detection and segmentation software.”
+R. Girshick, Y. Wu, I. Radosavovic, A. Kirillov, G. Gkioxari,
+F. Massa, W.-Y. Lo, P. Dollár, K. He and Team
+2021
+The KITTI Vision Benchmark
+“For developing and maintaining the KITTI Vision Benchmark.”
+A. Geiger, P. Lenz, C. Stiller, R. Urtasun and Team
+2020
+COLMAP SFM and MVS Software Library
+“For developing and maintaining the COLMAP SFM and MVS software library.”
+J. Schönberger
+2020
+Antonio Torralba
+“For the developing and maintaining multiple datasets in the field of computer vision.”
+A. Torralba
+2019
+Labeled Faces in the Wild (LFW)
+“For generating and maintaining the LFW dataset and benchmark, starting from 2007. LFW has helped drive the field towards more uncontrolled and real-world face recognition.”
+E. Learned-Miller, G. B. Huang, T. Berg and Team
+2019
+Gerard Medioni
+“For extensive and sustained contributions to CVPR & ICCV conference organization over several decades, and multiple other services to the community. He also introduced the unifying passport registration system for conferences and workshops, and was a co-founder of the Computer Vision Foundation.”
+G. Medioni
+2018
+TRECVid Video Retrieval Evaluation 2003-18 (datasets and workshops)
+“For a series of datasets and workshops since 2003 that have driven progress in large scale Video Retrieval.”
+A. Smeaton, W. Kraaij, P. Over, G. Awad
+2018
+VisualSFM software library
+“For providing a well documented software library for Structure from Motion that has been used effortlessly by so many.”
+C. Wu
+2017
+Caffe
+“For providing an open-source deep learning framework that enabled the community to use, train and share deep convolutional neural networks. Caffe has had a huge impact, both academic and commercial”
+Y. Jia, E. Shelhamer, J. Donahue, S. Karayev, J. Long, R. Girshick, S. Guadarrama, and T. Darrell
+2017
+Int. Computer Vision Summer School (ICVSS) 2008-17
+“For a series of annual computer vision Summer schools that have brought such benefit to the students attending them, both educationally and socially”
+S. Battiato, R. Cipolla, and G. Farinella
+2016
+Ramin Zabih
+“For extensive, generous, service to the community: As long-term head of the IEEE PAMI Technical Committee he introduced many reforms, including to the awards process and the relationship to the IEEE. And he has been the driving force in creating and running the Computer Vision Foundation (CVF)”
+R. Zabih
+2016
+ImageNet
+“For a series of datasets and challenges since 2010 that have had such impact on the computer vision field. ImageNet built on the Caltech101/256 datasets, increasing the number of images by orders of magnitude and enabling the development of new algorithms”
+A. Berg, J. Deng, F.-F. Li, O. Russakovsky and team
+2015
+VLFeat Software
+“For providing a well documented library of open source software for image understanding and matching that has been effective in the development of new algorithms and applications”
+A. Vedaldi
+2015
+Middlebury Dataset
+“For a series of datasets and on-line evaluations starting with Stereo datasets in the 2001 and extending to Optic flow, MRF and others, that have inspired many other datasets”
+D. Scharstein, R. Szeliski
+2014
+Terry and Ginger Boult
+“For extensive, generous, long-term service to the community in the management of computer vision conferences and workshops.”
+G. Boult, T. Boult
+2013
+FERET and FRVT face datasets and challenges
+“For a series of datasets and challenges starting with FERET in the 1990s and extending to FRVT 2000-2016”
+P. Jonathon Phillips
+2013
+OpenCV
+“For providing a huge wealth of open source software that has been of such benefit both inside and outside the computer vision field”
+G. Bradski and team
+PAMI Azriel Rosenfeld Lifetime Achievement Award
+The Azriel Rosenfeld Award, or Azriel Rosenfeld Lifetime Achievement Award was established at ICCV 2007 in Rio de Janeiro to honor outstanding researchers who are recognized as making significant contributions to the field of Computer Vision over longtime careers. This award is in memory of the late computer scientist and mathematician Prof. Azriel Rosenfeld. Candidates are nominated by the community in a window preceding ICCV determined by the TCPAMI chair. Winners are decided by a committee appointed by the TCPAMI Awards Committee.
+More information about this award can be found here
+2025
+Rama Chellappa
+2023
+Edward Adelson
+2021
+Ruzena Bajcsy
+2019
+Shimon Ullman
+2017
+Tomaso Poggio
+2015
+Olivier Faugeras
+2013
+Jan Koenderink
+2011
+Thomas Huang
+2009
+Berthold K.P. Horn
+2007
+Takeo Kanade
+PAMI Distinguished Researcher Award
+This award (until 2013 called Significant Researcher Award) is awarded to candidates whose research contributions have significantly contributed to the progress of Computer Vision. Awards are made based on major research contributions, as well as the role of those contributions in influencing and inspiring other research. Candidates are nominated by the community in a window preceding ICCV determined by the TCPAMI chair. Winners are decided by a committee appointed by the TCPAMI Awards Committee.
+More information about this award can be found here.
+2025
+Michal Irani
+2025
+David Forsyth
+2023
+Rama Chellappa
+2023
+Michael Black
+2021
+Cordelia Schmid
+2021
+Pietro Perona
+2019
+Shree Nayar
+2019
+William T. Freeman
+2017
+Luc van Gool
+2017
+Richard Szeliski
+2015
+Yann LeCun
+2015
+David Lowe
+2013
+Jitendra Malik
+2013
+Andrew Zisserman
+2011
+Richard Hartley
+2011
+Katsushi Ikeuchi
+2009
+Andrew Blake
+2007
+Demetri Terzopoulos
+PAMI Appreciation Award
+The PAMI Appreciation award is given at the discretion of the IEEE TCPAMI Chair to individuals who have gone above and beyond the call of duty to serve the computer vision community.
+2018
+Eric Mortensen
+Longuet-Higgins Prize
+The Longuet-Higgins Prize recognizes CVPR papers from ten years ago that have made a significant impact on computer vision research.
+More information about this prize can be found here
+2026
+“Deep Residual Learning for Image Recognition”
+K. He, X. Zhang, S. Ren, J. Sun
+2026
+“You Only Look Once: Unified, Real-Time Object Detection”
+J. Redmon, S. Divvala, R. Girshick, A. Farhadi
+2025
+“Fully Convolutional Networks for Semantic Segmentation”
+J. Long, E. Shelhamer, T. Darrell
+2025
+“Going Deeper with Convolutions”
+C. Szegedy, W. Liu, Y. Jia, P. Sermanet, S. Reed, D. Anguelov, D. Erhan, V. Vanhoucke, A. Rabinovich
+2024
+“Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation”
+R. Girshick, J. Donahue, T. Darrell and J. Malik
+2023
+“Online Object Tracking: A Benchmark”
+Y. Wu, J. Lim, M.-H. Yang
+2022
+“Are We Ready for Autonomous Driving? The KITTI Vision Benchmark Suite”
+A. Geiger, P. Lenz, R. Urtasun
+2021
+“Real-time human pose recognition in parts from single depth image”
+J. Shotton, A. Fitzgibbon, M. Cook, T. Sharp, M. Finocchio, R. Moore, A. Kipman, A. Blake
+2021
+“Baby talk: Understanding and generating simple image descriptions”
+G. Kulkarni, V. Premraj, S. Dhar, S. Li, Y. Choi, A. C. Berg, T. L. Berg
+2020
+“Secrets of Optical Flow Estimation and Their Principles”
+D. Sun, S. Roth, M. Black
+2019
+“ImageNet: A large-scale hierarchical image database”
+J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, L. Fei-Fei
+2018
+“A Discriminatively Trained, Multiscale, Deformable Part Model”
+P. Felzenszwalb, D. McAllester, and D. Ramanan
+2017
+“Accurate, Dense, and Robust Multi-View Stereopsis”
+Y. Furukawa, J. Ponce
+2017
+“Object Retrieval with Large Vocabularies and Fast Spatial Matching”
+J. Philbin, O. Chum, M. Isard, J. Sivic, A. Zisserman
+2016
+“Beyond Bags of Features: Spatial Pyramid Matching for Recognizing Natural Scene Categories”
+S. Lazebnik, C. Schmid, J. Ponce
+2016
+“Scalable Recognition with a Vocabulary Tree”
+D. Nister and H. Stewenius
+2015
+“Histograms of oriented gradients for human detection”
+N. Dalal, B. Triggs
+2015
+“A non-local algorithm for image denoising”
+A. Buades, B. Coll, J.-M. Morel
+2014
+“A performance evaluation of local descriptors”
+K. Mikolajczyk, C. Schmid
+2013
+“Object Class Recognition by Unsupervised Scale-Invariant Learning”
+R. Fergus, P. Perona, A. Zisserman
+2011
+“Rapid Object Detection using a Boosted Cascade of Simple Features”
+P. A. Viola, M. J. Jones
+2010
+“Efficient Matching of Pictorial Structures”
+P. F. Felzenszwalb, D. P. Huttenlocher
+2010
+“Real-Time Tracking of Non-Rigid Objects Using Mean Shift”
+D. Comaniciu, V. Ramesh, P. Meer
+2009
+“Statistics of Natural Images and Models”
+J. Huang, D. Mumford
+2009
+“Adaptive Background Mixture Models for Real-Time Tracking”
+C. Stauffer, W. E. L. Grimson
+2008
+“Probabilistic modeling of local appearance and spatial relationships for object recognition”
+H. Schneiderman and T. Kanade
+2008
+“Tracking people with twists and exponential maps”
+C. Bregler and J. Malik
+2007
+“Normalized Cuts and Image Segmentation”
+J. Shi, J. Malik
+2007
+“Training Support Vector Machines: An Application to Face Detection”
+E. Osuna, R. Freund, F. Girosi
+2006
+“Neural Network-Based Face Detection”
+H. Rowley, S. Baluja, T. Kanade
+2006
+“Combining greyvalue invariants with local constraints for object recognition”
+C. Schmid, R. Mohr
+2005
+“Boundary detection by minimizing functionals”
+D. Mumford, J. Shah
+2005
+“Layered representation for motion analysis”
+T. Adelson, J. Wang
+Koenderink Prize
+The Koenderink Prize recognises fundamental contributions in computer vision. It is awarded each year at the European Conference on Computer Vision (one of the most prestigious conferences in the field) for a paper published ten years ago at that conference which has withstood the test of time.
+2024
+“LSD-SLAM: Large-Scale Direct Monocular SLAM”
+J. Engel, T. Schöps, D. Cremers
+2024
+“Microsoft COCO: Common Objects in Context”
+T.-Y. Lin, M. Maire, S. Belongie, J. Hays, P. Perona, D. Ramanan, P. Dollár, C. Lawrence Zitnick
+2022
+“A Naturalistic Open Source Movie for Optical Flow Evaluation”
+D. Butler, J. Wulff, G.Stanley, M. Black
+2022
+“Indoor Segmentation and Support Inference from RGBD Images”
+N. Silberman, D. Hoiem, P. Kohli, R. Fergus
+2020
+“Improving the Fisher Kernel for Large-Scale Image Classification”
+F. Perronnin, J. Sánchez, T. Mensink
+2020
+“Brief: Binary Robust Independent Elementary Features”
+M. Calonder, V. Lepetit, C. Strecha, P. Fua
+2018
+“Hamming Embedding and Weak Geometric Consistency for Large Scale Image Search”
+H. Jegou, M. Douze, and C. Schmid
+2018
+“Semi-supervised On-Line Boosting for Robust Tracking”
+H. Grabner, C. Leistner, and H. Bischof
+2016
+“Surf: Speeded up robust features”
+H. Bay, T. Tuytelaars, L. Van Gool
+2016
+“Machine learning for high-speed corner detection”
+E. Rosten, T. Drummond
+2014
+“Face Recognition with Local Binary Patterns”
+T. Ahonen, A. Hadid, M. Pietikainen
+2014
+“High Accuracy Optical Flow Estimation Based on a Theory for Warping”
+T. Brox, A. Bruhn, N. Papenberg, J. Weickert
+2012
+“What Energy Functions Can Be Minimized via Graph Cuts?”
+V. Kolmogorov, R. Zabih
+2010
+“Stochastic Tracking of 3D Human Figures Using 2D Image Motion”
+H. Sidenbladh, M. J. Black and D. J. Fleet
+2010
+“Unsupervised Learning of Models for Recognition”
+M. Weber, M. Welling and P. Perona
+2008
+“Contour Tracking by Stochastic Propagation of Conditional Density”
+M. Isard, A. Blake
+2008
+“Camera self-calibration: theory and experiments”
+O. Faugeras, Q.-T. Luong, S. Maybank
+Helmholtz Prize
+The ICCV Helmholtz Prize, known as the Test of Time Award before 2013, is awarded every other year at the ICCV, recognizing ICCV papers from ten or more years earlier that had a significant impact on computer vision research. Winners are selected by the IEEE Computer Society’s Technical Committee on Pattern Analysis and Machine Intelligence. The award is named after the 19th century physician and physicist Hermann von Helmholtz, and the ICCV’s award is not related to the various Helmholtz Prizes in physics, or the Hermann von Helmholtz Prize in neuroscience.
+More information about this prize can be found here.
+2025
+“Fast R-CNN”
+R. Girshick
+2025
+“Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification”
+K. He, X. Zhang, S. Ren, J. Sun
+2023
+“Action Recognition With Improved Trajectories”
+H. Wang and C. Schmid
+2021
+“ORB: An efficient alternative to SIFT or SURF”
+E. Rublee, V. Rabaud, K. Konolige, G. Bradski
+2021
+“HMDB: A large video database for human motion recognition”
+H. Kuehne, H. Jhuang, E. Garrote, T. Poggio, T. Serre
+2021
+“DTAM: Dense tracking and mapping in real-time”
+R. Newcombe, S. Lovegrove, A. Davison
+2019
+“Building Rome in a Day”
+S. Agarwal, N. Snavely, I. Simon, S. M. Seitz, R. Szeliski
+2019
+“Attribute and Simile Classifiers for Face Verification”
+N. Kumar, A. C. Berg, P. N. Belhumeur, S. K. Nayar
+2017
+“Space-time interest points”
+I. Laptev and T. Lindeberg
+2017
+“Recognizing action at a distance”
+A. Efros, A. Berg, G. Mori, J. Malik
+2017
+“Video Google: A text retrieval approach to object matching in videos”
+J. Sivic and A. Zisserman
+2017
+“Recognising panoramas”
+M. Brown and D. Lowe
+2017
+“Discovering objects and their location in images”
+J. Sivic, B. Russell, A. Efros, A. Zisserman, and W. Freeman
+2017
+“The pyramid match kernel: Discriminative classification with sets of image features”
+K. Grauman and T. Darrell
+2017
+“Actions as space-time shapes”
+M. Blank, L. Gorelick, E. Shechtman, M. Irani, and R. Basri
+2015
+“A Database of Human Segmented Natural Images and Its Application to Evaluating Segmentation Algorithms and Measuring Ecological Statistics”
+D. Martin, C. Fowlkes, D. Tal, J. Malik
+2015
+“Matching Shapes”
+S. Belongie, J. Malik, J. Puzicha
+2013
+“Snakes: Active Contour Models”
+M. Kass, A. Witkin, D. Terzopoulos
+2013
+“Indexing via color histograms”
+M. J. Swain, D. H. Ballard
+2013
+“Steerable filters for early vision, image analysis, and wavelet decomposition”
+B. Freeman, T. Adelson
+2013
+“A framework for the robust estimation of optical flow”
+M. Black and P. Anandan
+2013
+“Alignment by Maximization of Mutual Information”
+P. Viola, W. M. Wells III
+2013
+“In Defence of the 8-Point Algorithm”
+R. Hartley
+2013
+“Bilateral Filtering for Gray and Color Images”
+C. Tomasi, R. Manduchi
+2013
+“A Metric for Distributions with Applications to Image Databases”
+Y. Rubner, C. Tomasi, L. J. Guibas
+2013
+“Region Competition: Unifying Snakes, Region Growing, Energy/Bayes/MDL for Multi-band Image Segmentation”
+S. C. Zhu, T. S. Lee, A. Yuille
+2013
+“Flexible Camera Calibration by Viewing a Plane from Unknown Orientations”
+Z. Zhang
+2013
+“Texture Synthesis by Non-parametric Sampling”
+A. Efros, T. K. Leung
+2011
+“Object Recognition from Local Scale-Invariant Features”
+D. Lowe
+2011
+“Fast Approximate Energy Minimization via Graph Cuts”
+Y. Boykov, O. Veksler, R. Zabih
+2011
+“Geodesic Active Contours”
+V. Caselles, R. Kimmel, G. Sapiro
+2009
+“Geometric Hashing: A General and Efficient Model-Based Recognition Scheme”
+Y. Lamdan, H. J. Wolfson
+CVPR Best Paper Award
+The CVPR best paper award is picked by a committee delegated by the program chairs of the conference. It recognizes the very best work appearing at the conference.
+2026
+“Efficiently Reconstructing Dynamic Scenes One D4RT at a Time”
+C. Zhang, G. Le Moing, S. Koppula, I. Rocco, L. Momeni, J. Xie, S. Sun, R. Sukthankar, J. Barral, R. Hadsell, Z. Ghahramani, A. Zisserman, J. Zhang, M. Sajjadi
+2025
+“VGGT: Visual Geometry Grounded Transformer”
+J. Wang, M. Chen, N. Karaev, A. Vedaldi, C. Rupprecht, D. Novotny
+2024
+“Rich Human Feedback for Text-to-Image Generation”
+Y. Liang, J. He, G. Li, P. Li, A. Klimovskiy, N. Carolan, J. Sun, J. Pont-Tuset, S. Young, F. Yang, J. Ke, K. D. Dvijotham, K. M. Collins, Y. Luo, Y. Li, K. J. Kohlhoff, D. Ramachandran, V. Navalpakkam
+2024
+“Generative Image Dynamics”
+Z. Li, R. Tucker, N. Snavely, A. Holynski
+2023
+“Visual Programming: Compositional Visual Reasoning Without Training”
+T. Gupta, A. Kembhavi
+2023
+“Planning-Oriented Autonomous Driving”
+Y. Hu, J. Yang, L. Chen, K. Li, C. Sima, X. Zhu, S. Chai, S. Du, T. Lin, W. Wang, L. Lu, X. Jia, Q. Liu, J. Dai, Y. Qiao, H. Li
+2022
+“Learning to Solve Hard Minimal Problems”
+P. Hruby, T. Duff, A. Leykin, T. Pajdla
+2021
+“GIRAFFE: Representing Scenes as Compositional Generative Neural Feature Fields”
+M. Niemeyer, A. Geiger
+2020
+“Unsupervised Learning of Probably Symmetric Deformable 3D Objects from Images in the Wild”
+S. Wu, C. Rupprecht, A. Vedaldi
+2019
+“A Theory of Fermat Paths for Non-Line-of-Sight Shape Reconstruction”
+S. Xin, S. Nousias, K. Kutulakos, A. Sankaranarayanan, S. G. Narasimhan, I. Gkioulekas
+2018
+“Taskonomy: Disentangling Task Transfer Learning”
+A. R. Zamir, A. Sax, W. Shen, L. J. Guibas, J. Malik, S. Savarese
+2017
+“Densely Connected Convolutional Networks”
+G. Huang, Z. Liu, L. van der Maaten, K. Q. Weinberger
+2017
+“Learning from Simulated and Unsupervised Images through Adversarial Training”
+A. Shrivastava, T. Pfister, O. Tuzel, J. Susskind, W. Wang, R. Webb
+2016
+“Deep Residual Learning for Image Recognition”
+K. He, X. Zhang, S. Ren, J. Sun
+2015
+“DynamicFusion: Reconstruction and Tracking of Non-rigid Scenes in Real-Time”
+R. A. Newcombe, D. Fox, S. M. Seitz
+2014
+“What Camera Motion Reveals About Shape with Unknown BRDF”
+M. K. Chandraker
+2013
+“Fast, Accurate Detection of 100,000 Object Classes on a Single Machine”
+T. Dean, J. Yagnik, M. Ruzon, M. Segal, J. Shlens, S. Vijayanarasimhan
+2012
+“A Simple Prior-free Method for Non-Rigid Structure-from-Motion Factorization”
+Y. Dai, H. Li, M. He
+2011
+“Real-time Human Pose Recognition in Parts from Single Depth Images”
+J. Shotton, A. Fitzgibbon, M. Cook, T. Sharp, M. Finocchio, R. Moore, A. Kipman, A. Blake
+2010
+“Efficient Computation of Robust Low-Rank Matrix Approximations in the Presence of Missing Data using the L1 Norm”
+A. Eriksson, A. van den Hengel
+2009
+“Single Image Haze Removal Using Dark Channel Prior”
+K. He, J. Sun, X. Tang
+2008
+“Beyond Sliding Windows: Object Localization by Efficient Subwindow Search”
+C. H. Lampert, M. B. Blaschko, T. Hofmann
+2008
+“Global Stereo Reconstruction under Second Order Smoothness Priors”
+O. Woodford, I. Reid, P. Torr, A. Fitzgibbon
+2007
+“Dynamic 3D Scene Analysis from a Moving Vehicles”
+B. Leibe, N. Cornelis, K. Cornelis, L. Van Gool
+2006
+“Putting Objects in Perspective”
+D. Hoiem, A. Efros, M. Hebert
+2005
+“Real-Time Non-Rigid Surface Detection”
+J. Pilet, V. Lepetit, P. Fua
+2004
+“Programmable Imaging Using a Digital Micromirror Array”
+S. K. Nayar, V. Branzoi, T. Boult
+2003
+“Object Class Recognition by Unsupervised Scale-Invariant Learning”
+R. Fergus, P. Perona, A. Zisserman
+2001
+“Morphable 3D Models From Video”
+M. Brand
+2000
+“Real-Time Tracking of Non-Rigid Objects using Mean Shift”
+D. Comaniciu, V. Ramesh, P. Meer
+1999
+“Robust Hierarchical Algorithm for Constructing a Mosaic from Images of the Curved Human Retina”
+A. Can, C. V. Stewart, B. Roysam
+1998
+“Optimal Structure from Motion: Local Ambiguities and Global Estimates”
+A. Chiuso, R. Brockett, S. Soatto
+1997
+“What is a Light Source?”
+M. Langer, S. Zucker
+1997
+“Learning Bilinear Models for Two-factor Problems in Vision”
+W. T. Freeman, J. B. Tenenbaum
+1996
+“What is the Set of Images of an Object Under All Possible Lighting Conditions?”
+P. Belhumeur, D. Kriegman
+1994
+“Illumination Planning for Object Recognition in Structured Environments”
+H. Murase and S. Nayar
+1991
+“Face Recognition Using Eigenfaces”
+M. Turk, A. Pentland
+1991
+“Robust Dynamic Motion Estimation Over Time”
+M. J. Black, P. Anandan
+1991
+“Determining 3-D object Pose Using the Complex Extended Gaussian Image”
+S. B. Kang and K. Ikeuchi
+1988
+“Large Hierarchical Object Recognition Using Libraries of Parameterized Model Sub-Parts”
+G. J. Ettinger
+CVPR Best Student Paper Award
+The CVPR best student paper award is picked by a committee delegated by the program chairs of the conference. It recognizes the very best work appearing at the conference where the first author was a student at the time of submission.
+2026
+“Native and Compact Structured Latents for 3D Generation”
+J. Xiang, X. Chen, S. Xu, R. Wang, Z. Lv, Y. Deng, H. Zhu, Y. Dong, H. Zhao, N. Yuan, J. Yang
+2025
+“Neural Inverse Rendering from Propagating Light”
+A. Malik, B. Attal, A. Xie, M. O’Toole, D. B. Lindell
+2024
+“BioCLIP: A Vision Foundation Model for the Tree of Life”
+S. Stevens, J. Wu, M. J. Thompson, E. G. Campolongo, C. H. Song, D. E. Carlyn, L. Dong, W. M. Dahdul, C. Stewart, T. Berger-Wolf, W.-L. Chao, Y. Su
+2024
+“Mip-Splatting: Alias-free 3D Gaussian Splatting”
+Z. Yu, A. Chen, B. Huang, T. Sattler, A. Geiger
+2023
+“3D Registration With Maximal Cliques”
+X. Zhang, J. Yang, S. Zhang, Y. Zhang
+2022
+“EPro-PnP: Generalized End-to-End Probabilistic Perspective-n-Points for Monocular Object Pose Estimation”
+H. Chen, P. Wang, F. Wang, W. Tian, L. Xiong, H. Li
+2021
+“Task Programming: Learning Data Efficient Behavior Representations”
+J. J. Sun, A. Kennedy, E. Zhan, D. J. Anderson, Y. Yue, P. Perona
+2020
+“BSP-Net: Generating Compact Meshes via Binary Space Partitioning”
+Z. Chen, A. Tagliasacchi, H. Zhang
+2019
+“Reinforced Cross-Modal Matching and Self-Supervised Imitation Learning for Vision-Language Navigation”
+X. Wang, Q. Huang, A. Celikyilmaz, J. Gao, D. Shen, Y.-F. Wang, W. Y. Wang, L. Zhang
+2018
+“Total Capture: A 3D Deformation Model for Tracking Faces, Hands, and Bodies”
+H. Joo, T. Simon, Y. Sheikh
+2017
+“Computational Imaging on the Electric Grid”
+M. Sheinin, Y. Y. Schechner, K. N. Kutulakos
+2016
+“Structural-RNN: Deep Learning on Spatio-Temporal Graphs”
+A. Jain, A. R. Zamir, S. Savarese, A. Saxena
+2015
+“Category-Specific Object Reconstruction from a Single Image”
+A. Kar, S. Tulsiani, J. Carreira, J. Malik
+2014
+“Partial Optimality by Pruning for MAP-inference with General Graphical Models”
+P. Swoboda, B. Savchynskyy, J. Kappes, C. Schnorr
+2013
+“Discriminative Non-blind Deblurring”
+U. Schmidt, C. Rother, S. Nowozin, J. Jancsary, S. Roth
+2012
+“Max-Margin Early Event Detectors”
+M. Hoai, F. De la Torre
+2011
+“Recognition Using Visual Phrases”
+A. Farhadi, M. Amin Sadeghi
+2011
+“Separating Reflective and Fluorescent Components of An Image” (Honorable Mention)
+C. Zhang, I. Sato
+2010
+“Visual Event Recognition in Videos by Learning from Web Data”
+L. Duan, D. Xu, W.-H. Tsang, J. Luo
+2010
+“Modeling Mutual Context of Object and Human Pose in Human-Object Interaction Activities” (Honorable Mention)
+B. Yao, L. Fei-Fei
+2009
+“Nonparametric Scene Parsing: Label Transfer via Dense Scene Alignment”
+C. Liu, J. Yuen, A. Torralba
+2009
+“A Tensor-Based Algorithm for High-Order Graph Matching” (Honorable Mention)
+O. Duchenne, F. Bach, I. S. Kweon, J. Ponce
+2008
+“Fast Image Search for Learned Metrics”
+P. Jain, B. Kulis, K. Grauman
+2007
+“Tracking in Low Frame Rate Video: A Cascade Particle Filter with Discriminative Observers of Different Life Spans”
+Y. Li, H. Ai, T. Yamashita, S. Lao, M. Kawade
+2006
+“Fast Image Search for Learned Metrics”
+P. Jain, B. Kulis, K. Grauman
+2003
+“Vector-Valued Image Regularization with PDE’s: A Common Framework for Different Applications”
+D. Tschumperle, R. Deriche
+2001
+“Tracking and modeling non-rigid objects with rank constraints”
+L. Torresani, D. Yang, E. Alexander, C. Bregler
+2001
+“Dense image matching with global and local statistical criteria: a variational approach” (Outstanding Student Paper)
+G. Hermosillo, O. Faugeras
+2001
+“JPDAF based HMM for real-time contour tracking” (Outstanding Student Paper)
+Y. Chen, Y. Rui, T. Huang
+2001
+“Model-based curve evolution techniques for image segmentation” (Outstanding Student Paper)
+A. Tsai, A. Yezzi, W. Wells, C. Tempany, D. Tucker, A. Fan, E. Grimson, A. Willsky
+1994
+“Occluding Contour Detection Using Affine Invariants and Purposive Viewpoint Control”
+K. Kutulakos and C. Dyer
+1993
+“Information Theoretic Clustering of Large Structural Modelbases”
+K. Sengupta and K. L. Boyer
+CVPR Best Paper Honorable Mention Award
+The CVPR best paper honorable mention award is picked by a committee delegated by the program chairs of the conference. It recognizes outstanding work appearing at the conference.
+2026
+“ChordEdit: One-Step Low-Energy Transport for Image Editing”
+L. Lu, X. Chen, M. Guo, S. Li, J. Wang, Y. Shi
+2026
+“SAM 3D: 3Dfy Anything in Images”
+X. Chen, F.-J. Chu, P. Gleize, K. Liang, A. Sax, H. Tang, W. Wang, M. Guo, T. Hardin, X. Li, A. Lin, J.-W. Liu, Z. Ma, A. Sagar, B. Song, X. Wang, J. Yang, B. Zhang, P. Dollár, G. Gkioxari, M. Feiszli, J. Malik
+2026
+“NitroGen: An Open Foundation Model for Generalist Gaming Agents”
+L. Magne, A. Awadalla, G. Wang, Y. Xu, J. Belofsky, F. Hu, J. Kim, L. Schmidt, G. Gkioxari, J. Kautz, Y. Yue, Y. Choi, Y. Zhu, L. Fan
+2025
+“MegaSaM: Accurate, Fast and Robust Structure and Motion from Casual Dynamic Videos”
+Z. Li, R. Tucker, F. Cole, Q. Wang, L. Jin, V. Ye, A. Kanazawa, A. Holynski, N. Snavely
+2025
+“Navigation World Models”
+A. Bar, G. Zhou, D. Tran, T. Darrell, T. LeCun
+2025
+“Molmo and PixMo: Open Weights and Open Data for State-of-the-Art Vision-Language Models”
+M. Deitke et al.
+2025
+“3D Student Splatting and Scooping”
+J. Zhu, J. Yue, F. He, H. Wang
+2025
+“Generative Multimodal Pretraining with Discrete Diffusion Timestep Tokens”
+K. Pan, W. Lin, Z. Yue, T. Ao, L. Jia, W. Zhao, J. Li, S. Tang, H. Zhang
+2024
+“pixelSplat: 3D Gaussian Splats from Image Pairs for Scalable Generalizable 3D Reconstruction”
+D. Charatan, S. L. Li, A. Tagliasacchi, V. Sitzmann
+2024
+“EventPS: Real-Time Photometric Stereo Using an Event Camera”
+B. Yu, J. Ren, J. Han, F. Wang, J. Liang, B. Shi
+2024
+“Comparing the Decision-Making Mechanisms by Transformers and CNNs via Explanation Methods” (Student Paper)
+M. Jiang, S. Khorram, L. Fuxin
+2024
+“Objects as Volumes: A Stochastic Geometry View of Opaque Solids” (Student Paper)
+B. Miller, H. Chen, A. Lai, I. Gkioulekas
+2024
+“Image Processing GNN: Breaking Rigidity in Super-Resolution” (Student Paper)
+Y. Tian, H. Chen, C. Xu, Y. Wang
+2024
+“SpiderMatch: 3D Shape Matching with Global Optimality and Geometric Consistency” (Student Paper)
+P. Roetzer, F. Bernard
+2023
+“DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation”
+N. Ruiz, Y. Li, V. Jampani, Y. Pritch, M. Rubinstein, K. Aberman
+2023
+“DynIBaR: Neural Dynamic Image-Based Rendering”
+Z. Li, Q. Wang, F. Cole, R. Tucker, N. Snavely
+2022
+“Dual-Shutter Optical Vibration Sensing”
+M. Sheinin, D. Chan, M. O’Toole, S. Narasimhan
+2022
+“Ref-NeRF: Structured View-Dependent Appearance for Neural Radiance Fields”
+D. Verbin, P. Hedman, B. Mildenhall, T. Zickler, J. Barron, P. Srinivasan
+2021
+“Exploring Simple Siamese Representation Learning”
+X. Chen, K. He
+2021
+“Learning High Fidelity Depths of Dressed Humans by Watching Social Media Dance Videos”
+Y. Jafarian, H. S. Park
+2021
+“Less is More: ClipBERT for Video-and-Language Learning via Sparse Sampling”
+J. Lei, L. Li, L. Zhou, Z. Gan, T. L. Berg, M. Bansal, J. Liu
+2021
+“Binary TTC: A Temporal Geofence for Autonomous Navigation”
+A. Badki, O. Gallo, J. Kautz, P. Sen
+2021
+“Real-Time High-Resolution Background Matting”
+S. Lin, A. Ryabtsev, S. Sengupta, B. Curless, S. Seitz, I. Kemelmacher-Shlizerman
+2020
+“DeepCap: Monocular Human Performance Capture Using Weak Supervision”
+M. Habermann, W. Xu, M. Zollhöfer, G. Pons-Moll, Christian Theobalt
+2019
+“A Style-Based Generator Architecture for Generative Adversarial Networks”
+T. Karras, S. Laine and T. Aila
+2019
+“Learning the Depths of Moving People by Watching Frozen People”
+Z. Li, T. Dekel, F. Cole, R. Tucker, C. Liu, B. Freeman and N. Snavely
+2018
+“Deep Learning of Graph Matching”
+A. Zanfir and C. Sminchisescu.
+2018
+“SPLATNet: Sparse Lattice Networks for Point Cloud Processing”
+H. Su, V. Jampani, D. Sun, S. Maji, E. Kalogerakis, M.-H. Yang, and J. Kautz
+2018
+“CodeSLAM — Learning a Compact, Optimisable Representation for Dense Visual SLAM”
+M. Bloesch, J. Czarnowski, R. Clark, S. Leutenegger, and A. J. Davison
+2018
+“Efficient Optimization for Rank-Based Loss Functions”
+P. Mohapatra, M. Rolinek, C.V. Jawahar, V. Kolmogorov, and M. Pawan Kumar
+2017
+“Annotating Object Instances with a Polygon-RNN”
+L. Castrejon, K. Kundu, R. Urtasun, S. Fidler
+2017
+“YOLO9000: Better, Faster, Stronger”
+J. Redmon, A. Farhadi
+2016
+“Sublabel-Accurate Relaxation of Nonconvex Energies”
+T. Mollenhoff, E. Laude, M. Moeller, J. Lellmann, D. Cremers
+2015
+“Efficient Globally Optimal Consensus Maximisation with Tree Search”
+T.-J. Chin, P. Purkait, A. Eriksson, D. Suter
+2015
+“Fully Convolutional Networks for Semantic Segmentation”
+J. Long, E. Shelhamer, T. Darrell
+2015
+“Picture: A Probabilistic Programming Language for Scene Perception”
+T. D. Kulkarni, P. Kohli, J. B. Tenenbaum, V. Mansinghka
+2014
+“3D Shape and Indirect Appearance by Structured Light Transport”
+M. O’Toole, J. Mather, K. Kutulakos
+2013
+“Lost! Leveraging the Crowd for Probabilistic Visual Self-Localization”
+M. Brubaker, A. Geiger, R. Urtasun
+2011
+“Discrete-Continuous Optimization for Large-scale Structure from Motion”
+D. Crandall, A. Owens, N. Snavely, D. Huttenlocher
+2009
+“Understanding and evaluating blind deconvolution algorithms”
+A. Levin, Y. Weiss, F. Durand, B. Freeman
+2007
+“Spectral Matting”
+A. Levin, A. Rav-Acha, D. Lischinski
+2007
+“Human Detection via Classification on Riemannian Manifolds”
+O. Tuzel, F. Porikli, P. Meer
+2006
+“Incremental learning of object detectors using a visual shape alphabet”
+A. Opelt, A. Pinz, A. Zisserman
+2005
+“A Non-Local Algorithm for Image Denoising”
+A. Buades, B. Coll, J.-M. Morel
+2005
+“Bi-Layer Segmentation of Binocular Stereo Video”
+V. Kolmogorov, A. Criminisi, A. Blake, G. Cross, C. Rother
+2005
+“Video Epitomes”
+V. Cheung, B. J. Frey, N. Jojic
+2003
+“Constraint on Five Points in Two Images”
+T. Werner
+2001
+“Robust on-line appearance models for visual tracking”
+A. Jepson, D. Fleet, T. F. El-Maraghi
+2000
+“In search of illumination invariants”
+H. Chen, P. Belhumeur, and D. Jacobs
+ICCV Best Paper Award (Marr Prize)
+The ICCV best paper award is the Marr Prize, named after British neuroscientist David Marr. The award is picked by a committee delegated by the program chairs of the conference.
+2025
+“Generating Physically Stable and Buildable Brick Structures from Text”
+A. Pun, K. Deng, R. Liu, D. Ramanan, C. Liu, J.-Y. Zhu
+2023
+“Passive Ultra-Wideband Single-Photon Imaging”
+M. Wei, S. Nousias, R. Gulve, D. Lindell, K. Kutulakos
+2023
+“Adding Conditional Control to Text-to-Image Diffusion Models”
+L. Zhang, A. Rao, M. Agrawala
+2021
+“Swin Transformer: Hierarchical Vision Transformer using Shifted Windows”
+Z. Liu, Y. Lin, Y. Cao, H. Hu, Y. Wei, Z. Zhang, S. Lin, B. Guo
+2019
+“SinGAN: Learning a Generative Model from a Single Natural Image”
+T. Shaham, T. Dekel, T. Michaeli
+2017
+“Mask R-CNN”
+K. He, G. Gkioxari, P. Dollar, R. Girshick
+2015
+“Deep Neural Decision Forests”
+P. Kontschieder, M. Fiterau, A. Criminisi, S. Rota Bulo
+2013
+“From Large Scale Image Categorization to Entry- Level Categories”
+V. Ordonez, J. Deng, Y. Choi, A. Berg, T. Berg
+2011
+“Relative Attributes”
+D. Parikh, K. Grauman
+2009
+“Discriminative Models for Multi-class Object Layout”
+C. Desai, D. Ramanan, C. Fowlkes
+2007
+“Population Shape Regression From Random Design Data”
+B. Davis, P. Thomas Fletcher, E. Bullitt, S. Joshi
+2005
+“Globally Optimal Estimates for Geometric Reconstruction Problems”
+F. Kahl, D. Henrion
+2003
+“Image-based Rendering using Image-based Priors”
+A. Fitzgibbon, Y. Wexler, A. Zisserman
+2003
+“Image Parsing: Unifying Segmentation, Detection and Recognition”
+Z. Tu, X. Chen, A. L. Yuille, S.-C. Zhu
+2003
+“Detecting Pedestrians using Patterns of Motion and Appearance”
+P. Viola, M. J. Jones, D. Snow
+2001
+“Probabilistic Tracking in a Metric Space”
+K. Toyama, A. Blake
+2001
+“The Space of All Stereo Images”
+S. Seitz
+1999
+“A Theory of Shape by Space Carving”
+K. Kutulakos, S. Seitz
+1999
+“Euclidean Reconstruction and Reprojection up to Subgroups”
+Y. Ma, S. Soatto, J. Kosecka, S. Sastry
+1998
+“Self-Calibration and Metric Reconstruction in spite of Varying and Unknown Internal Camera Parameters”
+M. Pollefeys, R. Koch, L. Van Gool
+1998
+“Maintaining multiple motion model hypotheses over many views to recover matching and structure”
+P. Torr, A. Fitzgibbon, A. Zisserman
+1995
+“A Theory of Specular Surface Geometry”
+M. Oren, S. Nayar
+1995
+“Shape from Shading with Interreflections under a Proximal Light Source: Distortion-Free Copying of an Unfolded Book”
+T. Wada, H. Ukida, T. Matsuyama
+1993
+“Extracting Projective Structure from Single Perspective Views of 3D Point Sets”
+C. A. Rothwell, D. A. Forsyth, A. Zisserman, J. L. Mundy
+1990
+“Shape from Interreflections”
+S. Nayar, K. Ikeuchi, T. Kanade
+1988
+“Color from Black and White”
+B. Funt, J. Ho
+1987
+“Optical Flow using Spatiotemporal Filters”
+D. Heeger
+ICCV Best Student Paper Award
+The ICCV best student paper award is picked by a committee delegated by the program chairs of the conference. It recognizes the very best work appearing at the conference where the first author was a student at the time of submission.
+2025
+“FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models”
+V. Kulikov, M. Kleiner, I. Huberman-Spiegelglas, T. Michaeli
+2023
+“Tracking Everything Everywhere All at Once”
+Q. Wang, Y.-. Chang, R. Cai, Z. Li, B. Hariharan, A. Holynski, N. Snavely
+2021
+“Pixel-Perfect Structure-from-Motion with Featuremetric Refinement”
+P. Lindenberger, P.-E. Sarlin, V. Larsson, M. Pollefeys
+2019
+“PLMP – Point-Line Minimal Problems in Complete Multi-View Visibility”
+T. Duff, K. Kohn, A. Leykin, T. Pajdla
+2017
+“Focal Loss for Dense Object Detection”
+T.-Y. Lin, P. Goyal, R. Girshick, K. He, P. Dollar
+2011
+“Close the Loop: Joint Blind Image Restoration and Recognition with Sparse Representation Prior”
+H. Zhang, J. Yang, Y. Zhang, N. M. Nasrabadi, T. S. Huang
+ICCV Best Paper Honorable Mention Award
+The ICCV best paper honorable mention award is picked by a committee delegated by the program chairs of the conference. It recognizes outstanding work appearing at the conference.
+2025
+“Spatially-Varying Autofocus”
+Y. Qin, A. Sankaranarayanan, M. O’Toole
+2025
+“RayZer: A Self-supervised Large View Synthesis Model”
+H. Jiang, H. Tan, P. Wang, H. Jin, Y. Zhao, S. Bi, K. Zhang, F. Luan, K. Sunkavalli, Q. Huang, G. Pavlakos
+2023
+“Segment Anything”
+A. Kirillov, E. Mintun, N. Ravi, H. Mao, C. Rolland, L. Gustafson, T. Xiao, S. Whitehead, A. C. Berg, W.-Y. Lo, P. Dollar, R. Girshick
+2021
+“Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields”
+J. T. Barron, B. Mildenhall, M. Tancik, P. Hedman, R. Martin-Brualla, P. Srinivasan
+2021
+“OpenGAN: Open-Set Recognition via Open Data Generation”
+S. Kong, D. Ramanan
+2021
+“Viewing Graph Solvability via Cycle Consistency”
+D. Arrigoni, A. Fusiello, E. Ricci, T. Pajdla
+2021
+“Common Objects in 3D: LargeScale Learning and Evaluation of Real-life 3D Category
+Reconstruction”
+J. Reizenstein, P. Henzler, R. Shapovalov, L. Sbordone, P. Labatut, D. Novotny
+2019
+“Asynchronous Single-Photon 3D Imaging”
+A. Gupta, A. Ingle, M. Gupta
+2019
+“Specifying Object Attributes and Relations in Interactive Scene Generation”
+O. Ashual, L. Wolf
+2017
+“First Person Activity Forecasting with Online Inverse Reinforcement Learning”
+N. Rhinehart and K. M. Kitani
+2017
+“Open Set Domain Adaptation”
+P. P. Busto and J. Gall
+2017
+“Globally-Optimal Inlier Set Maximisation for Simultaneous Camera Pose and Feature Correspondence”
+D. Campbell, L. Petersson, L. Kneip, and H. Li
+2015
+“Holistically-Nested Edge Detection”
+S. Xie, Z. Tu
+2013
+“Hierarchical Data-driven Descent for Efficient Optimal Deformation Estimation”
+Y. Tian, S. Narasimhan
+2013
+“Piecewise Rigid Scene Flow”
+C. Vogel, K. Schindler, S. Roth
+2009
+“Looking Around the Corner Using Transient Imaging”
+A. Kirmani, T. Hutchison, J. Davis, R. Raskar
+2007
+“Deformable Template As Active Basis”
+Y. Nian Wu, Z. Si, C. Fleming, S.-C. Zhu
+2007
+“BRDF Acquisition with Basis Illumination”
+A. Ghosh, S. Achutha, W. Heidrich, M. O’Toole
+2007
+“Globally Optimal Affine and Metric Upgrades in Stratified Autocalibration”
+M. Chandraker, S. Agarwal, D. Kriegman, S. Belongie
+2005
+“A Theory of Refractive and Specular Shape by Light-Path Triangulation”
+K. N. Kutulakos, E. Steger
+2005
+“Detecting Irregularities in Images and in Video”
+O. Boiman, M. Irani
+2005
+“On the Spatial Statistics of Optical Flow”
+S. Roth, M. J. Black
+2001
+“Alignment of Non-Overlapping Sequences”
+Y. Caspi, M. Irani
+2001
+“On Projection Matrices and their Applications in Computer Vision”
+L. Wolf, A. Shashua
+1999
+“Probabilistic Detection and Tracking of Motion Discontinuities”
+M. Black, D. Fleet
+1999
+“Equivalence of Julesz and Gibbs texture ensembles”
+Y. N. Wu, S.-C. Zhu, X. Liu
+1998
+“Stereo Matching with Transparency and Matting”
+R. Szeliski, P. Golland
+1995
+“Alignment by Maximization of Mutual Information”
+P. Viola, W. Wells III
+1995
+“Reconstruction from Image Sequences by Means of Relative Depths”
+Anders Heyden
+1995
+“Hypergeometric Filters for Optical Flow and Affine Matching”
+Y. Xiong, S. Shafer
+1988
+“Organization of Smooth Image Curves at Multiple Scales”
+D. Lowe
+1988
+“Representing Oriented Piecewise C2 Surfaces”
+V. Nalwa
+1988
+“The Motion Coherence Theory”
+A. Yuille, N. Grzywacz
+1987
+“A ‘Complexity Level’ Analysis of Immediate Vision”
+J. Tsotsos
+1987
+“Snakes: Active Contour Models”
+M. Kass, A. Witkin, D. Terzopoulos
+1987
+“Active Vision”
+Y. Aloimonos, I. Weiss
+ECCV Best Paper Award
+The ECCV best paper award is picked by a committee delegated by the program chairs of the conference. It recognizes the very best work appearing at the conference.
+2024
+“Minimalist Vision with Freeform Pixels”
+J. Klotz, S. Nayar
+2022
+“On the Versatile Uses of Partial Distance Correlation in Deep Learning”
+X. Zhen, Z. Meng, R. Chakraborty, V. Singh
+2020
+“RAFT: Recurrent All-Pairs Field Transforms for Optical Flow”
+Z. Teed, J. Deng
+2018
+“Implicit 3D Orientation Learning for 6D Object Detection from RGB Images”
+M. Sundermeyer, Z. Marton, M. Durner, M. Brucker, and R. Triebel
+2016
+“Real-Time 3D Reconstruction and 6-DoF Tracking with an Event Camera”
+H. Kim, S. Leutenegger, A. J. Davison
+2014
+“Large-Scale Object Classification using Label
+Relation Graphs”
+J. Deng, N. Ding, Y. Jia, A. Frome, K. Murphy, S. Bengio, Y. Li, H. Neven, H. Adam
+2014
+“Scene Chronology”
+K. Matzen, N. Snavely
+2012
+“Segmentation Propagation in ImageNet”
+D. Kuettel, M. Guillaumin, V. Ferrari
+2010
+“Graph Cut based Inference with Co-occurrence Statistics”
+L. Laticky, C. Russell, P. Kohli, P. H. S. Torr
+2008
+“Learning Spatial Context: Using Stuff to Find Things”
+G. Heitz, D. Koller
+2006
+“Learning to Combine Bottom-up and Top-down Segmentation”
+A. Levin, Y. Weiss
+2004
+“High Accuracy Optical Flow Estimation Based on a Theory for Warping”
+T. Brox, A. Bruhn, N. Papenberg, and J. Weickert
+2002
+“Increasing Space-Time Resolution in Video”
+E. Shechtman, Y. Caspi and M. Irani
+2002
+“3D Statistical Shape Models Using Direct Optimisation of Description Length”
+R. Davies, C. Twining, T. Cootes, J. Waterton and C. Taylor
+2002
+“Multi-camera Scene Reconstruction via Graph Cuts” and “What Energy Functions can be Minimized via Graph Cuts?”
+V. Kolmogorov and R. Zabih
+2002
+“A variational Approach to Recovering a Manifold from Sample Points”
+J. Gomes and A. Mojsilovic
+2002
+“Object Recognition as Machine Translation: Learning a Lexicon for a Fixed Image Vocabulary” (Best Paper in Cognitive Vision)
+P. Duygulu, K. Barnard, N. de Freitas and D. Forsyth
+2000
+“Factorization with Uncertainty”
+M. Irani and P. Anandan
+2000
+“Nonlinear Bayesian Image Modeling”
+J. Winn and C. Bishop
+2000
+“Homography Tensors: On Algebraic Entities That Represent Three Views of Static or Moving Planar Points”
+A. Shashua and L. Wolf
+2000
+“A Minimal Set of Constraints for the Trifocal Tensor”
+Nikos Canterakis
+1998
+“Active Appearance Models”
+T. F. Cootes, G. J. Edwards, and C. J. Taylor
+1998
+“What Shadows Reveal about Object Structure”
+D. Kriegman, P. Belhumeur
+1996
+“Contour tracking by stochastic propagation of conditional density”
+M. Isard and A. Blake
+1996
+“Geometric saliency of curve correspondences and grouping of symmetric contours”
+T. J. Cham and R. Cipolla
+1992
+“Surface orientation and time to contact from image divergence and deformation”
+R. Cipolla and A. Blake
+ECCV Best Paper Honorable Mention Award
+The ECCV best paper honorable mention award is picked by a committee delegated by the program chairs of the conference. It recognizes outstanding work appearing at the conference.
+2024
+“Rasterized Edge Gradients: Handling Discontinuities Differentially”
+S. Pidhorskyi, T. Simon, G. Schwartz, H. Wen, Y. Sheikh, J. Saragih
+2024
+“Concept Arithmetics for Circumventing Concept Inhibition in Diffusion Models”
+V. Petsiuk, K. Saenko
+2022
+“Pose-NDF: Modelling Human Pose Manifolds with Neural Distance Fields”
+G. Tiwari, D. Antic, J. Lenssen, N. Sarafianos, T. Tung, G. Pons-Moll
+2022
+“A Level Set Theory for Neural Implicit Evolution under Explicit Flows”
+I. Mehta, M. Chandraker, R. Ramamoorthi
+2020
+“Towards Streaming Perception”
+M. Li, Y.-X. Wang, D. Ramanan
+2020
+“NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis”
+B. Mildenhall, P. Srinivasan, M. Tancik, J. Barron, R. Ramamoorthi, R. Ng
+2018
+“Group Normalization”
+Y. Wu and K. He
+2018
+“GANimation: Anatomically-aware Facial Animation from a Single Image”
+A. Pumarola, A. Agudo, A. M. Martinez, A. Sanfeliu, and F. Moreno-Noguer
+2016
+“The Fast Bilateral Solver”
+J. Barron, B. Poole
+2012
+“Activity Forecasting”
+K. Kitani, B. D. Ziebart, J. Bagnell, M. Hebert
+2010
+“Blocks World Revisited: Image Understanding Using Qualitative Geometry and Mechanics”
+A. Gupta, A. Efros, M. Hebert
+2006
+“Confocal Stereo”
+S. W. Hasinoff, K. N. Kutulakos
+2006
+“Simultaneous Object Pose and Velocity Computation Using a Single View from a Rolling Shutter Camera”
+O. Ait-Aider, N. Andreff, J. M. Lavest, P. Martinet
+2004
+“A Unified Algebraic Approach to 2-D and 3-D Motion Segmentation”
+R. Vidal, Y. Ma
+Menu
+Home
+Boards
+Conferences
+Computer Vision Awards
+Sponsors & Donors
+Information
+Join
+Open Access
+YouTube Channel
+AI Art Gallery
+Archives
+June 2026
+Copyright 2026
+The Computer Vision Foundation
