@@ -60,6 +60,22 @@ def _resolve_panel(roots: list[Path], scene_token: str, expected_hash: str) -> P
     return matches[0]
 
 
+def _records_for_keys(
+    payload: dict[str, Any], required_keys: set[str]
+) -> dict[str, dict[str, Any]]:
+    result: dict[str, dict[str, Any]] = {}
+    for record in cast(list[dict[str, Any]], payload["records"]):
+        key = identity(str(record["recording_group"]), int(record["anchor_index"]))
+        if key not in required_keys:
+            continue
+        if key in result:
+            raise ValueError("metric manifest has duplicate required identity")
+        result[key] = record
+    if set(result) != required_keys:
+        raise ValueError("metric manifest does not uniquely cover the frozen roster")
+    return result
+
+
 def _load_cache(root: Path, record: dict[str, Any], *, role: str) -> Any:
     resolved_root = root.resolve(strict=True)
     path = (resolved_root / str(record["relative_cache_path"])).resolve(strict=True)
@@ -185,26 +201,19 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if target.get("development_calibration_test_navdream_target_accessed") is not False:
         raise ValueError("target source accessed a sealed role")
     rows = cast(list[dict[str, Any]], roster["anchors"])
+    required_keys = {
+        identity(str(row["recording_group"]), int(row["anchor_index"])) for row in rows
+    }
+    if len(rows) != 672 or len(required_keys) != 672:
+        raise ValueError("panel roster must contain 672 unique anchors")
     target_by_key = {
         identity(str(row["recording_group"]), int(row["anchor_index"])): row
         for row in cast(list[dict[str, Any]], target["anchor_ledgers"])
     }
-    previous_by_key = {
-        identity(str(row["recording_group"]), int(row["anchor_index"])): row
-        for row in cast(list[dict[str, Any]], previous["records"])
-    }
-    current_by_key = {
-        identity(str(row["recording_group"]), int(row["anchor_index"])): row
-        for row in cast(list[dict[str, Any]], current["records"])
-    }
-    if not (
-        len(rows)
-        == len(target_by_key)
-        == len(previous_by_key)
-        == len(current_by_key)
-        == 672
-    ):
-        raise ValueError("bundle inputs must each contain exactly 672 anchors")
+    previous_by_key = _records_for_keys(previous, required_keys)
+    current_by_key = _records_for_keys(current, required_keys)
+    if set(target_by_key) != required_keys:
+        raise ValueError("target ledger identities differ from the frozen roster")
     visual_index = visual_records_by_identity(visual, args.visual_root)
 
     history_tasks: list[tuple[dict[str, Any], dict[str, Any], str, float, str, str]] = (

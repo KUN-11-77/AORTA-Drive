@@ -8,6 +8,7 @@ from aorta_drive.training.r005e2_context import (
     align_previous_simulated_context,
     array_sha256,
 )
+from build_r005e2_scientific_bundle import _records_for_keys
 
 
 def test_previous_context_removes_expired_prefix_and_uses_current_frame() -> None:
@@ -64,3 +65,30 @@ def test_r005e1b_array_hash_binds_shape_and_values() -> None:
     changed = value.copy()
     changed[0, 0] = 1.0
     assert array_sha256(value) != array_sha256(changed)
+
+
+def test_metric_manifest_may_be_a_superset_but_join_is_exact() -> None:
+    payload = {
+        "records": [
+            {"recording_group": "g0", "anchor_index": 0},
+            {"recording_group": "g1", "anchor_index": 0},
+            {"recording_group": "unused", "anchor_index": 0},
+        ]
+    }
+    assert set(_records_for_keys(payload, {"g0::00", "g1::00"})) == {
+        "g0::00",
+        "g1::00",
+    }
+
+
+def test_metric_manifest_rejects_duplicate_or_missing_required_identity() -> None:
+    duplicate = {
+        "records": [
+            {"recording_group": "g0", "anchor_index": 0},
+            {"recording_group": "g0", "anchor_index": 0},
+        ]
+    }
+    with pytest.raises(ValueError, match="duplicate"):
+        _records_for_keys(duplicate, {"g0::00"})
+    with pytest.raises(ValueError, match="uniquely cover"):
+        _records_for_keys({"records": []}, {"g0::00"})
