@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/data/khsong/aorta_runs/r005e2a_visual_c957aa0/training_source_8d6e221/scripts/audit_r005e2_training_resources.py", line 126, in <module>
+    output = audit(arguments)
+  File "/data/khsong/aorta_runs/r005e2a_visual_c957aa0/training_source_8d6e221/scripts/audit_r005e2_training_resources.py", line 90, in audit
+    raise ValueError(f"{section} quantile ordering is invalid")
+ValueError: data_wait_ms quantile ordering is invalid

@@ -1,7 +1,7 @@
 # R005E2A outcome-free preflight status
 
 日期：2026-10-25。  
-状态：`IN_PROGRESS__CROSSFIT_AND_DONOR_MANIFEST_PASS__NO_SCIENTIFIC_TRAINING`。
+状态：`COMPLETE_OUTCOME_FREE_PREFLIGHT__GO_TO_SCIENTIFIC_RUNNER_FREEZE__NO_RESULT_YET`。
 
 ## 已完成
 
@@ -48,15 +48,37 @@
   result SHA-256 `cf0f158b...620c1f`，audit SHA-256 `ad80ff97...532141`；
 - 完整记录：`experiments/results/R005E2A_32F179F/`。scorer-only延迟不含DINO、I/O、训练backward或
   完整系统仲裁，不得升级为实时系统主张。
+- 冻结的672-anchor视觉缓存已用同一DINO合同完成primary与完整replay：42 groups、每anchor 12 slots、
+  8,064个唯一图像特征；DINO checkpoint SHA-256为
+  `7c1da9a5...f41488`，151个Python源码文件的tree SHA-256为`dde43545...cf1bf8`；
+- 8,064份BF16 dense features与1,344份投影产物均被独立审计器重新打开、检查有限值并逐文件核验；
+  primary/replay的逻辑manifest、特征和投影全部精确一致，sealed roles与科学标签均未访问；
+- cache audit SHA-256为`94c14166...bf4194`，完整紧凑证据包见
+  `experiments/results/R005E2A_C957AA0/r005e2a_visual_cache_compact.tar.gz`；
+- 已在任何科学输出可见前物化S2 disjoint-geometry与S3 hash-random donor敏感性映射；两次构建
+  byte-exact，14,784 assignments全部满足fold隔离、跨组、无放回和无标签/视觉内容参与，S2与主S1
+  recipient-donor边完全不重合。它们是non-gating解释性分析，不能挽救主门失败；
+- 单fold真实I/O资源演练使用28 inner-fit groups、448 anchors、零科学target与native-shape history替身，
+  完成448/448 backward steps；loss/gradient有限，峰值显存365,554,176 bytes，总耗时37.999 s，
+  训练step P95为80.900 ms，按三arm×三seed×六fold的朴素串行投影为0.570 GPU-hours；
+- checkpoint恢复后的模型tensor、AdamW状态与同batch前向均精确一致。首次审计因错误假定
+  `P95 >= mean`而fail-closed；冷启动离群值使data-wait mean高于P95，这是合法统计形态。提交
+  `81a2cb5`修正为只要求maximum不低于mean和P95，新增反例测试，443项全量测试通过；对原始同一
+  result/checkpoint重新审计PASS，未重跑训练，失败日志完整保留；
+- 训练资源audit SHA-256与原始产物哈希见
+  `experiments/results/R005E2A_C957AA0/training_rehearsal_SHA256SUMS.txt`。外部cross-model reviewer当前
+  不可用，因此独立科学复核状态为`REVIEW_UNAVAILABLE`；本阶段没有科学endpoint可供解释。
 
-## 尚未完成，继续阻止训练
+## 资格裁决与下一步边界
 
-1. runtime imported module、DINO源码/权重/preprocess/cache provenance；
-2. 单fold训练资源rehearsal、data-loader吞吐、backward显存、断点恢复与wall-time合同；
-3. 剩余outcome-free资格门的统一机械审计与独立复核。
+R005E2A outcome-free资格门机械`PASS`。结合用户已明确授权“通过DINO来源审计和单折演练后启动冻结
+视觉增量实验”，裁决为：
 
-在上述三项全部关闭、配置与源码再次冻结并获得单独运行授权前，不得启动R005E2B科学训练，不得
-读取任何correct/mismatch/removed科学比较。
+- `GO`：实现、测试并冻结R005E2B科学runner、独立auditor和异常停止合同；
+- `HOLD`：在runner源码、输入哈希、完整replay和审计路径冻结前，不得读取科学结果；
+- `STOP`：仍不解锁Differential Query、NavDream、development/calibration/test/target或驾驶安全主张。
+
+资格通过只证明实验可以忠实执行，不证明correct visual提供增量；该科学命题仍为`UNTESTED`。
 
 首次物化尝试在任何assignment或科学指标产生前fail-closed：672个anchor中有1个经R005E1A修复的
 replacement panel，不在原H7BS1单一artifact root。该失败不改变fold或donor规则。解析器现要求在

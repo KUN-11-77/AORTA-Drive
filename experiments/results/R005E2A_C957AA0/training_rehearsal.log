@@ -1,0 +1,44 @@
+{
+  "schema": "aorta.r005e2.training_resource_rehearsal.v1",
+  "status": "PASS",
+  "scientific_metrics_emitted": false,
+  "scientific_labels_accessed": false,
+  "development_calibration_test_navdream_target_accessed": false,
+  "previous_trajectory_source": "current_native_shape_surrogate_not_scientific_history",
+  "target_source": "exact_zero_resource_surrogate",
+  "outer_fold": 0,
+  "inner_fit_group_count": 28,
+  "anchor_count": 448,
+  "completed_training_steps": 448,
+  "zero_challenger_anchor_count": 11,
+  "batch_size": 1,
+  "workers": 4,
+  "seed": 20261025,
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 3090",
+  "peak_cuda_bytes": 365554176,
+  "data_wait_ms": {
+    "mean": 0.9219666327615934,
+    "p95": 0.4353478667326271,
+    "maximum": 280.74270905926824
+  },
+  "train_step_ms": {
+    "mean": 77.02068962005016,
+    "p95": 80.89976696064694,
+    "maximum": 4763.481151079759
+  },
+  "total_runtime_seconds": 37.99946145596914,
+  "projected_three_arm_three_seed_six_fold_gpu_hours": 0.5699919218395371,
+  "checkpoint_sha256": "156554604623a9889306cfb6308cbc58c39513e5c5a71acf8070cbb06f4f57fe",
+  "checkpoint_tensor_state_exact": true,
+  "checkpoint_optimizer_state_exact": true,
+  "checkpoint_forward_recovery_bit_exact": true,
+  "finite_loss_and_gradients": true,
+  "input_hashes": {
+    "panel_roster_sha256": "b0c5b14a7bb935f381ca246c568b616d24c58b5c8e88a737824b4e498731d62f",
+    "crossfit_manifest_sha256": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+    "visual_manifest_sha256": "ac1c5a93303727e7a85a3de1b49dd031db8e8122b209a7bbf8cfe4972d8be852",
+    "scorer_source_sha256": "4a98a6f760b3fe3040e1d023d8d0105fd58760b9fdb3d062d2be2614936e60e9",
+    "runner_sha256": "ce94e5762d0523dea1f52c887da437eb2b7d4d374989ee977017ee602e9df672"
+  }
+}

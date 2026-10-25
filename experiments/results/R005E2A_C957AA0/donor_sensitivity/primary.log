@@ -1,0 +1,14 @@
+{
+  "schema": "aorta.r005e2.donor_sensitivity.v1",
+  "status": "MATERIALIZED_BEFORE_SCIENTIFIC_OUTPUT",
+  "scientific_or_visual_content_used": false,
+  "development_calibration_test_navdream_target_accessed": false,
+  "random_salt": "aorta-r005e2-donor-sensitivity-random-v1",
+  "source_crossfit_manifest_sha256": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+  "source_panel_identity_roster_sha256": "b0c5b14a7bb935f381ca246c568b616d24c58b5c8e88a737824b4e498731d62f",
+  "source_primary_manifest_sha256": "9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093",
+  "outer_fold_count": 6,
+  "scheme_count": 2,
+  "total_assignment_count": 14784,
+  "manifest_sha256_without_self": "9facb7f85105adad8826bf65bd2b36c383d8155cc2e7b534c95b99e5cb5962a2"
+}

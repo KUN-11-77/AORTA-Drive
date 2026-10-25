@@ -1,0 +1,20 @@
+{
+  "all_artifacts_reopened_and_finite": true,
+  "anchor_count": 672,
+  "development_calibration_test_navdream_target_accessed": false,
+  "identity_join_exact": true,
+  "panel_identity_roster_sha256": "b0c5b14a7bb935f381ca246c568b616d24c58b5c8e88a737824b4e498731d62f",
+  "primary_manifest_sha256": "ac1c5a93303727e7a85a3de1b49dd031db8e8122b209a7bbf8cfe4972d8be852",
+  "primary_replay_feature_artifacts_byte_exact": true,
+  "primary_replay_logical_manifest_exact": true,
+  "primary_replay_projection_artifacts_byte_exact": true,
+  "recording_group_count": 42,
+  "reopened_projection_artifact_count": 1344,
+  "replay_manifest_sha256": "0b7c3f317210d14b8ef5d2eec4bc02d5ea53be0f07b009bd93432059e249dece",
+  "schema": "aorta.r005e2.frozen_visual_cache.audit.v1",
+  "slot_order_exact": true,
+  "source_fit_only": true,
+  "status": "PASS",
+  "unique_feature_artifact_count": 8064,
+  "utility_candidate_scores_or_labels_accessed": false
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "aorta.r005e2.donor_sensitivity.audit.v1",
+  "status": "PASS",
+  "manifest_sha256": "8c1f4e096dfadb683b7d1a6ddf92c256d32c33cf2ad1b6ecb29760ffbd993ce2",
+  "primary_edges_disjoint_for_S2": true,
+  "hash_random_rule_frozen_for_S3": true,
+  "all_donors_cross_group_fold_isolated_without_replacement": true,
+  "scientific_or_visual_content_used": false,
+  "development_calibration_test_navdream_target_accessed": false,
+  "total_assignment_count": 14784
+}
