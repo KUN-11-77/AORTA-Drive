@@ -2,7 +2,7 @@
 
 审计日期：2026-10-25。
 
-裁决：**READY_BUT_NOT_AUTHORIZED__NO_FORMAL_PROCESS_RUNNING**
+裁决：**AUTHORIZED__UNBOUNDED_RESOURCE_AMENDMENT_LOCAL_PASS__SERVER_REPREFLIGHT_PENDING**
 
 ## 1. 本地来源状态
 
@@ -13,15 +13,15 @@
 - 工作树：clean；
 - preregistration 状态：PREREGISTERED_NOT_RUN；
 - implementation preflight 状态：SERVER_PROVENANCE_REPREFLIGHT_PASS__FORMAL_RUN_NOT_AUTHORIZED；
-- formal wall cap：120 分钟；
+- formal wall contract：`maximum_wall_minutes: null`，无固定 wall cutoff；
 - calibration/test/NavDream/target：保持封存。
 
 ### 固定文档哈希
 
 | Artifact | SHA-256 |
 |---|---|
-| H7BS4B4R1_PREREGISTRATION.md | CE4B557F52E2D0904C8E47F841F69E837F7972D67FF73E552D7E55DD83E400CE |
-| H7BS4B4R1_IMPLEMENTATION_PREFLIGHT.md | A406F6E3A7403E13FF66EDB505409FDFA80FE064055AA54436FAC92E160E66C5 |
+| H7BS4B4R1_PREREGISTRATION.md | 0B6454E47D8B43A9E88F549D4D555B03AC842E556A6E596ECD870BA9114C328F |
+| H7BS4B4R1_IMPLEMENTATION_PREFLIGHT.md | CACACFEFC70314DF1766992EA30BB9960E02D1F1CEEC33F031A00ABACF41A204 |
 
 旧 preregistration hash
 `9DB3AFE2069936CB87D8C6A074EE205FE347C952CCCBD801DD42290B59CE3BAB` 作为历史值保留；新 hash
@@ -45,12 +45,13 @@
 - PROGRESS_MODE=eval fail-closed；
 - primary/replay/audit provenance 与 hashes 纳入 gate；
 - 服务器合同测试和 smoke 已通过；
-- 120 分钟异常停止规则已固定；
+- 无固定 wall cutoff 的资源合同已在任何 scorer outcome 前固定；
 - 最终 claim-driven 实验 tracker 中 B4R1 为 HOLD，后续项均 LOCKED。
 
-## 4. 尚缺的唯一授权条件
+## 4. 当前启动条件
 
-需要用户明确表达授权正式运行 B4R1。普通“继续”、理论讨论或自动 goal continuation 不解除该门。
+用户已于 2026-10-25 明确授权正式运行 B4R1，并在 scorer outcome 产生前要求取消固定时间上限。
+启动前仍必须使无上限修订后的 runner/config 在服务器完成 hash、合同测试和环境复检。
 
 授权后只允许：
 

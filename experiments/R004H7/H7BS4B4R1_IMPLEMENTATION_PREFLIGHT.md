@@ -2,6 +2,10 @@
 
 状态：`SERVER_PROVENANCE_REPREFLIGHT_PASS__FORMAL_RUN_NOT_AUTHORIZED`。
 
+> 2026-10-25 正式运行授权后、任何 scorer outcome 产生前，用户明确取消固定时间上限。原
+> `53f16c1` preflight 仍证明旧 runner/config 的来源闭合，但新的无上限 runner/config 必须重新完成
+> hash、合同测试和服务器 preflight，才能启动正式 primary。
+
 > 2026-10-25 provenance hardening：冻结提交 `53f16c1` 在正式 outcome 前补齐 primary/replay 的
 > `status`、`code_commit`、config hash、frozen-input hash、implementation hash、sealed-role 与
 > full-PDMS boundary 审计，并按用户要求把 wall cap 从180分钟收紧为120分钟。服务器同一 NAVSIM
@@ -55,7 +59,7 @@ runner/audit 增加 progress-mode fail-closed 合同。
 - R1 合同测试 `12/12` 通过；
 - runner/auditor Python compile 通过；本地 strict mypy 同样通过；
 - config、runner、audit hashes 与冻结值 exact；
-- formal wall cap 为120分钟；
+- 当时 formal wall cap 为120分钟；现已由开封前用户指令替换为无固定 wall cutoff，待重新 preflight；
 - 新机械审计会拒绝 primary/replay 的 commit、config、frozen input、implementation source、
   sealed-role 或 full-PDMS boundary 漂移；
 - scorer 未调用，scientific outcomes 未访问，development/calibration/test/NavDream/target 未访问；
@@ -120,7 +124,7 @@ runner/audit 增加 progress-mode fail-closed 合同。
 - core SHA-256：`4c3f73fd3cc1b964faf987081065e680567a6802d4464c4f53f24ceb9fe063c7`；
 - runner SHA-256：`6ac7e7f575631ede5a0d15c20f8cd5013419c4a19230b02db201773fa5262902`；
 - audit SHA-256：`43389f6725f893b9775f53bec8c1ba393b15bef7b944b2f42b3101091ba19333`；
-- maximum wall time：120分钟。
+- 历史 maximum wall time：120分钟；正式运行使用后续无固定 wall cutoff 修订。
 
 ## 下一门
 

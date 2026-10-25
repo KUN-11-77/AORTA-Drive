@@ -32,8 +32,9 @@
 
 > **2026-10-25 B4R1开封前来源审计：`SERVER_PROVENANCE_REPREFLIGHT_PASS__FORMAL_HOLD`。**
 > 正式 outcome 前已补齐 primary/replay 的status、commit、config、frozen-input、implementation、
-> sealed-role与full-PDMS boundary核验，并将wall cap从180分钟收紧为用户要求的120分钟。冻结来源
-> 提交`53f16c1`在服务器同一NAVSIM环境12/12合同测试通过；scorer未调用，任何科学outcome与
+> sealed-role与full-PDMS boundary核验。随后在任何 scorer outcome 产生前，用户明确将资源合同
+> 修订为无固定 wall cutoff；候选、标签、阈值、seed、统计和裁决均未改变。原冻结来源提交
+> `53f16c1`在服务器同一NAVSIM环境12/12合同测试通过；scorer未调用，任何科学outcome与
 > development/calibration/test/NavDream/target均未访问。preflight artifact SHA-256为
 > `4477fe27…b9191`。该结果只说明正式B4R1已经具备更强的可审计执行资格，明确授权前仍HOLD。
 

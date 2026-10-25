@@ -103,7 +103,7 @@ H7BS4B4R1:
     native_offset_source: 76a238a4538f49211ccb24bd30e1b2cda79b0f26fae656e49f184b7adbc2440e
     h4_source: f4271d81c9484e3609bc9715205bda08d8ee9fb909f11a61d5a094dfbc06c034
     b4_runner_dependency: e0db30afd7efaaa6107b8d1f86c55ff25a1f016a22f260e416c3979eee3382f8
-    runner_source: 6ac7e7f575631ede5a0d15c20f8cd5013419c4a19230b02db201773fa5262902
+    runner_source: 8fa4f33f765d99c917d526616c69eb540c541afd8a88afdc5889376c05f5c2c2
     audit_source: 43389f6725f893b9775f53bec8c1ba393b15bef7b944b2f42b3101091ba19333
     official_source:
       navsim/evaluate/pdm_score.py: 7d0b82b8420c52dfedfda2a56b4aa44bd371cd1adbac58f001c19ccda60cf99c
@@ -125,7 +125,7 @@ H7BS4B4R1:
   resources:
     device: cpu
     workers: 8
-    maximum_wall_minutes: 120
+    maximum_wall_minutes: null
     maximum_output_mib: 128
 
 claim_boundary:

@@ -14,7 +14,10 @@ from aorta_drive.evaluation.eligible_preference_oracle import (
 )
 from aorta_drive.vision.feature_cache import sha256_file
 from audit_r004h7bs4b4r1_eligible_preference_oracle import audit
-from run_r004h7bs4b4r1_eligible_preference_oracle import _require_progress_mode
+from run_r004h7bs4b4r1_eligible_preference_oracle import (
+    _maximum_wall_seconds,
+    _require_progress_mode,
+)
 
 
 def _candidate(index: int, score: float, *, hard: float = 1.0) -> dict[str, Any]:
@@ -205,6 +208,7 @@ def test_r1_contract_freezes_implementation_and_retains_b4_thresholds() -> None:
     assert r1["estimand"]["internal_reference_trajectory"] == (
         "metric_cache_fixed_PDM_baseline"
     )
+    assert r1["resources"]["maximum_wall_minutes"] is None
 
 
 def test_progress_mode_contract_fails_closed(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -215,6 +219,13 @@ def test_progress_mode_contract_fails_closed(monkeypatch: pytest.MonkeyPatch) ->
     monkeypatch.setenv("PROGRESS_MODE", "gen_gt")
     with pytest.raises(RuntimeError, match="PROGRESS_MODE"):
         _require_progress_mode("eval")
+
+
+def test_registered_unbounded_wall_time_is_explicit() -> None:
+    assert _maximum_wall_seconds({"maximum_wall_minutes": None}) is None
+    assert _maximum_wall_seconds({"maximum_wall_minutes": 2.5}) == 150.0
+    with pytest.raises(ValueError, match="positive or null"):
+        _maximum_wall_seconds({"maximum_wall_minutes": 0})
 
 
 def test_r1_auditor_recomputes_variable_domain_summary(tmp_path: Path) -> None:

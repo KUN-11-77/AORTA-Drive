@@ -3,6 +3,11 @@
 状态：`PREREGISTERED_NOT_RUN`。本轮只修正 B4 的候选域类型错误，不训练网络，不读取新的科学
 结果，不自动启动正式运行。
 
+> 2026-10-25、正式 scorer outcome 产生前，用户明确要求取消固定运行时间上限。该资源合同修订
+> 不改变候选、标签、阈值、seed、bootstrap、统计分母或裁决；配置以
+> `maximum_wall_minutes: null` 明确表示无固定 wall cutoff。致命异常、输出上限、进度记录、
+> primary/replay/audit 顺序和禁止自动第三次运行仍保留。
+
 ## 1. 为什么允许 R1，但不能覆盖 B4
 
 B4 的 primary/replay 与机械审计可重复，却把 168 个冻结 intent-ineligible challengers 纳入

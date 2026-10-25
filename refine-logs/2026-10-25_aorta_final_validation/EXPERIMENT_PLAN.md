@@ -249,7 +249,7 @@
 
 | Milestone | 目标 | Runs | 决策门 | 计算/时间合同 | 主要风险 |
 |---|---|---|---|---|---|
-| M0 | 合法 one-frame oracle | B4R1 primary/replay/audit | 原冻结 GO/HOLD/STOP | 单次正式运行 wall cap 120 min；禁止自动第三次运行 | scorer/候选域接口 |
+| M0 | 合法 one-frame oracle | B4R1 primary/replay/audit | 原冻结 GO/HOLD/STOP | 无固定 wall cutoff；禁止自动第三次运行 | scorer/候选域接口 |
 | M1 | scoped contextual target 闭合 | target-scope audit + materialization + replay/audit + alignment | M0 interface valid；signal 非平凡且 ledger exact | 由 M0 实测 throughput 外推，不预填 GPU 小时 | evaluator scope/history shift |
 | M2 | 最强 baseline 与最小网络 | 单 seed smoke；随后 3-seed matched B1 | generic scorer 对照合法；AORTA有增量才保留 | 训练作业数按 frozen matrix；先筛 bug 后正式 seeds | 计算不公平/实现差异 |
 | M3 | 视觉机制与 NavDream | held-out controls；一次性 B2 | correct-image necessity + OOD relation | checkpoint/metrics 冻结后才开封 | 场景记忆/目标污染 |
@@ -272,7 +272,7 @@
 
 ### 已知硬限制
 
-- B4R1：120 分钟 wall cap；
+- B4R1：无固定 wall cutoff；保留异常失败、进度与输出上限；
 - 正式主方法与 strongest matched scorer：默认 3 seeds；
 - 主视觉 backbone 每场景只编码一次；
 - 不能修改现有 dinov3 环境；长任务使用隔离 worktree；

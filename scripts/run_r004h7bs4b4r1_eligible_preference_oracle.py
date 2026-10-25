@@ -46,6 +46,18 @@ def _require_progress_mode(required: str) -> str:
     return observed
 
 
+def _maximum_wall_seconds(resources: Mapping[str, Any]) -> float | None:
+    """Return a positive wall limit, or ``None`` for a registered unbounded run."""
+
+    raw_limit = resources.get("maximum_wall_minutes")
+    if raw_limit is None:
+        return None
+    maximum_minutes = float(raw_limit)
+    if not np.isfinite(maximum_minutes) or maximum_minutes <= 0.0:
+        raise ValueError("maximum_wall_minutes must be positive or null")
+    return maximum_minutes * 60.0
+
+
 def _process_anchor(task: tuple[dict[str, Any], dict[str, Any], str, str]) -> dict[str, Any]:
     record, stage, metric_root_text, panel_root_text = task
     metric_root = Path(metric_root_text)
@@ -238,6 +250,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     ]
     rows: list[dict[str, Any]] = []
     workers = int(stage["resources"]["workers"])
+    maximum_seconds = _maximum_wall_seconds(stage["resources"])
     with ProcessPoolExecutor(max_workers=workers) as executor:
         for completed, row in enumerate(executor.map(_process_anchor, tasks), start=1):
             rows.append(row)
@@ -252,10 +265,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 }
                 _write_json(args.output_directory / "progress.json", progress)
                 print(json.dumps(progress, sort_keys=True), flush=True)
-            maximum_seconds = (
-                float(stage["resources"]["maximum_wall_minutes"]) * 60.0
-            )
-            if time.perf_counter() - started > maximum_seconds:
+            if (
+                maximum_seconds is not None
+                and time.perf_counter() - started > maximum_seconds
+            ):
                 raise RuntimeError("eligible preference oracle exceeded its wall-time cap")
 
     rows.sort(key=lambda row: (groups.index(row["recording_group"]), row["anchor_index"]))
