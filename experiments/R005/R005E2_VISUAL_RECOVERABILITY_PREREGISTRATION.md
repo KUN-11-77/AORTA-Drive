@@ -117,6 +117,11 @@ V0/V1/V2 逐层 shape、参数、优化器、更新上限、early-stop 规则、
 R005E2 不包含 Differential Query、signed support、orbit loss、scale/calibration 或 selective
 arbitration。这样即使 V2 通过，也只说明普通 matched scorer 能利用视觉信息；AORTA 的架构创新仍未证明。
 
+geometry-matched donor 只是不使用结果的 scene-binding negative control，不等价于从精确
+`P(V|B)` 抽样的条件随机化检验。其非 gating 多-donor敏感性边界与冻结解释规则见
+`experiments/R005/R005E2_DONOR_SENSITIVITY_PREREGISTRATION.md`；该分析不得改变本主实验的三臂、
+门槛或裁决。
+
 ## 5. 冻结网络与优化合同
 
 - frozen backbone：与 R004H5/H6 相同的 DINO checkpoint、源码、resize、normalization、
