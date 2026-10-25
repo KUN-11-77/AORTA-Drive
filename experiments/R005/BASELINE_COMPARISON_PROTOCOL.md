@@ -95,6 +95,21 @@ B4 与 B6 决定算法创新；B0 与 B6 决定冻结 planner 的实际价值。
 appearance-induced flip、false intervention/new-hard、official net utility、intervention/abstention、
 clean no-harm、actual-history rollout 与在线 P95。
 
+为检验 differential query 作为归纳偏置而非额外 feature engineering 的实际价值，E2 还必须包含：
+
+- **组级样本效率曲线：**在不泄露 held-out group 的前提下，使用看结果前冻结的 recording-group
+  训练比例和同一子集嵌套顺序比较 B4 与 B6；所有 arm 共用 seed、优化预算和早停规则。只有在有限
+  数据区间稳定降低 regret，才允许声称 sample-efficiency advantage；单个小样本点不够；
+- **困难 pair 分层：**late-fork、near-tie 与普通 pair 的定义必须在模型结果产生前由冻结几何/target
+  规则给出；分层只解释主指标，不替代全体 group-level decision risk；
+- **锚点语义边界：**部署 estimand 只要求 native-star relation，故不得把固定 native 下的代数差分
+  写成任意 re-anchoring invariance。若模型或论文查询非 native anchor、报告 complete-pair relation，
+  则必须增加 anchor-swap metamorphic test，核验直接重算的 \(q_{ij}\) 与
+  \(q_{i0}-q_{j0}\) 是否一致；不一致时收缩为 native-anchored 方法；
+- **两种候选人口分表：**固定合法 panel 用于隔离视觉证据与 scorer 的因果比较；真实部署中各外观
+  可能改变 native/challenger supply，必须在 E4 单独报告 supply shift、oracle headroom 与 selection
+  gain，不能用固定 panel 结果替代端到端系统鲁棒性。
+
 ## 6. 五阶段依赖链
 
 | Gate | 运行 | 通过含义 | 失败动作 |
