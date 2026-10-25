@@ -1,0 +1,17 @@
+{
+  "audit_sha256": "43389f6725f893b9775f53bec8c1ba393b15bef7b944b2f42b3101091ba19333",
+  "code_commit": "7050c6ef1c40f86d8ea97deca62a02c5d1d8a27c",
+  "config_sha256": "76de67c4aa35059cc069b18fcad0682c81caa7c51d1710012023cd81c7678cfd",
+  "contract_tests": "13/13 PASS",
+  "development_calibration_test_navdream_target_accessed": false,
+  "fixed_wall_cutoff": null,
+  "formal_run_authorized": true,
+  "formal_run_directory": "/data/khsong/aorta_runs/r004h7bs4b4r1_7050c6e",
+  "formal_supervisor_pid": 1619190,
+  "preregistration_sha256": "0b6454e47d8b43a9e88f549d4d555b03ac842e556a6e596ecd870ba9114c328f",
+  "runner_sha256": "8fa4f33f765d99c917d526616c69eb540c541afd8a88afdc5889376c05f5c2c2",
+  "scientific_outcomes_accessed_before_launch": false,
+  "server_archive_sha256": "be1829f0fa3c31c2edc1b3c988c076a16bf1f389407a37912c3f6e723db6456b",
+  "status": "FORMAL_PRIMARY_RUNNING",
+  "wall_contract": "UNBOUNDED_FIXED_CUTOFF__FATAL_ERRORS_AND_OUTPUT_CAP_RETAINED"
+}

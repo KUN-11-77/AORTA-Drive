@@ -6,6 +6,10 @@
 > `53f16c1` preflight 仍证明旧 runner/config 的来源闭合，但新的无上限 runner/config 必须重新完成
 > hash、合同测试和服务器 preflight，才能启动正式 primary。
 
+> 无上限修订提交 `7050c6e` 已完成服务器重检：source archive SHA-256 为
+> `be1829f0...db6456b`，13/13 合同测试与 compile 通过，config/runner/audit/preregistration hash
+> exact。正式 primary 已启动；该运行状态不提供任何科学 outcome。
+
 > 2026-10-25 provenance hardening：冻结提交 `53f16c1` 在正式 outcome 前补齐 primary/replay 的
 > `status`、`code_commit`、config hash、frozen-input hash、implementation hash、sealed-role 与
 > full-PDMS boundary 审计，并按用户要求把 wall cap 从180分钟收紧为120分钟。服务器同一 NAVSIM

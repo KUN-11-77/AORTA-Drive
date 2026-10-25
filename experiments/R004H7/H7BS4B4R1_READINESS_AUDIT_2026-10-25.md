@@ -2,7 +2,7 @@
 
 审计日期：2026-10-25。
 
-裁决：**AUTHORIZED__UNBOUNDED_RESOURCE_AMENDMENT_LOCAL_PASS__SERVER_REPREFLIGHT_PENDING**
+裁决：**AUTHORIZED__UNBOUNDED_RESOURCE_REPREFLIGHT_PASS__FORMAL_PRIMARY_RUNNING**
 
 ## 1. 本地来源状态
 
@@ -51,7 +51,9 @@
 ## 4. 当前启动条件
 
 用户已于 2026-10-25 明确授权正式运行 B4R1，并在 scorer outcome 产生前要求取消固定时间上限。
-启动前仍必须使无上限修订后的 runner/config 在服务器完成 hash、合同测试和环境复检。
+无上限修订后的 runner/config 已在服务器完成 hash、13/13 合同测试和环境复检；正式链已按
+`primary -> independent replay -> mechanical audit` 启动。运行目录：
+`/data/khsong/aorta_runs/r004h7bs4b4r1_7050c6e`。禁止读取 partial scientific metrics。
 
 授权后只允许：
 

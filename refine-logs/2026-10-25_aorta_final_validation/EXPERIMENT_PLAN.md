@@ -1,6 +1,9 @@
 # AORTA 最终实验计划：从理论对象到跨规划器行为
 
-**状态：PLAN_ONLY__FORMAL_B4R1_HOLD__SEALED_SPLITS_UNTOUCHED**
+统一基线身份、公平性与失败决策以
+`experiments/R005/BASELINE_COMPARISON_PROTOCOL.md` 为准；该协议不修改 B4R1。
+
+**状态：B4R1_FORMAL_RUNNING__LATER_RUNS_LOCKED__SEALED_SPLITS_UNTOUCHED**
 
 **问题：**视觉外观变化下，如何为不同冻结驾驶规划器提供任务充分、可信且实时的决策辅助，而不是只获得稳定但不影响决策的表征。
 

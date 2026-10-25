@@ -1,10 +1,10 @@
 # AORTA Final Validation Tracker
 
-状态：**PLAN_ONLY__NO_NEW_SCIENTIFIC_RUN_AUTHORIZED**
+状态：**B4R1_FORMAL_RUNNING__LATER_RUNS_LOCKED**
 
 | Run ID | Milestone | Purpose | System / Variant | Split | Primary Metrics | Priority | Status | Stop / Go |
 |---|---|---|---|---|---|---|---|---|
-| R004H7-BS4B4R1 | M0 | 合法 one-frame oracle | official candidate-local scorer | source fit 42 groups | frozen oracle gates | MUST | READY/HOLD：readiness audit通过，需明确授权 | interface valid 才进入 M1；科学 outcome 只裁决 one-frame |
+| R004H7-BS4B4R1 | M0 | 合法 one-frame oracle | official candidate-local scorer | source fit 42 groups | frozen oracle gates | MUST | RUNNING：`7050c6e`，无固定 wall cutoff | interface valid 才进入 M1；科学 outcome 只裁决 one-frame |
 | R004H7-BS4B5F | M1 | scoped contextual target materialization | evaluator-scope audit + augmented previous context | source fit | exact replay、contextual signal、flip/regret | MUST | LOCKED_BY_M0_INTERFACE_VALID | contextual 无信号才停当前 panel |
 | R005A-PROXY | M2 | 简单代理基线 | trajectory/prior/field-SDF-BEV | source train/dev | relation、sign、regret | MUST | LOCKED_BY_M1 | 建立最低线 |
 | R005A-GENERIC | M2 | 最强最近基线 | D-JEPA/World4Scorer-style matched scorer | source train/dev | relation、sign、regret、latency | MUST | LOCKED_BY_M1 | 必须先于主方法完成 |
