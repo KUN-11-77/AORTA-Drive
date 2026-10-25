@@ -1,0 +1,139 @@
+experiment_id: R005E2-visual-recoverability-v1
+date: 2026-10-25
+status: preregistered_outcome_free_preflight_next_training_not_yet_authorized
+scope: cross_fitted_source_panel_visual_increment_for_native_history_Uctx
+
+frozen_target:
+  source_experiment: R005E1B
+  result_sha256: 7673f6fe216db7b91e90aaabc2eba48311c6432c96bbb4769691f06dda8dfd5f
+  source_commit: 1e5362ef6d65dd7e568466317ed347aef312fa75
+  target: candidate_Uctx_minus_native_Uctx
+  target_range: [-1.0, 1.0]
+  candidate_domain: identical_ragged_legal_panel
+  history: causal_native_previous_trajectory_teacher_forced
+  q_pi_ref_or_full_pseudo_closed_loop_claimed: false
+
+data_roles:
+  allowed: [source_fit_42_groups]
+  prohibited: [development, calibration, test, NavDream, target_domain]
+  groups: 42
+  anchors_per_group: 16
+  anchors: 672
+  independent_unit: recording_group
+  repeated_measures: [anchor, candidate, appearance, seed]
+
+cross_fitting:
+  outer_folds: 6
+  groups_per_outer_test_fold: 7
+  outer_hash_salt: aorta-r005e2-outer-v1
+  inner_validation_groups_per_outer_fold: 7
+  inner_hash_salt: aorta-r005e2-inner-v1
+  fold_assignment_may_use_outcomes: false
+  each_group_out_of_fold_exactly_once: true
+  manifest: experiments/R005/inputs/r005e2_crossfit_manifest.json
+  manifest_sha256: e0d62eff0314ea8c02e83632515a4a601644419d41d3aea3f1e6860c0c110983
+
+visual_backbone:
+  family: frozen_DINOv3_vith16plus
+  checkpoint_sha256: 7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488
+  source_sha256: dde435450cdc79eaddcd11039ab90d942f6fb08770b5ee3998a81240d8cf1bf8
+  resized_shape: [288, 512]
+  resize: bicubic_align_corners_false_antialias_true
+  normalization_mean: [0.485, 0.456, 0.406]
+  normalization_std: [0.229, 0.224, 0.225]
+  feature: normalized_last_4_layer_mean
+  batch_cardinality_replay: required
+  calls_per_anchor: 1
+
+arms:
+  V0_removed:
+    scene_visual: outer_train_slot_mean_token
+    interpretation: parameter_matched_trajectory_history_control
+  V1_mismatch:
+    scene_visual: geometry_matched_other_group_DINO
+    donor_from_outer_test: prohibited
+    donor_same_group: prohibited
+    labels_or_DINO_content_used_for_matching: false
+  V2_correct:
+    scene_visual: recipient_DINO
+  exact_architecture_parameter_token_and_optimizer_match: true
+  measured_forward_FLOPs_max_ratio: 1.01
+
+probe:
+  name: matched_full_context_set_scorer_v1
+  hidden_dimension: 256
+  attention_heads: 8
+  candidate_history_layers: 2
+  permutation_equivariant_set_layers: 2
+  visual_cross_attention_layers: 1
+  dropout: 0.1
+  output: tanh_native_relative_margin
+  native_margin: 0.0
+  differential_support_query: prohibited
+  orbit_loss: prohibited
+  uncertainty_or_calibration: prohibited
+
+training:
+  loss: equal_group_anchor_challenger_squared_margin_error
+  optimizer: AdamW
+  base_learning_rate: 0.0003
+  weight_decay: 0.0001
+  warmup_fraction: 0.05
+  schedule: cosine_after_linear_warmup
+  maximum_epochs: 40
+  early_stop_patience: 5
+  early_stop_metric: inner_validation_equal_group_relation_MSE
+  seeds: [20261025, 20261026, 20261027]
+  model_family_or_loss_search: prohibited
+
+appearance_conditions:
+  primary: [clean]
+  frozen_secondary: [low_exposure, low_contrast, cool_cast]
+  source: R004H5_frozen_operators
+  semantics: geometry_preserving_controlled_photometric_stress_only
+
+primary_endpoints:
+  - equal_group_relation_MSE
+  - equal_group_decision_regret
+  - pair_sign_and_boundary_error
+  - oracle_normalized_visual_recovery
+  - correct_checkpoint_mismatch_and_removed_intervention_regret
+  oracle_gain_denominator: 0.01665036604823182
+
+statistics:
+  aggregate_seeds_within_group_first: true
+  bootstrap_unit: recording_group
+  bootstrap_seed: 20261025
+  bootstrap_replicates: 10000
+  confidence_interval: 0.95
+  anchor_as_independent_sample: prohibited
+  conjunctive_intersection_union_gate: true
+
+decision:
+  go_requires:
+    - all_provenance_fold_donor_membership_label_replay_and_audit_gates_pass
+    - V2_minus_V0_relation_MSE_CI95_upper_strictly_below_zero
+    - V2_minus_V1_relation_MSE_CI95_upper_strictly_below_zero
+    - V2_minus_V0_regret_CI95_upper_strictly_below_zero
+    - V2_minus_V1_regret_CI95_upper_strictly_below_zero
+    - V2_mismatch_intervention_minus_correct_regret_CI95_lower_strictly_above_zero
+    - V2_removed_intervention_minus_correct_regret_CI95_lower_strictly_above_zero
+    - oracle_normalized_visual_recovery_point_at_least_0p10
+  mixed_if:
+    - proper_risk_passes_but_regret_or_scene_specificity_fails
+  stop_if:
+    - correct_visual_fails_to_outperform_both_trained_controls
+  invalid_if:
+    - any_split_donor_source_cache_label_replay_or_finite_gate_fails
+  go_unlocks: matched_generic_vs_differential_query_preregistration_only
+
+preflight:
+  scientific_training: prohibited
+  required:
+    - outer_inner_fold_manifest_and_sha256
+    - geometry_matched_donor_manifest_and_sha256
+    - runtime_import_provenance
+    - DINO_weight_source_preprocess_and_cache_hashes
+    - synthetic_ragged_mask_zero_challenger_permutation_and_seed_tests
+    - exact_three_arm_parameter_token_and_FLOPs_audit
+    - registered_resource_and_failure_contract

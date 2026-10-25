@@ -306,7 +306,42 @@ I(R;A\mid S,V_c,h)=0.
 
 因此不得把 MI 目标写成已经取得的理论保证，也不以神经网络容量代替可识别性论证。
 
-## 10. 标准理论与项目贡献的边界
+## 10. 命题 G：视觉条件增量的 proper-risk 身份
+
+令 \(Y\) 为同一合法 ragged panel 上的 native-relative `U_ctx` margin，
+\(X_0=(C,H)\) 包含候选、geometry 与因果 previous history，\(Z\) 为冻结视觉表示。将ragged
+margin用合法mask嵌入对应的加权平方可积空间，定义平方损失的 Bayes 风险：
+
+\[
+\mathcal R^*(X)=\inf_f\mathbb E\|Y-f(X)\|_2^2
+=\mathbb E\|Y-\mathbb E[Y\mid X]\|_2^2.
+\]
+
+### 定理 G1（视觉条件均值信息的风险分解）
+
+\[
+\mathcal R^*(X_0)-\mathcal R^*(X_0,Z)
+=\mathbb E\left\|\mathbb E[Y\mid X_0,Z]-\mathbb E[Y\mid X_0]\right\|_2^2\ge0.
+\]
+
+**证明。** 条件期望是平方可积随机变量空间中的正交投影。将
+\(Y-\mathbb E[Y\mid X_0]\) 分解为
+\(Y-\mathbb E[Y\mid X_0,Z]\) 与
+\(\mathbb E[Y\mid X_0,Z]-\mathbb E[Y\mid X_0]\)，两项正交；取平方范数期望即得。
+\(\square\)
+
+### 解释与严格边界
+
+- 该恒等式说明：在理想 Bayes 函数空间内，视觉只有在改变目标条件均值时才降低平方风险；
+- R005E2 用 group cross-fitting、correct/mismatch/removed 与参数匹配 scorer 操作化这一条件；
+- 有限网络上观察到稳定正增量，支持“当前函数类可利用scene-specific视觉信息”；
+- 未观察到增量不能证明 \(I(Y;Z\mid X_0)=0\)，因为函数类、优化和样本量也可能失败；
+- 风险下降也不自动推出低 decision regret，故必须同时检验定理 E 对应的 panel-level selection 指标。
+
+该命题把视觉必要性从模糊的“模型看图”收紧为 conditional proper-risk comparison，但它是标准条件
+期望几何，不作为AORTA原创定理。项目贡献仍取决于后续 differential-support 对 matched scorer 的增量。
+
+## 11. 标准理论与项目贡献的边界
 
 | 内容 | 性质 | 论文中允许的角色 |
 |---|---|---|
@@ -317,7 +352,7 @@ I(R;A\mid S,V_c,h)=0.
 | appearance-interventional differential query 是否优于 matched scorer | AORTA 核心待证假设 | 只有实验支持后才是主贡献 |
 | NavDream/三 planner 的净行为改善且 clean 非劣、实时 | AORTA 最终待证系统结果 | 决定方法论文资格 |
 
-## 11. 定理—网络—实验映射
+## 12. 定理—网络—实验映射
 
 | 理论责任 | 网络/算法选择 | 决定性 falsifier |
 |---|---|---|
@@ -327,10 +362,11 @@ I(R;A\mid S,V_c,h)=0.
 | D：稳定不能牺牲正确性 | task-first constrained orbit loss | drift 降低但 regret 增加 |
 | E：控制同时 margin error 才控制 regret | full-margin regression/ranking | MAE好但 top-choice/regret不改善 |
 | F：只有同时下界支持干预 | group-max calibration + native fallback | undercoverage、全拒判或 false intervention 不降 |
+| G：正确视觉若含可用条件信息应降低proper risk | correct/mismatch/removed参数匹配cross-fit | correct不降低risk或降低risk但regret不改善 |
 
-## 12. 当前结论
+## 13. 当前结论
 
-上述命题在其假设下成立，且明确给出了不成立的反例；这使数学地基“可审查”，但没有证明经验假设满足。当前仍缺：合法非平凡 full-task labels、差异查询相对 matched scorer 的增量、NavDream 外观泛化、三 planner 行为净收益、clean non-inferiority 与 batch-1 P95。故状态保持：
+上述命题在其假设下成立，且明确给出了不成立的反例；这使数学地基“可审查”，但没有证明经验假设满足。R005E1B已支持native-history `U_ctx`的source-fit非平凡headroom，但仍缺：视觉条件增量、差异查询相对matched scorer的增量、NavDream外观泛化、三planner行为净收益、clean non-inferiority与batch-1 P95。故状态保持：
 
 **THEORY_CONTRACT_READY__METHOD_AND_SYSTEM_NOT_VALIDATED__NOT_ICCV_READY**。
 

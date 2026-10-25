@@ -1,6 +1,6 @@
 # AORTA 理论—网络—行为闭环合同 v1
 
-状态：`FORMAL_CLOSURE_CANDIDATE__EMPIRICAL_CORE_UNPROVEN__B4R1_REQUIRED`。
+状态：`FORMAL_CLOSURE_CANDIDATE__R005E1B_TARGET_SUPPORTED__R005E2_VISUAL_RECOVERABILITY_PREREGISTERED`。
 
 2026-10-25 前沿查新补充：D-JEPA 已直接覆盖 decision-local relation、native-relative bounded
 correction、risk penalty、margin gate 与 native fallback；World4Scorer 已覆盖 outcome-grounded
@@ -344,7 +344,8 @@ scorer 并降低论文定位；若 selective arm 近乎全拒判或不降低 fal
 - 为什么共享视觉编码与向量化 query 是实时性所需已有复杂度合同。
 
 当前不能说：该网络比最近方法更好、能在 NavDream 泛化、能改善 official driving outcome、满足
-clean no-harm 或具备实时部署资格。下一步仍是 B4R1；未经明确授权不得运行。
+clean no-harm 或具备实时部署资格。B4R1与R005E1B已完成；下一步是R005E2 outcome-free preflight，
+完成并冻结实现与manifest前仍不得启动科学训练。
 
 数据无关参考实现位于 `src/aorta_drive/theory/relation_guarantees.py`。它与历史绝对安全区间仲裁
 严格分离，并由 `tests/gate_b/test_relation_closure_theory.py` 验证严格正 lower-bound 选择、同时

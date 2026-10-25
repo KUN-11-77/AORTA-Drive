@@ -1,12 +1,13 @@
 # AORTA Baseline–Hypothesis–Experiment–Decision Protocol
 
-状态：`MATRIX_FROZEN__TARGET_SCOPE_SEPARATED__R005E1_NOT_AUTHORIZED__NO_TRAINING_AUTHORIZED`
+状态：`MATRIX_FROZEN__R005E1B_SUPPORTED__R005E2_PREREGISTERED__NO_TRAINING_AUTHORIZED`
 
 日期：2026-10-25。
 
-本协议把 AORTA 的文献定位、最强竞争方法、机制消融和失败决策绑定到同一证据链。它不修改正在
-执行的 B4R1。R005E0已证明其raw score不能等同filter后contextual或two-stage value；本协议不授权
-R005E1运行或网络训练，也不把外部论文在不同协议下的公开数字当作 matched comparison。
+本协议把 AORTA 的文献定位、最强竞争方法、机制消融和失败决策绑定到同一证据链。它不改写已经
+完成的B4R1。R005E0已证明其raw score不能等同filter后contextual或two-stage value；R005E1B现已
+支持source-fit `U_ctx` headroom。本协议只解锁R005E2 outcome-free preflight，不授权网络科学训练，
+也不把外部论文在不同协议下的公开数字当作matched comparison。
 
 ## 1. 两项论文主张
 
@@ -173,7 +174,7 @@ DriveTeach-VLA、DA-WAM、TOAD、DriveSuprim、VLA 与 sparse-query 文献只作
 ## 9. 当前状态
 
 - B4R1：已完成并审计；只支持pre-filter `F_raw^{1f}`；
-- R005E0、R005E1A与R005E1B已完成；R005E1C因官方mapping覆盖为零而fail-closed；R005E2仅解锁预注册、尚未授权训练；
-- E1 materialization–E4：全部 LOCKED；
+- R005E0、R005E1A与R005E1B已完成；R005E1C因官方mapping覆盖为零而fail-closed；R005E2已预注册，当前只允许outcome-free preflight、尚未授权训练；
+- E1 materialization已完成；E2已预注册但科学训练仍LOCKED；E3–E4继续LOCKED；
 - calibration/test/NavDream/target：保持封存；
 - 本协议冻结方法身份和公平性原则，但不预填任何实验结果。
