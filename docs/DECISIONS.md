@@ -1351,3 +1351,19 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** canonical 化不修改R005E2远端运行的commit、输入、arm、loss、optimizer、seed、统计、
   阈值或GO/MIXED/STOP；也不新增任何视觉、外观、行为、时延或安全结果。
 - **Artifact:** `docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md`。
+
+## ADR-0092：Best Paper north star采用由目标条件分布定义的Decision Quotient
+
+- **Decision:** `DECISION_EQUIVALENCE_IS_TASK_POSTERIOR_EQUIVALENCE__FEATURE_INVARIANCE_IS_NOT_THE_OBJECT`。
+- **Reason:** 同场景feature相似不是决策充分性的必要或充分条件；常数表示可以完全稳定却无任务信息，
+  不同视觉特征也可以诱导相同的候选relation分布。对固定合法候选与因果历史，定义
+  `I equiv_B I'`当且仅当`P(Y_B|I,B)=P(Y_B|I',B)`，可把外观鲁棒性、视觉条件增量、不可辨识性与
+  selective action统一在同一第一性对象上。
+- **Consequence:** 论文唯一主thesis是decision-quotient visual learning；完整时空signed difference
+  仅作为逼近该商空间的query bias，全局视觉仍回答非加性上下文。最终最多新增differential query
+  encoder与distributional relation head两个trainable components；orbit/ranking/calibration只有在
+  对应失败门出现后才能加入。Best Paper资格由decision-sufficiency gap、matched architecture优势与
+  behavior closure三项发现共同决定。
+- **Boundary:** Decision Quotient、条件充分性和Bayes风险工具本身不是原创；R005E2尚未证明视觉增量，
+  本ADR不修改其远端运行、loss、arm、threshold或裁决，也不授权NavDream、主架构或Best Paper主张。
+- **Artifact:** `refine-logs/2026-10-25_aorta_best_paper_blueprint/AORTA_BEST_PAPER_FIRST_PRINCIPLES_BLUEPRINT_V1_CN.md`。

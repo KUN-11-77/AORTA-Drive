@@ -93,6 +93,7 @@ python scripts/check_repo.py
 ## 核心文档
 
 - [第一性原理理论与系统规范](docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md)
+- [Best-Paper-Level First-Principles Blueprint](refine-logs/2026-10-25_aorta_best_paper_blueprint/AORTA_BEST_PAPER_FIRST_PRINCIPLES_BLUEPRINT_V1_CN.md)
 - [研究问题](docs/RESEARCH_BRIEF.md)
 - [历史 v8.3.2 field/geometry 方法规范](docs/METHOD_SPEC.md)
 - [形式化定理与证明](docs/THEORY.md)

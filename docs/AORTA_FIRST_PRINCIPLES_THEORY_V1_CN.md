@@ -87,6 +87,27 @@ Q_{\pi_{ref}},\quad J(\pi).
 
 任何主张都必须标出自己对应的对象。
 
+### 3.1 Decision Quotient
+
+对固定候选上下文 \(B\)，定义两个视觉观测决策等价：
+
+\[
+I\equiv_B I'
+\iff
+P(Y_B\mid I,B)=P(Y_B\mid I',B),
+\]
+
+其中 \(Y_B\) 是合法候选域上的 native-relative contextual margin 向量。商空间
+
+\[
+\mathcal Q_B=\mathcal I/\!\equiv_B
+\]
+
+是当前 Best-Paper north star 中的第一性表示对象：它保留影响候选关系条件分布的信息，删除与该
+决策无关的视觉差异。外观鲁棒意味着合法外观干预尽可能停留在同一决策等价类，而不是要求任意
+中间 feature 完全相同。该定义使用标准条件充分性思想；其作为 AORTA 方法主线的价值必须由
+decision-sufficiency gap、matched architecture advantage 和 behavior closure 共同证明。
+
 ## 4. 视觉价值的第一性检验
 
 令 \(C\) 为候选几何与合法 mask，\(H\) 为因果历史，\(Z=\Phi(I)\) 为视觉表示，目标向量为
@@ -315,6 +336,22 @@ i^\star=\arg\max_i L_{i0},\ L_{i^\star0}>\gamma,\\
 calibration group 数、candidate mechanism 变化和 appearance OOD 都必须显式报告。
 
 ## 11. 实时约束是方法定义的一部分
+
+在进入部署约束前，必须先区分候选供给与候选选择。令全集最优效用为 \(U^\star\)，冻结 planner
+在观测 \(I\) 下给出的候选集合为 \(B(I)\)，集合内最优为 \(U_B^\star\)，最终选择为
+\(\widehat\tau\in B(I)\)。则
+
+\[
+U^\star-U(\widehat\tau)
+=
+\left(U^\star-U_B^\star\right)
++
+\left(U_B^\star-U(\widehat\tau)\right).
+\]
+
+第一项是 candidate-supply regret，第二项是 selection regret。AORTA 只直接优化第二项；固定 panel
+实验隔离 selection 机制，最终跨 appearance/planner 行为实验必须同时报告两项，不能把候选供给变化
+冒充 reranking 收益。
 
 最终优化问题是：
 

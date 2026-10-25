@@ -1,5 +1,13 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 Best-Paper first-principles blueprint：`DECISION_QUOTIENT_NORTH_STAR__EMPIRICAL_QUALIFICATION_PENDING`。**
+> 顶级论文主线进一步收紧为“视觉观测的决策充分商空间”：对固定候选与因果历史，两个观测仅在
+> 诱导相同native-relative contextual-relation分布时等价。外观鲁棒不再定义为全局feature相同，
+> 而定义为跨外观保持该条件分布。AORTA用完整时空signed candidate difference提出query、全局视觉
+> 回答、同时下界决定是否干预。该构型只保留一个主贡献和一个从属机制；Best Paper资格取决于
+> decision-sufficiency gap、matched differential advantage与跨外观/跨planner行为闭环三项发现。
+> 详见`refine-logs/2026-10-25_aorta_best_paper_blueprint/AORTA_BEST_PAPER_FIRST_PRINCIPLES_BLUEPRINT_V1_CN.md`。
+
 > **2026-10-25 Best Paper readiness audit：`STRONG_PROBLEM_AND_THEORY_SEED__BEST_PAPER_EVIDENCE_NOT_YET_PRESENT`。**
 > 以高于普通ICCV接收的标准审查后，当前具备有价值的问题重述、第一性理论入口和严格实验纪律，
 > 但尚缺三项决定性发现：可推广的decision-sufficiency gap、Differential Query对matched closest
