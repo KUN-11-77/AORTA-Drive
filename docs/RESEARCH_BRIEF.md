@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 Best-Paper 实现合同：`MANDATORY_PROJECT_CONTRACT__NO_AWARD_GUARANTEE`。**
+> 后续方法实现、训练、评估、审计与论文主张统一执行
+> `docs/BEST_PAPER_IMPLEMENTATION_STANDARD_V1_CN.md`：数学对象、因果/坐标/角色不变量、模块五问、
+> matched baseline、公平预算、组级统计、exact replay、端到端时延、失败分类与claim边界均为硬门。
+> 已冻结的R005E2B不做中途修改，完成后按该标准审计。该合同保证研究过程达到候选级严谨性，
+> 不保证正结果、录用或Best Paper奖项。
+
 > **2026-10-25 Best-Paper first-principles blueprint：`DECISION_QUOTIENT_NORTH_STAR__EMPIRICAL_QUALIFICATION_PENDING`。**
 > 顶级论文主线进一步收紧为“视觉观测的决策充分商空间”：对固定候选与因果历史，两个观测仅在
 > 诱导相同native-relative contextual-relation分布时等价。外观鲁棒不再定义为全局feature相同，

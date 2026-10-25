@@ -1367,3 +1367,16 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** Decision Quotient、条件充分性和Bayes风险工具本身不是原创；R005E2尚未证明视觉增量，
   本ADR不修改其远端运行、loss、arm、threshold或裁决，也不授权NavDream、主架构或Best Paper主张。
 - **Artifact:** `refine-logs/2026-10-25_aorta_best_paper_blueprint/AORTA_BEST_PAPER_FIRST_PRINCIPLES_BLUEPRINT_V1_CN.md`。
+
+## ADR-0093：Best-Paper候选级实现标准成为项目硬门
+
+- **Decision:** `BEST_PAPER_IMPLEMENTATION_STANDARD_IS_MANDATORY__SCIENTIFIC_OUTCOME_NOT_GUARANTEED`。
+- **Reason:** 高水平理论若未被忠实实现、公平比较、独立复算和端到端行为验证，不能形成可信方法；
+  相反，测试与审计再完整也不能替代算法发现。项目需要一份同时约束数学对象、网络接口、训练、
+  baseline、统计、时延、provenance、失败响应与claim边界的长期执行合同。
+- **Consequence:** 后续模块必须先回答“失败来源、数学依据、简单替代、否定消融、删除预测”五问；
+  正式工作依次通过`IMPLEMENTATION_READY`、`SCIENTIFIC_RUN_VALID`、`METHOD_SUPPORTED`、
+  `PAPER_READY`和`BEST_PAPER_ELIGIBLE`。未通过的工作只能保留为探索或负结果，不得进入主张。
+- **Boundary:** 标准不以复杂度为目标，不保证正结果、录用或奖项；R005E2B保持原冻结提交和协议，
+  只在完成后接受本标准的结果审计，不因本ADR中途更改。
+- **Artifact:** `docs/BEST_PAPER_IMPLEMENTATION_STANDARD_V1_CN.md`。

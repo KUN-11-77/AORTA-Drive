@@ -2,7 +2,7 @@
 
 ## 项目上下文
 
-- 研究任务首先阅读 `docs/RESEARCH_BRIEF.md`、`docs/METHOD_SPEC.md` 与 `docs/CLAIM_EVIDENCE_MATRIX.md`。
+- 研究任务首先阅读 `docs/RESEARCH_BRIEF.md`、`docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md`、`docs/BEST_PAPER_IMPLEMENTATION_STANDARD_V1_CN.md` 与 `docs/CLAIM_EVIDENCE_MATRIX.md`。
 - 当前 canonical 理论入口是 `docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md`。核心对象是合法 ragged 候选域上的 native-relative contextual relation、appearance-interventional differential evidence 与条件性保守仲裁；旧 graph-gradient field、SDF、scalar set-min、几何证书和 affine panel 均为历史证据或 baseline。
 - 当前阶段以理论资格、最小实现和可证伪实验为主；不得提前写性能结论。
 
@@ -23,6 +23,7 @@
 - 配置、随机种子、数据 manifest 与代码 revision 必须进入结果 provenance。
 - 禁止提交数据、checkpoint、缓存、密钥、账号信息或机器绝对路径。
 - 不降低门禁来制造正结果；失败结果进入 claim–evidence 矩阵。
+- 所有新增模块、训练、评估和论文主张必须通过 `docs/BEST_PAPER_IMPLEMENTATION_STANDARD_V1_CN.md` 的对应硬门；未通过只能标记为探索性工作。
 
 ## 方法边界
 
