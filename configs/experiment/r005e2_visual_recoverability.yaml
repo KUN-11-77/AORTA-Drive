@@ -1,6 +1,6 @@
 experiment_id: R005E2-visual-recoverability-v1
 date: 2026-10-25
-status: preregistered_outcome_free_preflight_next_training_not_yet_authorized
+status: preregistered_preflight_passed_scientific_runner_qualification_authorized
 scope: cross_fitted_source_panel_visual_increment_for_native_history_Uctx
 
 frozen_target:
@@ -95,6 +95,14 @@ training:
   maximum_epochs: 40
   early_stop_patience: 5
   early_stop_metric: inner_validation_equal_group_relation_MSE
+  early_stop_update: strict_improvement_earliest_epoch_on_tie
+  nested_refit: reinitialize_same_seed_then_outer_train_for_selected_epoch_count
+  batch_size: 1
+  data_loader_workers_per_job: 4
+  batch_order: identical_within_outer_fold_and_seed_across_arms
+  learning_rate_step_budget:
+    selection: maximum_epochs_times_448_inner_fit_anchors
+    refit: selected_epoch_count_times_560_outer_train_anchors
   seeds: [20261025, 20261026, 20261027]
   model_family_or_loss_search: prohibited
   deterministic_algorithms: true
@@ -125,6 +133,19 @@ statistics:
   confidence_interval: 0.95
   anchor_as_independent_sample: prohibited
   conjunctive_intersection_union_gate: true
+  numerical_tie_tolerance: 1.0e-12
+  sign_error: non_tie_native_relative_challenger_three_way_sign_mismatch
+  boundary_error: selected_candidate_regret_strictly_above_tie_tolerance
+
+execution:
+  job_roster: 6_outer_folds_times_3_arms_times_3_seeds
+  phase_order: [primary, replay, mechanical_audit]
+  maximum_concurrent_jobs: 4
+  one_job_per_gpu: true
+  same_job_same_gpu_in_primary_and_replay: true
+  partial_scientific_metric_reading: prohibited
+  failure_policy: fail_closed_no_automatic_third_run
+  removed_slot_mean: outer_train_mean_within_each_camera_history_slot_over_anchors_and_patches
 
 decision:
   go_requires:

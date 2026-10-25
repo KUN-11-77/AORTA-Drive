@@ -81,6 +81,11 @@ r_{gt}=\max_{i\in V_{gt}}U^{ctx}_{gti}-U^{ctx}_{gt\widehat i_{gt}}.
 camera/history-slot 均值 token，并显式设置 `scene_specific_visual=false`。网络骨架、参数、token 数、
 FLOPs 与 V1/V2 相同。该 arm 是参数匹配的 trajectory/history-only 对照。
 
+均值的实现定义在科学运行前冻结为：对每个 camera/history slot，先在该 outer fold 的560个
+outer-train anchors及该slot的全部18×32 patch位置上取1280维均值，再把所得 `[12,1280]`
+均值复制回相同的12×18×32 token布局。outer-test视觉不参与均值；该定义保留slot身份与相同计算图，
+同时删除anchor特异的视觉内容。
+
 ### V1：geometry-matched mismatched visual control
 
 输入来自其他 recording group 的 DINO tokens。donor 只由 outer-train pool 产生，禁止来自 recipient
@@ -140,6 +145,16 @@ geometry-matched donor 只是不使用结果的 scene-binding negative control�
 
 这些数值是 recoverability probe 的冻结实现，不是 AORTA 主架构的最优性主张。
 
+训练采用标准nested cross-fitting。先在28个inner-fit groups上最多训练40 epochs，以7个
+inner-validation groups的group-equal relation MSE严格下降选择最早最佳epoch `K`，连续5次不改善即
+停止；随后用相同seed重新初始化到bit-exact相同初值，在完整35个outer-train groups上训练恰好`K`
+epochs，最后一次性预测7个outer-test groups。故计算量是实际`K+K`，`40+40`仅为诚实的最坏上界；
+不得用outer-test选择epoch，也不得通过复用inner-fit checkpoint把inner-validation混入模型选择。
+
+正式作业为6 folds×3 arms×3 seeds=54个独立单元。允许在空闲GPU上每卡一个作业并行，但同一作业的
+primary/replay必须绑定同型号同一物理GPU；三臂在相同fold/seed下使用相同初始化与样本顺序。完整54个
+primary结束后才开始54个replay，机械审计前不得读取或解释部分科学指标；失败后禁止自动第三次运行。
+
 ## 6. 外观条件
 
 主要裁决只使用 clean source RGB。主要 checkpoint 冻结后，进行 source-controlled 重复测量：
@@ -174,6 +189,10 @@ geometry-matched donor 只是不使用结果的 scene-binding negative control�
 置信区间；三个seed单独暴露优化波动。anchor/candidate不得作为独立样本。
 
 主要比较按 intersection-union 处理，不因多个必须同时通过的条件放宽阈值：
+
+实现中沿用R005E1B的`1e-12`数值tie tolerance。sign error是在非tie合法challenger上比较
+`{-1,0,+1}`三类native-relative符号；预测0不能被算作正确的正/负号。boundary error定义为冻结
+`argmax`（相同预测时取最低registered index）所选候选的真实regret严格大于该tolerance。
 
 - V2 minus V0；
 - V2 minus V1；
