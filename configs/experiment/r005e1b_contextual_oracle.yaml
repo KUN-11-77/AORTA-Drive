@@ -1,0 +1,71 @@
+experiment_id: R005E1B-source-fit-contextual-oracle-v1
+date: 2026-10-25
+status: authorized_frozen_primary_replay_audit
+
+R005E1B:
+  scientific_role: source_fit_native_history_contextual_oracle_materialization
+  scope:
+    role: fit
+    split: train
+    recording_groups: 42
+    anchors_per_group: 16
+    total_anchors: 672
+    statistical_independent_unit: recording_group
+    development_calibration_test_navdream_target_accessed: false
+  estimand:
+    name: native_history_teacher_forced_contextual_row_utility
+    definition: M_times_5EP_plus_5TTC_plus_2LK_plus_2HC_plus_2EC_over_16
+    previous_selected_trajectory: frozen_native_planner_output_at_immediate_causal_predecessor
+    q_pi_ref_materialized: false
+    full_official_pseudo_closed_loop_value: false
+  frozen_input_sha256:
+    e1a_result: 4e8834166a42eda5fbdf5e67089cf64651492416e7307bd02ec73b00dbe1a874
+    b4r1_config: 76de67c4aa35059cc069b18fcad0682c81caa7c51d1710012023cd81c7678cfd
+    b4r1_primary_result: dad4e7faafe3da4b8703307668dc90f16659c3be8ae4348843843c10def06987
+    temporal_context_roster: 3e43ae4d62ef6a8f4a2e6ecd8dadf6e6be4c48827d96f3b78bd5a2be8ec0b4f5
+    current_metric_manifest: 1912f45ac84d63ef2d608ff2b1b83b55671d04f7f9a78eac19ee9498eb72e3a2
+    previous_metric_manifest: cbab090ab6b49004435dd5eb020a20014a41b61f91d8c84d3566250c5cea06f0
+    group_role_manifest: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+  qualification_gates:
+    e1a_status: PASS
+    e1a_decision: E1A_PASS_UCTX_READY__Q_PI_REF_UNDEFINED_ON_SOURCE_FIT
+    all_672_contexts_available: true
+    exact_candidate_membership: true
+    current_candidate_scores_must_exactly_replay_b4r1: true
+    primary_replay_anchor_ledgers_exact: true
+    independent_mechanical_recomputation: true
+    all_values_finite: true
+  decision_rule:
+    go_requires:
+      strict_native_improvement_groups_at_least: 21
+      group_equal_oracle_gain_bootstrap_95_ci_lower_strictly_positive: true
+      all_42_groups_defined: true
+      nonzero_relation_not_complete_case_selected: true
+    hold_when:
+      - oracle_confidence_interval_contains_zero
+      - history_effect_is_weak
+      - signal_is_concentrated_in_few_groups
+    stop_when:
+      - target_construction_invalid
+      - contextual_oracle_has_no_nontrivial_opportunity
+  resources:
+    workers: 8
+    maximum_wall_minutes: null
+  execution:
+    primary_then_independent_full_replay_then_mechanical_audit: true
+    partial_scientific_metrics_prohibited: true
+    third_run_automatic_retry: prohibited
+    sealed_roles_remain_closed: true
+
+claim_boundary:
+  permitted:
+    - source_fit_native_history_contextual_oracle_headroom
+    - raw_filtered_contextual_ranking_disagreement
+    - source_fit_contextual_candidate_relation_signal
+  prohibited:
+    - RGB_recoverability
+    - network_or_architecture_superiority
+    - full_official_pseudo_closed_loop_value
+    - policy_level_driving_gain
+    - NavDream_or_target_robustness
+    - driving_safety_claim
