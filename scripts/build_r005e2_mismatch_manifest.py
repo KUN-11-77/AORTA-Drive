@@ -34,6 +34,31 @@ def _keys_for_groups(groups: list[str], keys_by_group: dict[str, list[str]]) -> 
     return sorted(key for group in groups for key in keys_by_group[group])
 
 
+def _resolve_panel(
+    roots: list[Path], *, scene_token: str, expected_sha256: str
+) -> tuple[Path, int]:
+    """Resolve one panel by content hash across frozen base/replacement roots."""
+
+    exact: list[tuple[Path, int]] = []
+    observed_wrong_hash: list[Path] = []
+    for root_index, root in enumerate(roots):
+        candidate = root / f"{scene_token}.npz"
+        if not candidate.is_file():
+            continue
+        if sha256_file(candidate) == expected_sha256:
+            exact.append((candidate, root_index))
+        else:
+            observed_wrong_hash.append(candidate)
+    if not exact:
+        suffix = "" if not observed_wrong_hash else "; same-token wrong-hash artifact exists"
+        raise FileNotFoundError(f"no exact frozen panel for {scene_token}{suffix}")
+    if len(exact) > 1:
+        first_bytes = exact[0][0].read_bytes()
+        if any(path.read_bytes() != first_bytes for path, _ in exact[1:]):
+            raise ValueError("multiple exact-hash panel paths disagree in bytes")
+    return exact[0]
+
+
 def _enrich_rows(
     rows: list[dict[str, Any]], identity_by_key: dict[str, dict[str, Any]]
 ) -> list[dict[str, Any]]:
@@ -82,10 +107,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         key = anchor_key(group, index)
         if key in identity_by_key or group not in keys_by_group:
             raise ValueError("panel identity roster contains an invalid or duplicate anchor")
-        panel_path = args.panel_root / f"{row['scene_token']}.npz"
+        panel_path, panel_root_index = _resolve_panel(
+            cast(list[Path], args.panel_root),
+            scene_token=str(row["scene_token"]),
+            expected_sha256=str(row["panel_artifact_sha256"]),
+        )
         panel_hash = sha256_file(panel_path)
-        if panel_hash != str(row["panel_artifact_sha256"]):
-            raise ValueError("panel artifact hash mismatch")
         with np.load(panel_path, allow_pickle=False) as panel_payload:
             descriptor = native_geometry_descriptor(
                 np.asarray(panel_payload["realized_local_poses"], dtype=np.float64),
@@ -100,6 +127,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "anchor": key,
                 "scene_token": str(row["scene_token"]),
                 "panel_artifact_sha256": panel_hash,
+                "panel_source_root_index": panel_root_index,
                 "geometry_descriptor_sha256": descriptor_sha256(descriptor),
             }
         )
@@ -177,6 +205,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "descriptor_dimension": len(geometry_descriptor_names()),
         "source_crossfit_manifest_sha256": sha256_file(args.crossfit_manifest),
         "source_panel_identity_roster_sha256": sha256_file(args.panel_identity_roster),
+        "panel_source_roots": [str(path) for path in cast(list[Path], args.panel_root)],
         "panel_artifact_count": len(descriptor_ledger),
         "descriptor_ledger": sorted(descriptor_ledger, key=lambda row: row["anchor"]),
         "outer_fold_count": len(fold_rows),
@@ -200,7 +229,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--crossfit-manifest", type=Path, required=True)
     parser.add_argument("--panel-identity-roster", type=Path, required=True)
-    parser.add_argument("--panel-root", type=Path, required=True)
+    parser.add_argument("--panel-root", type=Path, action="append", required=True)
     parser.add_argument("--expected-crossfit-sha256")
     parser.add_argument("--expected-roster-sha256")
     parser.add_argument("--output", type=Path, required=True)

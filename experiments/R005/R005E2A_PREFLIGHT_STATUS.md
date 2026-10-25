@@ -12,7 +12,8 @@
 - fold算法对输入顺序不变、对盐值变化敏感，并对overlap、missing、错误inner计数、outcome flag和
   duplicate group fail-closed；
 - manifest：`experiments/R005/inputs/r005e2_crossfit_manifest.json`；
-- manifest SHA-256：`e0d62eff0314ea8c02e83632515a4a601644419d41d3aea3f1e6860c0c110983`；
+- Git-blob/LF canonical manifest SHA-256：
+  `f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878`；
 - R005E1B source result SHA-256在manifest中绑定为
   `7673f6fe216db7b91e90aaabc2eba48311c6432c96bbb4769691f06dda8dfd5f`；
 - 定向协议测试8项通过；连同R005E1B contextual tests共16项通过。
@@ -20,7 +21,7 @@
   该文件不含utility、candidate score、RGB、DINO或模型输出；
 - panel identity roster：`experiments/R005/inputs/r005e2_panel_identity_roster.json`；
 - panel identity roster SHA-256：
-  `7a46cd6b8aeac2887b057de96f832f4a4bd07e56f89c18fa99e1ef4196abec64`；
+  `b0c5b14a7bb935f381ca246c568b616d24c58b5c8e88a737824b4e498731d62f`；
 - donor算法已冻结为native几何描述子上的全局线性和分配：训练映射是跨组一一置换，validation/test
   映射从相应训练池无放回取donor；因此训练visual token经验边际严格不变，且禁止same-group与
   outer-test donor；
@@ -38,3 +39,8 @@
 
 在上述六项全部关闭、配置与源码再次冻结并获得单独运行授权前，不得启动R005E2B科学训练，不得
 读取任何correct/mismatch/removed科学比较。
+
+首次物化尝试在任何assignment或科学指标产生前fail-closed：672个anchor中有1个经R005E1A修复的
+replacement panel，不在原H7BS1单一artifact root。该失败不改变fold或donor规则。解析器现要求在
+冻结base与replacement roots中按预登记panel SHA-256精确查找；同token但hash不符、缺失或多份同hash
+但bytes不一致都会失败。正式manifest仍待新提交服务器replay。

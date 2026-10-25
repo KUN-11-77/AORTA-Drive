@@ -31,7 +31,7 @@ cross_fitting:
   fold_assignment_may_use_outcomes: false
   each_group_out_of_fold_exactly_once: true
   manifest: experiments/R005/inputs/r005e2_crossfit_manifest.json
-  manifest_sha256: e0d62eff0314ea8c02e83632515a4a601644419d41d3aea3f1e6860c0c110983
+  manifest_sha256: f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878
 
 visual_backbone:
   family: frozen_DINOv3_vith16plus
@@ -138,7 +138,7 @@ preflight:
   scientific_training: prohibited
   panel_identity_roster:
     path: experiments/R005/inputs/r005e2_panel_identity_roster.json
-    sha256: 7a46cd6b8aeac2887b057de96f832f4a4bd07e56f89c18fa99e1ef4196abec64
+    sha256: b0c5b14a7bb935f381ca246c568b616d24c58b5c8e88a737824b4e498731d62f
     utility_candidate_or_visual_fields_used: false
   required:
     - outer_inner_fold_manifest_and_sha256
