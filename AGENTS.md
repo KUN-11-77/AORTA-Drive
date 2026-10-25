@@ -3,7 +3,7 @@
 ## 项目上下文
 
 - 研究任务首先阅读 `docs/RESEARCH_BRIEF.md`、`docs/METHOD_SPEC.md` 与 `docs/CLAIM_EVIDENCE_MATRIX.md`。
-- 当前核心对象是 AORTA-v8.3.1 的 candidate-free graph-gradient field、exact relative set-min certificate 与 frozen candidate arbitration；旧 affine panel 仅是历史 baseline。
+- 当前 canonical 理论入口是 `docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md`。核心对象是合法 ragged 候选域上的 native-relative contextual relation、appearance-interventional differential evidence 与条件性保守仲裁；旧 graph-gradient field、SDF、scalar set-min、几何证书和 affine panel 均为历史证据或 baseline。
 - 当前阶段以理论资格、最小实现和可证伪实验为主；不得提前写性能结论。
 
 ## 研究约束

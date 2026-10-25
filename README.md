@@ -4,52 +4,58 @@
 
 **AORTA — Appearance-conditioned Operator for Robust Trajectory Arbitration**
 
-面向 NAVSIM v1/v2 的 source-only 外观鲁棒驾驶研究：学习 candidate-free 道路差分场，为冻结 planner 的 challenger 相对 native 提供 nominal road-margin non-degradation 证书。
+面向 NAVSIM v1/v2 的外观鲁棒候选仲裁研究：在冻结 planner 的合法候选集合中，学习
+native-relative contextual relation，并检验完整时空 native–challenger 差异支持能否比通用
+scorer 更有效地读取外观稳定的决策证据。
 
-> **研究状态（2026-10-25）：** held-out visual field 已获得 correct-image necessity 与任务信息证据，
-> 但从 field 到一般候选决策的 scalar-min readout 已被连续 oracle 门否定。B1 中 joint uncertainty
-> 没有增加符号可识别 pair；B2 定位 common-min domination；B3 的 temporal fork 仅恢复
-> `170/2033` 个零差异 pair，而 spatial-exclusive 适用率仅 `77.13%`。按预注册结论为
-> `STOP_ROAD_MARGIN_AS_GENERAL_RERANKER`。当前不训练新网络、不运行 NavDream/H7C；先重新审查
-> decision-sufficient 数学对象、相关文献与 outcome 协议。仍无驾驶、安全、OOD 或顶会原创性结论。
+> **研究状态（2026-10-25）：** 旧 graph-gradient field 与 scalar-min road-margin reranker 已按
+> 预注册结果停止作为一般候选仲裁主线。R005E1B 已支持 source-fit、native-history `U_ctx` 的合法
+> contextual oracle opportunity；R005E2 正在检验给定候选与历史后，正确冻结视觉是否提供可学习的
+> 条件增量。Differential Query、NavDream、跨 planner、actual-history rollout、clean no-harm、
+> 在线时延和驾驶收益仍未验证。当前 canonical 理论见
+> [`docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md`](docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md)。
 
-## 核心方法
+## 当前方法假设
 
-网络在固定物理图 \(G=(\Omega,E)\) 上输出节点势 \(u_\theta(X,q)\)，只学习 GT road-distance field 的局部差分：
-
-\[
-\mathcal L_{edge}
-=|E|^{-1}\sum_e
-\operatorname{Huber}
-\left(\frac{(Du_\theta-D\widetilde d_S)_e}{s_e}\right).
-\]
-
-source-session calibration 产生 edge budgets \(w_e=q_\alpha s_e\)。对 native swept set \(B\)，一次标准 multi-source min-plus transform
+对合法候选 \(\tau_i\) 与 native \(\tau_0\)，当前最小监督对象是：
 
 \[
-\psi_B(v)=\min_{b\in B}[u_b+\operatorname{dist}_w(v,b)]
+\Delta_{i0}
+=U_{ctx}(\tau_i;h)-U_{ctx}(\tau_0;h).
 \]
 
-即可为任意 challenger set \(A\) 给出精确最坏相对 margin：
+首先检验视觉表示 \(Z\) 是否在候选与因果历史 \((C,H)\) 之外提供条件增量：
 
 \[
-L_G(A,B)=\min_{a\in A}[u_a-\psi_B(a)].
+\mathcal R^\star(C,H)-\mathcal R^\star(C,H,Z)
+=\mathbb E\!\left[
+\left\|
+\mathbb E[Y\mid C,H,Z]-\mathbb E[Y\mid C,H]
+\right\|^2
+\right]\ge0.
 \]
 
-系统只在 proof-carrying nominal geometry gate 成立且 \(L_G\) 扣除 map、geometry 与 numerical budgets 后达到 \(\gamma_{task}\ge0\) 时替换 native。
+若该资格门通过，主架构候选才使用完整时空 signed occupancy difference
+\(\nu_{i0}=\mu_i-\mu_0\) 生成 query，同时保留全部视觉 token 作为 key/value，预测
+native-relative contextual relation。差异支持只负责提出比较问题，不被假定为完整任务效用的解析式。
 
 ## 理论边界
 
-当前已建立的主条件链是：
+当前主条件链是：
 
 ```text
-source-session edge event
-  -> all-pair discrete robust bounds
-  -> map/geometry/numerical correction
-  -> every authorized intervention reaches gamma_task relative improvement
+合法 contextual estimand 与 oracle opportunity
+  -> 正确视觉具有条件增量
+  -> differential query 胜过 matched generic scorer
+  -> 外观变化下任务关系稳定且不坍缩
+  -> 同时下界支持非真空保守仲裁
+  -> actual-history / sequential / cross-planner 行为收益与实时预算
 ```
 
-Graph difference constraints、split conformal、Dijkstra 与 min-plus envelope 是标准工具，不单独构成创新。方法论文地位仍取决于 Gate A/B、两层公平 baseline、meaningful non-inclusion 结果和独立 novelty-check。
+native-relative scoring、trajectory query、cross-attention、signed integral、DINO、conformal 与
+native fallback 都不是独立创新。唯一主贡献候选是 appearance-interventional differential decision
+evidence；其资格取决于与 D-JEPA/World4Scorer/DA-WAM/GTRS 风格 matched scorer 的公平比较及
+NavDream、跨 planner、clean no-harm 和时延闭环。
 
 ## Repository map
 
@@ -80,15 +86,15 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-当前 source code 包含 Gate A exact graph solver、校准/风险合同、确定性 teacher、完整时域 candidate
-support、operator anatomy 与机械重放工具，以及截至 R004H7BS4B3 的正负结果账本。下一步不是追加
-head 或 loss，而是先完成新 decision object 的文献、可辨识性、oracle 非退化性与统计 estimand
-审查；development/calibration/test/target 不得用于该设计选择。
+当前 source code 同时保留旧 field/geometry 基线工具与 R005 relation 实验链。R005E2 只负责检验
+视觉条件增量，不包含最终 Differential Query、分布校准或 selective arbitration；后续模块严格按
+第一性原理规范的证据门解锁。development/calibration/test/NavDream/target 不得用于架构选择。
 
 ## 核心文档
 
+- [第一性原理理论与系统规范](docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md)
 - [研究问题](docs/RESEARCH_BRIEF.md)
-- [v8.3.2 方法规范](docs/METHOD_SPEC.md)
+- [历史 v8.3.2 field/geometry 方法规范](docs/METHOD_SPEC.md)
 - [形式化定理与证明](docs/THEORY.md)
 - [Claim–Evidence Matrix](docs/CLAIM_EVIDENCE_MATRIX.md)
 - [实验协议边界](docs/EXPERIMENT_PROTOCOL.md)

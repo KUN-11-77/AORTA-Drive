@@ -2,6 +2,12 @@
 
 > Canonical method version: AORTA-v8.3.2. Formal proofs and assumptions are in [`THEORY.md`](THEORY.md).
 
+> **Historical specification notice (2026-10-25):** 本文件完整保存 graph-gradient field、固定 ROI 与
+> relative set-min certificate 路线，供复现旧实验和构造基线使用；它不再是 relation-first AORTA 的
+> canonical method。当前问题对象、理论层次、网络来源、证伪顺序与论文边界以
+> [`AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md`](AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md) 为准。
+> 该版本降级不改写任何历史实验结论。
+
 ## 1. Task objects
 
 令 \(G=(\Omega,E)\) 为有限、连通、无向的 4-neighbor ego-centric graph。连续 nominal-road signed-distance teacher 为 \(\phi_S:\mathcal R\to\mathbb R\)，在认证 ROI 上为 1-Lipschitz。用于训练与校准的 node labels 为 \(\widetilde d_S(q)\)，并要求

@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 第一性原理 canonical 化：`FIRST_PRINCIPLES_RELATION_SYSTEM_RECORDED__EMPIRICAL_CORE_UNPROVEN`。**
+> 当前主线已从潜在世界、外观干预、合法候选与上下文效用出发，统一推出 native-relative estimand、
+> 视觉条件增量、观测纤维可辨识性、完整时空 signed differential query、全局视觉回答、条件分布、
+> 同时下界仲裁与实时约束。R005E2 被明确定位为视觉信息资格门而非最终 AORTA；后续必须依次通过
+> matched architecture、appearance、reliability、sequential/cross-planner 与 latency gates。完整规范见
+> `docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md`。该整理不修改任何冻结实验、阈值或科学结果。
+
 > **2026-10-25 训练前理论再核验：`THEORY_COHERENT__VALID_FALSIFICATION_GATE__POSITIVE_RESULT_NOT_GUARANTEED`。**
 > 当前链条已严格区分 `U_ctx`、完整 policy value 与驾驶收益，并以带 ragged mask 的 Bayes 风险恒等式
 > 证明 R005E2 检验的是“给定候选/历史后，视觉是否改变 margin 条件均值”。有限网络仍含逼近、估计

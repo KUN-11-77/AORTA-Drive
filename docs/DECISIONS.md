@@ -1336,3 +1336,18 @@ the current open-ended geometry certificate iteration remains STOP.
   必须重新完成primary/replay bundle exact、机械审计和资格演练，随后才可启动54-job科学链。
 - **Boundary:** 这是estimand/input type修复，不是结果驱动调参，也不证明视觉可恢复性、架构优势、
   外观鲁棒性、驾驶收益或安全。
+
+## ADR-0091：以第一性原理 relation 系统替代旧 field 规范作为 canonical 理论入口
+
+- **Decision:** `FIRST_PRINCIPLES_NATIVE_RELATION__IDENTIFIABILITY__DIFFERENTIAL_EVIDENCE__SELECTIVE_ACTION`。
+- **Reason:** 旧 `METHOD_SPEC v0.4` 仍把64×64 graph-gradient field与set-min certificate写成当前方法，
+  但B1/B2/B3、R005E0/E1及前沿查新已否定其作为一般候选仲裁主线。当前真正问题是：给定合法候选与
+  因果历史，正确视觉是否改变 contextual margin 条件分布；若改变，完整时空差异支持是否比matched
+  generic scorer更有效地读取外观稳定的决策证据；若不可辨识，是否能够条件性拒判。
+- **Consequence:** `docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md` 成为当前统一理论入口。旧field、SDF、
+  scalar-min与几何证书保留为历史失败证据和baseline；R005E2继续只作visual-information probe，
+  不因本次文档整理加入differential query、distributional loss或arbitration。后续模块必须通过
+  “失败来源、数学依据、简单基线、可否定消融、删除预测”五问后才能进入最终方法。
+- **Boundary:** canonical 化不修改R005E2远端运行的commit、输入、arm、loss、optimizer、seed、统计、
+  阈值或GO/MIXED/STOP；也不新增任何视觉、外观、行为、时延或安全结果。
+- **Artifact:** `docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md`。
