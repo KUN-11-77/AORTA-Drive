@@ -1,0 +1,68 @@
+experiment_id: R005E1A-contextual-target-qualification-v1
+date: 2026-10-25
+status: authorized_frozen_outcome_free_qualification
+
+R005E1A:
+  scientific_role: source_fit_contextual_target_definition_history_candidate_and_mapping_qualification
+  scope:
+    role: fit
+    split: train
+    recording_groups: 42
+    anchors_per_group: 16
+    total_anchors: 672
+    statistical_independent_unit: recording_group
+    development_calibration_test_navdream_target_accessed: false
+  estimands:
+    u_ctx:
+      name: native_history_teacher_forced_contextual_row_utility
+      definition: M_times_5EP_plus_5TTC_plus_2LK_plus_2HC_plus_2EC_over_16
+      previous_selected_trajectory: frozen_native_planner_output_at_immediate_causal_predecessor
+      permitted_claim: source_fit_contextual_candidate_utility_only
+      full_official_pseudo_closed_loop_value: false
+    q_pi_ref:
+      name: fixed_continuation_two_stage_action_value
+      execution_policy: fail_closed_unless_official_mapping_covers_every_source_fit_current_previous_pair
+      approximation_or_imputation: prohibited
+  frozen_input_sha256:
+    b4r1_primary_result: 800e2c1b8f2cbf0db5d4614e53d8d5bd1b188ed5e8a7dd3433224f4caf2a4255
+    temporal_context_roster: 2ae90f5ca3d566605ae3c64d6efdc61de6eb1cfa1ba7c5c9ed126647a693512c
+    metric_manifest: ea18cb1540e789ef7053ba95b0ca9a85bd73acd7fba316b4dd4a05979f4f7332
+    group_role_manifest: bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7
+    h7bs1_fit_result: 41d8c39e2f83d4d232678d5e59daefb1415f9e4168709a92c2e40f0e66f6da38
+  official_source_sha256:
+    navsim/evaluate/pdm_score.py: 7d0b82b8420c52dfedfda2a56b4aa44bd371cd1adbac58f001c19ccda60cf99c
+    navsim/planning/simulation/planner/pdm_planner/scoring/pdm_scorer.py: c9132b8b7019cc05c57573a26a8326cd7762dfdff35592046625a7fa895f6b62
+    navsim/planning/script/run_pdm_score.py: c0a3a0648b72178203a8d6559a41e8993e81860d9e0367eac91dd94c26a06ecf
+    navsim/planning/simulation/planner/pdm_planner/scoring/scene_aggregator.py: 13dec362355a41c4a6e7386301efe05bcb6774a598a79026cf371ebdd3bc8e65
+    navsim/planning/simulation/planner/pdm_planner/scoring/pdm_comfort_metrics.py: 883b606cc5f98285bd6ff917e9a4129c608b709d58fe6c2435f6b7bd27c2e6ce
+  implementation_sha256:
+    qualification_source: 87dfea43d865b95a8c6a5a91d196faa8cac55376eeffc09a2f96a2b12cf56968
+    audit_runner: 54f173956bbd460ddbda137a7ca1b4873a68571bdb1628e5c2df3881207456f0
+    previous_time_set_builder: 5633e679180157af1fd973b8d84090a1afab4d997f2282e0a40da296d9d8f783
+  qualification_gates:
+    all_672_contexts_available: true
+    gap_s_open_closed_interval: [0.0, 0.55]
+    exact_candidate_membership: true
+    bit_exact_pose_reconstruction: true
+    no_ineligible_candidate_scored: true
+    all_values_finite: true
+    previous_metric_cache_required_for_materialization: true
+    official_mapping_required_for_q_pi_ref: true
+  execution:
+    outcome_free_first: true
+    partial_scientific_metrics_prohibited: true
+    third_run_automatic_retry: prohibited
+    maximum_wall_minutes: null
+
+claim_boundary:
+  permitted:
+    - source_fit_contextual_target_definition_qualification
+    - previous_metric_cache_readiness
+    - official_two_stage_mapping_coverage
+  prohibited:
+    - contextual_oracle_headroom
+    - RGB_recoverability
+    - network_or_architecture_superiority
+    - full_official_PDMS_or_driving_gain
+    - NavDream_or_target_robustness
+    - safety_or_top_venue_claim

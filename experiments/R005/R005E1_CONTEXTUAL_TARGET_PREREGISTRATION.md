@@ -1,6 +1,6 @@
 # R005E1：上下文效用与固定后续策略价值预注册
 
-状态：`PREREGISTERED_DESIGN_ONLY__SOURCE_BINDING_PENDING__NOT_AUTHORIZED`。
+状态：`AUTHORIZED__R005E1A_FROZEN__OUTCOME_FREE_QUALIFICATION_FIRST`。
 
 日期：2026-10-25。
 
@@ -22,7 +22,9 @@ source-fit 合法候选 panel 是否存在定义正确、可独立复算且非�
 - primary offline history 使用冻结 native planner 的上一周期输出。它只支持 native-history
   teacher-forced estimand；actual-selected history 和 sequential rollout 留给后续独立实验。
 
-正式执行前必须生成 frozen config 与 input manifest；本文件不构成运行授权。
+冻结配置为 `configs/experiment/r005e1a_contextual_target_qualification.yaml`。执行授权仅覆盖
+E1A outcome-free 资格审计、因果上一帧 metric cache 构建与通过资格门后的 `U_ctx` 物化；
+`Q_pi_ref` 仍须由官方映射逐 anchor 覆盖后单独解锁。
 
 ## 3. 分阶段门
 
