@@ -55,7 +55,7 @@ def test_validate_bundle_arrays(tmp_path) -> None:
     np.save(tmp_path / "candidate_poses.npy", np.zeros((2, 7, 41, 3), np.float32))
     mask = np.ones((2, 7), np.bool_)
     np.save(tmp_path / "candidate_mask.npy", mask)
-    np.save(tmp_path / "previous_poses.npy", np.zeros((2, 41, 3), np.float32))
+    np.save(tmp_path / "previous_poses.npy", np.zeros((2, 36, 3), np.float32))
     np.save(tmp_path / "target_margin.npy", np.zeros((2, 7), np.float32))
     validate_bundle_arrays(tmp_path, expected_count=2)
 
@@ -63,7 +63,7 @@ def test_validate_bundle_arrays(tmp_path) -> None:
 def test_validate_bundle_rejects_nonzero_native(tmp_path) -> None:
     np.save(tmp_path / "candidate_poses.npy", np.zeros((1, 7, 41, 3), np.float32))
     np.save(tmp_path / "candidate_mask.npy", np.ones((1, 7), np.bool_))
-    np.save(tmp_path / "previous_poses.npy", np.zeros((1, 41, 3), np.float32))
+    np.save(tmp_path / "previous_poses.npy", np.zeros((1, 36, 3), np.float32))
     target = np.zeros((1, 7), np.float32)
     target[0, 0] = 0.1
     np.save(tmp_path / "target_margin.npy", target)

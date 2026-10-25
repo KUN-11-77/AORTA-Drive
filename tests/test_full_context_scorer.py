@@ -5,6 +5,7 @@ import torch
 
 from aorta_drive.models.full_context_scorer import (
     FullContextSetScorer,
+    _trajectory_features,
     equal_anchor_challenger_margin_mse,
 )
 
@@ -55,6 +56,15 @@ def test_forward_is_finite_bounded_and_native_relative() -> None:
     assert bool(torch.all(output.abs() <= 1.0))
 
 
+def test_trajectory_time_feature_preserves_physical_overlap() -> None:
+    current = _trajectory_features(torch.zeros(1, 41, 3))
+    previous_overlap = _trajectory_features(torch.zeros(1, 36, 3))
+    assert current[0, 0, -1].item() == 0.0
+    assert current[0, -1, -1].item() == pytest.approx(1.0)
+    assert previous_overlap[0, -1, -1].item() == pytest.approx(0.875)
+    assert torch.equal(current[:, :36, -1], previous_overlap[:, :, -1])
+
+
 def test_invalid_candidate_storage_cannot_change_valid_outputs() -> None:
     model = _model()
     inputs = list(_inputs())
@@ -97,12 +107,16 @@ def test_seed_replay_and_identical_arm_parameter_contract() -> None:
     assert sum(parameter.numel() for parameter in first.parameters()) == sum(
         parameter.numel() for parameter in second.parameters()
     )
-    for first_parameter, second_parameter in zip(first.parameters(), second.parameters()):
+    for first_parameter, second_parameter in zip(
+        first.parameters(), second.parameters()
+    ):
         assert torch.equal(first_parameter, second_parameter)
     assert torch.equal(first(*_inputs()), second(*_inputs()))
 
 
-def test_loss_is_anchor_then_challenger_equal_and_keeps_zero_challenger_anchor() -> None:
+def test_loss_is_anchor_then_challenger_equal_and_keeps_zero_challenger_anchor() -> (
+    None
+):
     predicted = torch.tensor([[0.0, 1.0, 0.0], [0.0, 0.0, 0.0]])
     target = torch.tensor([[0.0, 0.0, 1.0], [0.0, 0.0, 0.0]])
     mask = torch.tensor([[True, True, True], [True, False, False]])
@@ -119,7 +133,9 @@ def test_backward_is_finite() -> None:
     target = torch.zeros_like(predicted)
     loss = equal_anchor_challenger_margin_mse(predicted, target, mask).total
     loss.backward()  # type: ignore[no-untyped-call]
-    gradients = [parameter.grad for parameter in model.parameters() if parameter.grad is not None]
+    gradients = [
+        parameter.grad for parameter in model.parameters() if parameter.grad is not None
+    ]
     assert gradients
     assert all(torch.isfinite(gradient).all() for gradient in gradients)
 

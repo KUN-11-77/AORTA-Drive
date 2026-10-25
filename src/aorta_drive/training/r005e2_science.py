@@ -133,7 +133,7 @@ def validate_bundle_arrays(root: Path, expected_count: int = 672) -> None:
     contracts: tuple[tuple[str, tuple[int, ...], npt.DTypeLike], ...] = (
         ("candidate_poses.npy", (expected_count, 7, 41, 3), np.float32),
         ("candidate_mask.npy", (expected_count, 7), np.bool_),
-        ("previous_poses.npy", (expected_count, 41, 3), np.float32),
+        ("previous_poses.npy", (expected_count, 36, 3), np.float32),
         ("target_margin.npy", (expected_count, 7), np.float32),
     )
     for name, shape, dtype in contracts:

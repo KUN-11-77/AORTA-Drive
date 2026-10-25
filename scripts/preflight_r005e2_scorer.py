@@ -27,7 +27,9 @@ ARM_NAMES = ("V0_removed", "V1_mismatch", "V2_correct")
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False)
+        json.dumps(
+            payload, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False
+        )
         + "\n",
         encoding="utf-8",
     )
@@ -71,7 +73,7 @@ def _synthetic_inputs(device: torch.device, seed: int) -> dict[str, tuple[Tensor
         candidate[0, index, :, 1] = (index - 3) * 0.25 * clock
         candidate[0, index, :, 2] = (index - 3) * 0.01 * clock
     candidate_mask = torch.ones(batch, candidates, dtype=torch.bool)
-    previous = candidate[:, 0].clone()
+    previous = candidate[:, 0, :36].clone()
     correct = torch.randn(
         batch,
         12,
@@ -92,7 +94,13 @@ def _synthetic_inputs(device: torch.device, seed: int) -> dict[str, tuple[Tensor
     )
     return {
         "V0_removed": (common[0], common[1], common[2], removed.to(device), common[3]),
-        "V1_mismatch": (common[0], common[1], common[2], mismatch.to(device), common[3]),
+        "V1_mismatch": (
+            common[0],
+            common[1],
+            common[2],
+            mismatch.to(device),
+            common[3],
+        ),
         "V2_correct": (common[0], common[1], common[2], correct.to(device), common[3]),
     }
 
@@ -118,7 +126,9 @@ def _profile_flops(
     activities = [ProfilerActivity.CPU]
     if device.type == "cuda":
         activities.append(ProfilerActivity.CUDA)
-    with profile(activities=activities, with_flops=True, record_shapes=True) as profiler:
+    with profile(
+        activities=activities, with_flops=True, record_shapes=True
+    ) as profiler:
         output = _forward(
             model,
             inputs,
@@ -126,7 +136,9 @@ def _profile_flops(
             mixed_precision=mixed_precision,
         )
         if not torch.isfinite(output).all():
-            raise FloatingPointError("scorer output is nonfinite during FLOPs profiling")
+            raise FloatingPointError(
+                "scorer output is nonfinite during FLOPs profiling"
+            )
     return int(sum(int(event.flops or 0) for event in profiler.key_averages()))
 
 
@@ -149,7 +161,9 @@ def _latency_ms(
         _synchronize(device)
         elapsed = (time.perf_counter() - started) * 1000.0
         if not torch.isfinite(output).all():
-            raise FloatingPointError("scorer output is nonfinite during latency rehearsal")
+            raise FloatingPointError(
+                "scorer output is nonfinite during latency rehearsal"
+            )
         values.append(elapsed)
     return values
 
@@ -245,7 +259,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("arm forward FLOPs ratio exceeds 1.01")
 
     scorer_source = Path(FullContextSetScorer.__module__.replace(".", "/"))
-    source_file = Path(__file__).resolve().parents[1] / "src" / scorer_source.with_suffix(".py")
+    source_file = (
+        Path(__file__).resolve().parents[1] / "src" / scorer_source.with_suffix(".py")
+    )
     payload: dict[str, Any] = {
         "schema": "aorta.r005e2.full_context_scorer.preflight.v1",
         "status": "PASS",
@@ -257,13 +273,16 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "python_version": platform.python_version(),
         "torch_version": torch.__version__,
         "cuda_version": torch.version.cuda,
-        "gpu_name": torch.cuda.get_device_name(device) if device.type == "cuda" else None,
+        "gpu_name": (
+            torch.cuda.get_device_name(device) if device.type == "cuda" else None
+        ),
         "cublas_workspace_config": cublas_workspace_config,
         "scorer_source_sha256": sha256_file(source_file),
         "runner_source_sha256": sha256_file(Path(__file__)),
         "batch_size": 1,
         "candidate_count": 7,
-        "trajectory_sample_count": 41,
+        "candidate_trajectory_sample_count": 41,
+        "previous_context_sample_count": 36,
         "visual_shape": [1, 12, 18, 32, 1280],
         "visual_token_count": 12 * 18 * 32,
         "parameter_counts": parameter_counts,
@@ -274,7 +293,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "peak_memory_bytes": peak_memory,
         "inference_replay_bit_exact": True,
         "native_margin_exact_zero": True,
-        "all_outputs_finite": all(torch.isfinite(output).all() for output in outputs.values()),
+        "all_outputs_finite": all(
+            torch.isfinite(output).all() for output in outputs.values()
+        ),
         "claim_boundary": (
             "Synthetic scorer-only compute qualification; excludes frozen DINO backbone, "
             "data loading, scientific training, visual recoverability, and driving utility."
@@ -287,7 +308,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cuda")
-    parser.add_argument("--mixed-precision", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument(
+        "--mixed-precision", action=argparse.BooleanOptionalAction, default=True
+    )
     parser.add_argument("--seed", type=int, default=20261025)
     parser.add_argument("--warmup", type=int, default=5)
     parser.add_argument("--repeats", type=int, default=20)

@@ -6,6 +6,7 @@ import argparse
 import json
 import lzma
 import pickle
+from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, cast
@@ -14,18 +15,25 @@ import numpy as np
 import numpy.typing as npt
 import yaml  # type: ignore[import-untyped]
 
-from aorta_drive.evaluation.h4 import (  # type: ignore[import-untyped]
+from aorta_drive.certification.geometry import Pose2D
+from aorta_drive.evaluation.h4 import (
     sample_cached_native_trajectory,
 )
-from aorta_drive.training.r005e2 import (  # type: ignore[import-untyped]
+from aorta_drive.evaluation.navsim_execution import execute_official_navsim_batch
+from aorta_drive.training.r005e2 import (
     candidate_tensors_from_panel_arrays,
     visual_records_by_identity,
 )
-from aorta_drive.training.r005e2_science import (  # type: ignore[import-untyped]
+from aorta_drive.training.r005e2_science import (
     identity,
     validate_bundle_arrays,
 )
-from aorta_drive.vision.feature_cache import (  # type: ignore[import-untyped]
+from aorta_drive.training.r005e2_context import (
+    align_previous_simulated_context,
+    array_sha256,
+    cache_time_s,
+)
+from aorta_drive.vision.feature_cache import (
     bfloat16_bits_to_float32,
     load_dense_bfloat16_bits,
     sha256_file,
@@ -52,21 +60,95 @@ def _resolve_panel(roots: list[Path], scene_token: str, expected_hash: str) -> P
     return matches[0]
 
 
-def _load_previous(root: Path, record: dict[str, Any]) -> npt.NDArray[np.float64]:
-    path = root / str(record["relative_cache_path"])
+def _load_cache(root: Path, record: dict[str, Any], *, role: str) -> Any:
+    resolved_root = root.resolve(strict=True)
+    path = (resolved_root / str(record["relative_cache_path"])).resolve(strict=True)
+    if resolved_root not in path.parents:
+        raise ValueError(f"{role} metric-cache path escapes its frozen root")
     if sha256_file(path) != str(record["cache_sha256"]):
-        raise ValueError("previous metric-cache hash mismatch")
+        raise ValueError(f"{role} metric-cache hash mismatch")
     with lzma.open(path, "rb") as stream:
-        cache = pickle.load(stream)  # noqa: S301 - frozen official NAVSIM cache
-    poses = np.asarray(
-        sample_cached_native_trajectory(cache).poses[1:], dtype=np.float64
+        return pickle.load(stream)  # noqa: S301 - frozen official NAVSIM cache
+
+
+def _materialize_previous_context(
+    task: tuple[
+        dict[str, Any],
+        dict[str, Any],
+        str,
+        float,
+        str,
+        str,
+    ],
+) -> tuple[npt.NDArray[np.float64], dict[str, Any]]:
+    (
+        current_record,
+        previous_record,
+        expected_states_hash,
+        expected_gap_s,
+        current_root_text,
+        previous_root_text,
+    ) = task
+    current_cache = _load_cache(Path(current_root_text), current_record, role="current")
+    previous_cache = _load_cache(
+        Path(previous_root_text), previous_record, role="previous"
     )
-    if poses.shape != (41, 3) or not np.isfinite(poses).all():
-        raise ValueError("previous native trajectory contract failed")
-    return poses
+    previous_native = np.asarray(
+        sample_cached_native_trajectory(previous_cache).poses[1:], dtype=np.float64
+    )
+    if previous_native.shape != (8, 3) or not np.isfinite(previous_native).all():
+        raise ValueError("previous native planner output must be finite [8,3]")
+    execution = execute_official_navsim_batch(
+        previous_cache, previous_native[None, ...]
+    )
+    if not execution.deterministic_replay_bit_exact:
+        raise ValueError("previous native official simulation is nondeterministic")
+    previous_states = np.asarray(execution.realized_states[1], dtype=np.float64)
+    if previous_states.shape != (41, 11):
+        raise ValueError("previous native official states must have shape [41,11]")
+    observed_hash = array_sha256(previous_states)
+    if observed_hash != expected_states_hash:
+        raise ValueError(
+            "previous simulated states differ from R005E1B target provenance"
+        )
+    previous_time = cache_time_s(previous_cache)
+    current_time = cache_time_s(current_cache)
+    if abs((current_time - previous_time) - expected_gap_s) > 1.0e-6:
+        raise ValueError("history timestamps differ from R005E1B target provenance")
+    current_rear_axle = current_cache.ego_state.rear_axle
+    from navsim.planning.simulation.planner.pdm_planner.utils.pdm_enums import (  # type: ignore[import-not-found]
+        StateIndex,
+    )
+
+    context = align_previous_simulated_context(
+        previous_states,
+        previous_time_s=previous_time,
+        current_time_s=current_time,
+        current_pose=Pose2D(
+            float(current_rear_axle.x),
+            float(current_rear_axle.y),
+            float(current_rear_axle.heading),
+        ),
+        simulation_interval_s=0.1,
+        x_index=int(StateIndex.X),
+        y_index=int(StateIndex.Y),
+        heading_index=int(StateIndex.HEADING),
+    )
+    if context.overlap_start != 5 or context.poses.shape != (36, 3):
+        raise ValueError(
+            "previous/current overlap differs from the frozen 0.5 s contract"
+        )
+    return context.poses, {
+        "previous_simulated_states_sha256": observed_hash,
+        "overlap_start": context.overlap_start,
+        "observed_gap_s": context.observed_gap_s,
+        "maximum_transform_error_m": context.maximum_transform_error_m,
+    }
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
+    if args.history_workers <= 0:
+        raise ValueError("history-workers must be positive")
     if args.output_directory.exists():
         raise FileExistsError(f"refusing to overwrite {args.output_directory}")
     args.output_directory.mkdir(parents=True)
@@ -75,6 +157,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     previous = cast(
         dict[str, Any], json.loads(args.previous_manifest.read_text("utf-8"))
     )
+    current = cast(dict[str, Any], json.loads(args.current_manifest.read_text("utf-8")))
     visual = cast(dict[str, Any], json.loads(args.visual_manifest.read_text("utf-8")))
     crossfit = cast(
         dict[str, Any], json.loads(args.crossfit_manifest.read_text("utf-8"))
@@ -110,13 +193,48 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         identity(str(row["recording_group"]), int(row["anchor_index"])): row
         for row in cast(list[dict[str, Any]], previous["records"])
     }
-    if len(rows) != 672 or len(target_by_key) != 672 or len(previous_by_key) != 672:
+    current_by_key = {
+        identity(str(row["recording_group"]), int(row["anchor_index"])): row
+        for row in cast(list[dict[str, Any]], current["records"])
+    }
+    if not (
+        len(rows)
+        == len(target_by_key)
+        == len(previous_by_key)
+        == len(current_by_key)
+        == 672
+    ):
         raise ValueError("bundle inputs must each contain exactly 672 anchors")
     visual_index = visual_records_by_identity(visual, args.visual_root)
 
+    history_tasks: list[tuple[dict[str, Any], dict[str, Any], str, float, str, str]] = (
+        []
+    )
+    for row in rows:
+        key = identity(str(row["recording_group"]), int(row["anchor_index"]))
+        target_row = target_by_key[key]
+        current_row = current_by_key[key]
+        previous_row = previous_by_key[key]
+        if str(current_row["scene_token"]) != str(target_row["scene_token"]) or str(
+            previous_row["scene_token"]
+        ) != str(target_row["previous_token"]):
+            raise ValueError("history cache identities differ from the target ledger")
+        history_tasks.append(
+            (
+                current_row,
+                previous_row,
+                str(target_row["previous_native_simulated_states_sha256"]),
+                float(target_row["observation_interval_s"]),
+                str(args.current_root),
+                str(args.previous_root),
+            )
+        )
+    with ProcessPoolExecutor(max_workers=args.history_workers) as executor:
+        history_rows = list(executor.map(_materialize_previous_context, history_tasks))
+
     candidate = np.zeros((672, 7, 41, 3), dtype=np.float32)
     mask = np.zeros((672, 7), dtype=np.bool_)
-    previous_poses = np.zeros((672, 41, 3), dtype=np.float32)
+    previous_poses = np.zeros((672, 36, 3), dtype=np.float32)
     target_margin = np.zeros((672, 7), dtype=np.float32)
     index_rows: list[dict[str, Any]] = []
     groups: list[str] = []
@@ -144,9 +262,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             raise ValueError("target legal domain differs from frozen panel")
         candidate[index] = candidate_tensor.numpy()
         mask[index] = mask_tensor.numpy()
-        previous_poses[index] = _load_previous(args.previous_root, previous_row).astype(
-            np.float32
-        )
+        previous_poses[index] = history_rows[index][0].astype(np.float32)
         utilities = {
             int(item["registered_index"]): float(item["contextual_utility"])
             for item in target_row["candidates"]
@@ -170,6 +286,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "log_name": str(row["log_name"]),
                 "scene_token": str(row["scene_token"]),
                 "candidate_count": len(legal),
+                "history_provenance": history_rows[index][1],
                 "correct_feature_relative_paths": [
                     str(path.relative_to(args.visual_root))
                     for path in visual_index[visual_key]
@@ -240,6 +357,16 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "source_only": True,
         "development_calibration_test_navdream_target_accessed": False,
         "target_estimand": "candidate_Uctx_minus_native_Uctx",
+        "previous_context_contract": {
+            "source": "R005E1B_hash_verified_previous_native_official_simulated_states",
+            "coordinate_frame": "current_anchor_ego_rear_axle",
+            "temporal_support": "previous_states[round(gap/0.1):]",
+            "shape": [36, 3],
+            "sample_interval_s": 0.1,
+            "shared_current_candidate_horizon_s": 3.5,
+            "expired_previous_prefix_retained": False,
+            "interpolation_or_padding_used": False,
+        },
         "removed_control": "outer_train_camera_history_slot_mean_over_anchors_and_patches",
         "array_sha256": array_hashes,
         "removed_slot_mean_sha256": mean_hashes,
@@ -247,6 +374,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "config_sha256": sha256_file(args.config),
             "panel_roster_sha256": sha256_file(args.panel_roster),
             "target_result_sha256": sha256_file(args.target_result),
+            "current_manifest_sha256": sha256_file(args.current_manifest),
             "previous_manifest_sha256": sha256_file(args.previous_manifest),
             "visual_manifest_sha256": sha256_file(args.visual_manifest),
             "crossfit_manifest_sha256": sha256_file(args.crossfit_manifest),
@@ -263,6 +391,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--panel-roster", type=Path, required=True)
     parser.add_argument("--target-result", type=Path, required=True)
+    parser.add_argument("--current-root", type=Path, required=True)
+    parser.add_argument("--current-manifest", type=Path, required=True)
     parser.add_argument("--previous-root", type=Path, required=True)
     parser.add_argument("--previous-manifest", type=Path, required=True)
     parser.add_argument("--panel-root", type=Path, action="append", required=True)
@@ -270,6 +400,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--visual-manifest", type=Path, required=True)
     parser.add_argument("--crossfit-manifest", type=Path, required=True)
     parser.add_argument("--output-directory", type=Path, required=True)
+    parser.add_argument("--history-workers", type=int, default=4)
     return parser.parse_args()
 
 

@@ -59,7 +59,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         if result.get(field) is not False:
             raise ValueError(f"forbidden evidence access flag: {field}")
     if result.get("previous_trajectory_source") != (
-        "current_native_shape_surrogate_not_scientific_history"
+        "current_native_first_36_shape_surrogate_not_scientific_history"
     ):
         raise ValueError("resource rehearsal used an unregistered history source")
     if result.get("target_source") != "exact_zero_resource_surrogate":

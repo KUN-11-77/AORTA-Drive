@@ -21,12 +21,17 @@ def _trajectory_features(poses: Tensor) -> Tensor:
     delta_xy = torch.diff(poses[..., :2], dim=1, prepend=poses[:, :1, :2])
     yaw_delta_raw = torch.diff(poses[..., 2], dim=1, prepend=poses[:, :1, 2])
     yaw_delta = torch.atan2(torch.sin(yaw_delta_raw), torch.cos(yaw_delta_raw))
-    time = torch.linspace(
-        0.0,
-        1.0,
-        poses.shape[1],
-        device=poses.device,
-        dtype=poses.dtype,
+    # Both inputs use NAVSIM's 0.1 s proposal grid.  Physical time must not be
+    # renormalized independently by sequence length: the current plan has 41
+    # samples (0--4 s), while the causally overlapping previous plan has 36
+    # samples (0--3.5 s).  A shared 4 s scale preserves their time alignment.
+    time = (
+        torch.arange(
+            poses.shape[1],
+            device=poses.device,
+            dtype=poses.dtype,
+        )
+        * (0.1 / 4.0)
     ).expand(poses.shape[0], -1)
     return torch.stack(
         (
@@ -82,7 +87,9 @@ class _TrajectoryEncoder(nn.Module):
 
 
 class _VisualCrossAttention(nn.Module):
-    def __init__(self, hidden_dimension: int, attention_heads: int, dropout: float) -> None:
+    def __init__(
+        self, hidden_dimension: int, attention_heads: int, dropout: float
+    ) -> None:
         super().__init__()
         self.query_norm = nn.LayerNorm(hidden_dimension)
         self.visual_norm = nn.LayerNorm(hidden_dimension)
@@ -102,7 +109,9 @@ class _VisualCrossAttention(nn.Module):
             nn.Dropout(dropout),
         )
 
-    def forward(self, candidate_tokens: Tensor, visual_tokens: Tensor, visual_mask: Tensor) -> Tensor:
+    def forward(
+        self, candidate_tokens: Tensor, visual_tokens: Tensor, visual_mask: Tensor
+    ) -> Tensor:
         attended, _ = self.attention(
             self.query_norm(candidate_tokens),
             self.visual_norm(visual_tokens),
@@ -111,7 +120,9 @@ class _VisualCrossAttention(nn.Module):
             need_weights=False,
         )
         residual = candidate_tokens + self.attention_dropout(attended)
-        return cast(Tensor, residual + self.feed_forward(self.post_attention_norm(residual)))
+        return cast(
+            Tensor, residual + self.feed_forward(self.post_attention_norm(residual))
+        )
 
 
 class FullContextSetScorer(nn.Module):
@@ -251,15 +262,24 @@ class FullContextSetScorer(nn.Module):
         visual_slot_mask: Tensor,
     ) -> tuple[int, int, int]:
         if candidate_poses.ndim != 4 or candidate_poses.shape[-1] != 3:
-            raise ValueError("candidate_poses must have shape [batch, candidate, time, 3]")
+            raise ValueError(
+                "candidate_poses must have shape [batch, candidate, time, 3]"
+            )
         batch, candidates, time, _ = candidate_poses.shape
         if candidates < 1 or time < 2:
             raise ValueError("candidate set and trajectory time must be nonempty")
-        if candidate_mask.shape != (batch, candidates) or candidate_mask.dtype is not torch.bool:
+        if (
+            candidate_mask.shape != (batch, candidates)
+            or candidate_mask.dtype is not torch.bool
+        ):
             raise ValueError("candidate_mask must be boolean [batch, candidate]")
         if not bool(candidate_mask[:, 0].all()):
             raise ValueError("candidate zero must be the valid native trajectory")
-        if previous_poses.ndim != 3 or previous_poses.shape[0] != batch or previous_poses.shape[-1] != 3:
+        if (
+            previous_poses.ndim != 3
+            or previous_poses.shape[0] != batch
+            or previous_poses.shape[-1] != 3
+        ):
             raise ValueError("previous_poses must have shape [batch, previous_time, 3]")
         expected_visual = (
             batch,
@@ -285,14 +305,18 @@ class FullContextSetScorer(nn.Module):
                 raise ValueError(f"{name} must be finite, including masked storage")
         return batch, candidates, time
 
-    def _encode_visual(self, features: Tensor, slot_mask: Tensor) -> tuple[Tensor, Tensor]:
+    def _encode_visual(
+        self, features: Tensor, slot_mask: Tensor
+    ) -> tuple[Tensor, Tensor]:
         batch = features.shape[0]
         compute_dtype = next(self.parameters()).dtype
         projected = self.visual_projection(features.to(dtype=compute_dtype))
         slot_context = self.camera_embedding(self.slot_camera_indices)
         slot_context = slot_context + self.history_embedding(self.slot_history_indices)
         coordinate_context = self.visual_coordinate_projection(
-            self.visual_coordinate_features.to(device=features.device, dtype=compute_dtype)
+            self.visual_coordinate_features.to(
+                device=features.device, dtype=compute_dtype
+            )
         ).reshape(self.patch_height, self.patch_width, self.hidden_dimension)
         projected = projected + slot_context[None, :, None, None, :]
         projected = projected + coordinate_context[None, None, :, :, :]
@@ -341,8 +365,12 @@ class FullContextSetScorer(nn.Module):
         roles[0] = 1
         fused = fused + self.candidate_role_embedding(roles)[None, :, :]
         set_encoded = self.set_encoder(fused, src_key_padding_mask=~candidate_mask)
-        visual_tokens, visual_mask = self._encode_visual(visual_features, visual_slot_mask)
-        contextual = self.visual_cross_attention(set_encoded, visual_tokens, visual_mask)
+        visual_tokens, visual_mask = self._encode_visual(
+            visual_features, visual_slot_mask
+        )
+        contextual = self.visual_cross_attention(
+            set_encoded, visual_tokens, visual_mask
+        )
         raw_scores = self.score_head(contextual).squeeze(-1)
         relative = torch.tanh(raw_scores - raw_scores[:, :1])
         return torch.where(candidate_mask, relative, torch.zeros_like(relative))
@@ -362,15 +390,23 @@ def equal_anchor_challenger_margin_mse(
 ) -> ContextMarginLoss:
     """Compute challenger-equal loss inside anchor-equal stochastic batches."""
 
-    if predicted_margin.shape != target_margin.shape or predicted_margin.shape != candidate_mask.shape:
+    if (
+        predicted_margin.shape != target_margin.shape
+        or predicted_margin.shape != candidate_mask.shape
+    ):
         raise ValueError("prediction, target, and candidate mask shapes must match")
     if predicted_margin.ndim != 2 or candidate_mask.dtype is not torch.bool:
         raise ValueError("margins must be rank two and candidate_mask must be boolean")
     if not bool(candidate_mask[:, 0].all()):
         raise ValueError("candidate zero must be valid native")
-    if not torch.isfinite(predicted_margin).all() or not torch.isfinite(target_margin).all():
+    if (
+        not torch.isfinite(predicted_margin).all()
+        or not torch.isfinite(target_margin).all()
+    ):
         raise ValueError("margins must be finite")
-    if not torch.equal(predicted_margin[:, 0], torch.zeros_like(predicted_margin[:, 0])):
+    if not torch.equal(
+        predicted_margin[:, 0], torch.zeros_like(predicted_margin[:, 0])
+    ):
         raise ValueError("predicted native margin must be exact zero")
     if not torch.equal(target_margin[:, 0], torch.zeros_like(target_margin[:, 0])):
         raise ValueError("target native margin must be exact zero")

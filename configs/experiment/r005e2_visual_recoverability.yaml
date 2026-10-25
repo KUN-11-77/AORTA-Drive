@@ -69,7 +69,12 @@ arms:
 probe:
   name: matched_full_context_set_scorer_v1
   candidate_input: ego_frame_SE2_41_samples
-  previous_input: causal_native_previous_SE2_41_samples
+  previous_input: causal_native_previous_official_realized_overlap_in_current_ego_SE2_36_samples
+  previous_source_samples: 41
+  previous_overlap_start_samples: 5
+  previous_expired_prefix_removed: true
+  trajectory_sample_interval_s: 0.1
+  trajectory_time_normalization_horizon_s: 4.0
   visual_input_shape: [12, 18, 32, 1280]
   visual_token_count: 6912
   visual_positional_context: camera_plus_history_plus_2D_patch_coordinates

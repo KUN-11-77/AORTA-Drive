@@ -262,7 +262,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "scientific_metrics_emitted": False,
         "scientific_labels_accessed": False,
         "development_calibration_test_navdream_target_accessed": False,
-        "previous_trajectory_source": "current_native_shape_surrogate_not_scientific_history",
+        "previous_trajectory_source": "current_native_first_36_shape_surrogate_not_scientific_history",
         "target_source": "exact_zero_resource_surrogate",
         "outer_fold": args.outer_fold,
         "inner_fit_group_count": len(rehearsal_groups),

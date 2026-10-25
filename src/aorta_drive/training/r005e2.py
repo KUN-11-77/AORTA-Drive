@@ -68,7 +68,10 @@ def visual_records_by_identity(
         raise ValueError("unexpected R005E2 visual-cache schema")
     if payload.get("status") != "PASS":
         raise ValueError("R005E2 visual cache is not complete")
-    if payload.get("development_calibration_test_navdream_target_accessed") is not False:
+    if (
+        payload.get("development_calibration_test_navdream_target_accessed")
+        is not False
+    ):
         raise ValueError("R005E2 visual cache accessed a sealed role")
     records = payload.get("records")
     if not isinstance(records, list):
@@ -86,7 +89,9 @@ def visual_records_by_identity(
         key = (str(record["log_name"]), str(record["scene_token"]))
         if key in result:
             raise ValueError("duplicate visual identity")
-        result[key] = tuple(root / str(slot["feature_relative_path"]) for slot in ordered)
+        result[key] = tuple(
+            root / str(slot["feature_relative_path"]) for slot in ordered
+        )
     return result
 
 
@@ -112,7 +117,7 @@ class ResourceRehearsalDataset(torch.utils.data.Dataset[dict[str, Tensor]]):
         return {
             "candidate_poses": candidate,
             "candidate_mask": mask,
-            "previous_poses": candidate[0].clone(),
+            "previous_poses": candidate[0, :36].clone(),
             "visual_features": visual,
             "visual_slot_mask": torch.ones(12, dtype=torch.bool),
             "target_margin": target,

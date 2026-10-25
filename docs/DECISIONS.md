@@ -1315,3 +1315,24 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R004H7/H7BS4B4R1_FILTERED_SCORE_SEMANTICS_AUDIT.md`；
   `experiments/R005/R005E0_TARGET_SCOPE_AUDIT.md`；
   `experiments/R005/R005E1_CONTEXTUAL_TARGET_PREREGISTRATION.md`。
+
+## ADR-0090：R005E2历史输入必须与U_ctx的官方重叠状态同构
+
+- **Decision:** `HASH_VERIFIED_OFFICIAL_ROLLOUT__CURRENT_EGO_FRAME__OVERLAP_ONLY`。
+- **Trigger:** 首次scientific bundle资格构建在训练和科学指标前fail-closed：
+  `sample_cached_native_trajectory`只有9个0.5秒点，原实现却要求`[41,3]`，暴露出预注册文字与
+  张量来源未闭合。
+- **Reason:** R005E1B的two-frame comfort用
+  `current_states[:-k]`与`previous_states[k:]`，其中`k=round(delta_t/0.1)=5`。因此条件变量应是
+  previous official simulated rollout的后36个rear-axle poses，而不是稀疏planner输出、任意插值
+  或已过期前缀。previous rollout还必须变换到current-anchor ego frame，否则与current candidate
+  的坐标原点不同。不同长度序列的时间通道必须按共同0.1秒物理时钟和固定4秒尺度编码；分别
+  拉伸到`[0,1]`会把3.5秒误写成4秒。
+- **Evidence:** 服务器对首个冻结anchor独立重算得到previous raw plan`[9,3]`、official states
+  `[41,11]`；state-array SHA-256与R005E1B ledger逐字节一致。该核验未读取任何封存角色或科学
+  训练指标。
+- **Consequence:** R005E2 bundle改为重算并逐anchor核对R005E1B state hash，取`states[5:41]`，
+  转换到current ego，形成`[36,3]`历史张量；candidate保持`[41,3]`。旧失败资格目录保留，新提交
+  必须重新完成primary/replay bundle exact、机械审计和资格演练，随后才可启动54-job科学链。
+- **Boundary:** 这是estimand/input type修复，不是结果驱动调参，也不证明视觉可恢复性、架构优势、
+  外观鲁棒性、驾驶收益或安全。

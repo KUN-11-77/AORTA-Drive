@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 R005E2 history-semantics fail-closed repair：** 首次scientific bundle资格构建在
+> 任何GPU训练或科学指标产生前失败，因为原实现错误地把9点、0.5秒的previous native planner
+> 输出当作41点输入。服务器只读核验确认：R005E1B登记的previous official simulated states为
+> `41x11`，独立重算SHA逐字节一致。冻结修复将历史定义为该状态轨迹去除0.5秒已过期前缀后的
+> `states[5:41]` rear-axle SE(2)，再变换至current-anchor ego frame，得到36点、0.1秒的因果重叠
+> context；禁止插值/padding。candidate/history时间通道均使用真实`0.1s/4s`尺度，不再按各自长度
+> 拉伸。该修复仅闭合`U_ctx`条件变量与网络输入语义，不提供视觉、决策或驾驶收益证据；须以新
+> 资格目录完成primary/replay exact及机械审计后才能启动54-job科学链。
+
 > **2026-10-25 R005E2A outcome-free资格门：`MECHANICAL_PASS__GO_TO_R005E2B_RUNNER_FREEZE__SCIENTIFIC_CLAIM_UNTESTED`。** 672-anchor冻结DINO cache完成primary/replay：42 groups、8,064个唯一特征、1,344个投影产物逐文件重开，逻辑manifest/feature/projection全部byte-exact，checkpoint、151个DINO源码与预处理hash闭合；sealed roles和科学标签未访问。S2 disjoint-geometry与S3 hash-random共14,784个non-gating donor assignments在科学输出前冻结并审计PASS。单fold真实I/O资源演练完成448/448 backward steps，峰值365.6MB、总耗时37.999s，模型/AdamW状态/恢复前向exact。旧审计器错误假定`P95 >= mean`，由冷启动长尾反例否定；提交`81a2cb5`修复后对同一结果重审PASS，未重跑。随后预算复核又发现原`0.570 GPU-hours`漏计refit与epochs；同一测量纠正为training-only 1.282 GPUh下界、51.299 GPUh最坏上界（均不含validation/test/I/O/audit），并把正确算术加入硬门。外部review unavailable。现在只解锁R005E2B runner与auditor冻结；正确视觉是否提供增量仍未检验，Differential Query、NavDream与驾驶收益继续HOLD。详见`experiments/R005/R005E2A_PREFLIGHT_STATUS.md`与`experiments/R005/R005E2A_EXPERIMENT_AUDIT.md`。
 
 > **2026-10-25 R005E1B contextual oracle：`SUPPORTED_ON_SOURCE_FIT_NATIVE_HISTORY_UCTX__GO_TO_VISUAL_RECOVERABILITY_PREREGISTRATION__NO_TRAINING_YET`。** 修复后的672-anchor因果上下文、ragged候选域与previous metric cache完成primary、完整replay和机械审计：4,536候选的已保存components、分数、统计与裁决复算一致，ledger exact，全部数值有限，sealed roles未访问。group-equal contextual oracle gain为`0.0166504`，42-group bootstrap 95% CI `[0.0087722,0.0262034]`，42/42 groups存在strict native improvement。filtered one-frame相对`U_ctx`仍有`252/672=37.50%` top-set disagreement、`1673/13402=12.48%` pair-sign disagreement，忽略context的group-equal mean regret为`0.0157405`；这证明one-frame监督不等价于登记的`U_ctx`，但尚未通过matched消融证明某一种previous-action token编码是任何learner的必要形式。官方two-stage mapping覆盖0/672，`Q_pi_ref`分支fail-closed，结果不支持RGB可恢复性、架构优越性、完整伪闭环价值、NavDream、驾驶收益或安全。独立完整性复核裁决为`WARN`：EC未从原始state arrays独立重算，运行时source import与系统级sealed访问也未被本地归档单独证明。下一步只解锁visual recoverability的预注册，不直接训练。完整结果与审计见`experiments/R005/R005E1B_RESULTS.md`和`experiments/R005/R005E1B_EXPERIMENT_AUDIT.md`。

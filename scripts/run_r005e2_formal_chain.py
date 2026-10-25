@@ -39,6 +39,10 @@ def _bundle_command(args: argparse.Namespace, output: Path) -> list[str]:
         str(args.panel_roster),
         "--target-result",
         str(args.target_result),
+        "--current-root",
+        str(args.current_root),
+        "--current-manifest",
+        str(args.current_manifest),
         "--previous-root",
         str(args.previous_root),
         "--previous-manifest",
@@ -51,6 +55,8 @@ def _bundle_command(args: argparse.Namespace, output: Path) -> list[str]:
         str(args.crossfit_manifest),
         "--output-directory",
         str(output),
+        "--history-workers",
+        str(args.history_workers),
     ]
     for root in args.panel_root:
         command.extend(("--panel-root", str(root)))
@@ -81,6 +87,8 @@ def _write_checksums(root: Path) -> None:
 
 
 def run(args: argparse.Namespace) -> None:
+    if args.history_workers <= 0:
+        raise ValueError("history-workers must be positive")
     if args.output_root.exists():
         raise FileExistsError(f"refusing to overwrite {args.output_root}")
     args.output_root.mkdir(parents=True)
@@ -123,6 +131,8 @@ def run(args: argparse.Namespace) -> None:
                 str(primary_bundle),
                 "--replay",
                 str(replay_bundle),
+                "--target-result",
+                str(args.target_result),
                 "--output",
                 str(args.output_root / "bundle_audit.json"),
             ],
@@ -237,6 +247,8 @@ def parse_args() -> argparse.Namespace:
         "config",
         "panel-roster",
         "target-result",
+        "current-root",
+        "current-manifest",
         "previous-root",
         "previous-manifest",
         "visual-root",
@@ -250,6 +262,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--code-commit", required=True)
     parser.add_argument("--gpus", type=int, nargs="+", default=[0, 1, 2, 3])
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--history-workers", type=int, default=4)
     return parser.parse_args()
 
 

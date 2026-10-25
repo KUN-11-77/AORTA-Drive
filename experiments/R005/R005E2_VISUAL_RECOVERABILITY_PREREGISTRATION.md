@@ -1,6 +1,6 @@
 # R005E2：上下文决策关系的视觉可恢复性预注册
 
-状态：`PREREGISTERED__OUTCOME_FREE_PREFLIGHT_NEXT__TRAINING_NOT_YET_AUTHORIZED`。
+状态：`PREREGISTERED__HISTORY_SEMANTICS_REPAIRED_BEFORE_SCIENTIFIC_OUTPUT__QUALIFICATION_NEXT`。
 
 日期：2026-10-25。
 
@@ -55,6 +55,26 @@ r_{gt}=\max_{i\in V_{gt}}U^{ctx}_{gti}-U^{ctx}_{gt\widehat i_{gt}}.
 \]
 
 真实独立单位是 recording group。anchor、candidate、pair、appearance 与 seed 都是组内重复或算法重复。
+
+### 2.1 因果历史的精确定义
+
+`H_gt` 不使用原始 native planner 的9个0.5秒稀疏点，也不把它任意插值成41点。令上一周期
+官方模拟状态为 `S^-=(s^-_0,...,s^-_40)`，当前与上一观测间隔为 `delta_t`，官方模拟步长为
+`Delta=0.1s`，并令 `k=round(delta_t/Delta)=5`。R005E1B 的 two-frame comfort 实际比较
+`S^+_{0:36}` 与 `S^-_{5:41}`，因此网络历史变量冻结为
+
+\[
+H_{gt}=T_{E_t}^{-1}\bigl(S^-_{k:41}[x,y,\psi]\bigr)\in\mathbb R^{36\times3},
+\]
+
+其中 `T_Et` 把全局 rear-axle pose 变换到当前 anchor ego 坐标系。每个 `S^-` 必须由上一周期
+真实 native 计划经与R005E1B相同的官方 simulator 重算，并逐anchor匹配R005E1B已登记的state-array
+SHA-256；禁止插值、padding、使用过期的前5点或仍留在上一ego坐标系。当前候选仍为当前ego坐标系
+的41个0.1秒点。二者的时间特征统一为 `t/4s`，故共享的前36个时刻严格对应0--3.5秒，不能分别
+按序列长度重标到 `[0,1]`。
+
+这个修正发生在任何科学训练或指标产生之前；原失败资格目录永久保留为无科学输出的fail-closed
+记录。它修复的是estimand conditioning variable，而不是根据结果调整模型或阈值。
 
 ## 3. 数据角色与交叉拟合
 
@@ -132,8 +152,10 @@ geometry-matched donor 只是不使用结果的 scene-binding negative control�
 - frozen backbone：与 R004H5/H6 相同的 DINO checkpoint、源码、resize、normalization、
   normalized-last-four-layer mean 和 batch-cardinality replay；
 - visual encoder 每个 anchor 只执行一次；candidate 数量不得增加 backbone 调用；
-- scorer：2-layer candidate/history encoder、2-layer permutation-equivariant set block、1个
+- scorer：2-layer共享candidate/history encoder、2-layer permutation-equivariant set block、1个
   candidate-to-global-visual cross-attention block、shared native-relative margin head；
+- candidate为当前ego下41点、history为上述当前ego下36点重叠轨迹；共享encoder的时间通道使用
+  真实0.1秒间隔并以4秒固定尺度归一化，不随序列长度伸缩；
 - hidden dimension 256、8 heads、dropout 0.1；输出 `tanh` 限定在 `[-1,1]`，native margin固定为0；
 - loss：只使用 group/anchor/challenger 等权的 squared native-relative margin error；不加入 ranking、
   contrastive、orbit、factor、uncertainty 或 hard-negative loss；
