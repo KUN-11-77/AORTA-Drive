@@ -1,7 +1,14 @@
 # AORTA 面向 ICCV/CVPR 的投稿级研究蓝图 V1
 
-状态：`THEORY_REVIEWED__METHOD_HYPOTHESIS_FROZEN_FOR_FALSIFICATION__FORMAL_RUNS_HOLD`
-范围：只读审查、理论推导和数据无关验证；B4R1、训练与封存 split 均未授权。
+状态：`B4R1_GO__R005E0_SCOPE_PASS__R005E1_DESIGN_ONLY__METHOD_TRAINING_HOLD`
+范围：理论、目标语义与证据边界。B4R1现已完成；R005E0已完成只读源码/ledger审计；R005E1、
+训练与封存split均未授权。
+
+> **2026-10-25 target-scope correction。** 后续数学对象固定分层为：pre-filter raw one-frame
+> `F_raw^{1f}`、filter后one-frame `F_tilde^{1f}`、带previous selected trajectory的scoped row
+> utility `U_ctx`、固定continuation的two-stage action value `Q_pi_ref`、策略级benchmark `J(pi)`。
+> `7/8+1/8`只连接`F_tilde`与`U_ctx`；B4R1 raw不能代入。`U_ctx`不得称完整official target，
+> `Q_pi_ref`也不得称任意自适应闭环或驾驶安全。
 
 ## A. Executive Research Thesis
 
@@ -13,8 +20,8 @@
    它不证明新 relation 网络或驾驶收益。
 2. B3 证明 scalar set-min 被共同路径支配；BS2 证明 2.5 s prefix 丢失晚期分叉；旧 scalar
    road-margin reranker 已停止。
-3. B4 因合法候选 membership 类型错误永久 INVALID；B4R1 只完成 outcome-free readiness，正式运行
-   仍为 HOLD。
+3. B4因合法候选membership类型错误永久INVALID；B4R1正式primary/replay/audit已GO，但只支持
+   pre-filter raw one-frame oracle，不支持`U_ctx`或two-stage value。
 4. D-JEPA、World4Scorer、GTRS/DA-WAM 类工作已经覆盖一般 relation/scorer、candidate
    conditioning、outcome supervision、history reranking 或 fallback 的重要部分。
 5. 当前没有新 relation 模型的训练结果、NavDream 结果、三 planner 行为收益、clean no-harm 或
@@ -73,8 +80,10 @@ previous-action context 回答 query，输出全局一致的 native-relative con
 | \(Z_t=E_{vis}(X_t)\) | 共享视觉 token |
 | \(V_t=\{\tau_0,\ldots,\tau_K\}\) | 合法 ragged 候选域 |
 | \(h_t=\tau^{sel}_{t-1}\) | 上一周期实际选择 |
-| \(U_t^{ctx}(\tau;S,h)\) | 作用域核验后的两帧候选效用 |
-| \(\Delta^*_{ij}=U^{ctx}(\tau_i)-U^{ctx}(\tau_j)\) | 真实相对 margin |
+| \(U_t^{ctx}(\tau;S,h)\) | filter后、作用域核验的两帧row utility |
+| \(Q_{\pi_{ref}}(\tau;S,h)\) | 反事实合法时的固定continuation two-stage action value |
+| \(T^\dagger\in\{U^{ctx},Q_{\pi_{ref}}\}\) | R005资格门选择的训练目标 |
+| \(\Delta^*_{ij}=T^\dagger(\tau_i)-T^\dagger(\tau_j)\) | evaluator-aligned真实相对margin |
 | \(\nu_{ij}=\mu_i-\mu_j\) | 完整时空 signed support |
 | \(q_{i0}\) | 预测 native-relative margin |
 | \(r_{i0}\) | calibration 后的同时误差半径 |
@@ -127,7 +136,7 @@ official evaluator 与 sequential protocol 中测量，不把 \(\mathcal R_{ctx}
 
 ### C.1 Legal-orbit invariance
 
-- **Definition:** \(T_a\) 保持 \(S,h,V,U^{ctx}\)。
+- **Definition:** \(T_a\)保持\(S,h,V,T^\dagger\)以及固定continuation（若使用\(Q_{\pi_{ref}}\)）。
 - **Assumptions:** 纯外观变化，不改变 evaluator label。
 - **Proposition:** \(\Delta^*(T_aX)=\Delta^*(X)\)。
 - **Proof:** 两个被减效用的全部自变量不变。
@@ -408,7 +417,8 @@ history 和 P95 决定主张是否成立。
 
 ### J.2 已完成修订
 
-- 将目标改名为 scoped \(U^{ctx}\)，完整 EPDMS 只作最终行为评估；
+- 将目标分层为raw one-frame、filter后one-frame、scoped \(U^{ctx}\)、条件性
+  \(Q_{\pi_{ref}}\)与策略级\(J(\pi)\)；
 - 部署输出改为 native-star potential，任意 pair 由差分得到；
 - 增加 actual-selected-history 与 sequential evaluation 合同；
 - 将 B4R1 接口有效性和 one-frame 科学 outcome 分离；
@@ -422,7 +432,7 @@ history 和 P95 决定主张是否成立。
 | Method specificity | 9 | estimand、tensor、loss、推理和停止规则清楚 |
 | Contribution quality | 7 | 新颖性窄，必须靠 matched 增量 |
 | Frontier leverage | 8 | 复用冻结 foundation vision，不强加趋势模块 |
-| Feasibility | 7 | full-target materialization 与 query latency 未知 |
+| Feasibility | 7 | `U_ctx`/`Q_pi_ref` materialization与query latency未知 |
 | Validation focus | 9 | falsifier 明确且没有 benchmark 堆叠 |
 | Venue readiness | 6 | 核心实验为空 |
 | **Overall** | **7.8** | **REVISE；理论可推进，论文不可投稿** |
@@ -433,22 +443,22 @@ history 和 P95 决定主张是否成立。
 2. 原创空间存在于 appearance differential evidence，不在 relation/fallback。
 3. 问题有意义；最简单竞争解释是 matched scorer 已足够。
 4. 当前最重要改进不是加模块，而是目标作用域与 sequential history。
-5. 方法学框架正确；官方 evaluator 作用域仍须机械核验。
+5. 方法学框架正确；source作用域已核验，R005E1数据target仍须primary/replay机械核验。
 6. absolute subtraction 和 full-context set scorer 都可能更好，必须先实现。
 7. 已主动承认不可识别、候选供给、OOD coverage 和闭环边界。
-8. 目前仅有处理方案，没有经验闭环。
+8. 已有B4R1 raw oracle证据与posthoc语义审计；网络和行为仍无经验闭环。
 9. 最清楚表述：稳定感知并不保证知道哪条轨迹更好。
 10. 正文只保留 \(\Delta^*,\nu,Z\) 三个核心对象，其余放附录。
 11. 三图见 I.4。
-12. 还需最新 closest-work 版本、官方 evaluator scope 与 sequential/offline 理论实证。
+12. 还需最新closest-work版本、R005E1 target证据与sequential/offline理论实证。
 13. 若视觉证据机制成立，优先 ICCV/CVPR；若主要贡献落在仲裁/风险，CoRL/ICRA/T-IV 更合适。
 
 ## K. Open Problems and Research Decisions
 
 ### K.1 P0 未解决问题
 
-1. \(U^{ctx}\) 与完整 EPDMS 的精确代码边界；
-2. contextual full-target 是否具有非平凡 oracle headroom；
+1. candidate-specific `Q_pi_ref`是否能在当前mapping/traffic语义下合法构造；
+2. scoped `U_ctx`是否具有非平凡oracle headroom，且`Q_pi_ref`是否有合法反事实定义；
 3. differential operator 是否超越 matched full-context scorer；
 4. actual-selected-history 的训练覆盖与 sequential shift；
 5. NavDream 下 source calibration 的失覆盖程度；
@@ -456,17 +466,14 @@ history 和 P95 决定主张是否成立。
 
 ### K.2 下一项最高信息价值工作
 
-在不解除 B4R1 HOLD 的前提下，先完成**数据无关 evaluator-scope audit 预注册**：列出
-\(U^{1f},H,C_2,U^{ctx}\)、乘性门、过滤、归一化和最终 EPDMS 的调用图与逐项 replay 条件。同时把
-B4R1 解释改为“one-frame 子问题”，不再让其科学 STOP 阻断 contextual target 资格。
+R005E0已完成数据无关source-scope audit并发现raw/filter语义差异。下一项最高信息价值工作是：
 
-用户明确授权正式运行后：
-
-1. 运行冻结 B4R1，仅裁决接口和 one-frame 信号；
-2. 只要接口有效，独立 materialize scoped contextual target；
-3. contextual oracle 有信号后，先实现 absolute scorer 与 matched full-context scorer；
-4. 再训练 AORTA，单一问题是 differential query 是否提供增量；
-5. 通过后才开封 NavDream、sequential history、三 planner 与时延。
+1. 冻结单一evaluator source root及全部hash；
+2. 核验previous history、candidate与two-stage mapping的反事实合法性；
+3. 经单独授权后materialize filter后`U_ctx`并完成primary/replay/audit；
+4. 只有mapping合法才增加固定continuation `Q_pi_ref`；
+5. target有headroom后先实现absolute scorer与matched full-context scorer，再训练AORTA；
+6. differential query有增量后才开封NavDream、sequential history、三planner与时延。
 
 ### K.3 五项明确裁决
 
@@ -475,8 +482,8 @@ B4R1 解释改为“one-frame 子问题”，不再让其科学 STOP 阻断 cont
 2. **NOVELTY STATUS：** 存在窄而可辩护的算法假设；尚无证据证明独立创新成立。
 3. **ARCHITECTURE STATUS：** 推荐架构由真实失败与理论自然导出；可积 native-star 和 history
    修正使接口比 v2 更严谨。
-4. **RESEARCH READINESS：** 已具备进入“冻结目标核验与 matched 实验预注册”的科学条件；不具备
-   跳过 B4R1/HOLD 或直接做 NavDream/行为实验的条件。
+4. **RESEARCH READINESS：** 已具备进入R005E1冻结目标核验的科学条件；不具备跳过target gate、
+   直接训练或做NavDream/行为实验的条件。
 5. **PUBLICATION POTENTIAL：** 若 matched scorer、NavDream、三 planner、clean no-harm、sequential
    与 P95 全部通过，可形成 ICCV/CVPR poster 级强方法候选；oral 需要非常清晰且显著的跨 planner
    现象与简单统一机制。若 differential 增量失败，则降低为严谨评测/系统论文或转投机器人/智能车领域。

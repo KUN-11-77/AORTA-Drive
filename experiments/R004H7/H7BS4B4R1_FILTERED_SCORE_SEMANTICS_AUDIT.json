@@ -1,0 +1,19 @@
+{
+  "anchor_count": 672,
+  "audit_role": "posthoc_semantic_diagnostic_only__registered_decision_unchanged",
+  "candidate_count": 4536,
+  "experiment_id": "R004H7BS4B4R1-eligible-source-preference-oracle-v1",
+  "filtered_positive_gain_anchor_count": 291,
+  "full_target_claim_supported": false,
+  "gain_sign_disagreement_anchor_count": 9,
+  "max_abs_score_difference": 1.0,
+  "mismatch_anchor_count": 111,
+  "mismatch_candidate_count": 506,
+  "mismatch_group_count": 41,
+  "pair_count": 13402,
+  "pair_sign_disagreement_count": 473,
+  "raw_positive_gain_anchor_count": 292,
+  "registered_b4r1_decision_changed": false,
+  "tolerance": 1e-12,
+  "top_set_disagreement_anchor_count": 55
+}

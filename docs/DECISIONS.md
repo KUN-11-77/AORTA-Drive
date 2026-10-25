@@ -1298,3 +1298,20 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R004H7/H7BS4B4R1_RESULTS.md`；
   `experiments/R004H7/H7BS4B4R1_EXPERIMENT_AUDIT.md`；
   `experiments/results/R004H7BS4B4R1_7050C6E/`。
+
+## ADR-0089：严格区分 raw one-frame、filter后contextual row与two-stage action value
+
+- **Decision:** `F_RAW_ONE_FRAME__F_FILTERED_ONE_FRAME__U_CTX__Q_PI_REF__J_PI_ARE_DISTINCT`。
+- **Reason:** B4R1的`pdm_score`在human false-positive filter之前形成；官方最终行分数从filter后
+  components重算。机械审计在506/4536 candidates上发现二者不等，并产生473/13402 pair-sign及
+  55/672 top-set差异。官方pseudo-closed-loop又将两条frame stream各自的stage-one与按endpoint
+  高斯加权的stage-two分数相乘后平均，故`U_ctx`仍不是完整benchmark action value。
+- **Consequence:** B4R1登记GO不变但只作用于`F_raw^{1f}`。`7/8+1/8`定理仅可用于filter后
+  `F_tilde^{1f}`到`U_ctx`；R005先资格化因果previous history和candidate validity，再materialize
+  `U_ctx`。只有two-stage mapping对候选替换具有明确反事实语义时，才构造固定continuation
+  `Q_pi_ref`；最终行为仍由策略级`J(pi)`裁决。
+- **Boundary:** 本决策是posthoc语义收紧，不重写B4R1预注册或结果，也不授权R005E1、训练、
+  development/calibration/test/NavDream/target。`Q_pi_ref`不是任意自适应闭环价值或安全保证。
+- **Artifacts:** `experiments/R004H7/H7BS4B4R1_FILTERED_SCORE_SEMANTICS_AUDIT.md`；
+  `experiments/R005/R005E0_TARGET_SCOPE_AUDIT.md`；
+  `experiments/R005/R005E1_CONTEXTUAL_TARGET_PREREGISTRATION.md`。

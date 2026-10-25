@@ -47,6 +47,14 @@ one-frame PDM scorer 是否产生可学习的非零 preference signal 和正 ora
 关闭前不训练网络。即使后续 contextual oracle 通过，也必须先做 visual recoverability 与 matched
 structure study，不能从本轮 GO 跳到 ICCV 方法主张。
 
+### 后续语义审计（不改登记裁决）
+
+R005E0前置审计发现，本轮记录的`one_frame_pdm_score`是human filter前的`F_raw^{1f}`；官方最终
+行分数会从filter后components重算。506/4,536 candidates存在raw/filter差异，涉及473/13,402
+pair-sign与55/672 top-set差异。因此本页GO严格限于`F_raw^{1f}`，不得外推为filter后
+`F_tilde^{1f}`、`U_ctx`或two-stage `Q_pi_ref`。详见
+`H7BS4B4R1_FILTERED_SCORE_SEMANTICS_AUDIT.md`。
+
 ## 可追溯证据
 
 - frozen code commit：`7050c6ef1c40f86d8ea97deca62a02c5d1d8a27c`；

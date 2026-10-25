@@ -1,11 +1,12 @@
 # AORTA Baseline–Hypothesis–Experiment–Decision Protocol
 
-状态：`MATRIX_FROZEN__NUMERICAL_MARGINS_LOCKED_BY_M1__NO_TRAINING_AUTHORIZED`
+状态：`MATRIX_FROZEN__TARGET_SCOPE_SEPARATED__R005E1_NOT_AUTHORIZED__NO_TRAINING_AUTHORIZED`
 
 日期：2026-10-25。
 
 本协议把 AORTA 的文献定位、最强竞争方法、机制消融和失败决策绑定到同一证据链。它不修改正在
-执行的 B4R1，不授权训练，也不把外部论文在不同协议下的公开数字当作 matched comparison。
+执行的 B4R1。R005E0已证明其raw score不能等同filter后contextual或two-stage value；本协议不授权
+R005E1运行或网络训练，也不把外部论文在不同协议下的公开数字当作 matched comparison。
 
 ## 1. 两项论文主张
 
@@ -47,7 +48,8 @@ clean no-harm、非真空 intervention、actual-history rollout 与在线 P95 �
 | ID | 系统 | 信息与监督 | 科学职责 | 报告位置 |
 |---|---|---|---|---|
 | B0 | Frozen Native Planner | 原 planner，不干预 | 实际价值基准 | 系统主表 |
-| B1 | Full-Context Oracle | 同一合法候选域、官方 contextual target | 可改善空间上限 | 诊断表 |
+| B1 | Scoped-Context Oracle | 同一合法候选域、filter后`U_ctx`与真实previous history | 一行上下文效用的可改善空间 | 诊断表 |
+| B1Q | Fixed-Continuation Two-Stage Oracle | evaluator合法时的candidate-specific `Q_pi_ref` | 官方两阶段作用域内的固定策略action-value上限 | 诊断表，不冒充闭环oracle |
 | B2 | Trajectory-only Scorer | 候选与 history，无 RGB | 排除轨迹先验捷径 | 机制主表 |
 | B3 | Absolute Utility Scorer | 逐候选预测绝对效用再相减 | 最简单学习式 scorer | 机制主表 |
 | B4 | Matched Full-Context Set Scorer | 全部视觉、候选集合与 history | **核心创新第一裁判** | 机制主表 |
@@ -114,15 +116,15 @@ clean no-harm、actual-history rollout 与在线 P95。
 
 | Gate | 运行 | 通过含义 | 失败动作 |
 |---|---|---|---|
-| E0 | B4R1 + evaluator-scope audit | one-frame 接口有效；contextual target 可合法建立 | 接口无效则修接口；one-frame 无信号不直接否定 contextual target |
-| E1 | Full-context oracle | 合法候选存在非平凡 full-target headroom | 无 headroom：停止 scorer，回到候选供给 |
+| E0 | B4R1 + R005E0 source-scope audit | raw one-frame有headroom；raw/filter/context/two-stage对象已分离 | 原B4R1裁决保留但不得外推 |
+| E1 | `U_ctx` oracle；条件性`Q_pi_ref` oracle | 合法候选存在非平凡scoped contextual headroom；若反事实合法则检验两阶段固定策略价值 | `U_ctx`无headroom：停止当前panel scorer；`Q`无定义：停止two-stage离线主张 |
 | E2 | B2/B3/B4/B6 matched competition | 视觉必要且 differential query 有独立增量 | 见第 7 节，不堆模块 |
 | E3 | full/prefix、signed、RGB、history、orbit loss | 定位增量的最小必要机制 | 删除无证据模块，保留最简单获胜者 |
 | E4 | NavDream、三 planner、sequential、clean、P95 | 表征增量转化为系统价值 | 收缩主张或停止投稿主线 |
 
 ### 6.1 E1 与 E2 之间的瓶颈分支：视觉信息还是决策接口
 
-B4R1 与 full-context oracle 只回答“合法候选域是否存在可监督、可改善的任务关系”，不能决定最终
+B4R1 与 scoped-context/fixed-continuation oracle 只回答“合法候选域是否存在可监督、可改善的任务关系”，不能决定最终
 方法应修改视觉编码器还是候选关系接口。E1 通过后、训练 B2--B6 前，必须用同一冻结视觉输入、
 候选域与 contextual target 做一次预注册的因果诊断：
 
@@ -170,7 +172,8 @@ DriveTeach-VLA、DA-WAM、TOAD、DriveSuprim、VLA 与 sparse-query 文献只作
 
 ## 9. 当前状态
 
-- B4R1：已授权并运行；本协议不读取其 partial scientific metrics；
-- E1–E4：全部 LOCKED；
+- B4R1：已完成并审计；只支持pre-filter `F_raw^{1f}`；
+- R005E0：source-scope audit完成；R005E1设计已预注册但未授权；
+- E1 materialization–E4：全部 LOCKED；
 - calibration/test/NavDream/target：保持封存；
 - 本协议冻结方法身份和公平性原则，但不预填任何实验结果。

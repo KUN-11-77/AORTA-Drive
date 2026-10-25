@@ -39,16 +39,18 @@ X^a=g_a(S), \qquad a\in\mathcal A.
 ### L2：唯一学习对象是作用域闭合的任务关系
 
 冻结规划器在上下文 \(h\) 中提供 native \(\tau_0\) 与合法 challengers \(\tau_i\)。最终行为目标由
-完整官方 evaluator 单独定义；训练估计对象必须先限定到冻结代码逐项闭合的 contextual candidate
-utility \(U^{ctx}\)，其 native-relative margin 为：
+策略级官方evaluator \(J(\pi)\) 单独定义。R005目标门在两个可证伪对象间裁决：filter后row utility
+\(U^{ctx}\)，以及仅在反事实mapping合法时成立的固定continuation action value
+\(Q_{\pi_{ref}}\)。令通过资格门的训练目标为 \(T^\dagger\)，则唯一margin为：
 
 \[
-\Delta^*_{i0}(S,h)=U_{\mathrm{ctx}}(S,\tau_i,h)-U_{\mathrm{ctx}}(S,\tau_0,h).
+\Delta^*_{i0}(S,h,\pi_{ref})
+=T^\dagger(S,\tau_i,h,\pi_{ref})-T^\dagger(S,\tau_0,h,\pi_{ref}).
 \]
 
-当前冻结实现提出的 `7/8 one-frame + 1/8 two-frame comfort` 分解只在其代码层级、乘性门、过滤、
-归一化与聚合边界逐项重放后使用；在此之前不得称为完整 EPDMS 恒等式。previous action 属于
-contextual estimand 的输入，并且在部署中由 AORTA 之前的干预内生地产生。
+`7/8 one-frame + 1/8 two-frame comfort`只连接filter后\(\widetilde F^{1f}\)与\(U^{ctx}\)；它不适用于
+B4R1 pre-filter raw score，也不包含stage-two乘法。previous action属于\(U^{ctx}\)输入并在部署中
+由AORTA之前的干预内生地产生；future continuation属于\(Q_{\pi_{ref}}\)的定义，而不是可忽略常数。
 
 道路场、SDF、BEV、风险热图和 one-frame score 都只能是先验、辅助头或诊断变量；除非证明它们对 \(\Delta^*\) 决策充分，否则不得替代最终对象。
 
@@ -79,7 +81,7 @@ I(\Delta^*;X\mid R,\tau_{0:K},h)=0,
 I(R;A\mid S,\tau_{0:K},h)=0.
 \]
 
-第一式是决策充分性，第二式是条件外观不变性。由于潜变量 \(S\) 不可直接观测，实验不能声称已经估计这两个互信息；只能用 full-target prediction、correct/mismatch/removed、paired appearance orbit、NavDream regret 与反例共同检验其可观测后果。
+第一式是决策充分性，第二式是条件外观不变性。由于潜变量 \(S\) 不可直接观测，实验不能声称已经估计这两个互信息；只能用作用域明确的`U_ctx`/`Q_pi_ref` prediction、correct/mismatch/removed、paired appearance orbit、NavDream regret 与策略级反例共同检验其可观测后果。
 
 ### L4：误差—后悔—干预桥
 
@@ -119,10 +121,11 @@ L_{i0}=\widehat\Delta_{i0}-r_{i0}
 
 ### 命题 A：任务关系的外观不变性
 
-若 \(g_a\) 保持潜在任务状态 \((S,h)\)，候选域相同，且 \(F_{\mathrm{full}}\) 只依赖该任务状态，则
+若 \(g_a\) 保持潜在任务状态 \((S,h)\)，候选域和冻结continuation相同，且通过资格门的
+\(T^\dagger\)只依赖该任务状态，则
 
 \[
-\Delta^*_{i0}(g_a(S),h)=\Delta^*_{i0}(S,h).
+\Delta^*_{i0}(g_a(S),h,\pi_{ref})=\Delta^*_{i0}(S,h,\pi_{ref}).
 \]
 
 这定义了应学习的不变量，但不保证视觉网络能从像素识别它。正确图像相对 mismatch/removed 的优势、任务误差与非坍缩测试负责验证可识别性。
@@ -143,7 +146,8 @@ L_{i0}=\widehat\Delta_{i0}-r_{i0}
 | 完整时域 signed support query | prefix 丢失晚分叉；global min 被共同区域支配 | 定位候选差异而非共同路径 | 无 support、prefix support、unsigned/path-only |
 | 全局视觉 key/value | direct-projective evidence 局部缺失不等于全局不可观测 | 允许上下文补全但不得凭空外推不可见区域 | local-only、pooled、mismatch/removed |
 | 反对称 relation head | 最终对象是 pairwise native-relative margin | 固化换序符号与零自比较 | 普通 set scorer、independent scalar scorer |
-| previous-action context | full target 含 two-frame comfort | 使输入覆盖 estimand 自变量 | minimal token、history removed、复杂 temporal arm |
+| previous-action context | scoped `U_ctx`含two-frame comfort | 使输入覆盖row-level estimand自变量 | minimal token、history removed、复杂 temporal arm |
+| future continuation context | official two-stage聚合依赖endpoint-conditioned stage-two rows | 区分`U_ctx`与固定策略`Q_pi_ref` | mapping validity、fixed continuation、sequential rollout |
 | task loss | 关系必须保留完整官方任务排序 | 直接控制 margin/regret，而非代理场误差 | one-frame、factorized、field-only loss |
 | appearance/orbit constraint | 同场景合法外观应共享任务关系 | 降低 nuisance sensitivity，同时防止常数坍缩 | 无约束、过强约束、correct/mismatch/removed |
 | uncertainty + native fallback | OOD 证据可能不足 | 将未知转化为拒判并限制错误替换 | point estimate、独立非同时区间、always-intervene |
@@ -167,7 +171,7 @@ L_{i0}=\widehat\Delta_{i0}-r_{i0}
 - \(\mathcal L_{\mathrm{orbit}}\)：同一场景合法 appearance orbit 上的 relation 一致性，而不是无条件 feature collapse；
 - \(\mathcal L_{\mathrm{unc}}\)：proper likelihood 或 interval score，使预测半径可由独立 calibration 资格化。
 
-反对称性优先通过参数化精确满足，而不是依赖软惩罚。\(\lambda\) 只在 source train/development 内按预注册规则选择；必须分别比较 task-only、task+orbit、task+uncertainty 与完整目标。若 orbit 降低漂移却损害 full-target regret，它不能因“更稳定”而保留。
+反对称性优先通过参数化精确满足，而不是依赖软惩罚。\(\lambda\)只在source train/development内按预注册规则选择；必须分别比较task-only、task+orbit、task+uncertainty与作用域明确的任务目标。若orbit降低漂移却损害`U_ctx`/`Q_pi_ref` regret，它不能因“更稳定”而保留。
 
 ## 5. 最终验收指标
 
@@ -209,7 +213,7 @@ clean 使用预注册的非劣效边界；边界必须由独立 baseline 方差�
 
 | 层级 | 必须满足 | 允许主张 |
 |---|---|---|
-| 基础成功 | 合法 full target、正确图像必要性、held-out relation 泛化、实现/审计闭合 | 建立了可信的视觉—任务关系机制 |
+| 基础成功 | 合法`U_ctx`或`Q_pi_ref`、正确图像必要性、held-out relation泛化、实现/审计闭合 | 建立了可信的视觉—任务关系机制 |
 | 方法成功 | matched closest baselines 上 relation/regret/false intervention 有稳定增益；clean 非劣；实时可行 | 提出有效的选择性候选仲裁方法 |
 | 顶会目标 | NavDream + 三类 planner 上行为增益、\(G_{\mathrm{net}}\) 的预注册置信下界为正或超过最小有意义效应、关键消融支持因果链、限制诚实且故事单一 | ICCV/CVPR 级方法论文候选 |
 
@@ -238,11 +242,11 @@ clean 使用预注册的非劣效边界；边界必须由独立 baseline 方差�
 1. 每轮先写可证伪命题、竞争解释和停止规则，再读取科学结果。
 2. 失败先区分实现错误、协议错误、统计功效不足与理论对象错误；只在证据指向后两者时改方法。
 3. 新复杂模块必须由新反例、官方目标依赖或 matched baseline 缺口授权。
-4. 当前最近门仍是 B4R1：只验证合法候选域上的 one-frame 接口与 oracle ceiling；它不训练网络、
-   不证明 contextual target、不证明 NavDream 或驾驶收益。
-5. B4R1 需要用户明确授权才可正式运行；接口有效后才依次进入 evaluator-scope audit/contextual
-   target、matched scorer、NavDream、actual-history/sequential evaluation、三 planner、clean
-   no-harm 与 latency。其 one-frame 科学 GO/HOLD/STOP 不替代 contextual oracle 裁决。
+4. B4R1已完成，只验证合法候选域上的pre-filter raw one-frame接口与oracle ceiling；它不训练网络、
+   不证明`U_ctx`、`Q_pi_ref`、NavDream或驾驶收益。
+5. R005E0已区分raw/filter/context/two-stage语义；R005E1仍需单独授权。只有`U_ctx`合法且有headroom，
+   才依次进入matched scorer、NavDream、actual-history/sequential evaluation、三planner、clean
+   no-harm与latency；`Q_pi_ref`另受two-stage counterfactual validity约束。
 6. D-JEPA-style 与 World4Scorer-style 是强制最近基线；FlowDrive、READ、PEA/MG-style controls 按传感器、数据、backbone 与适配权限对齐后使用，不以不公平 headline 数字比较。
 
 ## 10. 当前裁决
@@ -253,4 +257,4 @@ clean 使用预注册的非劣效边界；边界必须由独立 baseline 方差�
 - 视觉旧场机制：held-out development 有正证据，但不能回填新 relation head；
 - 行为、NavDream、跨 planner、clean no-harm、实时性：均未验证；
 - 投稿资格：`NOT_ICCV_READY / NOT_ORAL_READY`；
-- 下一步：保持 B4R1 formal HOLD，先等待明确运行授权，不用新模块或新公式绕过该证据门。
+- 下一步：完成R005E1单一source binding与资格冻结；未经单独授权不运行，不用网络模块绕过target门。

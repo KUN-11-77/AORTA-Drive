@@ -1,5 +1,13 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 R005E0目标语义审计：`RAW_ONE_FRAME_NE_FILTERED_CONTEXT_NE_TWO_STAGE_VALUE`。**
+> B4R1登记的raw `pdm_score`在human filter前形成，而官方完整评估从filter后components重新聚合；
+> posthoc机械审计发现506/4536 candidates、111/672 anchors不一致，导致473/13402 pair-sign与
+> 55/672 top-set差异。原B4R1 GO不变，但只支持其预注册raw one-frame对象。后续严格区分
+> `F_raw^{1f}`、过滤后`F_tilde^{1f}`、带真实previous trajectory的`U_ctx`、固定后续策略的
+> two-stage action value `Q_pi_ref`及策略级`J(pi)`。R005E1已形成设计预注册但未授权运行；网络训练、
+> development/calibration/test/NavDream/target继续锁定。
+
 > **2026-10-25 B4R1正式结果：`SUPPORTED_ON_SOURCE_FIT_ONE_FRAME__GO_TO_CONTEXTUAL_PREREGISTRATION__NO_TRAINING_YET`。** 合法ragged candidate domain上primary/replay与本地复算全部PASS；42/42 groups存在nonzero pair并至少有一个strict native improvement，group-equal oracle gain为`0.0202745`，42-group bootstrap 95% CI `[0.0117815,0.0301722]`。该证据只资格化candidate-local one-frame oracle，不支持RGB、full contextual target、NavDream、训练、驾驶收益或安全。下一步仅解锁evaluator-scope/contextual materialization的独立预注册。
 
 > **2026-10-25 投稿版理论审核：`SCOPED_TARGET__INTEGRABLE_STAR__ROLLOUT_HISTORY`。**
@@ -23,12 +31,12 @@
 > `references/2026-10-25_frontier_decision_scorer_novelty_audit.md` 与
 > `refine-logs/2026-10-25_aorta_post_b3/ICCV_CORE_STORY_V5_AFTER_DJEPA_CN.md`。
 
-> **2026-10-25 full-target语义收紧：`FULL_TARGET_IS_FINAL_ESTIMAND__PREVIOUS_CONTEXT_IS_INPUT`。**
-> 官方目标满足`F_full=7/8 F_one+1/8 H*C2`，故上一周期实际selected trajectory属于目标函数上下文，
-> 不能再由经验alignment决定是否存在。最小previous-action geometry token将始终进入最终relation
+> **2026-10-25 contextual-row语义收紧（已由R005E0进一步修正）：`U_CTX_REQUIRES_PREVIOUS_CONTEXT`。**
+> filter后row utility满足`U_ctx=7/8 F_tilde+1/8 M*EC`，故上一周期实际selected trajectory属于
+> `U_ctx`上下文，不能再由经验alignment决定是否存在。最小previous-action geometry token将进入该relation
 > 输入；复杂temporal encoder仍由matched消融决定。对任意候选对，`|Delta_one|>1/7`严格保证full
 > sign一致；one-frame top choice的最坏full regret至多`1/8`，但该界并不足以授权其作为训练真值。
-> B4R1仍只作低成本oracle gate；通过后最终监督默认使用augmented-context full target，任何实际
+> B4R1仍只作低成本raw oracle gate；后续监督须由R005E1在`U_ctx`或合法`Q_pi_ref`之间裁决，任何实际
 > sign/top-choice反例都否定current-only普遍充分性。详见
 > `OFFICIAL_TARGET_ALIGNMENT_AND_TEMPORAL_CONTEXT_V2_CN.md`。
 
@@ -46,7 +54,7 @@
 > global visual context、task+orbit loss、`2 epsilon` regret bridge 与 simultaneous lower-bound
 > arbitration；每个网络模块均绑定已观察失败和删除实验。顶会故事只保留
 > appearance-interventional differential-support relation learning 一项主贡献与可信仲裁一项从属
-> 机制。该闭环不新增经验主张；B4R1、full-target alignment、matched scorer、NavDream、三 planner、
+> 机制。该闭环不新增经验主张；R005 target alignment、matched scorer、NavDream、三 planner、
 > clean no-harm 和 batch-1 latency 仍全部是硬门。详见
 > `refine-logs/2026-10-25_aorta_post_b3/THEORY_ARCHITECTURE_CLOSURE_V1_CN.md`。
 
@@ -218,28 +226,36 @@ AORTA-Drive 研究 NAVSIM v1/v2 上冻结端到端规划器的 source-only appea
 
 核心问题是：
 
-> 能否从合法外观干预中学习任务充分的 native-relative full-task relation，并只在同时证据支持真实相对改善时修改冻结 planner，从而在 NavDream 与多类 planner 上减少困难失败，同时保持 clean 非劣与实时可用？
+> 能否从合法外观干预中学习evaluator-aligned、任务充分的native-relative relation，并只在同时证据
+> 支持真实相对改善时修改冻结planner，从而在NavDream与多类planner上减少困难失败，同时保持
+> clean非劣与实时可用？
 
 道路场、SDF、BEV 与 one-frame score 只保留为先验、对照或诊断对象。项目长期目标与统一验收合同见 `docs/AORTA_RESEARCH_CONSTITUTION_V1_CN.md`。
 
 ## 2. 核心假设
 
-设合法外观观测为 \(X^a=g_a(S)\)，最终估计对象为
+设合法外观观测为 \(X^a=g_a(S)\)。令R005资格化后的训练目标为
+\(T^\dagger\in\{U_{ctx},Q_{\pi_{ref}}\}\)，最终估计对象为
 
 \[
-\Delta^*_{i0}(S,h)=F_{\mathrm{full}}(S,\tau_i,h)-F_{\mathrm{full}}(S,\tau_0,h).
+\Delta^*_{i0}(S,h,\pi_{ref})
+=T^\dagger(S,\tau_i,h,\pi_{ref})-T^\dagger(S,\tau_0,h,\pi_{ref}).
 \]
 
-当前候选机制假设：完整时域 signed differential support \(\nu_{i0}=\mu_i-\mu_0\) 能提出候选差异查询，全局视觉证据能回答该查询，反对称 relation head 能比通用 matched scorer 更稳定地恢复外观干预下的 full-task margin；同时误差集合再把估计误差连接到 regret 与 native-preserving arbitration。
+当前候选机制假设：完整时域signed differential support \(\nu_{i0}=\mu_i-\mu_0\)能提出候选差异
+查询，全局视觉证据能回答该查询，反对称relation head能比通用matched scorer更稳定地恢复外观
+干预下的evaluator-aligned margin；同时误差集合再把估计误差连接到regret与native-preserving arbitration。
 
-该假设可能失败：差异支持可能没有增量信息，全局视觉仍可能不可识别，full target 可能依赖更多历史，matched D-JEPA/World4Scorer-style scorer 可能同样有效，同时区间也可能因 OOD 失覆盖而全拒判。候选供给、关系预测、选择损失、拒判与最终行为必须分别报告。
+该假设可能失败：差异支持可能没有增量信息，全局视觉仍可能不可识别，`U_ctx`可能不足以代表
+two-stage action value，固定continuation又可能不足以代表部署策略；matched D-JEPA/World4Scorer-style
+scorer可能同样有效，同时区间也可能因OOD失覆盖而全拒判。候选供给、关系预测、选择损失、拒判与最终行为必须分别报告。
 
 ## 3. 冻结范围
 
 - NAVSIM v1/v2；
 - frozen visual backbone 与至少三类被审计 planner；
 - source-only train/development/calibration，最终 test 与 NavDream/target 按角色封存；
-- 合法 ragged candidate domain、native-relative augmented-context full target；
+- 合法ragged candidate domain、native-relative scoped `U_ctx`；若反事实资格通过则使用固定continuation `Q_pi_ref`；
 - 当前候选网络：完整时域差异支持 query、全局视觉 key/value、反对称 relation head、最小 previous-action context；
 - 默认保留 native，只有同时 lower bound 严格为正才授权替换；
 - batch-1 P50/P95、显存、候选扩展成本与 clean non-inferiority 均为最终硬门。
@@ -258,7 +274,7 @@ AORTA-Drive 研究 NAVSIM v1/v2 上冻结端到端规划器的 source-only appea
 \[
 \text{合法外观等价类}
 \Rightarrow
-\text{可识别的 full-task relation}
+\text{可识别的 evaluator-aligned relation}
 \Rightarrow
 \text{同时 margin 误差与 }2\varepsilon\text{ regret bridge}
 \Rightarrow
@@ -288,7 +304,7 @@ AORTA-Drive 研究 NAVSIM v1/v2 上冻结端到端规划器的 source-only appea
 - 旧视觉场 held-out mechanism：有支持，但不能回填新 relation 网络；
 - 旧 scalar road-margin reranker：已停止；
 - 当前 differential-support relation：反例驱动的待证候选，查新后创新范围显著收窄；
-- 最近实验门：B4R1 formal HOLD，只有用户明确授权才可运行；
+- 最近实验门：B4R1 已完成并GO；R005E0源码作用域审计完成，R005E1仅完成设计预注册、尚未授权运行；
 - B4R1 interface valid 后顺序：target-scope audit/contextual materialization → matched scorer →
   NavDream → actual-history/sequential evaluation → 三 planner 行为 → clean no-harm → batch-1 latency；
 - 当前投稿裁定：`NOT_ICCV_READY / NOT_ORAL_READY`。

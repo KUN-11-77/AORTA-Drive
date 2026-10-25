@@ -3,7 +3,7 @@
 统一基线身份、公平性与失败决策以
 `experiments/R005/BASELINE_COMPARISON_PROTOCOL.md` 为准；该协议不修改 B4R1。
 
-**状态：B4R1_FORMAL_RUNNING__LATER_RUNS_LOCKED__SEALED_SPLITS_UNTOUCHED**
+**状态：B4R1_GO__R005E0_SCOPE_PASS__R005E1_DESIGN_ONLY__TRAINING_AND_SEALED_SPLITS_LOCKED**
 
 **问题：**视觉外观变化下，如何为不同冻结驾驶规划器提供任务充分、可信且实时的决策辅助，而不是只获得稳定但不影响决策的表征。
 
@@ -13,13 +13,14 @@
 
 **日期：**2026-10-25。
 
-本文是条件实验路线，不授权任何正式运行。B4R1 仍需用户明确授权；calibration/test/NavDream/target 继续封存。
+本文是条件实验路线。B4R1已完成；R005E0只读源码/ledger语义审计完成；R005E1尚未获得正式运行
+授权。calibration/test/NavDream/target继续封存。
 
 ## 1. Claim Map
 
 | Claim | 为什么重要 | 最低可信证据 | 对应 Block |
 |---|---|---|---|
-| P1：differential evidence 是外观鲁棒决策关系的有效且必要接口 | 这是相对 D-JEPA/World4Scorer-style generic scorer 剩余的主要创新候选 | 合法 full target；matched 数据/参数/FLOP/token/seed；held-out 与 NavDream 上更低 regret、pair-sign error、false intervention；support 删除实验复现机制 | B0、B1、B2 |
+| P1：differential evidence 是外观鲁棒决策关系的有效且必要接口 | 这是相对 D-JEPA/World4Scorer-style generic scorer 剩余的主要创新候选 | 合法且作用域明确的`U_ctx`或`Q_pi_ref`；matched 数据/参数/FLOP/token/seed；held-out 与 NavDream 上更低 regret、pair-sign error、false intervention；support 删除实验复现机制 | B0、B1、B2 |
 | S1：evidence-qualified arbitration 能在不全拒判时减少错误替换 | 这是从预测到可信动作的桥 | 独立 group calibration；simultaneous empirical coverage、sharpness、risk–coverage；OOD 失覆盖诚实报告；clean harm 降低 | B4 |
 | P2：方法能改变真实评估行为且具有跨架构与实时价值 | 防止论文停留在表示或离线 scorer | NavDream/正式 OOD 上至少三类 planner；Official PDMS、DAC、碰撞、组级配对差异、hard-failure 净改善；clean 非劣；batch-1 P50/P95 | B3、B4 |
 
@@ -39,7 +40,7 @@
 ### 主文必须证明
 
 - 稳定道路场/短前缀为何不足：B3 common-min 与 BS2 late-fork 反例；
-- full-task relation 的合法标签与非平凡 oracle opportunity；
+- `F_raw`、`F_tilde`、`U_ctx`、`Q_pi_ref`与策略级`J(pi)`的合法边界，以及非平凡oracle opportunity；
 - differential evidence 相对 strongest matched generic scorer 的增量；
 - correct image、appearance invariance 和 task correctness 同时成立；
 - NavDream + 三 planner 的行为净收益、clean no-harm 与实时性；
@@ -66,31 +67,33 @@
 
 ## Block B0：Estimand 与 oracle 资格
 
-- **Claim tested：**合法候选域上存在非平凡任务监督；最终 full target 可复算且必须包含 previous-action context。
+- **Claim tested：**合法候选域上存在非平凡任务监督；filter后`U_ctx`可复算且必须包含previous-action
+  context；若官方mapping对候选反事实有效，再检验固定continuation的`Q_pi_ref`。
 - **为什么存在：**没有合法且有信息量的 target，任何网络训练都没有科学意义。
 - **数据/角色：**
   - source fit 42 recording groups；
   - 当前冻结 672 anchors、ragged eligible candidate domain；
   - development/calibration/test/NavDream/target 不读取。
 - **Runs：**
-  1. 已预注册 B4R1 candidate-local one-frame oracle；
-  2. B4R1 接口有效后，独立预注册并 materialize scoped augmented-context target；one-frame
-     GO/HOLD/STOP 不替代该资格；
-  3. current one-frame 与 full target 的 sign、top-choice、regret、\(1/7\) certified coverage；
-  4. minimal previous-action geometry token 的解释度诊断。
+  1. 已完成B4R1 pre-filter `F_raw^{1f}` candidate-local oracle；
+  2. 已完成R005E0 source-scope audit，确认`F_raw`不能代替filter后`F_tilde`；
+  3. R005E1B独立materialize `U_ctx`，比较raw/filtered/context的sign、top-choice与regret；
+  4. 仅在candidate-specific mapping合法时，R005E1C构造固定continuation `Q_pi_ref`并比较`U_ctx`；
+  5. minimal previous-action geometry token 的解释度诊断留到target合法后的matched study。
 - **主指标：**
   - B4R1 已冻结四项 gate；
-  - full target pair-sign/top-choice 反例计数；
-  - full oracle opportunity、group-level mean gain；
+  - raw/filtered/context及条件性two-stage pair-sign/top-choice反例计数；
+  - `U_ctx` oracle opportunity、group-level mean gain；若合法再报`Q_pi_ref`；
   - zero-challenger、tie、temporal-ambiguous 分母完整性。
 - **成功条件：**
-  - B4R1 实现接口有效，one-frame outcome 按原协议完整保留；
-  - full target primary/replay/audit exact；
-  - full target 含足够非 tie relation，不由极少数组驱动。
+  - B4R1实现接口有效，raw one-frame outcome按原协议完整保留；
+  - 单一evaluator root、filter顺序、history与candidate validity闭合；
+  - `U_ctx` primary/replay/audit exact且含足够非tie relation，不由极少数组驱动；
+  - `Q_pi_ref`只有在two-stage反事实资格通过时才进入报告。
 - **失败解释：**
-  - B4R1 interface INVALID：停止并修复接口，不解释科学结果；
-  - B4R1 scientific STOP：只停止 one-frame supervision；仍须独立资格化 contextual target；
-  - full target 几乎无信号：优先审查 candidate supply/任务定义，不搜索更复杂网络；
+  - source/history/candidate/replay INVALID：停止target construction，不解释科学结果；
+  - `U_ctx`几乎无信号：优先审查candidate supply/任务定义，不搜索更复杂网络；
+  - `Q_pi_ref`无合法反事实定义：停止two-stage离线主张，但不回填近似target；
   - previous context 产生反例：current-only 模型永久降为 baseline。
 - **目标产物：**Appendix label table；官方目标定义图；不是主方法结果。
 - **优先级：**MUST-RUN。
@@ -252,8 +255,8 @@
 
 | Milestone | 目标 | Runs | 决策门 | 计算/时间合同 | 主要风险 |
 |---|---|---|---|---|---|
-| M0 | 合法 one-frame oracle | B4R1 primary/replay/audit | 原冻结 GO/HOLD/STOP | 无固定 wall cutoff；禁止自动第三次运行 | scorer/候选域接口 |
-| M1 | scoped contextual target 闭合 | target-scope audit + materialization + replay/audit + alignment | M0 interface valid；signal 非平凡且 ledger exact | 由 M0 实测 throughput 外推，不预填 GPU 小时 | evaluator scope/history shift |
+| M0 | 合法raw one-frame oracle | B4R1 primary/replay/audit | 原冻结 GO/HOLD/STOP | 已完成；禁止自动第三次运行 | 只支持`F_raw` |
+| M1 | target scope与context闭合 | R005E0 source audit + R005E1 `U_ctx` materialization；条件性`Q_pi_ref` | 单一source、history/candidate valid；signal非平凡且ledger exact | 由M0实测throughput外推，不预填GPU小时 | raw/filter gap、evaluator scope、history/future-policy shift |
 | M2 | 最强 baseline 与最小网络 | 单 seed smoke；随后 3-seed matched B1 | generic scorer 对照合法；AORTA有增量才保留 | 训练作业数按 frozen matrix；先筛 bug 后正式 seeds | 计算不公平/实现差异 |
 | M3 | 视觉机制与 NavDream | held-out controls；一次性 B2 | correct-image necessity + OOD relation | checkpoint/metrics 冻结后才开封 | 场景记忆/目标污染 |
 | M4 | 三 planner 行为 | B3 clean+OOD | OOD endpoint、\(G_{\mathrm{net}}\)、clean non-inferiority | 每 planner 使用同一 candidate/scorer cache policy | candidate supply 混淆 |
@@ -264,12 +267,12 @@
 
 这些动作按顺序执行，后一步不得绕过前一步：
 
-1. 用户明确授权后，按现有 frozen preregistration 运行 B4R1；未授权保持 HOLD。
-2. 若 B4R1 interface valid，无论其 one-frame GO/HOLD/STOP，先注册 evaluator-scope audit 与
-   contextual-target materialization/alignment；不直接训练网络。
-3. full target 合法后，冻结 B1 的 exact model budgets、tie tolerance、optimizer search 与 seed roster。
-4. 先复现 strongest generic scorer，再运行 AORTA；不能只做弱 baseline。
-5. B1 通过后才开封 NavDream 机制评估；B2 通过后才进入三 planner 行为。
+1. B4R1已经完成；其GO只作用于`F_raw^{1f}`，不重跑。
+2. R005E0已完成；R005E1先完成单一source binding与资格门，经单独授权后才运行`U_ctx` materialization。
+3. 若two-stage反事实合法，再运行`Q_pi_ref`分支；否则明确停止该主张。
+4. 目标合法且有headroom后，冻结B1的exact model budgets、tie tolerance、optimizer search与seed roster。
+5. 先复现strongest generic scorer，再运行AORTA；不能只做弱baseline。
+6. B1通过后才开封NavDream机制评估；B2通过后才进入三planner行为。
 
 ## 6. Compute and Data Budget
 
@@ -283,7 +286,7 @@
 
 ### 不凭空填写的量
 
-当前没有合法 full-target materialization throughput、最终网络显存或 batch-1 latency，因此不填写虚假 GPU-hours。M1 后使用以下公式冻结预算：
+当前没有合法`U_ctx`/`Q_pi_ref` materialization throughput、最终网络显存或batch-1 latency，因此不填写虚假GPU-hours。M1后使用以下公式冻结预算：
 
 \[
 H_{\mathrm{total}}
@@ -308,8 +311,8 @@ H_{\mathrm{total}}
 
 | 风险 | 预先处置 |
 |---|---|
-| B4R1 one-frame 无 oracle opportunity | 停止 one-frame supervision；由独立 contextual oracle 再裁决 panel |
-| one-frame 与 full target 大量翻转 | full labels + previous token 成为必需，不用代理标签 |
+| raw/filtered one-frame 与`U_ctx`大量翻转 | `U_ctx` labels + previous token成为必需，不用raw代理标签 |
+| `U_ctx`与合法`Q_pi_ref`大量翻转 | fixed-continuation action value成为two-stage训练候选；仍须策略级验证 |
 | native-history 与 actual-history/rollout 分歧 | 停止 teacher-forced 行为主张；修复历史覆盖或停止 sequential claim |
 | generic scorer 同样有效 | 删除 differential-support 创新，采用简单模型并降低定位 |
 | correct image 无优势 | 停止视觉机制主张，分析轨迹/场景先验 |
@@ -335,8 +338,10 @@ H_{\mathrm{total}}
 
 - [x] 主问题、唯一 estimand 与两项以内贡献候选已冻结；
 - [x] 标准数学与项目创新边界已写明；
-- [x] B4R1 授权边界保持；
-- [ ] 合法 full target 与 oracle opportunity 已验证；
+- [x] B4R1完成且raw作用域边界保持；
+- [x] R005E0区分raw/filter/context/two-stage对象；
+- [ ] 合法`U_ctx`与oracle opportunity已验证；
+- [ ] candidate-specific `Q_pi_ref`是否可定义已裁决；
 - [ ] strongest generic scorer 已公平复现；
 - [ ] differential evidence 的增量已隔离；
 - [ ] correct-image necessity 在新 relation head 上成立；
