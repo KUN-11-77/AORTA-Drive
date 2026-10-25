@@ -107,7 +107,8 @@ F^{full}_{i^*}-F^{full}_j
 
 ## 4. alignment 实验不再承担“挑一个通过阈值”的职责
 
-B4R1 通过后，alignment 实验固定回答四个事实问题：
+B4R1 接口有效后，contextual-target 实验固定回答四个事实问题；B4R1 的 one-frame 科学
+GO/HOLD/STOP 不替代该实验：
 
 1. one-frame worst-case sign-certified pair / anchor / group coverage；
 2. temporal-ambiguous domain 的实际 sign flip、top-choice flip 与 full regret；
@@ -141,15 +142,34 @@ MAE 只作诊断。若 C 不优于 B 且没有 source counterexample，保留 B 
 - primary/replay/audit 检查 token、gap、overlap index、source hash、ragged membership与完整 ledger；
 - 不删除 temporal-ambiguous、zero-challenger、tie 或 hard-failure anchors；
 - 不读取 development/calibration/test/NavDream/target；
-- B4R1 未通过时不执行。
+- B4R1 接口 INVALID 时不执行；接口有效时，无论 one-frame 科学 outcome 为 GO/HOLD/STOP，均按
+  独立预注册决定 contextual target 是否有信号。
+
+## 6.1 历史分布一致性
+
+训练标签中的 previous selected trajectory 与部署时真实写回的 previous selection 必须区分：
+
+- `native-history`：始终使用原 planner 上一周期选择，只是 teacher-forced baseline；
+- `actual-selected-history`：使用当前策略上一周期真实选择，是部署输入；
+- `sequential rollout`：连续更新 history，检验一次干预是否改变后续状态分布。
+
+one-step full-margin 准确不能推出 sequential 改善。若 native-history 与 actual-selected-history 的
+regret/false-intervention 明显不同，必须使用 evaluator 支持的 counterfactual-history
+materialization 或冻结 rollout/data-aggregation 方案覆盖该分布；复杂 temporal encoder 不能替代
+错误输入分布的修复。
 
 ## 7. 对论文故事的影响
 
 论文不再声称“one-frame surrogate 与 full target 足够相关，所以可以忽略时序”。更严谨的故事是：
 
-> AORTA 首先在完整 official decision context 中定义 native-relative relation；one-frame 只提供具有
+> AORTA 首先在经 evaluator 作用域核验的 contextual decision object 中定义 native-relative
+> relation；one-frame 只提供具有
 > 显式 \(1/7\) 符号证书的低成本子域。对其余决策，模型读取上一周期已知动作上下文，并在无法
 > 建立同时下界时保留 native。
 
 这使 target、输入、网络、仲裁和官方评估使用同一个数学对象，同时把复杂 temporal network 留给
 消融裁决。
+
+其中 \(7/8+1/8\) 恒等式必须在冻结 evaluator 中逐项核验其乘性门、过滤、归一化和聚合层级；在
+该 scope audit 关闭前，本文的 `full` 只表示 scoped two-frame candidate utility，不得扩写成完整
+EPDMS 恒等式。

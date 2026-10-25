@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://openreview.net/forum?id=7kLNGaAHaw",
+  "retrieved_at_utc": "2026-10-25T02:33:06.552683+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://openreview.net/challenge?redirect=%2Fforum%3Fid%3D7kLNGaAHaw",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 4787,
+  "sha256": "ac1cb574eb75834d1541d51550909109bd45bbdc17b017932887af1115ec01f8",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\pea_openreview_7kLNGaAHaw_recheck.html",
+  "elapsed_seconds": 1.688,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\pea_openreview_7kLNGaAHaw_recheck.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\pea_openreview_7kLNGaAHaw_recheck.html.links.json"
+}

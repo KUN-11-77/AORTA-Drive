@@ -36,15 +36,19 @@ X^a=g_a(S), \qquad a\in\mathcal A.
 
 合法外观干预只改变成像 nuisance，不改变道路几何、交通参与者状态、驾驶意图或用于定义任务标签的物理量。若算子改变了任务状态，它不属于同一外观等价类，不能用于证明外观鲁棒性。
 
-### L2：唯一学习对象是完整任务关系
+### L2：唯一学习对象是作用域闭合的任务关系
 
-冻结规划器在上下文 \(h\) 中提供 native \(\tau_0\) 与合法 challengers \(\tau_i\)。最终估计对象是完整官方任务的 native-relative margin：
+冻结规划器在上下文 \(h\) 中提供 native \(\tau_0\) 与合法 challengers \(\tau_i\)。最终行为目标由
+完整官方 evaluator 单独定义；训练估计对象必须先限定到冻结代码逐项闭合的 contextual candidate
+utility \(U^{ctx}\)，其 native-relative margin 为：
 
 \[
-\Delta^*_{i0}(S,h)=F_{\mathrm{full}}(S,\tau_i,h)-F_{\mathrm{full}}(S,\tau_0,h).
+\Delta^*_{i0}(S,h)=U_{\mathrm{ctx}}(S,\tau_i,h)-U_{\mathrm{ctx}}(S,\tau_0,h).
 \]
 
-在当前 NAVSIM 定义中，\(F_{\mathrm{full}}\) 包含 one-frame 项与依赖上一周期实际 selected trajectory 的 two-frame comfort，因此 previous action 属于 estimand context，而不是可随意添加的网络模块。
+当前冻结实现提出的 `7/8 one-frame + 1/8 two-frame comfort` 分解只在其代码层级、乘性门、过滤、
+归一化与聚合边界逐项重放后使用；在此之前不得称为完整 EPDMS 恒等式。previous action 属于
+contextual estimand 的输入，并且在部署中由 AORTA 之前的干预内生地产生。
 
 道路场、SDF、BEV、风险热图和 one-frame score 都只能是先验、辅助头或诊断变量；除非证明它们对 \(\Delta^*\) 决策充分，否则不得替代最终对象。
 
@@ -234,8 +238,11 @@ clean 使用预注册的非劣效边界；边界必须由独立 baseline 方差�
 1. 每轮先写可证伪命题、竞争解释和停止规则，再读取科学结果。
 2. 失败先区分实现错误、协议错误、统计功效不足与理论对象错误；只在证据指向后两者时改方法。
 3. 新复杂模块必须由新反例、官方目标依赖或 matched baseline 缺口授权。
-4. 当前最近门仍是 B4R1：只验证合法候选域上的 one-frame oracle ceiling；它不训练网络、不证明 full target、不证明 NavDream 或驾驶收益。
-5. B4R1 需要用户明确授权才可正式运行；通过后才依次进入 full-target alignment、matched scorer、NavDream、三 planner、clean no-harm 与 latency。
+4. 当前最近门仍是 B4R1：只验证合法候选域上的 one-frame 接口与 oracle ceiling；它不训练网络、
+   不证明 contextual target、不证明 NavDream 或驾驶收益。
+5. B4R1 需要用户明确授权才可正式运行；接口有效后才依次进入 evaluator-scope audit/contextual
+   target、matched scorer、NavDream、actual-history/sequential evaluation、三 planner、clean
+   no-harm 与 latency。其 one-frame 科学 GO/HOLD/STOP 不替代 contextual oracle 裁决。
 6. D-JEPA-style 与 World4Scorer-style 是强制最近基线；FlowDrive、READ、PEA/MG-style controls 按传感器、数据、backbone 与适配权限对齐后使用，不以不公平 headline 数字比较。
 
 ## 10. 当前裁决

@@ -7,7 +7,9 @@
 ## 1. 本地来源状态
 
 - branch：experiment/gate-b-protocol；
-- 审计时 HEAD：ff2212f；
+- 原 readiness 审计提交：34d7084；
+- 2026-10-25 投稿版理论修订只更新科学解释边界，不改 runner、config、candidate、threshold、seed、
+  wall cap 或冻结输入；
 - 工作树：clean；
 - preregistration 状态：PREREGISTERED_NOT_RUN；
 - implementation preflight 状态：SERVER_PROVENANCE_REPREFLIGHT_PASS__FORMAL_RUN_NOT_AUTHORIZED；
@@ -18,8 +20,12 @@
 
 | Artifact | SHA-256 |
 |---|---|
-| H7BS4B4R1_PREREGISTRATION.md | 9DB3AFE2069936CB87D8C6A074EE205FE347C952CCCBD801DD42290B59CE3BAB |
+| H7BS4B4R1_PREREGISTRATION.md | CE4B557F52E2D0904C8E47F841F69E837F7972D67FF73E552D7E55DD83E400CE |
 | H7BS4B4R1_IMPLEMENTATION_PREFLIGHT.md | A406F6E3A7403E13FF66EDB505409FDFA80FE064055AA54436FAC92E160E66C5 |
+
+旧 preregistration hash
+`9DB3AFE2069936CB87D8C6A074EE205FE347C952CCCBD801DD42290B59CE3BAB` 作为历史值保留；新 hash
+只来自 formal outcome 前加入的 one-frame/contextual scope addendum。机械 gate 内容未改。
 
 ## 2. 服务器只读状态
 
@@ -40,7 +46,7 @@
 - primary/replay/audit provenance 与 hashes 纳入 gate；
 - 服务器合同测试和 smoke 已通过；
 - 120 分钟异常停止规则已固定；
-- 最终 claim-driven 实验 tracker 中 B4R1 为 HOLD，后续 16 项均 LOCKED。
+- 最终 claim-driven 实验 tracker 中 B4R1 为 HOLD，后续项均 LOCKED。
 
 ## 4. 尚缺的唯一授权条件
 
@@ -54,6 +60,12 @@
 4. 超时或失败后不自动第三次运行；
 5. 完成后先机械审计，再解释 GO/HOLD/STOP。
 
+GO/HOLD/STOP 的科学解释只适用于 one-frame supervision。接口有效后，contextual target 由独立
+预注册裁决；该解释修正不改变 formal B4R1 的运行方式。
+
 ## 5. 当前边界
 
 本 readiness audit 不提供 oracle、preference、网络、NavDream、驾驶收益、clean no-harm、实时性或 ICCV readiness 证据。
+
+本地权威工作树现迁移至 `D:/AORTA-Drive-worktrees/gate-b-protocol`；仓库文件与提交历史由同一
+Git 远端恢复，机器绝对路径不进入 formal provenance。

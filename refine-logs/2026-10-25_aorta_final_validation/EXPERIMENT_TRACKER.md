@@ -4,8 +4,8 @@
 
 | Run ID | Milestone | Purpose | System / Variant | Split | Primary Metrics | Priority | Status | Stop / Go |
 |---|---|---|---|---|---|---|---|---|
-| R004H7-BS4B4R1 | M0 | 合法 one-frame oracle | official candidate-local scorer | source fit 42 groups | frozen oracle gates | MUST | READY/HOLD：readiness audit通过，需明确授权 | GO 才进入 M1 |
-| R004H7-BS4B5F | M1 | full target materialization | augmented previous context | source fit | exact replay、full signal、flip/regret | MUST | LOCKED_BY_M0 | 无信号则停网络 |
+| R004H7-BS4B4R1 | M0 | 合法 one-frame oracle | official candidate-local scorer | source fit 42 groups | frozen oracle gates | MUST | READY/HOLD：readiness audit通过，需明确授权 | interface valid 才进入 M1；科学 outcome 只裁决 one-frame |
+| R004H7-BS4B5F | M1 | scoped contextual target materialization | evaluator-scope audit + augmented previous context | source fit | exact replay、contextual signal、flip/regret | MUST | LOCKED_BY_M0_INTERFACE_VALID | contextual 无信号才停当前 panel |
 | R005A-PROXY | M2 | 简单代理基线 | trajectory/prior/field-SDF-BEV | source train/dev | relation、sign、regret | MUST | LOCKED_BY_M1 | 建立最低线 |
 | R005A-GENERIC | M2 | 最强最近基线 | D-JEPA/World4Scorer-style matched scorer | source train/dev | relation、sign、regret、latency | MUST | LOCKED_BY_M1 | 必须先于主方法完成 |
 | R005A-AORTA | M2 | 主方法 | differential evidence relation | source train/dev | relation、sign、regret、false intervention | MUST | LOCKED_BY_M1 | 不胜 generic 删除主创新 |
@@ -17,6 +17,7 @@
 | R006A-REG | M4 | 回归式 planner 行为 | native/generic/AORTA | clean + OOD | PDMS、DAC、collision、G_net | MUST | LOCKED_BY_M3 | 分 planner 裁决 |
 | R006A-DIFF | M4 | diffusion planner 行为 | native/generic/AORTA | clean + OOD | PDMS、DAC、collision、G_net | MUST | LOCKED_BY_M3 | 分 planner 裁决 |
 | R006A-SELECT | M4 | scoring planner 行为 | native/generic/AORTA | clean + OOD | PDMS、DAC、collision、G_net | MUST | LOCKED_BY_M3 | 分 planner 裁决 |
+| R006A-HISTORY | M4 | 历史 rollout 一致性 | native-history/actual-history/sequential | clean + OOD | contextual regret、false intervention、error propagation | MUST | LOCKED_BY_M3 | teacher-forced 不能替代 sequential |
 | R006B-CAL | M5 | simultaneous calibration | fixed/learned scale + fallback | independent calibration/OOD | coverage、sharpness、risk–coverage | MUST | LOCKED_BY_M2 | 全拒判则删实证贡献 |
 | R006C-LAT | M5 | 在线时延 | shared vs repeated encoding | deployment hardware | P50/P95/P99、memory、K scaling | MUST | LOCKED_BY_M2 | 超预算降级离线 |
 | R006D-AUDIT | M6 | 最终完整性 | mechanical + scientific + claim audit | all frozen outputs | hash、recompute、claim fidelity | MUST | LOCKED | 有不一致不发布结论 |

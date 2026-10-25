@@ -13,6 +13,7 @@ from aorta_drive.theory.relation_guarantees import (
     group_simultaneous_nonconformity,
     group_split_quantile_or_infinity,
     one_frame_sign_is_full_certified,
+    pairwise_relations_from_native_star,
 )
 
 
@@ -135,3 +136,19 @@ def test_temporal_factor_can_flip_an_uncertified_one_frame_order() -> None:
 def test_full_pair_composition_rejects_invalid_temporal_factor() -> None:
     with pytest.raises(ValueError, match=r"\[-1, 1\]"):
         compose_full_pair_margin(0.2, 1.01)
+
+
+def test_native_star_lift_is_antisymmetric_and_cycle_consistent() -> None:
+    pairwise = pairwise_relations_from_native_star((0.4, -0.2, 0.9))
+    assert pairwise.shape == (4, 4)
+    assert np.array_equal(np.diag(pairwise), np.zeros(4))
+    assert np.array_equal(pairwise, -pairwise.T)
+    for i, j, k in itertools.product(range(4), repeat=3):
+        assert pairwise[i, j] + pairwise[j, k] == pytest.approx(pairwise[i, k])
+
+
+def test_native_star_lift_rejects_invalid_inputs() -> None:
+    with pytest.raises(ValueError, match="one-dimensional"):
+        pairwise_relations_from_native_star(((0.1,), (0.2,)))
+    with pytest.raises(ValueError, match="finite"):
+        pairwise_relations_from_native_star((0.1, np.inf))

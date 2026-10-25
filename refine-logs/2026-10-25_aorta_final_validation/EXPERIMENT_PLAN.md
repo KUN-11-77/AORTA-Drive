@@ -71,7 +71,8 @@
   - development/calibration/test/NavDream/target 不读取。
 - **Runs：**
   1. 已预注册 B4R1 candidate-local one-frame oracle；
-  2. 仅在 B4R1 GO 后，materialize augmented-context full target；
+  2. B4R1 接口有效后，独立预注册并 materialize scoped augmented-context target；one-frame
+     GO/HOLD/STOP 不替代该资格；
   3. current one-frame 与 full target 的 sign、top-choice、regret、\(1/7\) certified coverage；
   4. minimal previous-action geometry token 的解释度诊断。
 - **主指标：**
@@ -80,11 +81,12 @@
   - full oracle opportunity、group-level mean gain；
   - zero-challenger、tie、temporal-ambiguous 分母完整性。
 - **成功条件：**
-  - B4R1 按原协议 GO；
+  - B4R1 实现接口有效，one-frame outcome 按原协议完整保留；
   - full target primary/replay/audit exact；
   - full target 含足够非 tie relation，不由极少数组驱动。
 - **失败解释：**
-  - B4R1 STOP：当前候选 panel 没有可学习 oracle，不训练 relation；
+  - B4R1 interface INVALID：停止并修复接口，不解释科学结果；
+  - B4R1 scientific STOP：只停止 one-frame supervision；仍须独立资格化 contextual target；
   - full target 几乎无信号：优先审查 candidate supply/任务定义，不搜索更复杂网络；
   - previous context 产生反例：current-only 模型永久降为 baseline。
 - **目标产物：**Appendix label table；官方目标定义图；不是主方法结果。
@@ -248,7 +250,7 @@
 | Milestone | 目标 | Runs | 决策门 | 计算/时间合同 | 主要风险 |
 |---|---|---|---|---|---|
 | M0 | 合法 one-frame oracle | B4R1 primary/replay/audit | 原冻结 GO/HOLD/STOP | 单次正式运行 wall cap 120 min；禁止自动第三次运行 | scorer/候选域接口 |
-| M1 | 完整 target 闭合 | full materialization + replay/audit + alignment | signal 非平凡且 ledger exact | 由 M0 实测 throughput 外推，不预填 GPU 小时 | previous context/target 稀疏 |
+| M1 | scoped contextual target 闭合 | target-scope audit + materialization + replay/audit + alignment | M0 interface valid；signal 非平凡且 ledger exact | 由 M0 实测 throughput 外推，不预填 GPU 小时 | evaluator scope/history shift |
 | M2 | 最强 baseline 与最小网络 | 单 seed smoke；随后 3-seed matched B1 | generic scorer 对照合法；AORTA有增量才保留 | 训练作业数按 frozen matrix；先筛 bug 后正式 seeds | 计算不公平/实现差异 |
 | M3 | 视觉机制与 NavDream | held-out controls；一次性 B2 | correct-image necessity + OOD relation | checkpoint/metrics 冻结后才开封 | 场景记忆/目标污染 |
 | M4 | 三 planner 行为 | B3 clean+OOD | OOD endpoint、\(G_{\mathrm{net}}\)、clean non-inferiority | 每 planner 使用同一 candidate/scorer cache policy | candidate supply 混淆 |
@@ -260,7 +262,8 @@
 这些动作按顺序执行，后一步不得绕过前一步：
 
 1. 用户明确授权后，按现有 frozen preregistration 运行 B4R1；未授权保持 HOLD。
-2. 若 B4R1 GO，先注册并执行 full-target materialization/alignment；不直接训练网络。
+2. 若 B4R1 interface valid，无论其 one-frame GO/HOLD/STOP，先注册 evaluator-scope audit 与
+   contextual-target materialization/alignment；不直接训练网络。
 3. full target 合法后，冻结 B1 的 exact model budgets、tie tolerance、optimizer search 与 seed roster。
 4. 先复现 strongest generic scorer，再运行 AORTA；不能只做弱 baseline。
 5. B1 通过后才开封 NavDream 机制评估；B2 通过后才进入三 planner 行为。
@@ -302,8 +305,9 @@ H_{\mathrm{total}}
 
 | 风险 | 预先处置 |
 |---|---|
-| B4R1 无 oracle opportunity | 停止当前 panel；审查 candidate supply，不训练网络 |
+| B4R1 one-frame 无 oracle opportunity | 停止 one-frame supervision；由独立 contextual oracle 再裁决 panel |
 | one-frame 与 full target 大量翻转 | full labels + previous token 成为必需，不用代理标签 |
+| native-history 与 actual-history/rollout 分歧 | 停止 teacher-forced 行为主张；修复历史覆盖或停止 sequential claim |
 | generic scorer 同样有效 | 删除 differential-support 创新，采用简单模型并降低定位 |
 | correct image 无优势 | 停止视觉机制主张，分析轨迹/场景先验 |
 | NavDream 崩溃 | 停止当前 appearance-robustness 主张，不做目标域适配补救 |

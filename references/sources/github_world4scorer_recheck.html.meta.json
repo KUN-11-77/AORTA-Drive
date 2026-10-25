@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://github.com/GuobaPei/World4Scorer",
+  "retrieved_at_utc": "2026-10-25T02:33:34.921255+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://github.com/World4Scorer/World4Scorer",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": null,
+  "etag": "W/\"d542c3d81dc926f74920766ba362863c\"",
+  "bytes": 364433,
+  "sha256": "b0da2cf2964aed8a700ed40e80a6eba99856899c85e3ad27fba8095f30c4c6e4",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\github_world4scorer_recheck.html",
+  "elapsed_seconds": 3.204,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\github_world4scorer_recheck.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\github_world4scorer_recheck.html.links.json"
+}

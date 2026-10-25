@@ -1228,3 +1228,53 @@ the current open-ended geometry certificate iteration remains STOP.
   开封前必须另有 preregistration、commit/config/input hashes、统计规则与异常停止条件。
 - **Artifacts:** refine-logs/2026-10-25_aorta_final_validation/EXPERIMENT_PLAN.md；
   refine-logs/2026-10-25_aorta_final_validation/EXPERIMENT_TRACKER.md。
+
+## ADR-0084：one-frame 科学门与 contextual estimand 资格分离
+
+- **Decision:** `INTERFACE_VALIDITY_GATES_CONTEXTUAL_MATERIALIZATION__ONE_FRAME_OUTCOME_DOES_NOT`。
+- **Reason:** `Delta_ctx=7/8 Delta_one+1/8 Delta_temporal` 允许 temporal term 在 one-frame 无正
+  opportunity 时产生非零或翻转关系。故 B4R1 的科学 STOP 不能逻辑推出 contextual target 无信号；
+  只有 scorer/candidate/role/provenance 接口 INVALID 才使后续标签不可解释。
+- **Consequence:** B4R1 的冻结机械字符串、阈值与统计完全不变，但论文解释只作用于 one-frame
+  supervision。接口有效后，无论 one-frame GO/HOLD/STOP，均需独立预注册 evaluator-scope audit
+  与 contextual materialization；只有 contextual oracle 也缺乏非平凡机会才停止当前 panel。
+- **Boundary:** 此修正发生在 formal outcome 前，不读取 B4R1 科学数值，不授权正式运行或训练。
+- **Artifacts:** `H7BS4B4R1_PREREGISTRATION.md`；
+  `AORTA_PAPER_BLUEPRINT_V1_CN.md`。
+
+## ADR-0085：relation 输出采用可积 native-star；反对称本身不足以治理多候选
+
+- **Decision:** `PREDICT_NATIVE_STAR__DERIVE_ALL_OTHER_PAIRS__NO_INDEPENDENT_CYCLES`。
+- **Reason:** 真实 margin 来自标量 candidate utility，故满足
+  `Delta_ij+Delta_jk=Delta_ik`。独立 antisymmetric pair head 仍可产生循环偏好；但部署只需要
+  native-relative ragged vector，任意该向量都可取 `q0=0, qi=Delta_i0`，无需额外 Hodge 贡献。
+- **Consequence:** 主模型只输出同一 native-star 上的 `q_i0`；任意 challenger pair 关系定义为
+  `q_i0-q_j0`。交换反对称化可用于每条 star edge 的 type-safety，但 complete-pair 输出不得独立。
+  absolute-score subtraction、matched set scorer 与 unrestricted pair head 进入公平对照。
+- **Boundary:** 可积性是接口正确性，不是新颖性，也不保证准确。若 matched generic scorer 与主方法
+  相当，仍删除 differential-support 创新。
+- **Artifact:** `refine-logs/2026-10-25_aorta_submission_theory/AORTA_SUBMISSION_THEORY_V1_CN.md`。
+
+## ADR-0086：上一周期选择是干预后的内生状态，one-step 与 sequential 主张分离
+
+- **Decision:** `ACTUAL_SELECTED_HISTORY_IS_DEPLOYMENT_INPUT__TEACHER_FORCING_NOT_BEHAVIOR_EVIDENCE`。
+- **Reason:** AORTA 一旦替换 native，下一周期 previous selected trajectory 的分布随策略变化。始终
+  用 native-history 训练/评估会产生 teacher-forcing/rollout shift；更复杂 temporal encoder 无法
+  修复错误的输入分布。
+- **Consequence:** 最小 previous-action token 使用系统实际选择；最终验证新增 native-history、
+  actual-selected-history 与 sequential rollout 三臂。若 gap 显著，必须用 evaluator 支持的
+  counterfactual-history materialization 或冻结 data-aggregation 覆盖部署分布；否则停止 sequential
+  行为主张。
+- **Boundary:** 离线 one-step relation/regret 不等价于连续决策改善，更不等价于真实道路安全。
+- **Artifacts:** `AORTA_PAPER_BLUEPRINT_V1_CN.md`；
+  `refine-logs/2026-10-25_aorta_final_validation/EXPERIMENT_TRACKER.md`。
+
+## ADR-0087：7/8+1/8 分解必须限定 evaluator 作用域
+
+- **Decision:** `SCOPED_CONTEXTUAL_UTILITY__NO_UNVERIFIED_FULL_EPDMS_IDENTITY`。
+- **Reason:** 局部 one-stage/two-frame candidate score 的精确分解不自动覆盖完整 EPDMS 的乘性门、
+  过滤、归一化与阶段聚合。若作用域写错，标签、理论界与仲裁将对齐错误对象。
+- **Consequence:** scope audit 关闭前，训练对象统一称 `U_ctx` 或 scoped two-frame candidate
+  utility；`1/7` 符号界只在该对象上使用。最终行为主张必须由官方完整 evaluator 独立验证。
+- **Boundary:** 此决策收缩措辞，不否定已证明的代数界；它要求先证明代码对象与公式对象相同。
+- **Artifact:** `AORTA_PAPER_BLUEPRINT_V1_CN.md`。

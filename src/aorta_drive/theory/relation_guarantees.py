@@ -85,6 +85,26 @@ def _aligned_vectors(
     return left, right
 
 
+def pairwise_relations_from_native_star(
+    native_relative_margins: npt.ArrayLike,
+) -> npt.NDArray[np.float64]:
+    """Lift one legal native-star margin vector to a consistent pair matrix.
+
+    The implicit native score is zero and challenger position `j` maps to
+    candidate index `j + 1`. The returned entry `[i, j]` is candidate
+    `i` minus candidate `j`. This is a data-free type contract: it enforces
+    antisymmetry and cycle consistency but makes no accuracy claim.
+    """
+
+    margins = np.asarray(native_relative_margins, dtype=np.float64)
+    if margins.ndim != 1:
+        raise ValueError("native_relative_margins must be one-dimensional")
+    if not np.all(np.isfinite(margins)):
+        raise ValueError("native_relative_margins must be finite")
+    potentials = np.concatenate((np.zeros(1, dtype=np.float64), margins))
+    return potentials[:, None] - potentials[None, :]
+
+
 def arbitrate_native_relative(
     point_margins: npt.ArrayLike,
     radii: npt.ArrayLike,

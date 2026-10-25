@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://github.com/NVlabs/GTRS",
+  "retrieved_at_utc": "2026-10-25T02:33:34.919276+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://github.com/NVlabs/GTRS",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": null,
+  "etag": "W/\"caf9e37f90556458b3d4318b5e29e9d3\"",
+  "bytes": 307122,
+  "sha256": "c921590ace77c71f03dfd5a428bac5c5a927bb995f3a743f2c2226fe8d5309d5",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\github_nvlabs_gtrs_recheck.html",
+  "elapsed_seconds": 2.636,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\github_nvlabs_gtrs_recheck.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\sources\\github_nvlabs_gtrs_recheck.html.links.json"
+}

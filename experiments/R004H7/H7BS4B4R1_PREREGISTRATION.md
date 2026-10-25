@@ -107,6 +107,21 @@ recording group 是唯一独立单位；anchor、candidate、pair 均为组内�
 `STOP_CURRENT_LEGAL_PANEL_NO_ORACLE_IMPROVEMENT`，其他为
 `HOLD_CURRENT_LEGAL_PANEL_PREFERENCE_SIGNAL_INSUFFICIENT`。
 
+### 5.1 开封前新增的科学解释边界
+
+上述 GO/HOLD/STOP 的机械定义、阈值、候选、seed、统计分母和输出字符串保持不变；但其科学作用域
+严格限定为 **candidate-local one-frame supervision**：
+
+1. `INVALID_PREFERENCE_LABEL_INTERFACE` 仍压倒一切科学解释，必须先修复接口；
+2. 接口有效时，GO/HOLD/STOP 均不得直接裁决带 previous-action context 的两帧目标，因为
+   temporal term 可能产生 one-frame 中不存在的排序信号；
+3. 因此原 `STOP_CURRENT_LEGAL_PANEL_NO_ORACLE_IMPROVEMENT` 在论文中只能解释为
+   `STOP_ONE_FRAME_SUPERVISION_ON_CURRENT_PANEL`，不能写成“当前 panel 没有任何 full-context
+   oracle opportunity”；
+4. 任何接口有效 outcome 之后，都必须另行预注册 scoped contextual target 的 materialization；
+   只有该 contextual oracle 也缺乏非平凡机会时，才停止当前 candidate panel；
+5. 本解释修正发生在 formal outcome 前，不读取任何 B4R1 科学数值，也不授权运行或训练。
+
 `0/.001/.005/.01/.02/.05` 绝对差异率只作冻结 sensitivity；不得据此选择后续 margin。hard rescue
 仍是描述量，不事后升级为 gate。
 
@@ -131,3 +146,6 @@ clean no-harm、驾驶收益、安全或 ICCV readiness。
 对未来理论，(K_{ga}=|V_{ga}|) 是 context-dependent：当 (K_{ga}\ge2) 时，可在连通图上定义
 Laplacian 与谱隙；当 (K_{ga}=1) 时，商空间维数为 0，没有 preference supervision 或
 \(\lambda_2\)。网络必须用 ragged mask 排除该 candidate，而不是给它伪造 score/edge。
+
+无论 R1 的 one-frame outcome 为 GO/HOLD/STOP，只要接口有效，它都不构成完整 contextual target、
+sequential policy 或最终 EPDMS 的裁决。

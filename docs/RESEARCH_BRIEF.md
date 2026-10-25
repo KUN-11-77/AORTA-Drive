@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-25 投稿版理论审核：`SCOPED_TARGET__INTEGRABLE_STAR__ROLLOUT_HISTORY`。**
+> rapidPeer 式 P0 审核修正三处边界：`7/8+1/8` 只在冻结 evaluator 逐项核验的两帧候选效用层
+> 使用，不未经证明称完整 EPDMS；部署输出改为同一 native-star margin 向量，任意 challenger
+> relation 由差分得到，精确避免循环偏好；previous selected trajectory 被视为干预后的内生状态，
+> 必须分别评估 native-history、actual-selected-history 与 sequential rollout。B4R1 interface
+> invalid 仍阻断后续，但其 one-frame GO/HOLD/STOP 不再代替 contextual target 裁决。正式运行
+> 继续 HOLD。投稿版闭环见
+> `refine-logs/2026-10-25_aorta_submission_theory/AORTA_PAPER_BLUEPRINT_V1_CN.md`。
+
 > **2026-10-25 frontier novelty correction：`D_JEPA_CLOSEST_BASELINE__NOVELTY_NARROWED`。**
 > 官方 arXiv 正文审查确认，D-JEPA 已覆盖 decision-local gap、完整候选关系、native-relative bounded
 > correction、risk penalty、margin gate 与 native fallback；World4Scorer 又覆盖 outcome-grounded
@@ -259,7 +268,8 @@ AORTA-Drive 研究 NAVSIM v1/v2 上冻结端到端规划器的 source-only appea
 
 ## 6. 验收门
 
-1. **Estimand gate:** B4R1 证明合法候选域上存在非平凡 one-frame oracle ceiling；随后验证 augmented-context full target；
+1. **Estimand gate:** B4R1 先验证合法 one-frame 接口与信号；接口有效后独立核验 evaluator scope
+   并 materialize contextual target。只有 contextual oracle 也无非平凡机会才停止当前 panel；
 2. **Representation gate:** correct image necessity、未见组 relation 泛化与非坍缩同时成立；
 3. **Novelty gate:** differential-support relation 在 matched D-JEPA/World4Scorer-style 与普通 scorer 上取得可靠增量，否则删除架构创新；
 4. **Robustness gate:** NavDream 各外观上 relation/regret/false intervention 不系统性崩溃；
@@ -276,5 +286,6 @@ AORTA-Drive 研究 NAVSIM v1/v2 上冻结端到端规划器的 source-only appea
 - 旧 scalar road-margin reranker：已停止；
 - 当前 differential-support relation：反例驱动的待证候选，查新后创新范围显著收窄；
 - 最近实验门：B4R1 formal HOLD，只有用户明确授权才可运行；
-- B4R1 通过后顺序：full-target alignment → matched scorer → NavDream → 三 planner 行为 → clean no-harm → batch-1 latency；
+- B4R1 interface valid 后顺序：target-scope audit/contextual materialization → matched scorer →
+  NavDream → actual-history/sequential evaluation → 三 planner 行为 → clean no-harm → batch-1 latency；
 - 当前投稿裁定：`NOT_ICCV_READY / NOT_ORAL_READY`。

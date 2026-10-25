@@ -6,6 +6,8 @@ Each literature claim should record title, authors, year, venue, DOI/arXiv ident
 
 ## Research-positioning audits
 
+- `2026-10-25_submission_theory_source_recheck.md`: direct official-source recheck for the submission-
+  theory audit, including retrievable source hashes, implementation availability and explicit unresolved access.
 - `2026-10-25_frontier_decision_scorer_novelty_audit.md`: targeted official-source audit of D-JEPA,
   World4Scorer, iDriveVLA, ManeuverFlow, PlanWAM, GeoWAM, Expand-and-Prune and recent conformal
   driving monitors. It retires generic relation/scorer/fallback novelty and defines the matched closest-work
