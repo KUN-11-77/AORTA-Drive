@@ -54,6 +54,13 @@ arms:
     donor_from_outer_test: prohibited
     donor_same_group: prohibited
     labels_or_DINO_content_used_for_matching: false
+    descriptor: native_realized_geometry_and_legal_domain_cardinality_v1
+    matching: global_linear_sum_assignment_without_replacement
+    selection_fit_donor_pool: inner_fit
+    selection_validation_donor_pool: inner_fit
+    refit_train_donor_pool: outer_train
+    outer_test_donor_pool: outer_train
+    training_donor_visual_marginal: exact_permutation
   V2_correct:
     scene_visual: recipient_DINO
   exact_architecture_parameter_token_and_optimizer_match: true
@@ -129,6 +136,10 @@ decision:
 
 preflight:
   scientific_training: prohibited
+  panel_identity_roster:
+    path: experiments/R005/inputs/r005e2_panel_identity_roster.json
+    sha256: 7a46cd6b8aeac2887b057de96f832f4a4bd07e56f89c18fa99e1ef4196abec64
+    utility_candidate_or_visual_fields_used: false
   required:
     - outer_inner_fold_manifest_and_sha256
     - geometry_matched_donor_manifest_and_sha256

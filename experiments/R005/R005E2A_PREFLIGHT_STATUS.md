@@ -1,7 +1,7 @@
 # R005E2A outcome-free preflight status
 
 日期：2026-10-25。  
-状态：`IN_PROGRESS__CROSSFIT_MANIFEST_PASS__NO_SCIENTIFIC_TRAINING`。
+状态：`IN_PROGRESS__CROSSFIT_AND_DONOR_DESIGN_PASS__DONOR_MATERIALIZATION_PENDING__NO_SCIENTIFIC_TRAINING`。
 
 ## 已完成
 
@@ -16,10 +16,20 @@
 - R005E1B source result SHA-256在manifest中绑定为
   `7673f6fe216db7b91e90aaabc2eba48311c6432c96bbb4769691f06dda8dfd5f`；
 - 定向协议测试8项通过；连同R005E1B contextual tests共16项通过。
+- 已从冻结context roster、R005E1B identity和B4R1 panel hash提取outcome-free panel identity roster；
+  该文件不含utility、candidate score、RGB、DINO或模型输出；
+- panel identity roster：`experiments/R005/inputs/r005e2_panel_identity_roster.json`；
+- panel identity roster SHA-256：
+  `7a46cd6b8aeac2887b057de96f832f4a4bd07e56f89c18fa99e1ef4196abec64`；
+- donor算法已冻结为native几何描述子上的全局线性和分配：训练映射是跨组一一置换，validation/test
+  映射从相应训练池无放回取donor；因此训练visual token经验边际严格不变，且禁止same-group与
+  outer-test donor；
+- donor core新增11项测试；与cross-fit协议合计19项通过；strict mypy通过。
 
 ## 尚未完成，继续阻止训练
 
-1. geometry-matched mismatch donor manifest与无label、无outer-test donor证明；
+1. 在服务器672个冻结panel artifacts上物化geometry-matched mismatch donor manifest，并完成
+   hash replay、无label、无same-group、无outer-test donor与训练边际精确置换审计；
 2. runtime imported module、DINO源码/权重/preprocess/cache provenance；
 3. V0/V1/V2 scorer的ragged mask、zero-challenger、permutation、finite、seed replay测试；
 4. 三arm逐层参数完全相同、token相同、forward FLOPs比不超过1.01；

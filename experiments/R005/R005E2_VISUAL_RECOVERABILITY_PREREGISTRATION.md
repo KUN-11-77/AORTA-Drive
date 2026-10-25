@@ -84,9 +84,25 @@ FLOPs 与 V1/V2 相同。该 arm 是参数匹配的 trajectory/history-only 对�
 ### V1：geometry-matched mismatched visual control
 
 输入来自其他 recording group 的 DINO tokens。donor 只由 outer-train pool 产生，禁止来自 recipient
-outer-test fold；禁止同 recording group。匹配只使用预先可见的 candidate-independent geometry、
-ego speed、route/camera/history metadata，不使用标签、DINO内容或任何模型结果。相同 arm 在训练与
-测试中均使用冻结 donor rule，从而成为公平重训控制，而不是只在推理时制造 OOD。
+outer-test fold；禁止同 recording group。匹配只使用 native realized trajectory 的固定时刻位置、
+`sin/cos(yaw)`、步长与 yaw 增量分位数、路径长度、终点位移和合法 challenger 数；不使用标签、
+challenger outcome、RGB、DINO内容或任何模型结果。描述子逐 fold 只用相应 donor pool 的均值与标准差
+标准化，然后求解带跨组禁边的全局线性和分配，而不是逐样本贪心最近邻。
+
+inner epoch selection 使用 `inner-fit -> inner-fit` 的跨组一一置换及
+`inner-validation -> inner-fit` 的无放回矩形匹配；最终 refit/test 使用
+`outer-train -> outer-train` 的跨组一一置换及 `outer-test -> outer-train` 的无放回矩形匹配。
+因此训练错配 arm 保持 donor visual token 的经验边际分布严格不变：若 `pi` 为 donor 置换，
+
+\[
+\frac1n\sum_{i=1}^n\delta_{Z_{\pi(i)}}
+=\frac1n\sum_{i=1}^n\delta_{Z_i},
+\]
+
+同时破坏正确场景对应关系。这样 V1 的差异不能由“视觉样本重复”或“换了视觉边际分布”解释。
+测试 donor 永远只来自该 fold 的训练池；相同 arm 在训练与测试中均使用冻结 donor rule，从而成为
+公平重训控制，而不是只在推理时制造 OOD。几何匹配只能减小、不能证明消除条件分布偏移，因此仍须
+报告匹配距离分布，不能把错配下降单独解释为道路理解。
 
 ### V2：correct visual full-context probe
 

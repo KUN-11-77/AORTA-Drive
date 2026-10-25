@@ -25,6 +25,9 @@
 - Claim：输入、候选域、history与`U_ctx`可被无泄漏join。
 - Setup：42 groups、672 anchors、6-fold group cross-fit；生成fold/donor/provenance manifests。
 - Success：全部hash、membership、history、label、fold和donor合同通过；scientific metrics尚未产生。
+- Donor control：native几何描述子上求解跨组全局线性和分配；inner/outer训练映射均为visual donor
+  一一置换，validation/test donor只来自对应训练池且不重复。该设计保持训练视觉边际严格不变，
+  只破坏scene correspondence；匹配距离仍完整报告，不能假设残余分布偏移为零。
 - Failure：`INVALID_EXPERIMENT`，不训练。
 - Priority：MUST-RUN。
 
