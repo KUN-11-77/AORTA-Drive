@@ -74,6 +74,24 @@ def _state_exact(left: FullContextSetScorer, right: FullContextSetScorer) -> boo
     )
 
 
+def _nested_state_exact(left: object, right: object) -> bool:
+    if isinstance(left, Tensor) and isinstance(right, Tensor):
+        return bool(torch.equal(left.detach().cpu(), right.detach().cpu()))
+    if isinstance(left, dict) and isinstance(right, dict):
+        return set(left) == set(right) and all(
+            _nested_state_exact(left[key], right[key]) for key in left
+        )
+    if isinstance(left, list) and isinstance(right, list):
+        return len(left) == len(right) and all(
+            _nested_state_exact(a, b) for a, b in zip(left, right, strict=True)
+        )
+    if isinstance(left, tuple) and isinstance(right, tuple):
+        return len(left) == len(right) and all(
+            _nested_state_exact(a, b) for a, b in zip(left, right, strict=True)
+        )
+    return bool(left == right)
+
+
 def run(args: argparse.Namespace) -> dict[str, Any]:
     if args.output_directory.exists():
         raise FileExistsError(f"refusing to overwrite {args.output_directory}")
@@ -203,6 +221,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("checkpoint scalar state did not recover exactly")
     if not _state_exact(model, restored):
         raise ValueError("checkpoint model tensors did not recover exactly")
+    if not _nested_state_exact(optimizer.state_dict(), restored_optimizer.state_dict()):
+        raise ValueError("checkpoint optimizer state did not recover exactly")
     restore_batch = _to_device(first_cpu_batch, device)
     model.eval()
     restored.eval()
@@ -248,6 +268,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         ),
         "checkpoint_sha256": sha256_file(checkpoint_path),
         "checkpoint_tensor_state_exact": True,
+        "checkpoint_optimizer_state_exact": True,
         "checkpoint_forward_recovery_bit_exact": True,
         "finite_loss_and_gradients": True,
         "input_hashes": {

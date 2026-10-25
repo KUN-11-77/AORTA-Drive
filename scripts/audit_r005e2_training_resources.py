@@ -59,6 +59,8 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("loss/gradient finiteness did not pass")
     if result.get("checkpoint_tensor_state_exact") is not True:
         raise ValueError("checkpoint tensor recovery did not pass")
+    if result.get("checkpoint_optimizer_state_exact") is not True:
+        raise ValueError("checkpoint optimizer recovery did not pass")
     if result.get("checkpoint_forward_recovery_bit_exact") is not True:
         raise ValueError("checkpoint forward replay did not pass")
     if sha256_file(args.checkpoint) != result.get("checkpoint_sha256"):
