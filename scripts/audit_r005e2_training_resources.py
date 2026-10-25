@@ -14,7 +14,9 @@ from aorta_drive.vision.feature_cache import sha256_file
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False)
+        json.dumps(
+            payload, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False
+        )
         + "\n",
         encoding="utf-8",
     )
@@ -25,6 +27,22 @@ def _positive_finite(value: object, name: str) -> float:
     if not math.isfinite(number) or number <= 0.0:
         raise ValueError(f"{name} must be positive and finite")
     return number
+
+
+def _audit_timing_summary(values: dict[str, Any], name: str) -> None:
+    """Validate reported timing statistics without imposing false ordering.
+
+    A high cold-start outlier can make the arithmetic mean exceed the empirical
+    95th percentile.  The only universal ordering constraint among the three
+    recorded summaries is that the sample maximum cannot be below either the
+    mean or the percentile.
+    """
+
+    mean = _positive_finite(values.get("mean"), f"{name}.mean")
+    p95 = _positive_finite(values.get("p95"), f"{name}.p95")
+    maximum = _positive_finite(values.get("maximum"), f"{name}.maximum")
+    if maximum < mean or maximum < p95:
+        raise ValueError(f"{name} maximum is inconsistent")
 
 
 def audit(args: argparse.Namespace) -> dict[str, Any]:
@@ -83,13 +101,14 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     )
     for section in ("data_wait_ms", "train_step_ms"):
         values = cast(dict[str, Any], result.get(section))
-        mean = _positive_finite(values.get("mean"), f"{section}.mean")
-        p95 = _positive_finite(values.get("p95"), f"{section}.p95")
-        maximum = _positive_finite(values.get("maximum"), f"{section}.maximum")
-        if p95 < mean or maximum < p95:
-            raise ValueError(f"{section} quantile ordering is invalid")
+        _audit_timing_summary(values, section)
 
-    forbidden = {"relation_mse", "decision_regret", "oracle_recovery", "scientific_decision"}
+    forbidden = {
+        "relation_mse",
+        "decision_regret",
+        "oracle_recovery",
+        "scientific_decision",
+    }
     if forbidden & set(result):
         raise ValueError("resource result contains a scientific endpoint")
     return {
