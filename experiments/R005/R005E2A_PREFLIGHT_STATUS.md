@@ -35,16 +35,21 @@
 - audit SHA-256：`5c05ccbd320b00e0e4388300b4f23e0411f384a58e635c664abc8c902f0d519d`；
 - 可读manifest：`experiments/R005/inputs/r005e2_mismatch_donor_manifest.json`；完整压缩bundle：
   `experiments/results/R005E2A_998D85A/r005e2a_outputs.tar.gz`。
+- 通用`FullContextSetScorer`已按预注册实现：共享2-layer时序encoder、显式candidate-vs-previous
+  context fusion、无candidate位置编码的2-layer set encoder、单层candidate-to-visual cross-attention、
+  shared score head与` tanh(s_i-s_native)`输出；native margin恒为精确0；
+- 网络本地13项synthetic合同通过：ragged mask、zero challenger、challenger permutation equivariance、
+  invalid candidate/visual storage non-interference、finite backward、seed replay和loss weighting；strict mypy通过。
 
 ## 尚未完成，继续阻止训练
 
 1. runtime imported module、DINO源码/权重/preprocess/cache provenance；
-2. V0/V1/V2 scorer的ragged mask、zero-challenger、permutation、finite、seed replay测试；
-3. 三arm逐层参数完全相同、token相同、forward FLOPs比不超过1.01；
-4. 单fold资源 rehearsal 与GPU/wall/memory合同；
-5. 剩余outcome-free资格门的统一机械审计与独立复核。
+2. 在服务器真实`[1,12,18,32,1280]`视觉shape复核网络合同，并验证三arm逐层参数完全相同、
+   token相同、forward FLOPs比不超过1.01；
+3. 单fold资源 rehearsal 与GPU/wall/memory合同；
+4. 剩余outcome-free资格门的统一机械审计与独立复核。
 
-在上述五项全部关闭、配置与源码再次冻结并获得单独运行授权前，不得启动R005E2B科学训练，不得
+在上述四项全部关闭、配置与源码再次冻结并获得单独运行授权前，不得启动R005E2B科学训练，不得
 读取任何correct/mismatch/removed科学比较。
 
 首次物化尝试在任何assignment或科学指标产生前fail-closed：672个anchor中有1个经R005E1A修复的
