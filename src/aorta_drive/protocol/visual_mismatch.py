@@ -82,9 +82,9 @@ def native_geometry_descriptor(
         raise ValueError("trajectory geometry must be finite")
 
     native = poses[0]
-    sample_indices = np.rint(
-        np.linspace(0, native.shape[0] - 1, sample_count)
-    ).astype(np.int64)
+    sample_indices = np.rint(np.linspace(0, native.shape[0] - 1, sample_count)).astype(
+        np.int64
+    )
     sampled = native[sample_indices]
     sampled_features = np.column_stack(
         (
@@ -167,7 +167,10 @@ def globally_match_geometry(
         donor_matrix = np.stack([descriptor_by_key[key] for key in donor_keys])
     except KeyError as error:
         raise ValueError(f"missing geometry descriptor: {error}") from error
-    if recipient_matrix.shape[1:] != donor_matrix.shape[1:] or recipient_matrix.ndim != 2:
+    if (
+        recipient_matrix.shape[1:] != donor_matrix.shape[1:]
+        or recipient_matrix.ndim != 2
+    ):
         raise ValueError("recipient and donor descriptor shapes differ")
     if not np.isfinite(recipient_matrix).all() or not np.isfinite(donor_matrix).all():
         raise ValueError("geometry descriptors must be finite")
@@ -177,7 +180,9 @@ def globally_match_geometry(
     active = standard_deviation > standard_deviation_floor
     if not bool(active.any()):
         raise ValueError("donor geometry has no varying descriptor dimension")
-    recipient_z = (recipient_matrix[:, active] - mean[active]) / standard_deviation[active]
+    recipient_z = (recipient_matrix[:, active] - mean[active]) / standard_deviation[
+        active
+    ]
     donor_z = (donor_matrix[:, active] - mean[active]) / standard_deviation[active]
     delta = recipient_z[:, None, :] - donor_z[None, :, :]
     base_cost = np.mean(np.square(delta), axis=2)
@@ -217,7 +222,9 @@ def globally_match_geometry(
             {
                 "recipient": recipient,
                 "donor": donor,
-                "standardized_squared_distance": float(base_cost[row_index, column_index]),
+                "standardized_squared_distance": float(
+                    base_cost[row_index, column_index]
+                ),
             }
         )
     selected_donors = [str(row["donor"]) for row in rows]
@@ -238,6 +245,140 @@ def globally_match_geometry(
         "selected_donor_count": len(selected_donors),
         "selected_donors_unique": True,
         "donor_marginal_exact_permutation": require_donor_permutation,
+        "active_descriptor_dimension_count": int(active.sum()),
+        "standard_deviation_floor": standard_deviation_floor,
+        "distance_mean": float(distances.mean()),
+        "distance_p95": float(np.quantile(distances, 0.95)),
+        "distance_max": float(distances.max()),
+        "rows": rows,
+    }
+
+
+def globally_match_sensitivity(
+    recipients: Sequence[str],
+    donors: Sequence[str],
+    *,
+    descriptor_by_key: Mapping[str, np.ndarray[Any, np.dtype[np.float64]]],
+    group_by_key: Mapping[str, str],
+    mode: str,
+    salt: str,
+    require_donor_permutation: bool,
+    forbidden_edges: Sequence[tuple[str, str]] = (),
+    standard_deviation_floor: float = 1.0e-8,
+) -> dict[str, Any]:
+    """Build a frozen secondary donor assignment without outcomes or pixels.
+
+    ``disjoint_geometry`` minimizes the same standardized geometry distance as
+    the primary control after excluding every primary recipient-donor edge.
+    ``hash_random`` instead minimizes deterministic SHA-derived edge costs on
+    the same legal bipartite graph.  Geometry distance is still recorded as an
+    intervention-strength ledger, but is not used by the hash-random solver.
+    """
+
+    if mode not in {"disjoint_geometry", "hash_random"}:
+        raise ValueError("unsupported sensitivity matching mode")
+    recipient_keys = sorted(str(value) for value in recipients)
+    donor_keys = sorted(str(value) for value in donors)
+    if len(recipient_keys) != len(set(recipient_keys)):
+        raise ValueError("recipient keys must be unique")
+    if len(donor_keys) != len(set(donor_keys)):
+        raise ValueError("donor keys must be unique")
+    if not recipient_keys or len(recipient_keys) > len(donor_keys):
+        raise ValueError("donor pool must cover the nonempty recipient set")
+    if require_donor_permutation and len(recipient_keys) != len(donor_keys):
+        raise ValueError("a donor permutation requires equal set sizes")
+    if standard_deviation_floor <= 0.0:
+        raise ValueError("standard_deviation_floor must be positive")
+
+    recipient_matrix = np.stack([descriptor_by_key[key] for key in recipient_keys])
+    donor_matrix = np.stack([descriptor_by_key[key] for key in donor_keys])
+    if (
+        recipient_matrix.ndim != 2
+        or recipient_matrix.shape[1:] != donor_matrix.shape[1:]
+    ):
+        raise ValueError("recipient and donor descriptor shapes differ")
+    if not np.isfinite(recipient_matrix).all() or not np.isfinite(donor_matrix).all():
+        raise ValueError("geometry descriptors must be finite")
+    mean = donor_matrix.mean(axis=0)
+    standard_deviation = donor_matrix.std(axis=0)
+    active = standard_deviation > standard_deviation_floor
+    if not bool(active.any()):
+        raise ValueError("donor geometry has no varying descriptor dimension")
+    recipient_z = (recipient_matrix[:, active] - mean[active]) / standard_deviation[
+        active
+    ]
+    donor_z = (donor_matrix[:, active] - mean[active]) / standard_deviation[active]
+    geometry_cost = np.mean(
+        np.square(recipient_z[:, None, :] - donor_z[None, :, :]), axis=2
+    )
+    forbidden = {(str(recipient), str(donor)) for recipient, donor in forbidden_edges}
+    invalid = np.asarray(
+        [
+            [
+                group_by_key[recipient] == group_by_key[donor]
+                or (recipient, donor) in forbidden
+                for donor in donor_keys
+            ]
+            for recipient in recipient_keys
+        ],
+        dtype=np.bool_,
+    )
+    if bool(np.any(np.all(invalid, axis=1))):
+        raise ValueError("at least one recipient has no legal sensitivity donor")
+    hash_cost = np.asarray(
+        [
+            [_pair_tie_break(recipient, donor, salt) for donor in donor_keys]
+            for recipient in recipient_keys
+        ],
+        dtype=np.float64,
+    )
+    objective = geometry_cost if mode == "disjoint_geometry" else hash_cost
+    finite_max = float(np.max(objective))
+    invalid_cost = max(1.0, finite_max) * 1.0e9
+    cost = np.where(invalid, invalid_cost, objective)
+    if mode == "disjoint_geometry":
+        cost = cost + hash_cost * 1.0e-12
+    row_indices, column_indices = linear_sum_assignment(cost)
+    if len(row_indices) != len(recipient_keys):
+        raise ValueError("sensitivity assignment did not cover every recipient")
+
+    rows: list[dict[str, Any]] = []
+    for row_index, column_index in sorted(
+        zip(row_indices.tolist(), column_indices.tolist()), key=lambda pair: pair[0]
+    ):
+        if invalid[row_index, column_index]:
+            raise ValueError("sensitivity optimizer selected a forbidden edge")
+        recipient = recipient_keys[row_index]
+        donor = donor_keys[column_index]
+        rows.append(
+            {
+                "recipient": recipient,
+                "donor": donor,
+                "standardized_squared_distance": float(
+                    geometry_cost[row_index, column_index]
+                ),
+                "hash_random_cost": float(hash_cost[row_index, column_index]),
+            }
+        )
+    selected_donors = [str(row["donor"]) for row in rows]
+    if len(selected_donors) != len(set(selected_donors)):
+        raise AssertionError("sensitivity assignment reused a donor")
+    if require_donor_permutation and set(selected_donors) != set(donor_keys):
+        raise AssertionError("sensitivity training marginal is not a permutation")
+    distances = np.asarray(
+        [float(row["standardized_squared_distance"]) for row in rows], dtype=np.float64
+    )
+    return {
+        "matching_method": mode,
+        "matching_inputs": "native_geometry_and_group_identity_only",
+        "labels_images_dino_or_model_outputs_used": False,
+        "recipient_count": len(recipient_keys),
+        "donor_pool_count": len(donor_keys),
+        "selected_donor_count": len(selected_donors),
+        "selected_donors_unique": True,
+        "donor_marginal_exact_permutation": require_donor_permutation,
+        "primary_edges_forbidden": mode == "disjoint_geometry",
+        "forbidden_primary_edge_count": len(forbidden),
         "active_descriptor_dimension_count": int(active.sum()),
         "standard_deviation_floor": standard_deviation_floor,
         "distance_mean": float(distances.mean()),
