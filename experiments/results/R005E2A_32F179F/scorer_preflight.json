@@ -1,0 +1,68 @@
+{
+  "all_outputs_finite": true,
+  "batch_size": 1,
+  "candidate_count": 7,
+  "claim_boundary": "Synthetic scorer-only compute qualification; excludes frozen DINO backbone, data loading, scientific training, visual recoverability, and driving utility.",
+  "cublas_workspace_config": ":4096:8",
+  "cuda_version": "11.8",
+  "development_calibration_test_navdream_target_accessed": false,
+  "device": "cuda",
+  "flops": {
+    "V0_removed": 7623183799,
+    "V1_mismatch": 7623183799,
+    "V2_correct": 7623183799
+  },
+  "flops_ratio": 1.0,
+  "gpu_name": "NVIDIA GeForce RTX 3090",
+  "inference_replay_bit_exact": true,
+  "latency_scorer_only": {
+    "V0_removed": {
+      "maximum_ms": 18.30905000679195,
+      "mean_ms": 15.996238787192851,
+      "p50_ms": 15.748354024253786,
+      "p95_ms": 16.974557482171804
+    },
+    "V1_mismatch": {
+      "maximum_ms": 17.323759151622653,
+      "mean_ms": 15.643047890625894,
+      "p50_ms": 15.353871509432793,
+      "p95_ms": 17.157334252260625
+    },
+    "V2_correct": {
+      "maximum_ms": 16.202599043026567,
+      "mean_ms": 15.535963734146208,
+      "p50_ms": 15.379565535113215,
+      "p95_ms": 16.12264139112085
+    }
+  },
+  "mixed_precision": true,
+  "native_margin_exact_zero": true,
+  "parameter_counts": {
+    "V0_removed": 4749313,
+    "V1_mismatch": 4749313,
+    "V2_correct": 4749313
+  },
+  "parameter_ratio": 1.0,
+  "peak_memory_bytes": {
+    "V0_removed": 244919296,
+    "V1_mismatch": 244919296,
+    "V2_correct": 244919296
+  },
+  "python_version": "3.10.18",
+  "runner_source_sha256": "5a608eaad344f3358391f9a2bdf093e984744472d0a2fe7c901c0af28a4b0167",
+  "schema": "aorta.r005e2.full_context_scorer.preflight.v1",
+  "scientific_metrics_emitted": false,
+  "scorer_source_sha256": "4a98a6f760b3fe3040e1d023d8d0105fd58760b9fdb3d062d2be2614936e60e9",
+  "seed": 20261025,
+  "status": "PASS",
+  "torch_version": "2.7.1+cu118",
+  "trajectory_sample_count": 41,
+  "visual_shape": [
+    1,
+    12,
+    18,
+    32,
+    1280
+  ],
+  "visual_token_count": 6912
+}

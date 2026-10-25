@@ -40,16 +40,22 @@
   shared score head与` tanh(s_i-s_native)`输出；native margin恒为精确0；
 - 网络本地13项synthetic合同通过：ragged mask、zero challenger、challenger permutation equivariance、
   invalid candidate/visual storage non-interference、finite backward、seed replay和loss weighting；strict mypy通过。
+- 服务器真实shape scorer preflight通过：V0/V1/V2逐层同构，均为4,749,313参数、6,912 visual
+  tokens和7,623,183,799 profiler FLOPs，parameter/FLOPs ratio均为`1.0`；
+- RTX 3090、BF16、batch-1的scorer-only P95为V0 `16.97ms`、V1 `17.16ms`、V2
+  `16.12ms`，三臂peak allocated memory均约245MB；同输入推理bit-exact、native margin精确0；
+- 独立审计绑定scorer/runner source、可解析配置、真实shape、参数、FLOPs、确定性和sealed-role边界并PASS；
+  result SHA-256 `cf0f158b...620c1f`，audit SHA-256 `ad80ff97...532141`；
+- 完整记录：`experiments/results/R005E2A_32F179F/`。scorer-only延迟不含DINO、I/O、训练backward或
+  完整系统仲裁，不得升级为实时系统主张。
 
 ## 尚未完成，继续阻止训练
 
 1. runtime imported module、DINO源码/权重/preprocess/cache provenance；
-2. 在服务器真实`[1,12,18,32,1280]`视觉shape复核网络合同，并验证三arm逐层参数完全相同、
-   token相同、forward FLOPs比不超过1.01；
-3. 单fold资源 rehearsal 与GPU/wall/memory合同；
-4. 剩余outcome-free资格门的统一机械审计与独立复核。
+2. 单fold训练资源rehearsal、data-loader吞吐、backward显存、断点恢复与wall-time合同；
+3. 剩余outcome-free资格门的统一机械审计与独立复核。
 
-在上述四项全部关闭、配置与源码再次冻结并获得单独运行授权前，不得启动R005E2B科学训练，不得
+在上述三项全部关闭、配置与源码再次冻结并获得单独运行授权前，不得启动R005E2B科学训练，不得
 读取任何correct/mismatch/removed科学比较。
 
 首次物化尝试在任何assignment或科学指标产生前fail-closed：672个anchor中有1个经R005E1A修复的
@@ -59,4 +65,6 @@ replacement panel，不在原H7BS1单一artifact root。该失败不改变fold�
 
 首次真实shape GPU演练在输出前被deterministic-algorithm gate拒绝：CuBLAS workspace未在进程启动前
 冻结。未产生resource结果或科学指标。协议保持deterministic模式，新增硬门
-`CUBLAS_WORKSPACE_CONFIG=:4096:8`；禁止通过关闭确定性算法绕过。
+`CUBLAS_WORKSPACE_CONFIG=:4096:8`；禁止通过关闭确定性算法绕过。修复后提交`32f179f`已完成上述
+服务器preflight；独立审计随后发现并修复了原配置`primary_endpoints`的YAML结构错误，审计以可解析
+配置SHA `79e8a1f8...a04b`重新执行并PASS。

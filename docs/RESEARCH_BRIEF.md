@@ -308,7 +308,7 @@ scorer可能同样有效，同时区间也可能因OOD失覆盖而全拒判。�
 - 旧视觉场 held-out mechanism：有支持，但不能回填新 relation 网络；
 - 旧 scalar road-margin reranker：已停止；
 - 当前 differential-support relation：反例驱动的待证候选，查新后创新范围显著收窄；
-- 最近实验门：R005E1A资格通过，R005E1B完成并GO到visual recoverability预注册；R005E1C因官方two-stage mapping覆盖`0/672`而fail-closed；R005E2A的6-fold cross-fit与geometry-matched mismatch donor manifest已通过primary/replay和独立机械审计（672 panels、7,392 assignments、训练视觉边际精确置换），但网络实现、DINO/cache provenance、matched compute和单fold资源门仍未闭合，因此科学训练仍未授权；
+- 最近实验门：R005E1A资格通过，R005E1B完成并GO到visual recoverability预注册；R005E1C因官方two-stage mapping覆盖`0/672`而fail-closed；R005E2A的6-fold cross-fit与geometry-matched mismatch donor manifest已通过primary/replay和独立机械审计（672 panels、7,392 assignments、训练视觉边际精确置换）；matched full-context scorer也已通过真实shape的三臂参数/FLOPs等价与scorer-only资源审计。DINO/cache provenance和单fold训练资源门仍未闭合，因此科学训练仍未授权；
 - B4R1 interface valid 后顺序：target-scope audit/contextual materialization → matched scorer →
   NavDream → actual-history/sequential evaluation → 三 planner 行为 → clean no-harm → batch-1 latency；
 - 当前投稿裁定：`NOT_ICCV_READY / NOT_ORAL_READY`。

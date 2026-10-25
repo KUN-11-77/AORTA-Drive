@@ -1,0 +1,20 @@
+{
+  "all_outputs_finite": true,
+  "claim_boundary": "Synthetic scorer-only architecture/compute/resource audit; no DINO latency, data loading, scientific training, visual recoverability, or driving claim.",
+  "config_sha256": "79e8a1f8cda626d11ad640b463e0668cebbcc86c0d263d6b57fdebf5e50da04b",
+  "deterministic_inference_replay": true,
+  "flops_gate": 1.01,
+  "flops_positive": true,
+  "flops_ratio": 1.0,
+  "native_margin_exact_zero": true,
+  "parameter_counts_exact": true,
+  "parameter_ratio": 1.0,
+  "result_sha256": "cf0f158b7e55d7497b355beb2a6e857ef1ad4e7ff309b9b40921b7981f620c1f",
+  "runtime_source_hashes_exact": true,
+  "schema": "aorta.r005e2.full_context_scorer.preflight.audit.v1",
+  "scientific_metrics_emitted": false,
+  "sealed_roles_unaccessed": true,
+  "status": "PASS",
+  "visual_shape_exact": true,
+  "visual_token_count_exact": true
+}
