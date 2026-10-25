@@ -109,11 +109,12 @@ appearance_conditions:
   semantics: geometry_preserving_controlled_photometric_stress_only
 
 primary_endpoints:
-  - equal_group_relation_MSE
-  - equal_group_decision_regret
-  - pair_sign_and_boundary_error
-  - oracle_normalized_visual_recovery
-  - correct_checkpoint_mismatch_and_removed_intervention_regret
+  metrics:
+    - equal_group_relation_MSE
+    - equal_group_decision_regret
+    - pair_sign_and_boundary_error
+    - oracle_normalized_visual_recovery
+    - correct_checkpoint_mismatch_and_removed_intervention_regret
   oracle_gain_denominator: 0.01665036604823182
 
 statistics:
