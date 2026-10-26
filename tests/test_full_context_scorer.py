@@ -7,6 +7,7 @@ from aorta_drive.models.full_context_scorer import (
     FullContextSetScorer,
     _trajectory_features,
     equal_anchor_challenger_margin_mse,
+    soft_selection_regret_loss,
 )
 
 
@@ -164,6 +165,67 @@ def test_loss_rejects_nonzero_native_margin() -> None:
     mask = torch.ones_like(predicted, dtype=torch.bool)
     with pytest.raises(ValueError, match="native"):
         equal_anchor_challenger_margin_mse(predicted, target, mask)
+
+
+def test_soft_selection_regret_prefers_the_high_utility_candidate() -> None:
+    target = torch.tensor([[0.0, 0.8, -0.2]])
+    mask = torch.ones_like(target, dtype=torch.bool)
+    aligned = soft_selection_regret_loss(
+        torch.tensor([[0.0, 0.9, -0.9]]), target, mask, temperature=0.2
+    )
+    reversed_loss = soft_selection_regret_loss(
+        torch.tensor([[0.0, -0.9, 0.9]]), target, mask, temperature=0.2
+    )
+    assert aligned.total < reversed_loss.total
+    assert torch.equal(aligned.valid_candidate_count, torch.tensor([3]))
+
+
+def test_soft_selection_regret_is_symmetric_for_exact_target_ties() -> None:
+    target = torch.tensor([[0.0, 0.7, 0.7]])
+    mask = torch.ones_like(target, dtype=torch.bool)
+    first = soft_selection_regret_loss(
+        torch.tensor([[0.0, 0.8, -0.4]]), target, mask, temperature=0.3
+    )
+    second = soft_selection_regret_loss(
+        torch.tensor([[0.0, -0.4, 0.8]]), target, mask, temperature=0.3
+    )
+    assert torch.allclose(first.per_anchor, second.per_anchor, atol=1.0e-6, rtol=0.0)
+
+
+def test_soft_selection_regret_ignores_masked_candidate_values() -> None:
+    target = torch.tensor([[0.0, 0.5, -9_999.0]])
+    mask = torch.tensor([[True, True, False]])
+    first = soft_selection_regret_loss(
+        torch.tensor([[0.0, 0.2, 9_999.0]]), target, mask, temperature=0.5
+    )
+    second = soft_selection_regret_loss(
+        torch.tensor([[0.0, 0.2, -9_999.0]]), target, mask, temperature=0.5
+    )
+    assert torch.equal(first.per_anchor, second.per_anchor)
+
+
+def test_soft_selection_regret_zero_challenger_is_exact_and_gradient_finite() -> None:
+    prediction = torch.tensor(
+        [[0.0, 0.2], [0.0, -0.3]], dtype=torch.float32, requires_grad=True
+    )
+    target = torch.tensor([[0.0, 0.0], [0.0, 0.8]])
+    mask = torch.tensor([[True, False], [True, True]])
+    loss = soft_selection_regret_loss(prediction, target, mask, temperature=0.4)
+    assert loss.per_anchor[0].item() == 0.0
+    loss.total.backward()  # type: ignore[no-untyped-call]
+    assert prediction.grad is not None
+    assert torch.isfinite(prediction.grad).all()
+    assert torch.equal(prediction.grad[0], torch.zeros(2))
+
+
+@pytest.mark.parametrize("temperature", [0.0, -1.0, float("nan"), float("inf")])
+def test_soft_selection_regret_rejects_invalid_temperature(
+    temperature: float,
+) -> None:
+    margin = torch.zeros(1, 2)
+    mask = torch.ones_like(margin, dtype=torch.bool)
+    with pytest.raises(ValueError, match="temperature"):
+        soft_selection_regret_loss(margin, margin, mask, temperature=temperature)
 
 
 def test_constructor_rejects_architecture_drift() -> None:

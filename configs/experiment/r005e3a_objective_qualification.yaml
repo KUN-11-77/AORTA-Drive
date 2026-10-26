@@ -26,6 +26,9 @@ data:
   seeds: [20261025, 20261026, 20261027]
   independent_unit: recording_group
   repeated_measures: [anchor, candidate, seed, donor_intervention]
+  crossfit_manifest_sha256: f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878
+  primary_mismatch_manifest_sha256: 9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093
+  sensitivity_manifest_sha256: 8c1f4e096dfadb683b7d1a6ddf92c256d32c33cf2ad1b6ecb29760ffbd993ce2
 
 model:
   architecture: exact_R005E2B_FullContextSetScorer

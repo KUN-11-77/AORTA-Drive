@@ -383,6 +383,16 @@ class ContextMarginLoss:
     valid_challenger_count: Tensor
 
 
+@dataclass(frozen=True)
+class SoftSelectionRegretLoss:
+    """Decision-aligned utility regret under a soft candidate selection."""
+
+    total: Tensor
+    per_anchor: Tensor
+    valid_candidate_count: Tensor
+    temperature: float
+
+
 def equal_anchor_challenger_margin_mse(
     predicted_margin: Tensor,
     target_margin: Tensor,
@@ -424,4 +434,63 @@ def equal_anchor_challenger_margin_mse(
         total=per_anchor.mean(),
         per_anchor=per_anchor,
         valid_challenger_count=count,
+    )
+
+
+def soft_selection_regret_loss(
+    predicted_margin: Tensor,
+    target_margin: Tensor,
+    candidate_mask: Tensor,
+    *,
+    temperature: float,
+) -> SoftSelectionRegretLoss:
+    """Compute anchor-equal regret for a differentiable candidate selection.
+
+    Candidate zero is the native plan and both its predicted and target margins
+    must be exact zero. Invalid candidates receive exactly zero probability. An
+    anchor containing only the native candidate therefore has exact zero loss.
+
+    This is a decision surrogate, not a proper loss for the conditional margin
+    distribution. The calculation is promoted to float32 under mixed precision
+    so that the frozen temperature retains its registered physical scale.
+    """
+
+    if (
+        predicted_margin.shape != target_margin.shape
+        or predicted_margin.shape != candidate_mask.shape
+    ):
+        raise ValueError("prediction, target, and candidate mask shapes must match")
+    if predicted_margin.ndim != 2 or candidate_mask.dtype is not torch.bool:
+        raise ValueError("margins must be rank two and candidate_mask must be boolean")
+    if not bool(candidate_mask[:, 0].all()):
+        raise ValueError("candidate zero must be valid native")
+    if not math.isfinite(temperature) or temperature <= 0.0:
+        raise ValueError("temperature must be finite and strictly positive")
+    if (
+        not torch.isfinite(predicted_margin).all()
+        or not torch.isfinite(target_margin).all()
+    ):
+        raise ValueError("margins must be finite, including masked storage")
+    if not torch.equal(
+        predicted_margin[:, 0], torch.zeros_like(predicted_margin[:, 0])
+    ):
+        raise ValueError("predicted native margin must be exact zero")
+    if not torch.equal(target_margin[:, 0], torch.zeros_like(target_margin[:, 0])):
+        raise ValueError("target native margin must be exact zero")
+
+    logits = predicted_margin.float() / temperature
+    masked_logits = logits.masked_fill(~candidate_mask, float("-inf"))
+    probabilities = torch.softmax(masked_logits, dim=1)
+    utilities = target_margin.float()
+    best_utility = utilities.masked_fill(~candidate_mask, float("-inf")).amax(dim=1)
+    expected_utility = (
+        probabilities * utilities.masked_fill(~candidate_mask, 0.0)
+    ).sum(dim=1)
+    per_anchor = best_utility - expected_utility
+    valid_candidate_count = candidate_mask.sum(dim=1)
+    return SoftSelectionRegretLoss(
+        total=per_anchor.mean(),
+        per_anchor=per_anchor,
+        valid_candidate_count=valid_candidate_count,
+        temperature=float(temperature),
     )
