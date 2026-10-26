@@ -23,6 +23,14 @@ L=\frac1{|\mathcal A|}\sum_a\frac1{|C_a|}\sum_{i\in C_a}(s_{ai}-\Delta_{ai})^2,
 总体平方风险的最优函数为`E[Δ_i|X]`，因而argmax与条件期望效用决策一致；score梯度为residual，不含
 当前soft action probability。该性质只提供统计方向，不保证有限网络、有限样本与AdamW成功。
 
+同时有逐输入桥：若`m_i=E[U_i-U_0|X]`，则预测选择的条件regret满足
+
+\[
+m_{i^*}-m_{\hat i}\le 2\|s-m\|_\infty\le2\|s-m\|_2.
+\]
+
+因此proper mean误差与决策质量存在严格联系，但平均MSE仍不能替代实际gain、near-tie与组外验证。
+
 R005E3D严格保持架构、初始化、数据、优化器、步数、精度与GPU合同不变，只替换目标。通过门要求实际
 `G_model>0`、absolute oracle capture≥10%、至少一次有益非native选择以及至少一次非native选择。
 

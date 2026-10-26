@@ -41,6 +41,9 @@ s_i^*(X)=\mathbb E[\Delta_i\mid X]
 其 argmax 与最大化候选条件期望效用一致。该结论不保证有限网络、AdamW、有限样本或14 epochs达到
 population optimum；输入权重也会改变有限函数类投影与训练动力学。本轮只资格化冻结实现。
 
+完整定理、证明、预测误差到条件decision regret的界及八类失效条件见
+`experiments/R005/R005E3D_PROPER_MEAN_THEORY_NOTE.md`。
+
 与 soft-regret 不同，其 score 梯度为 residual，不含 action-softmax probability：
 
 \[
