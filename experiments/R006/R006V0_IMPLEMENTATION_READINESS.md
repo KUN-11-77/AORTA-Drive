@@ -26,6 +26,10 @@ sealed-role与no-science-metrics共14/14审计PASS。它只资格化缓存管线
 clean且Git tree object固定；与第一次完整运行的42/42 shard hashes逐组一致，replay审计65/65 PASS。
 详见`R006V0C_FORMAL_CACHE_V2_RESULTS.md`。该结果仍然只是机械资格。
 
+每折basis discovery/inner selection运行器与独立审计器现已实现：运行器只读取28个discovery组和7个
+selection组，审计器从逐样本task-drift重新计算coverage、验证basis正交性/哈希/角色隔离，并机械复现
+唯一layer/rank选择；primary/replay必须同GPU逐字节一致。详见协议修正7。outer-confirmation仍封存。
+
 本文件只管理实现来源与机械资格，不改变 R006V0 科学问题、数据、层、rank、控制或裁决阈值。
 
 ## 已冻结
@@ -74,9 +78,10 @@ clean且Git tree object固定；与第一次完整运行的42/42 shard hashes逐
 4. ~~运行 1–2 anchors 的 identity/full-patch smoke；~~ `PASS`
 5. ~~运行一组真实 activation-cache smoke 并审计 site semantics；~~ `PASS`
 6. ~~用 smoke 的非科学耗时与真实 tensor shape 冻结正式预算；~~ `PASS: streaming batch=128`
-7. 重新生成 config/manifest SHA；
-8. 一次性执行 R006V0，不在途中读取部分科学指标。
+7. ~~冻结每折basis运行器、独立审计器与config SHA；~~ `PASS: this frozen change`
+8. 一次性执行六折basis discovery/selection primary+replay，期间不读取部分科学指标；
+9. 只有六折产生唯一稳定接口后，才实现并冻结A0–A7 outer-confirmation运行器。
 
-当前nested fold与layer/rank选择器已实现并由合成反例测试；仍缺完整 activation cache、真实JVP接入、
-全部 A0–A7 控制与运行预算 manifest；
-这些完成前，状态保持 `FORMAL_R006V0_IMPLEMENTATION_NOT_READY`。
+当前nested fold、真实JVP basis runner及其独立审计器已经实现并通过合成等价/篡改反例测试；完整缓存、
+资源预算和batch=128均已资格化。下一道门是六折basis discovery/selection；全部A0–A7 outer-confirmation
+运行器仍未实现，因而完整R006V0保持`FORMAL_R006V0_IMPLEMENTATION_NOT_READY`。
