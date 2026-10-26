@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-gradient-descent/",
+  "retrieved_at_utc": "2026-10-26T04:56:17.125275+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-gradient-descent/",
+  "status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 170795,
+  "sha256": "a1d9252fcb1104671012f7ee5b7b4d11f25d28e19bcbe6195fa6ae6b2847e53b",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\ranknet_msr.html",
+  "elapsed_seconds": 3.701,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\ranknet_msr.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\ranknet_msr.html.links.json"
+}

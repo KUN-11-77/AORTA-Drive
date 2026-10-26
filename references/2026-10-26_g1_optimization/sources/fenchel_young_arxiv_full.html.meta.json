@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://arxiv.org/html/1901.02324",
+  "retrieved_at_utc": "2026-10-26T04:56:26.405006+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://arxiv.org/html/1901.02324",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": "Mon, 24 Aug 2026 20:49:03 GMT",
+  "etag": "\"CLb4v+6RupYDEAE=\"",
+  "bytes": 1554150,
+  "sha256": "aea3497c996758376a46d7491111bd08b2adc5ee5d64833b92a0fda92f0df22b",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\fenchel_young_arxiv_full.html",
+  "elapsed_seconds": 6.074,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\fenchel_young_arxiv_full.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\fenchel_young_arxiv_full.html.links.json"
+}

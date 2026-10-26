@@ -1,0 +1,147 @@
+[2011.09468] Gradient Starvation: A Learning Proclivity in Neural Networks
+Skip to main content
+Search
+Submit
+Donate
+Log in
+Search arXiv
+Press Enter to search · Advanced search
+Computer Science > Machine Learning
+arXiv:2011.09468 (cs)
+[Submitted on 18 Nov 2020 (v1), last revised 24 Nov 2021 (this version, v4)]
+Title:Gradient Starvation: A Learning Proclivity in Neural Networks
+Authors:Mohammad Pezeshki, Sékou-Oumar Kaba, Yoshua Bengio, Aaron Courville, Doina Precup, Guillaume Lajoie
+View a PDF of the paper titled Gradient Starvation: A Learning Proclivity in Neural Networks, by Mohammad Pezeshki and 5 other authors
+View PDF
+HTML (experimental)
+Abstract:We identify and formalize a fundamental gradient descent phenomenon resulting in a learning proclivity in over-parameterized neural networks. Gradient Starvation arises when cross-entropy loss is minimized by capturing only a subset of features relevant for the task, despite the presence of other predictive features that fail to be discovered. This work provides a theoretical explanation for the emergence of such feature imbalance in neural networks. Using tools from Dynamical Systems theory, we identify simple properties of learning dynamics during gradient descent that lead to this imbalance, and prove that such a situation can be expected given certain statistical structure in training data. Based on our proposed formalism, we develop guarantees for a novel regularization method aimed at decoupling feature learning dynamics, improving accuracy and robustness in cases hindered by gradient starvation. We illustrate our findings with simple and real-world out-of-distribution (OOD) generalization experiments.
+Comments:
+Proceeding of NeurIPS 2021
+Subjects:
+Machine Learning (cs.LG); Dynamical Systems (math.DS); Machine Learning (stat.ML)
+Cite as:
+arXiv:2011.09468 [cs.LG]
+(or
+arXiv:2011.09468v4 [cs.LG] for this version)
+https://doi.org/10.48550/arXiv.2011.09468
+Focus to learn more
+arXiv-issued DOI via DataCite
+Submission history
+From: Mohammad Pezeshki [view email]
+[v1]
+Wed, 18 Nov 2020 18:52:08 UTC (15,519 KB)
+[v2]
+Mon, 23 Nov 2020 18:17:22 UTC (4,412 KB)
+[v3]
+Tue, 26 Oct 2021 01:42:31 UTC (4,384 KB)
+[v4]
+Wed, 24 Nov 2021 18:24:37 UTC (4,384 KB)
+Full-text links:
+Access Paper:
+View a PDF of the paper titled Gradient Starvation: A Learning Proclivity in Neural Networks, by Mohammad Pezeshki and 5 other authors
+View PDF
+HTML (experimental)
+TeX Source
+view license
+Additional Features
+Audio Summary
+Current browse context:
+cs.LG
+< prev
+|
+next >
+new
+|
+recent
+| 2020-11
+Change to browse by:
+cs
+math
+math.DS
+stat
+stat.ML
+References & Citations
+SciX
+Google Scholar
+Semantic Scholar
+DBLP - CS Bibliography
+listing | bibtex
+Mohammad Pezeshki
+Yoshua Bengio
+Aaron C. Courville
+Doina Precup
+Guillaume Lajoie
+export BibTeX citation
+Loading...
+BibTeX formatted citation
+×
+loading...
+Data provided by:
+Bookmark
+Bibliographic Tools
+Bibliographic and Citation Tools
+Bibliographic Explorer Toggle
+Bibliographic Explorer (What is the Explorer?)
+Connected Papers Toggle
+Connected Papers (What is Connected Papers?)
+Litmaps Toggle
+Litmaps (What is Litmaps?)
+scite.ai Toggle
+scite Smart Citations (What are Smart Citations?)
+Code, Data, Media
+Code, Data and Media Associated with this Article
+alphaXiv Toggle
+alphaXiv (What is alphaXiv?)
+Links to Code Toggle
+CatalyzeX Code Finder for Papers (What is CatalyzeX?)
+DagsHub Toggle
+DagsHub (What is DagsHub?)
+GotitPub Toggle
+Gotit.pub (What is GotitPub?)
+Huggingface Toggle
+Hugging Face (What is Huggingface?)
+ScienceCast Toggle
+ScienceCast (What is ScienceCast?)
+Demos
+Demos
+Replicate Toggle
+Replicate (What is Replicate?)
+Spaces Toggle
+Hugging Face Spaces (What is Spaces?)
+Spaces Toggle
+TXYZ.AI (What is TXYZ.AI?)
+Related Papers
+Recommenders and Search Tools
+Link to Influence Flower
+Influence Flower (What are Influence Flowers?)
+Core recommender toggle
+CORE Recommender (What is CORE?)
+IArxiv recommender toggle
+IArxiv Recommender
+(What is IArxiv?)
+Author
+Venue
+Institution
+Topic
+About arXivLabs
+arXivLabs: experimental projects with community collaborators
+arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.
+Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.
+Have an idea for a project that will add value for arXiv's community? Learn more about arXivLabs.
+Which authors of this paper are endorsers? |
+Disable MathJax (What is MathJax?)
+We gratefully acknowledge support from our major funders,
+member institutions, ,
+and all contributors.
+About ·
+Help ·
+Contact ·
+Subscribe ·
+Copyright ·
+Privacy ·
+Accessibility ·
+Operational Status (opens in new tab)
+Major funding support from
+(opens in new tab)
+(opens in new tab)
+(opens in new tab)

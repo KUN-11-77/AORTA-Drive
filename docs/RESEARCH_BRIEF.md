@@ -1,13 +1,22 @@
 # AORTA-Drive Research Brief
 
-> **2026-10-26 R005E3B：`MECHANICAL_PASS__UNSUPPORTED__FAIL_LINEAR_REALIZABILITY`。**
+> **2026-10-26 G1理论重构与R005E3C闭环：`DESCRIPTIVE_SUPPORTED__METHOD_STILL_UNPROVEN`。**
+> 第一性对象现固定为条件期望决策：学习`E[U_i-U_0|X]`并按argmax选择；hindsight oracle、Bayes
+> opportunity、函数类可实现、优化可达与组外泛化严格分层。R005E3C在560个fold-0 outer-train anchors
+> 上只读确认：236个anchors有正机会，初始化正收益raise方向94.54%，正/非正聚合参数梯度cosine
+> `-0.9999899`、范数比`2.6682`，终点正收益score-gradient衰减约`8.42e7`倍。该结果只支持局部
+> softmax-tail与梯度冲突描述，不证明唯一根因。经多候选Bayes反例审查，pairwise surrogate不再承担
+> 总体一致性桥；下一步冻结为identity+native-relative proper mean MSE的一因素R005E3D资格实验。
+> 外部实验审查为WARN（初始化原始梯度张量未归档），OOF、视觉、DQ、NavDream与行为继续HOLD。
+
+> **2026-10-26 R005E3B：`MECHANICAL_PASS__UNSUPPORTED__FAIL_FROZEN_QUALIFICATION_GATE`。**
 > 单因素删除最终`tanh`后，fold0×seed20261025 outer-train primary/replay及强化审计全部闭合；父初始化、
 > 参数量、14 epochs/7,840 steps、温度、训练组、prediction与final state exact，封存角色未访问。但560个
 > anchors仍100%选择native，`G_model=0`、absolute oracle capture=0，C30被否定。challenger由初始化
 > `[-0.0623,-0.0276]`降至`[-2.4063,-2.3125]`，遗漏优候选score-gradient均值从`0.142925`衰减到
 > `1.6981e-9`（约`8.42e7`倍）。因此`tanh`不是充分解释；identity仍进入softmax低概率近吸收区。
-> 下一步只允许不更新权重的机会/梯度质量诊断，证据成立后才可预注册已冻结理论中的最小pairwise
-> surrogate；OOF、DQ、NavDream与行为继续HOLD。完整结果见`experiments/R005/R005E3B_RESULTS.md`。
+> 原`FAIL_LINEAR_REALIZABILITY`措辞过强：本轮只否定冻结实现与优化合同，不能否定函数类存在解。
+> 后续只读诊断已完成，详见`experiments/R005/R005E3C_RESULTS.md`；OOF、DQ、NavDream与行为继续HOLD。
 
 > **2026-10-26 R005E3A：`MECHANICAL_PASS__FROZEN_MIXED__ALL_NATIVE_COLLAPSE`。**
 > 18 primary +18 same-GPU replay全部闭合，prediction/model-state exact及所有provenance、finite、fold、

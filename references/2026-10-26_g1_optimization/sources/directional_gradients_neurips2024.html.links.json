@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://papers.nips.cc/",
+    "text": "NeurIPS Proceedings"
+  },
+  {
+    "url": "https://papers.nips.cc/admin/login/?next=/admin/",
+    "text": ""
+  },
+  {
+    "url": "https://papers.nips.cc/admin/logout/?nextp=/admin",
+    "text": ""
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2024",
+    "text": "Advances in Neural Information Processing Systems 37 (NeurIPS 2024)"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/24904-/bibtex",
+    "text": "Bibtex"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2024/file/907a9fb75a408f6c3a2ae1bf84c39e44-Paper-Conference.pdf",
+    "text": "Paper"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2024/file/907a9fb75a408f6c3a2ae1bf84c39e44-Supplemental-Conference.zip",
+    "text": "Supplemental"
+  },
+  {
+    "url": "https://doi.org/10.52202/079017-2514",
+    "text": "10.52202/079017-2514"
+  },
+  {
+    "url": "https://neurips.cc/Help/Contact?select=Conference",
+    "text": "Report an Issue"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2024/hash/907a9fb75a408f6c3a2ae1bf84c39e44-Abstract-Conference.html",
+    "text": "Name Change Policy"
+  }
+]

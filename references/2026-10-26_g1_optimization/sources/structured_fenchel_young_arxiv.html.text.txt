@@ -1,0 +1,132 @@
+[2402.08180] Online Structured Prediction with Fenchel--Young Losses and Improved Surrogate Regret for Online Multiclass Classification with Logistic Loss
+Skip to main content
+Search
+Submit
+Donate
+Log in
+Search arXiv
+Press Enter to search · Advanced search
+Computer Science > Machine Learning
+arXiv:2402.08180 (cs)
+[Submitted on 13 Feb 2024 (v1), last revised 22 Oct 2024 (this version, v3)]
+Title:Online Structured Prediction with Fenchel--Young Losses and Improved Surrogate Regret for Online Multiclass Classification with Logistic Loss
+Authors:Shinsaku Sakaue, Han Bao, Taira Tsuchiya, Taihei Oki
+View a PDF of the paper titled Online Structured Prediction with Fenchel--Young Losses and Improved Surrogate Regret for Online Multiclass Classification with Logistic Loss, by Shinsaku Sakaue and 3 other authors
+View PDF
+HTML (experimental)
+Abstract:This paper studies online structured prediction with full-information feedback. For online multiclass classification, Van der Hoeven (2020) established \emph{finite} surrogate regret bounds, which are independent of the time horizon, by introducing an elegant \emph{exploit-the-surrogate-gap} framework. However, this framework has been limited to multiclass classification primarily because it relies on a classification-specific procedure for converting estimated scores to outputs. We extend the exploit-the-surrogate-gap framework to online structured prediction with \emph{Fenchel--Young losses}, a large family of surrogate losses that includes the logistic loss for multiclass classification as a special case, obtaining finite surrogate regret bounds in various structured prediction problems. To this end, we propose and analyze \emph{randomized decoding}, which converts estimated scores to general structured outputs. Moreover, by applying our decoding to online multiclass classification with the logistic loss, we obtain a surrogate regret bound of $O(\| \mathbf{U} \|_\mathrm{F}^2)$, where $\mathbf{U}$ is the best offline linear estimator and $\| \cdot \|_\mathrm{F}$ denotes the Frobenius norm. This bound is tight up to logarithmic factors and improves the previous bound of $O(d\| \mathbf{U} \|_\mathrm{F}^2)$ due to Van der Hoeven (2020) by a factor of $d$, the number of classes.
+Subjects:
+Machine Learning (cs.LG)
+Cite as:
+arXiv:2402.08180 [cs.LG]
+(or
+arXiv:2402.08180v3 [cs.LG] for this version)
+https://doi.org/10.48550/arXiv.2402.08180
+Focus to learn more
+arXiv-issued DOI via DataCite
+Submission history
+From: Shinsaku Sakaue [view email]
+[v1]
+Tue, 13 Feb 2024 02:36:41 UTC (85 KB)
+[v2]
+Tue, 11 Jun 2024 01:46:51 UTC (73 KB)
+[v3]
+Tue, 22 Oct 2024 09:23:43 UTC (74 KB)
+Full-text links:
+Access Paper:
+View a PDF of the paper titled Online Structured Prediction with Fenchel--Young Losses and Improved Surrogate Regret for Online Multiclass Classification with Logistic Loss, by Shinsaku Sakaue and 3 other authors
+View PDF
+HTML (experimental)
+TeX Source
+view license
+Additional Features
+Audio Summary
+Current browse context:
+cs.LG
+< prev
+|
+next >
+new
+|
+recent
+| 2024-02
+Change to browse by:
+cs
+References & Citations
+SciX
+Google Scholar
+Semantic Scholar
+export BibTeX citation
+Loading...
+BibTeX formatted citation
+×
+loading...
+Data provided by:
+Bookmark
+Bibliographic Tools
+Bibliographic and Citation Tools
+Bibliographic Explorer Toggle
+Bibliographic Explorer (What is the Explorer?)
+Connected Papers Toggle
+Connected Papers (What is Connected Papers?)
+Litmaps Toggle
+Litmaps (What is Litmaps?)
+scite.ai Toggle
+scite Smart Citations (What are Smart Citations?)
+Code, Data, Media
+Code, Data and Media Associated with this Article
+alphaXiv Toggle
+alphaXiv (What is alphaXiv?)
+Links to Code Toggle
+CatalyzeX Code Finder for Papers (What is CatalyzeX?)
+DagsHub Toggle
+DagsHub (What is DagsHub?)
+GotitPub Toggle
+Gotit.pub (What is GotitPub?)
+Huggingface Toggle
+Hugging Face (What is Huggingface?)
+ScienceCast Toggle
+ScienceCast (What is ScienceCast?)
+Demos
+Demos
+Replicate Toggle
+Replicate (What is Replicate?)
+Spaces Toggle
+Hugging Face Spaces (What is Spaces?)
+Spaces Toggle
+TXYZ.AI (What is TXYZ.AI?)
+Related Papers
+Recommenders and Search Tools
+Link to Influence Flower
+Influence Flower (What are Influence Flowers?)
+Core recommender toggle
+CORE Recommender (What is CORE?)
+IArxiv recommender toggle
+IArxiv Recommender
+(What is IArxiv?)
+Author
+Venue
+Institution
+Topic
+About arXivLabs
+arXivLabs: experimental projects with community collaborators
+arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.
+Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.
+Have an idea for a project that will add value for arXiv's community? Learn more about arXivLabs.
+Which authors of this paper are endorsers? |
+Disable MathJax (What is MathJax?)
+We gratefully acknowledge support from our major funders,
+member institutions, ,
+and all contributors.
+About ·
+Help ·
+Contact ·
+Subscribe ·
+Copyright ·
+Privacy ·
+Accessibility ·
+Operational Status (opens in new tab)
+Major funding support from
+(opens in new tab)
+(opens in new tab)
+(opens in new tab)

@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/",
+  "retrieved_at_utc": "2026-10-26T04:56:21.142755+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/",
+  "status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 169985,
+  "sha256": "da5eb372e54b294bafe2f18571195150a36a68ba264073db3bfe169781447d55",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\lambdarank_msr.html",
+  "elapsed_seconds": 5.028,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\lambdarank_msr.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\lambdarank_msr.html.links.json"
+}

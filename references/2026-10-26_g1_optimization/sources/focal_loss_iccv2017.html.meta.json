@@ -1,0 +1,10 @@
+{
+  "requested_url": "https://openaccess.thecvf.com/content_ICCV_2017/html/Lin_Focal_Loss_for_ICCV_2017_paper.html",
+  "retrieved_at_utc": "2026-10-26T04:53:41.084956+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "error_type": "HTTPError",
+  "error": "HTTP Error 404: Not Found",
+  "elapsed_seconds": 0.852,
+  "status": 404
+}

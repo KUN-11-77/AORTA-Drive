@@ -1,0 +1,8 @@
+{
+  "task": "experiment-audit",
+  "reviewer_model": "gpt-6-astra",
+  "date": "2026-10-26",
+  "experiment": "R005E3C-gradient-mass-diagnostic-v1",
+  "verdict": "WARN",
+  "trace_note": "Cross-model audit summary preserved with exact model identity and actionable findings."
+}

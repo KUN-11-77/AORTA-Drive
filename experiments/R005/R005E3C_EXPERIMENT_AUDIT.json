@@ -1,0 +1,24 @@
+{
+  "schema": "aorta.experiment_audit.v1",
+  "experiment": "R005E3C-gradient-mass-diagnostic-v1",
+  "reviewer_model": "gpt-6-astra",
+  "date": "2026-10-26",
+  "overall": "WARN",
+  "checks": {
+    "ground_truth": "PASS_SCOPED_EVALUATOR_DERIVED_PROXY",
+    "score_normalization": "PASS",
+    "result_authenticity": "PASS_WITH_ARCHIVE_LIMITATION",
+    "provenance": "WARN_ORIGINAL_AUDITOR_STRENGTHENED_BY_V2",
+    "scope": "PASS_FOR_READ_ONLY_DIAGNOSTIC_ONLY"
+  },
+  "independently_recomputed": [
+    "final_score_diagnostics",
+    "count_arithmetic",
+    "primary_replay_logical_exactness"
+  ],
+  "not_independently_recomputable_from_compact_archive": [
+    "initial_predictions",
+    "initial_parameter_gradient_tensors"
+  ],
+  "claim_boundary": "source-fit fold-0 outer-train descriptive optimization diagnostic only"
+}

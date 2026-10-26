@@ -1,0 +1,138 @@
+[2405.02612] Learning Linear Utility Functions From Pairwise Comparison Queries
+Skip to main content
+Search
+Submit
+Donate
+Log in
+Search arXiv
+Press Enter to search · Advanced search
+Computer Science > Machine Learning
+arXiv:2405.02612 (cs)
+[Submitted on 4 May 2024 (v1), last revised 19 Jun 2024 (this version, v3)]
+Title:Learning Linear Utility Functions From Pairwise Comparison Queries
+Authors:Luise Ge, Brendan Juba, Yevgeniy Vorobeychik
+View a PDF of the paper titled Learning Linear Utility Functions From Pairwise Comparison Queries, by Luise Ge and 2 other authors
+View PDF
+HTML (experimental)
+Abstract:We study learnability of linear utility functions from pairwise comparison queries. In particular, we consider two learning objectives. The first objective is to predict out-of-sample responses to pairwise comparisons, whereas the second is to approximately recover the true parameters of the utility function. We show that in the passive learning setting, linear utilities are efficiently learnable with respect to the first objective, both when query responses are uncorrupted by noise, and under Tsybakov noise when the distributions are sufficiently "nice". In contrast, we show that utility parameters are not learnable for a large set of data distributions without strong modeling assumptions, even when query responses are noise-free. Next, we proceed to analyze the learning problem in an active learning setting. In this case, we show that even the second objective is efficiently learnable, and present algorithms for both the noise-free and noisy query response settings. Our results thus exhibit a qualitative learnability gap between passive and active learning from pairwise preference queries, demonstrating the value of the ability to select pairwise queries for utility learning.
+Comments:
+Submitted to ECAI for review
+Subjects:
+Machine Learning (cs.LG); Artificial Intelligence (cs.AI); Computers and Society (cs.CY); Machine Learning (stat.ML)
+Cite as:
+arXiv:2405.02612 [cs.LG]
+(or
+arXiv:2405.02612v3 [cs.LG] for this version)
+https://doi.org/10.48550/arXiv.2405.02612
+Focus to learn more
+arXiv-issued DOI via DataCite
+Submission history
+From: Luise Ge [view email]
+[v1]
+Sat, 4 May 2024 08:43:45 UTC (156 KB)
+[v2]
+Tue, 7 May 2024 22:49:14 UTC (156 KB)
+[v3]
+Wed, 19 Jun 2024 17:08:13 UTC (157 KB)
+Full-text links:
+Access Paper:
+View a PDF of the paper titled Learning Linear Utility Functions From Pairwise Comparison Queries, by Luise Ge and 2 other authors
+View PDF
+HTML (experimental)
+TeX Source
+view license
+Additional Features
+Audio Summary
+Current browse context:
+cs.LG
+< prev
+|
+next >
+new
+|
+recent
+| 2024-05
+Change to browse by:
+cs
+cs.AI
+cs.CY
+stat
+stat.ML
+References & Citations
+SciX
+Google Scholar
+Semantic Scholar
+export BibTeX citation
+Loading...
+BibTeX formatted citation
+×
+loading...
+Data provided by:
+Bookmark
+Bibliographic Tools
+Bibliographic and Citation Tools
+Bibliographic Explorer Toggle
+Bibliographic Explorer (What is the Explorer?)
+Connected Papers Toggle
+Connected Papers (What is Connected Papers?)
+Litmaps Toggle
+Litmaps (What is Litmaps?)
+scite.ai Toggle
+scite Smart Citations (What are Smart Citations?)
+Code, Data, Media
+Code, Data and Media Associated with this Article
+alphaXiv Toggle
+alphaXiv (What is alphaXiv?)
+Links to Code Toggle
+CatalyzeX Code Finder for Papers (What is CatalyzeX?)
+DagsHub Toggle
+DagsHub (What is DagsHub?)
+GotitPub Toggle
+Gotit.pub (What is GotitPub?)
+Huggingface Toggle
+Hugging Face (What is Huggingface?)
+ScienceCast Toggle
+ScienceCast (What is ScienceCast?)
+Demos
+Demos
+Replicate Toggle
+Replicate (What is Replicate?)
+Spaces Toggle
+Hugging Face Spaces (What is Spaces?)
+Spaces Toggle
+TXYZ.AI (What is TXYZ.AI?)
+Related Papers
+Recommenders and Search Tools
+Link to Influence Flower
+Influence Flower (What are Influence Flowers?)
+Core recommender toggle
+CORE Recommender (What is CORE?)
+IArxiv recommender toggle
+IArxiv Recommender
+(What is IArxiv?)
+Author
+Venue
+Institution
+Topic
+About arXivLabs
+arXivLabs: experimental projects with community collaborators
+arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.
+Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.
+Have an idea for a project that will add value for arXiv's community? Learn more about arXivLabs.
+Which authors of this paper are endorsers? |
+Disable MathJax (What is MathJax?)
+We gratefully acknowledge support from our major funders,
+member institutions, ,
+and all contributors.
+About ·
+Help ·
+Contact ·
+Subscribe ·
+Copyright ·
+Privacy ·
+Accessibility ·
+Operational Status (opens in new tab)
+Major funding support from
+(opens in new tab)
+(opens in new tab)
+(opens in new tab)

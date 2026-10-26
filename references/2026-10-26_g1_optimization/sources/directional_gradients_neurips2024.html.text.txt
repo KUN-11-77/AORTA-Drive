@@ -1,0 +1,18 @@
+Decision-Focused Learning with Directional Gradients
+NeurIPS Proceedings
+Search
+Decision-Focused Learning with Directional Gradients
+Vishal Gupta, Michael Huang
+Advances in Neural Information Processing Systems 37 (NeurIPS 2024)
+Main Conference Track
+Bibtex Paper Supplemental
+Abstract
+We propose a novel family of decision-aware surrogate losses, called Perturbation Gradient (PG) losses, for the predict-then-optimize framework. These losses directly approximate the downstream decision loss and can be optimized using off-the-shelf gradient-based methods. Importantly, unlike existing surrogate losses, the approximation error of our PG losses vanishes as the number of samples grows. This implies that optimizing our surrogate loss yields a best-in-class policy asymptotically, even in misspecified settings. This is the first such result in misspecified settings and we provide numerical evidence confirming our PG losses substantively outperform existing proposals when the underlying model is misspecified and the noise is not centrally symmetric. Insofar as misspecification is commonplace in practice -- especially when we might prefer a simpler, more interpretable model -- PG losses offer a novel, theoretically justified, method for computationally tractable decision-aware learning.
+DOI
+10.52202/079017-2514
+Name Change Policy
+×
+Requests for name changes in the electronic proceedings will be accepted with no questions asked. However name changes may cause bibliographic tracking issues. Authors are asked to consider this carefully and discuss it with their co-authors prior to requesting a name change in the electronic proceedings.
+Use the "Report an Issue" link to request a name change.
+Report an Issue | Name Change Policy
+Do not remove: This comment is monitored to verify that the site is working properly

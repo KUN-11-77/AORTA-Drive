@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://www.jmlr.org/papers/v21/19-021.html",
+  "retrieved_at_utc": "2026-10-26T04:53:32.444498+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://www.jmlr.org/papers/v21/19-021.html",
+  "status": 200,
+  "content_type": "text/html",
+  "last_modified": "Mon, 26 Oct 2026 00:17:41 GMT",
+  "etag": "\"ce42c2be4ebeec1d7dab407b0f39b4ce\"",
+  "bytes": 5806,
+  "sha256": "7e50b31bb4088f6bb21229fe0dfa40484d29f4c30798f0084c94e59eec2d4d08",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\fenchel_young_jmlr.html",
+  "elapsed_seconds": 1.43,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\fenchel_young_jmlr.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\fenchel_young_jmlr.html.links.json"
+}

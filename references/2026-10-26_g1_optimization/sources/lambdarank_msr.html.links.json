@@ -1,0 +1,602 @@
+[
+  {
+    "url": "https://www.microsoft.com",
+    "text": ""
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/",
+    "text": "Research"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/publications/",
+    "text": "Publications"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/tools/",
+    "text": "Code, datasets and models"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/artificial-intelligence/",
+    "text": "Artificial intelligence"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/audio-acoustics/",
+    "text": "Audio & acoustics"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/computer-vision/",
+    "text": "Computer vision"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/graphics-and-multimedia/",
+    "text": "Graphics & multimedia"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/human-computer-interaction/",
+    "text": "Human-computer interaction"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/human-language-technologies/",
+    "text": "Human language technologies"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/search-information-retrieval/",
+    "text": "Search & information retrieval"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/data-platform-analytics/",
+    "text": "Data platforms and analytics"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/hardware-devices/",
+    "text": "Hardware & devices"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/programming-languages-software-engineering/",
+    "text": "Programming languages & software engineering"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/quantum/",
+    "text": "Quantum computing"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/security-privacy-cryptography/",
+    "text": "Security, privacy & cryptography"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/systems-and-networking/",
+    "text": "Systems & networking"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/algorithms/",
+    "text": "Algorithms"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/computational-sciences-mathematics/",
+    "text": "Mathematics"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/ecology-environment/",
+    "text": "Ecology & environment"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/economics/",
+    "text": "Economics"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/medical-health-genomics/",
+    "text": "Medical, health & genomics"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/social-sciences/",
+    "text": "Social sciences"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/technology-for-emerging-markets/",
+    "text": "Technology for emerging markets"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/academic-programs/",
+    "text": "Academic programs"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/events-conferences/",
+    "text": "Events & academic conferences"
+  },
+  {
+    "url": "https://researchforum.microsoft.com",
+    "text": "Microsoft Research Forum"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/blog",
+    "text": "Microsoft Research Blog"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/podcast/",
+    "text": "Microsoft Research Podcast"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/microsoft-research-stories/",
+    "text": "Microsoft Research Stories"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/about-microsoft-research/",
+    "text": "About Microsoft Research"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/careers/",
+    "text": "Careers & internships"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/people/",
+    "text": "People"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/news-and-awards/",
+    "text": "News & awards"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/lab/microsoft-research-ai-for-science/",
+    "text": "AI for Science"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/",
+    "text": "Asia-Pacific"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/lab/microsoft-research-cambridge/",
+    "text": "Cambridge"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/lab/catalyst-lab/",
+    "text": "Catalyst Lab"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/lab/microsoft-research-india/",
+    "text": "India"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/lab/microsoft-research-montreal/",
+    "text": "Montreal"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/lab/microsoft-research-new-england/",
+    "text": "New England"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/lab/microsoft-research-new-york/",
+    "text": "New York City"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/lab/microsoft-research-redmond/",
+    "text": "Redmond"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/labs-locations/",
+    "text": "Other research groups"
+  },
+  {
+    "url": "https://researchforum.microsoft.com",
+    "text": "Register: Research Forum"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/security",
+    "text": "Microsoft Security"
+  },
+  {
+    "url": "https://azure.microsoft.com/en-us/",
+    "text": "Azure"
+  },
+  {
+    "url": "https://dynamics.microsoft.com/en-us/",
+    "text": "Dynamics 365"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/microsoft-365/business/",
+    "text": "Microsoft 365"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/microsoft-teams/group-chat-software",
+    "text": "Microsoft Teams"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/windows-365",
+    "text": "Windows 365"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/ai?icid=DSM_AllCommercial_AI",
+    "text": "Microsoft AI"
+  },
+  {
+    "url": "https://azure.microsoft.com/en-us/solutions/space/",
+    "text": "Azure Space"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/mixed-reality/windows-mixed-reality",
+    "text": "Mixed reality"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/hololens",
+    "text": "Microsoft HoloLens"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/microsoft-viva",
+    "text": "Microsoft Viva"
+  },
+  {
+    "url": "https://azure.microsoft.com/en-us/solutions/quantum-computing/",
+    "text": "Quantum computing"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/corporate-responsibility/sustainability?icid=DSM_AllCommercial_Sustainability",
+    "text": "Sustainability"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/education",
+    "text": "Education"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/industry/automotive",
+    "text": "Automotive"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/industry/financial-services/banking",
+    "text": "Financial services"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/industry/government",
+    "text": "Government"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/industry/health/microsoft-cloud-for-healthcare",
+    "text": "Healthcare"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/industry/manufacturing/microsoft-cloud-for-manufacturing",
+    "text": "Manufacturing"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/industry/consumer-goods",
+    "text": "Retail"
+  },
+  {
+    "url": "https://partner.microsoft.com/en-US/",
+    "text": "Find a partner"
+  },
+  {
+    "url": "https://partner.microsoft.com/en-US/membership/cloud-solution-provider",
+    "text": "Become a partner"
+  },
+  {
+    "url": "https://partner.microsoft.com/en-us/membership",
+    "text": "Partner Network"
+  },
+  {
+    "url": "https://marketplace.microsoft.com?icid=DSM_AllCommercial_Marketplace&ocid=cmm3c8ee9bs",
+    "text": "Microsoft Marketplace"
+  },
+  {
+    "url": "https://www.microsoft.com/software-development-companies?icid=DSM_AllCommercial_SoftwareCompanies&ocid=cmm3c8ee9bs",
+    "text": "Software companies"
+  },
+  {
+    "url": "https://blogs.microsoft.com/",
+    "text": "Blog"
+  },
+  {
+    "url": "https://about.ads.microsoft.com/en-us?s_cid=dig-src_uhfcomm",
+    "text": "Microsoft Advertising"
+  },
+  {
+    "url": "https://developer.microsoft.com/en-us/",
+    "text": "Developer Center"
+  },
+  {
+    "url": "https://learn.microsoft.com/docs/",
+    "text": "Documentation"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/events",
+    "text": "Events"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/licensing/",
+    "text": "Licensing"
+  },
+  {
+    "url": "https://learn.microsoft.com/",
+    "text": "Microsoft Learn"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/",
+    "text": "Microsoft Research"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/sitemap",
+    "text": "View Sitemap"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/bibtex/",
+    "text": "Download BibTex"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf",
+    "text": "PDF"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/research-area/systems-and-networking/",
+    "text": "Systems and networking"
+  },
+  {
+    "url": "https://x.com/intent/follow?original_referrer=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fresearch%2Fpublication%2Ffrom-ranknet-to-lambdarank-to-lambdamart-an-overview%2F&screen_name=MSFTResearch",
+    "text": "Follow on X"
+  },
+  {
+    "url": "https://www.facebook.com/microsoftresearch/",
+    "text": "Like on Facebook"
+  },
+  {
+    "url": "https://www.linkedin.com/showcase/microsoftresearch/",
+    "text": "Follow on LinkedIn"
+  },
+  {
+    "url": "https://www.youtube.com/user/MicrosoftResearch",
+    "text": "Subscribe on Youtube"
+  },
+  {
+    "url": "https://www.instagram.com/msft_research/",
+    "text": "Follow on Instagram"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/feed/",
+    "text": "Subscribe to our RSS feed"
+  },
+  {
+    "url": "https://x.com/intent/tweet?text=From%20RankNet%20to%20LambdaRank%20to%20LambdaMART%3A%20An%20Overview&url=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fresearch%2Fpublication%2Ffrom-ranknet-to-lambdarank-to-lambdamart-an-overview%2F",
+    "text": "Share on X"
+  },
+  {
+    "url": "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fresearch%2Fpublication%2Ffrom-ranknet-to-lambdarank-to-lambdamart-an-overview%2F",
+    "text": "Share on Facebook"
+  },
+  {
+    "url": "https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fresearch%2Fpublication%2Ffrom-ranknet-to-lambdarank-to-lambdamart-an-overview%2F&title=From%20RankNet%20to%20LambdaRank%20to%20LambdaMART%3A%20An%20Overview&summary=From%20RankNet%20to%20LambdaRank%20to%20LambdaMART%3A%20An%20Overview&source=Microsoft%20Research",
+    "text": "Share on LinkedIn"
+  },
+  {
+    "url": "\n\t\t\t\t\t\t\t\t\thttp://www.reddit.com/submit?title=From%20RankNet%20to%20LambdaRank%20to%20LambdaMART%3A%20An%20Overview&url=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fresearch%2Fpublication%2Ffrom-ranknet-to-lambdarank-to-lambdamart-an-overview%2F\t\t\t\t\t\t\t\t\t",
+    "text": "Share on Reddit"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/surface/devices/surface-laptop-ultra?icid=DSM_Footer_WhatsNew_SurfaceLaptopUltra",
+    "text": "Surface Laptop Ultra"
+  },
+  {
+    "url": "https://www.microsoft.com/surface/devices/surface-pro",
+    "text": "Surface Pro"
+  },
+  {
+    "url": "https://www.microsoft.com/surface/devices/surface-laptop",
+    "text": "Surface Laptop"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/surface/devices/surface-rtx-spark-dev-box?icid=DSM_Footer_WhatsNew_SurfaceRTXSparkDevBox",
+    "text": "Surface RTX Spark Dev Box"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/copilot?icid=DSM_Footer_WhatsNew_Copilot",
+    "text": "Explore Copilot"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/microsoft-products-and-apps",
+    "text": "Explore Microsoft products"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/windows/apps-for-windows?icid=DSM_Footer_WhatsNew_Windows11apps",
+    "text": "Windows 11 apps"
+  },
+  {
+    "url": "https://account.microsoft.com/",
+    "text": "Account profile"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/download",
+    "text": "Download Center"
+  },
+  {
+    "url": "https://go.microsoft.com/fwlink/?linkid=2139749",
+    "text": "Microsoft Store support"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/store/b/returns",
+    "text": "Returns"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/store/b/order-tracking",
+    "text": "Order tracking"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/store/b/certified-refurbished-products",
+    "text": "Certified Refurbished"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/store/b/why-microsoft-store?icid=footer_why-msft-store?icid=DSM_Footer_MicrosoftStore_WhyBuy",
+    "text": "Why buy from Microsoft Store"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/store/b/payment-financing-options?icid=footer_financing_vcc",
+    "text": "Flexible Payments"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/education",
+    "text": "Microsoft in education"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/education/devices/overview",
+    "text": "Devices for education"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/education/products/teams",
+    "text": "Microsoft Teams for Education"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/education/products/microsoft-365",
+    "text": "Microsoft 365 Education"
+  },
+  {
+    "url": "https://www.microsoft.com/education/how-to-buy",
+    "text": "How to buy for your school"
+  },
+  {
+    "url": "https://education.microsoft.com/",
+    "text": "Educator training and development"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/store/b/education",
+    "text": "Deals for students and parents"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/education/ai-in-education",
+    "text": "AI for education"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/ai?icid=DSM_Footer_AI",
+    "text": "Microsoft AI"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/security",
+    "text": "Microsoft Security"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/dynamics-365",
+    "text": "Dynamics 365"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/microsoft-365/business",
+    "text": "Microsoft 365"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/power-platform",
+    "text": "Microsoft Power Platform"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/microsoft-teams/group-chat-software",
+    "text": "Microsoft Teams"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/copilot?icid=DSM_Footer_Business_Copilot",
+    "text": "Microsoft Copilot"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/store/b/business?icid=CNavBusinessStore",
+    "text": "Small Business"
+  },
+  {
+    "url": "https://azure.microsoft.com/en-us/",
+    "text": "Azure"
+  },
+  {
+    "url": "https://developer.microsoft.com/en-us/",
+    "text": "Microsoft Developer"
+  },
+  {
+    "url": "https://learn.microsoft.com/",
+    "text": "Microsoft Learn"
+  },
+  {
+    "url": "https://www.microsoft.com/software-development-companies/offers-benefits/isv-success?icid=DSM_Footer_SupportAIMarketplace&ocid=cmm3atxvn98",
+    "text": "Support for AI marketplace apps"
+  },
+  {
+    "url": "https://techcommunity.microsoft.com/",
+    "text": "Microsoft Tech Community"
+  },
+  {
+    "url": "https://marketplace.microsoft.com?icid=DSM_Footer_Marketplace&ocid=cmm3atxvn98",
+    "text": "Microsoft Marketplace"
+  },
+  {
+    "url": "https://www.microsoft.com/software-development-companies?icid=DSM_Footer_SoftwareCompanies&ocid=cmm3atxvn98",
+    "text": "Software companies"
+  },
+  {
+    "url": "https://visualstudio.microsoft.com/",
+    "text": "Visual Studio"
+  },
+  {
+    "url": "https://careers.microsoft.com/",
+    "text": "Careers"
+  },
+  {
+    "url": "https://www.microsoft.com/about",
+    "text": "About Microsoft"
+  },
+  {
+    "url": "https://news.microsoft.com/source/?icid=DSM_Footer_Company_CompanyNews",
+    "text": "Company news"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/privacy?icid=DSM_Footer_Company_Privacy",
+    "text": "Privacy at Microsoft"
+  },
+  {
+    "url": "https://www.microsoft.com/investor/default.aspx",
+    "text": "Investors"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/diversity/default?icid=DSM_Footer_Company_Diversity",
+    "text": "Diversity and inclusion"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/accessibility",
+    "text": "Accessibility"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/corporate-responsibility/sustainability?icid=DSM_Footer_Sustainability",
+    "text": "Sustainability"
+  },
+  {
+    "url": "https://aka.ms/yourcaliforniaprivacychoices",
+    "text": "Your Privacy Choices Opt-Out Icon Your Privacy Choices"
+  },
+  {
+    "url": "https://go.microsoft.com/fwlink/?linkid=2259814",
+    "text": "Consumer Health Privacy"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/sitemap1.aspx",
+    "text": "Sitemap"
+  },
+  {
+    "url": "https://support.microsoft.com/contactus",
+    "text": "Contact Microsoft"
+  },
+  {
+    "url": "https://go.microsoft.com/fwlink/?LinkId=521839",
+    "text": "Privacy"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/",
+    "text": "Manage cookies"
+  },
+  {
+    "url": "https://go.microsoft.com/fwlink/?LinkID=206977",
+    "text": "Terms of use"
+  },
+  {
+    "url": "https://go.microsoft.com/fwlink/?linkid=2196228",
+    "text": "Trademarks"
+  },
+  {
+    "url": "https://go.microsoft.com/fwlink/?linkid=2196227",
+    "text": "Safety & eco"
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/legal/compliance/recycling",
+    "text": "Recycling"
+  },
+  {
+    "url": "https://choice.microsoft.com",
+    "text": "About our ads"
+  }
+]

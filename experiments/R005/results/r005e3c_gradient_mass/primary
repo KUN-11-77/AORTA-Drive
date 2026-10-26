@@ -1,0 +1,100 @@
+{
+  "claim_boundary": "Source-fit fold-0 outer-train read-only optimization diagnostic; not OOF, scene binding, architecture, appearance, behavior, or safety evidence.",
+  "code_commit": "7bff46b89473000e6e1d329ed7f6f0a48eee78ff",
+  "completed_at_utc": "2026-10-26T05:12:17.569969+00:00",
+  "development_calibration_test_navdream_target_accessed": false,
+  "final_score_diagnostics": {
+    "anchor_count": 560,
+    "nonpositive": {
+      "count": 2612,
+      "probability_sum": 1.622049586627714e-05,
+      "score_gradient_abs_mean": 1.3628306494744045e-08,
+      "score_gradient_abs_sum": 3.5597136564271445e-05,
+      "score_gradient_sum": 3.559713628111373e-05,
+      "utility_abs_sum": 706.6269305394011,
+      "utility_sum": -706.6269305394011
+    },
+    "nonpositive_lower_direction_fraction": 0.694104134762634,
+    "opportunity_anchor_count": 236,
+    "opportunity_anchor_fraction": 0.42142857142857143,
+    "positive": {
+      "count": 623,
+      "probability_sum": 3.967732739229213e-06,
+      "score_gradient_abs_mean": 1.6980956901578879e-09,
+      "score_gradient_abs_sum": 1.0579136149683642e-06,
+      "score_gradient_sum": -1.0579136149683642e-06,
+      "utility_abs_sum": 20.748385503388704,
+      "utility_sum": 20.748385503388704
+    },
+    "positive_challenger_fraction": 0.19258114374034002,
+    "positive_raise_direction_fraction": 1.0,
+    "valid_challenger_count": 3235
+  },
+  "initial_model_state_sha256": "fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5",
+  "initial_parameter_gradient_decomposition": {
+    "anchor_count": 560,
+    "combined_parameter_gradient_norm": 1480.094970703125,
+    "nonpositive_parameter_gradient_norm": 2367.30712890625,
+    "nonpositive_to_positive_norm_ratio": 2.6682112216949463,
+    "positive_nonpositive_cosine": -0.9999898672103882,
+    "positive_parameter_gradient_norm": 887.226318359375
+  },
+  "initial_score_diagnostics": {
+    "anchor_count": 560,
+    "nonpositive": {
+      "count": 2612,
+      "probability_sum": 355.3328878130974,
+      "score_gradient_abs_mean": 0.2190387502365017,
+      "score_gradient_abs_sum": 572.1292156177425,
+      "score_gradient_sum": 234.4833088490534,
+      "utility_abs_sum": 706.6269305394011,
+      "utility_sum": -706.6269305394011
+    },
+    "nonpositive_lower_direction_fraction": 0.5022970903522205,
+    "opportunity_anchor_count": 236,
+    "opportunity_anchor_fraction": 0.42142857142857143,
+    "positive": {
+      "count": 623,
+      "probability_sum": 83.60746612116982,
+      "score_gradient_abs_mean": 0.14292450676491833,
+      "score_gradient_abs_sum": 89.04196771454411,
+      "score_gradient_sum": -87.92236281805671,
+      "utility_abs_sum": 20.748385503388704,
+      "utility_sum": 20.748385503388704
+    },
+    "positive_challenger_fraction": 0.19258114374034002,
+    "positive_raise_direction_fraction": 0.9454253611556982,
+    "valid_challenger_count": 3235
+  },
+  "input_sha256": {
+    "bundle_manifest_sha256": "f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee",
+    "config": "dbf053b488a49c618a522d8c3deb4aac7c39253451521ae42f0dd42f5288e857",
+    "crossfit_manifest_sha256": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+    "mismatch_manifest_sha256": "9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093",
+    "r005e3b_primary_predictions_sha256": "1644b2b52d0575116564ee4d49d9f830a7f1108a658bef4a8e04f71e90347c28",
+    "visual_manifest_sha256": "ac1c5a93303727e7a85a3de1b49dd031db8e8122b209a7bbf8cfe4972d8be852"
+  },
+  "model_state_unchanged": true,
+  "outer_fold": 0,
+  "physical_gpu": {
+    "name": "NVIDIA GeForce RTX 3090",
+    "physical_index": 0,
+    "uuid": "GPU-0e5bc8ea-fa1d-bd58-3df3-44acb6d3e232"
+  },
+  "runner_sha256": "627ff9e0b293cb8871d47ef745e81dbf442c28887694e28dc11fd1d85b87b219",
+  "schema": "aorta.r005e3b.gradient_mass_diagnostic.v1",
+  "seed": 20261025,
+  "status": "COMPLETED",
+  "temperature": 0.125,
+  "temperature_ledger": {
+    "even_count_median": "arithmetic_mean_of_two_central_order_statistics",
+    "gap_count": 2208,
+    "maximum_gap": 1.0000000291620381,
+    "minimum_gap": 2.505545353415073e-06,
+    "ordered_gap_float64_sha256": "9e0565331d2658a10865e7d3c4fb44865e6352ca83f5e17f13b44e6ed58c28f8",
+    "rule": "outer_train_strictly_positive_best_minus_candidate_gap_median",
+    "source_bundle_index_sha256": "08aa8af17cd1e391bdb76f9aea682596721dd57f7779b746150e98cfd62b80ca",
+    "tie_tolerance": 1e-12
+  },
+  "weights_updated": false
+}

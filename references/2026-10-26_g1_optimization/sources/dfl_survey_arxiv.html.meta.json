@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://arxiv.org/abs/2307.13565",
+  "retrieved_at_utc": "2026-10-26T04:53:39.662778+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://arxiv.org/abs/2307.13565",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": "Mon, 24 Aug 2026 20:40:39 GMT",
+  "etag": null,
+  "bytes": 45452,
+  "sha256": "a9360673dc300a596fbb64cc8f642335d98545a37ef53526921a4aa101acaf05",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\dfl_survey_arxiv.html",
+  "elapsed_seconds": 1.067,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\dfl_survey_arxiv.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\dfl_survey_arxiv.html.links.json"
+}

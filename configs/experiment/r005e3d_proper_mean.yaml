@@ -1,0 +1,81 @@
+experiment_id: R005E3D-proper-mean-qualification-v1
+date: 2026-10-26
+status: implementation_qualified_pending_commit_and_server_preflight
+parent:
+  matched_control: R005E3B
+  matched_control_result_sha256: 36cfa2482b26e0fb1ad068c3a2f42973b72b03d4c094a2eaa18cf070e4acaf38
+  budget_source: R005E3A_fold0_seed20261025
+  budget_source_result_sha256: 2799a780448ce5230ced6ddacf8e691ffb476070c9e2af6f4bf539b6802b3173
+scope: source_fit_fold0_outer_train_optimization_qualification_only
+data:
+  allowed: source_fit_outer_train
+  outer_fold: 0
+  seed: 20261025
+  bundle_manifest_sha256: f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee
+  crossfit_manifest_sha256: f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878
+  mismatch_manifest_sha256: 9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093
+  visual_manifest_sha256: ac1c5a93303727e7a85a3de1b49dd031db8e8122b209a7bbf8cfe4972d8be852
+  parent_fold0_seed20261025_result_sha256: 2799a780448ce5230ced6ddacf8e691ffb476070c9e2af6f4bf539b6802b3173
+  r005e3b_control_result_sha256: 36cfa2482b26e0fb1ad068c3a2f42973b72b03d4c094a2eaa18cf070e4acaf38
+  prohibited: [outer_test_scientific_claim, development, calibration, test, NavDream, target_domain]
+treatment:
+  only_change: training_objective
+  control_objective: soft_selection_regret
+  treatment_objective: native_relative_mean_squared_error
+  output_activation: identity
+  native_score: exact_zero
+  hard_choice_tie_break: first_valid_index_native_first
+loss_reduction:
+  anchor: equal
+  challenger_within_anchor: equal
+  zero_challenger_anchor: zero_contribution_retained_in_anchor_denominator
+  utility_or_label_dependent_weighting: prohibited
+  oversampling: prohibited
+frozen:
+  architecture: exact_R005E3B
+  parameter_count: 4749313
+  initialization_sha256: fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5
+  visual_arm: V2_correct
+  candidate_history_target_mask: exact_R005E3B
+  optimizer: AdamW
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  learning_rate_schedule: exact_R005E3B
+  batch_size: 1
+  data_order: exact_parent_seeded_outer_train_order
+  selected_epoch: 14
+  optimizer_step_count: 7840
+  precision: bfloat16_autocast
+primary_metrics:
+  - mean_gain_over_native
+  - mean_oracle_gain_over_native
+  - mean_hard_regret
+  - absolute_oracle_capture
+  - native_choice_fraction
+  - beneficial_harmful_neutral_nonnative_counts
+  - relation_mse
+  - score_distribution
+thresholds:
+  minimum_absolute_oracle_capture: 0.10
+  mean_gain_over_native_strictly_positive: true
+  minimum_beneficial_nonnative_count: 1
+  minimum_nonnative_choice_count: 1
+gates:
+  pass: PASS_PROPER_MEAN_OUTER_TRAIN_QUALIFICATION
+  fail: FAIL_FROZEN_QUALIFICATION_GATE
+  invalid: INVALID
+failure_reporting:
+  - NO_POSITIVE_GAIN
+  - POSITIVE_BUT_BELOW_CAPTURE_GATE
+  - NO_BENEFICIAL_NONNATIVE_SELECTION
+  - NO_NONNATIVE_SELECTION
+unlock:
+  pass: preregister_job_level_group_heldout_confirmation_only
+  fail: report_each_failed_endpoint_without_exclusive_causal_attribution
+claim_boundary:
+  - training_domain_optimization_qualification_only
+  - not_visual_information_increment
+  - not_group_heldout_generalization
+  - not_Differential_Query
+  - not_appearance_robustness
+  - not_NavDream_behavior_or_safety

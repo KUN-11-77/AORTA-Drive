@@ -1,0 +1,1249 @@
+Gradient Starvation:A Learning Proclivity in Neural Networks
+Report GitHub Issue
+×
+Title:
+Content selection saved. Describe the issue below:
+Description:
+Submit without GitHub
+Submit in GitHub
+arXiv is now an independent nonprofit!
+Learn more
+×
+Back to arXiv
+Why HTML?
+Report Issue
+Back to Abstract
+Download PDF
+Abstract
+1 Introduction
+2 Gradient Starvation: A simple example
+2.1 Consequences of Gradient Starvation
+Lack of robustness.
+Excessive invariance.
+Implicit regularization.
+3 Theoretical Results
+3.1 Problem Setup and Gradient Starvation Definition
+3.2 Training Dynamics
+3.3 Gradient Starvation Regime
+3.4 Spectral Decoupling
+4 Experiments
+4.1 Two-Moon classification and the margin
+4.2 CIFAR classification and adversarial robustness
+4.3 Colored MNIST with color bias
+4.4 CelebA with gender bias
+5 Related Work and Discussion
+On learning dynamics and Loss Choice.
+On reliance upon spurious correlations and robustness.
+On implicit bias.
+On Gradient Starvation and no free lunch theorem.
+Gradient Starvation: friend or foe?
+GS social impact
+6 Conclusion
+References
+A Further discussions
+B Experimental Details
+B.1 A Simple Experiment Summarizing the Theory
+B.2 Two-Moon Classification: Comparison with other regularization methods
+B.3 CIFAR classification
+B.4 Colored MNIST with color bias
+B.5 CelebA with gender bias: The experimental details
+B.5.1 Hyper-parameters
+B.6 Computational Resources
+C Proofs of the Theories and Lemmas
+C.1 Eq. Legendre Transformation
+C.1.1 Extension to Multi-Class
+C.2 Eq. Dual Dynamics
+C.3 Eq.
+C.4 Eq. Approximate Dynamics
+C.5 Thm. Attractive Fixed-Points
+C.6 Eq. Feature Response at Fixed-Point
+C.7 Eq. Uncoupled Case 1
+C.8 Eq. Uncoupled Case 2
+C.9 Lemma Perturbation Solution
+C.10 Thm. Gradient Starvation Regime
+C.11 Eq. Spectral Decoupling
+License: arXiv.org perpetual non-exclusive license
+arXiv:2011.09468v4 [cs.LG] 24 Nov 2021
+Gradient Starvation:
+A Learning Proclivity in Neural Networks
+Mohammad Pezeshki
+Affiliation: Mila
+Affiliation: Université de Montréal
+Sékou-Oumar Kaba
+Affiliation: Mila
+Affiliation: McGill University
+Yoshua Bengio
+Affiliation: Mila
+Affiliation: Université de Montréal
+Aaron Courville
+Affiliation: Mila
+Affiliation: Université de Montréal
+Doina Precup
+Affiliation: Mila
+Affiliation: McGill University
+Affiliation: Google DeepMindcorresponding authors:{pezeshki, guillaume.lajoie}@mila.quebec
+Guillaume Lajoie
+Affiliation: Mila
+Affiliation: Université de Montréal
+Abstract
+We identify and formalize a fundamental gradient descent phenomenon leading to a learning proclivity in over-parameterized neural networks. Gradient Starvation arises when cross-entropy loss is minimized by capturing only a subset of features relevant for the task, despite the presence of other predictive features that fail to be discovered.
+This work provides a theoretical explanation for the emergence of such feature imbalances in neural networks. Using tools from Dynamical Systems theory, we identify simple properties of learning dynamics during gradient descent that lead to this imbalance, and prove that such a situation can be expected given certain statistical structure in training data.
+Based on our proposed formalism, we develop guarantees for a novel but simple regularization method aimed at decoupling feature learning dynamics, improving accuracy and robustness in cases hindered by gradient starvation. We illustrate our findings with simple and real-world out-of-distribution (OOD) generalization experiments.
+1 Introduction
+In 1904, a horse named Hans attracted worldwide attention due to the belief that it was capable of doing arithmetic calculations (Pfungst,, 1911). Its trainer would ask Hans a question, and Hans would reply by tapping on the ground with its hoof. However, it was later revealed that the horse was only noticing subtle but distinctive signals in its trainer’s unconscious behavior, unbeknown to him, and not actually performing arithmetic.
+An analogous phenomenon has been noticed when training neural networks (Ribeiro et al.,, 2016; Zhao et al.,, 2017; Jo and Bengio,, 2017; Heinze-Deml and Meinshausen,, 2017; Belinkov and Bisk,, 2017; Baker et al.,, 2018; Gururangan et al.,, 2018; Jacobsen et al.,, 2018; Zech et al.,, 2018; Niven and Kao,, 2019; Ilyas et al.,, 2019; Brendel and Bethge,, 2019; Lapuschkin et al.,, 2019; Oakden-Rayner et al.,, 2020, e.g.). In many cases, state-of-the-art neural networks appear to focus on low-level superficial correlations, rather than more abstract and robustly informative features of interest (Beery et al.,, 2018; Rosenfeld et al.,, 2018; Hendrycks and Dietterich,, 2019; McCoy et al.,, 2019; Geirhos et al.,, 2020).
+The rationale behind this phenomenon is well known by practitioners: given strongly-correlated and fast-to-learn features in training data, gradient descent is biased towards learning them first. However, the precise conditions leading to such learning dynamics, and how one might intervene to control this feature imbalance are not entirely understood.
+Recent work aims at identifying the reasons behind this phenomenon (Valle-Pérez et al.,, 2018; Nakkiran et al.,, 2019; Cao et al.,, 2019; Nar and Sastry,, 2019; Jacobsen et al.,, 2018; Niven and Kao,, 2019; Wang et al.,, 2019; Shah et al.,, 2020; Rahaman et al.,, 2019; Xu et al., 2019b, ; Hermann and Lampinen,, 2020; Parascandolo et al.,, 2020; Ahuja et al., 2020b, ), while complementary work quantifies resulting shortcomings, including poor generalization to out-of-distribution (OOD) test data, reliance upon spurious correlations, and lack of robustness (Geirhos et al.,, 2020; McCoy et al.,, 2019; Oakden-Rayner et al.,, 2020; Hendrycks and Gimpel,, 2016; Lee et al.,, 2018; Liang et al.,, 2017; Arjovsky et al.,, 2019). However most established work focuses on squared-error loss and its particularities, where results do not readily generalize to other objective forms. This is especially problematic since for several classification applications, cross-entropy is the loss function of choice, yielding very distinct learning dynamics. In this paper, we argue that Gradient Starvation, first coined in Combes et al., (2018), is a leading cause for this feature imbalance in neural networks trained with cross-entropy, and propose a simple approach to mitigate it.
+Here we summarize our contributions:
+•
+We provide a theoretical framework to study the learning dynamics of linearized neural networks trained with cross-entropy loss in a dual space.
+•
+Using perturbation analysis, we formalize Gradient Starvation (GS) in view of the coupling between the dynamics of orthogonal directions in the feature space (Thm. 2).
+•
+We leverage our theory to introduce Spectral Decoupling (SD) (Eq. 17) and prove this simple regularizer helps to decouple learning dynamics, mitigating GS.
+•
+We support our findings with extensive empirical results on a variety of classification and adversarial attack tasks. All code and experiment details available at GitHub repository.
+In the rest of the paper, we first present a simple example to outline the consequences of GS. We then present our theoretical results before outlining a number of numerical experiments. We close with a review of related work followed by a discussion.
+2 Gradient Starvation: A simple example
+Consider a 2-D classification task with a training set consisting of two classes, as shown in Figure 1. A two-layer ReLU network with 500 hidden units is trained with cross-entropy loss for two different arrangements of the training points. The difference between the two arrangements is that, in one setting, the data is not linearly separable, but a slight shift makes it linearly separable in the other setting. This small shift allows the network to achieve a negligible loss by only learning to discriminate along the horizontal axis, ignoring the other. This contrasts with the other case, where both features contribute to the learned classification boundary, which arguably matches the data structure better.
+We observe that training longer or using different regularizers, including weight decay (Krogh and Hertz,, 1992), dropout (Srivastava et al.,, 2014), batch normalization (Ioffe and Szegedy,, 2015), as well as changing the optimization algorithm to Adam (Kingma and Ba,, 2014) or changing the network architecture or the coordinate system, do not encourage the network to learn a curved decision boundary. (See App. B for more details.)
+Figure 1: Diagram illustrating the effect of gradient starvation in a simple 2-D classification task. (a) Data is not linearly separable and the learned decision boundary is curved. (b) Data is linearly separable by a small margin (Δ=0.1\Delta=0.1). This small margin allows the network to discriminate confidently only along the horizontal axis and ignore the vertical axis. (c) Data is linearly separable as in (b). However, with the proposed Spectral decoupling (SD), a curved decision boundary with a large margin is learned. (d) Diagram shows the evolution of two of the features (Eq. 4) of the dynamics in three cases shown as dotted, dashed and solid lines. Analysis: (dotted) vs (dashed): Linear separability of the data results in an increase in z1z_{1} and a decrease (starvation) of z2z_{2}. (dashed) vs (solid): SD suppresses z1z_{1} and hence allows z2z_{2} to grow. Decision boundaries are averaged over ten runs. More experiments with common regularization methods are provided in App. B.
+We argue that this occurs because cross-entropy loss leads to gradients “starved” of information from vertical features.
+Simply put, when one feature is learned faster than the others, the gradient contribution of examples containing that feature is diminished (i.e., they are correctly processed based on that feature alone). This results in a lack of sufficient gradient signal, and hence prevents any remaining features from being learned.
+This simple mechanism has potential consequences, which we outline below.
+2.1 Consequences of Gradient Starvation
+Lack of robustness.
+In the example above, even in the right plot, the training loss is nearly zero, and the network is very confident in its predictions. However, the decision boundary is located very close to the data points. This could lead to adversarial vulnerability as well as lack of robustness when generalizing to out-of-distribution data.
+Excessive invariance.
+GS could also result in neural networks that are invariant to task-relevant changes in the input. In the example above, it is possible to obtain a data point with low probability under the data distribution, but that would still be classified with high confidence.
+Implicit regularization.
+One might argue that according to Occam’s razor, a simpler decision boundary should generalize better. In fact, if both training and test sets share the same dominant feature (in this example, the feature along the horizontal axis), GS naturally prevents the learning of less dominant features that could otherwise result in overfitting. Therefore, depending on our assumptions on the training and test distributions, GS could also act as an implicit regularizer. We provide further discussion on the implicit regularization aspect of GS in Section 5.
+3 Theoretical Results
+In this section, we study the learning dynamics of neural networks trained with cross-entropy loss. Particularly, we seek to decompose the learning dynamics along orthogonal directions in the feature space of neural networks, to provide a formal definition of GS, and to derive a simple regularization method to mitigate it.
+For analytical tractability, we make three key assumptions: (1) we study deep networks in the Neural Tangent Kernel (NTK) regime, (2) we treat a binary classification task, (3) we decompose the interaction between two features.
+In Section 4, we demonstrate our results hold beyond these simplifying assumptions, for a wide range of practical settings. All derivation details can be found in SM C.
+3.1 Problem Setup and Gradient Starvation Definition
+Let 𝒟={𝐗,𝐲}\mathcal{D}=\{\mathbf{X},\mathbf{y}\} denote a training set containing nn datapoints with dd dimensions, where, 𝐗=[𝐱1,…,𝐱n]∈ℝn×d\mathbf{X}=[\mathbf{x}_{1},...,\mathbf{x}_{n}]\in\mathbb{R}^{n\times d} and their corresponding class label 𝐲∈{−1,+1}n\mathbf{y}\in\{-1,+1\}^{n}. Also let 𝐲^​(𝐗):=f(L)​(𝐗):ℝn×d→ℝn\hat{\mathbf{y}}(\mathbf{X}):=f^{(L)}(\mathbf{X}):\mathbb{R}^{n\times d}\rightarrow\mathbb{R}^{n} represent the logits of an L-layer fully-connected neural network where each hidden layer h(l)​(x)∈ℝdlh^{(l)}(x)\in\mathbb{R}^{d_{l}} is defined as follows,
+{f(l)​(𝐱i)=𝐖(l)​h(l−1)​(𝐱i)h(l)​(𝐱i)=γdl​ξ​(f(l)​(𝐱i)),l∈{0,1,…,L},\displaystyle\begin{cases}f^{(l)}(\mathbf{x}_{i})=\mathbf{W}^{(l)}h^{(l-1)}(\mathbf{x}_{i})\\
+h^{(l)}(\mathbf{x}_{i})=\sqrt{\frac{\gamma}{d_{l}}}\xi(f^{(l)}(\mathbf{x}_{i}))\end{cases},\ l\in\{0,1,...,L\},
+(1)
+in which 𝐖(l)∈ℝdl×dl−1\mathbf{W}^{(l)}\in\mathbb{R}^{d_{l}\times d_{l-1}} is a weight matrix drawn from 𝒩⁡(0,𝐈)\mathcal{N}(0,\mathbf{I}) and γ\gamma is a scaling factor to ensure that norm of each h(l−1)h^{(l-1)} is preserved at initialization (See Du et al., 2018a () for a formal treatment). The function ξ(.)\xi(.) is also an element-wise non-linear activation function.
+Let 𝜽=concat(∪l=1Lvec(𝐖(l)))∈ℝm\mbox{\boldmath$\theta$}=\text{concat}\big(\cup_{l=1}^{L}\text{vec}(\mathbf{W}^{(l)})\big)\in\mathbb{R}^{m} be the concatenation of all vectorized weight matrices with mm as the total number of parameters. In the NTK regime Jacot et al., (2018), in the limit of infinite width, the output of the neural network can be approximated as a linear function of its parameters governed by the neural tangent random feature (NTRF) matrix Cao and Gu, (2019),
+𝚽⁡(𝐗,𝜽)=∂𝐲^​(𝐗,𝜽)∂𝜽∈ℝn×m.\displaystyle\mbox{\boldmath$\Phi$}\left(\mathbf{X},\mbox{\boldmath$\theta$}\right)=\frac{\partial\hat{\mathbf{y}}\left(\mathbf{X},\mbox{\boldmath$\theta$}\right)}{\partial\mbox{\boldmath$\theta$}}\in\mathbb{R}^{n\times m}.
+(2)
+In the wide-width regime, the NTRF changes very little during training Lee et al., (2019), and the output of the neural network can be approximated by a first order Taylor expansion around the initialization parameters 𝜽0\mbox{\boldmath$\theta$}_{0}. Setting 𝚽0≡𝚽⁡(𝐗,𝜽0)\mbox{\boldmath$\Phi$}_{0}\equiv\mbox{\boldmath$\Phi$}\left(\mathbf{X},\mbox{\boldmath$\theta$}_{0}\right) and then, without loss of generality, centering parameters and the output coordinates to their value at the initialization (𝜽𝟎\theta_{0} and 𝐲^0\hat{\mathbf{y}}_{0}), we get
+𝐲^​(𝐗,𝜽)=𝚽0​𝜽.\displaystyle\hat{\mathbf{y}}\left(\mathbf{X},\mbox{\boldmath$\theta$}\right)=\mbox{\boldmath$\Phi$}_{0}\mbox{\boldmath$\theta$}.
+(3)
+Dominant directions in the feature space as well as the parameter space are given by principal components of the NTRF matrix 𝚽0\mbox{\boldmath$\Phi$}_{0}, which are the same as those of the NTK Gram matrix (Yang and Salman,, 2019). We therefore introduce the following definition.
+Definition 1 (Features and Responses).
+Consider the singular value decomposition (SVD) of the matrix 𝐘​𝚽0=𝐔𝐒𝐕T\mathbf{Y}\mbox{\boldmath$\Phi$}_{0}=\mathbf{U}\mathbf{S}\mathbf{V}^{T}, where 𝐘=diag​(𝐲)\mathbf{Y}=\text{diag}\left(\mathbf{y}\right). The jjth feature is given by (𝐕T)j.(\mathbf{V}^{T})_{j.}. The strength of jjth feature is represented by sj=(𝐒)j​js_{j}=(\mathbf{S})_{jj}. Also, (𝐔).j(\mathbf{U})_{.j} contains the weights of this feature in all examples. A neural network’s response to a feature jj is given by zjz_{j} where,
+𝐳:=𝐔T​𝐘​𝐲^=𝐒𝐕T​𝜽.\displaystyle\mathbf{z}:=\mathbf{U}^{T}\mathbf{Y}\hat{\mathbf{y}}=\mathbf{S}\mathbf{V}^{T}\mbox{\boldmath$\theta$}.
+(4)
+In Eq. 4, the response to feature jj is the sum of the responses to every example in (𝐘​𝐲^\mathbf{Y}\hat{\mathbf{y}}) multiplied by the weight of the feature in that example (𝐔T\mathbf{U}^{T}). For example, if all elements of (𝐔).j(\mathbf{U})_{.j} are positive, it indicates a perfect correlation between this feature and class labels.
+We are now equipped to formally define GS.
+Definition 2 (Gradient Starvation).
+Recall the the model prescribed by Eq. 3. Let zj∗z_{j}^{*} denote the model’s response to feature jj at training optimum 𝛉∗\theta^{*}11
+1
+Training optimum refers to the solution to ∇𝛉ℒ​(𝛉)=0\nabla_{\mbox{\boldmath$\theta$}}\mathcal{L}(\mbox{\boldmath$\theta$})=0.. Feature ii starves the gradient for feature jj if
+d​zj∗/d⁡(si2)<0{dz^{*}_{j}}/{d(s_{i}^{2})}<0.
+This definition of GS implies that an increase in the strength of feature ii has a detrimental effect on the learning of feature jj. We now derive conditions for which learning dynamics of system 3 suffer from GS.
+3.2 Training Dynamics
+We consider the widely used ridge-regularized cross-entropy loss function,
+ℒ⁡(𝜽)=𝟏⋅log⁡[1+exp⁡(−𝐘​𝐲^)]+λ2​‖𝜽‖2,\displaystyle\mathcal{L}\left(\mbox{\boldmath$\theta$}\right)=\mathbf{1}\cdot\log\left[1+\exp\left(-\mathbf{Y}\hat{\mathbf{y}}\right)\right]+\frac{\lambda}{2}\norm{\gv{\theta}}^{2},
+(5)
+where 𝟏\mathbf{1} is a vector of size nn with all its elements equal to 1. This vector form simply represents a summation over all the elements of the vector it is multiplied to. λ∈[0,∞)\lambda\in[0,\infty) denotes the weight decay coefficient.
+Direct minimization of this loss function using the gradient descent obeys coupled dynamics and is difficult to treat directly (Combes et al.,, 2018). To overcome this problem, we call on a variational approach that leverages the Legendre transformation of the loss function. This allows tractable dynamics that can directly incorporate rates of learning in different feature directions. Following (Jaakkola and Haussler,, 1999), we note the following inequality,
+log⁡[1+exp⁡(−𝐘​𝐲^)]≥H⁡(𝜶)−𝜶⊙𝐘​𝐲^,\displaystyle\log\left[1+\exp\left(-\mathbf{Y}\hat{\mathbf{y}}\right)\right]\geq H(\mbox{\boldmath$\alpha$})-\mbox{\boldmath$\alpha$}\odot\mathbf{Y}\hat{\mathbf{y}},
+(6)
+where H⁡(𝜶)=−[𝜶​log⁡𝜶+(1−𝜶)​log⁡(1−𝜶)]H(\mbox{\boldmath$\alpha$})=-\left[\mbox{\boldmath$\alpha$}\log\mbox{\boldmath$\alpha$}+(1-\mbox{\boldmath$\alpha$})\log\left(1-\mbox{\boldmath$\alpha$}\right)\right] is Shannon’s binary entropy function, 𝜶∈(0,1)n\mbox{\boldmath$\alpha$}\in(0,1)^{n} is a variational parameter defined for each training example, and ⊙\odot denotes the element-wise vector product. Crucially, the equality holds when the maximum of r.h.s. w.r.t 𝜶\alpha is achieved at 𝜶∗=∂ℒ∂(𝐘​𝐲^)T\mbox{\boldmath$\alpha$}^{*}=\frac{\partial\mathcal{L}}{\partial(\mathbf{Y}\hat{\mathbf{y}})^{T}}, which leads to the following optimization problem,
+min𝜽ℒ​(θ)=min𝜽max𝜶​(𝟏⋅H⁡(𝜶)−𝜶​𝐘​𝐲^+λ2​‖𝜽‖2),\displaystyle\operatornamewithlimits{min}_{\mbox{\boldmath$\theta$}}\mathcal{L}\left(\theta\right)=\operatornamewithlimits{min}_{\mbox{\boldmath$\theta$}}\operatornamewithlimits{max}_{\mbox{\boldmath$\alpha$}}\left(\mathbf{1}\cdot H(\mbox{\boldmath$\alpha$})-\mbox{\boldmath$\alpha$}\mathbf{Y}\hat{\mathbf{y}}+\frac{\lambda}{2}\norm{\gv{\theta}}^{2}\right),
+(7)
+where the order of min and max can be swapped (see Lemma 3 of Jaakkola and Haussler, (1999)). Since the neural network’s output is approximated by a linear function of 𝜽\theta, the minimization can be performed analytically with an critical value 𝜽∗T=1λ​𝜶​𝐘​𝚽0\mbox{\boldmath$\theta$}^{*T}=\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{Y}\mbox{\boldmath$\Phi$}_{0}, given by a weighted sum of the training examples. This results in the following maximization problem on the dual variable, i.e., minθℒ​(θ)\operatornamewithlimits{min}_{\theta}\mathcal{L}\left(\theta\right) is equivalent to,
+min𝜽ℒ​(𝜽)=max𝜶(𝟏⋅H⁡(𝜶)−12​λ​𝜶​𝐘​𝚽0​𝚽0T​𝐘T​𝜶T).\displaystyle\operatornamewithlimits{min}_{\mbox{\boldmath$\theta$}}\mathcal{L}\left(\mbox{\boldmath$\theta$}\right)=\operatornamewithlimits{max}_{\mbox{\boldmath$\alpha$}}\left(\mathbf{1}\cdot H(\mbox{\boldmath$\alpha$})-\frac{1}{2\lambda}\mbox{\boldmath$\alpha$}\mathbf{Y}\mbox{\boldmath$\Phi$}_{0}\mbox{\boldmath$\Phi$}_{0}^{T}\mathbf{Y}^{T}\mbox{\boldmath$\alpha$}^{T}\right).
+(8)
+By applying continuous-time gradient ascent on this optimization problem, we derive an autonomous differential equation for the evolution of 𝜶\alpha, which can be written in terms of features (see Definition 1),
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+=η⁡(−log⁡(𝜶)+log⁡(𝟏−𝜶)−1λ​𝜶​𝐔𝐒2​𝐔T),\displaystyle=\eta\left(-\log{\gv{\alpha}}+\log\left(\mathbf{1}-\mbox{\boldmath$\alpha$}\right)-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\mathbf{S}^{2}\mathbf{U}^{T}\right),
+(9)
+where η\eta is the learning rate (see SM C.1 for more details).
+For this dynamical system, we see that the logarithm term acts as barriers that keep αi∈(0,1)\alpha_{i}\in(0,1). The other term depends on the matrix 𝐔𝐒2​𝐔T\mathbf{U}\mathbf{S}^{2}\mathbf{U}^{T}, which is positive definite, and thus pushes the system towards the origin and therefore drives learning.
+When λ≪sk2\lambda\ll s_{k}^{2}, where kk is an index over the singular values, the linear term dominates Eq. 9, and the fixed point is drawn closer towards the origin. Approximating dynamics with a first order Taylor expansion around the origin of the second term in Eq. 9, we get
+𝜶˙≈η⁡(−log⁡(𝜶)−1λ​𝜶​𝐔​(𝐒2+λ​𝐈)​𝐔T),\displaystyle\dot{\mbox{\boldmath$\alpha$}}\approx\eta\left(-\log{ \gv{\alpha} }-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\left(\mathbf{S}^{2}+\lambda\mathbf{I}\right)\mathbf{U}^{T}\right),
+(10)
+with stability given by the following theorem with proof in SM C.
+Theorem 1.
+Any fixed points of the system in Eq. 10 is attractive in the domain αi∈(0,1)\alpha_{i}\in(0,1).
+At the fixed point 𝜶∗\mbox{\boldmath$\alpha$}^{*}, corresponding to the optimum of Eq. 8, the feature response of the neural network is given by,
+𝐳∗=1λ​𝐒2​𝐔T​𝜶∗T.\displaystyle\mathbf{z}^{*}=\frac{1}{\lambda}\mathbf{S}^{2}\mathbf{U}^{T}\mbox{\boldmath$\alpha$}^{*T}.
+(11)
+See App. A for further discussions on the distinction between "feature space" and "parameter space".
+Below, we study how the strength of one feature could impact the response of the network to another feature which leads to GS.
+3.3 Gradient Starvation Regime
+In general, we do not expect to find an analytical solution for the dynamics of the coupled non-linear dynamical system of Eq. 10. However, there are at least two cases where a decoupled form for the dynamics allows to find an exact solution. We first introduce these cases and then study their perturbation to outline general lessons.
+1.
+If the matrix of singular values 𝐒2\mathbf{S}^{2} is proportional to the identity: This is the case where all the features have the same strength s2s^{2}. The fixed points are then given by,
+αi∗=λ​𝒲​(λ−1​s2+1)s2+λ,\displaystyle\alpha_{i}^{*}=\frac{\lambda\mathcal{W}(\lambda^{-1}s^{2}+1)}{s^{2}+\lambda},
+zj∗=s2​𝒲​(λ−1​s2+1)s2+λ​∑iui​j,\displaystyle z_{j}^{*}=\frac{s^{2}\mathcal{W}(\lambda^{-1}s^{2}+1)}{s^{2}+\lambda}\sum_{i}u_{ij},
+(12)
+where 𝒲\mathcal{W} is the Lambert W function.
+2.
+If the matrix 𝐔\mathbf{U} is a permutation matrix: This is the case in which each feature is associated with a single example only. The fixed points are then given by,
+αi∗=λ​𝒲​(λ−1​si2+1)si2+λ,\displaystyle\alpha_{i}^{*}=\frac{\lambda\mathcal{W}(\lambda^{-1}s_{i}^{2}+1)}{s_{i}^{2}+\lambda},
+zj∗=si2​𝒲​(λ−1​si2+1)si2+λ.\displaystyle z_{j}^{*}=\frac{s_{i}^{2}\mathcal{W}(\lambda^{-1}s_{i}^{2}+1)}{s_{i}^{2}+\lambda}.
+(13)
+To study a minimal case of starvation, we consider a variation of case 2 with the following assumption which implies that each feature is not associated with a single example anymore.
+Lemma 1.
+Assume 𝐔\mathbf{U} is a perturbed identity matrix (a special case of a permutation matrix) in which the off-diagonal elements are proportional to a small parameter δ>0\delta>0. Then, the fixed point of the dynamical system in Eq. 10 can be approximated by,
+𝜶∗=(1−log⁡(𝜶0∗))​[𝐀+diag​(𝜶0∗−1)]−1,\displaystyle{\mbox{\boldmath$\alpha$}}^{*}=(1-\log\left(\mbox{\boldmath$\alpha$}_{0}^{*}\right))\left[\mathbf{A}+\text{diag}\left({\mbox{\boldmath$\alpha$}_{0}^{*}}^{-1}\right)\right]^{-1},
+(14)
+where 𝐀=λ−1​𝐔​(𝐒𝟐+λ​𝐈)​𝐔T\mathbf{A}=\lambda^{-1}\mathbf{U}(\mathbf{S^{2}}+\lambda\mathbf{I})\mathbf{U}^{T} and 𝛂0∗\mbox{\boldmath$\alpha$}_{0}^{*} is the fixed point of the uncoupled system with δ=0\delta=0.
+For sake of ease of derivations, we consider the two dimensional case where,
+𝐔=(1−δ2−δδ1−δ2),\displaystyle\mathbf{U}=\begin{pmatrix}\sqrt{1-\delta^{2}}&-\delta\\
+\delta&\sqrt{1-\delta^{2}}\end{pmatrix},
+(15)
+which is equivalent to a UU matrix with two blocks
+of features with no intra-block coupling and δ\delta amount of inter-block coupling.
+Theorem 2 (Gradient Starvation Regime).
+Consider a neural network in the linear regime, trained under cross-entropy loss for a binary classification task. With definition 1, assuming coupling between features 1 and 2 as in Eq. 15 and s12>s22s_{1}^{2}>s_{2}^{2}, we have,
+d​z2∗d​s12<0,\displaystyle\frac{\mathrm{d}{z}_{2}^{*}}{\mathrm{d}s_{1}^{2}}<0,
+(16)
+which implies GS.
+While Thm. 2 outlines conditions for GS in two dimensional feature space, we note that the same rationale naturally extends to higher dimensions, where GS is defined pairwise over feature directions.
+For a classification task, Thm. 2 indicates that gradient starvation occurs when the data admits different feature strengths, and coupled learning dynamics.
+GS is thus naturally expected with cross-entropy loss. Its detrimental effects however (as outlined in Sect. 2) arise in settings with large discrepancies between feature strengths, along with network connectivity that couples these features’ directions.
+This phenomenon readily extends to multi-class settings, and we validate this case with experiments in Sect. 4.
+Next, we introduce a simple regularizer that encourages feature decoupling, thus mitigating GS by insulating strong features from weaker ones.
+3.4 Spectral Decoupling
+By tracing back the equations of the previous section, one may realize that the term UT​S2​UU^{T}S^{2}U in Eq. 9 is not diagonal in the general case, and consequently introduces coupling between αi\alpha_{i}’s and hence, between the features ziz_{i}’s.
+We would like to discourage solutions that couple features in this way.
+To that end, we introduce a simple regularizer: Spectral Decoupling (SD). SD replaces the general L2 weight decay term in Eq. 5 with an L2 penalty exclusively on the network’s logits, yielding
+ℒ⁡(𝜽)=𝟏⋅log⁡[1+exp⁡(−𝐘​𝐲^)]+λ2​‖𝐲^‖2.\displaystyle\mathcal{L}\left(\mbox{\boldmath$\theta$}\right)=\mathbf{1}\cdot\log\left[1+\exp\left(-\mathbf{Y}\hat{\mathbf{y}}\right)\right]+{\color[rgb]{0.1016,0.2617,0.1719}\frac{\lambda}{2}\norm{\hat{\v{y}}}^{2}}.
+(17)
+Repeating the same analysis steps taken above, but with SD instead of general L2 penalty, the critical value for 𝜽∗\mbox{\boldmath$\theta$}^{*} becomes 𝜽∗=1λ​𝜶𝒀𝚽0​V​𝐒−2​VT\mbox{\boldmath$\theta$}^{*}=\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mbox{\boldmath$Y$}\mbox{\boldmath$\Phi$}_{0}V\mathbf{S}^{-2}V^{T}. This new expression for 𝜽∗\mbox{\boldmath$\theta$}^{*} results in the following modification of Eq. 9,
+𝜶˙=η⁡(log⁡𝟏−𝜶𝜶−1λ​𝜶​𝐔𝐒2​𝐒−2​𝐔T)=η⁡(log⁡𝟏−𝜶𝜶−1λ​𝜶),\displaystyle\dot{\mbox{\boldmath$\alpha$}}=\eta\left(\log\frac{\mathbf{1}-\mbox{\boldmath$\alpha$}}{\mbox{\boldmath$\alpha$}}-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\mathbf{S}^{2}\mathbf{S}^{-2}\mathbf{U}^{T}\right)=\eta\left(\log\frac{\mathbf{1}-\mbox{\boldmath$\alpha$}}{\mbox{\boldmath$\alpha$}}-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\right),
+(18)
+where as earlier, log\log and division are taken element-wise on the coordinates of 𝜶\alpha.
+Note that in contrast to Eq. 9 the matrix multiplication involving UU and SS in Eq. 18 cancels out, leaving αi\alpha_{i} independent of other αj≠i\alpha_{j\neq i}’s. We point out this is true for any initial coupling, without simplifying assumptions.
+Thus, a simple penalty on output weights promotes decoupled dynamics across the dual parameter αi\alpha_{i}’s, which track learning dynamics of feature responses (see Eq. 7). Together with Thm. 2, Eq. 18 suggests SD should mitigate GS and promote balanced learning dynamics across features. We now verify this in numerical experiments. For further intuition, we provide a simple experiment, summarized in Fig. 6, where directly visualizes the primal vs. the dual dynamics as well as the effect of the proposed spectral decoupling method.
+4 Experiments
+The experiments presented here are designed to outline the presence of GS and its consequences, as well as the efficacy of our proposed regularization method to alleviate them. Consequently, we highlight that achieving state-of-the-art results is not the objective.
+For more details including the scheme for hyper-parameter tuning, see App. B.
+4.1 Two-Moon classification and the margin
+Recall the simple 2-D classification task between red and blue data points in Fig. 1.
+Fig. 1 (c) demonstrates the learned decision boundary when SD is used.
+SD leads to learning a curved decision boundary with a larger margin in the input space. See App. B for additional details and experiments.
+4.2 CIFAR classification and adversarial robustness
+To study the classification margin in deeper networks, we conduct a classification experiment on CIFAR-10, CIFAR-100, and CIFAR-2 (cats vs dogs of CIFAR-10) (Krizhevsky et al.,, 2009) using a convolutional network with ReLU non-linearity.
+Unlike linear models, the margin to a non-linear decision boundary cannot be computed analytically. Therefore, following the approach in Nar et al., (2019), we use "the norm of input-disturbance required to cross the decision boundary" as a proxy for the margin.
+The disturbance on the input is computed by projected gradient descent (PGD) (Rauber et al.,, 2017), a well-known adversarial attack.
+Table 1: Table compares adversarial robustness of ERM (vanilla cross-entropy) vs SD with a CNN trained on CIFAR-2, 10, and 100 (setup of Nar et al., (2019)). SD consistently achieves a better OOD performance.
+Figure 2: The plot shows the cumulative distribution function (CDF) of the margin for the CIFAR-2 binary classification. SD appears to improve the margin considerably.
+Table 1 includes the results for IID (original test set) and OOD (perturbed test set by ϵPGD=0.05\epsilon_{\text{PGD}}=0.05). Fig. 2 shows the percentange of mis-classifications as the norm of disturbance is increased for the Cifar-2 dataset. This plot can be interpreted as the cumulative distribution function (CDF) of the margin and hence a lower curve reads as a more robust network with a larger margin. This experiment suggests that when trained with vanilla cross-entropy, even slight disturbances in the input deteriorates the network’s classification accuracy. That is while spectral decoupling (SD) improves the margin considerably. Importantly, this improvement in robustness does not seem to compromise the noise-free test performance. It should also be highlighted that SD does not explicitly aim at maximizing the margin and the observed improvement is in fact a by-product of decoupled learning of latent features.
+See Section 5 for a discussion on why cross-entropy results in a poor margin while being considered a max-margin classifier in the literature (Soudry et al.,, 2018).
+4.3 Colored MNIST with color bias
+We conduct experiments on the Colored MNIST Dataset, proposed in Arjovsky et al., (2019). The task is to predict binary labels y=−1y=-1 for digits 0 to 4 and y=+1y=+1 for digits 5 to 9. A color channel (red, green) is artificially added to each example to deliberately impose a spurious correlation between the color and the label. The task has three environments:
+•
+Training env. 1: Color is correlated with the labels with 0.9 probability.
+•
+Training env. 2: Color is correlated with the labels with 0.8 probability.
+•
+Testing env.: Color is correlated with the labels with 0.1 probability (0.9 reversely correlated).
+Because of the opposite correlation between the color and the label in the test set, only learning to classify based on color would be disastrous at testing. For this reason, Empirical Risk Minimization (ERM) performs very poorly on the test set (23.7 % accuracy) as shown in Tab. 2.
+Method
+Train Accuracy
+Test Accuracy
+ERM (Vanilla Cross-Entropy)
+91.1 % (±\pm0.4)
+23.7 % (±\pm0.8)
+REx (Krueger et al.,, 2020)
+71.5 % (±\pm1.0)
+68.7 % (±\pm0.9)
+IRM (Arjovsky et al.,, 2019)
+70.5 % (±\pm0.6)
+67.1 % (±\pm1.4)
+SD (this work)
+70.0 % (±\pm0.9)
+68.4 % (±\pm1.2)
+Oracle - (grayscale images)
+73.5 % (±\pm0.2)
+73.0 % (±\pm0.4)
+Random Guess
+50 %
+50 %
+Table 2:
+Test accuracy on test examples of the Colored MNIST after training for 1k epochs. The standard deviation over 10 runs is reported in parenthesis. ERM stands for the empirical risk minimization. Oracle is an ERM trained on grayscale images. Note that due to 25 % label noise, a hypothetical optimum achieves 75 % accuracy (the upper bound).
+Invariant Risk Minimization (IRM) (Arjovsky et al.,, 2019) on the other hand, performs well on the test set with (67.1 % accuracy). However, IRM requires access to multiple (two in this case) separate training environments with varying amount of spurious correlations. IRM uses the variance between environments as a signal for learning to be “invariant” to spurious correlations. Risk Extrapolation (REx) (Krueger et al.,, 2020) is a related training method that encourages learning invariant representations. Similar to IRM, it requires access to multiple training environments in order to quantify the concept of “invariance”.
+SD achieves an accuracy of 68.4 %. Its performance is remarkable because unlike IRM and REx, SD does not require access to multiple environments and yet performs well when trained on a single environment (in this case the aggregation of both of the training environments).
+A natural question that arises is “How does SD learn to ignore the color feature without having access to multiple environments?” The short answer is that it does not!
+In fact, we argue that SD learns the color feature but it also learns other predictive features, i.e., the digit shape features. At test time, the predictions resulting from the shape features prevail over the color feature. To validate this hypothesis, we study a trained model with each of these methods (ERM, IRM, SD) on four variants of the test environment: 1) grayscale-digits: No color channel is provided and the network should rely on shape features only. 2) colored-digits: Both color and digit are provided however the color is negatively correlated (opposite of the training set) with the label. 3) grayscale-blank: All images are grayscale and blank and hence do not provide any information. 4) colored-blank: Digit features are removed and only the color feature is kept, also with reverse label compared to training. Fig. 3 summarizes the results. For more discussions see SM B.
+Figure 3: Diagram comparing ERM, SD, and IRM on four different test environments on which we evaluate a pre-trained model. Top and bottom rows show the accuracy and the entropy (inverse of confidence), respectively. Analysis: Compare three values of
+9.4 %, 9.4 %, and 49.6 %: Both ERM and SD have learned the color feature but since it is inversely correlated with the label, when only the color feature is provided, as expected both ERM and SD performs poorly. Now compare 0.00 and 0.41: Although both ERM and SD have learned the color feature, ERM is much more confident on its predictions (zero entropy). As a consequence, when digit features are provided along with the color feature (colored-digit environment), ERM still performs poorly (23.9 %) but SD achieves significantly better results (67.2 %). IRM ignores the color feature altogether but it requires access to multiple training environments.
+As a final remark, we should highlight that, by design, this task assumes access to the test environment for hyperparameter tuning for all the reported methods. This is not a valid assumption in general, and hence the results should be only interpreted as a probe that shows that SD could provide an important level of control over what features are learned.
+4.4 CelebA with gender bias
+The CelebA dataset (Liu et al.,, 2015) contains 162k celebrity faces with binary attributes associated with each image. Following the setup of (Sagawa et al.,, 2019), the task is to classify images with respect to their hair color into two classes of blond or dark hair. However, the Gender ∈\in {Male, Female} is spuriously correlated with the HairColor ∈\in {Blond, Dark} in the training data. The rarest group which is blond males represents only 0.85 % of the training data (1387 out of 162k examples).
+We train a ResNet-50 model (He et al.,, 2016) on this task. Tab. 5 summarizes the results and compares the performance of several methods. A model with vanilla cross-entropy (ERM) appears to generalize well on average but fails to generalize to the rarest group (blond males) which can be considered as “weakly" out-of-distribution (OOD). Our proposed SD improves the performance more than twofold. It should be highlighted that for this task, we use a variant of SD in which,
+λ2​‖y^−γ‖22\frac{\lambda}{2}||\hat{y}-\gamma||^{2}_{2}
+is added to the original cross-entropy loss. The hyper-parameters λ\lambda and γ\gamma are tuned separately for each class (a total of four hyper-parameters). This variant of SD does provably decouple the dynamics too but appears to perform better than the original SD in Eq. 17 in this task.
+Figure 5: CelebA: blond vs dark hair classification.
+The HairColor and the Gender are spuriously correlated which leads to poor OOD performance with ERM, however SD significantly improves performance. ERM’s worst group accuracy is significantly lower than SD.
+Method
+Average Acc.
+Worst Group Acc.
+ERM
+94.61 % (±\pm0.67)
+40.35 % (±\pm1.68)
+SD (this work)
+91.64 % (±\pm0.61)
+83.24 % (±\pm2.01)
+LfF
+N/A
+81.24 % (±\pm1.38)
+Group DRO∗
+91.76 % (±\pm0.28)
+87.78 % (±\pm0.96)
+Table 5: CelebA: blond vs dark hair classification with spurious correlation. We report test performance over ten runs. SD significantly improves upon ERM. ∗Group DRO (Sagawa et al.,, 2019) requires explicit information about the spurious correlation. LfF (Nam et al.,, 2020) requires simultaneous training of two networks.
+Other proposed methods presented in Tab. 5 also show significant improvements on the performance of the worst group accuracy. The recently proposed “Learning from failure” (LfF) (Nam et al.,, 2020) achieves comparable results to SD, but it requires simultaneous training of two networks.
+Group DRO (Sagawa et al.,, 2019) is another successful method for this task. However, unlike SD, Group DRO requires explicit information about the spuriously correlated attributes. In most practical tasks, information about the spurious correlations is not provided and, dependence on the spurious correlation goes unrecognized.22
+2
+Recall that it took 3 years for the psychologist, Oskar Pfungst, to realize that Clever Hans was not capable of doing any arithmetic.
+5 Related Work and Discussion
+Here, we discuss the related work. Due to space constraints, further discussions are in App. A.
+On learning dynamics and Loss Choice.
+Several works including Saxe et al., (2013); Saxe et al., (2019); Advani and Saxe, (2017); Lampinen and Ganguli, (2018) investigate the dynamics of deep linear networks trained with squared-error loss.
+Different decompositions of the learning process for neural networks have been used: Rahaman et al., (2019); Xu et al., 2019a (); Ronen et al., (2019); Xu et al., 2019b () study the learning in the Fourier domain and show that low-frequency functions are learned earlier than high-frequency ones. Saxe et al., (2013); Advani et al., (2020); Gidel et al., (2019) provide closed-form equations for the dynamics of linear networks in terms of the principal components of the input covariance matrix. More recently, with the introduction of neural tangent kernel (NTK) (Jacot et al.,, 2018; Lee et al.,, 2019), a new line of research is to study the convergence properties of gradient descent (Allen-Zhu et al., 2019b, ; Mei and Montanari,, 2019; Chizat and Bach,, 2018; Du et al., 2018b, ; Allen-Zhu et al., 2019a, ; Huang and Yau,, 2019; Goldt et al.,, 2019; Zou et al.,, 2020; Arora et al., 2019b, ; Vempala and Wilmes,, 2019, e.g.). Among them, Arora et al., 2019c (); Yang and Salman, (2019); Bietti and Mairal, (2019); Cao et al., (2019) decompose the learning process along the principal components of the NTK. The message in these works is that the training process can be decomposed into independent learning dynamics along the orthogonal directions.
+Most of the studies mentioned above focus on the particular squared-error loss. For a linearized network, the squared-error loss results in linear learning dynamics, which often admit an analytical solution. However, the de-facto loss function for many of the practical applications of neural networks is the cross-entropy. Using the cross-entropy as the loss function leads to significantly more complicated and non-linear dynamics, even for a linear neural network. In this work, our focus was the cross-entropy loss.
+On reliance upon spurious correlations and robustness.
+In the context of robustness in neural networks, state-of-the-art neural networks appear to naturally focus on low-level superficial correlations rather than more abstract and robustly informative features of interest (e.g. Geirhos et al., (2020)). As we argue in this work, Gradient Starvation is likely an important factor contributing to this phenomenon and can result in adversarial vulnerability. There is a rich research literature on adversarial attacks and neural networks’ vulnerability (Szegedy et al.,, 2013; Goodfellow et al.,, 2014; Ilyas et al.,, 2019; Madry et al.,, 2017; Akhtar and Mian,, 2018; Ilyas et al.,, 2018). Interestingly, Nar and Sastry, (2019), Nar et al., (2019) and Jacobsen et al., (2018) draw a similar conclusion and argue that “an insufficiency of the cross-entropy loss” causes excessive invariances to predictive features. Perhaps Shah et al., (2020) is the closest to our work in which authors study the simplicity bias (SB) in stochastic gradient descent. They demonstrate that neural networks exhibit extreme bias that could lead to adversarial vulnerability.
+On implicit bias.
+Despite being highly-overparameterized, modern neural networks seem to generalize very well (Zhang et al.,, 2016).
+Modern neural networks generalize surprisingly well in numerous machine tasks. This is despite the fact that neural networks typically contain orders of magnitude more parameters than the number of examples in a training set and have sufficient capacity to fit a totally randomized dataset perfectly (Zhang et al.,, 2016).
+The widespread explanation is that the gradient descent has a form of implicit bias towards learning simpler functions that generalize better according to Occam’s razor. Our exposition of GS reinforces this explanation. In essence, when training and test data points are drawn from the same distribution, the top salient features are predictive in both sets. We conjecture that in such a scenario, by not learning the less salient features, GS naturally protects the network from overfitting.
+The same phenomenon is referred to as implicit bias, implicit regularization, simplicity bias and spectral bias in several works (Rahaman et al.,, 2019; Neyshabur et al.,, 2014; Gunasekar et al.,, 2017; Neyshabur et al.,, 2017; Nakkiran et al.,, 2019; Ji and Telgarsky,, 2019; Soudry et al.,, 2018; Arora et al., 2019a, ; Arpit et al.,, 2017; Gunasekar et al.,, 2018; Poggio et al.,, 2017; Ma et al.,, 2018).
+As an active line of research, numerous studies have provided different explanations for this phenomenon. For example, Nakkiran et al., (2019) justifies the implicit bias of neural networks by showing that stochastic gradient descent learns simpler functions first. Baratin et al., (2020); Oymak et al., (2019) suggests that a form of implicit regularization is induced by an alignment between NTK’s principal components and only a few task-relevant directions. Several other works such as Brutzkus et al., (2017); Gunasekar et al., (2018); Soudry et al., (2018); Chizat and Bach, (2018) recognize the convergence of gradient descent to maximum-margin solution as the essential factor for the generalizability of neural networks. It should be stressed that these work refer to the margin in the hidden space and not in the input space as pointed out in Jolicoeur-Martineau and Mitliagkas, (2019). Indeed, as observed in our experiments, the maximum-margin classifier in the hidden space can be achieved at the expense of a small margin in the input space.
+On Gradient Starvation and no free lunch theorem.
+The no free lunch theorem (Shalev-Shwartz and Ben-David,, 2014; Wolpert,, 1996) states that “learning is impossible without making assumptions about training and test distributions”. Perhaps, the most commonly used assumption of machine learning is the i.i.d. assumption (Vapnik and Vapnik,, 1998), which assumes that training and test data are identically distributed. However, in general, this assumption might not hold, and in many practical applications, there are predictive features in the training set that do not generalize to the test set. A natural question that arises is how to favor generalizable features over spurious features? The most common approaches include data augmentation, controlling the inductive biases, using regularizations, and more recently training using multiple environments.
+Here, we would like to elaborate on an interesting thought experiment of Parascandolo et al., (2020): Suppose a neural network is provided with a chess book containing examples of chess games with the best movements indicated by a red arrow. The network can take two approaches: 1) learn how to play chess, or 2) learn just the red arrows. Either of these solutions results in zero training loss on the games in the book while only the former is generalizable to new games. With no external knowledge, the network typically learns the simpler solution.
+Recent work aims to leverage the invariance principle across several environments to improve robust learning. This is akin to present several chess books to a network, each with markings indicating the best moves for different sets of games. In several studies (Arjovsky et al.,, 2019; Krueger et al.,, 2020; Parascandolo et al.,, 2020; Ahuja et al., 2020a, ), methods are developed to aggregate information from multiple training environments in a way that favors the generalizable / domain-agnostic / invariant solution. We argue that even with having access to only one training environment, there is useful information in the training set that fails to be discovered due to Gradient Starvation. The information on how to actually play chess is already available in any of the chess books. Still, as soon as the network learns the red arrows, the network has no incentive for further learning. Therefore, learning the red arrows is not an issue per se, but not learning to play chess is.
+Gradient Starvation: friend or foe?
+Here, we would like to remind the reader that GS can have both adverse and beneficial consequences. If the learned features are sufficient to generalize to the test data, gradient starvation can be viewed as an implicit regularizer. Otherwise, Gradient Starvation could have an unfavorable effect, which we observe empirically when some predictive features fail to be learned. A better understanding and control of Gradient Starvation and its impact on generalization offers promising avenues to address this issue with minimal assumptions. Indeed, our Spectral Decoupling method requires an assumption about feature imbalance but not to pinpoint them exactly, relying on modulated learning dynamics to achieve balance.
+GS social impact
+Modern neural networks are being deployed extensively in numerous machine learning tasks. Our models are used in critical applications such as autonomous driving, medical prediction, and even justice system where human lives are at stake. However, neural networks appear to base their predictions on superficial biases in the dataset. Unfortunately, biases in datasets could be neglected and pose negative impacts on our society. In fact, our Celeb-A experiment is an example of the existence of such a bias in the data. As shown in the paper, the gender-specific bias could lead to a superficial high performance and is indeed very hard to detect. Our analysis, although mostly on the theory side, could pave the path for researchers to build machine learning systems that are robust to biases and helps towards fairness in our predictions.
+6 Conclusion
+In this paper, we formalized Gradient Starvation (GS) as a phenomenon that emerges when training with cross-entropy loss in neural networks. By analyzing the dynamical system corresponding to the learning process in a dual space, we showed that GS could slow down the learning of certain features, even if they are present in the training set.
+We derived spectral decoupling (SD) regularization as a possible remedy to GS.
+Acknowledgments and Disclosure of Funding
+The authors are grateful to Samsung Electronics Co., Ldt., CIFAR, and IVADO for their funding and Calcul Québec and Compute Canada for providing us with the computing resources.
+We would further like to acknowledge the significance of discussions and supports from Reyhane Askari Hemmat and Faruk Ahmed. MP would like to thank Aristide Baratin, Kostiantyn Lapchevskyi, Seyed Mohammad Mehdi Ahmadpanah, Milad Aghajohari, Kartik Ahuja, Shagun Sodhani, and Emmanuel Bengio for their invaluable help.
+References
+[1]
+Advani, M. S. and Saxe, A. M. (2017).
+High-dimensional dynamics of generalization error in neural networks.
+arXiv preprint arXiv:1710.03667.
+[2]
+Advani, M. S., Saxe, A. M., and Sompolinsky, H. (2020).
+High-dimensional dynamics of generalization error in neural networks.
+Neural Networks.
+[3]
+Ahuja, K., Shanmugam, K., and Dhurandhar, A. (2020a).
+Linear regression games: Convergence guarantees to approximate
+out-of-distribution solutions.
+arXiv preprint arXiv:2010.15234.
+[4]
+Ahuja, K., Shanmugam, K., Varshney, K., and Dhurandhar, A. (2020b).
+Invariant risk minimization games.
+arXiv preprint arXiv:2002.04692.
+[5]
+Akhtar, N. and Mian, A. (2018).
+Threat of adversarial attacks on deep learning in computer vision: A
+survey.
+IEEE Access, 6:14410–14430.
+[6]
+Albert, A. and Anderson, J. A. (1984).
+On the existence of maximum likelihood estimates in logistic
+regression models.
+Biometrika, 71(1):1–10.
+[7]
+Allen-Zhu, Z., Li, Y., and Liang, Y. (2019a).
+Learning and generalization in overparameterized neural networks,
+going beyond two layers.
+In Advances in neural information processing systems, pages
+6158–6169.
+[8]
+Allen-Zhu, Z., Li, Y., and Song, Z. (2019b).
+A convergence theory for deep learning via over-parameterization.
+In International Conference on Machine Learning, pages
+242–252. PMLR.
+[9]
+Arjovsky, M., Bottou, L., Gulrajani, I., and Lopez-Paz, D. (2019).
+Invariant risk minimization.
+arXiv preprint arXiv:1907.02893.
+[10]
+Arora, S., Cohen, N., Hu, W., and Luo, Y. (2019a).
+Implicit regularization in deep matrix factorization.
+In Advances in Neural Information Processing Systems, pages
+7413–7424.
+[11]
+Arora, S., Du, S. S., Hu, W., Li, Z., Salakhutdinov, R. R., and Wang, R.
+(2019b).
+On exact computation with an infinitely wide neural net.
+In Advances in Neural Information Processing Systems, pages
+8141–8150.
+[12]
+Arora, S., Du, S. S., Hu, W., Li, Z., and Wang, R. (2019c).
+Fine-grained analysis of optimization and generalization for
+overparameterized two-layer neural networks.
+arXiv preprint arXiv:1901.08584.
+[13]
+Arpit, D., Jastrzębski, S., Ballas, N., Krueger, D., Bengio, E., Kanwal,
+M. S., Maharaj, T., Fischer, A., Courville, A., Bengio, Y., et al. (2017).
+A closer look at memorization in deep networks.
+arXiv preprint arXiv:1706.05394.
+[14]
+Baker, N., Lu, H., Erlikhman, G., and Kellman, P. J. (2018).
+Deep convolutional networks do not classify based on global object
+shape.
+PLoS computational biology, 14(12):e1006613.
+[15]
+Baratin, A., George, T., Laurent, C., Hjelm, R. D., Lajoie, G., Vincent, P.,
+and Lacoste-Julien, S. (2020).
+Implicit regularization in deep learning: A view from function space.
+arXiv preprint arXiv:2008.00938.
+[16]
+Beery, S., Van Horn, G., and Perona, P. (2018).
+Recognition in terra incognita.
+In Proceedings of the European Conference on Computer Vision
+(ECCV), pages 456–473.
+[17]
+Belinkov, Y. and Bisk, Y. (2017).
+Synthetic and natural noise both break neural machine translation.
+arXiv preprint arXiv:1711.02173.
+[18]
+Bietti, A. and Mairal, J. (2019).
+On the inductive bias of neural tangent kernels.
+In Advances in Neural Information Processing Systems, pages
+12893–12904.
+[19]
+Brendel, W. and Bethge, M. (2019).
+Approximating cnns with bag-of-local-features models works
+surprisingly well on imagenet.
+arXiv preprint arXiv:1904.00760.
+[20]
+Brutzkus, A., Globerson, A., Malach, E., and Shalev-Shwartz, S. (2017).
+Sgd learns over-parameterized networks that provably generalize on
+linearly separable data.
+arXiv preprint arXiv:1710.10174.
+[21]
+Burges, C. J. and Crisp, D. J. (2000).
+Uniqueness of the svm solution.
+Advances in neural information processing systems, 12:223–229.
+[22]
+Cao, Y., Fang, Z., Wu, Y., Zhou, D.-X., and Gu, Q. (2019).
+Towards understanding the spectral bias of deep learning.
+arXiv preprint arXiv:1912.01198.
+[23]
+Cao, Y. and Gu, Q. (2019).
+Generalization bounds of stochastic gradient descent for wide and
+deep neural networks.
+In Advances in Neural Information Processing Systems, pages
+10836–10846.
+[24]
+Chen, Z., Cao, Y., Gu, Q., and Zhang, T. (2020).
+A generalized neural tangent kernel analysis for two-layer neural
+networks.
+arXiv preprint arXiv:2002.04026.
+[25]
+Chizat, L. and Bach, F. (2018).
+A note on lazy training in supervised differentiable programming.
+arXiv preprint arXiv:1812.07956, 1.
+[26]
+Combes, R. T. d., Pezeshki, M., Shabanian, S., Courville, A., and Bengio, Y.
+(2018).
+On the learning dynamics of deep neural networks.
+arXiv preprint arXiv:1809.06848.
+[27]
+Cover, T. M. (1965).
+Geometrical and statistical properties of systems of linear
+inequalities with applications in pattern recognition.
+IEEE transactions on electronic computers, 0(3):326–334.
+[28]
+Du, S. S., Hu, W., and Lee, J. D. (2018a).
+Algorithmic regularization in learning deep homogeneous models:
+Layers are automatically balanced.
+In Advances in Neural Information Processing Systems, pages
+384–395.
+[29]
+Du, S. S., Zhai, X., Poczos, B., and Singh, A. (2018b).
+Gradient descent provably optimizes over-parameterized neural
+networks.
+arXiv preprint arXiv:1810.02054.
+[30]
+Geirhos, R., Jacobsen, J.-H., Michaelis, C., Zemel, R., Brendel, W., Bethge,
+M., and Wichmann, F. A. (2020).
+Shortcut learning in deep neural networks.
+arXiv preprint arXiv:2004.07780.
+[31]
+George, T. (2020).
+Nngeometry: Easy and fast fisher information matrices and neural
+tangent kernels in pytorch.
+0.
+[32]
+Gidel, G., Bach, F., and Lacoste-Julien, S. (2019).
+Implicit regularization of discrete gradient dynamics in linear
+neural networks.
+In Advances in Neural Information Processing Systems, pages
+3202–3211.
+[33]
+Goldt, S., Advani, M., Saxe, A. M., Krzakala, F., and Zdeborová, L. (2019).
+Dynamics of stochastic gradient descent for two-layer neural networks
+in the teacher-student setup.
+In Advances in Neural Information Processing Systems, pages
+6981–6991.
+[34]
+Goodfellow, I. J., Shlens, J., and Szegedy, C. (2014).
+Explaining and harnessing adversarial examples.
+arXiv preprint arXiv:1412.6572.
+[35]
+Gunasekar, S., Lee, J. D., Soudry, D., and Srebro, N. (2018).
+Implicit bias of gradient descent on linear convolutional networks.
+In Advances in Neural Information Processing Systems, pages
+9461–9471.
+[36]
+Gunasekar, S., Woodworth, B. E., Bhojanapalli, S., Neyshabur, B., and Srebro,
+N. (2017).
+Implicit regularization in matrix factorization.
+In Advances in Neural Information Processing Systems, pages
+6151–6159.
+[37]
+Gururangan, S., Swayamdipta, S., Levy, O., Schwartz, R., Bowman, S. R., and
+Smith, N. A. (2018).
+Annotation artifacts in natural language inference data.
+arXiv preprint arXiv:1803.02324.
+[38]
+He, K., Zhang, X., Ren, S., and Sun, J. (2016).
+Deep residual learning for image recognition.
+In Proceedings of the IEEE conference on computer vision and
+pattern recognition, pages 770–778.
+[39]
+Heinze-Deml, C. and Meinshausen, N. (2017).
+Conditional variance penalties and domain shift robustness.
+arXiv preprint arXiv:1710.11469.
+[40]
+Hendrycks, D. and Dietterich, T. (2019).
+Benchmarking neural network robustness to common corruptions and
+perturbations.
+arXiv preprint arXiv:1903.12261.
+[41]
+Hendrycks, D. and Gimpel, K. (2016).
+A baseline for detecting misclassified and out-of-distribution
+examples in neural networks.
+arXiv preprint arXiv:1610.02136.
+[42]
+Hermann, K. L. and Lampinen, A. K. (2020).
+What shapes feature representations? exploring datasets,
+architectures, and training.
+arXiv preprint arXiv:2006.12433.
+[43]
+Hsieh, C.-J., Chang, K.-W., Lin, C.-J., Keerthi, S. S., and Sundararajan, S.
+(2008).
+A dual coordinate descent method for large-scale linear svm.
+In Proceedings of the 25th international conference on Machine
+learning, pages 408–415.
+[44]
+Huang, J. and Yau, H.-T. (2019).
+Dynamics of deep neural networks and neural tangent hierarchy.
+arXiv preprint arXiv:1909.08156.
+[45]
+Huang, K., Wang, Y., Tao, M., and Zhao, T. (2020).
+Why do deep residual networks generalize better than deep feedforward
+networks?—a neural tangent kernel perspective.
+Advances in Neural Information Processing Systems, 33.
+[46]
+Hui, L. and Belkin, M. (2020).
+Evaluation of neural architectures trained with square loss vs
+cross-entropy in classification tasks.
+arXiv preprint arXiv:2006.07322.
+[47]
+Ilyas, A., Engstrom, L., Athalye, A., and Lin, J. (2018).
+Black-box adversarial attacks with limited queries and information.
+arXiv preprint arXiv:1804.08598.
+[48]
+Ilyas, A., Santurkar, S., Tsipras, D., Engstrom, L., Tran, B., and Madry, A.
+(2019).
+Adversarial examples are not bugs, they are features.
+In Advances in Neural Information Processing Systems, pages
+125–136.
+[49]
+Ioffe, S. and Szegedy, C. (2015).
+Batch normalization: Accelerating deep network training by reducing
+internal covariate shift.
+arXiv preprint arXiv:1502.03167.
+[50]
+Jaakkola, T. S. and Haussler, D. (1999).
+Probabilistic kernel regression models.
+In AISTATS.
+[51]
+Jacobsen, J.-H., Behrmann, J., Zemel, R., and Bethge, M. (2018).
+Excessive invariance causes adversarial vulnerability.
+arXiv preprint arXiv:1811.00401.
+[52]
+Jacot, A., Gabriel, F., and Hongler, C. (2018).
+Neural tangent kernel: Convergence and generalization in neural
+networks.
+In Advances in neural information processing systems, pages
+8571–8580.
+[53]
+Ji, Z. and Telgarsky, M. (2019).
+The implicit bias of gradient descent on nonseparable data.
+In Conference on Learning Theory, pages 1772–1798.
+[54]
+Jo, J. and Bengio, Y. (2017).
+Measuring the tendency of cnns to learn surface statistical
+regularities.
+arXiv preprint arXiv:1711.11561.
+[55]
+Jolicoeur-Martineau, A. and Mitliagkas, I. (2019).
+Connections between support vector machines, wasserstein distance and
+gradient-penalty gans.
+arXiv preprint arXiv:1910.06922.
+[56]
+Kingma, D. P. and Ba, J. (2014).
+Adam: A method for stochastic optimization.
+arXiv preprint arXiv:1412.6980.
+[57]
+Krizhevsky, A., Hinton, G., et al. (2009).
+Learning multiple layers of features from tiny images.
+0.
+[58]
+Krogh, A. and Hertz, J. A. (1992).
+A simple weight decay can improve generalization.
+In Advances in neural information processing systems, pages
+950–957.
+[59]
+Krueger, D., Caballero, E., Jacobsen, J.-H., Zhang, A., Binas, J., Priol,
+R. L., and Courville, A. (2020).
+Out-of-distribution generalization via risk extrapolation (rex).
+arXiv preprint arXiv:2003.00688.
+[60]
+Lampinen, A. K. and Ganguli, S. (2018).
+An analytic theory of generalization dynamics and transfer learning
+in deep linear networks.
+arXiv preprint arXiv:1809.10374.
+[61]
+Lapuschkin, S., Wäldchen, S., Binder, A., Montavon, G., Samek, W., and
+Müller, K.-R. (2019).
+Unmasking clever hans predictors and assessing what machines really
+learn.
+Nature communications, 10(1):1–8.
+[62]
+Lee, J., Xiao, L., Schoenholz, S., Bahri, Y., Novak, R., Sohl-Dickstein, J.,
+and Pennington, J. (2019).
+Wide neural networks of any depth evolve as linear models under
+gradient descent.
+In Advances in neural information processing systems, pages
+8570–8581.
+[63]
+Lee, K., Lee, K., Lee, H., and Shin, J. (2018).
+A simple unified framework for detecting out-of-distribution samples
+and adversarial attacks.
+In Advances in Neural Information Processing Systems, pages
+7167–7177.
+[64]
+Liang, S., Li, Y., and Srikant, R. (2017).
+Enhancing the reliability of out-of-distribution image detection in
+neural networks.
+arXiv preprint arXiv:1706.02690.
+[65]
+Liu, Z., Luo, P., Wang, X., and Tang, X. (2015).
+Deep learning face attributes in the wild.
+In Proceedings of International Conference on Computer Vision
+(ICCV).
+[66]
+Ma, C., Wang, K., Chi, Y., and Chen, Y. (2018).
+Implicit regularization in nonconvex statistical estimation: Gradient
+descent converges linearly for phase retrieval and matrix completion.
+In International Conference on Machine Learning, pages
+3345–3354. PMLR.
+[67]
+Madry, A., Makelov, A., Schmidt, L., Tsipras, D., and Vladu, A. (2017).
+Towards deep learning models resistant to adversarial attacks.
+arXiv preprint arXiv:1706.06083.
+[68]
+McCoy, R. T., Pavlick, E., and Linzen, T. (2019).
+Right for the wrong reasons: Diagnosing syntactic heuristics in
+natural language inference.
+arXiv preprint arXiv:1902.01007.
+[69]
+Mei, S. and Montanari, A. (2019).
+The generalization error of random features regression: Precise
+asymptotics and double descent curve.
+arXiv preprint arXiv:1908.05355.
+[70]
+Nakkiran, P., Kaplun, G., Kalimeris, D., Yang, T., Edelman, B. L., Zhang, F.,
+and Barak, B. (2019).
+Sgd on neural networks learns functions of increasing complexity.
+arXiv preprint arXiv:1905.11604.
+[71]
+Nam, J., Cha, H., Ahn, S., Lee, J., and Shin, J. (2020).
+Learning from failure: Training debiased classifier from biased
+classifier.
+arXiv preprint arXiv:2007.02561.
+[72]
+Nar, K., Ocal, O., Sastry, S. S., and Ramchandran, K. (2019).
+Cross-entropy loss and low-rank features have responsibility for
+adversarial examples.
+arXiv preprint arXiv:1901.08360.
+[73]
+Nar, K. and Sastry, S. S. (2019).
+Persistency of excitation for robustness of neural networks.
+arXiv preprint arXiv:1911.01043.
+[74]
+Neyshabur, B., Tomioka, R., Salakhutdinov, R., and Srebro, N. (2017).
+Geometry of optimization and implicit regularization in deep
+learning.
+arXiv preprint arXiv:1705.03071.
+[75]
+Neyshabur, B., Tomioka, R., and Srebro, N. (2014).
+In search of the real inductive bias: On the role of implicit
+regularization in deep learning.
+arXiv preprint arXiv:1412.6614.
+[76]
+Niven, T. and Kao, H.-Y. (2019).
+Probing neural network comprehension of natural language arguments.
+arXiv preprint arXiv:1907.07355.
+[77]
+Oakden-Rayner, L., Dunnmon, J., Carneiro, G., and Ré, C. (2020).
+Hidden stratification causes clinically meaningful failures in
+machine learning for medical imaging.
+In Proceedings of the ACM Conference on Health, Inference, and
+Learning, pages 151–159.
+[78]
+Oymak, S., Fabian, Z., Li, M., and Soltanolkotabi, M. (2019).
+Generalization guarantees for neural networks via harnessing the
+low-rank structure of the jacobian.
+arXiv preprint arXiv:1906.05392.
+[79]
+Parascandolo, G., Neitz, A., Orvieto, A., Gresele, L., and Schölkopf, B.
+(2020).
+Learning explanations that are hard to vary.
+arXiv preprint arXiv:2009.00329.
+[80]
+Paszke, A., Gross, S., Chintala, S., Chanan, G., Yang, E., DeVito, Z., Lin, Z.,
+Desmaison, A., Antiga, L., and Lerer, A. (2017).
+Automatic differentiation in pytorch.
+openreview id=BJJsrmfCZ.
+[81]
+Pfungst, O. (1911).
+Clever Hans:(the horse of Mr. Von Osten.) a contribution to
+experimental animal and human psychology.
+Holt, Rinehart and Winston.
+[82]
+Poggio, T., Kawaguchi, K., Liao, Q., Miranda, B., Rosasco, L., Boix, X.,
+Hidary, J., and Mhaskar, H. (2017).
+Theory of deep learning iii: explaining the non-overfitting puzzle.
+arXiv preprint arXiv:1801.00173.
+[83]
+Rahaman, N., Baratin, A., Arpit, D., Draxler, F., Lin, M., Hamprecht, F.,
+Bengio, Y., and Courville, A. (2019).
+On the spectral bias of neural networks.
+In International Conference on Machine Learning, pages
+5301–5310. PMLR.
+[84]
+Rauber, J., Brendel, W., and Bethge, M. (2017).
+Foolbox: A python toolbox to benchmark the robustness of machine
+learning models.
+arXiv preprint arXiv:1707.04131.
+[85]
+Ribeiro, M. T., Singh, S., and Guestrin, C. (2016).
+" why should i trust you?" explaining the predictions of any
+classifier.
+In Proceedings of the 22nd ACM SIGKDD international conference
+on knowledge discovery and data mining, pages 1135–1144.
+[86]
+Roberts, M. (2021).
+Machine learning for covid-19 diagnosis: Promising, but still too
+flawed.
+[87]
+Ronen, B., Jacobs, D., Kasten, Y., and Kritchman, S. (2019).
+The convergence rate of neural networks for learned functions of
+different frequencies.
+In Advances in Neural Information Processing Systems, pages
+4761–4771.
+[88]
+Rosenfeld, A., Zemel, R., and Tsotsos, J. K. (2018).
+The elephant in the room.
+arXiv preprint arXiv:1808.03305.
+[89]
+Sagawa, S., Koh, P. W., Hashimoto, T. B., and Liang, P. (2019).
+Distributionally robust neural networks for group shifts: On the
+importance of regularization for worst-case generalization.
+arXiv preprint arXiv:1911.08731.
+[90]
+Saxe, A. M., McClelland, J. L., and Ganguli, S. (2013).
+Exact solutions to the nonlinear dynamics of learning in deep linear
+neural networks.
+arXiv preprint arXiv:1312.6120.
+[91]
+Saxe, A. M., McClelland, J. L., and Ganguli, S. (2019).
+A mathematical theory of semantic development in deep neural
+networks.
+Proceedings of the National Academy of Sciences,
+116(23):11537–11546.
+[92]
+Shah, H., Tamuly, K., Raghunathan, A., Jain, P., and Netrapalli, P. (2020).
+The pitfalls of simplicity bias in neural networks.
+arXiv preprint arXiv:2006.07710.
+[93]
+Shalev-Shwartz, S. and Ben-David, S. (2014).
+Understanding machine learning: From theory to algorithms.
+Cambridge university press.
+[94]
+Soudry, D., Hoffer, E., Nacson, M. S., Gunasekar, S., and Srebro, N. (2018).
+The implicit bias of gradient descent on separable data.
+The Journal of Machine Learning Research, 19(1):2822–2878.
+[95]
+Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., and Salakhutdinov,
+R. (2014).
+Dropout: a simple way to prevent neural networks from overfitting.
+The journal of machine learning research, 15(1):1929–1958.
+[96]
+Szegedy, C., Zaremba, W., Sutskever, I., Bruna, J., Erhan, D., Goodfellow, I.,
+and Fergus, R. (2013).
+Intriguing properties of neural networks.
+arXiv preprint arXiv:1312.6199.
+[97]
+Valle-Pérez, G., Camargo, C. Q., and Louis, A. A. (2018).
+Deep learning generalizes because the parameter-function map is
+biased towards simple functions.
+arXiv preprint arXiv:1805.08522.
+[98]
+Vapnik, V. and Vapnik, V. (1998).
+Statistical learning theory wiley.
+New York, 1:624.
+[99]
+Vempala, S. and Wilmes, J. (2019).
+Gradient descent for one-hidden-layer neural networks: Polynomial
+convergence and sq lower bounds.
+In Conference on Learning Theory, pages 3115–3117.
+[100]
+Wang, H., He, Z., Lipton, Z. C., and Xing, E. P. (2019).
+Learning robust representations by projecting superficial statistics
+out.
+arXiv preprint arXiv:1903.06256.
+[101]
+Wang, S., Yu, X., and Perdikaris, P. (2021).
+When and why pinns fail to train: A neural tangent kernel
+perspective.
+Journal of Computational Physics, page 110768.
+[102]
+Wolpert, D. H. (1996).
+The lack of a priori distinctions between learning algorithms.
+Neural computation, 8(7):1341–1390.
+[103]
+Xu, X. and Frank, E. (2004).
+Logistic regression and boosting for labeled bags of instances.
+In Pacific-Asia conference on knowledge discovery and data
+mining, pages 272–281. Springer.
+[104]
+Xu, Z.-Q. J., Zhang, Y., Luo, T., Xiao, Y., and Ma, Z. (2019a).
+Frequency principle: Fourier analysis sheds light on deep neural
+networks.
+arXiv preprint arXiv:1901.06523.
+[105]
+Xu, Z.-Q. J., Zhang, Y., and Xiao, Y. (2019b).
+Training behavior of deep neural network in frequency domain.
+In International Conference on Neural Information Processing,
+pages 264–274. Springer.
+[106]
+Yang, G. and Salman, H. (2019).
+A fine-grained spectral perspective on neural networks.
+arXiv preprint arXiv:1907.10599.
+[107]
+Zech, J. R., Badgeley, M. A., Liu, M., Costa, A. B., Titano, J. J., and
+Oermann, E. K. (2018).
+Confounding variables can degrade generalization performance of
+radiological deep learning models.
+arXiv preprint arXiv:1807.00431.
+[108]
+Zhang, C., Bengio, S., Hardt, M., Recht, B., and Vinyals, O. (2016).
+Understanding deep learning requires rethinking generalization.
+arXiv preprint arXiv:1611.03530.
+[109]
+Zhao, J., Wang, T., Yatskar, M., Ordonez, V., and Chang, K.-W. (2017).
+Men also like shopping: Reducing gender bias amplification using
+corpus-level constraints.
+arXiv preprint arXiv:1707.09457.
+[110]
+Zou, D., Cao, Y., Zhou, D., and Gu, Q. (2020).
+Gradient descent optimizes over-parameterized deep relu networks.
+Machine Learning, 109(3):467–492.
+Appendix A Further discussions
+On Primal (parameter space) vs. Dual (feature space) dynamics:
+Although the cross-entropy loss is convex, it does not admit an analytical solution, even in a simple logistic regression [103]. Importantly, it also does not have a finite solution when the data is linearly separable [6] (which is the case in high dimensions [27]). As such, our study is concerned with characterizing the solutions that the training algorithm converges to. A dual optimization approach enables us to describe these solutions in terms of contributions of the training examples [43]. While primal and dual dynamics are not guaranteed to match, the solution they converge to is guaranteed to match [21], and that is what our theory builds upon.
+For further intuition, we provide a simple experiment in app C, directly visualizing the primal vs. the dual dynamics as well as the effect of the proposed spectral decoupling method.
+The intuition behind Spectral Decoupling (SD):
+Consider a training datapoint xx in the middle of the training process. Intuitively, the model has two options for decreasing the loss of this example:
+1.
+Get more confident on a feature that has been learned already by other examples. or,
+2.
+Learn a new feature.
+SD, a simple L2 penalty on the output of the work, would favor (2) over (1). The reason is that (2) does not make the network over-confident on previously learned examples, while (1) results in over-confident predictions. Hence, SD encourages learning more features by penalizing confidence. Our principal novel contribution is to characterize this process formally and to theoretically and empirically demonstrate its effectiveness.
+From another perspective, here we describe how one can arrive at Spectral Decoupling.
+From Thm. 2, we know that Gradient Starvation happens because of the coupling between features (equivalently alphas). We notice that in Eq. 9, if we get rid of S2S^{2}, then the alphas are decoupled. To get rid of S2S^{2} , one can see that instead of ‖𝜽‖2||\mbox{\boldmath$\theta$}||^{2} as the regularizer, we should have ‖S​VT​𝜽‖2||SV^{T}\mbox{\boldmath$\theta$}||^{2}. Luckily, this is exactly equal to ‖y^2‖||\hat{y}^{2}||, since y^=Φ​𝜽=U​VT​𝜽\hat{y}=\Phi\mbox{\boldmath$\theta$}=UV^{T}\mbox{\boldmath$\theta$}. We would like to highlight that ‖S​VT​𝜽‖2||SV^{T}\mbox{\boldmath$\theta$}||^{2} as the regularizer means that different directions are penalized according to their strength. It means that we suppress stronger directions more than others which would allow weaker directions to flourish.
+Then why not use Squared-error loss for classification too?
+The biggest obstacle when using squared-error loss for classification is how to select the target. For example, in a cats vs. dogs classification task, not all cats have the same amount of "catty features". However, recent results favor using squared-error loss for classification and show that models trained with squared-error loss are more robust [46]. We conjecture that the improved robustness can be attributed to a lack of gradient starvation.
+On using NTK:
+Theoretical analysis of neural networks in their general form is challenging and generally intractable. Neural Tangent Kernel (NTK) has been an important milestone that has simplified theoretical analysis significantly and provides some mechanistic explanations that are applicable in practice. Inevitably, it imposes a set of restrictions; mainly, NTK is only accurate in the limit of large width. Therefore, the common practice is to provide the theoretical analysis in simplified settings and validate the results empirically in more general cases (see, e.g. [45, 24, 101]). In this work, we build on the same established practices: Our theories analytically study an NTK linearized network; and we further validate our findings on several standard neural networks. In fact, in all of our experiments, learning is done in the regular "rich" (non-NTK) regime, and we verify that our proposed method, as identified analytically, mitigates learning limitations.
+Future Directions:
+This work takes a step towards understanding the reliance of neural networks upon spurious correlations and shortcuts in the dataset. We believe identifying this reliance in sensitive applications is among the next steps for future research directions. That would have a pronounced real-world impact as neural networks have started to be used in many critical applications. As a recent example, we would like to point to an article by researchers at Cambridge [86] where they study more than 300 papers on detecting whether a patient has COVID or not given their CT Scans. According to the article, none of the papers were able to generalize from one hospital data to another since the models learn to latch on to hospital-specific features. An essential first step is to uncover such reliance and then to design methods such as our proposed spectral decoupling to mitigate the problem.
+Appendix B Experimental Details
+B.1 A Simple Experiment Summarizing the Theory
+Here, we provide a simple experiment to study the difference between the primal and dual form dynamics. We also compare the learning dynamics in cases with and without Spectral Decoupling (SD).
+Recall that primal dynamics arise from the following optimization,
+minθ⁡(𝟏⋅log⁡[1+exp⁡(−𝐘​𝐲^)]+λ2​‖𝜽^‖2),\displaystyle\min_{\theta}\ \left(\mathbf{1}\cdot\log\left[1+\exp\left(-\mathbf{Y}\hat{\mathbf{y}}\right)\right]+\frac{\lambda}{2}\norm{\hat{\gv{\theta}}}^{2}\right),
+while the dual dynamics are the result of another optimization,
+maxαi⁡[H⁡(𝜶)−12​λ​∑j​q𝜶​𝐘​𝚽0​𝚽0T​𝐘T​𝜶T].\displaystyle\max_{\alpha_{i}}\left[H(\mbox{\boldmath$\alpha$})-\frac{1}{2\lambda}\sum_{jq}\mbox{\boldmath$\alpha$}\mathbf{Y}\mbox{\boldmath$\Phi$}_{0}\mbox{\boldmath$\Phi$}_{0}^{T}\mathbf{Y}^{T}\mbox{\boldmath$\alpha$}^{T}\right].
+Also recall that Spectral Decoupling suggests the following optimization,
+minθ⁡(𝟏⋅log⁡[1+exp⁡(−𝐘​𝐲^)]+λ2​‖𝐲^‖2).\displaystyle\min_{\theta}\ \left(\mathbf{1}\cdot\log\left[1+\exp\left(-\mathbf{Y}\hat{\mathbf{y}}\right)\right]+\frac{\lambda}{2}\norm{\hat{\v{y}}}^{2}\right).
+We conduct experiments on a simple toy classification with two datapoints for which the matrix 𝐔\mathbf{U} of Eq. 15 is defined as, 𝐔=(0.8−0.60.60.8)\mathbf{U}=\begin{pmatrix}0.8&-0.6\\
+0.6&0.8\end{pmatrix}. The corresponding singular values 𝐒=[s1,s2=2]\mathbf{S}=[s_{1},s_{2}=2] where s1∈{2,3,4,5,6}s_{1}\in\{2,3,4,5,6\}. According to Eq. 13, when 𝐒=[2,2]\mathbf{S}=[2,2], the dynamics decouple while in other cases starvation occurs. Fig. 6 shows the corresponding features of z1z_{1} and z2z_{2}. It is evident that by increasing the value of s1s_{1}, the value of z1∗z_{1}^{*} increases while z2∗z_{2}^{*} decreases (starves). Fig. 6 (left) also compares the difference between the primal and the dual dynamics. Note that although their dynamics are different, they both share the same fixed points. Fig. 6 (right) also shows that Spectral Decoupling (SD) indeed decouples the learning dynamics of z1z_{1} and z2z_{2} and hence increasing the corresponding singular value of one does not affect the other.
+Figure 6: An illustration of the learning dynamics for a simple 2D classification task. x-axis and y-axis represent learning along features of z1z_{1} and z2z_{2}, respectively. Each trajectory corresponds to a combination of the corresponding singular values of s1s_{1} and s2s_{2}. It is evident that by increasing the value of s1s_{1}, the value of z1∗z_{1}^{*} increases while z2∗z_{2}^{*} decreases (starves). (Left) compares the difference between the primal and the dual dynamics. Note that although their dynamics are different, they both share the same fixed points. (Right) shows that Spectral Decoupling (SD) indeed decouples the learning dynamics of z1z_{1} and z2z_{2} and hence increasing the corresponding singular value of one does not affect the other.
+B.2 Two-Moon Classification: Comparison with other regularization methods
+We experiment the Two-moon classification example of the main paper with different regularization techniques. The small margin between the two classes allows the network to achieve a negligible loss by only learning to discriminate along the horizontal axis. However, both axes are relevant for the data distribution, and the only reason why the second dimension is not picked up is the fact that the training data allows the learning to explain the labels with only one feature, overlooking the other. Fig. 7 reveals that common regularization strategies including Weight Decay, Dropout [95] and Batch Normalization [49] do not help achieving a larger margin classifier. Unless states otherwise, all the methods are trained with Full batch Gradient Descent with a learning rate of 1​e−21e-2 and a momentum of 0.90.9 for 10​k10k iterations.
+Figure 7: The effect of common regularization methods on a simple task of two-moon classification. It can be seen that common practices of deep learning seem not to help with learning a curved decision boundary. The acronym “lr” for the Adam optimizer refers to the learning rate. Shown decision boundaries are the average over 10 runs in which datapoints and the model initialization parameters are sampled randomly. Here, only the datapoints of one particular seed are plotted for visual clarity.
+B.3 CIFAR classification
+We use a four-layer convolutional network with ReLU non-linearity following the exact setup of [72].
+Sweeping λ\lambda from 0 to its optimal value results in a smooth transition from green to orange. However, larger values of λ\lambda will hurt the IID test (zero perturbation) generalization. The value that we cross-validate on is the average of IID and OOD generalization performance.
+B.4 Colored MNIST with color bias
+For the Colored MNIST task, we aggregate all the examples from both training environments.
+Table. 6 reports the hyper-parameters used for each method.
+Method
+Layers
+Dim
+Weight decay
+LR
+Anneal steps
+Penalty coef
+ERM
+2
+300
+0.0
+1e-4
+0/2000
+n/a
+SD
+2
+300
+0.0
+1e-4
+450/2000
+2e-5
+IRM
+2
+390
+0.00110794568
+0.00048985365
+190/500
+91257.18613115903
+Table 6: Hyper-parameters used for the Colored-MNIST experiment. Hyper-parameters of IRM are obtained from their released code. “Anneal steps” indicates the number of iterations done before applying the method.
+More on Fig. 3.
+ERM captures the color feature and in the absence of any digit features (environment 4), the network’s accuracy is low, as is expected because of reverse color-label match at testing. Moreover, the ERM network is very confident in this environment (confidence is inversely proportional to entropy). The SD network appears to capture the color feature too, with identical classification accuracy in environment 4, but much lower confidence which indicates the other features it expects to classify are absent. Consistent with this, in the case where both color and digit features are present (environment 2), SD achieves significantly better performance than ERM which is fooled by the flipped colors. This is again consistent with SD mitigating GS caused by the color feature onto the digit shape features. Meanwhile, IRM appears to not capture the color feature altogether. Specifically, when only the color is presented to a network trained with IRM, network predicts 50%\penalty\ 50\% accuracy with low confidence meaning that IRM is indeed “invariant” to the color as its name suggests.
+We note that further theoretical justifications are required to fully understand the underlying mechanisms in learning with spurious correlations.
+As a final remark, we highlight that, by design, this task assumes access to the test environment for hyperparameter tuning for all the reported methods. This is not a valid assumption in general, and hence the results should be only interpreted as a probe that shows that SD could provide an important level of control over what features are learned.
+The hyperparameter search has resulted in applying the SD at 450th step. We observe that 450th step is the step at which the traditional (in-distribution) overfitting occurs. This suggests that one might be able to tune hyperparameters without the need to monitor on the test set.
+For all the experiments, we use PyTorch [80]. We also use NNGeometry [31] for computing NTK.
+B.5 CelebA with gender bias: The experimental details
+Figure 5 depicts the learning curves for this task with and without Spectral Decoupling.
+For the CelebA experiment, we follow the same setup as in [89] and use their released code. We use Adam optimizer for the Spectral Decoupling experiments with a learning rate of 1​e−41e-4 and a batch size of 128128. As mentioned in the main text, for this experiment, we use a different variant of Spectral Decoupling which also provably decouples the learning dynamics,
+minθ⁡ 1⋅(log⁡[1+exp⁡(−𝐘​𝐲^)]+λ2​‖𝐲^−γ‖2).\displaystyle\min_{\theta}\ \mathbf{1}\cdot\left(\log\left[1+\exp\left(-\mathbf{Y}\hat{\mathbf{y}}\right)\right]+\frac{\lambda}{2}\norm{\hat{\v{y}} - \gamma}^{2}\right).
+B.5.1 Hyper-parameters
+We applied a hyper-parameter search on λ\lambda and γ\gamma for each of the classes separately. Therefore, a total of four hyper-parameters are found. For class zero, λ0=0.088\lambda_{0}=0.088, γ0=0.44\gamma_{0}=0.44 and for class one, λ1=0.012\lambda_{1}=0.012, γ1=2.5\gamma_{1}=2.5 are found to result in the best worst-group performance.
+During the experiments, we found that for the CelebA dataset, classes are imbalanced: 10875 examples for class 0 and 1925 examples for class 1; meaning a ratio of 5.65. That is why we decided to penalize examples of each class separately with different coefficients. We also found that penalizing the outputs’ distance to different values γ0\gamma_{0} and γ1\gamma_{1} helps the generalization. As stated in lines 842-844, the hyperparameter search results in the following values: 2.5 and 0.44.
+B.6 Computational Resources
+For the experiments and hyper-parameter search an approximate number of 800 GPU-hours has been used. GPUs used for the experiments are NVIDIA-V100 mostly on internal cluster and partly on public cloud clusters.
+Appendix C Proofs of the Theories and Lemmas
+C.1 Eq. 7 Legendre Transformation
+Following [50], we derive the Legendre transformation of the Cross-Entropy (CE) loss function. Here, we reiterate this transformation as following,
+Lemma 2 (CE’s Legendre transformation, adapted from Eq. 46 of [50]).
+For a variational parameter α∈[0,1]\alpha\in[0,1], the following linear lower bound holds for the cross-entropy loss function,
+ℒ⁡(ω):=log⁡(1+e−ω)≥H⁡(α)−α​ω,\mathcal{L}(\omega):=\log(1+e^{-\omega})\geq H(\alpha)-\alpha\omega,
+(19)
+in which ω:=y​y^\omega:=y\hat{y} and H⁡(α)H(\alpha) is the Shannon’s binary entropy. The equality holds for the critical value of α∗=−∇ωℒ\alpha^{*}=-\nabla_{\omega}\mathcal{L}, i.e., at the maximum of r.h.s. with respect to α\alpha.
+Proof.
+The Legendre transformation converts a function ℒ⁡(ω)\mathcal{L}(\omega) to another function g⁡(α)g(\alpha) of conjugate variables α\alpha, ℒ⁡(ω)→g⁡(α)\mathcal{L}(\omega)\to g(\alpha). The idea is to find the expression of the tangent line to ℒ⁡(ω)\mathcal{L}(\omega) at ω0\omega_{0} which is the first-order Taylor expansion of ℒ⁡(ω)\mathcal{L}(\omega),
+t(ω,ω0)=ℒ(ω0)+(ω−ω0)∇ωℒ|ω=ω0,t(\omega,\omega_{0})=\mathcal{L}(\omega_{0})+(\omega-\omega_{0})\nabla_{\omega}\mathcal{L}\rvert_{\omega=\omega_{0}},
+(20)
+where t⁡(ω,ω0)t(\omega,\omega_{0}) is the tangent line. According to the Legendre transformation, the function ℒ⁡(ω)\mathcal{L}(\omega) can be written as a function of the intercepts of tangent lines (where ω=0\omega=0). Varying ω0\omega_{0} along the xx-axis provides us with a general equation, representing the intercept as a function of ω\omega,
+t⁡(ω=0,ω0=ω)=ℒ⁡(ω)−ω​∇ωℒ.t(\omega=0,\omega_{0}=\omega)=\mathcal{L}(\omega)-\omega\nabla_{\omega}\mathcal{L}.
+(21)
+The cross-entropy loss function can be rewritten as a soft-plus function,
+ℒ⁡(ω)=−log⁡σ⁡(ω)=log⁡(1+e−ω),\mathcal{L}(\omega)=-\log\sigma(\omega)=\log(1 + e^{-\omega}),
+(22)
+in which ω:=y​y^\omega:=y\hat{y}. Letting α:=−∇ωℒ=σ⁡(−ω)\alpha:=-\nabla_{\omega}\mathcal{L}=\sigma(-\omega) we have,
+ω=log⁡(1−αα),\omega=\log\left(\frac{1-\alpha}{\alpha}\right),
+(23)
+which allows us to re-write the expression for the intercepts as a function of α\alpha (denoted by g⁡(α)g(\alpha)),
+g⁡(α)\displaystyle g(\alpha)
+=ℒ⁡(ω)−ω​∇ωℒ\displaystyle=\mathcal{L}(\omega)-\omega\nabla_{\omega}\mathcal{L}
+(24)
+=ℒ⁡(ω)+α​ω\displaystyle=\mathcal{L}(\omega)+\alpha\omega
+(25)
+=−α​log⁡α−(1−α)​log⁡(1−α)\displaystyle=-\alpha\log\alpha-(1-\alpha)\log(1-\alpha)
+(26)
+=H⁡(α),\displaystyle=H(\alpha),
+(27)
+where H⁡(α)H(\alpha) is the binary entropy function.
+Now, since ℒ\mathcal{L} is convex, a tangent line is always a lower bound and therefore at its maximum it touches the original function. Consequently, the original function can be recovered as follows,
+ℒ⁡(ω)=max0≤α≤1⁡H⁡(α)−α​ω.\mathcal{L}(\omega)=\max_{0\leq\alpha\leq 1}\ H(\alpha)-\alpha\omega.
+(28)
+Note that the lower bound in Eq. 19 is now a linear function of ω:=y​y^\omega:=y\hat{y} but at the expense of an additional maximization over the variational parameter α\alpha. An illustration of the lower bound is depicted in Fig. 8. Also a comparison between the dual formulation of other common loss functions is provided in Table. 7.
+Figure 8: Diagram illustrating the Legendre
+transformation of the function ℒ⁡(ω)=log⁡(1+e−ω)\mathcal{L}(\omega)=\log(1+e^{-\omega}) . The
+function is shown in blue, and the tangent line is shown in red. The tangent line is the lower bound of the function: H⁡(α)−α​ω≤ℒ⁡(ω)H(\alpha)-\alpha\omega\leq\mathcal{L}(\omega).
+Loss
+Primal form
+Dual form
+Cross-Entropy
+log⁡(1+e−w)\log(1+e^{-w})
+max0<α<1​[H​(α)−α​ω]\underset{0<\alpha<1}{\max}\big[H(\alpha)-\alpha\omega\big]
+Hinge loss
+max⁡(0,1−w)\max(0,1-w)
+max0≤α≤1​[α​1T−α​ω]\underset{0\leq\alpha\leq 1}{\max}\big[\alpha\textbf{1}^{T}-\alpha\omega\big]
+Squared error
+(1−ω)2(1-\omega)^{2}
+max𝛼​[−12​α2+α−α​ω]\underset{\alpha}{\max}\big[-\frac{1}{2}\alpha^{2}+\alpha-\alpha\omega\big]
+Table 7: Dual forms of other common different loss functions. The dual form of the Hinge loss is commonly used in Support Vector Machine (SVMs). For the ease of notation, we assume scalar ω\omega and α\alpha.
+∎
+C.1.1 Extension to Multi-Class
+Building on Eq. 65-71 of [50], which derives the Legendre transform of multi-class cross-entropy, one can update Eq. 6 of the main paper to
+−∑c=1Cyclog⁡(y^c)≥H(α)−∑c=1Cαcy^c,\displaystyle-\sum_{c=1}^{C}y_{c}\log(\hat{y}_c)\geq H(\alpha)-\sum_{c=1}^{C}\alpha^{c}\hat{y}_{c},
+(29)
+where H⁡(α)H(\alpha) is the entropy function, C=#C=\#classes, and vectors of αc\alpha^{c} are defined for each class. Then Eq. 8 of the paper is then updated to,
+(H⁡(α)−12​λ​∑c=1C(δy−αc)​Φ​ΦT​(δy−αc)T).\displaystyle\big(H(\alpha)-\frac{1}{2\lambda}\sum_{c=1}^{C}(\delta_{y}-\alpha^{c})\Phi\Phi^{T}(\delta_{y}-\alpha^{c})^{T}\big).
+(30)
+With a change of variable αc:=δy−αc\alpha^{c}:=\delta_{y}-\alpha^{c}, the theory of SD should remain unchanged.
+C.2 Eq. 8 Dual Dynamics
+In Eq. 7, the order of min and max can be swapped as proved in Lemma 3 of [50], leading to,
+min𝜽ℒ​(θ)=max𝜶min𝜽​(𝟏⋅H⁡(𝜶)−𝜶​𝐘​𝐲^+λ2​‖𝜽‖2).\displaystyle\operatornamewithlimits{min}_{\mbox{\boldmath$\theta$}}\mathcal{L}\left(\theta\right)=\operatornamewithlimits{max}_{\mbox{\boldmath$\alpha$}}\operatornamewithlimits{min}_{\mbox{\boldmath$\theta$}}\left(\mathbf{1}\cdot H(\mbox{\boldmath$\alpha$})-\mbox{\boldmath$\alpha$}\mathbf{Y}\hat{\mathbf{y}}+\frac{\lambda}{2}\norm{\gv{\theta}}^{2}\right).
+The solution to the inner optimization is,
+𝜽∗T=1λ​𝜶​𝐘​𝚽0,\displaystyle\mbox{\boldmath$\theta$}^{*T}=\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{Y}\mbox{\boldmath$\Phi$}_{0},
+which its substitution into Eq. 7 results in Eq. 8.
+C.3 Eq. 9
+Simply taking the derivative of Eq. 8 will result in Eq. 9. When we introduce continuous gradient ascent, we must define a learning rate parameter. This term is conceptually equivalent to the learning rate in SGD, but in this continuous setting, it has no influence on the fixed point.
+C.4 Eq. 10 Approximate Dynamics
+Approximating dynamics of Eq. 9 with a first order Taylor expansion around the origin of the second term, we obtain
+𝜶˙≈η⁡(−log⁡(𝜶)−1λ​𝜶​𝐔​(𝐒2+λ​𝐈)​𝐔T).\displaystyle\dot{\mbox{\boldmath$\alpha$}}\approx\eta\left(-\log{ \gv{\alpha} }-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\left(\mathbf{S}^{2}+\lambda\mathbf{I}\right)\mathbf{U}^{T}\right).
+Proof.
+Starting from the exact dynamics at Eq. 9,
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+=η⁡(−log⁡(𝜶)+log⁡(𝟏−𝜶)−1λ​𝜶​𝐔𝐒2​𝐔T),\displaystyle=\eta\left(-\log{\gv{\alpha}}+\log\left(\mathbf{1}-\mbox{\boldmath$\alpha$}\right)-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\mathbf{S}^{2}\mathbf{U}^{T}\right),
+(31)
+we perform a first-order Taylor approximation of the second term at 𝜶\alpha = 𝟎\mathbf{0} :
+log⁡(𝟏−𝜶)=−𝜶+𝒪⁡(𝜶2).\displaystyle\log\left(\mathbf{1}-\mbox{\boldmath$\alpha$}\right)=-\mbox{\boldmath$\alpha$}+\mathcal{O}\left(\mbox{\boldmath$\alpha$}^{2}\right).
+(32)
+Replacing in Eq. 31, we obtain
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+≈η⁡(−log⁡(𝜶)−𝜶−1λ​𝜶​𝐔𝐒2​𝐔T),\displaystyle\approx\eta\left(-\log{\gv{\alpha}}-\mbox{\boldmath$\alpha$}-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\mathbf{S}^{2}\mathbf{U}^{T}\right),
+(33)
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+≈η⁡(−log⁡(𝜶)−𝜶​𝐔𝐈𝐔T−1λ​𝜶​𝐔𝐒2​𝐔T),\displaystyle\approx\eta\left(-\log{\gv{\alpha}}-\mbox{\boldmath$\alpha$}\mathbf{U}\mathbf{I}\mathbf{U}^{T}-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\mathbf{S}^{2}\mathbf{U}^{T}\right),
+(34)
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+≈η⁡(−log⁡(𝜶)−1λ​𝜶​𝐔​(𝐒2+λ​𝐈)​𝐔T).\displaystyle\approx\eta\left(-\log{ \gv{\alpha} }-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\left(\mathbf{S}^{2}+\lambda\mathbf{I}\right)\mathbf{U}^{T}\right).
+(35)
+∎
+C.5 Thm. 1 Attractive Fixed-Points
+Theorem.
+Any fixed points of the system in Eq. 10 is attractive in the domain αi∈(0,1)\alpha_{i}\in(0,1).
+Proof.
+We define
+fi​(αj)=η⁡(log⁡(1−αi)αi−1λ​∑j​kui​k​sk2​(uT)k​j​αj)\displaystyle f_{i}(\alpha_{j})=\eta\left(\log\frac{(1-\alpha_{i})}{\alpha_{i}}-\frac{1}{\lambda}\sum_{jk}u_{ik}s_{k}^{2}(u^{T})_{kj}\alpha_{j}\right)
+(36)
+as the gradient function of the autonomous system Eq. 9.
+We find the character of possible fixed points by linearization. We compute the jacobian of the gradient function evaluated at the fixed point.
+Ji​k\displaystyle J_{ik}
+=d​fi​(αj)d​αk|αk∗\displaystyle=\evaluated{\d{f_i(\alpha_j)}{\alpha_k}}_{\alpha_k^*}
+(37)
+Ji​k\displaystyle J_{ik}
+=η⁡(−δi​k​[αi∗​(1−αi∗)]−1−λ−1​∑lui​l​sl2​(uT)l​k)\displaystyle=\eta\left(-\delta_{ik}\left[\alpha_{i}^{*}(1-\alpha_{i}^{*})\right]^{-1}-\lambda^{-1}\sum_{l}u_{il}s_{l}^{2}(u^{T})_{lk}\right)
+(38)
+The fixed point is an attractor if the jacobian is a negative-definite matrix. The first term is negative-definite matrix while the second term is negative semi-definite matrix. Since the sum of a negative matrix and negative-semi definite matrix is negative-definite, this completes the proof.
+∎
+C.6 Eq. 11 Feature Response at Fixed-Point
+At the fixed point 𝜶∗\mbox{\boldmath$\alpha$}^{*}, corresponding to the optimum of Eq. 8, the feature response of the neural network is given by,
+𝐳∗=1λ​𝐒2​𝐔T​𝜶∗T.\displaystyle\mathbf{z}^{*}=\frac{1}{\lambda}\mathbf{S}^{2}\mathbf{U}^{T}\mbox{\boldmath$\alpha$}^{*T}.
+Proof.
+The solution to the converged 𝜽∗\mbox{\boldmath$\theta$}^{*} at the Fixed-Point 𝜶∗\mbox{\boldmath$\alpha$}^{*} of Eq. 10 is,
+𝜽∗T=1λ​𝜶∗​𝐘​𝚽0,\displaystyle\mbox{\boldmath$\theta$}^{*T}=\frac{1}{\lambda}\mbox{\boldmath$\alpha$}^{*}\mathbf{Y}\mbox{\boldmath$\Phi$}_{0},
+which by substitution into Eq. 4, Eq. 11 is derived.
+∎
+C.7 Eq. 12 Uncoupled Case 1
+If the matrix of singular values 𝐒2\mathbf{S}^{2} is proportional to the identity, the fixed points of Eq. 10 are given by,
+αi∗=λ​𝒲​(λ−1​s2+1)s2+λ,\displaystyle\alpha_{i}^{*}=\frac{\lambda\mathcal{W}(\lambda^{-1}s^{2}+1)}{s^{2}+\lambda},
+zj∗=s2​𝒲​(λ−1​s2+1)s2+λ​∑iui​j,\displaystyle z_{j}^{*}=\frac{s^{2}\mathcal{W}(\lambda^{-1}s^{2}+1)}{s^{2}+\lambda}\sum_{i}u_{ij},
+(39)
+where 𝒲\mathcal{W} is the Lambert W function.
+Proof.
+When 𝐒2=s2​𝐈\mathbf{S}^{2}=s^{2}\mathbf{I}, Eq. 10 becomes
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+≈η⁡(−log⁡(𝜶)−1λ​𝜶​𝐔​(s2+λ)​𝐈𝐔T),\displaystyle\approx\eta\left(-\log{ \gv{\alpha} }-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\left(s^{2}+\lambda\right)\mathbf{I}\mathbf{U}^{T}\right),
+(40)
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+≈η⁡(−log⁡(𝜶)−1λ​𝜶​(s2+λ)).\displaystyle\approx\eta\left(-\log{ \gv{\alpha} }-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\left(s^{2}+\lambda\right)\right).
+(41)
+Fixed points of this system are obtained when 𝜶˙=0\dot{\mbox{\boldmath$\alpha$}}=0 :
+0=η⁡(−log⁡(𝜶)−s2+λλ​𝜶),\displaystyle 0=\eta\left(-\log{ \gv{\alpha} }-\frac{s^{2}+\lambda}{\lambda}\mbox{\boldmath$\alpha$}\right),
+(42)
+log⁡(𝜶)=−s2+λλ​𝜶.\displaystyle\log{ \gv{\alpha} }=-\frac{s^{2}+\lambda}{\lambda}\mbox{\boldmath$\alpha$}.
+(43)
+The solution of this equation is
+αi∗=λ​𝒲​(λ−1​s2+1)s2+λ\displaystyle{\alpha}_{i}^{*}=\frac{\lambda\mathcal{W}(\lambda^{-1}s^{2}+1)}{s^{2}+\lambda}
+(44)
+With 𝐳\mathbf{z} given by Eq. 11, we have
+𝐳\displaystyle\mathbf{z}
+=s2​𝒲​(λ−1​s2+1)s2+λ​𝐔T​𝟏,\displaystyle=\frac{s^{2}\mathcal{W}(\lambda^{-1}s^{2}+1)}{s^{2}+\lambda}\mathbf{U}^{T}\mathbf{1},
+(45)
+zi∗\displaystyle z_{i}^{*}
+=s2​𝒲​(λ−1​s2+1)s2+λ​∑iui​j.\displaystyle=\frac{s^{2}\mathcal{W}(\lambda^{-1}s^{2}+1)}{s^{2}+\lambda}\sum_{i}u_{ij}.
+(46)
+∎
+C.8 Eq. 13 Uncoupled Case 2
+If the matrix 𝐔\mathbf{U} is a permutation matrix, the fixed points of Eq. 10 are given by,
+αi∗=λ​𝒲​(λ−1​si2+1)si2+λ,\displaystyle\alpha_{i}^{*}=\frac{\lambda\mathcal{W}(\lambda^{-1}s_{i}^{2}+1)}{s_{i}^{2}+\lambda},
+zj∗=si2​𝒲​(λ−1​si2+1)si2+λ.\displaystyle z_{j}^{*}=\frac{s_{i}^{2}\mathcal{W}(\lambda^{-1}s_{i}^{2}+1)}{s_{i}^{2}+\lambda}.
+(47)
+Proof.
+When 𝐔\mathbf{U} is a permutation matrix, it can be made an identity matrix with a meaningless reordering of the class labels . Without loss of generality, we therefore consider 𝐔=𝐈\mathbf{U}=\mathbf{I}
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+≈η⁡(−log⁡(𝜶)−1λ​𝜶​(𝐒2+λ)​𝐈).\displaystyle\approx\eta\left(-\log{ \gv{\alpha} }-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\left(\mathbf{S}^{2}+\lambda\right)\mathbf{I}\right).
+(48)
+Fixed points of this system are obtained when 𝜶˙=0\dot{\mbox{\boldmath$\alpha$}}=0
+0=η⁡(−log⁡(αi)−1λ​αi​(si2+λ)),\displaystyle 0=\eta\left(-\log{ {\alpha}_i }-\frac{1}{\lambda}{\alpha_{i}\left({s}_{i}^{2}+\lambda\right)}\right),
+(49)
+log⁡(αi)=−1λ​αi​(si2+λ)\displaystyle\log{ {\alpha}_i }=-\frac{1}{\lambda}{\alpha_{i}\left({s}_{i}^{2}+\lambda\right)}
+(50)
+The solution of this equation is
+αi∗=λ​𝒲​(λ−1​si2+1)si2+λ.\displaystyle\alpha_{i}^{*}=\frac{\lambda\mathcal{W}(\lambda^{-1}s_{i}^{2}+1)}{s_{i}^{2}+\lambda}.
+(51)
+With 𝐳\mathbf{z} given by Eq. 11, we have
+𝐳∗=1λ​𝐒2​𝐈​𝜶∗T,\displaystyle\mathbf{z}^{*}=\frac{1}{\lambda}\mathbf{S}^{2}\mathbf{I}\mbox{\boldmath$\alpha$}^{*T},
+(52)
+zj∗=si2​𝒲​(λ−1​si2+1)si2+λ.\displaystyle z_{j}^{*}=\frac{s_{i}^{2}\mathcal{W}(\lambda^{-1}s_{i}^{2}+1)}{s_{i}^{2}+\lambda}.
+(53)
+∎
+C.9 Lemma 1 Perturbation Solution
+Proof.
+Starting from the autonomous system Eq. 10 and assumption in 1, we have
+𝜶=η⁡(−log⁡(𝜶)−𝜶​𝐀)\displaystyle\mbox{\boldmath$\alpha$}=\eta\left(-\log{ \gv{\alpha} }-\mbox{\boldmath$\alpha$}\mathbf{A}\right)
+(54)
+where
+𝐀\displaystyle\mathbf{A}
+=λ−1​𝐔​(𝐒𝟐+λ​𝐈)​𝐔T\displaystyle=\lambda^{-1}\mathbf{U}(\mathbf{S^{2}}+\lambda\mathbf{I})\mathbf{U}^{T}
+(55)
+Since the off-diagonal terms are of order δ\delta, we treat them as a perturbation. The unperturbed system has a solution 𝜶0\mbox{\boldmath$\alpha$}_{0} given by case 2
+α0,i∗=𝒲⁡(Ai​i)Ai​i.\displaystyle{\alpha}_{0,i}^{*}=\frac{\mathcal{W}(A_{ii})}{A_{ii}}.
+(56)
+We can linearize the autonomous system Eq. 10 around the unperturbed solution to find,
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+≃η⁡(−log⁡(𝜶0∗)−𝜶0∗⊙diag​(𝑨)+dd​𝜶​[−log⁡(𝜶)−𝜶⊙diag​(𝑨)]|𝜶0∗​(𝜶−𝜶0∗)),\displaystyle\simeq\eta\left(-\log\left(\mbox{\boldmath$\alpha$}_{0}^{*}\right)-\mbox{\boldmath$\alpha$}_{0}^{*}\odot\text{diag}\left(\mbox{\boldmath$A$}\right)+\frac{\mathrm{d}}{\mathrm{d}\mbox{\boldmath$\alpha$}}\left[-\log\left(\mbox{\boldmath$\alpha$}\right)-\mbox{\boldmath$\alpha$}\odot\text{diag}\left(\mbox{\boldmath$A$}\right)\right]\Bigr|_{\mbox{\boldmath$\alpha$}_{0}^{*}}(\mbox{\boldmath$\alpha$}-\mbox{\boldmath$\alpha$}_{0}^{*})\right),
+(57)
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+≃η⁡(1−log⁡(𝜶∗)−(diag​(𝑨)+𝜶0∗−1)⊙𝜶).\displaystyle\simeq\eta\left(1-\log\left(\mbox{\boldmath$\alpha^{*}$}\right)-\left(\text{diag}\left(\mbox{\boldmath$A$}\right)+{\mbox{\boldmath$\alpha$}_{0}^{*}}^{-1}\right)\odot\mbox{\boldmath$\alpha$}\right).
+(58)
+We then apply the perturbation given by off-diagonal terms of 𝐀\mathbf{A} to obtain
+𝜶˙\displaystyle\dot{\mbox{\boldmath$\alpha$}}
+≃η⁡(1−log⁡(𝜶∗)−𝜶⁡[𝐀+diag​(𝜶0∗−1)]),\displaystyle\simeq\eta\left(1-\log\left(\mbox{\boldmath$\alpha^{*}$}\right)-\mbox{\boldmath$\alpha$}\left[\mathbf{A}+\text{diag}\left({\mbox{\boldmath$\alpha$}_{0}^{*}}^{-1}\right)\right]\right),
+(59)
+where diag​(𝜶0∗−1)\text{diag}\left({\mbox{\boldmath$\alpha$}_{0}^{*}}^{-1}\right) is the diagonal matrix obtained from 𝜶0∗−1{\mbox{\boldmath$\alpha$}_{0}^{*}}^{-1} and where the inverse is applied element by element.
+Solving for 𝜶˙=0\dot{\mbox{\boldmath$\alpha$}}=0, we obtain the solution
+𝜶∗=(1−log⁡(𝜶0∗))​[𝐀+diag​(𝜶0∗−1)]−1.\displaystyle{\mbox{\boldmath$\alpha$}}^{*}=(1-\log\left(\mbox{\boldmath$\alpha$}_{0}^{*}\right))\left[\mathbf{A}+\text{diag}\left({\mbox{\boldmath$\alpha$}_{0}^{*}}^{-1}\right)\right]^{-1}.
+(60)
+∎
+C.10 Thm. 2 Gradient Starvation Regime
+Theorem (Gradient Starvation Regime).
+Consider a neural network in the linear regime, trained under cross-entropy loss for a binary classification task. With definition 1, assuming coupling between features 1 and 2 as in Eq. 15 and s12>s22s_{1}^{2}>s_{2}^{2}, we have,
+d​z2∗d​s12<0,\displaystyle\frac{\mathrm{d}{z}_{2}^{*}}{\mathrm{d}s_{1}^{2}}<0,
+(61)
+which implies GS.
+Proof.
+From lemma 1, and with 𝐔\mathbf{U} given by Eq. 15, we find that the perturbatory solution for the fixed point is
+α1∗\displaystyle{\alpha}_{1}^{*}
+=[λ(W(λ+δ2​(s12−s22)+s22λ)+1)(δ1−δ2(s22−s12)+λeW⁡(λ+δ2​(s12−s22)+s22λ)\displaystyle=\left[\lambda\left(W\left(\frac{\lambda+\delta^{2}\left(s_{1}^{2}-s_{2}^{2}\right)+s_{2}^{2}}{\lambda}\right)+1\right)\left(\delta\sqrt{1-\delta^{2}}\left(s_{2}^{2}-s_{1}^{2}\right)+\lambda e^{W\left(\frac{\lambda+\delta^{2}\left(s_{1}^{2}-s_{2}^{2}\right)+s_{2}^{2}}{\lambda}\right)}\right.\right.
+(W(λ+δ2​(−s12)+δ2​s22+s12λ)+1))]δ2(δ2−1)(s12−s22)+2\displaystyle\left.\left.\left(W\left(\frac{\lambda+\delta^{2}\left(-s_{1}^{2}\right)+\delta^{2}s_{2}^{2}+s_{1}^{2}}{\lambda}\right)+1\right)\right)\right]\delta^{2}\left(\delta^{2}-1\right)\left(s_{1}^{2}-s_{2}^{2}\right){}^{2}+
+(λ+δ2​(s12−s22)+λ​eW⁡(λ+δ2​(s12−s22)+s22λ)+s22)\displaystyle\left(\lambda+\delta^{2}\left(s_{1}^{2}-s_{2}^{2}\right)+\lambda e^{W\left(\frac{\lambda+\delta^{2}\left(s_{1}^{2}-s_{2}^{2}\right)+s_{2}^{2}}{\lambda}\right)}+s_{2}^{2}\right)
+(λ+δ2s22−(δ2−1)s12+λeW⁡(λ+δ2​(−s12)+δ2​s22+s12λ))]−1\displaystyle\left.\left(\lambda+\delta^{2}s_{2}^{2}-\left(\delta^{2}-1\right)s_{1}^{2}+\lambda e^{W\left(\frac{\lambda+\delta^{2}\left(-s_{1}^{2}\right)+\delta^{2}s_{2}^{2}+s_{1}^{2}}{\lambda}\right)}\right)\right]^{-1}
+α2∗\displaystyle{\alpha}_{2}^{*}
+=[λ(W(λ+δ2​(−s12)+δ2​s22+s12λ)+1)(δ1−δ2(s22−s12)+λeW⁡(λ+δ2​(−s12)+δ2​s22+s12λ)\displaystyle=\left[\lambda\left(W\left(\frac{\lambda+\delta^{2}\left(-s_{1}^{2}\right)+\delta^{2}s_{2}^{2}+s_{1}^{2}}{\lambda}\right)+1\right)\left(\delta\sqrt{1-\delta^{2}}\left(s_{2}^{2}-s_{1}^{2}\right)+\lambda e^{W\left(\frac{\lambda+\delta^{2}\left(-s_{1}^{2}\right)+\delta^{2}s_{2}^{2}+s_{1}^{2}}{\lambda}\right)}\right.\right.
+(W(λ+δ2​(s12−s22)+s22λ)+1))]\displaystyle\left.\left.\left(W\left(\frac{\lambda+\delta^{2}\left(s_{1}^{2}-s_{2}^{2}\right)+s_{2}^{2}}{\lambda}\right)+1\right)\right)\right]
+[δ2(δ2−1)(s12−s22)+2(λ+δ2(s12−s22)+λeW⁡(λ+δ2​(s12−s22)+s22λ)+s22)\displaystyle\left[\delta^{2}\left(\delta^{2}-1\right)\left(s_{1}^{2}-s_{2}^{2}\right){}^{2}+\left(\lambda+\delta^{2}\left(s_{1}^{2}-s_{2}^{2}\right)+\lambda e^{W\left(\frac{\lambda+\delta^{2}\left(s_{1}^{2}-s_{2}^{2}\right)+s_{2}^{2}}{\lambda}\right)}+s_{2}^{2}\right)\right.
+(λ+δ2s22−(δ2−1)s12+λeW⁡(λ+δ2​(−s12)+δ2​s22+s12λ))]−1\displaystyle\left.\left(\lambda+\delta^{2}s_{2}^{2}-\left(\delta^{2}-1\right)s_{1}^{2}+\lambda e^{W\left(\frac{\lambda+\delta^{2}\left(-s_{1}^{2}\right)+\delta^{2}s_{2}^{2}+s_{1}^{2}}{\lambda}\right)}\right)\right]^{-1}
+We have found at Eq. 11 that the corresponding steady-state feature response is given by
+𝐳∗=1λ​𝐒2​𝐔T​𝜶∗T\displaystyle{\mathbf{z}}^{*}=\frac{1}{\lambda}\mathbf{S}^{2}\mathbf{U}^{T}{\mbox{\boldmath$\alpha$}}^{*T}
+(62)
+In the perturbatory regime δ\delta is taken to be a small parameter. We therefore perform a first-order Taylor series expansion of 𝐳∗{\mathbf{z}}^{*} around δ=0\delta=0 to obtain
+z1∗\displaystyle{z}_{1}^{*}
+=δ​s12​(W⁡(λ+s22λ)+1)​(λ+λ​eW⁡(λ+s12λ)+s22)(λ+λ​eW⁡(λ+s12λ)+s12)​(λ+λ​eW⁡(λ+s22λ)+s22)+λ​s12​eW⁡(λ+s22λ)​(W⁡(λ+s12λ)+1)​(W⁡(λ+s22λ)+1)(λ+λ​eW⁡(λ+s12λ)+s12)​(λ+λ​eW⁡(λ+s22λ)+s22)\displaystyle=\frac{\delta s_{1}^{2}\left(W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)+1\right)\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)}+s_{2}^{2}\right)}{\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)}+s_{1}^{2}\right)\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)}+s_{2}^{2}\right)}+\frac{\lambda s_{1}^{2}e^{W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)}\left(W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)+1\right)\left(W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)+1\right)}{\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)}+s_{1}^{2}\right)\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)}+s_{2}^{2}\right)}
+(63)
+z2∗\displaystyle{z}_{2}^{*}
+=λ​s22​eW⁡(λ+s12λ)​(W⁡(λ+s12λ)+1)​(W⁡(λ+s22λ)+1)(λ+λ​eW⁡(λ+s12λ)+s12)​(λ+λ​eW⁡(λ+s22λ)+s22)−δ​s22​(W⁡(λ+s12λ)+1)​(λ+λ​eW⁡(λ+s22λ)+s12)(λ+λ​eW⁡(λ+s12λ)+s12)​(λ+λ​eW⁡(λ+s22λ)+s22)\displaystyle=\frac{\lambda s_{2}^{2}e^{W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)}\left(W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)+1\right)\left(W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)+1\right)}{\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)}+s_{1}^{2}\right)\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)}+s_{2}^{2}\right)}-\frac{\delta s_{2}^{2}\left(W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)+1\right)\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)}+s_{1}^{2}\right)}{\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)}+s_{1}^{2}\right)\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)}+s_{2}^{2}\right)}
+(64)
+Taking the derivative of z2∗{z}_{2}^{*} with respect to s1{s}_{1}, we find
+d​z2∗d​s12=−δ​λ​s22​(eW⁡(λ+s12λ)−eW⁡(λ+s22λ))​(W⁡(λ+s12λ)+1)(λ+λeW⁡(λ+s12λ)+s12)2(λ+λeW⁡(λ+s22λ)+s22)\displaystyle\frac{\mathrm{d}{z}_{2}^{*}}{\mathrm{d}{s}_{1}^{2}}=-\frac{\delta\lambda s_{2}^{2}\left(e^{W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)}-e^{W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)}\right)\left(W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)+1\right)}{\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{1}^{2}}{\lambda}\right)}+s_{1}^{2}\right){}^{2}\left(\lambda+\lambda e^{W\left(\frac{\lambda+s_{2}^{2}}{\lambda}\right)}+s_{2}^{2}\right)}
+(65)
+Knowing that the exponential of the WW Lambert function is a strictly increasing function and that s12>s22s_{1}^{2}>s_{2}^{2}, we find
+d​z2∗d​s12<0.\displaystyle\frac{\mathrm{d}{z}_{2}^{*}}{\mathrm{d}{s}_{1}^{2}}<0.
+(66)
+∎
+C.11 Eq. 18 Spectral Decoupling
+SD replaces the general L2 weight decay term in Eq. 5 with an L2 penalty exclusively on the network’s logits, yielding
+ℒ⁡(𝜽)=𝟏⋅log⁡[1+exp⁡(−𝐘​𝐲^)]+λ2​‖𝐲^‖2.\displaystyle\mathcal{L}\left(\mbox{\boldmath$\theta$}\right)=\mathbf{1}\cdot\log\left[1+\exp\left(-\mathbf{Y}\hat{\mathbf{y}}\right)\right]+{\color[rgb]{0.1016,0.2617,0.1719}\frac{\lambda}{2}\norm{\hat{\v{y}}}^{2}}.
+The loss can be written as,
+ℒ⁡(𝜽)\displaystyle\mathcal{L}\left(\mbox{\boldmath$\theta$}\right)
+=𝟏⋅log⁡[1+exp⁡(−𝐘​𝐲^)]+λ2​‖𝚽𝜽‖2,\displaystyle=\mathbf{1}\cdot\log\left[1+\exp\left(-\mathbf{Y}\hat{\mathbf{y}}\right)\right]+\frac{\lambda}{2}\norm{ \gv{\Phi} \gv{\theta} }^{2},
+=𝟏⋅log⁡[1+exp⁡(−𝐘​𝐲^)]+λ2​‖𝑺​𝑽T​𝜽‖2,\displaystyle=\mathbf{1}\cdot\log\left[1+\exp\left(-\mathbf{Y}\hat{\mathbf{y}}\right)\right]+\frac{\lambda}{2}\norm{ \gv{SV}^T \gv{\theta} }^{2},
+≥𝟏⋅[H⁡(𝜶)−𝜶𝒀​𝐲^]+λ2​‖𝑺​𝑽T​𝜽‖2.\displaystyle\geq\mathbf{1}\cdot\left[H(\mbox{\boldmath$\alpha$})-\mbox{\boldmath$\alpha$}\mbox{\boldmath$Y$}\hat{\mathbf{y}}\right]+\frac{\lambda}{2}\norm{ \gv{SV}^T \gv{\theta} }^{2}.
+Optimizing ℒ⁡(𝜽)\mathcal{L}\left(\mbox{\boldmath$\theta$}\right) wrt to 𝜽\theta results in the following optimum,
+𝜽∗T=1λ​𝜶​𝐘​𝚽0​𝑽𝑺−2​𝑽T,\displaystyle\mbox{\boldmath$\theta$}^{*T}=\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{Y}\mbox{\boldmath$\Phi$}_{0}\mbox{\boldmath$V$}\mbox{\boldmath$S$}^{-2}\mbox{\boldmath$V$}^{T},
+which by substitution into the loss function, the dynamics of gradient ascent leads to,
+𝜶˙=η⁡(log⁡𝟏−𝜶𝜶−1λ​𝜶​𝐔𝐒2​𝐒−2​𝐔T)=η⁡(log⁡𝟏−𝜶𝜶−1λ​𝜶),\displaystyle\dot{\mbox{\boldmath$\alpha$}}=\eta\left(\log\frac{\mathbf{1}-\mbox{\boldmath$\alpha$}}{\mbox{\boldmath$\alpha$}}-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\mathbf{U}\mathbf{S}^{2}\mathbf{S}^{-2}\mathbf{U}^{T}\right)=\eta\left(\log\frac{\mathbf{1}-\mbox{\boldmath$\alpha$}}{\mbox{\boldmath$\alpha$}}-\frac{1}{\lambda}\mbox{\boldmath$\alpha$}\right),
+where log\log and division are taken element-wise on the coordinates of 𝜶\alpha and hence dynamics of each αi\alpha_{i} is independent of other αj≠i\alpha_{j\neq i}.
+Experimental support, please
+view the build logs
+for errors. Generated by
+L
+A
+T
+E
+xml
+.
+Instructions for reporting errors
+We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+methods listed below:
+Click the "Report Issue" (
+) button, located in the page header.
+Tip: You can select the relevant text first, to include it in your report.
+Our team has already identified the following issues. We appreciate your time reviewing and reporting rendering errors we
+may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+all.
+Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion, and welcome developer contributions.
+We gratefully acknowledge support from
+our major funders,
+member institutions, ,
+and all contributors.
+About
+·
+Help
+·
+Contact
+·
+Subscribe
+·
+Copyright
+·
+Privacy
+·
+Accessibility
+·
+Operational Status (opens in new tab)
+Major funding support from

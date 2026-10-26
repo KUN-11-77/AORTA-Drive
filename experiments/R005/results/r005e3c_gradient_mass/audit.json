@@ -1,0 +1,20 @@
+{
+  "claim_boundary": "Read-only fold-0 outer-train optimization diagnosis only; no method PASS, training unlock, OOF, visual binding, architecture, appearance, behavior, or safety claim.",
+  "decision": "MECHANICAL_PASS__DESCRIPTIVE_DIAGNOSTIC_ONLY",
+  "mechanical_gates": {
+    "code_commit_exact": true,
+    "config_hash_exact": true,
+    "finite_values": true,
+    "model_state_unchanged": true,
+    "primary_replay_exact_except_timestamp": true,
+    "runner_hash_exact": true,
+    "same_physical_gpu": true,
+    "schema_exact": true,
+    "sealed_roles_untouched": true,
+    "status_complete": true,
+    "weights_never_updated": true
+  },
+  "schema": "aorta.r005e3c.gradient_mass_audit.v1",
+  "scientific_result_gate": "NOT_DEFINED_BY_PROTOCOL",
+  "status": "PASS"
+}

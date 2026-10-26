@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://papers.nips.cc/paper_files/paper/2024/hash/907a9fb75a408f6c3a2ae1bf84c39e44-Abstract-Conference.html",
+  "retrieved_at_utc": "2026-10-26T04:53:35.333301+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://papers.nips.cc/paper_files/paper/2024/hash/907a9fb75a408f6c3a2ae1bf84c39e44-Abstract-Conference.html",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 9367,
+  "sha256": "f695bfc71503685fe7ffca5be8b469473291a5f964505ce3ac03e51ddb6c78df",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\directional_gradients_neurips2024.html",
+  "elapsed_seconds": 2.555,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\directional_gradients_neurips2024.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-26_g1_optimization\\sources\\directional_gradients_neurips2024.html.links.json"
+}
