@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import cast
+from typing import Literal, cast
 
 import torch
 from torch import Tensor, nn
@@ -150,6 +150,7 @@ class FullContextSetScorer(nn.Module):
         patch_height: int = 18,
         patch_width: int = 32,
         dropout: float = 0.1,
+        output_activation: Literal["tanh", "identity"] = "tanh",
     ) -> None:
         super().__init__()
         for name, value in (
@@ -169,12 +170,15 @@ class FullContextSetScorer(nn.Module):
             raise ValueError("R005E2 freezes exactly one visual cross-attention layer")
         if not math.isfinite(dropout) or not 0.0 <= dropout < 1.0:
             raise ValueError("dropout must be in [0, 1)")
+        if output_activation not in ("tanh", "identity"):
+            raise ValueError("output_activation must be tanh or identity")
 
         self.visual_input_dimension = visual_input_dimension
         self.hidden_dimension = hidden_dimension
         self.patch_height = patch_height
         self.patch_width = patch_width
         self.slot_count = self.camera_count * self.history_count
+        self.output_activation = output_activation
 
         self.trajectory_encoder = _TrajectoryEncoder(
             hidden_dimension=hidden_dimension,
@@ -372,7 +376,9 @@ class FullContextSetScorer(nn.Module):
             set_encoded, visual_tokens, visual_mask
         )
         raw_scores = self.score_head(contextual).squeeze(-1)
-        relative = torch.tanh(raw_scores - raw_scores[:, :1])
+        relative = raw_scores - raw_scores[:, :1]
+        if self.output_activation == "tanh":
+            relative = torch.tanh(relative)
         return torch.where(candidate_mask, relative, torch.zeros_like(relative))
 
 

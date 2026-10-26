@@ -1,0 +1,64 @@
+experiment_id: R005E3B-score-realizability-v1
+date: 2026-10-26
+status: implementation_qualified_source_only_run_authorized
+parent:
+  experiment: R005E3A
+  implementation_commit: 77f37e43862bc352a753d6ee9141c907c9ac926b
+  frozen_decision: MIXED_DECISION_IMPROVEMENT_WITHOUT_COMPLETE_SCENE_BINDING
+  diagnosed_failure: ALL_NATIVE_COLLAPSE
+scope: source_fit_outer_train_optimization_and_realizability_only
+data:
+  allowed: source_fit_outer_train
+  outer_fold: 0
+  seed: 20261025
+  bundle_manifest_sha256: f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee
+  crossfit_manifest_sha256: f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878
+  mismatch_manifest_sha256: 9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093
+  visual_manifest_sha256: ac1c5a93303727e7a85a3de1b49dd031db8e8122b209a7bbf8cfe4972d8be852
+  parent_fold0_seed20261025_result_sha256: 2799a780448ce5230ced6ddacf8e691ffb476070c9e2af6f4bf539b6802b3173
+  prohibited: [outer_test_scientific_claim, development, calibration, test, NavDream, target_domain]
+treatment:
+  only_change: final_relative_score_activation
+  control: tanh_raw_score_difference
+  treatment: identity_raw_score_difference
+  native_score: exact_zero
+  candidate_mask: unchanged
+frozen:
+  architecture_except_output_activation: exact_R005E3A
+  parameters: exact_R005E3A
+  initialization: exact_parent_refit_initial_state
+  visual_cache: exact_R005E3A
+  objective: soft_selection_regret
+  temperature: exact_outer_train_gap_median_rule
+  optimizer: AdamW
+  learning_rate_schedule: exact_parent
+  batch_size: 1
+  data_order: exact_parent_seeded_outer_train_order
+  epoch_and_step_budget: exact_parent_selected_epoch
+primary_metrics:
+  - mean_gain_over_native
+  - mean_oracle_gain_over_native
+  - mean_hard_regret
+  - absolute_oracle_capture
+  - native_choice_fraction
+  - beneficial_harmful_neutral_nonnative_counts
+  - score_and_gradient_conditioning
+diagnostic_interventions: [correct, S1_refit_train_mismatch, removed]
+thresholds:
+  minimum_absolute_oracle_capture: 0.10
+  mean_gain_over_native_strictly_positive: true
+  minimum_beneficial_nonnative_count: 1
+gates:
+  pass: PASS_LINEAR_REALIZABILITY
+  fail: FAIL_LINEAR_REALIZABILITY
+  invalid: INVALID
+unlock:
+  pass: preregister_full_OOF_confirmation_only
+  fail: preregister_nonvanishing_surrogate_diagnosis_only
+claim_boundary:
+  - training_domain_optimization_qualification_only
+  - not_visual_scene_binding
+  - not_OOF_generalization
+  - not_Differential_Query
+  - not_appearance_robustness
+  - not_NavDream_or_driving_safety

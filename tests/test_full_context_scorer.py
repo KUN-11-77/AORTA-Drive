@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Literal
+
 import pytest
 import torch
 
@@ -11,7 +13,9 @@ from aorta_drive.models.full_context_scorer import (
 )
 
 
-def _model() -> FullContextSetScorer:
+def _model(
+    *, output_activation: Literal["tanh", "identity"] = "tanh"
+) -> FullContextSetScorer:
     torch.manual_seed(7)
     model = FullContextSetScorer(
         visual_input_dimension=8,
@@ -22,6 +26,7 @@ def _model() -> FullContextSetScorer:
         patch_height=3,
         patch_width=4,
         dropout=0.0,
+        output_activation=output_activation,
     )
     return model.eval()
 
@@ -55,6 +60,28 @@ def test_forward_is_finite_bounded_and_native_relative() -> None:
     assert torch.equal(output[0, 2:3], torch.zeros(1))
     assert torch.equal(output[1, 1:], torch.zeros(3))
     assert bool(torch.all(output.abs() <= 1.0))
+
+
+def test_identity_output_is_exact_unbounded_relative_parameterization() -> None:
+    bounded = _model(output_activation="tanh")
+    identity = _model(output_activation="identity")
+    identity.load_state_dict(bounded.state_dict())
+    bounded_output = bounded(*_inputs())
+    identity_output = identity(*_inputs())
+    mask = _inputs()[1]
+    assert torch.equal(identity_output[:, 0], torch.zeros(2))
+    assert torch.equal(identity_output[~mask], torch.zeros_like(identity_output[~mask]))
+    assert torch.allclose(
+        bounded_output[mask], torch.tanh(identity_output[mask]), atol=1.0e-7, rtol=0.0
+    )
+    assert sum(parameter.numel() for parameter in bounded.parameters()) == sum(
+        parameter.numel() for parameter in identity.parameters()
+    )
+
+
+def test_invalid_output_activation_fails_closed() -> None:
+    with pytest.raises(ValueError, match="output_activation"):
+        FullContextSetScorer(output_activation="sigmoid")  # type: ignore[arg-type]
 
 
 def test_trajectory_time_feature_preserves_physical_overlap() -> None:
