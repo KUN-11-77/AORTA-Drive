@@ -24,6 +24,7 @@ STAGES = (
     "c3_planner_memory",
     "c4_trajectory_query",
 )
+CONTROLLED_APPEARANCES = ("low_exposure", "low_contrast", "cool_cast")
 
 
 @dataclass(frozen=True)
@@ -158,6 +159,30 @@ def make_features(
         key: value.unsqueeze(0).to(device)
         for key, value in compatible_features(builder, agent_input, config).items()
     }
+
+
+def apply_controlled_appearance(
+    image: torch.Tensor, condition: str
+) -> torch.Tensor:
+    """Apply one preregistered source-only appearance transform.
+
+    The transform is applied after the official camera stitching/resizing and
+    before the frozen backbone.  It changes RGB only and is intentionally
+    deterministic so clean/shift pairs share every non-image input exactly.
+    """
+
+    if condition not in CONTROLLED_APPEARANCES:
+        raise ValueError(f"unsupported condition {condition}")
+    if image.ndim != 4 or image.shape[0] != 1 or image.shape[1] != 3:
+        raise ValueError(f"expected [1,3,H,W] image, got {tuple(image.shape)}")
+    if condition == "low_exposure":
+        output = image * 0.50
+    elif condition == "low_contrast":
+        output = 0.50 + 0.55 * (image - 0.50)
+    else:
+        gains = image.new_tensor((0.85, 0.95, 1.10)).view(1, 3, 1, 1)
+        output = image * gains
+    return torch.clamp(output, 0.0, 1.0)
 
 
 def activation_to_npc(value: torch.Tensor) -> torch.Tensor:
