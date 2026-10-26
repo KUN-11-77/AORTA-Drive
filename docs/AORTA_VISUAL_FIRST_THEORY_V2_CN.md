@@ -11,6 +11,19 @@ Constant Eye 已经给出一个重要事实：冻结 DINOv3-H+ 并为不同 plan
 
 非目标：恢复完整 RGB、强制所有 feature 不变、重新训练 planner、把接近 clean trajectory 等同于安全、用更多模块替代机制证据。
 
+### 0.1 一分钟论文故事
+
+现有视觉鲁棒驾驶通常试图让整幅表示在天气变化下保持稳定；Constant Eye 进一步表明，冻结 DINO
+并为各 planner 重训接口可以改善外观 OOD。但 planner 并不需要全部视觉信息，而且“整体稳定”不保证
+“决策稳定”。我们的关键观察是：外观扰动只在 planner Jacobian 所定义的少数任务敏感方向上影响行为，
+大量 feature drift 位于决策等价类内。AORTA 因此先用组外双向 interchange intervention 找出真正介导
+行为的低秩 planner-tangent subspace，再检验冻结 DINO 是否能从受扰图像恢复这些坐标；只有两门都通过，
+才训练一个只在该子空间中工作的 Causal Planner-Tangent Repair。这样既不重训原 planner，也不追求完整
+场景重建，而是修复“改变决策所必需、且视觉确实可恢复”的最小证据。若低秩介导、视觉增量或 matched
+adapter 优势任一失败，方法主张即停止。
+
+一句话：**不是让视觉特征处处不变，而是识别并修复外观扰动中真正改变冻结 planner 决策的低秩因果方向。**
+
 ## 1. 第一性对象
 
 设物理状态为 \(S\)，外观为 \(A\)，历史为 \(H\)，图像为
