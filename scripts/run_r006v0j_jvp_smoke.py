@@ -34,6 +34,7 @@ def main() -> None:
     parser.add_argument("--time-set", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--device", default="cuda:0")
+    parser.add_argument("--stages", nargs="+", choices=STAGES, default=list(STAGES))
     parser.add_argument("--seed", type=int, default=20261026)
     parser.add_argument("--finite-difference-epsilon", type=float, default=1e-3)
     parser.add_argument("--relative-tolerance", type=float, default=1e-2)
@@ -117,7 +118,10 @@ def main() -> None:
     reports = []
     all_pass = backend_semantics_pass and autodiff_head_semantics_pass
     epsilon = float(args.finite_difference_epsilon)
-    for stage_index, stage in enumerate(STAGES):
+    selected_stages = tuple(args.stages)
+    if len(set(selected_stages)) != len(selected_stages):
+        raise ValueError("duplicate stages are not allowed")
+    for stage_index, stage in enumerate(selected_stages):
         clean = clean_capture[stage].to(device)
         shifted = shifted_capture[stage].to(device)
         tangent = clean - shifted
@@ -219,6 +223,7 @@ def main() -> None:
         "recording_group": row["recording_group"],
         "scene_token": row["scene_token"],
         "condition": "low_exposure",
+        "selected_stages": list(selected_stages),
         "finite_difference_epsilon": epsilon,
         "relative_tolerance": args.relative_tolerance,
         "absolute_tolerance": args.absolute_tolerance,
