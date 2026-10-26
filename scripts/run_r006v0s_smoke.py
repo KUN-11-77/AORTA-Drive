@@ -12,6 +12,7 @@ import argparse
 import csv
 import hashlib
 import importlib.util
+import inspect
 import json
 import platform
 import subprocess
@@ -53,7 +54,7 @@ def load_module(path: Path, name: str):
 def git_revision(path: Path) -> dict[str, Any]:
     def run(*args: str) -> str:
         return subprocess.check_output(
-            ["git", "-C", str(path), *args], text=True
+            ["git", "-c", "safe.directory=*", "-C", str(path), *args], text=True
         ).strip()
 
     try:
@@ -168,6 +169,26 @@ def main() -> None:
         raise RuntimeError("R006V0S requires an explicitly selected CUDA device")
 
     prototype = load_module(args.instrumentation, "r006v0s_instrumentation")
+    imported_model_path = Path(inspect.getfile(prototype.TransfuserModel)).resolve()
+    imported_builder_path = Path(
+        inspect.getfile(prototype.TransfuserFeatureBuilder)
+    ).resolve()
+    expected_model_path = (
+        args.planner_root / "navsim/agents/transfuser/transfuser_model.py"
+    ).resolve()
+    expected_builder_path = (
+        args.planner_root / "navsim/agents/transfuser/transfuser_features.py"
+    ).resolve()
+    if imported_model_path != expected_model_path:
+        raise RuntimeError(
+            f"planner model source mismatch: imported {imported_model_path}, "
+            f"expected {expected_model_path}"
+        )
+    if imported_builder_path != expected_builder_path:
+        raise RuntimeError(
+            f"feature builder source mismatch: imported {imported_builder_path}, "
+            f"expected {expected_builder_path}"
+        )
     helper = prototype.load_module(
         prototype.NAVDREAM_PATH, "r006v0s_sensor_config_helper"
     )
@@ -329,6 +350,10 @@ def main() -> None:
             "group_roles_sha256": sha256_file(args.group_roles),
             "time_set_sha256": sha256_file(args.time_set),
             "preprocess_sha256": sha256_file(preprocess_path),
+            "imported_model_path": str(imported_model_path),
+            "imported_model_sha256": sha256_file(imported_model_path),
+            "imported_builder_path": str(imported_builder_path),
+            "imported_builder_sha256": sha256_file(imported_builder_path),
             "planner_source": git_revision(args.planner_root),
             "python": platform.python_version(),
             "torch": torch.__version__,
