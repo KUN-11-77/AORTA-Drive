@@ -128,7 +128,9 @@ def main() -> None:
         function = lambda value, stage=stage: runtime.trajectory_xy_from_stage(
             shifted_features, stage, value
         )
-        _, product = torch.func.jvp(function, (shifted,), (tangent,))
+        _, product = torch.autograd.functional.jvp(
+            function, shifted, tangent, create_graph=False, strict=True
+        )
         reverse_base = shifted.detach().clone().requires_grad_(True)
         reverse_output = function(reverse_base)
         probe_generator = torch.Generator(device=device)
@@ -171,8 +173,8 @@ def main() -> None:
         ).requires_grad_(True)
         residual_npc = npc_tangent - (npc_tangent @ basis) @ basis.T
         residual = npc_to_activation(residual_npc, tangent)
-        _, differentiable_product = torch.func.jvp(
-            function, (shifted,), (residual,)
+        _, differentiable_product = torch.autograd.functional.jvp(
+            function, shifted, residual, create_graph=True, strict=True
         )
         objective = torch.mean(differentiable_product * differentiable_product)
         gradient = torch.autograd.grad(objective, basis)[0]
@@ -230,6 +232,7 @@ def main() -> None:
         "deterministic_algorithms_warn_only": True,
         "sdpa_backend": "math_only__flash_false__mem_efficient_false",
         "mha_fastpath_enabled": False,
+        "jvp_implementation": "reverse_over_reverse_with_math_sdpa",
         "checkpoint_sha256": sha256_file(args.checkpoint),
         "runner_sha256": sha256_file(Path(__file__)),
         "stages": reports,
