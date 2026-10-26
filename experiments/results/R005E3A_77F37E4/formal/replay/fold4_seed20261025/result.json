@@ -1,0 +1,48 @@
+{
+  "checkpoint_sha256": "60b56455abcfdd7f3474f6ab0e83733dbbb6d1a56a81e95386f0dbcce1a6e5d4",
+  "code_commit": "77f37e43862bc352a753d6ee9141c907c9ac926b",
+  "completed_at_utc": "2026-10-26T02:42:15.962438+00:00",
+  "development_calibration_test_navdream_target_accessed": false,
+  "final_model_state_sha256": "c4ad34857bc3cf1c3307db12cd4128bf1afda98512ce1d870501a654e883b899",
+  "initial_model_state_sha256": "fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5",
+  "input_sha256": {
+    "bundle_manifest": "f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee",
+    "crossfit_manifest": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+    "mismatch_manifest": "9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093",
+    "parent_audit": "1654e0927749972e61184ee5a41c3dc0f384f2185d7d569cbc48391e14b23214",
+    "sensitivity_manifest": "8c1f4e096dfadb683b7d1a6ddf92c256d32c33cf2ad1b6ecb29760ffbd993ce2"
+  },
+  "objective": "soft_selection_regret",
+  "optimizer_step_count": 6720,
+  "outer_fold": 4,
+  "parameter_count": 4749313,
+  "parent_job_result_sha256": "2ce52fb6b6a963612f029d11a36d8c524947e725c3ba5275f809da9eaeb231b7",
+  "parent_refit_initial_state_sha256": "fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5",
+  "parent_selected_epoch": 12,
+  "physical_gpu": {
+    "name": "NVIDIA GeForce RTX 3090",
+    "physical_index": 3,
+    "uuid": "GPU-f9187302-5dfe-1265-fe91-0ebc6064d530"
+  },
+  "prediction_sha256": "aadfc8edb5c465a397bbf99947a190393adec7ad608f35d07eace407d77b601c",
+  "runner_sha256": "a254433b295c08ce5f37de031bd609e4ec432967aa4d830be9f77be74a3eb5bd",
+  "runtime_seconds": 820.0432635240722,
+  "schema": "aorta.r005e3a.fold_job.v1",
+  "scientific_metrics_emitted": false,
+  "seed": 20261025,
+  "selected_epoch": 12,
+  "status": "COMPLETED",
+  "temperature": 0.125,
+  "temperature_ledger": {
+    "even_count_median": "arithmetic_mean_of_two_central_order_statistics",
+    "gap_count": 2211,
+    "maximum_gap": 1.0000000267464202,
+    "minimum_gap": 2.505545353415073e-06,
+    "ordered_gap_float64_sha256": "fefcf964271df740a2117712388dd756c8fc2b906ef9d57072944d0d5962e5e1",
+    "rule": "outer_train_strictly_positive_best_minus_candidate_gap_median",
+    "source_bundle_index_sha256": "3a11101bf508f51de40c8f9bec8dbb442aa351153c7b6a16aa6f0e8ddf2935c7",
+    "tie_tolerance": 1e-12
+  },
+  "test_anchor_count": 112,
+  "training_bundle_index_order_sha256": "f66e647a177cff87ef63dbd5b9917a49e6abbc8f8c81a17740667a89bfaf4485"
+}

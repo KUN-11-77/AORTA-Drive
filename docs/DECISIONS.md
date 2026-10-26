@@ -1434,3 +1434,19 @@ the current open-ended geometry certificate iteration remains STOP.
   策略级驾驶收益、安全或Best-Paper主张。
 - **Artifacts:** `experiments/R005/R005E3A_OBJECTIVE_QUALIFICATION_PREREGISTRATION.md`；
   `refine-logs/2026-10-26_r005e3_objective_qualification/EXPERIMENT_PLAN.md`。
+
+## ADR-0097：native-only退化使soft-regret机制不合格，并修正未来收益门
+
+- **Decision:** `FROZEN_MIXED__MECHANISM_UNSUPPORTED__OPTIMIZATION_REALIZABILITY_ONLY_NEXT`。
+- **Evidence:** R005E3A 18 primary+18 replay机械PASS；treatment相对parent regret可靠下降，但correct、
+  S1、S2、S3与removed的prediction/choice/regret完全相同。OOF及18/18 outer-train checkpoints均把
+  所有合法challenger输出为`-1`并100%选择native，故`G_model=0`、absolute oracle capture为0。
+- **Interpretation:** 改善来自消除父模型有害干预，不来自恢复正候选机会。`tanh`负饱和、native固定0
+  与`T=0.125`共同造成softmax概率和activation Jacobian双重梯度抑制。该结果否定当前具体组合，
+  不否定无界总体风险命题、RGB信息存在性或Differential Query。
+- **Consequence:** 冻结`MIXED`不改写，但2×3、DQ、NavDream继续HOLD。下一实验只能资格化最简单
+  generic scorer的优化与可实现性；未来正门必须要求`G_model`组级CI下界为正、absolute capture、
+  有益nonnative选择与scene-binding干预同时通过，不能只比较有害parent。
+- **Artifacts:** `experiments/R005/R005E3A_RESULTS.md`；
+  `experiments/R005/R005E3A_EXPERIMENT_AUDIT.md`；
+  `experiments/results/R005E3A_77F37E4/`。

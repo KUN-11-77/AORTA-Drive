@@ -1,0 +1,27 @@
+{
+  "schema": "aorta.experiment_integrity_audit.v1",
+  "experiment": "R005E3A-decision-objective-qualification-v1",
+  "date": "2026-10-26",
+  "mechanical_status": "PASS",
+  "scientific_support": "MIXED",
+  "integrity_status": "WARN",
+  "external_reviewer": "REVIEW_UNAVAILABLE",
+  "checks": {
+    "ground_truth_provenance": "PASS_SCOPED_U_CTX",
+    "score_normalization": "PASS_WITH_POSTHOC_GATE_SEMANTICS_DEFECT",
+    "result_existence": "PASS",
+    "primary_replay_exactness": "PASS",
+    "finite_values": "PASS",
+    "sealed_roles": "PASS_NOT_ACCESSED",
+    "phantom_results": "PASS_NONE_FOUND",
+    "dead_code_review": "WARN_NO_EXTERNAL_BACKEND",
+    "scope": "WARN_SOURCE_FIT_ONLY"
+  },
+  "posthoc_mechanism": {
+    "all_18_outer_train_jobs_native_only": true,
+    "all_challengers_exact_minus_one": true,
+    "absolute_oracle_capture": 0.0,
+    "changes_frozen_decision": false
+  },
+  "next_boundary": "OPTIMIZATION_AND_REALIZABILITY_QUALIFICATION_ONLY"
+}

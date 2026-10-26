@@ -1,0 +1,32 @@
+{
+  "code_commit": "77f37e43862bc352a753d6ee9141c907c9ac926b",
+  "development_calibration_test_navdream_target_accessed": false,
+  "input_sha256": {
+    "bundle_manifest": "f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee",
+    "config": "d72f8ebbf368d821ebd7963b367eb37188569c1f5a30af3a11000543aaee6af5",
+    "crossfit_manifest": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+    "mismatch_manifest": "9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093",
+    "parent_audit": "1654e0927749972e61184ee5a41c3dc0f384f2185d7d569cbc48391e14b23214",
+    "runner": "a254433b295c08ce5f37de031bd609e4ec432967aa4d830be9f77be74a3eb5bd",
+    "sensitivity_manifest": "8c1f4e096dfadb683b7d1a6ddf92c256d32c33cf2ad1b6ecb29760ffbd993ce2"
+  },
+  "job_count_per_phase": 18,
+  "maximum_idle_memory_mib": 256,
+  "maximum_jobs_per_gpu": 4,
+  "parent_run_root": "/data/khsong/aorta_runs/r005e2b_science_0fdee4b_multislot_v2",
+  "partial_scientific_metric_reading_prohibited": true,
+  "phase_order": [
+    "primary",
+    "replay"
+  ],
+  "registered_gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "same_job_gpu_for_replay": true,
+  "schema": "aorta.r005e3a.job_queue.v1",
+  "started_at_utc": "2026-10-26T02:10:06.404249+00:00",
+  "workers_per_job": 4
+}

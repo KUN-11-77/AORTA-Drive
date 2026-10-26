@@ -179,3 +179,39 @@ temperature/utility-gap条件。R005E3A正是在实验上资格化“当前有�
 - 本定理不涉及appearance orbit、NavDream、sequential policy、真实闭环或安全。
 
 因此，R005E3A是对一个最简单机制解释的严格淘汰实验，不是AORTA最终算法。
+
+## 8. Post-result falsification：有界参数化的吸收式退化
+
+正式结果之后，18/18个primary checkpoint在各自outer-train上均满足：所有合法challenger
+`s_i=-1`、native `s_0=0`、hard选择恒为native。所有job的冻结温度均为`T=0.125`。对已处于
+负饱和的challenger，logit梯度还需乘以`tanh`的Jacobian：
+
+\[
+\frac{\partial L}{\partial z_k}
+=\frac{p_k}{T}(\mathbb E_p[u]-u_k)(1-\tanh^2 z_k).
+\]
+
+当`s_k\approx-1`时，`p_k`相对native含`\exp(-1/T)=\exp(-8)`量级，同时
+`1-\tanh^2z_k\to0`。两项共同构成近吸收低梯度区。这个结果否定了“当前有界scorer、冻结温度和预算
+可以有效资格化soft-regret”的实现假设，但不否定无界总体条件风险命题。
+
+## 9. 必须区分相对修复与绝对机会捕获
+
+定义
+
+\[
+G_{oracle}=\mathbb E[U^*-U_0],\quad
+G_{model}=\mathbb E[U_{\hat i}-U_0],\quad
+R_{model}=\mathbb E[U^*-U_{\hat i}].
+\]
+
+逐定义有
+
+\[
+\boxed{G_{oracle}=G_{model}+R_{model}}.
+\]
+
+本轮`G_model=0`而`R_model=G_oracle`。因此
+`(R_parent-R_model)/G_oracle=0.159175`只说明模型相对有害parent回到native，不能解释为捕获了
+15.9%的oracle收益。未来正向门必须同时要求`G_model`组级CI下界为正和
+`G_model/G_oracle`达到预注册阈值；相对parent改善只能作为附属比较。

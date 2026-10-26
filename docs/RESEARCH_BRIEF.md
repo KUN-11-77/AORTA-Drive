@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R005E3A：`MECHANICAL_PASS__FROZEN_MIXED__ALL_NATIVE_COLLAPSE`。**
+> 18 primary +18 same-GPU replay全部闭合，prediction/model-state exact及所有provenance、finite、fold、
+> target、temperature与sealed-role门通过。冻结规则下treatment相对parent regret为`-0.0026503`
+> `[-0.0054378,-0.0008577]`，但S1/S2/S3/removed相对correct的regret差和top-choice flips全部精确为0，
+> 故正式分类为`MIXED`。审计后只读复算进一步确认：OOF及18/18 outer-train checkpoints均把所有
+> challenger推至`-1`、100%选择native，实际`G_model=0`、absolute oracle capture为0。原15.9%比率
+> 只表示消除有害parent干预，不是获取oracle机会。下一步严格限制为优化/可实现性资格；不解锁2×3、
+> Differential Query、NavDream或行为实验。
+
 > **2026-10-26 潜在商—观测信念分离：`THEORY_CORRECTED__NO_PROTOCOL_CHANGE`。**
 > 原“合法外观必处于同一观测商类”表述过强：外观可以保持真实任务效用，却通过遮挡、低照度或伪影
 > 销毁可辨识信息。理论现区分潜在状态的决策商与图像诱导的预测分布，并给出确定性、外观不变且决策
@@ -414,7 +423,10 @@ scorer可能同样有效，同时区间也可能因OOD失覆盖而全拒判。�
 - 旧视觉场 held-out mechanism：有支持，但不能回填新 relation 网络；
 - 旧 scalar road-margin reranker：已停止；
 - 当前 differential-support relation：反例驱动的待证候选，查新后创新范围显著收窄；
-- 最近实验门：R005E1A资格通过，R005E1B完成并GO到visual recoverability预注册；R005E1C因官方two-stage mapping覆盖`0/672`而fail-closed；R005E2A outcome-free门已全部闭合：6-fold cross-fit、S1主donor、S2/S3敏感性donor、三臂参数/FLOPs、672-anchor DINO exact cache与448-step单fold资源演练均机械PASS。用户已授权进入冻结视觉增量实验，但当前仓库尚缺正式scientific runner与独立auditor，因此只GO到R005E2B runner冻结，不得先读取结果；
+- 最近实验门：R005E2B generic MSE probe正式`UNSUPPORTED`；R005E2S只支持平均relation binding；
+  R005E3A loss-only资格机械PASS但冻结`MIXED`，进一步被18/18 outer-train复算确认为native-only饱和，
+  绝对oracle capture为0。当前只GO到optimization/realizability qualification的预注册与合成/outer-train
+  非退化检查；在`G_model>0`、absolute capture和scene-binding均成立前，不得进入2×3、DQ、NavDream；
 - B4R1 interface valid 后顺序：target-scope audit/contextual materialization → matched scorer →
   NavDream → actual-history/sequential evaluation → 三 planner 行为 → clean no-harm → batch-1 latency；
 - 当前投稿裁定：`NOT_ICCV_READY / NOT_ORAL_READY`。

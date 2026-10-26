@@ -417,7 +417,7 @@ M_{GPU}(\theta)\le M_{max}.
 | Gate | 科学问题 | 当前状态 |
 |---|---|---|
 | G0 Estimand | 合法 `U_ctx` 是否有候选 oracle headroom | source-fit 已支持 |
-| G1 Information | 正确视觉是否提供可学习条件增量 | R005E2 正在检验 |
+| G1 Information | 正确视觉是否提供可学习条件增量 | generic MSE probe未支持；soft-regret出现native-only优化塌缩，尚未有效裁决信息存在性 |
 | G2 Inductive bias | Differential Query 是否胜过 matched generic scorer | 未验证 |
 | G3 Robustness | 外观变化下是否稳定且保留任务信息 | 未验证 |
 | G4 Reliability | 同时区间是否 non-vacuous 且降低错误干预 | 未验证 |
@@ -452,6 +452,23 @@ M_{GPU}(\theta)\le M_{max}.
 | 离线有效、sequential 失败 | history distribution shift；不得声称行为收益 |
 
 STOP 不是自动开启新架构搜索的许可。
+
+### 13.1 决策收益的守恒分解
+
+对固定合法panel，以native为基准定义oracle机会、模型获取收益和选择regret：
+
+\[
+G_{oracle}=\mathbb E[U^*-U_0],\qquad
+G_{model}=\mathbb E[U_{\hat i}-U_0],\qquad
+R_{model}=\mathbb E[U^*-U_{\hat i}].
+\]
+
+则严格有`G_oracle=G_model+R_model`。这一恒等式把三种现象分开：真正获取正机会、退回native避免
+有害干预、以及仍未恢复的oracle regret。任何视觉决策主张必须以`G_model>0`及其组级不确定性为核心，
+不能把相对有害parent的regret下降冒充视觉收益。
+
+R005E3A提供了必要反例：100%选择native可显著优于有害parent，却有`G_model=0`且对所有视觉干预
+完全不敏感。因此native fallback既是保守部署机制，也是必须显式排除的学习退化解。
 
 ## 14. 模块准入五问
 

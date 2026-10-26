@@ -304,6 +304,22 @@ T_{e2e}=T_{backbone}+T_{projection}+T_{query}+T_{relation}+T_{calibration}+T_{ar
 修正必须形成新 ADR、新 commit、新 run id 和新 preregistration；旧裁决永不覆盖。只有当失败机制证明
 现有归纳偏置缺失某项必要信息时，才允许提出新算法。新算法仍需回到第 2 节五问。
 
+### 10.1 Native-fallback退化防护
+
+任何包含native fallback的候选选择实验，禁止仅用“相对另一个learned parent降低regret”作为正向门。
+必须同时报告：
+
+\[
+G_{oracle}=\mathbb E[U^*-U_0],\quad
+G_{model}=\mathbb E[U_{\hat i}-U_0],\quad
+R_{model}=G_{oracle}-G_{model},
+\]
+
+以及absolute oracle capture `G_model/G_oracle`、native选择率、有益/有害nonnative选择数和输入干预后的
+选择变化。`G_model`的组级置信下界不大于0、100% fallback、全拒判或输出饱和时，即使相对有害parent
+改善也不得判定方法有效。训练资格还必须在outer-train证明非退化可实现性，并记录logit范围、softmax
+概率、输出激活Jacobian和梯度量级；否则只能判optimization/parameterization failure。
+
 ## 11. 主张纪律
 
 每条论文句子必须能映射到：数学定义、代码对象、实验文件和适用边界。统一使用以下状态：

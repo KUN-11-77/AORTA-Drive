@@ -2,7 +2,7 @@
 
 日期：2026-10-26
 
-状态：`IMPLEMENTATION_QUALIFIED__FORMAL_PRIMARY_RUNNING__NO_SCIENTIFIC_RESULT_YET`
+状态：`FORMAL_COMPLETED__MECHANICAL_PASS__MIXED__ALL_NATIVE_COLLAPSE`
 
 ## 冻结实现
 
@@ -27,12 +27,18 @@
   final model state、temperature ledger、training-order hash及父初始化/epoch预算exact；sealed role与
   partial-scientific-metric标志均为false。
 
-## 正式链
+## 正式链与结果
 
 - 服务器目录：`/data/khsong/aorta_runs/r005e3a_77f37e4`；
 - GPU roster：`[0,1,2,3]`；每卡最多4个独立job；
 - roster：18 primary + 18 same-job same-GPU replay + 一次性机械audit；
-- 当前只允许读取`progress.json`中的非科学进度字段；禁止读取loss、prediction或部分指标；
+- 18 primary + 18 replay全部完成，正式auditor退出0；
+- predictions bit-exact、model state exact、父初始化/epoch/step预算、fold/target/mask、finite、same-GPU、
+  temperature来源与sealed-role门全部通过；
+- 冻结科学分类为`MIXED_DECISION_IMPROVEMENT_WITHOUT_COMPLETE_SCENE_BINDING`；
+- post-hoc只读复算确认18/18 outer-train checkpoints全部将challenger推至`-1`并100%选择native，
+  absolute oracle capture为0；
 - development、calibration、test、NavDream与target domain保持封存。
 
-本状态不表示soft-regret有效。正式audit之前，C29仍为`preregistered and untested`。
+完整结果见`R005E3A_RESULTS.md`。冻结`MIXED`不追溯修改，但soft-regret当前实现不具视觉决策机制
+资格；下一步只允许优化/可实现性诊断，不解锁Differential Query或NavDream。
