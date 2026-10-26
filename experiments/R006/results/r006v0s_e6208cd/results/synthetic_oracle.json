@@ -1,0 +1,23 @@
+{
+  "artifact": "R006V0_SYNTHETIC_DENSE_JACOBIAN_ORACLE_V1",
+  "seed": 20261026,
+  "shape": {
+    "samples": 48,
+    "positions": 5,
+    "channels": 10,
+    "outputs": 6,
+    "rank": 2
+  },
+  "objective_relative_error": 0.0,
+  "gradient_relative_error": 0.0,
+  "recovered_projector_distance": 3.8510861166685117e-16,
+  "solver_objective": 1.0260404887521697e-29,
+  "solver_steps": 2,
+  "solver_initialization": "random_20261026",
+  "thresholds": {
+    "objective_relative_tolerance": 1e-08,
+    "gradient_relative_tolerance": 1e-07,
+    "projector_distance_tolerance": 0.05
+  },
+  "pass": true
+}

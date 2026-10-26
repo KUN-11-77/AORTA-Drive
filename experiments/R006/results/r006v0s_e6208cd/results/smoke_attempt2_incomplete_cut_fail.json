@@ -1,0 +1,163 @@
+{
+  "artifact": "R006V0S_FROZEN_LTF_INTERFACE_SMOKE_V1",
+  "status": "FAIL",
+  "scientific_metrics_emitted": false,
+  "development_calibration_test_navdream_target_accessed": false,
+  "appearance_condition": "low_exposure",
+  "appearance_application_point": "after_official_stitch_resize_before_frozen_backbone",
+  "anchors": 2,
+  "tail_rms_tolerance": 1e-06,
+  "device": "cuda:0",
+  "seed": 20261026,
+  "provenance": {
+    "checkpoint": "/data/jbwang/ckpts/transfuser/ltf_seed_0.ckpt",
+    "checkpoint_sha256": "d08e97ba6beb937412697d619171553041622859e026a06935a2e0e118e6309d",
+    "instrumentation": "/data/khsong/feature_representation_refocus_20261017/r1_instrumentation_v2/transfuser_internal_mechanism_v1.py",
+    "instrumentation_sha256": "5d7fd59ee2da1f764588026eb98177cf5dc9369fb18ac6848cd5f385f0aac73f",
+    "runner_sha256": "2a266f0a81b095b106681fdde8f52e16573e87ed021dd7e4d32acd5e1956f1b1",
+    "group_roles_sha256": "bfe4d3f11342ccba2fe88565d43fef415957725ba8cdb4837b31b9a32dcb9ad7",
+    "time_set_sha256": "33e6df12d2d0b3b9a4c2fa93789addcb437bc15619c5c559049000dce21fa1a9",
+    "preprocess_sha256": "f2c81632c487d51383f404e5db753d07235444ce0ed23739f8f03841904abc96",
+    "imported_model_path": "/home/jbwang/cogatedrive/navsim/agents/transfuser/transfuser_model.py",
+    "imported_model_sha256": "4fbd4441641d17258f3cb1dea441f781ab27c19cf2ab438b500f33eaa7737965",
+    "imported_builder_path": "/home/jbwang/cogatedrive/navsim/agents/transfuser/transfuser_features.py",
+    "imported_builder_sha256": "f2c81632c487d51383f404e5db753d07235444ce0ed23739f8f03841904abc96",
+    "planner_source": {
+      "root": "/home/jbwang/cogatedrive",
+      "commit": null,
+      "dirty": null
+    },
+    "python": "3.10.18",
+    "torch": "2.7.1+cu118",
+    "cuda": "11.8"
+  },
+  "hook_schema": {
+    "c1_early_visual": {
+      "shape": [
+        1,
+        512,
+        8,
+        32
+      ],
+      "dtype": "torch.float32",
+      "spatial_channel_convention": "BCHW_channels_shared"
+    },
+    "c2_fused_bev": {
+      "shape": [
+        1,
+        512,
+        8,
+        8
+      ],
+      "dtype": "torch.float32",
+      "spatial_channel_convention": "BCHW_channels_shared"
+    },
+    "c3_planner_memory": {
+      "shape": [
+        1,
+        65,
+        256
+      ],
+      "dtype": "torch.float32",
+      "spatial_channel_convention": "BPC_channels_last"
+    },
+    "c4_trajectory_query": {
+      "shape": [
+        1,
+        1,
+        256
+      ],
+      "dtype": "torch.float32",
+      "spatial_channel_convention": "BPC_channels_last"
+    }
+  },
+  "hook_schema_sha256": "bc878f63955ca2d2cb4a9ab3b907cacff16f6dbe119e24f0a89dae1874633bb7",
+  "anchor_reports": [
+    {
+      "recording_group": "2021.05.12.22.28.35_veh-35",
+      "token": "185b926e03ad5fc6",
+      "log_name": "2021.05.12.22.28.35_veh-35_00126_00339",
+      "role": "fit",
+      "clean_replay_exact": true,
+      "activation_replay_exact": true,
+      "clean_shift_trajectory_rms_m": 0.12246722603118873,
+      "stages": [
+        {
+          "stage": "c1_early_visual",
+          "identity_exact": true,
+          "full_patch_restoration_rms_m": 0.12558248134686195,
+          "reverse_damage_rms_m": 0.06548763704715528,
+          "finite": true,
+          "pass": false
+        },
+        {
+          "stage": "c2_fused_bev",
+          "identity_exact": true,
+          "full_patch_restoration_rms_m": 0.0,
+          "reverse_damage_rms_m": 0.12246722603118873,
+          "finite": true,
+          "pass": true
+        },
+        {
+          "stage": "c3_planner_memory",
+          "identity_exact": true,
+          "full_patch_restoration_rms_m": 0.0,
+          "reverse_damage_rms_m": 0.12246722603118873,
+          "finite": true,
+          "pass": true
+        },
+        {
+          "stage": "c4_trajectory_query",
+          "identity_exact": true,
+          "full_patch_restoration_rms_m": 0.0,
+          "reverse_damage_rms_m": 0.12246722603118873,
+          "finite": true,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "recording_group": "2021.06.07.13.53.57_veh-35",
+      "token": "ebf8e14065f352f4",
+      "log_name": "2021.06.07.13.53.57_veh-35_01772_02032",
+      "role": "fit",
+      "clean_replay_exact": true,
+      "activation_replay_exact": true,
+      "clean_shift_trajectory_rms_m": 0.09967277622676553,
+      "stages": [
+        {
+          "stage": "c1_early_visual",
+          "identity_exact": true,
+          "full_patch_restoration_rms_m": 0.15678887348080867,
+          "reverse_damage_rms_m": 0.20152923817089605,
+          "finite": true,
+          "pass": false
+        },
+        {
+          "stage": "c2_fused_bev",
+          "identity_exact": true,
+          "full_patch_restoration_rms_m": 0.0,
+          "reverse_damage_rms_m": 0.09967277622676553,
+          "finite": true,
+          "pass": true
+        },
+        {
+          "stage": "c3_planner_memory",
+          "identity_exact": true,
+          "full_patch_restoration_rms_m": 0.0,
+          "reverse_damage_rms_m": 0.09967277622676553,
+          "finite": true,
+          "pass": true
+        },
+        {
+          "stage": "c4_trajectory_query",
+          "identity_exact": true,
+          "full_patch_restoration_rms_m": 0.0,
+          "reverse_damage_rms_m": 0.09967277622676553,
+          "finite": true,
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

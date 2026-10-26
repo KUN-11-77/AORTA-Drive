@@ -1,0 +1,231 @@
+{
+  "artifact": "R006V0S_MECHANICAL_AUDIT_V1",
+  "status": "PASS",
+  "integrity_scope": "mechanical qualification only; not scientific efficacy",
+  "primary_sha256": "48b46ff8696078410283c07b8e268a9e4a194cb61ccaf334fb8ae3246fb3983a",
+  "replay_sha256": "48b46ff8696078410283c07b8e268a9e4a194cb61ccaf334fb8ae3246fb3983a",
+  "check_count": 55,
+  "failed_check_count": 0,
+  "checks": [
+    {
+      "check": "artifact exists: /data/khsong/aorta_runs/r006v0s_e6208cd/results/synthetic_oracle.json",
+      "pass": true
+    },
+    {
+      "check": "artifact exists: /data/khsong/aorta_runs/r006v0s_e6208cd/results/smoke_primary.json",
+      "pass": true
+    },
+    {
+      "check": "artifact exists: /data/khsong/aorta_runs/r006v0s_e6208cd/results/smoke_replay.json",
+      "pass": true
+    },
+    {
+      "check": "artifact exists: /data/khsong/aorta_runs/r006v0s_e6208cd/results/smoke_attempt2_incomplete_cut_fail.json",
+      "pass": true
+    },
+    {
+      "check": "synthetic dense-Jacobian oracle passes",
+      "pass": true
+    },
+    {
+      "check": "primary and replay are byte exact",
+      "pass": true
+    },
+    {
+      "check": "primary and replay payloads are equal",
+      "pass": true
+    },
+    {
+      "check": "qualification status is PASS",
+      "pass": true
+    },
+    {
+      "check": "no scientific metrics emitted",
+      "pass": true
+    },
+    {
+      "check": "sealed roles remain untouched",
+      "pass": true
+    },
+    {
+      "check": "exactly two source-fit anchors used",
+      "pass": true
+    },
+    {
+      "check": "C1 is a complete pre-fusion causal cut",
+      "pass": true
+    },
+    {
+      "check": "incomplete-cut failure is retained",
+      "pass": true
+    },
+    {
+      "check": "provenance file exists: checkpoint",
+      "pass": true
+    },
+    {
+      "check": "provenance hash matches: checkpoint_sha256",
+      "pass": true
+    },
+    {
+      "check": "provenance file exists: instrumentation",
+      "pass": true
+    },
+    {
+      "check": "provenance hash matches: instrumentation_sha256",
+      "pass": true
+    },
+    {
+      "check": "provenance file exists: imported_model_path",
+      "pass": true
+    },
+    {
+      "check": "provenance hash matches: imported_model_sha256",
+      "pass": true
+    },
+    {
+      "check": "provenance file exists: imported_builder_path",
+      "pass": true
+    },
+    {
+      "check": "provenance hash matches: imported_builder_sha256",
+      "pass": true
+    },
+    {
+      "check": "planner commit recorded",
+      "pass": true
+    },
+    {
+      "check": "two anchor reports present",
+      "pass": true
+    },
+    {
+      "check": "anchor[0] has fit role",
+      "pass": true
+    },
+    {
+      "check": "anchor[0] clean replay exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[0] activation replay exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[0] stage set complete",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c1_early_visual identity exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c1_early_visual values finite",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c1_early_visual restoration passes",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c2_fused_bev identity exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c2_fused_bev values finite",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c2_fused_bev restoration passes",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c3_planner_memory identity exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c3_planner_memory values finite",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c3_planner_memory restoration passes",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c4_trajectory_query identity exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c4_trajectory_query values finite",
+      "pass": true
+    },
+    {
+      "check": "anchor[0].c4_trajectory_query restoration passes",
+      "pass": true
+    },
+    {
+      "check": "anchor[1] has fit role",
+      "pass": true
+    },
+    {
+      "check": "anchor[1] clean replay exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[1] activation replay exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[1] stage set complete",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c1_early_visual identity exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c1_early_visual values finite",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c1_early_visual restoration passes",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c2_fused_bev identity exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c2_fused_bev values finite",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c2_fused_bev restoration passes",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c3_planner_memory identity exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c3_planner_memory values finite",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c3_planner_memory restoration passes",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c4_trajectory_query identity exact",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c4_trajectory_query values finite",
+      "pass": true
+    },
+    {
+      "check": "anchor[1].c4_trajectory_query restoration passes",
+      "pass": true
+    }
+  ]
+}

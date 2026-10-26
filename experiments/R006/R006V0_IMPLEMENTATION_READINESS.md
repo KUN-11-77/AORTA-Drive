@@ -1,6 +1,10 @@
 # R006V0 实现资格清单
 
-状态：`DESIGN_READY__IMPLEMENTATION_NOT_READY`。
+状态：`R006V0S_MECHANICAL_PASS__FORMAL_R006V0_IMPLEMENTATION_NOT_READY`。
+
+2026-10-26 更新：synthetic dense-Jacobian oracle 与 2-anchor R006V0S primary/replay 已通过；55 项
+机械审计为 PASS。旧 C1 hook 因位于多轮 fusion 之后而被反例否定，现已冻结为第一次视觉编码输出、
+任何跨模态 fusion 之前的完整因果切口。详见 `R006V0S_RESULTS.md`。这不是低秩介导的正向证据。
 
 本文件只管理实现来源与机械资格，不改变 R006V0 科学问题、数据、层、rank、控制或裁决阈值。
 
@@ -41,10 +45,11 @@
 
 1. 移植 hook 与 tail replay，生成 schema；
 2. 冻结所有 provenance；
-3. 运行显式 Jacobian synthetic oracle；
-4. 运行 1–2 anchors 的 identity/full-patch smoke；
-5. 用 smoke 的非科学耗时冻结正式预算；
+3. ~~运行显式 Jacobian synthetic oracle；~~ `PASS`
+4. ~~运行 1–2 anchors 的 identity/full-patch smoke；~~ `PASS`
+5. 用 smoke 的非科学耗时与真实 tensor shape 冻结正式预算；
 6. 重新生成 config/manifest SHA；
 7. 一次性执行 R006V0，不在途中读取部分科学指标。
 
-任何一项未完成，状态保持 `IMPLEMENTATION_NOT_READY`。
+当前仍缺正式矩阵自由 JVP/VJP 数据管线、nested fold 选择器、全部 A0–A7 控制与运行预算 manifest；
+这些完成前，状态保持 `FORMAL_R006V0_IMPLEMENTATION_NOT_READY`。

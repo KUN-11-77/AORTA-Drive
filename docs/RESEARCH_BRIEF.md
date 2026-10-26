@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R006V0S：`MECHANICAL_PASS__FORMAL_R006V0_NOT_READY__NO_METHOD_CLAIM`。**
+> synthetic dense-Jacobian oracle 通过；冻结 LTF 在2个不同 source-fit groups 上完成 primary/replay，
+> 结果逐字节一致，55/55机械审计通过且封存角色未访问。旧 C1 位于多轮跨模态 fusion 后，不是完整因果
+> 切口，full patch 无法恢复 clean；该反例已保留。C1 改为第一次视觉编码输出、任何 fusion 之前后，
+> C1–C4 full patch 均精确恢复。该结果只资格化 hook 与求解器，不支持低秩介导、DINO、OOD、行为或
+> 安全主张。下一步只实现并冻结正式 R006V0 的矩阵自由 nested-OOF activation intervention。
+
 > **2026-10-26 Visual-First战略重构：`DESIGN_READY__IMPLEMENTATION_NOT_READY__NO_METHOD_CLAIM`。**
 > Constant Eye已把冻结DINOv3-H+作为稳定视觉接口并为各planner重训adapter/head；AORTA不重复该贡献。
 > 当前主问题改为：对冻结原生planner，哪些外观漂移方向真正介导行为变化、这些planner-sensitive任务统计

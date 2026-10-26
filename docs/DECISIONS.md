@@ -1530,3 +1530,20 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** 当前只有理论资格合同和预注册，无新视觉、行为、OOD、安全或投稿结论。
 - **Artifacts:** `docs/AORTA_VISUAL_FIRST_THEORY_V2_CN.md`；
   `experiments/R006/R006V0_CAUSAL_VISUAL_MEDIATION_PREREGISTRATION.md`。
+
+## ADR-0102：R006V0S 以失败反例重定义完整视觉因果切口
+
+- **Decision:** `PRE_FUSION_CAUSAL_CUT_QUALIFIED__FORMAL_LOW_RANK_MEDIATION_NEXT`。
+- **Evidence:** synthetic dense-Jacobian oracle PASS；2个不同source-fit groups的primary/replay逐字节一致，
+  55/55机械检查PASS。旧C1在图像编码器最后return layer，早期fusion已把视觉扰动复制进latent BEV，
+  full clean patch仍残留0.1256/0.1568 m轨迹RMS，故不是完整因果切口。改到第一次视觉编码输出且任何
+  fusion之前后，C1–C4 full patch均精确恢复clean，identity/replay/finite全部通过。
+- **Interpretation:** activation intervention必须切断从处理变量到输出的全部有向路径；“看起来较早的层”
+  不是充分定义。这是接口正确性修正，不是低秩介导发现。
+- **Consequence:** R006V0S完成；下一步仅实现正式R006V0的矩阵自由task-weighted basis、nested OOF
+  layer/rank选择和A0–A7控制。DINO probe、repair训练与NavDream继续HOLD。
+- **Boundary:** 2-anchor机械smoke，无总体效应、外观鲁棒、驾驶收益或安全主张。独立cross-model
+  reviewer不可用，故完整性为provisional；内部机械审计PASS。
+- **Artifacts:** `experiments/R006/R006V0S_RESULTS.md`；
+  `experiments/R006/R006V0S_EXPERIMENT_AUDIT.md`；
+  `experiments/R006/results/r006v0s_e6208cd/`。
