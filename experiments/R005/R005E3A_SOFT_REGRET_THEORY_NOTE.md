@@ -113,7 +113,65 @@ R005E3A令(T)等于outer-train严格正regret gaps的中位数。这样做的目
 该规则不是最优温度定理，也不保证最佳优化条件；偶数gap取两个中央次序统计量的算术平均，ties以
 `1e-12`排除。任何替代温度都属于新实验，不能用于改写R005E3A。
 
-## 6. 对本轮结果的约束
+## 6. 命题四：总体条件风险的决策一致性
+
+令条件变量
+
+\[
+Z=(B,V)
+\]
+
+包含合法候选panel、因果历史与当前视觉输入，并把合法候选mask视为(Z)的一部分。允许同一个
+(Z=z)下的utility向量(U)仍有条件随机性，记
+
+\[
+\mu_i(z)=\mathbb E[U_i\mid Z=z].
+\]
+
+对任意只依赖(z)的score函数，soft selection-regret的条件风险为
+
+\[
+\begin{aligned}
+\mathcal R_{SR}(s\mid z)
+&=\mathbb E\left[\max_i U_i-\sum_i p_i(s;T)U_i\mid Z=z\right]\\
+&=C(z)-\sum_i p_i(s;T)\mu_i(z),
+\end{aligned}
+\]
+
+其中(C(z)=\mathbb E[\max_iU_i\mid Z=z])与(s)无关。因此总体最优score等价于在可实现的
+softmax概率集合内最大化(p^\top\mu)。
+
+在不受界logit下，若(arg\max_i\mu_i(z))唯一，则可令概率质量趋于该候选，且部署hard argmax
+趋于条件期望效用最优决策。更一般地，对任意两个候选(i,j)，若(mu_i>\mu_j)但(s_i<s_j)，
+交换二者score会严格提高(p^\top\mu)；这是重排不等式的直接二项形式。因此任何总体最优排序都不能
+把较低条件期望效用的候选严格排在较高者之前。
+
+当前实现还具有native gauge (s_0=0)与challenger `tanh`范围([-1,1])。交换论证仍排除
+“较低utility候选具有严格更高score”，但**只能保证弱排序，不能无条件保证严格决策一致性**。多个
+不同utility的高价值候选可能同时饱和在上界；此时部署tie-break可能选到其中的次优候选。比如在有限
+score范围、很大温度且另有极低utility候选时，同时提高两个高utility候选的score可能比只提高严格最优
+候选更能减少分给极低候选的概率，于是二者都达到上界。native固定为0也进一步限制了可实现概率集合。
+
+因此，无界logit给出标准的条件期望决策一致性；当前有界实现只继承效用—分数的弱次序性质。要把它
+升级为hard-choice一致性，还需要排除top-score饱和tie、规定与条件效用相容的tie-break，或给出额外的
+temperature/utility-gap条件。R005E3A正是在实验上资格化“当前有界scorer + 冻结温度 + 冻结预算”这一
+具体组合，而不是借总体定理预先保证成功。
+
+该命题的重要作用是限定失败解释，而不是预告正结果：
+
+1. R005E3A若失败，不能笼统归因为无界soft selection-regret在总体上优化了错误决策对象；但必须检查
+   当前有界score是否造成top saturation tie；
+2. 失败仍可能来自DINO表示未保留边界信息、有限网络不可实现所需条件排序、42组样本不足、优化未到达
+   合适解、固定温度与有界score导致梯度条件不良，或训练分布与OOF组分布不同；
+3. 条件期望最优不等于逐场景oracle最优，也不提供OOD、因果可迁移、概率校准或安全保证；
+4. 若合法mask或历史没有包含在(Z)中，以上条件风险分解不再对应部署决策问题，因此mask、history和
+   坐标绑定仍是理论假设而非工程细节。
+
+在有界score集合上，不额外引入utility margin、函数逼近误差和优化误差条件时，不能把soft-risk
+**excess**直接写成无常数的hard-regret上界。R005E3A因此仍以OOF hard decision regret为唯一主端点，
+而不以训练loss或上述总体一致性命题替代实验。
+
+## 7. 对本轮结果的约束
 
 - 只有42-group OOF hard-regret门可以资格化“简单目标错配解释”；
 - S1/S2/S3/removed干预必须同时伤害regret，才能说明改善仍依赖正确场景视觉；

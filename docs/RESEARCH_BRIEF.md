@@ -1,5 +1,13 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R005E3A预结果失败规则：`FALSIFICATION_LADDER_FROZEN__NO_PROTOCOL_CHANGE`。**
+> 在正式结果可见前，已把失败解释固定为对象/实现、目标一致性、优化与可实现性、组级泛化、视觉绑定、
+> 结构必要性六层。无界soft-regret的总体条件风险等价于最大化候选条件期望utility；当前`tanh`有界score
+> 只保证弱排序并可能产生饱和top tie。因此负结果不能含糊归为“loss理论错误”，也不能直接授权复杂网络，
+> 必须先定位到score约束、有限表示、函数类、优化或估计误差。GO只解锁
+> `2×3 loss×visual-arm`确认实验预注册；MIXED/STOP分别进入绑定或表示/函数类诊断。详见
+> `experiments/R005/R005E3A_PRE_RESULT_FAILURE_DIAGNOSIS.md`。
+
 > **2026-10-26 R005E3A实现资格：`QUALIFIED__FORMAL_PRIMARY_RUNNING__NO_RESULT_YET`。**
 > 冻结实现提交`77f37e43862bc352a753d6ee9141c907c9ac926b`已完成本地与服务器各485项全仓库测试；
 > 单fold×seed GPU primary/replay在同卡上实现prediction、final model state、temperature ledger、训练顺序
