@@ -1,9 +1,13 @@
 # R005E2S 实验完整性审计
 
-日期：2026-10-26  
-机械审计：`PASS`  
-科学分类：`RELATION_ONLY_BINDING_SECONDARY`  
-父裁决：`STOP_CURRENT_VISUAL_MAIN_CLAIM`（不可变）  
+日期：2026-10-26
+
+机械审计：`PASS`
+
+科学分类：`RELATION_ONLY_BINDING_SECONDARY`
+
+父裁决：`STOP_CURRENT_VISUAL_MAIN_CLAIM`（不可变）
+
 完整性状态：`WARN`（外部 cross-model reviewer backend 当前不可用）
 
 ## A. Ground-truth provenance：PASS（限定作用域）
