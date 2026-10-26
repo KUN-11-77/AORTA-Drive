@@ -31,3 +31,7 @@ R005E2B 已机械通过但科学主门为
 结果只允许归类为：一致 decision binding、relation-only binding、donor-sensitive/inconsistent 或无一致
 scene binding。它不是条件互信息检验，不证明 Differential Query、外观鲁棒性、NavDream、驾驶收益
 或安全性。任何结果都不得挽救或改写父实验 STOP。
+
+R005E2S 各类可能结果所允许的唯一后续动作，已在科学结果可见前冻结于
+`R005_POST_STOP_FIRST_PRINCIPLES_DECISION_TREE.md`；其中同时明确了平方回归的总体决策一致性边界，
+避免把有限实验失败错误归因于一个并不存在的普遍理论缺陷。
