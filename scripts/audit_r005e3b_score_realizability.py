@@ -14,6 +14,7 @@ import yaml  # type: ignore[import-untyped]
 
 from aorta_drive.vision.feature_cache import sha256_file
 from audit_r005e2_scientific_run import _load_npz, _state_sha256
+from run_r005e3a_fold_job import _temperature_from_outer_train
 
 
 TIE_TOLERANCE = 1.0e-12
@@ -115,6 +116,35 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     }
     if expected_inputs != frozen_hashes:
         raise ValueError("runtime inputs differ from preregistered hashes")
+    parent_result = cast(
+        dict[str, Any], json.loads(args.parent_job_result.read_text("utf-8"))
+    )
+    if (
+        parent_result.get("schema") != "aorta.r005e3a.fold_job.v1"
+        or parent_result.get("status") != "COMPLETED"
+        or parent_result.get("outer_fold") != EXPECTED_FOLD
+        or parent_result.get("seed") != EXPECTED_SEED
+        or parent_result.get("objective") != "soft_selection_regret"
+    ):
+        raise ValueError("frozen R005E3A parent contract failed")
+    bundle_manifest = cast(
+        dict[str, Any],
+        json.loads((args.bundle_root / "manifest.json").read_text("utf-8")),
+    )
+    crossfit = cast(
+        dict[str, Any], json.loads(args.crossfit_manifest.read_text("utf-8"))
+    )
+    fold = next(
+        row
+        for row in cast(list[dict[str, Any]], crossfit["outer_folds"])
+        if int(row["outer_fold"]) == EXPECTED_FOLD
+    )
+    train_groups = cast(list[str], fold["outer_train_groups"])
+    expected_temperature, expected_temperature_ledger = _temperature_from_outer_train(
+        bundle_root=args.bundle_root,
+        bundle_manifest=bundle_manifest,
+        groups=train_groups,
+    )
     for label, root, result in (
         ("primary", args.primary, primary_result),
         ("replay", args.replay, replay_result),
@@ -130,11 +160,34 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
             or result.get("runner_sha256") != sha256_file(args.runner)
             or result.get("config_sha256") != sha256_file(args.config)
             or result.get("input_sha256") != expected_inputs
+            or result.get("initial_model_state_sha256")
+            != parent_result.get("initial_model_state_sha256")
+            or result.get("parent_initial_model_state_sha256")
+            != parent_result.get("initial_model_state_sha256")
+            or result.get("selected_epoch") != parent_result.get("selected_epoch")
+            or result.get("optimizer_step_count")
+            != int(cast(int, parent_result["selected_epoch"])) * 560
+            or result.get("parameter_count") != parent_result.get("parameter_count")
+            or not math.isclose(
+                float(result["temperature"]),
+                expected_temperature,
+                rel_tol=0.0,
+                abs_tol=0.0,
+            )
+            or result.get("temperature_ledger") != expected_temperature_ledger
             or result.get("development_calibration_test_navdream_target_accessed")
             is not False
             or result.get("scientific_metrics_emitted") is not False
         ):
             raise ValueError(f"{label} result contract failed")
+        physical_gpu = cast(dict[str, Any], result["physical_gpu"])
+        if int(physical_gpu["physical_index"]) != 0:
+            raise ValueError(f"{label} physical GPU differs from the frozen roster")
+        epoch_ledger = cast(list[dict[str, Any]], result["epoch_ledger"])
+        if len(epoch_ledger) != int(parent_result["selected_epoch"]) or [
+            int(row["epoch"]) for row in epoch_ledger
+        ] != list(range(1, int(parent_result["selected_epoch"]) + 1)):
+            raise ValueError(f"{label} epoch ledger differs from the frozen budget")
         if (
             sha256_file(root / "predictions.npz") != result["prediction_sha256"]
             or sha256_file(root / "checkpoint.pt") != result["checkpoint_sha256"]
@@ -180,6 +233,23 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         mask, bundle_mask[indices]
     ):
         raise ValueError("target or mask differs from the frozen bundle")
+    index_rows = {
+        int(row["bundle_index"]): row
+        for row in cast(list[dict[str, Any]], bundle_manifest["anchors"])
+    }
+    actual_groups = {
+        str(index_rows[int(index)]["recording_group"]) for index in indices
+    }
+    if actual_groups != set(train_groups):
+        raise ValueError("prediction roster differs from fold-0 outer-train groups")
+    group_counts = {
+        group: sum(
+            str(index_rows[int(index)]["recording_group"]) == group for index in indices
+        )
+        for group in train_groups
+    }
+    if set(group_counts.values()) != {16}:
+        raise ValueError("outer-train groups do not contain exactly sixteen anchors")
 
     recomputed: dict[str, dict[str, float | int]] = {}
     for condition in ("correct", "S1_refit_train_mismatch", "removed"):
@@ -197,9 +267,10 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 )
 
     correct = recomputed["correct"]
+    thresholds = cast(dict[str, Any], config["thresholds"])
     positive_gain = float(correct["mean_gain_over_native"]) > 0.0
     capture = float(correct["absolute_oracle_capture"])
-    minimum_capture = capture >= 0.10
+    minimum_capture = capture >= float(thresholds["minimum_absolute_oracle_capture"])
     beneficial = int(correct["beneficial_nonnative_count"]) >= 1
     nonnative = int(correct["nonnative_choice_count"]) >= 1
     decision = _classify(correct)
@@ -212,8 +283,11 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         "mechanical_gates": {
             "primary_replay_predictions_bit_exact": True,
             "primary_replay_model_states_exact": True,
+            "same_physical_gpu_and_frozen_roster": True,
             "provenance_exact": True,
-            "fold_target_and_mask_exact": True,
+            "parent_initialization_parameter_epoch_and_step_budget_exact": True,
+            "temperature_recomputed_from_outer_train_only": True,
+            "fold_group_target_and_mask_exact": True,
             "independent_metric_recomputation_exact": True,
             "finite_values": True,
             "source_fit_outer_train_only": True,
