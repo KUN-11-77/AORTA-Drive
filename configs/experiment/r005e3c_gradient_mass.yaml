@@ -1,0 +1,35 @@
+experiment_id: R005E3C-gradient-mass-diagnostic-v1
+date: 2026-10-26
+status: implementation_qualified_read_only_run_authorized
+scope: source_fit_fold0_outer_train_read_only_initialization_geometry
+data:
+  outer_fold: 0
+  seed: 20261025
+  bundle_manifest_sha256: f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee
+  visual_manifest_sha256: ac1c5a93303727e7a85a3de1b49dd031db8e8122b209a7bbf8cfe4972d8be852
+  crossfit_manifest_sha256: f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878
+  mismatch_manifest_sha256: 9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093
+  r005e3b_primary_predictions_sha256: 1644b2b52d0575116564ee4d49d9f830a7f1108a658bef4a8e04f71e90347c28
+  prohibited: [outer_test_claim, development, calibration, test, NavDream, target_domain]
+model:
+  architecture: exact_R005E3B_identity_scorer
+  initialization_sha256: fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5
+  mode: eval
+  weight_updates: prohibited
+diagnostics:
+  - opportunity_anchor_fraction
+  - positive_challenger_fraction
+  - positive_and_nonpositive_utility_probability_score_gradient_mass
+  - positive_raise_and_nonpositive_lower_direction_fraction
+  - positive_nonpositive_parameter_gradient_norm_ratio_and_cosine
+  - initial_to_final_score_gradient_change
+decision:
+  type: descriptive_mechanism_diagnosis
+  method_pass_or_training_unlock: prohibited
+claim_boundary:
+  - not_OOF
+  - not_scene_binding
+  - not_Differential_Query
+  - not_appearance_robustness
+  - not_behavior_or_safety
+
