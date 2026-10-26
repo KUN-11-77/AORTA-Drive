@@ -1,5 +1,11 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R006V0C formal cache：`MECHANICAL_PASS__42_SHARDS_EXACT_REPLAY__SCIENCE_NOT_STARTED`。**
+> 42 source-fit groups、672 anchors、四种冻结外观的C3/C4缓存已完成；V2 cache audit 265/265 PASS，
+> 与第一次完整运行比较42/42 shard hashes逐组一致、replay audit 65/65 PASS。checkpoint、planner commit、
+> clean `navsim/`执行子树及Git tree object已闭合，封存角色未访问且无科学指标。只解锁资源benchmark与
+> 正式runner冻结；不构成低秩介导、DINO、CPTR、OOD、行为或安全证据。
+
 > **2026-10-26 R006V0 solver semantics：`STREAMING_EXACT_REDUCTION_PASS__BATCH_BUDGET_PENDING__NO_SCIENCE_CLAIM`。**
 > 正式discovery所需的流式Stiefel solver已实现为固定顺序、按batch样本数加权的完整目标值与梯度精确
 > 归约；19个非整除合成样本上与稠密参考目标一致并恢复同一真实投影子空间。primary trajectory度量

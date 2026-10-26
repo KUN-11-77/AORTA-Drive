@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-26",
+  "auditor": "REVIEW_UNAVAILABLE_plus_mechanical_audit",
+  "overall_verdict": "warn",
+  "integrity_status": "mechanical_pass_external_review_unavailable",
+  "checks": {
+    "gt_provenance": {"status": "not_applicable", "details": "No target or scientific endpoint."},
+    "score_normalization": {"status": "pass", "details": "No scientific score emitted."},
+    "result_existence": {"status": "pass", "details": "Complete V2 manifest, audit, and exit codes exist."},
+    "source_provenance": {"status": "pass", "details": "Checkpoint, commit, clean navsim subtree, and tree object recorded."},
+    "exact_replay": {"status": "pass", "details": "42 of 42 shard hashes match the first complete run."},
+    "scope": {"status": "pass", "details": "Complete for 42-group source-fit cache mechanics only."},
+    "eval_type": "mechanical_cache_qualification"
+  },
+  "warnings": ["Independent external reviewer backend was unavailable."],
+  "claim_impact": "Formal cache mechanics qualified; no scientific method claim authorized."
+}

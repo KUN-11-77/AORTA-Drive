@@ -1,6 +1,6 @@
 # R006V0 实现资格清单
 
-状态：`R006V0S_PASS__R006V0J_C3_C4_PASS__CACHE_SMOKE_PASS__FORMAL_R006V0_IMPLEMENTATION_IN_PROGRESS`。
+状态：`R006V0S_PASS__R006V0J_C3_C4_PASS__FORMAL_CACHE_EXACT_REPLAY_PASS__FORMAL_R006V0_IMPLEMENTATION_IN_PROGRESS`。
 
 2026-10-26 更新：synthetic dense-Jacobian oracle 与 2-anchor R006V0S primary/replay 已通过；55 项
 机械审计为 PASS。旧 C1 hook 因位于多轮 fusion 之后而被反例否定，现已冻结为第一次视觉编码输出、
@@ -21,6 +21,10 @@
 同日一组×16 anchors 的真实 activation-cache smoke 完成，4种冻结条件、C3/C4 schema、repair mask、
 sealed-role与no-science-metrics共14/14审计PASS。它只资格化缓存管线，不替代42组正式缓存或科学实验。
 详见 `R006V0C_CACHE_SMOKE_RESULTS.md`。
+
+42组×672 anchors正式缓存随后完成provenance修复重放：V2审计265/265 PASS，实际执行`navsim/`子树
+clean且Git tree object固定；与第一次完整运行的42/42 shard hashes逐组一致，replay审计65/65 PASS。
+详见`R006V0C_FORMAL_CACHE_V2_RESULTS.md`。该结果仍然只是机械资格。
 
 本文件只管理实现来源与机械资格，不改变 R006V0 科学问题、数据、层、rank、控制或裁决阈值。
 
