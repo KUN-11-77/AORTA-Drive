@@ -1,0 +1,31 @@
+experiment_id: R006V0-basis-formal-chain-v1
+date: 2026-10-26
+status: frozen_before_any_fold_coverage_result
+scope: basis_discovery_and_inner_selection_only
+gpu_roster: [0, 1, 2, 3]
+max_concurrent_folds: 4
+assignment: fold_modulo_gpu_roster_length
+same_fold_primary_replay_same_gpu: true
+per_gpu_execution: sequential
+folds: [0, 1, 2, 3, 4, 5]
+per_fold_chain: [primary, replay, mechanical_audit]
+progress_fields:
+  - status
+  - completed_fold_count
+  - total_fold_count
+  - running_fold_count
+  - failed_fold_count
+  - development_calibration_test_navdream_target_accessed
+  - scientific_metrics_emitted
+partial_scientific_metrics_may_be_read: false
+failure_policy:
+  automatic_third_run: false
+  protocol_or_threshold_change: false
+  preserve_failed_artifacts: true
+claim_boundary:
+  - inner_selection_only
+  - not_outer_confirmation_mediation
+  - not_DINO_recoverability
+  - not_CPTR
+  - not_NavDream
+  - not_behavior_latency_or_safety

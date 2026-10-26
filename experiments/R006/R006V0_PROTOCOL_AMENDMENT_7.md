@@ -48,3 +48,10 @@ residual；C4允许唯一trajectory-query site。
 任何机械失败均禁止读取或解释科学结论。六折basis阶段只回答低秩接口是否在inner-held-out组上达到
 预注册coverage，不回答outer-confirmation介导、DINO recoverability、CPTR收益、NavDream、驾驶行为、
 在线时延或安全性。
+
+## 5. 正式资源与复现合同
+
+正式GPU roster冻结为物理卡`[0,1,2,3]`，最多四个不同fold并发；单卡同一时刻只执行一个fold。
+fold按`fold_id mod 4`唯一绑定GPU，且同一fold严格按primary→replay→audit串行执行，因此重放不改变
+硬件。调度只并行独立fold，不改变任何fold内部顺序或统计对象。运行健康时只允许读取不含科学数值的
+progress字段；六折审计全部结束后方可汇总科学裁决。
