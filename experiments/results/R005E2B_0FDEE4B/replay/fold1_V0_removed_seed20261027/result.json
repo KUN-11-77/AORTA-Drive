@@ -1,0 +1,61 @@
+{
+  "arm": "V0_removed",
+  "checkpoint_sha256": "0481106076dfecf0005be83375cf88b031e9c39ca3b19ed96a15f72613dda120",
+  "code_commit": "0fdee4b464865d76f2efbc62955baa7e8f7ca8f5",
+  "completed_at_utc": "2026-10-25T16:29:00.338560+00:00",
+  "development_calibration_test_navdream_target_accessed": false,
+  "epoch_ledger": [
+    {
+      "epoch": 1,
+      "validation_group_equal_mse": 0.14391784853588824
+    },
+    {
+      "epoch": 2,
+      "validation_group_equal_mse": 0.13661075390077063
+    },
+    {
+      "epoch": 3,
+      "validation_group_equal_mse": 0.13817406412064365
+    },
+    {
+      "epoch": 4,
+      "validation_group_equal_mse": 0.1445635884166612
+    },
+    {
+      "epoch": 5,
+      "validation_group_equal_mse": 0.1418088421466694
+    },
+    {
+      "epoch": 6,
+      "validation_group_equal_mse": 0.13847113552037627
+    },
+    {
+      "epoch": 7,
+      "validation_group_equal_mse": 0.14022642337866792
+    }
+  ],
+  "final_model_state_sha256": "439cfdd2df6768fb108001fa38c6d1abf17b5418da89e7b73c72698a3a28ccaa",
+  "input_sha256": {
+    "bundle_manifest": "f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee",
+    "crossfit_manifest": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+    "mismatch_manifest": "9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093"
+  },
+  "outer_fold": 1,
+  "physical_gpu": {
+    "name": "NVIDIA GeForce RTX 3090",
+    "physical_index": 2,
+    "uuid": "GPU-761f5385-9c2d-1c1b-2ba2-26b1a63ebc1c"
+  },
+  "prediction_sha256": "e70b7fa8f394fad53462430cc1943b616a6d81e97707c3fb6d8ad3afa4838ffb",
+  "refit_initial_state_sha256": "1fb7feb9a81d6dafd4fc7e6061ad3b8788b3aaa5e70feff8a69e17ecf4b11079",
+  "runner_sha256": "f9980ff0ac0ff3f9517ec306e5c2b12f0a02c784712c5019c1785c6edba88fc5",
+  "runtime_seconds": 460.7541711910162,
+  "schema": "aorta.r005e2.fold_job.v1",
+  "scientific_metrics_emitted": false,
+  "seed": 20261027,
+  "selected_epoch": 2,
+  "selection_epochs_executed": 7,
+  "selection_initial_state_sha256": "1fb7feb9a81d6dafd4fc7e6061ad3b8788b3aaa5e70feff8a69e17ecf4b11079",
+  "status": "COMPLETED",
+  "test_anchor_count": 112
+}

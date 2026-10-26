@@ -1,0 +1,12 @@
+{
+  "completed_at_utc": "2026-10-26T00:42:37.619927+00:00",
+  "completed_job_count": 108,
+  "decision": "STOP_CURRENT_VISUAL_MAIN_CLAIM",
+  "development_calibration_test_navdream_target_accessed": false,
+  "phase": "mechanical_audit_completed",
+  "running_job_count": 0,
+  "scientific_metrics_emitted": true,
+  "status": "COMPLETED",
+  "support": "UNSUPPORTED",
+  "total_job_count": 108
+}

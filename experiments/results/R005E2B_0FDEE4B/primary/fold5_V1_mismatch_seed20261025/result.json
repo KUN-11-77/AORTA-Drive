@@ -1,0 +1,57 @@
+{
+  "arm": "V1_mismatch",
+  "checkpoint_sha256": "aa6aa5fec361cc080ce74ee2445a95d813bde2a5adbbd7961bb9da5c0bddad3d",
+  "code_commit": "0fdee4b464865d76f2efbc62955baa7e8f7ca8f5",
+  "completed_at_utc": "2026-10-25T15:25:55.339814+00:00",
+  "development_calibration_test_navdream_target_accessed": false,
+  "epoch_ledger": [
+    {
+      "epoch": 1,
+      "validation_group_equal_mse": 0.12956696584088995
+    },
+    {
+      "epoch": 2,
+      "validation_group_equal_mse": 0.12983442901999556
+    },
+    {
+      "epoch": 3,
+      "validation_group_equal_mse": 0.1307160540683461
+    },
+    {
+      "epoch": 4,
+      "validation_group_equal_mse": 0.13030890298042713
+    },
+    {
+      "epoch": 5,
+      "validation_group_equal_mse": 0.13122810193246032
+    },
+    {
+      "epoch": 6,
+      "validation_group_equal_mse": 0.12967471239556158
+    }
+  ],
+  "final_model_state_sha256": "c294e44ec6ebef67bc89d6efa2787dfcf8298451261dbb18c4812ced51281e37",
+  "input_sha256": {
+    "bundle_manifest": "f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee",
+    "crossfit_manifest": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+    "mismatch_manifest": "9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093"
+  },
+  "outer_fold": 5,
+  "physical_gpu": {
+    "name": "NVIDIA GeForce RTX 3090",
+    "physical_index": 1,
+    "uuid": "GPU-3e944f98-8980-baaa-3694-8eef93d3516b"
+  },
+  "prediction_sha256": "75abcd2ca41bd41ae7f4670661e3b43b69b420e761fe1d07f33101561347752a",
+  "refit_initial_state_sha256": "fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5",
+  "runner_sha256": "f9980ff0ac0ff3f9517ec306e5c2b12f0a02c784712c5019c1785c6edba88fc5",
+  "runtime_seconds": 385.70847051288,
+  "schema": "aorta.r005e2.fold_job.v1",
+  "scientific_metrics_emitted": false,
+  "seed": 20261025,
+  "selected_epoch": 1,
+  "selection_epochs_executed": 6,
+  "selection_initial_state_sha256": "fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5",
+  "status": "COMPLETED",
+  "test_anchor_count": 112
+}

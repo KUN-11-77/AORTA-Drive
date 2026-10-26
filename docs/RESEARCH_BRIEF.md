@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R005E2B视觉可恢复性：`MECHANICAL_PASS__UNSUPPORTED__STOP_CURRENT_VISUAL_MAIN_CLAIM`。**
+> 6 folds×3 arms×3 seeds的54个primary与54个replay全部完成，prediction/model-state exact、OOF/fold/
+> target/provenance/finite/sealed-role门通过。V2 correct relation MSE相对mismatch改善`-0.008010`
+> `[-0.014059,-0.001854]`，但相对removed的CI跨零；decision regret相对removed/mismatch均未改善，
+> mismatch intervention也未可靠伤害regret，`rho_vis=-0.025449`。父裁决不可由post-hoc分析改写。
+> 只读失败解剖显示435/672 anchors有exact top-2 tie、平均best-set大小2.81；视觉平均关系信号与
+> choice utility改善近乎不相关。当前最合理假设是relation回归信号未对齐稀疏决策边界，但尚未证明
+> 应使用任何特定新loss或Differential Query。详见`experiments/R005/R005E2B_RESULTS.md`。
+
 > **2026-10-25 Best-Paper 实现合同：`MANDATORY_PROJECT_CONTRACT__NO_AWARD_GUARANTEE`。**
 > 后续方法实现、训练、评估、审计与论文主张统一执行
 > `docs/BEST_PAPER_IMPLEMENTATION_STANDARD_V1_CN.md`：数学对象、因果/坐标/角色不变量、模块五问、

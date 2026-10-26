@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-26",
+  "auditor": "frozen-mechanical-auditor-plus-internal-compact-replay",
+  "external_reviewer": "unavailable",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "mechanical_status": "pass",
+  "scientific_support": "unsupported",
+  "decision": "STOP_CURRENT_VISUAL_MAIN_CLAIM",
+  "checks": {
+    "gt_provenance": {
+      "status": "pass",
+      "details": "Frozen source-fit native-history U_ctx margins; not generated from R005E2 predictions and not full two-stage policy value."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "Raw MSE/regret retained; rho_vis denominator is the preregistered R005E1B oracle opportunity, not a prediction statistic."
+    },
+    "result_existence": {
+      "status": "pass",
+      "details": "54 primary plus 54 replay jobs; bit-exact predictions and model states; 329-file server SHA verification; compact local replay exact."
+    },
+    "dead_code": {
+      "status": "warn",
+      "details": "All registered metrics appear in the frozen audit output, but an independent cross-model line-by-line reviewer was unavailable."
+    },
+    "scope": {
+      "status": "warn",
+      "details": "42 source-fit groups with OOF evaluation only; no development, test, NavDream, cross-planner, sequential, or driving evidence."
+    },
+    "eval_type": "simulation_only_official_evaluator_derived_contextual_target_source_fit_group_oof"
+  },
+  "claims": [
+    {
+      "id": "C18-current-generic-probe",
+      "impact": "unsupported"
+    },
+    {
+      "id": "C19-differential-query",
+      "impact": "untested"
+    },
+    {
+      "id": "C23-driving-benefit",
+      "impact": "untested"
+    }
+  ]
+}

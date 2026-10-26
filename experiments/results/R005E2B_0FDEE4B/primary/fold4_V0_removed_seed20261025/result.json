@@ -1,0 +1,81 @@
+{
+  "arm": "V0_removed",
+  "checkpoint_sha256": "5b62dcfa43454feb2e7eb4b70c97b26693ed31f6c67789019f97790ad1609531",
+  "code_commit": "0fdee4b464865d76f2efbc62955baa7e8f7ca8f5",
+  "completed_at_utc": "2026-10-25T14:57:34.555961+00:00",
+  "development_calibration_test_navdream_target_accessed": false,
+  "epoch_ledger": [
+    {
+      "epoch": 1,
+      "validation_group_equal_mse": 0.14018163060037686
+    },
+    {
+      "epoch": 2,
+      "validation_group_equal_mse": 0.148846659875874
+    },
+    {
+      "epoch": 3,
+      "validation_group_equal_mse": 0.13687128698802553
+    },
+    {
+      "epoch": 4,
+      "validation_group_equal_mse": 0.143411755985913
+    },
+    {
+      "epoch": 5,
+      "validation_group_equal_mse": 0.1416901082349276
+    },
+    {
+      "epoch": 6,
+      "validation_group_equal_mse": 0.14124869911133178
+    },
+    {
+      "epoch": 7,
+      "validation_group_equal_mse": 0.13302327320707263
+    },
+    {
+      "epoch": 8,
+      "validation_group_equal_mse": 0.14095584827009588
+    },
+    {
+      "epoch": 9,
+      "validation_group_equal_mse": 0.13777663057979744
+    },
+    {
+      "epoch": 10,
+      "validation_group_equal_mse": 0.1457593625870816
+    },
+    {
+      "epoch": 11,
+      "validation_group_equal_mse": 0.1457336887828465
+    },
+    {
+      "epoch": 12,
+      "validation_group_equal_mse": 0.1377927126859504
+    }
+  ],
+  "final_model_state_sha256": "8af2d3fe579296cb7fda3cc272637ee572e6f925b4ab07383e83830307cc7373",
+  "input_sha256": {
+    "bundle_manifest": "f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee",
+    "crossfit_manifest": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+    "mismatch_manifest": "9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093"
+  },
+  "outer_fold": 4,
+  "physical_gpu": {
+    "name": "NVIDIA GeForce RTX 3090",
+    "physical_index": 1,
+    "uuid": "GPU-3e944f98-8980-baaa-3694-8eef93d3516b"
+  },
+  "prediction_sha256": "b033b1673093882723edcbbab6160544f7102a11447e9e9ceff750991a0b69bf",
+  "refit_initial_state_sha256": "fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5",
+  "runner_sha256": "f9980ff0ac0ff3f9517ec306e5c2b12f0a02c784712c5019c1785c6edba88fc5",
+  "runtime_seconds": 979.137916324893,
+  "schema": "aorta.r005e2.fold_job.v1",
+  "scientific_metrics_emitted": false,
+  "seed": 20261025,
+  "selected_epoch": 7,
+  "selection_epochs_executed": 12,
+  "selection_initial_state_sha256": "fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5",
+  "status": "COMPLETED",
+  "test_anchor_count": 112
+}

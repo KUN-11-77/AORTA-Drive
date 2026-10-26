@@ -1,0 +1,109 @@
+{
+  "arm": "V2_correct",
+  "checkpoint_sha256": "9933110c85579351766ff21b14178f6aac527df7d48334d3009cfb6898c23c5f",
+  "code_commit": "0fdee4b464865d76f2efbc62955baa7e8f7ca8f5",
+  "completed_at_utc": "2026-10-25T16:26:43.288018+00:00",
+  "development_calibration_test_navdream_target_accessed": false,
+  "epoch_ledger": [
+    {
+      "epoch": 1,
+      "validation_group_equal_mse": 0.13205576654789702
+    },
+    {
+      "epoch": 2,
+      "validation_group_equal_mse": 0.13252683503560547
+    },
+    {
+      "epoch": 3,
+      "validation_group_equal_mse": 0.12845899554667994
+    },
+    {
+      "epoch": 4,
+      "validation_group_equal_mse": 0.12913176212376648
+    },
+    {
+      "epoch": 5,
+      "validation_group_equal_mse": 0.12124517552781201
+    },
+    {
+      "epoch": 6,
+      "validation_group_equal_mse": 0.12257157664654576
+    },
+    {
+      "epoch": 7,
+      "validation_group_equal_mse": 0.12476312180453013
+    },
+    {
+      "epoch": 8,
+      "validation_group_equal_mse": 0.1191057066160803
+    },
+    {
+      "epoch": 9,
+      "validation_group_equal_mse": 0.11619438160830343
+    },
+    {
+      "epoch": 10,
+      "validation_group_equal_mse": 0.11436994326088877
+    },
+    {
+      "epoch": 11,
+      "validation_group_equal_mse": 0.11695269981490648
+    },
+    {
+      "epoch": 12,
+      "validation_group_equal_mse": 0.11262177163527147
+    },
+    {
+      "epoch": 13,
+      "validation_group_equal_mse": 0.11182776038913289
+    },
+    {
+      "epoch": 14,
+      "validation_group_equal_mse": 0.10756714008649786
+    },
+    {
+      "epoch": 15,
+      "validation_group_equal_mse": 0.10863630660917677
+    },
+    {
+      "epoch": 16,
+      "validation_group_equal_mse": 0.11179517225536983
+    },
+    {
+      "epoch": 17,
+      "validation_group_equal_mse": 0.11567872382043529
+    },
+    {
+      "epoch": 18,
+      "validation_group_equal_mse": 0.10948159941991824
+    },
+    {
+      "epoch": 19,
+      "validation_group_equal_mse": 0.11650452468893491
+    }
+  ],
+  "final_model_state_sha256": "2733c89bf17ab42f679659266fc95fbec3f8dce9d13ad393a8f6e1c0777f8675",
+  "input_sha256": {
+    "bundle_manifest": "f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee",
+    "crossfit_manifest": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+    "mismatch_manifest": "9a5f4878e9856a6cb020c1d814f034233aa7b6585cc2507af16ab29cb2373093"
+  },
+  "outer_fold": 0,
+  "physical_gpu": {
+    "name": "NVIDIA GeForce RTX 3090",
+    "physical_index": 2,
+    "uuid": "GPU-761f5385-9c2d-1c1b-2ba2-26b1a63ebc1c"
+  },
+  "prediction_sha256": "a11de318e25ae7592fe0c28bad40ef1f5a222349838c468a4205fcacdfb74886",
+  "refit_initial_state_sha256": "fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5",
+  "runner_sha256": "f9980ff0ac0ff3f9517ec306e5c2b12f0a02c784712c5019c1785c6edba88fc5",
+  "runtime_seconds": 1781.9782311420422,
+  "schema": "aorta.r005e2.fold_job.v1",
+  "scientific_metrics_emitted": false,
+  "seed": 20261025,
+  "selected_epoch": 14,
+  "selection_epochs_executed": 19,
+  "selection_initial_state_sha256": "fb2e019f103f9c5cbce53318e575c8fe47b1bf6638bf7da22bf4a094c97f1af5",
+  "status": "COMPLETED",
+  "test_anchor_count": 112
+}

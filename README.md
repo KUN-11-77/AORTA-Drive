@@ -10,8 +10,9 @@ scorer 更有效地读取外观稳定的决策证据。
 
 > **研究状态（2026-10-25）：** 旧 graph-gradient field 与 scalar-min road-margin reranker 已按
 > 预注册结果停止作为一般候选仲裁主线。R005E1B 已支持 source-fit、native-history `U_ctx` 的合法
-> contextual oracle opportunity；R005E2 正在检验给定候选与历史后，正确冻结视觉是否提供可学习的
-> 条件增量。Differential Query、NavDream、跨 planner、actual-history rollout、clean no-harm、
+> contextual oracle opportunity；R005E2B 已完成并机械PASS，但正确视觉未同时优于removed/mismatch
+> controls且未降低decision regret，冻结裁决为`UNSUPPORTED / STOP_CURRENT_VISUAL_MAIN_CLAIM`。
+> Differential Query、NavDream、跨 planner、actual-history rollout、clean no-harm、
 > 在线时延和驾驶收益仍未验证。当前 canonical 理论见
 > [`docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md`](docs/AORTA_FIRST_PRINCIPLES_THEORY_V1_CN.md)。
 
@@ -86,9 +87,9 @@ python -m pytest
 python scripts/check_repo.py
 ```
 
-当前 source code 同时保留旧 field/geometry 基线工具与 R005 relation 实验链。R005E2 只负责检验
-视觉条件增量，不包含最终 Differential Query、分布校准或 selective arbitration；后续模块严格按
-第一性原理规范的证据门解锁。development/calibration/test/NavDream/target 不得用于架构选择。
+当前 source code 同时保留旧 field/geometry 基线工具与 R005 relation 实验链。R005E2B 的负结果停止
+直接进入最终 Differential Query；下一步只允许预注册的donor sensitivity或source-only最小失败判别。
+development/calibration/test/NavDream/target 继续封存，不得用于架构选择。
 
 ## 核心文档
 

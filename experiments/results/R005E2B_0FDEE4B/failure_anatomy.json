@@ -1,0 +1,299 @@
+{
+  "channel_summary": {
+    "V0_removed": {
+      "least_squares_slope": 0.08481994078007109,
+      "mean_candidate_prediction_seed_std": 0.03748457309539737,
+      "pair_count": 26403.0,
+      "pair_ranking_error": 0.31341135477029125,
+      "pearson": 0.28448349485643304,
+      "prediction_mean": -0.2080346417476425,
+      "prediction_std": 0.1060025777194326,
+      "std_ratio": 0.29815417173103903,
+      "target_mean": -0.2116329584264294,
+      "target_std": 0.3555294132025633,
+      "three_seed_choice_unanimous_fraction": 0.9732142857142857
+    },
+    "V1_mismatch": {
+      "least_squares_slope": 0.09410422625262076,
+      "mean_candidate_prediction_seed_std": 0.05305153356043358,
+      "pair_count": 26403.0,
+      "pair_ranking_error": 0.3612847024959285,
+      "pearson": 0.23783957298955288,
+      "prediction_mean": -0.21766793439929613,
+      "prediction_std": 0.14066969562270912,
+      "std_ratio": 0.39566261017780374,
+      "target_mean": -0.2116329584264294,
+      "target_std": 0.3555294132025633,
+      "three_seed_choice_unanimous_fraction": 0.9583333333333334
+    },
+    "V2_correct": {
+      "least_squares_slope": 0.1730978852414157,
+      "mean_candidate_prediction_seed_std": 0.055701088666617646,
+      "pair_count": 26403.0,
+      "pair_ranking_error": 0.27462788319509146,
+      "pearson": 0.34516707850978184,
+      "prediction_mean": -0.2026612865587528,
+      "prediction_std": 0.17829449387868287,
+      "std_ratio": 0.501490136280509,
+      "target_mean": -0.2116329584264294,
+      "target_std": 0.3555294132025633,
+      "three_seed_choice_unanimous_fraction": 0.9122023809523809
+    },
+    "V2_mismatch_intervention": {
+      "least_squares_slope": 0.1306318368368019,
+      "mean_candidate_prediction_seed_std": 0.05253147668385216,
+      "pair_count": 26403.0,
+      "pair_ranking_error": 0.27440063629133055,
+      "pearson": 0.24011246014168586,
+      "prediction_mean": -0.20719564726140435,
+      "prediction_std": 0.1934237826256736,
+      "std_ratio": 0.5440443896985541,
+      "target_mean": -0.2116329584264294,
+      "target_std": 0.3555294132025633,
+      "three_seed_choice_unanimous_fraction": 0.9166666666666666
+    },
+    "V2_removed_intervention": {
+      "least_squares_slope": 0.024924864316038818,
+      "mean_candidate_prediction_seed_std": 0.028850401172237375,
+      "pair_count": 26403.0,
+      "pair_ranking_error": 0.2890959360678711,
+      "pearson": 0.16208695114625601,
+      "prediction_mean": -0.0647396549345955,
+      "prediction_std": 0.054671411373755585,
+      "std_ratio": 0.15377465082644648,
+      "target_mean": -0.2116329584264294,
+      "target_std": 0.3555294132025633,
+      "three_seed_choice_unanimous_fraction": 0.6979166666666666
+    }
+  },
+  "choice_change_summary": {
+    "V2_correct_to_V0_removed_seed20261025": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.01636904761904762,
+      "choice_changed_fraction": 0.052083333333333336,
+      "harmful_fraction": 0.020833333333333332,
+      "mean_alternative_minus_reference_true_utility": -0.00038464065229012096,
+      "neutral_fraction": 0.9627976190476191
+    },
+    "V2_correct_to_V0_removed_seed20261026": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.013392857142857142,
+      "choice_changed_fraction": 0.03869047619047619,
+      "harmful_fraction": 0.01488095238095238,
+      "mean_alternative_minus_reference_true_utility": 0.0025918799888835393,
+      "neutral_fraction": 0.9717261904761905
+    },
+    "V2_correct_to_V0_removed_seed20261027": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.008928571428571428,
+      "choice_changed_fraction": 0.025297619047619048,
+      "harmful_fraction": 0.011904761904761904,
+      "mean_alternative_minus_reference_true_utility": -0.0009360284862428411,
+      "neutral_fraction": 0.9791666666666666
+    },
+    "V2_correct_to_V1_mismatch_seed20261025": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.023809523809523808,
+      "choice_changed_fraction": 0.052083333333333336,
+      "harmful_fraction": 0.01636904761904762,
+      "mean_alternative_minus_reference_true_utility": 0.0027688100719138846,
+      "neutral_fraction": 0.9598214285714286
+    },
+    "V2_correct_to_V1_mismatch_seed20261026": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.013392857142857142,
+      "choice_changed_fraction": 0.049107142857142856,
+      "harmful_fraction": 0.020833333333333332,
+      "mean_alternative_minus_reference_true_utility": -0.0010255976919617232,
+      "neutral_fraction": 0.9657738095238095
+    },
+    "V2_correct_to_V1_mismatch_seed20261027": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.013392857142857142,
+      "choice_changed_fraction": 0.03125,
+      "harmful_fraction": 0.013392857142857142,
+      "mean_alternative_minus_reference_true_utility": 0.0012107466668513076,
+      "neutral_fraction": 0.9732142857142857
+    },
+    "V2_correct_to_V2_mismatch_intervention_seed20261025": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.013392857142857142,
+      "choice_changed_fraction": 0.02976190476190476,
+      "harmful_fraction": 0.008928571428571428,
+      "mean_alternative_minus_reference_true_utility": 0.0008340308396067744,
+      "neutral_fraction": 0.9776785714285714
+    },
+    "V2_correct_to_V2_mismatch_intervention_seed20261026": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.002976190476190476,
+      "choice_changed_fraction": 0.03125,
+      "harmful_fraction": 0.013392857142857142,
+      "mean_alternative_minus_reference_true_utility": -0.0008397026056389309,
+      "neutral_fraction": 0.9836309523809523
+    },
+    "V2_correct_to_V2_mismatch_intervention_seed20261027": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.004464285714285714,
+      "choice_changed_fraction": 0.010416666666666666,
+      "harmful_fraction": 0.005952380952380952,
+      "mean_alternative_minus_reference_true_utility": 0.0013016606410961426,
+      "neutral_fraction": 0.9895833333333334
+    },
+    "V2_correct_to_V2_removed_intervention_seed20261025": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.044642857142857144,
+      "choice_changed_fraction": 0.19791666666666666,
+      "harmful_fraction": 0.0818452380952381,
+      "mean_alternative_minus_reference_true_utility": -0.02927780222288285,
+      "neutral_fraction": 0.8735119047619048
+    },
+    "V2_correct_to_V2_removed_intervention_seed20261026": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.013392857142857142,
+      "choice_changed_fraction": 0.052083333333333336,
+      "harmful_fraction": 0.019345238095238096,
+      "mean_alternative_minus_reference_true_utility": -0.007515968621741346,
+      "neutral_fraction": 0.9672619047619048
+    },
+    "V2_correct_to_V2_removed_intervention_seed20261027": {
+      "anchor_count": 672.0,
+      "beneficial_fraction": 0.008928571428571428,
+      "choice_changed_fraction": 0.017857142857142856,
+      "harmful_fraction": 0.008928571428571428,
+      "mean_alternative_minus_reference_true_utility": -0.004452182009334224,
+      "neutral_fraction": 0.9821428571428571
+    }
+  },
+  "claim_boundary": "Explains the frozen source-fit OOF STOP only; does not alter the parent decision, prove information-theoretic impossibility, or authorize new training.",
+  "difficulty": {
+    "by_condition": {
+      "V0_removed": {
+        "top2_gap_gt_0p05": {
+          "anchor_count": 49,
+          "mean_regret": 0.13193167538261738
+        },
+        "top2_gap_le_0p01": {
+          "anchor_count": 623,
+          "mean_regret": 0.00998500160130168
+        }
+      },
+      "V1_mismatch": {
+        "top2_gap_gt_0p05": {
+          "anchor_count": 49,
+          "mean_regret": 0.13446139295895895
+        },
+        "top2_gap_le_0p01": {
+          "anchor_count": 623,
+          "mean_regret": 0.009181001990954675
+        }
+      },
+      "V2_correct": {
+        "top2_gap_gt_0p05": {
+          "anchor_count": 49,
+          "mean_regret": 0.13188379029838407
+        },
+        "top2_gap_le_0p01": {
+          "anchor_count": 623,
+          "mean_regret": 0.01044583241928878
+        }
+      },
+      "V2_mismatch_intervention": {
+        "top2_gap_gt_0p05": {
+          "anchor_count": 49,
+          "mean_regret": 0.13060083067944261
+        },
+        "top2_gap_le_0p01": {
+          "anchor_count": 623,
+          "mean_regret": 0.010080765827497123
+        }
+      },
+      "V2_removed_intervention": {
+        "top2_gap_gt_0p05": {
+          "anchor_count": 49,
+          "mean_regret": 0.1599324791816235
+        },
+        "top2_gap_le_0p01": {
+          "anchor_count": 623,
+          "mean_regret": 0.02306976128607522
+        }
+      }
+    },
+    "decision_topology": {
+      "anchor_count": 672,
+      "exact_top2_tie_anchor_count": 435,
+      "exact_top2_tie_anchor_fraction": 0.6473214285714286,
+      "max_best_set_size": 7,
+      "mean_best_set_size": 2.806547619047619,
+      "mean_oracle_gain_over_native": 0.01665036598326065,
+      "mean_positive_oracle_gain_over_native": 0.04054002152446071,
+      "strict_oracle_improvement_anchor_count": 276,
+      "strict_oracle_improvement_anchor_fraction": 0.4107142857142857
+    },
+    "top2_gap": {
+      "max": 1.0,
+      "mean": 0.02128796319666496,
+      "median": 0.0,
+      "min": 0.0
+    }
+  },
+  "input_provenance": {
+    "bundle_manifest_sha256": "f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee",
+    "prediction_artifact_count": 54,
+    "run_audit_sha256": "1654e0927749972e61184ee5a41c3dc0f384f2185d7d569cbc48391e14b23214"
+  },
+  "optimization": {
+    "selected_epoch": {
+      "V0_removed": {
+        "count": 18,
+        "max": 39,
+        "mean": 13.722222222222221,
+        "median": 14.5,
+        "min": 1
+      },
+      "V1_mismatch": {
+        "count": 18,
+        "max": 19,
+        "mean": 9.944444444444445,
+        "median": 12.0,
+        "min": 1
+      },
+      "V2_correct": {
+        "count": 18,
+        "max": 18,
+        "mean": 11.055555555555555,
+        "median": 10.5,
+        "min": 3
+      }
+    }
+  },
+  "parent_decision": "STOP_CURRENT_VISUAL_MAIN_CLAIM",
+  "parent_support": "UNSUPPORTED",
+  "regression_decision_mismatch": {
+    "V0_removed": {
+      "counts": {
+        "mse_improved_choice_beneficial": 18,
+        "mse_improved_choice_harmful": 7,
+        "mse_improved_choice_neutral": 1173,
+        "mse_not_improved": 818
+      },
+      "mean_control_minus_correct_anchor_mse": 0.001618742872697508,
+      "mean_correct_minus_control_choice_utility": -0.000423736950116859,
+      "observation_count": 2016,
+      "pearson_mse_improvement_vs_choice_utility": 0.018916525551602444
+    },
+    "V1_mismatch": {
+      "counts": {
+        "mse_improved_choice_beneficial": 25,
+        "mse_improved_choice_harmful": 15,
+        "mse_improved_choice_neutral": 1171,
+        "mse_not_improved": 805
+      },
+      "mean_control_minus_correct_anchor_mse": 0.0080097303801316,
+      "mean_correct_minus_control_choice_utility": -0.0009846530156011565,
+      "observation_count": 2016,
+      "pearson_mse_improvement_vs_choice_utility": 0.06750137842601837
+    }
+  },
+  "schema": "aorta.r005e2b.failure_anatomy.v1",
+  "status": "POSTHOC_EXPLANATORY_ONLY"
+}

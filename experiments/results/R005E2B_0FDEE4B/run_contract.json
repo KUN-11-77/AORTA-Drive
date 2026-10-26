@@ -1,0 +1,21 @@
+{
+  "code_commit": "0fdee4b464865d76f2efbc62955baa7e8f7ca8f5",
+  "development_calibration_test_navdream_target_accessed": false,
+  "job_count_per_phase": 54,
+  "maximum_idle_memory_mib": 256,
+  "maximum_jobs_per_gpu": 4,
+  "one_job_per_gpu": false,
+  "partial_scientific_metric_reading_prohibited": true,
+  "phase_order": [
+    "primary",
+    "replay"
+  ],
+  "registered_gpus": [
+    1,
+    2
+  ],
+  "same_job_gpu_for_replay": true,
+  "schema": "aorta.r005e2.job_queue.v2",
+  "started_at_utc": "2026-10-25T12:58:36.801133+00:00",
+  "workers_per_job": 4
+}

@@ -1380,3 +1380,22 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** 标准不以复杂度为目标，不保证正结果、录用或奖项；R005E2B保持原冻结提交和协议，
   只在完成后接受本标准的结果审计，不因本ADR中途更改。
 - **Artifact:** `docs/BEST_PAPER_IMPLEMENTATION_STANDARD_V1_CN.md`。
+
+## ADR-0094：R005E2B停止当前视觉主张，先定位回归—决策错配
+
+- **Decision:** `CURRENT_GENERIC_VISUAL_PROBE_UNSUPPORTED__NO_DIRECT_DIFFERENTIAL_QUERY_TRAINING`。
+- **Evidence:** 54 primary+54 replay及冻结机械审计全部通过；correct视觉只相对mismatch降低relation
+  MSE，相对removed的CI跨零，且相对两训练控制均不降低decision regret。mismatch input intervention
+  不可靠伤害regret，oracle-normalized visual recovery为`-0.025449`，冻结四项联合门全部失败。
+- **Interpretation:** removed intervention恶化说明网络依赖视觉通道；correct-vs-mismatch MSE说明存在
+  一定scene-bound relation信号。但该信号没有转化到选择边界。post-hoc诊断显示64.73% anchors存在
+  exact top-2 utility tie，MSE改善与choice utility改善相关近零；这支持“回归—决策错配”作为下一
+  个待证伪假设，而非结论或新方法正当性。
+- **Consequence:** 父实验永久保持`UNSUPPORTED/STOP`。不直接训练Differential Query，不读取封存域。
+  只允许完成已预注册S2/S3 donor sensitivity或新的source-only最小判别实验；新loss/结构必须先与
+  最简单decision-aligned baseline做容量、预算和数据匹配比较。
+- **Boundary:** 本结果不证明RGB或DINO在信息论上无任务信息，也不支持外观、NavDream、行为或安全
+  主张。外部cross-model reviewer不可用，完整性状态保持`WARN`，机械状态为`PASS`。
+- **Artifacts:** `experiments/R005/R005E2B_RESULTS.md`；
+  `experiments/R005/R005E2B_EXPERIMENT_AUDIT.md`；
+  `experiments/R005/R005E2B_FAILURE_ANATOMY_PROTOCOL.md`。
