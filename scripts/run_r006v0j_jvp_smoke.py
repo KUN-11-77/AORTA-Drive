@@ -53,6 +53,7 @@ def main() -> None:
     torch.backends.cuda.enable_flash_sdp(False)
     torch.backends.cuda.enable_mem_efficient_sdp(False)
     torch.backends.cuda.enable_math_sdp(True)
+    torch.backends.mha.set_fastpath_enabled(False)
     device = torch.device(args.device)
     if device.type != "cuda" or not torch.cuda.is_available():
         raise RuntimeError("an explicitly selected CUDA device is required")
@@ -80,10 +81,12 @@ def main() -> None:
     shifted_features = {key: value.clone() for key, value in clean_features.items()}
     shifted_features["image"] = apply_condition(shifted_features["image"], "low_exposure")
     with torch.no_grad():
+        torch.backends.mha.set_fastpath_enabled(True)
         with torch.backends.cuda.sdp_kernel(
             enable_flash=True, enable_math=True, enable_mem_efficient=True
         ):
             default_clean, _ = runtime.forward(clean_features)
+        torch.backends.mha.set_fastpath_enabled(False)
         with torch.backends.cuda.sdp_kernel(
             enable_flash=False, enable_math=True, enable_mem_efficient=False
         ):
@@ -180,6 +183,7 @@ def main() -> None:
         "backend_semantics_pass": backend_semantics_pass,
         "deterministic_algorithms_warn_only": True,
         "sdpa_backend": "math_only__flash_false__mem_efficient_false",
+        "mha_fastpath_enabled": False,
         "checkpoint_sha256": sha256_file(args.checkpoint),
         "runner_sha256": sha256_file(Path(__file__)),
         "stages": reports,
