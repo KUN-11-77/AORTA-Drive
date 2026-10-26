@@ -7,6 +7,12 @@
 > GPU 0–3启动，每卡最多4个独立job。运行中禁止读取loss、prediction或部分科学指标；当前仍无C29结果，
 > development/calibration/test/NavDream/target保持封存。
 
+> **2026-10-26 R005E3A数学桥：** 对合法候选数(n)的soft selection-regret，有逐anchor硬选择界
+> (R_{hard}\leq n\mathcal L_{SR})；若top-score间隔为\(\delta\)，常数可收紧为
+> (1+(n-1)e^{-\delta/T})。梯度按候选utility相对当前soft期望的高低升降分数，并天然兼容target ties。
+> 但`tanh`有界score与有限温度带来不可约soft-loss floor，该界不是泛化、校准、外观或安全保证。
+> 完整命题与失效条件见`experiments/R005/R005E3A_SOFT_REGRET_THEORY_NOTE.md`；不改变正在运行的协议。
+
 > **2026-10-26 R005E3A：`PREREGISTERED__LOSS_ONLY_OBJECTIVE_QUALIFICATION__NO_RESULT_YET`。**
 > R005E2S只支持平均relation binding而不支持decision binding，因此下一步严格限制为一个单因素
 > 资格实验：保持`FullContextSetScorer`、正确DINO输入、初始化、outer-train顺序、optimizer、schedule

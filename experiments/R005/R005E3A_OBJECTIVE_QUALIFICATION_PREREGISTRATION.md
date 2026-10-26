@@ -35,6 +35,11 @@ p_i(s;T)=
 要求将更多概率质量移向高效用候选。它不是proper distributional loss，因此即使通过，也只资格化
 decision alignment，不支持校准或条件分布主张。
 
+若部署hard选择为\(\hat i\in\arg\max_i s_i\)，合法候选数为\(n\)，则
+\(R_{hard}=u^*-u_{\hat i}\leq n\mathcal L_{SR}\)。本panel有\(n\leq7\)，故该surrogate在逐anchor
+意义下确实控制hard regret，但界不等于有限样本泛化保证；完整证明、梯度和有界score失效条件见
+`R005E3A_SOFT_REGRET_THEORY_NOTE.md`。
+
 温度不调参。每个outer fold使用outer-train合法候选中严格正的
 \(\max_j u_j-u_i\)的中位数；偶数个gap时取两个中央次序统计量的算术平均，ties用`1e-12`排除。
 若不存在正gap，实验INVALID。该规则只使用训练角色
