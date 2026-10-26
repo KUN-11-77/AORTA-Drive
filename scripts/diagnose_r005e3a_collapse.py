@@ -126,7 +126,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 raise FileNotFoundError(checkpoint_path)
             dataset = _dataset(
                 groups=cast(list[str], fold["outer_train_groups"]),
-                stage="posthoc_outer_train_diagnostic",
+                # Reuse the exact frozen outer-train donor/removed contract even
+                # though this diagnostic reads only the correct visual arm.
+                stage="refit_train",
                 arm=ARM_CORRECT,
                 outer_fold=outer_fold,
                 bundle_root=args.bundle_root,
