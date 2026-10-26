@@ -38,6 +38,7 @@ def main() -> None:
     parser.add_argument("--finite-difference-epsilon", type=float, default=1e-3)
     parser.add_argument("--relative-tolerance", type=float, default=1e-2)
     parser.add_argument("--absolute-tolerance", type=float, default=1e-5)
+    parser.add_argument("--backend-output-tolerance", type=float, default=1e-5)
     args = parser.parse_args()
 
     torch.manual_seed(args.seed)
@@ -46,6 +47,12 @@ def main() -> None:
     # in this PyTorch build.  Qualification therefore records warn-only mode
     # and requires an exact same-GPU replay before any formal science run.
     torch.use_deterministic_algorithms(True, warn_only=True)
+    # Fused/memory-efficient SDPA in this build has no forward-AD rule.  The
+    # mathematically equivalent math backend does and is therefore frozen for
+    # every primal, JVP, finite-difference, and replay evaluation.
+    torch.backends.cuda.enable_flash_sdp(False)
+    torch.backends.cuda.enable_mem_efficient_sdp(False)
+    torch.backends.cuda.enable_math_sdp(True)
     device = torch.device(args.device)
     if device.type != "cuda" or not torch.cuda.is_available():
         raise RuntimeError("an explicitly selected CUDA device is required")
@@ -73,11 +80,24 @@ def main() -> None:
     shifted_features = {key: value.clone() for key, value in clean_features.items()}
     shifted_features["image"] = apply_condition(shifted_features["image"], "low_exposure")
     with torch.no_grad():
-        _, clean_capture = runtime.forward(clean_features)
-        _, shifted_capture = runtime.forward(shifted_features)
+        with torch.backends.cuda.sdp_kernel(
+            enable_flash=True, enable_math=True, enable_mem_efficient=True
+        ):
+            default_clean, _ = runtime.forward(clean_features)
+        with torch.backends.cuda.sdp_kernel(
+            enable_flash=False, enable_math=True, enable_mem_efficient=False
+        ):
+            math_clean, clean_capture = runtime.forward(clean_features)
+            _, shifted_capture = runtime.forward(shifted_features)
+    backend_output_max_abs_difference = float(
+        torch.max(torch.abs(default_clean - math_clean))
+    )
+    backend_semantics_pass = bool(
+        backend_output_max_abs_difference <= args.backend_output_tolerance
+    )
 
     reports = []
-    all_pass = True
+    all_pass = backend_semantics_pass
     epsilon = float(args.finite_difference_epsilon)
     for stage_index, stage in enumerate(STAGES):
         clean = clean_capture[stage].to(device)
@@ -155,7 +175,11 @@ def main() -> None:
         "finite_difference_epsilon": epsilon,
         "relative_tolerance": args.relative_tolerance,
         "absolute_tolerance": args.absolute_tolerance,
+        "backend_output_tolerance": args.backend_output_tolerance,
+        "backend_output_max_abs_difference": backend_output_max_abs_difference,
+        "backend_semantics_pass": backend_semantics_pass,
         "deterministic_algorithms_warn_only": True,
+        "sdpa_backend": "math_only__flash_false__mem_efficient_false",
         "checkpoint_sha256": sha256_file(args.checkpoint),
         "runner_sha256": sha256_file(Path(__file__)),
         "stages": reports,
