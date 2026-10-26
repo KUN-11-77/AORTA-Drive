@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-26",
+  "experiment": "R005E3D-proper-mean-qualification-v1",
+  "auditor": "local-independent-mechanical-recompute",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "mechanical_status": "pass",
+  "scientific_support": "unsupported",
+  "decision": "FAIL_FROZEN_QUALIFICATION_GATE",
+  "checks": {
+    "gt_provenance": {
+      "status": "pass",
+      "details": "Frozen evaluator-derived source-fit U_ctx relation; scoped proxy, not model-generated GT or policy value."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "Raw utility gain and regret reported; oracle-normalized capture is accompanied by its raw numerator and frozen denominator."
+    },
+    "result_existence": {
+      "status": "pass",
+      "details": "Primary, replay, hashes, exit code and local independent mechanical recomputation exist and agree."
+    },
+    "dead_code": {
+      "status": "warn",
+      "details": "Final endpoints are independently recomputable; intermediate epoch predictions were not archived."
+    },
+    "scope": {
+      "status": "warn",
+      "details": "Single fold, single seed, outer-train optimization qualification only."
+    },
+    "eval_type": "simulation_only_evaluator_derived_scoped_proxy",
+    "external_reviewer": {
+      "status": "unavailable",
+      "details": "No independent cross-model reviewer backend was available in the current environment."
+    }
+  },
+  "claims": [
+    {
+      "id": "C32",
+      "impact": "unsupported"
+    },
+    {
+      "id": "R005E3D-failure-anatomy",
+      "impact": "posthoc_exact_component_decomposition_only"
+    }
+  ]
+}

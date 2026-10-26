@@ -502,8 +502,31 @@ native-relative proper mean regression：在平方可积、正且只依赖输入
 m_{i^*}-m_{\hat i}\le2\|s-m\|_\infty\le2\|s-m\|_2.
 \]
 
-但有限网络、AdamW、有限样本、候选支持变化与外观移位均不在该定理保证内。因此R005E3D即使通过，
-也只解锁组外资格实验，不直接解锁视觉、Differential Query或NavDream。
+但有限网络、AdamW、有限样本、候选支持变化与外观移位均不在该定理保证内。R005E3D的机械审计通过，
+但训练域`G_model=-0.00085196`、absolute capture为负，正式FAIL。proper目标恢复了22次non-native选择和
+部分correct视觉relation，却被4次精确接近`-1/8`的two-frame temporal-gate错误压倒；这说明总体proper
+不等于有限单头网络会利用已知效用结构。
+
+### 13.3 已知动力学与未知场景结果必须结构化分工
+
+登记目标可写为
+
+\[
+U_i=\frac78F_i+\frac18H_iC_i,
+\]
+
+其中`F_i=H_iB_i`是filter后one-frame score，`H_i`为scene hard gate，`C_i=c(τ_i,h)`为
+candidate-history two-frame comfort。如果`C_i`能从推理时因果可用的候选和实际历史确定性计算，则
+
+\[
+\mathbb E[U_i\mid X]
+=\frac78\mathbb E[F_i\mid X]
++\frac18C_i\mathbb P(H_i=1\mid X).
+\]
+
+因此最小结构假设不是更深网络，而是两个proper heads分别预测连续`F`与二元`H`，再由固定代数与解析
+`C`重构score。它只有在解析`C`不读取future/evaluator label、能exact复算且时延合格时才合法；否则
+停止。该factorization是G1学习地基而非论文主创新，必须与monolithic matched scorer做单因素对照。
 
 ## 14. 模块准入五问
 
@@ -548,6 +571,8 @@ uncertainty、conformal、native fallback、Adapter/LoRA 本身均不是 AORTA �
 - Differential Query 有由 common-min、late-fork、ROI/support 失败驱动的结构动机。
 - 当前soft-regret塌缩伴随可复算的概率尾部score-gradient衰减；proper mean是具有总体条件均值依据的
   最小资格对照，而不是论文创新。
+- proper mean单头已被R005E3D训练域负收益否定；精确component分解把主要失败定位为离散temporal gate
+  漏读，并提出尚未验证的structured utility factorization。
 
 当前不可以说：
 

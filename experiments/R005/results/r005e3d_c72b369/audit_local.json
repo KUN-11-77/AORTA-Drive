@@ -1,0 +1,71 @@
+{
+  "claim_boundary": "Fold-0 outer-train optimization/realizability qualification only; not OOF generalization, visual scene binding, Differential Query, appearance robustness, NavDream, behavior, or safety evidence.",
+  "condition_summaries": {
+    "S1_refit_train_mismatch": {
+      "absolute_oracle_capture": -0.13802634134156747,
+      "anchor_count": 560,
+      "beneficial_nonnative_count": 15,
+      "harmful_nonnative_count": 7,
+      "mean_gain_over_native": -0.002627518041422913,
+      "mean_hard_regret": 0.02166387020351286,
+      "mean_oracle_gain_over_native": 0.01903635216208995,
+      "native_choice_fraction": 0.9535714285714286,
+      "neutral_nonnative_count": 4,
+      "nonnative_choice_count": 26,
+      "relation_mse": 0.14345944451859813
+    },
+    "correct": {
+      "absolute_oracle_capture": -0.04475426406708313,
+      "anchor_count": 560,
+      "beneficial_nonnative_count": 13,
+      "harmful_nonnative_count": 5,
+      "mean_gain_over_native": -0.0008519579315361625,
+      "mean_hard_regret": 0.01988831009362611,
+      "mean_oracle_gain_over_native": 0.01903635216208995,
+      "native_choice_fraction": 0.9607142857142857,
+      "neutral_nonnative_count": 4,
+      "nonnative_choice_count": 22,
+      "relation_mse": 0.08040006823777612
+    },
+    "removed": {
+      "absolute_oracle_capture": -1.791725811276733,
+      "anchor_count": 560,
+      "beneficial_nonnative_count": 50,
+      "harmful_nonnative_count": 56,
+      "mean_gain_over_native": -0.0341079235213702,
+      "mean_hard_regret": 0.053144275683460154,
+      "mean_oracle_gain_over_native": 0.01903635216208995,
+      "native_choice_fraction": 0.7678571428571429,
+      "neutral_nonnative_count": 24,
+      "nonnative_choice_count": 130,
+      "relation_mse": 0.16661121613615593
+    }
+  },
+  "decision": "FAIL_FROZEN_QUALIFICATION_GATE",
+  "failure_reasons": [
+    "NO_POSITIVE_GAIN"
+  ],
+  "mechanical_gates": {
+    "finite_values": true,
+    "fold_group_target_and_mask_exact": true,
+    "independent_metric_recomputation_exact": true,
+    "parent_and_control_initialization_parameter_epoch_and_step_budget_exact": true,
+    "primary_replay_model_states_exact": true,
+    "primary_replay_predictions_bit_exact": true,
+    "proper_mean_objective_exact": true,
+    "provenance_exact": true,
+    "same_physical_gpu_and_frozen_roster": true,
+    "sealed_roles_accessed": false,
+    "source_fit_outer_train_only": true,
+    "temperature_recomputed_from_outer_train_only": true
+  },
+  "schema": "aorta.r005e3d.proper_mean_qualification_audit.v1",
+  "scientific_gates": {
+    "absolute_oracle_capture_at_least_0_10": false,
+    "beneficial_nonnative_count_at_least_one": true,
+    "mean_gain_over_native_strictly_positive": false,
+    "nonnative_choice_count_at_least_one": true
+  },
+  "status": "PASS",
+  "support": "UNSUPPORTED"
+}

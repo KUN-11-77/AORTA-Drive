@@ -64,6 +64,10 @@ paper/*.pdf
 # Local experiment notes
 experiments/**/raw/
 experiments/**/artifacts/
+experiments/**/results/**/audit_inputs/
+experiments/**/results/**/*.log
+experiments/**/results/**/run.pid
+.tmp/
 
 # Locally fetched paper bodies (commit only metadata/notes, not redistributed full text)
 references/sources/*.html

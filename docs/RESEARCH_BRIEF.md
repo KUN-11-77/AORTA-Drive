@@ -1,5 +1,15 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R005E3D与结构化效用重构：`MECHANICAL_PASS__SCIENTIFIC_UNSUPPORTED__FAILURE_LOCALIZED`。**
+> Proper native-relative MSE使当前identity scorer从100% native塌缩恢复到22次non-native选择，并使correct
+> relation MSE降至`0.08040`（mismatch `0.14346`、removed `0.16661`），但实际mean gain仍为
+> `-0.00085196`、absolute oracle capture `-0.04475`，冻结资格门FAIL。只读component复算发现13次
+> 有益选择总收益仅`+0.01714`，4次灾难误选各约`-0.123`且均由`hard_gate×two-frame comfort`相对
+> native从1降到0产生精确`-1/8`项；简单score阈值即使同样本post-hoc也只能以全拒判达到最优0收益。
+> 因此下一步不是调阈值或继续通用loss搜索，而是先资格化因果可计算的temporal operator；若可用，则以
+> `E[U|X]=7/8 E[F|X]+1/8 C(X)P(H=1|X)`构造component-proper结构。该结构尚未训练，不是核心创新，
+> OOF视觉、Differential Query、NavDream、行为与安全继续HOLD。
+
 > **2026-10-26 G1理论重构与R005E3C闭环：`DESCRIPTIVE_SUPPORTED__METHOD_STILL_UNPROVEN`。**
 > 第一性对象现固定为条件期望决策：学习`E[U_i-U_0|X]`并按argmax选择；hindsight oracle、Bayes
 > opportunity、函数类可实现、优化可达与组外泛化严格分层。R005E3C在560个fold-0 outer-train anchors

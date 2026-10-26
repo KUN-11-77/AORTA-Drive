@@ -1,0 +1,2465 @@
+{
+  "candidate_index_and_geometry_anatomy": {
+    "native_candidate_index": 0,
+    "rows": {
+      "1": {
+        "chosen_beneficial_count": 0,
+        "chosen_count": 0,
+        "chosen_gain_mean": null,
+        "chosen_gain_sum": 0.0,
+        "chosen_harmful_count": 0,
+        "chosen_score_mean": null,
+        "geometry_all_valid": {
+          "final_abs_yaw_delta_rad": {
+            "count": 528,
+            "finite_count": 528,
+            "maximum": 0.342801034450531,
+            "mean": 0.1330405930445219,
+            "minimum": 0.02217736840248108,
+            "std": 0.06870222606865395
+          },
+          "final_position_delta_m": {
+            "count": 528,
+            "finite_count": 528,
+            "maximum": 1.2626235485076904,
+            "mean": 0.3226889199012834,
+            "minimum": 0.021081984043121338,
+            "std": 0.1907196034161592
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 528,
+            "finite_count": 527,
+            "maximum": 3.8000000000000003,
+            "mean": 1.316888045540797,
+            "minimum": 0.8,
+            "std": 0.33870973057154136
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 528,
+            "finite_count": 510,
+            "maximum": 3.7,
+            "mean": 1.7190196078431375,
+            "minimum": 1.0,
+            "std": 0.41803815803861355
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 528,
+            "finite_count": 208,
+            "maximum": 4.0,
+            "mean": 1.9495192307692308,
+            "minimum": 1.4000000000000001,
+            "std": 0.3094656679345506
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 528,
+            "finite_count": 528,
+            "maximum": 0.39974528551101685,
+            "mean": 0.16917273376814343,
+            "minimum": 0.0315777063369751,
+            "std": 0.05842482153619294
+          },
+          "max_position_delta_m": {
+            "count": 528,
+            "finite_count": 528,
+            "maximum": 1.711721420288086,
+            "mean": 0.9513661622380217,
+            "minimum": 0.19183136522769928,
+            "std": 0.29760772041905
+          },
+          "mean_position_delta_m": {
+            "count": 528,
+            "finite_count": 528,
+            "maximum": 0.7812779704335986,
+            "mean": 0.4573663766137094,
+            "minimum": 0.0971831283645659,
+            "std": 0.12530065689740086
+          },
+          "path_length_delta_m": {
+            "count": 528,
+            "finite_count": 528,
+            "maximum": 0.9344930648803711,
+            "mean": 0.23542429868018988,
+            "minimum": -1.0085887908935547,
+            "std": 0.241126755966871
+          },
+          "path_length_m": {
+            "count": 528,
+            "finite_count": 528,
+            "maximum": 55.40309524536133,
+            "mean": 22.709065095041737,
+            "minimum": 4.557044506072998,
+            "std": 13.019618159480636
+          }
+        },
+        "geometry_when_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "final_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "mean_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "geometry_when_harmful_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "final_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "mean_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "prediction_mean": -0.2884859027284564,
+        "prediction_std": 0.26618955236769487,
+        "prediction_target_pearson": 0.6382982261335618,
+        "target_component_when_beneficial_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_component_when_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_component_when_harmful_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_mean": -0.3676960922019282,
+        "target_negative_count": 369,
+        "target_positive_count": 70,
+        "target_std": 0.41410987620486706,
+        "valid_count": 528
+      },
+      "2": {
+        "chosen_beneficial_count": 0,
+        "chosen_count": 0,
+        "chosen_gain_mean": null,
+        "chosen_gain_sum": 0.0,
+        "chosen_harmful_count": 0,
+        "chosen_score_mean": null,
+        "geometry_all_valid": {
+          "final_abs_yaw_delta_rad": {
+            "count": 541,
+            "finite_count": 541,
+            "maximum": 0.2817351818084717,
+            "mean": 0.09069696600702135,
+            "minimum": 0.006014736369252205,
+            "std": 0.04910851001030035
+          },
+          "final_position_delta_m": {
+            "count": 541,
+            "finite_count": 541,
+            "maximum": 0.9331798553466797,
+            "mean": 0.21656625180646377,
+            "minimum": 0.0038970031309872866,
+            "std": 0.13083096264040053
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 541,
+            "finite_count": 532,
+            "maximum": 4.0,
+            "mean": 1.561842105263158,
+            "minimum": 0.9,
+            "std": 0.4354916734286008
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 541,
+            "finite_count": 370,
+            "maximum": 3.9000000000000004,
+            "mean": 1.9045945945945948,
+            "minimum": 1.1,
+            "std": 0.4357106316873347
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 541,
+            "finite_count": 27,
+            "maximum": 2.3000000000000003,
+            "mean": 2.0592592592592593,
+            "minimum": 1.6,
+            "std": 0.15696014889197848
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 541,
+            "finite_count": 541,
+            "maximum": 0.3131648898124695,
+            "mean": 0.11595503383362579,
+            "minimum": 0.02873140573501587,
+            "std": 0.042007654005152176
+          },
+          "max_position_delta_m": {
+            "count": 541,
+            "finite_count": 541,
+            "maximum": 1.2455546855926514,
+            "mean": 0.6302797452524277,
+            "minimum": 0.1559719294309616,
+            "std": 0.21547419668984716
+          },
+          "mean_position_delta_m": {
+            "count": 541,
+            "finite_count": 541,
+            "maximum": 0.5730570676145939,
+            "mean": 0.30204954416854335,
+            "minimum": 0.047934669586716265,
+            "std": 0.09599571614232578
+          },
+          "path_length_delta_m": {
+            "count": 541,
+            "finite_count": 541,
+            "maximum": 0.6658015251159668,
+            "mean": 0.1068120020374573,
+            "minimum": -0.7659912109375,
+            "std": 0.1646360753611199
+          },
+          "path_length_m": {
+            "count": 541,
+            "finite_count": 541,
+            "maximum": 55.38015365600586,
+            "mean": 22.173220136910402,
+            "minimum": 3.4661662578582764,
+            "std": 13.180159468633986
+          }
+        },
+        "geometry_when_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "final_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "mean_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "geometry_when_harmful_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "final_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "mean_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "prediction_mean": -0.23053192871996303,
+        "prediction_std": 0.22004988134457684,
+        "prediction_target_pearson": 0.6590915774650884,
+        "target_component_when_beneficial_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_component_when_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_component_when_harmful_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_mean": -0.26605706393826806,
+        "target_negative_count": 353,
+        "target_positive_count": 83,
+        "target_std": 0.3807593863635141,
+        "valid_count": 541
+      },
+      "3": {
+        "chosen_beneficial_count": 0,
+        "chosen_count": 0,
+        "chosen_gain_mean": null,
+        "chosen_gain_sum": 0.0,
+        "chosen_harmful_count": 0,
+        "chosen_score_mean": null,
+        "geometry_all_valid": {
+          "final_abs_yaw_delta_rad": {
+            "count": 547,
+            "finite_count": 547,
+            "maximum": 0.22206823527812958,
+            "mean": 0.04580896061383719,
+            "minimum": 0.00021314620971679688,
+            "std": 0.026943709813562117
+          },
+          "final_position_delta_m": {
+            "count": 547,
+            "finite_count": 547,
+            "maximum": 0.7288843989372253,
+            "mean": 0.12346357741359948,
+            "minimum": 0.0008453578921034932,
+            "std": 0.0816671746607191
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 547,
+            "finite_count": 346,
+            "maximum": 4.0,
+            "mean": 1.8352601156069364,
+            "minimum": 0.9,
+            "std": 0.46118039863543187
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 547,
+            "finite_count": 55,
+            "maximum": 2.9000000000000004,
+            "mean": 1.8818181818181818,
+            "minimum": 1.3,
+            "std": 0.25943358518890136
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 547,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 547,
+            "finite_count": 547,
+            "maximum": 0.22206823527812958,
+            "mean": 0.05954729893008141,
+            "minimum": 0.02014678716659546,
+            "std": 0.023176958394275738
+          },
+          "max_position_delta_m": {
+            "count": 547,
+            "finite_count": 547,
+            "maximum": 0.7899531126022339,
+            "mean": 0.3211918721687205,
+            "minimum": 0.06342129409313202,
+            "std": 0.13428772219230115
+          },
+          "mean_position_delta_m": {
+            "count": 547,
+            "finite_count": 547,
+            "maximum": 0.3928256375919573,
+            "mean": 0.15413391283075722,
+            "minimum": 0.033882478039098406,
+            "std": 0.06635834868176356
+          },
+          "path_length_delta_m": {
+            "count": 547,
+            "finite_count": 547,
+            "maximum": 0.3035695552825928,
+            "mean": 0.01574073979797921,
+            "minimum": -0.4957466125488281,
+            "std": 0.09806938605890567
+          },
+          "path_length_m": {
+            "count": 547,
+            "finite_count": 547,
+            "maximum": 55.37273025512695,
+            "mean": 21.867400376844667,
+            "minimum": 2.3185343742370605,
+            "std": 13.30828893113383
+          }
+        },
+        "geometry_when_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "final_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "mean_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "geometry_when_harmful_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "final_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "mean_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "prediction_mean": -0.17790375592721663,
+        "prediction_std": 0.16866493445670155,
+        "prediction_target_pearson": 0.41647129075650163,
+        "target_component_when_beneficial_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_component_when_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_component_when_harmful_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_mean": -0.0767576684340776,
+        "target_negative_count": 203,
+        "target_positive_count": 131,
+        "target_std": 0.24432066828635343,
+        "valid_count": 547
+      },
+      "4": {
+        "chosen_beneficial_count": 0,
+        "chosen_count": 0,
+        "chosen_gain_mean": null,
+        "chosen_gain_sum": 0.0,
+        "chosen_harmful_count": 0,
+        "chosen_score_mean": null,
+        "geometry_all_valid": {
+          "final_abs_yaw_delta_rad": {
+            "count": 549,
+            "finite_count": 549,
+            "maximum": 0.20470935106277466,
+            "mean": 0.045959683269167315,
+            "minimum": 0.003344893455505371,
+            "std": 0.02660326105258363
+          },
+          "final_position_delta_m": {
+            "count": 549,
+            "finite_count": 549,
+            "maximum": 0.6991676688194275,
+            "mean": 0.12239943516189622,
+            "minimum": 0.002439237432554364,
+            "std": 0.08846521612437615
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 549,
+            "finite_count": 338,
+            "maximum": 3.9000000000000004,
+            "mean": 1.9322485207100595,
+            "minimum": 1.1,
+            "std": 0.5028277762385281
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 549,
+            "finite_count": 45,
+            "maximum": 3.8000000000000003,
+            "mean": 2.128888888888889,
+            "minimum": 1.5,
+            "std": 0.4964864201890106
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 549,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 549,
+            "finite_count": 549,
+            "maximum": 0.20470935106277466,
+            "mean": 0.05805492583825126,
+            "minimum": 0.009130209684371948,
+            "std": 0.0242756270030543
+          },
+          "max_position_delta_m": {
+            "count": 549,
+            "finite_count": 549,
+            "maximum": 0.6991676688194275,
+            "mean": 0.3051122929391965,
+            "minimum": 0.07622311264276505,
+            "std": 0.1273089718996323
+          },
+          "mean_position_delta_m": {
+            "count": 549,
+            "finite_count": 549,
+            "maximum": 0.35752370898475555,
+            "mean": 0.14413633353992136,
+            "minimum": 0.03266414956803002,
+            "std": 0.060299671733947006
+          },
+          "path_length_delta_m": {
+            "count": 549,
+            "finite_count": 549,
+            "maximum": 0.35869646072387695,
+            "mean": 0.005393658396541964,
+            "minimum": -0.44319915771484375,
+            "std": 0.09369718290183816
+          },
+          "path_length_m": {
+            "count": 549,
+            "finite_count": 549,
+            "maximum": 55.404502868652344,
+            "mean": 21.79863339608267,
+            "minimum": 2.3217551708221436,
+            "std": 13.315332838296976
+          }
+        },
+        "geometry_when_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "final_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "mean_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "geometry_when_harmful_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "final_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "mean_position_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_delta_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "path_length_m": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "prediction_mean": -0.1492955497922359,
+        "prediction_std": 0.14567115756637689,
+        "prediction_target_pearson": 0.4439167676935022,
+        "target_component_when_beneficial_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_component_when_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_component_when_harmful_chosen": {
+          "filtered_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "temporal_hard_gate_relation": {
+            "count": 0,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          }
+        },
+        "target_mean": -0.04666466936890266,
+        "target_negative_count": 155,
+        "target_positive_count": 166,
+        "target_std": 0.21352026102581748,
+        "valid_count": 549
+      },
+      "5": {
+        "chosen_beneficial_count": 3,
+        "chosen_count": 4,
+        "chosen_gain_mean": 0.0006121903616076452,
+        "chosen_gain_sum": 0.0024487614464305807,
+        "chosen_harmful_count": 1,
+        "chosen_score_mean": 0.01141357421875,
+        "geometry_all_valid": {
+          "final_abs_yaw_delta_rad": {
+            "count": 543,
+            "finite_count": 543,
+            "maximum": 0.2784505784511566,
+            "mean": 0.09073417317671066,
+            "minimum": 0.0016337251290678978,
+            "std": 0.048801326781300634
+          },
+          "final_position_delta_m": {
+            "count": 543,
+            "finite_count": 543,
+            "maximum": 0.9750757813453674,
+            "mean": 0.22156006124292538,
+            "minimum": 0.007657347712665796,
+            "std": 0.14193817889693683
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 543,
+            "finite_count": 532,
+            "maximum": 3.9000000000000004,
+            "mean": 1.6067669172932333,
+            "minimum": 0.9,
+            "std": 0.4454355794577796
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 543,
+            "finite_count": 354,
+            "maximum": 3.9000000000000004,
+            "mean": 1.9508474576271186,
+            "minimum": 1.2000000000000002,
+            "std": 0.455923802245494
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 543,
+            "finite_count": 21,
+            "maximum": 2.5,
+            "mean": 2.1476190476190475,
+            "minimum": 1.9000000000000001,
+            "std": 0.14998110236212978
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 543,
+            "finite_count": 543,
+            "maximum": 0.36874884366989136,
+            "mean": 0.11414031350288821,
+            "minimum": 0.03824567794799805,
+            "std": 0.04364443231662357
+          },
+          "max_position_delta_m": {
+            "count": 543,
+            "finite_count": 543,
+            "maximum": 1.1166210174560547,
+            "mean": 0.6123690047536327,
+            "minimum": 0.17485806345939636,
+            "std": 0.20868259217551557
+          },
+          "mean_position_delta_m": {
+            "count": 543,
+            "finite_count": 543,
+            "maximum": 0.5407769087554387,
+            "mean": 0.292292716139971,
+            "minimum": 0.07979892348734344,
+            "std": 0.0917628322291036
+          },
+          "path_length_delta_m": {
+            "count": 543,
+            "finite_count": 543,
+            "maximum": 0.7443456649780273,
+            "mean": 0.0875872366994784,
+            "minimum": -0.5052471160888672,
+            "std": 0.1630528782746307
+          },
+          "path_length_m": {
+            "count": 543,
+            "finite_count": 543,
+            "maximum": 55.44363021850586,
+            "mean": 22.085925803000098,
+            "minimum": 3.0200281143188477,
+            "std": 13.193298509733092
+          }
+        },
+        "geometry_when_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.21597468852996826,
+            "mean": 0.18586490675807,
+            "minimum": 0.16819730401039124,
+            "std": 0.019509790421091903
+          },
+          "final_position_delta_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.27451473474502563,
+            "mean": 0.22646760568022728,
+            "minimum": 0.1804896891117096,
+            "std": 0.034743113878529686
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 1.9000000000000001,
+            "mean": 1.5750000000000002,
+            "minimum": 1.1,
+            "std": 0.3112474899497183
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 4,
+            "finite_count": 2,
+            "maximum": 2.4000000000000004,
+            "mean": 2.0,
+            "minimum": 1.6,
+            "std": 0.40000000000000013
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 4,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.237837553024292,
+            "mean": 0.19786669313907623,
+            "minimum": 0.17761388421058655,
+            "std": 0.02374101086233083
+          },
+          "max_position_delta_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.5801043510437012,
+            "mean": 0.43930328637361526,
+            "minimum": 0.31789445877075195,
+            "std": 0.11564801247026756
+          },
+          "mean_position_delta_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.29910052951607036,
+            "mean": 0.23719866315034935,
+            "minimum": 0.18190387424036134,
+            "std": 0.05477782196088323
+          },
+          "path_length_delta_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.16206932067871094,
+            "mean": 0.10293364524841309,
+            "minimum": 0.021087646484375,
+            "std": 0.059526211358725996
+          },
+          "path_length_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 16.094757080078125,
+            "mean": 12.663916826248169,
+            "minimum": 10.775933265686035,
+            "std": 2.070951935272031
+          }
+        },
+        "geometry_when_harmful_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 0.21597468852996826,
+            "mean": 0.21597468852996826,
+            "minimum": 0.21597468852996826,
+            "std": 0.0
+          },
+          "final_position_delta_m": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 0.1804896891117096,
+            "mean": 0.1804896891117096,
+            "minimum": 0.1804896891117096,
+            "std": 0.0
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 1.1,
+            "mean": 1.1,
+            "minimum": 1.1,
+            "std": 0.0
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 1.6,
+            "mean": 1.6,
+            "minimum": 1.6,
+            "std": 0.0
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 1,
+            "finite_count": 0,
+            "maximum": null,
+            "mean": null,
+            "minimum": null,
+            "std": null
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 0.237837553024292,
+            "mean": 0.237837553024292,
+            "minimum": 0.237837553024292,
+            "std": 0.0
+          },
+          "max_position_delta_m": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 0.5801043510437012,
+            "mean": 0.5801043510437012,
+            "minimum": 0.5801043510437012,
+            "std": 0.0
+          },
+          "mean_position_delta_m": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 0.29910052951607036,
+            "mean": 0.29910052951607036,
+            "minimum": 0.29910052951607036,
+            "std": 0.0
+          },
+          "path_length_delta_m": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 0.021087646484375,
+            "mean": 0.021087646484375,
+            "minimum": 0.021087646484375,
+            "std": 0.0
+          },
+          "path_length_m": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 16.094757080078125,
+            "mean": 16.094757080078125,
+            "minimum": 16.094757080078125,
+            "std": 0.0
+          }
+        },
+        "prediction_mean": -0.19129294716850828,
+        "prediction_std": 0.1969695278522584,
+        "prediction_target_pearson": 0.6489788307532048,
+        "target_component_when_beneficial_chosen": {
+          "filtered_relation": {
+            "count": 3,
+            "finite_count": 3,
+            "maximum": 0.002546849862510636,
+            "mean": 0.0009922813085797566,
+            "minimum": 6.291827750914969e-05,
+            "std": 0.0011062370117062737
+          },
+          "temporal_hard_gate_relation": {
+            "count": 3,
+            "finite_count": 3,
+            "maximum": 0.0,
+            "mean": 0.0,
+            "minimum": 0.0,
+            "std": 0.0
+          }
+        },
+        "target_component_when_chosen": {
+          "filtered_relation": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.002546849862510636,
+            "mean": 0.0006996461505688334,
+            "minimum": -0.00017825932346393625,
+            "std": 0.001083847891386911
+          },
+          "temporal_hard_gate_relation": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.0,
+            "mean": 0.0,
+            "minimum": 0.0,
+            "std": 0.0
+          }
+        },
+        "target_component_when_harmful_chosen": {
+          "filtered_relation": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": -0.00017825932346393625,
+            "mean": -0.00017825932346393625,
+            "minimum": -0.00017825932346393625,
+            "std": 0.0
+          },
+          "temporal_hard_gate_relation": {
+            "count": 1,
+            "finite_count": 1,
+            "maximum": 0.0,
+            "mean": 0.0,
+            "minimum": 0.0,
+            "std": 0.0
+          }
+        },
+        "target_mean": -0.208473212004039,
+        "target_negative_count": 337,
+        "target_positive_count": 95,
+        "target_std": 0.34331116933394096,
+        "valid_count": 543
+      },
+      "6": {
+        "chosen_beneficial_count": 10,
+        "chosen_count": 18,
+        "chosen_gain_mean": -0.02664140017259342,
+        "chosen_gain_sum": -0.4795452031066816,
+        "chosen_harmful_count": 4,
+        "chosen_score_mean": 0.009765625,
+        "geometry_all_valid": {
+          "final_abs_yaw_delta_rad": {
+            "count": 527,
+            "finite_count": 527,
+            "maximum": 0.3478592038154602,
+            "mean": 0.13225855363402128,
+            "minimum": 0.0012679696083068848,
+            "std": 0.06677590823877275
+          },
+          "final_position_delta_m": {
+            "count": 527,
+            "finite_count": 527,
+            "maximum": 1.3612672090530396,
+            "mean": 0.33339262225681054,
+            "minimum": 0.015374213457107544,
+            "std": 0.19517705269795022
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 527,
+            "finite_count": 527,
+            "maximum": 3.8000000000000003,
+            "mean": 1.3434535104364327,
+            "minimum": 0.9,
+            "std": 0.3348083215290447
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 527,
+            "finite_count": 502,
+            "maximum": 3.8000000000000003,
+            "mean": 1.7424302788844626,
+            "minimum": 1.1,
+            "std": 0.41377244901186555
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 527,
+            "finite_count": 198,
+            "maximum": 3.1,
+            "mean": 1.9803030303030305,
+            "minimum": 1.5,
+            "std": 0.2784624253181201
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 527,
+            "finite_count": 527,
+            "maximum": 0.3872564136981964,
+            "mean": 0.1658804826084984,
+            "minimum": 0.05803081393241882,
+            "std": 0.05667717903271777
+          },
+          "max_position_delta_m": {
+            "count": 527,
+            "finite_count": 527,
+            "maximum": 1.5849372148513794,
+            "mean": 0.9345338993212756,
+            "minimum": 0.33861812949180603,
+            "std": 0.29121135456928754
+          },
+          "mean_position_delta_m": {
+            "count": 527,
+            "finite_count": 527,
+            "maximum": 0.7608642678298965,
+            "mean": 0.4498301268933578,
+            "minimum": 0.13340348975233188,
+            "std": 0.1211252529688461
+          },
+          "path_length_delta_m": {
+            "count": 527,
+            "finite_count": 527,
+            "maximum": 1.1727609634399414,
+            "mean": 0.20352128018011856,
+            "minimum": -0.6246604919433594,
+            "std": 0.23582776893178053
+          },
+          "path_length_m": {
+            "count": 527,
+            "finite_count": 527,
+            "maximum": 55.4981689453125,
+            "mean": 22.707766028011548,
+            "minimum": 4.427069664001465,
+            "std": 13.000223433949964
+          }
+        },
+        "geometry_when_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 0.29793593287467957,
+            "mean": 0.1572058382961485,
+            "minimum": 0.06587518006563187,
+            "std": 0.07969108918288619
+          },
+          "final_position_delta_m": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 0.6482474207878113,
+            "mean": 0.4775864738557074,
+            "minimum": 0.24153752624988556,
+            "std": 0.1306071756476333
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 2.1,
+            "mean": 1.3166666666666669,
+            "minimum": 1.0,
+            "std": 0.2753785273643051
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 2.8000000000000003,
+            "mean": 1.7333333333333334,
+            "minimum": 1.3,
+            "std": 0.3636237371545239
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 18,
+            "finite_count": 8,
+            "maximum": 2.3000000000000003,
+            "mean": 1.9625000000000004,
+            "minimum": 1.7000000000000002,
+            "std": 0.23418742493993996
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 0.3024972677230835,
+            "mean": 0.18962103211217457,
+            "minimum": 0.10915148258209229,
+            "std": 0.061680211893164916
+          },
+          "max_position_delta_m": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 1.530242919921875,
+            "mean": 1.0123773614565532,
+            "minimum": 0.5994060039520264,
+            "std": 0.2917650842350487
+          },
+          "mean_position_delta_m": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 0.7608642678298965,
+            "mean": 0.507698921471434,
+            "minimum": 0.26831651658171835,
+            "std": 0.13588062147596067
+          },
+          "path_length_delta_m": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 0.4326004981994629,
+            "mean": -0.10118222236633301,
+            "minimum": -0.4900016784667969,
+            "std": 0.32841175685592894
+          },
+          "path_length_m": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 41.026702880859375,
+            "mean": 20.600110954708523,
+            "minimum": 6.968628883361816,
+            "std": 10.905282261310598
+          }
+        },
+        "geometry_when_harmful_chosen": {
+          "final_abs_yaw_delta_rad": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.29793593287467957,
+            "mean": 0.23466921597719193,
+            "minimum": 0.13826942443847656,
+            "std": 0.05981419245696337
+          },
+          "final_position_delta_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.5474007725715637,
+            "mean": 0.46047158539295197,
+            "minimum": 0.33886197209358215,
+            "std": 0.07729101895332982
+          },
+          "first_divergence_time_0p25_s": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 1.5,
+            "mean": 1.3499999999999999,
+            "minimum": 1.3,
+            "std": 0.08660254037844384
+          },
+          "first_divergence_time_0p5_s": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 2.0,
+            "mean": 1.8250000000000002,
+            "minimum": 1.6,
+            "std": 0.14790199457749037
+          },
+          "first_divergence_time_1p0_s": {
+            "count": 4,
+            "finite_count": 1,
+            "maximum": 2.3000000000000003,
+            "mean": 2.3000000000000003,
+            "minimum": 2.3000000000000003,
+            "std": 0.0
+          },
+          "max_abs_yaw_delta_rad": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.3024972677230835,
+            "mean": 0.247556921094656,
+            "minimum": 0.17696774005889893,
+            "std": 0.04665498286089884
+          },
+          "max_position_delta_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 1.1555365324020386,
+            "mean": 0.8459951728582382,
+            "minimum": 0.7266409993171692,
+            "std": 0.1789882795026162
+          },
+          "mean_position_delta_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.5630604478632804,
+            "mean": 0.44480652828692324,
+            "minimum": 0.3966773368770302,
+            "std": 0.06853252363804316
+          },
+          "path_length_delta_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.27322864532470703,
+            "mean": 0.10349702835083008,
+            "minimum": -0.29595375061035156,
+            "std": 0.23244647602827326
+          },
+          "path_length_m": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 20.64939308166504,
+            "mean": 13.020178079605103,
+            "minimum": 9.875893592834473,
+            "std": 4.420092555764275
+          }
+        },
+        "prediction_mean": -0.23574325300936907,
+        "prediction_std": 0.23779474207782275,
+        "prediction_target_pearson": 0.5838730087761045,
+        "target_component_when_beneficial_chosen": {
+          "filtered_relation": {
+            "count": 10,
+            "finite_count": 10,
+            "maximum": 0.003907466014634875,
+            "mean": 0.0016609399362727873,
+            "minimum": 4.749151800109708e-05,
+            "std": 0.0009908353339180404
+          },
+          "temporal_hard_gate_relation": {
+            "count": 10,
+            "finite_count": 10,
+            "maximum": 0.0,
+            "mean": 0.0,
+            "minimum": 0.0,
+            "std": 0.0
+          }
+        },
+        "target_component_when_chosen": {
+          "filtered_relation": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 0.003907466014634875,
+            "mean": 0.0012987173385986231,
+            "minimum": 0.0,
+            "std": 0.0010618457600388024
+          },
+          "temporal_hard_gate_relation": {
+            "count": 18,
+            "finite_count": 18,
+            "maximum": 0.0,
+            "mean": -0.2222222222222222,
+            "minimum": -1.0,
+            "std": 0.41573970964154905
+          }
+        },
+        "target_component_when_harmful_chosen": {
+          "filtered_relation": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": 0.002499810248048573,
+            "mean": 0.0016918781830118357,
+            "minimum": 0.0006354961116726843,
+            "std": 0.0006709560591674995
+          },
+          "temporal_hard_gate_relation": {
+            "count": 4,
+            "finite_count": 4,
+            "maximum": -1.0,
+            "mean": -1.0,
+            "minimum": -1.0,
+            "std": 0.0
+          }
+        },
+        "target_mean": -0.3168725512858256,
+        "target_negative_count": 359,
+        "target_positive_count": 78,
+        "target_std": 0.39489611168792466,
+        "valid_count": 527
+      }
+    },
+    "sample_interval_s": 0.1,
+    "warning": "Candidate-index and trajectory-geometry associations are post-hoc. They can identify a discriminating next experiment but cannot establish causality or justify candidate-specific treatment."
+  },
+  "candidate_sign_calibration": {
+    "false_negative_count": 605,
+    "false_positive_count": 16,
+    "pearson_score_target": 0.6149766655404834,
+    "precision_at_zero": 0.5294117647058824,
+    "predicted_positive_count": 34,
+    "recall_at_zero": 0.028892455858747994,
+    "target_positive_count": 623,
+    "true_positive_count": 18
+  },
+  "claim_boundary": "Post-hoc fold-0 outer-train failure anatomy only. It cannot change the frozen FAIL, select a deployable threshold, or support OOF, visual, Differential Query, appearance, behavior, or safety claims.",
+  "component_readout_diagnostic": {
+    "interpretation_boundary": "Association only: this can reveal which registered target component the frozen scorer failed to read, but cannot prove a replacement architecture will generalize.",
+    "pearson_prediction_vs_contextual_relation": 0.6149766655404834,
+    "pearson_prediction_vs_filtered_relation": 0.5963714916122579,
+    "pearson_prediction_vs_temporal_hard_gate_relation": 0.30005454114146685,
+    "selected_harmful_count": 5,
+    "selected_harmful_with_negative_temporal_count": 4,
+    "temporal_relation_buckets": {
+      "negative": {
+        "contextual_relation_mean": -0.4056467408013037,
+        "count": 1088,
+        "filtered_relation_mean": -0.32113303995439724,
+        "predicted_positive_count": 6,
+        "prediction_mean": -0.3024271796731388
+      },
+      "positive": {
+        "contextual_relation_mean": 0.2596833263529845,
+        "count": 20,
+        "filtered_relation_mean": 0.1539238016586578,
+        "predicted_positive_count": 0,
+        "prediction_mean": -0.15770263671875
+      },
+      "zero": {
+        "contextual_relation_mean": -0.11740881879231484,
+        "count": 2127,
+        "filtered_relation_mean": -0.13418150699065595,
+        "predicted_positive_count": 28,
+        "prediction_mean": -0.1655989101250294
+      }
+    }
+  },
+  "epoch_path_provenance_limited": {
+    "rows": [
+      {
+        "beneficial_count": 0,
+        "epoch": 1,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "relation_mse": 0.12958283118955416
+      },
+      {
+        "beneficial_count": 0,
+        "epoch": 2,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "relation_mse": 0.13199808226720877
+      },
+      {
+        "beneficial_count": 0,
+        "epoch": 3,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "relation_mse": 0.1255897051428897
+      },
+      {
+        "beneficial_count": 0,
+        "epoch": 4,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "relation_mse": 0.12261481211367525
+      },
+      {
+        "beneficial_count": 0,
+        "epoch": 5,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "relation_mse": 0.12305349078942386
+      },
+      {
+        "beneficial_count": 0,
+        "epoch": 6,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "relation_mse": 0.11943984857322833
+      },
+      {
+        "beneficial_count": 0,
+        "epoch": 7,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "relation_mse": 0.11862498419400752
+      },
+      {
+        "beneficial_count": 0,
+        "epoch": 8,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "relation_mse": 0.10949041489683935
+      },
+      {
+        "beneficial_count": 0,
+        "epoch": 9,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "relation_mse": 0.10300336731881217
+      },
+      {
+        "beneficial_count": 1,
+        "epoch": 10,
+        "harmful_count": 2,
+        "mean_gain_over_native": -0.00043648694783249606,
+        "nonnative_choice_count": 3,
+        "relation_mse": 0.09235512529858778
+      },
+      {
+        "beneficial_count": 12,
+        "epoch": 11,
+        "harmful_count": 7,
+        "mean_gain_over_native": -0.0012906243090908122,
+        "nonnative_choice_count": 23,
+        "relation_mse": 0.08748027138772729
+      },
+      {
+        "beneficial_count": 9,
+        "epoch": 12,
+        "harmful_count": 5,
+        "mean_gain_over_native": -0.0008592276317033663,
+        "nonnative_choice_count": 17,
+        "relation_mse": 0.08246197200795793
+      },
+      {
+        "beneficial_count": 13,
+        "epoch": 13,
+        "harmful_count": 6,
+        "mean_gain_over_native": -0.0010751722172504482,
+        "nonnative_choice_count": 23,
+        "relation_mse": 0.080567053743299
+      },
+      {
+        "beneficial_count": 13,
+        "epoch": 14,
+        "harmful_count": 5,
+        "mean_gain_over_native": -0.0008519579315361625,
+        "nonnative_choice_count": 22,
+        "relation_mse": 0.08040006823777612
+      }
+    ],
+    "warning": "Epoch predictions were not archived, so ledger values are exact-replay self-consistent but not independently recomputed."
+  },
+  "group_anatomy": {
+    "best_group_mean_gain": 0.00021368954912759364,
+    "group_count": 35,
+    "group_mean_gain": {
+      "2021.06.07.13.53.57_veh-35": 0.0,
+      "2021.06.07.17.46.49_veh-35": 0.0,
+      "2021.06.09.11.54.15_veh-12": 0.0001306837239098968,
+      "2021.06.09.14.50.36_veh-26": 8.314231672557071e-05,
+      "2021.06.09.14.58.55_veh-35": 0.0,
+      "2021.06.09.17.37.09_veh-12": -0.0077777463011443615,
+      "2021.06.09.19.40.26_veh-12": -0.007675791624933481,
+      "2021.06.14.16.32.09_veh-35": 0.0,
+      "2021.06.14.18.13.35_veh-26": -9.7485572041478e-06,
+      "2021.06.14.19.22.11_veh-38": -0.007669417362194508,
+      "2021.06.23.15.56.12_veh-16": 2.5971924060286256e-06,
+      "2021.06.23.16.52.00_veh-26": 0.0,
+      "2021.06.23.21.56.29_veh-35": 7.697952173657541e-05,
+      "2021.07.09.01.37.16_veh-26": 0.0,
+      "2021.07.09.15.53.28_veh-38": 6.52524977340363e-05,
+      "2021.07.16.20.45.29_veh-35": 0.0,
+      "2021.07.16.21.17.55_veh-26": 0.0,
+      "2021.07.16.22.40.23_veh-38": 0.0,
+      "2021.07.24.16.48.51_veh-17": 0.00013928084808867425,
+      "2021.08.17.16.57.11_veh-08": 0.00011731885751942173,
+      "2021.08.17.18.54.02_veh-45": 0.0,
+      "2021.08.17.19.18.39_veh-08": 0.0,
+      "2021.08.24.14.35.46_veh-45": 0.00021368954912759364,
+      "2021.08.24.20.03.01_veh-45": 0.0,
+      "2021.08.31.12.21.30_veh-40": 0.0,
+      "2021.09.14.18.43.41_veh-45": 0.0001304637553403154,
+      "2021.09.15.11.49.23_veh-28": 0.0,
+      "2021.09.15.13.16.40_veh-28": 0.0,
+      "2021.09.15.15.02.19_veh-39": 0.0,
+      "2021.10.01.15.32.11_veh-28": 0.0,
+      "2021.10.05.06.24.06_veh-50": 0.0,
+      "2021.10.05.06.57.40_veh-50": -0.007714502979069948,
+      "2021.10.05.08.11.15_veh-50": 0.0,
+      "2021.10.06.14.31.13_veh-28": 6.92709581926465e-05,
+      "2021.10.06.19.27.33_veh-28": 0.0
+    },
+    "negative_mean_gain_group_count": 5,
+    "positive_mean_gain_group_count": 10,
+    "worst_group_mean_gain": -0.0077777463011443615,
+    "zero_mean_gain_group_count": 20
+  },
+  "parent_decision_immutable": "FAIL_FROZEN_QUALIFICATION_GATE",
+  "posthoc_threshold_frontier": {
+    "best_in_sample_row": {
+      "beneficial_count": 0,
+      "harmful_count": 0,
+      "mean_gain_over_native": 0.0,
+      "nonnative_choice_count": 0,
+      "threshold": 0.02734375
+    },
+    "rows": [
+      {
+        "beneficial_count": 13,
+        "harmful_count": 5,
+        "mean_gain_over_native": -0.0008519579315361625,
+        "nonnative_choice_count": 22,
+        "threshold": 0.0
+      },
+      {
+        "beneficial_count": 12,
+        "harmful_count": 5,
+        "mean_gain_over_native": -0.0008538222886142778,
+        "nonnative_choice_count": 21,
+        "threshold": 0.0009765625
+      },
+      {
+        "beneficial_count": 11,
+        "harmful_count": 5,
+        "mean_gain_over_native": -0.0008538964941115929,
+        "nonnative_choice_count": 20,
+        "threshold": 0.002685546875
+      },
+      {
+        "beneficial_count": 10,
+        "harmful_count": 5,
+        "mean_gain_over_native": -0.0008539948039210035,
+        "nonnative_choice_count": 18,
+        "threshold": 0.003173828125
+      },
+      {
+        "beneficial_count": 9,
+        "harmful_count": 5,
+        "mean_gain_over_native": -0.0008559739741550792,
+        "nonnative_choice_count": 17,
+        "threshold": 0.00341796875
+      },
+      {
+        "beneficial_count": 8,
+        "harmful_count": 5,
+        "mean_gain_over_native": -0.0008593259415127769,
+        "nonnative_choice_count": 16,
+        "threshold": 0.00439453125
+      },
+      {
+        "beneficial_count": 7,
+        "harmful_count": 5,
+        "mean_gain_over_native": -0.0008614270466101256,
+        "nonnative_choice_count": 15,
+        "threshold": 0.004638671875
+      },
+      {
+        "beneficial_count": 6,
+        "harmful_count": 4,
+        "mean_gain_over_native": -0.0006423008362617111,
+        "nonnative_choice_count": 13,
+        "threshold": 0.005859375
+      },
+      {
+        "beneficial_count": 5,
+        "harmful_count": 4,
+        "mean_gain_over_native": -0.0006428743921527972,
+        "nonnative_choice_count": 12,
+        "threshold": 0.00634765625
+      },
+      {
+        "beneficial_count": 5,
+        "harmful_count": 4,
+        "mean_gain_over_native": -0.0006428743921527972,
+        "nonnative_choice_count": 11,
+        "threshold": 0.006591796875
+      },
+      {
+        "beneficial_count": 5,
+        "harmful_count": 3,
+        "mean_gain_over_native": -0.00042065306926295827,
+        "nonnative_choice_count": 10,
+        "threshold": 0.0078125
+      },
+      {
+        "beneficial_count": 4,
+        "harmful_count": 3,
+        "mean_gain_over_native": -0.00042675848495231806,
+        "nonnative_choice_count": 9,
+        "threshold": 0.0087890625
+      },
+      {
+        "beneficial_count": 3,
+        "harmful_count": 3,
+        "mean_gain_over_native": -0.00043073793775485163,
+        "nonnative_choice_count": 8,
+        "threshold": 0.009765625
+      },
+      {
+        "beneficial_count": 3,
+        "harmful_count": 3,
+        "mean_gain_over_native": -0.00043073793775485163,
+        "nonnative_choice_count": 7,
+        "threshold": 0.01025390625
+      },
+      {
+        "beneficial_count": 2,
+        "harmful_count": 3,
+        "mean_gain_over_native": -0.0004344654736217178,
+        "nonnative_choice_count": 6,
+        "threshold": 0.01171875
+      },
+      {
+        "beneficial_count": 1,
+        "harmful_count": 3,
+        "mean_gain_over_native": -0.0004376257384137716,
+        "nonnative_choice_count": 5,
+        "threshold": 0.01318359375
+      },
+      {
+        "beneficial_count": 0,
+        "harmful_count": 3,
+        "mean_gain_over_native": -0.00044000123317735934,
+        "nonnative_choice_count": 4,
+        "threshold": 0.0146484375
+      },
+      {
+        "beneficial_count": 0,
+        "harmful_count": 2,
+        "mean_gain_over_native": -0.00022069290103640275,
+        "nonnative_choice_count": 3,
+        "threshold": 0.01904296875
+      },
+      {
+        "beneficial_count": 0,
+        "harmful_count": 2,
+        "mean_gain_over_native": -0.00022069290103640275,
+        "nonnative_choice_count": 2,
+        "threshold": 0.025390625
+      },
+      {
+        "beneficial_count": 0,
+        "harmful_count": 1,
+        "mean_gain_over_native": -0.00022041437083056994,
+        "nonnative_choice_count": 1,
+        "threshold": 0.0263671875
+      },
+      {
+        "beneficial_count": 0,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "threshold": 0.02734375
+      },
+      {
+        "beneficial_count": 0,
+        "harmful_count": 0,
+        "mean_gain_over_native": 0.0,
+        "nonnative_choice_count": 0,
+        "threshold": "inf"
+      }
+    ],
+    "rule": "select top challenger only when predicted native-relative score exceeds threshold",
+    "warning": "Threshold is selected on the same outer-train anchors and is not a valid method result; it only tests whether nested group-held-out selective authorization is worth preregistering."
+  },
+  "schema": "aorta.r005e3d.failure_anatomy.v1",
+  "selection_anatomy": {
+    "anchor_count": 560,
+    "beneficial_count": 13,
+    "beneficial_gain_mean": 0.0013183048313994033,
+    "beneficial_gain_sum": 0.017137962808192242,
+    "harmful_count": 5,
+    "harmful_gain_mean": -0.09884688089368865,
+    "harmful_gain_sum": -0.49423440446844324,
+    "neutral_count": 4,
+    "nonnative_count": 22,
+    "selected_score_mean_beneficial": 0.006892277644230769,
+    "selected_score_mean_harmful": 0.01728515625,
+    "selected_score_minus_gain_mean": 0.03175145402432959
+  },
+  "status": "POSTHOC_EXPLORATORY_READ_ONLY",
+  "target_decomposition": {
+    "formula": "Delta_Uctx = 0.875 * Delta_filtered_one_frame + 0.125 * Delta_(hard_gate*two_frame_comfort)",
+    "maximum_absolute_reconstruction_error": 2.96570943358887e-08,
+    "selected_beneficial": {
+      "filtered_relation": {
+        "count": 13,
+        "finite_count": 13,
+        "maximum": 0.003907466014634875,
+        "mean": 0.001506634099112857,
+        "minimum": 4.749151800109708e-05,
+        "std": 0.001056867900224165
+      },
+      "temporal_hard_gate_relation": {
+        "count": 13,
+        "finite_count": 13,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "minimum": 0.0,
+        "std": 0.0
+      }
+    },
+    "selected_harmful": {
+      "filtered_relation": {
+        "count": 5,
+        "finite_count": 5,
+        "maximum": 0.002499810248048573,
+        "mean": 0.0013178506817166813,
+        "minimum": -0.00017825932346393625,
+        "std": 0.0009590265447667503
+      },
+      "temporal_hard_gate_relation": {
+        "count": 5,
+        "finite_count": 5,
+        "maximum": 0.0,
+        "mean": -0.8,
+        "minimum": -1.0,
+        "std": 0.4
+      }
+    }
+  },
+  "worst_harmful_cases": [
+    {
+      "bundle_index": 125,
+      "geometry": {
+        "final_abs_yaw_delta_rad": 0.23596400022506714,
+        "final_position_delta_m": 0.5474007725715637,
+        "first_divergence_time_0p25_s": 1.5,
+        "first_divergence_time_0p5_s": 2.0,
+        "first_divergence_time_1p0_s": null,
+        "max_abs_yaw_delta_rad": 0.23830749094486237,
+        "max_position_delta_m": 0.7504761815071106,
+        "mean_position_delta_m": 0.4060239576473378,
+        "path_length_delta_m": 0.27322864532470703,
+        "path_length_m": 9.875893592834473
+      },
+      "identity": "2021.06.09.17.37.09_veh-12::13",
+      "realized_gain": -0.12444394081830978,
+      "recording_group": "2021.06.09.17.37.09_veh-12",
+      "selected_candidate": 6,
+      "selected_score": 0.0078125,
+      "target_decomposition": {
+        "filtered_one_frame_relation": 0.0006354961116726843,
+        "temporal_hard_gate_relation": -1.0,
+        "weighted_filtered_contribution": 0.0005560590977135987,
+        "weighted_temporal_contribution": -0.125
+      }
+    },
+    {
+      "bundle_index": 585,
+      "geometry": {
+        "final_abs_yaw_delta_rad": 0.13826942443847656,
+        "final_position_delta_m": 0.4995909035205841,
+        "first_divergence_time_0p25_s": 1.3,
+        "first_divergence_time_0p5_s": 1.6,
+        "first_divergence_time_1p0_s": 2.3000000000000003,
+        "max_abs_yaw_delta_rad": 0.17696774005889893,
+        "max_position_delta_m": 1.1555365324020386,
+        "mean_position_delta_m": 0.5630604478632804,
+        "path_length_delta_m": -0.29595375061035156,
+        "path_length_m": 20.64939308166504
+      },
+      "identity": "2021.10.05.06.57.40_veh-50::09",
+      "realized_gain": -0.12343204766511917,
+      "recording_group": "2021.10.05.06.57.40_veh-50",
+      "selected_candidate": 6,
+      "selected_score": 0.02734375,
+      "target_decomposition": {
+        "filtered_one_frame_relation": 0.001791946115177856,
+        "temporal_hard_gate_relation": -1.0,
+        "weighted_filtered_contribution": 0.001567952850780624,
+        "weighted_temporal_contribution": -0.125
+      }
+    },
+    {
+      "bundle_index": 179,
+      "geometry": {
+        "final_abs_yaw_delta_rad": 0.26650750637054443,
+        "final_position_delta_m": 0.4560326933860779,
+        "first_divergence_time_0p25_s": 1.3,
+        "first_divergence_time_0p5_s": 1.9000000000000001,
+        "first_divergence_time_1p0_s": null,
+        "max_abs_yaw_delta_rad": 0.2724551856517792,
+        "max_position_delta_m": 0.7513269782066345,
+        "mean_position_delta_m": 0.4134643707600445,
+        "path_length_delta_m": 0.24453163146972656,
+        "path_length_m": 10.785633087158203
+      },
+      "identity": "2021.06.14.19.22.11_veh-38::03",
+      "realized_gain": -0.12338977307081223,
+      "recording_group": "2021.06.14.19.22.11_veh-38",
+      "selected_candidate": 6,
+      "selected_score": 0.005859375,
+      "target_decomposition": {
+        "filtered_one_frame_relation": 0.0018402602571482296,
+        "temporal_hard_gate_relation": -1.0,
+        "weighted_filtered_contribution": 0.001610227725004701,
+        "weighted_temporal_contribution": -0.125
+      }
+    },
+    {
+      "bundle_index": 143,
+      "geometry": {
+        "final_abs_yaw_delta_rad": 0.29793593287467957,
+        "final_position_delta_m": 0.33886197209358215,
+        "first_divergence_time_0p25_s": 1.3,
+        "first_divergence_time_0p5_s": 1.8,
+        "first_divergence_time_1p0_s": null,
+        "max_abs_yaw_delta_rad": 0.3024972677230835,
+        "max_position_delta_m": 0.7266409993171692,
+        "mean_position_delta_m": 0.3966773368770302,
+        "path_length_delta_m": 0.19218158721923828,
+        "path_length_m": 10.769792556762695
+      },
+      "identity": "2021.06.09.19.40.26_veh-12::15",
+      "realized_gain": -0.1228126659989357,
+      "recording_group": "2021.06.09.19.40.26_veh-12",
+      "selected_candidate": 6,
+      "selected_score": 0.01904296875,
+      "target_decomposition": {
+        "filtered_one_frame_relation": 0.002499810248048573,
+        "temporal_hard_gate_relation": -1.0,
+        "weighted_filtered_contribution": 0.0021873339670425013,
+        "weighted_temporal_contribution": -0.125
+      }
+    },
+    {
+      "bundle_index": 174,
+      "geometry": {
+        "final_abs_yaw_delta_rad": 0.21597468852996826,
+        "final_position_delta_m": 0.1804896891117096,
+        "first_divergence_time_0p25_s": 1.1,
+        "first_divergence_time_0p5_s": 1.6,
+        "first_divergence_time_1p0_s": null,
+        "max_abs_yaw_delta_rad": 0.237837553024292,
+        "max_position_delta_m": 0.5801043510437012,
+        "mean_position_delta_m": 0.29910052951607036,
+        "path_length_delta_m": 0.021087646484375,
+        "path_length_m": 16.094757080078125
+      },
+      "identity": "2021.06.14.18.13.35_veh-26::14",
+      "realized_gain": -0.0001559769152663648,
+      "recording_group": "2021.06.14.18.13.35_veh-26",
+      "selected_candidate": 5,
+      "selected_score": 0.0263671875,
+      "target_decomposition": {
+        "filtered_one_frame_relation": -0.00017825932346393625,
+        "temporal_hard_gate_relation": 0.0,
+        "weighted_filtered_contribution": -0.00015597690803094422,
+        "weighted_temporal_contribution": 0.0
+      }
+    }
+  ]
+}

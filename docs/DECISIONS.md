@@ -1491,3 +1491,25 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R005/R005E3C_RESULTS.md`；
   `experiments/R005/R005E3D_PROPER_MEAN_THEORY_NOTE.md`；
   `experiments/R005/R005E3D_PROPER_MEAN_PREREGISTRATION.md`。
+
+## ADR-0100：Proper mean逃离native-only但被离散时序门尾部击败
+
+- **Decision:** `MONOLITHIC_PROPER_MEAN_UNSUPPORTED__QUALIFY_CAUSAL_STRUCTURED_UTILITY_INTERFACE`。
+- **Evidence:** R005E3D primary/replay与本地机械复算PASS；correct relation MSE为`0.0804001`，低于
+  mismatch `0.1434594`与removed `0.1666112`，并产生22次non-native选择。但`G_model=-0.00085196`、
+  capture `-0.0447543`，冻结科学门FAIL。13次有益选择总计仅`+0.017138`；4次约`-0.123`灾难误选
+  全部满足`Delta filtered>0`且`Delta(H*C2)=-1`，贡献精确`-1/8`。同样本阈值扫描只有全拒判达到
+  最优0收益，不能支持confidence-threshold修补。
+- **Interpretation:** 单头MSE主要恢复连续filtered relation，却未可靠读取由候选与previous action决定的
+  二元two-frame gate。平均拟合改善不保证argmax尾部风险；这是否由通用函数类、raw trajectory编码或
+  有限优化造成仍未裁决。
+- **Replacement hypothesis:** 若`C_i=c(tau_i,h)`可从推理时因果输入确定性复算，则使用
+  `E[U_i|X]=7/8 E[F_i|X]+1/8 C_i P(H_i=1|X)`；以MSE与BCE分别学习`F`和`H`，固定代数重构
+  native-relative score。先做零训练接口exactness/latency资格，再决定是否运行matched E3E1。
+- **Consequence:** 禁止第三次盲目训练、事后candidate-index屏蔽和阈值调参。E3E0失败则停止解析分支；
+  E3E1若获授权仍须以raw positive gain过门。OOF视觉、Differential Query、NavDream、行为与安全HOLD。
+- **Boundary:** component factorization目前是失败驱动假设，不是已验证方法或ICCV创新；R005E3D只覆盖
+  source-fit fold0 outer-train单seed。外部cross-model审查不可用，完整性为WARN。
+- **Artifacts:** `experiments/R005/R005E3D_RESULTS.md`；
+  `experiments/R005/R005E3D_EXPERIMENT_AUDIT.md`；
+  `experiments/R005/R005E3E_STRUCTURED_UTILITY_FACTORIZATION_THEORY_NOTE.md`。
