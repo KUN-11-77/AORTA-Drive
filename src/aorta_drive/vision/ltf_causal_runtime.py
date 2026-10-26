@@ -131,24 +131,38 @@ def build_frozen_ltf(
     )
     if missing or unexpected or wrong_shape:
         raise RuntimeError(
-            {"missing": missing[:10], "unexpected": unexpected[:10], "shape": wrong_shape[:10]}
+            {
+                "missing": missing[:10],
+                "unexpected": unexpected[:10],
+                "shape": wrong_shape[:10],
+            }
         )
     model.load_state_dict(state, strict=True)
     model.requires_grad_(False)
     return model.to(device).eval(), config
 
 
-def compatible_features(builder: Any, agent_input: Any, config: Any) -> dict[str, torch.Tensor]:
+def compatible_features(
+    builder: Any, agent_input: Any, config: Any
+) -> dict[str, torch.Tensor]:
     status = torch.concatenate(
         [
-            torch.tensor(agent_input.ego_statuses[-1].driving_command, dtype=torch.float32),
-            torch.tensor(agent_input.ego_statuses[-1].ego_velocity, dtype=torch.float32),
-            torch.tensor(agent_input.ego_statuses[-1].ego_acceleration, dtype=torch.float32),
+            torch.tensor(
+                agent_input.ego_statuses[-1].driving_command, dtype=torch.float32
+            ),
+            torch.tensor(
+                agent_input.ego_statuses[-1].ego_velocity, dtype=torch.float32
+            ),
+            torch.tensor(
+                agent_input.ego_statuses[-1].ego_acceleration, dtype=torch.float32
+            ),
         ]
     )
     result = {"image": builder._get_camera_feature(agent_input), "status": status}
     if not config.latent:
-        raise NotImplementedError("R006 currently qualifies only the released latent LTF")
+        raise NotImplementedError(
+            "R006 currently qualifies only the released latent LTF"
+        )
     return result
 
 
@@ -161,9 +175,7 @@ def make_features(
     }
 
 
-def apply_controlled_appearance(
-    image: torch.Tensor, condition: str
-) -> torch.Tensor:
+def apply_controlled_appearance(image: torch.Tensor, condition: str) -> torch.Tensor:
     """Apply one preregistered source-only appearance transform.
 
     The transform is applied after the official camera stitching/resizing and
@@ -213,6 +225,7 @@ def low_rank_coefficient_patch(
     shifted: torch.Tensor,
     basis: torch.Tensor,
     dose: float = 1.0,
+    site_mask: torch.Tensor | None = None,
 ) -> torch.Tensor:
     """Patch only clean-minus-shifted coefficients in a shared channel basis."""
 
@@ -223,6 +236,16 @@ def low_rank_coefficient_patch(
         raise ValueError("basis shape disagrees with activation channels")
     delta = clean_npc - shifted_npc
     correction = (delta @ basis) @ basis.transpose(0, 1)
+    if site_mask is not None:
+        if site_mask.ndim != 1 or site_mask.shape[0] != shifted_npc.shape[1]:
+            raise ValueError("site_mask must have shape [P]")
+        if site_mask.dtype != torch.bool and not torch.all(
+            (site_mask == 0) | (site_mask == 1)
+        ):
+            raise ValueError("site_mask must be binary")
+        correction = correction * site_mask.to(
+            device=correction.device, dtype=correction.dtype
+        ).view(1, -1, 1)
     return npc_to_activation(shifted_npc + float(dose) * correction, shifted)
 
 
@@ -272,6 +295,7 @@ class LTFCausalRuntime:
         for stage in STAGES:
             module, is_pre = self._stage_module(stage)
             if stage == "c2_fused_bev":
+
                 def c2_hook(_module, _inputs, output, stage=stage):
                     values = list(output)
                     values[1] = replacement(stage, values[1])
@@ -288,6 +312,7 @@ class LTFCausalRuntime:
 
                 handles.append(module.register_forward_pre_hook(pre_hook))
             else:
+
                 def post_hook(_module, _inputs, output, stage=stage):
                     return replacement(stage, output)
 
@@ -357,7 +382,9 @@ class LTFCausalRuntime:
         return trajectory[..., :2].reshape(trajectory.shape[0], -1)
 
 
-def trajectory_rms(left: torch.Tensor | np.ndarray, right: torch.Tensor | np.ndarray) -> float:
+def trajectory_rms(
+    left: torch.Tensor | np.ndarray, right: torch.Tensor | np.ndarray
+) -> float:
     left_value = torch.as_tensor(left, dtype=torch.float64)[..., :2]
     right_value = torch.as_tensor(right, dtype=torch.float64)[..., :2]
     difference = left_value - right_value

@@ -1,6 +1,6 @@
 # R006V0：冻结 planner 的低秩外观介导资格实验
 
-状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENTS_1_TO_3_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
+状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENTS_1_TO_4_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
 
 2026-10-26、任何正式科学结果可见前，R006V0J 矩阵自由算子资格将候选层收缩为 C3 planner memory 与
 C4 trajectory query；其余合同不变。见 `R006V0_PROTOCOL_AMENDMENT_1.md`。
@@ -10,6 +10,9 @@ full-patch归一化最小效应门。见 `R006V0_PROTOCOL_AMENDMENT_2.md`。
 
 同日、正式科学结果可见前，协议修正3冻结nested组数、hash salt以及C3/C4同时合格时的唯一选择规则。
 见 `R006V0_PROTOCOL_AMENDMENT_3.md`。
+
+同日、正式科学结果可见前，协议修正4把site mask写入全部干预，并冻结A4/A5完整等能量控制的采样
+语义。见 `R006V0_PROTOCOL_AMENDMENT_4.md`。
 
 ## 1. 唯一问题
 
@@ -123,11 +126,15 @@ OOF结果评价的是选择程序；全42组重估只生成唯一部署方法，
 - A2：条件匹配 wrong-scene clean coefficient patch；
 - A3：shifted-self identity patch；
 - A4：16个固定 seed（`20261026..20261041`）的 Haar channel random-subspace patch；每个实例使用 same-scene drift 投影，随后将 coefficient Frobenius norm 缩放到 A1，先在 anchor 内对16实例求均值；
-- A5：16个同样固定 seed 的 Gaussian coefficient-field noise；协方差只由 outer-train 的 A1 coefficient 估计，每个实例再按 anchor 缩放到 A1 Frobenius norm，先在 anchor 内求均值；
+- A5：16个同样固定seed的Gaussian coefficient-field noise；用35个outer-train groups的A1 coefficient
+  fields估计完整flattened经验协方差，以Gaussian权重乘居中fields等价采样，不物化奇异协方差矩阵；每个
+  实例按anchor缩放到A1 Frobenius norm，先在anchor内求均值；
 - A6：reverse clean-to-shift low-rank patch；
 - A7：dose response，强度 `0, .25, .5, .75, 1`。
 
 wrong-scene donor 只由 outer-train metadata 构造，不使用 RGB 内容、activation、trajectory output 或 label。
+所有correction严格乘注册site mask。A1能量小于等于`1e-12`时A4/A5为零；A1非零但控制原始能量小于
+等于`1e-12`时机械失败且不重抽seed。
 
 ## 6. 机械门
 

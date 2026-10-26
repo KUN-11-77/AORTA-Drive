@@ -1599,3 +1599,14 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** 这是协议确定性与无泄漏资格，不是低秩介导证据，也不保证任何fold存在合格候选。
 - **Artifacts:** `experiments/R006/R006V0_PROTOCOL_AMENDMENT_3.md`；
   `src/aorta_drive/vision/r006_protocol.py`；`tests/test_r006_protocol.py`。
+
+## ADR-0107：随机与噪声控制必须匹配site、rank、能量和场协方差
+
+- **Decision:** `REGISTERED_SITE_MASK_AND_STRONG_MATCHED_CONTROLS`。
+- **Reason:** 普通isotropic noise会成为过弱对照；若不强制site mask，C3 status token还可能被错误干预。
+- **Rule:** A4使用固定seed Haar同rank投影；A5从35组outer-train的完整居中coefficient fields以Gaussian
+  权重采样经验协方差，保留cross-site/cross-rank相关性；两者逐anchor精确匹配A1 Frobenius能量。退化
+  control在A1非零时fail-closed，不重抽seed。
+- **Boundary:** 该实现只加强竞争解释，不能使A1自动成为因果机制；最终仍要求A1可靠胜过A2/A4/A5。
+- **Artifacts:** `experiments/R006/R006V0_PROTOCOL_AMENDMENT_4.md`；
+  `src/aorta_drive/vision/r006_interventions.py`；`tests/test_r006_interventions.py`。

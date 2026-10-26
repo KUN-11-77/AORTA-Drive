@@ -121,9 +121,14 @@ controls:
   matched_noise:
     instances_per_anchor: 16
     seeds: [20261026, 20261027, 20261028, 20261029, 20261030, 20261031, 20261032, 20261033, 20261034, 20261035, 20261036, 20261037, 20261038, 20261039, 20261040, 20261041]
-    distribution: gaussian_coefficient_field
-    covariance_source: outer_train_same_scene_coefficients_only
+    distribution: full_empirical_covariance_gaussian_coefficient_field
+    covariance_source: all_35_outer_train_same_scene_coefficients_only
+    covariance_representation: centered_K_by_P_times_r_fields
+    sampler: gaussian_weights_variance_1_over_K_minus_1_times_centered_fields
+    preserves_cross_site_and_cross_rank_covariance: true
     coefficient_energy_match: per_anchor_frobenius_to_same_scene_patch
+    zero_target_energy_rule: zero_control
+    nonzero_target_zero_control_rule: mechanical_fail_no_resample
     aggregate: mean_within_anchor_before_group_statistics
   activation_support_distance:
     role: descriptive_only

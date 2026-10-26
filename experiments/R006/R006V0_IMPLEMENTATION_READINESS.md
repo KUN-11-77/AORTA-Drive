@@ -26,6 +26,7 @@ sealed-role与no-science-metrics共14/14审计PASS。它只资格化缓存管线
 - 6-fold nested group-held-out 选择程序；
 - 每折7 outer-confirmation、28 discovery、7 selection及固定hash salts；
 - C3/C4唯一选择顺序：最小合格rank→最差组coverage→组等权mean→固定层顺序；
+- 全部干预强制registered site mask，A4 Haar与A5完整经验协方差等能量控制；
 - candidate layer、rank 字典、外观算子与科学 arms；
 - 16 个固定 random/noise seeds；
 - group-level bootstrap 统计和 GO/STOP 结构；

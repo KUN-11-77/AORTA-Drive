@@ -23,5 +23,22 @@ def test_low_rank_patch_changes_only_registered_channel_subspace() -> None:
     clean[..., 1] = 7.0
     basis = torch.tensor([[1.0], [0.0]], dtype=torch.float64)
     patched = low_rank_coefficient_patch(clean, shifted, basis, dose=0.25)
-    torch.testing.assert_close(patched[..., 0], torch.full((1, 3), 0.5, dtype=torch.float64))
+    torch.testing.assert_close(
+        patched[..., 0], torch.full((1, 3), 0.5, dtype=torch.float64)
+    )
     torch.testing.assert_close(patched[..., 1], torch.zeros(1, 3, dtype=torch.float64))
+
+
+def test_low_rank_patch_never_changes_frozen_site() -> None:
+    shifted = torch.zeros(1, 3, 2, dtype=torch.float64)
+    clean = torch.ones(1, 3, 2, dtype=torch.float64)
+    basis = torch.eye(2, dtype=torch.float64)
+    site_mask = torch.tensor([1.0, 1.0, 0.0], dtype=torch.float64)
+    patched = low_rank_coefficient_patch(
+        clean,
+        shifted,
+        basis,
+        site_mask=site_mask,
+    )
+    torch.testing.assert_close(patched[:, :2], clean[:, :2])
+    torch.testing.assert_close(patched[:, 2], shifted[:, 2])
