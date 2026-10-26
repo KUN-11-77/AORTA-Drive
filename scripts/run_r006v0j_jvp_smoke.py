@@ -141,8 +141,11 @@ def main() -> None:
         )
         probe = probe / torch.linalg.vector_norm(probe)
         (vjp,) = torch.autograd.grad(torch.sum(reverse_output * probe), reverse_base)
-        adjoint_left = torch.sum(product * probe)
-        adjoint_right = torch.sum(tangent * vjp)
+        # The C1 identity contracts more than four million terms.  Evaluate the
+        # audit scalar in float64 so reduction error is not mistaken for a JVP
+        # implementation error; the planner and derivatives remain float32.
+        adjoint_left = torch.sum(product.double() * probe.double())
+        adjoint_right = torch.sum(tangent.double() * vjp.double())
         adjoint_absolute_error = float(torch.abs(adjoint_left - adjoint_right))
         adjoint_scale = max(
             float(torch.abs(adjoint_left)),
