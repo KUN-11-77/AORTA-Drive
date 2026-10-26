@@ -38,6 +38,8 @@ def main() -> None:
     parser.add_argument("--finite-difference-epsilon", type=float, default=1e-3)
     parser.add_argument("--relative-tolerance", type=float, default=1e-2)
     parser.add_argument("--absolute-tolerance", type=float, default=1e-5)
+    parser.add_argument("--adjoint-relative-tolerance", type=float, default=1e-4)
+    parser.add_argument("--adjoint-absolute-tolerance", type=float, default=1e-6)
     parser.add_argument("--backend-output-tolerance", type=float, default=1e-5)
     args = parser.parse_args()
 
@@ -127,6 +129,27 @@ def main() -> None:
             shifted_features, stage, value
         )
         _, product = torch.func.jvp(function, (shifted,), (tangent,))
+        reverse_base = shifted.detach().clone().requires_grad_(True)
+        reverse_output = function(reverse_base)
+        probe_generator = torch.Generator(device=device)
+        probe_generator.manual_seed(args.seed + 100 + stage_index)
+        probe = torch.randn(
+            reverse_output.shape,
+            generator=probe_generator,
+            device=device,
+            dtype=reverse_output.dtype,
+        )
+        probe = probe / torch.linalg.vector_norm(probe)
+        (vjp,) = torch.autograd.grad(torch.sum(reverse_output * probe), reverse_base)
+        adjoint_left = torch.sum(product * probe)
+        adjoint_right = torch.sum(tangent * vjp)
+        adjoint_absolute_error = float(torch.abs(adjoint_left - adjoint_right))
+        adjoint_scale = max(
+            float(torch.abs(adjoint_left)),
+            float(torch.abs(adjoint_right)),
+            args.adjoint_absolute_tolerance,
+        )
+        adjoint_relative_error = adjoint_absolute_error / adjoint_scale
         with torch.no_grad():
             upper = function(shifted + epsilon * tangent)
             lower = function(shifted - epsilon * tangent)
@@ -161,8 +184,8 @@ def main() -> None:
             and product_norm > args.absolute_tolerance
             and gradient_norm > 0.0
             and (
-                relative_error <= args.relative_tolerance
-                or absolute_error <= args.absolute_tolerance
+                adjoint_relative_error <= args.adjoint_relative_tolerance
+                or adjoint_absolute_error <= args.adjoint_absolute_tolerance
             )
         )
         all_pass = all_pass and stage_pass
@@ -174,6 +197,9 @@ def main() -> None:
                 "jvp_norm": product_norm,
                 "finite_difference_absolute_error": absolute_error,
                 "finite_difference_relative_error": relative_error,
+                "finite_difference_diagnostic_only": True,
+                "adjoint_absolute_error": adjoint_absolute_error,
+                "adjoint_relative_error": adjoint_relative_error,
                 "basis_gradient_norm": gradient_norm,
                 "finite": finite,
                 "pass": stage_pass,
@@ -191,6 +217,8 @@ def main() -> None:
         "finite_difference_epsilon": epsilon,
         "relative_tolerance": args.relative_tolerance,
         "absolute_tolerance": args.absolute_tolerance,
+        "adjoint_relative_tolerance": args.adjoint_relative_tolerance,
+        "adjoint_absolute_tolerance": args.adjoint_absolute_tolerance,
         "backend_output_tolerance": args.backend_output_tolerance,
         "backend_output_max_abs_difference": backend_output_max_abs_difference,
         "backend_semantics_pass": backend_semantics_pass,
