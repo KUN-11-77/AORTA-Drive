@@ -87,3 +87,57 @@ def test_autograd_jvp_preserves_basis_gradient_through_tangent() -> None:
     gradient = torch.autograd.grad(loss, basis)[0]
     assert torch.isfinite(gradient).all()
     assert float(torch.linalg.vector_norm(gradient)) > 0.0
+
+
+def test_site_mask_keeps_frozen_site_drift_uncovered() -> None:
+    dtype = torch.float64
+    deltas = torch.zeros(1, 2, 2, dtype=dtype)
+    deltas[:, :, 0] = 1.0
+    jacobian = torch.zeros(1, 1, 2, 2, dtype=dtype)
+    jacobian[:, :, :, 0] = 1.0
+    metric = torch.ones(1, 1, dtype=dtype)
+    basis = torch.tensor([[1.0], [0.0]], dtype=dtype)
+    repair_first_only = torch.tensor([1.0, 0.0], dtype=dtype)
+
+    unmasked = task_weighted_uncovered_objective(
+        deltas, jacobian, metric, basis
+    )
+    masked = task_weighted_uncovered_objective(
+        deltas,
+        jacobian,
+        metric,
+        basis,
+        site_mask=repair_first_only,
+    )
+    matrix_free = matrix_free_uncovered_objective(
+        deltas,
+        metric,
+        basis,
+        lambda tangent: torch.einsum("nmpc,npc->nm", jacobian, tangent),
+        site_mask=repair_first_only,
+    )
+
+    torch.testing.assert_close(unmasked, torch.zeros_like(unmasked))
+    torch.testing.assert_close(masked, torch.ones_like(masked))
+    torch.testing.assert_close(matrix_free, masked)
+
+
+def test_site_mask_rejects_nonbinary_values() -> None:
+    dtype = torch.float64
+    deltas = torch.zeros(1, 2, 2, dtype=dtype)
+    jacobian = torch.zeros(1, 1, 2, 2, dtype=dtype)
+    metric = torch.ones(1, 1, dtype=dtype)
+    basis = torch.tensor([[1.0], [0.0]], dtype=dtype)
+
+    try:
+        task_weighted_uncovered_objective(
+            deltas,
+            jacobian,
+            metric,
+            basis,
+            site_mask=torch.tensor([1.0, 0.5], dtype=dtype),
+        )
+    except ValueError as error:
+        assert "binary" in str(error)
+    else:
+        raise AssertionError("non-binary site mask must fail closed")

@@ -21,6 +21,7 @@ def _validate_dense_inputs(
     jacobians: torch.Tensor,
     output_metric: torch.Tensor,
     basis: torch.Tensor,
+    site_mask: torch.Tensor | None,
 ) -> None:
     if deltas.ndim != 3:
         raise ValueError("deltas must have shape [N, P, C]")
@@ -32,9 +33,30 @@ def _validate_dense_inputs(
         raise ValueError("output_metric must have shape [M, M]")
     if basis.ndim != 2 or basis.shape[0] != deltas.shape[2]:
         raise ValueError("basis must have shape [C, r]")
+    if site_mask is not None:
+        if site_mask.ndim != 1 or site_mask.shape[0] != deltas.shape[1]:
+            raise ValueError("site_mask must have shape [P]")
+        if site_mask.dtype == torch.bool:
+            pass
+        elif not torch.all((site_mask == 0) | (site_mask == 1)):
+            raise ValueError("site_mask must be binary")
     values = (deltas, jacobians, output_metric, basis)
+    if site_mask is not None:
+        values = (*values, site_mask)
     if any(not torch.isfinite(value).all() for value in values):
         raise ValueError("all inputs must be finite")
+
+
+def _masked_channel_projection(
+    deltas: torch.Tensor,
+    basis: torch.Tensor,
+    site_mask: torch.Tensor | None,
+) -> torch.Tensor:
+    projected = torch.matmul(torch.matmul(deltas, basis), basis.transpose(0, 1))
+    if site_mask is None:
+        return projected
+    mask = site_mask.to(dtype=deltas.dtype, device=deltas.device).view(1, -1, 1)
+    return projected * mask
 
 
 def task_weighted_uncovered_objective(
@@ -42,17 +64,21 @@ def task_weighted_uncovered_objective(
     jacobians: torch.Tensor,
     output_metric: torch.Tensor,
     basis: torch.Tensor,
+    *,
+    site_mask: torch.Tensor | None = None,
 ) -> torch.Tensor:
-    """Return mean ||J (I_P x (I-BB^T)) delta||_W^2.
+    """Return the registered-site uncovered task-weighted drift.
 
     ``deltas`` use the spatial-channel convention ``[N, P, C]`` and the
     Jacobian is the explicit synthetic/reference representation
     ``[N, M, P, C]``. Production code may replace the final contraction by a
-    matrix-free JVP, but it must agree with this oracle.
+    matrix-free JVP, but it must agree with this oracle. ``site_mask`` freezes
+    non-repairable sites by excluding their projection while retaining their
+    drift in the uncovered residual.
     """
 
-    _validate_dense_inputs(deltas, jacobians, output_metric, basis)
-    projected = torch.matmul(torch.matmul(deltas, basis), basis.transpose(0, 1))
+    _validate_dense_inputs(deltas, jacobians, output_metric, basis, site_mask)
+    projected = _masked_channel_projection(deltas, basis, site_mask)
     residual = deltas - projected
     output_residual = torch.einsum("nmpc,npc->nm", jacobians, residual)
     weighted = torch.einsum(
@@ -66,6 +92,8 @@ def matrix_free_uncovered_objective(
     output_metric: torch.Tensor,
     basis: torch.Tensor,
     jvp: Callable[[torch.Tensor], torch.Tensor],
+    *,
+    site_mask: torch.Tensor | None = None,
 ) -> torch.Tensor:
     """Evaluate the same objective using only Jacobian-vector products.
 
@@ -79,7 +107,16 @@ def matrix_free_uncovered_objective(
         raise ValueError("expected deltas [N,P,C] and basis [C,r]")
     if basis.shape[0] != deltas.shape[-1]:
         raise ValueError("basis channel dimension disagrees with deltas")
-    projected = torch.matmul(torch.matmul(deltas, basis), basis.transpose(0, 1))
+    if site_mask is not None:
+        if site_mask.ndim != 1 or site_mask.shape[0] != deltas.shape[1]:
+            raise ValueError("site_mask must have shape [P]")
+        if site_mask.dtype != torch.bool and not torch.all(
+            (site_mask == 0) | (site_mask == 1)
+        ):
+            raise ValueError("site_mask must be binary")
+        if not torch.isfinite(site_mask).all():
+            raise ValueError("site_mask must be finite")
+    projected = _masked_channel_projection(deltas, basis, site_mask)
     output_residual = jvp(deltas - projected)
     if output_residual.ndim != 2:
         raise ValueError("jvp must return [N,M]")
@@ -146,6 +183,7 @@ def solve_task_weighted_basis(
     patience: int = 20,
     max_steps: int = 500,
     max_line_search_steps: int = 50,
+    site_mask: torch.Tensor | None = None,
 ) -> StiefelSolveResult:
     """Solve the preregistered Stiefel problem using QR-retracted GD."""
 
@@ -153,7 +191,11 @@ def solve_task_weighted_basis(
         deltas,
         rank,
         lambda basis: task_weighted_uncovered_objective(
-            deltas, jacobians, output_metric, basis
+            deltas,
+            jacobians,
+            output_metric,
+            basis,
+            site_mask=site_mask,
         ),
         random_seeds=random_seeds,
         initial_step=initial_step,
