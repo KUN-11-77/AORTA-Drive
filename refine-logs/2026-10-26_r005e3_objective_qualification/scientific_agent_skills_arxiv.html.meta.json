@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://arxiv.org/abs/2609.00065",
+  "retrieved_at_utc": "2026-10-26T01:24:22.630431+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://arxiv.org/abs/2609.00065",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": "Fri, 04 Sep 2026 00:12:18 GMT",
+  "etag": null,
+  "bytes": 42868,
+  "sha256": "87e5d6378d900a1a9299aaf8c9e13ea37db5de5bebd0c7f7af29255b457402d7",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\refine-logs\\2026-10-26_r005e3_objective_qualification\\scientific_agent_skills_arxiv.html",
+  "elapsed_seconds": 0.831,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\refine-logs\\2026-10-26_r005e3_objective_qualification\\scientific_agent_skills_arxiv.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\refine-logs\\2026-10-26_r005e3_objective_qualification\\scientific_agent_skills_arxiv.html.links.json"
+}

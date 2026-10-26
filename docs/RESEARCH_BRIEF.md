@@ -1,5 +1,14 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R005E3A：`PREREGISTERED__LOSS_ONLY_OBJECTIVE_QUALIFICATION__NO_RESULT_YET`。**
+> R005E2S只支持平均relation binding而不支持decision binding，因此下一步严格限制为一个单因素
+> 资格实验：保持`FullContextSetScorer`、正确DINO输入、初始化、outer-train顺序、optimizer、schedule
+> 与父V2逐job epoch预算不变，仅把margin MSE替换为不指定唯一tie class的soft selection-regret。
+> 温度由各outer-train合法候选正utility gap中位数唯一确定，不搜索。统计单位仍为42个recording
+> groups；主门要求组级regret可靠优于父V2、恢复至少10%的R005E1B oracle opportunity，并且S1/S2/
+> S3/removed四种输入干预均可靠恶化regret。GO也只解锁后续2×3确认实验预注册，不直接授权DQ、
+> NavDream、行为或安全主张。
+
 > **2026-10-26 R005E2S：`MECHANICAL_PASS__RELATION_ONLY_BINDING_SECONDARY__PARENT_STOP_IMMUTABLE`。**
 > 冻结V2 checkpoints在S2 disjoint-geometry与S3 hash-random donor输入干预下完成6-fold primary/replay，
 > exact replay、parent state、fold/donor隔离、finite与sealed-role门全部通过。S2/S3相对correct的relation

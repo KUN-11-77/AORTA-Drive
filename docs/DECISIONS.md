@@ -1416,3 +1416,21 @@ the current open-ended geometry certificate iteration remains STOP.
   随机化、OOD外观、行为收益或安全证据。外部cross-model reviewer不可用，完整性为WARN。
 - **Artifacts:** `experiments/R005/R005E2S_RESULTS.md`；
   `experiments/R005/R005_POST_STOP_FIRST_PRINCIPLES_DECISION_TREE.md`。
+
+## ADR-0096：先以loss-only实验裁决relation信号能否转化为决策收益
+
+- **Decision:** `SOFT_SELECTION_REGRET_QUALIFICATION_BEFORE_ANY_ARCHITECTURE_EXPANSION`。
+- **Reason:** R005E2S表明correct视觉的平均relation信号可重复且不依赖单一donor规则，但该信号仍未
+  转化为regret改善。最强、最简单的竞争解释是训练目标与argmax决策边界错配；在引入Differential
+  Query前，必须先用不改变模型、输入或算力的最小处理检验这一解释。
+- **Design:** R005E3A逐fold×seed复用父V2的架构、DINO cache、初始化、数据顺序、optimizer、schedule
+  与selected epoch预算，只把margin MSE替换为soft selection-regret。温度由outer-train正utility gap
+  中位数唯一确定，不调参；父V2预测直接复用。42 recording groups为独立统计单位，anchors、seeds与
+  输入干预均为组内重复测量。
+- **Consequence:** 只有correct regret可靠下降、恢复至少10%的R005E1B oracle opportunity，且S1/S2/S3/
+  removed均可靠恶化regret，才GO到2×3确认实验预注册。失败则停止该surrogate并进入representation或
+  function-class诊断；不得通过增加模块掩盖负结果。
+- **Boundary:** soft-regret不是proper distributional loss；本实验不支持校准、外观鲁棒、NavDream、
+  策略级驾驶收益、安全或Best-Paper主张。
+- **Artifacts:** `experiments/R005/R005E3A_OBJECTIVE_QUALIFICATION_PREREGISTRATION.md`；
+  `refine-logs/2026-10-26_r005e3_objective_qualification/EXPERIMENT_PLAN.md`。

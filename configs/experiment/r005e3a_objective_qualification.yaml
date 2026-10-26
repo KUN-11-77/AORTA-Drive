@@ -1,0 +1,120 @@
+experiment_id: R005E3A-decision-objective-qualification-v1
+date: 2026-10-26
+status: preregistered_implementation_not_yet_qualified
+scope: source_fit_OOF_compute_matched_loss_swap_on_correct_visual
+
+parent:
+  experiment: R005E2B
+  implementation_commit: 0fdee4b464865d76f2efbc62955baa7e8f7ca8f5
+  decision: STOP_CURRENT_VISUAL_MAIN_CLAIM
+  decision_is_immutable: true
+  baseline_arm: V2_correct
+  baseline_predictions_reused_without_retraining: true
+
+authorization:
+  source_result: R005E2S_RELATION_ONLY_BINDING_SECONDARY
+  decision_tree_branch: B
+  differential_query: prohibited
+  appearance_orbit_loss: prohibited
+  uncertainty_or_calibration: prohibited
+
+data:
+  allowed: source_fit_42_groups
+  prohibited: [development, calibration, test, NavDream, target_domain]
+  anchors: 672
+  outer_folds: 6
+  seeds: [20261025, 20261026, 20261027]
+  independent_unit: recording_group
+  repeated_measures: [anchor, candidate, seed, donor_intervention]
+
+model:
+  architecture: exact_R005E2B_FullContextSetScorer
+  visual_backbone: exact_frozen_R005E2B_DINOv3_cache
+  trainable_parameter_count_change: 0
+  forward_FLOPs_change: 0
+  input_token_change: 0
+  initialization: exact_parent_refit_initial_state_per_fold_seed
+  training_visual: correct_only
+
+objective:
+  baseline: equal_anchor_challenger_margin_MSE
+  treatment: soft_selection_regret
+  formula: max_valid_target_minus_softmax_prediction_over_temperature_dot_target
+  temperature:
+    rule: median_strictly_positive_best_minus_candidate_gap_on_outer_train
+    tie_tolerance: 1.0e-12
+    tuning_or_search: prohibited
+    no_positive_gap: INVALID
+  zero_challenger_anchor: exact_zero_loss_retained
+  proper_distributional_claim: prohibited
+
+compute_matching:
+  optimizer: exact_parent_AdamW
+  learning_rate_schedule: exact_parent_schedule
+  batch_size: 1
+  data_order: exact_parent_seeded_outer_train_order
+  epoch_count: exact_parent_V2_selected_epoch_per_fold_seed
+  early_stopping_or_new_model_selection: prohibited
+  seed_count: 3
+
+test_interventions:
+  correct: recipient_DINO
+  S1_primary_geometry: frozen_primary_mismatch_manifest
+  S2_disjoint_geometry: frozen_sensitivity_manifest
+  S3_hash_random: frozen_sensitivity_manifest
+  removed: frozen_outer_train_slot_mean
+  candidate_history_target_mask_model_state: identical_within_job
+
+statistics:
+  aggregate_seeds_within_group_first: true
+  bootstrap_unit: recording_group
+  bootstrap_seed: 20261026
+  bootstrap_replicates: 10000
+  confidence_interval: 0.95
+  conjunctive_gate: true
+  anchor_as_independent_sample: prohibited
+
+thresholds:
+  contextual_oracle_gain_denominator: 0.01665036604823182
+  minimum_oracle_opportunity_recovery: 0.10
+  tie_tolerance: 1.0e-12
+  strict_ci_comparison: true
+
+primary_gate:
+  - treatment_minus_parent_decision_regret_CI95_upper_strictly_below_zero
+  - parent_minus_treatment_regret_divided_by_R005E1B_oracle_gain_at_least_0p10
+  - each_of_S1_S2_S3_removed_minus_treatment_correct_regret_CI95_lower_strictly_above_zero
+  - all_mechanical_replay_provenance_finite_and_sealed_role_gates_pass
+
+secondary_metrics:
+  - relation_MSE
+  - sign_error
+  - boundary_error
+  - prediction_target_std_ratio
+  - beneficial_harmful_neutral_choice_changes_vs_parent
+  - intervention_top_choice_flips
+
+decision:
+  GO: minimal_decision_objective_translates_scene_bound_signal
+  MIXED: parent_regret_improves_but_any_scene_binding_intervention_gate_fails
+  STOP: treatment_does_not_improve_parent_regret_or_minimum_effect_fails
+  INVALID: any_implementation_provenance_replay_finite_or_role_gate_fails
+  GO_unlocks: full_2x3_objective_by_visual_arm_confirmation_preregistration_only
+  MIXED_unlocks: representation_and_binding_diagnosis_only
+  STOP_unlocks: representation_or_function_class_diagnosis_only
+
+execution:
+  new_jobs_per_phase: 18
+  phases: [primary, replay, mechanical_audit]
+  maximum_jobs_per_GPU: 4
+  same_job_same_GPU_primary_replay: true
+  partial_scientific_metric_reading: prohibited
+  failure_policy: fail_closed_no_automatic_third_run
+
+claim_boundary:
+  - source_fit_OOF_objective_qualification_only
+  - not_a_proper_distributional_model
+  - not_Differential_Query
+  - not_appearance_robustness
+  - not_NavDream
+  - not_driving_gain_or_safety
