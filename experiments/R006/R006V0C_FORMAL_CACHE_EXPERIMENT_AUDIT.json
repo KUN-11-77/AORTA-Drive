@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-26",
+  "auditor": "REVIEW_UNAVAILABLE_plus_mechanical_audit",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "checks": {
+    "gt_provenance": {"status": "not_applicable", "details": "No label, score, or scientific endpoint was computed."},
+    "score_normalization": {"status": "pass", "details": "No normalized scientific score was emitted."},
+    "result_existence": {"status": "pass", "details": "42 remote shards, manifest, exit codes, and audit exist."},
+    "dead_code": {"status": "pass", "details": "The cache auditor executed and emitted 261 passing checks."},
+    "scope": {"status": "pass", "details": "Complete for the stated 42-group source-fit cache mechanics only."},
+    "eval_type": "mechanical_cache_qualification"
+  },
+  "warnings": [
+    "Planner dirty state was null at run time; a post-run clean execution-subtree check is not a strict substitute.",
+    "Independent external reviewer backend was unavailable."
+  ],
+  "claim_impact": "No scientific claim authorized; rerun cache after provenance fix."
+}

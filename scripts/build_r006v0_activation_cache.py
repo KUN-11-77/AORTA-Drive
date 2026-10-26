@@ -39,18 +39,31 @@ from aorta_drive.vision.r006_cache import (
 
 
 def git_revision(path: Path) -> dict[str, Any]:
+    git_dir = path / ".git"
+
     def run(*args: str) -> str:
         return subprocess.check_output(
-            ["git", "-c", "safe.directory=*", "-C", str(path), *args],
+            [
+                "git",
+                f"--git-dir={git_dir}",
+                f"--work-tree={path}",
+                *args,
+            ],
             text=True,
             stderr=subprocess.DEVNULL,
         ).strip()
 
     try:
+        execution_subtree = "navsim"
         return {
             "root": str(path.resolve()),
             "commit": run("rev-parse", "HEAD"),
             "dirty": bool(run("status", "--porcelain")),
+            "execution_subtree": execution_subtree,
+            "execution_subtree_dirty": bool(
+                run("status", "--porcelain", "--", execution_subtree)
+            ),
+            "execution_subtree_tree": run("rev-parse", f"HEAD:{execution_subtree}"),
         }
     except (subprocess.CalledProcessError, FileNotFoundError):
         # Read-only cross-user checkouts can reject Git ownership checks even
@@ -65,7 +78,14 @@ def git_revision(path: Path) -> dict[str, Any]:
                 commit = head
         except OSError:
             commit = None
-        return {"root": str(path.resolve()), "commit": commit, "dirty": None}
+        return {
+            "root": str(path.resolve()),
+            "commit": commit,
+            "dirty": None,
+            "execution_subtree": "navsim",
+            "execution_subtree_dirty": None,
+            "execution_subtree_tree": None,
+        }
 
 
 def main() -> None:

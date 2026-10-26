@@ -1,0 +1,1054 @@
+{
+  "artifact": "R006V0_ACTIVATION_CACHE_AUDIT_V1",
+  "status": "PASS",
+  "integrity_scope": "source-fit activation-cache mechanics only",
+  "manifest_sha256": "55ffc094c8c7f7a62173eccbe33377b1ef923a35f08232689ef318d103733b89",
+  "check_count": 261,
+  "failed_check_count": 0,
+  "checks": [
+    {
+      "check": "manifest PASS",
+      "pass": true
+    },
+    {
+      "check": "sealed roles untouched",
+      "pass": true
+    },
+    {
+      "check": "no scientific metrics",
+      "pass": true
+    },
+    {
+      "check": "stage site semantics exact",
+      "pass": true
+    },
+    {
+      "check": "complete formal cache",
+      "pass": true
+    },
+    {
+      "check": "42 groups",
+      "pass": true
+    },
+    {
+      "check": "672 anchors",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_02.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_02.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_02.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_02.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_02.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_02.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_03.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_03.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_03.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_03.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_03.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_03.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_04.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_04.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_04.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_04.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_04.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_04.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_05.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_05.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_05.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_05.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_05.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_05.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_06.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_06.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_06.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_06.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_06.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_06.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_07.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_07.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_07.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_07.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_07.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_07.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_08.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_08.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_08.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_08.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_08.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_08.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_09.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_09.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_09.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_09.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_09.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_09.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_10.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_10.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_10.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_10.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_10.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_10.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_11.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_11.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_11.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_11.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_11.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_11.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_12.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_12.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_12.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_12.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_12.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_12.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_13.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_13.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_13.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_13.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_13.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_13.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_14.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_14.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_14.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_14.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_14.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_14.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_15.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_15.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_15.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_15.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_15.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_15.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_16.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_16.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_16.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_16.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_16.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_16.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_17.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_17.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_17.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_17.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_17.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_17.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_18.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_18.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_18.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_18.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_18.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_18.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_19.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_19.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_19.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_19.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_19.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_19.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_20.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_20.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_20.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_20.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_20.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_20.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_21.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_21.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_21.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_21.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_21.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_21.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_22.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_22.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_22.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_22.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_22.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_22.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_23.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_23.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_23.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_23.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_23.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_23.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_24.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_24.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_24.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_24.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_24.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_24.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_25.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_25.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_25.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_25.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_25.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_25.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_26.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_26.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_26.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_26.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_26.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_26.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_27.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_27.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_27.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_27.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_27.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_27.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_28.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_28.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_28.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_28.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_28.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_28.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_29.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_29.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_29.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_29.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_29.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_29.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_30.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_30.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_30.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_30.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_30.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_30.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_31.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_31.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_31.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_31.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_31.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_31.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_32.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_32.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_32.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_32.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_32.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_32.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_33.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_33.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_33.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_33.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_33.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_33.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_34.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_34.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_34.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_34.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_34.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_34.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_35.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_35.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_35.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_35.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_35.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_35.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_36.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_36.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_36.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_36.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_36.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_36.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_37.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_37.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_37.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_37.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_37.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_37.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_38.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_38.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_38.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_38.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_38.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_38.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_39.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_39.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_39.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_39.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_39.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_39.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_40.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_40.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_40.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_40.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_40.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_40.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_41.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_41.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_41.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_41.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_41.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_41.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "group_42.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_42.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_42.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_42.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_42.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_42.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "shard count",
+      "pass": true
+    },
+    {
+      "check": "anchor total",
+      "pass": true
+    }
+  ]
+}
