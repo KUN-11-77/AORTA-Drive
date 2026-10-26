@@ -98,9 +98,22 @@ def main() -> None:
     backend_semantics_pass = bool(
         backend_output_max_abs_difference <= args.backend_output_tolerance
     )
+    with torch.no_grad():
+        autodiff_head_clean_xy = runtime.trajectory_xy_from_stage(
+            clean_features,
+            "c4_trajectory_query",
+            clean_capture["c4_trajectory_query"].to(device),
+        )
+    official_clean_xy = math_clean[..., :2].reshape(math_clean.shape[0], -1)
+    autodiff_head_max_abs_difference = float(
+        torch.max(torch.abs(autodiff_head_clean_xy - official_clean_xy))
+    )
+    autodiff_head_semantics_pass = bool(
+        autodiff_head_max_abs_difference <= args.backend_output_tolerance
+    )
 
     reports = []
-    all_pass = backend_semantics_pass
+    all_pass = backend_semantics_pass and autodiff_head_semantics_pass
     epsilon = float(args.finite_difference_epsilon)
     for stage_index, stage in enumerate(STAGES):
         clean = clean_capture[stage].to(device)
@@ -181,6 +194,8 @@ def main() -> None:
         "backend_output_tolerance": args.backend_output_tolerance,
         "backend_output_max_abs_difference": backend_output_max_abs_difference,
         "backend_semantics_pass": backend_semantics_pass,
+        "autodiff_head_max_abs_difference": autodiff_head_max_abs_difference,
+        "autodiff_head_semantics_pass": autodiff_head_semantics_pass,
         "deterministic_algorithms_warn_only": True,
         "sdpa_backend": "math_only__flash_false__mem_efficient_false",
         "mha_fastpath_enabled": False,

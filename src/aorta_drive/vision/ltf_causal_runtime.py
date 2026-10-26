@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import importlib
 import sys
+import types
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
@@ -281,9 +282,26 @@ class LTFCausalRuntime:
         stage: str,
         activation: torch.Tensor,
     ) -> torch.Tensor:
-        trajectory, _ = self.forward(
-            features, patch_stage=stage, patch=activation, capture=False
-        )
+        # The released head writes the heading slice in-place.  Its primal is
+        # correct, but the mutation invalidates the higher-order graph needed
+        # to differentiate a JVP with respect to the channel basis.  Replace
+        # only that implementation detail by an algebraically identical,
+        # out-of-place concatenation for the duration of this call.
+        head = self.model._trajectory_head
+        original_forward = head.forward
+
+        def out_of_place_forward(module, object_queries):
+            raw = module._mlp(object_queries).reshape(-1, module._num_poses, 3)
+            heading = torch.tanh(raw[..., 2:3]) * np.pi
+            return {"trajectory": torch.cat((raw[..., :2], heading), dim=-1)}
+
+        head.forward = types.MethodType(out_of_place_forward, head)
+        try:
+            trajectory, _ = self.forward(
+                features, patch_stage=stage, patch=activation, capture=False
+            )
+        finally:
+            head.forward = original_forward
         return trajectory[..., :2].reshape(trajectory.shape[0], -1)
 
 
