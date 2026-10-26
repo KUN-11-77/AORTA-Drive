@@ -1,0 +1,55 @@
+{
+  "checkpoint_ledger": [
+    {
+      "checkpoint_sha256": "f499c07d67ccd9df0f2e0b6e370c1438606ce2cdd1ae98c44fddbdf8cf152f81",
+      "model_state_sha256": "7e62f1accb1ae584df62d376d844af49edbba7cbad88b17d03d56065ed236bcc",
+      "seed": 20261025,
+      "selected_epoch": 12
+    },
+    {
+      "checkpoint_sha256": "209f6448c3a80d714c13a05a00edba51a1cbfebd4b79f212860a572657fb20d8",
+      "model_state_sha256": "c471f20727c63c19b94b03dfaad3475bba7f51ddf4661faf16d06d7cf5e9328c",
+      "seed": 20261026,
+      "selected_epoch": 16
+    },
+    {
+      "checkpoint_sha256": "56442944659560e68b6917fb29440795df55fed4b5c2f4478b69b8514be322db",
+      "model_state_sha256": "87717ea8a57b3b0f995d683289bf27b93e4e729b5fb8bc2f250cf70122e27f79",
+      "seed": 20261027,
+      "selected_epoch": 15
+    }
+  ],
+  "code_commit": "73b5e46d5e06e064d1da60007d3af6e8878bf746",
+  "completed_at_utc": "2026-10-26T01:13:15.065896+00:00",
+  "development_calibration_test_navdream_target_accessed": false,
+  "input_sha256": {
+    "bundle_manifest": "f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee",
+    "crossfit_manifest": "f0be65e54517a80aee5a7d09d5027e73f22f1204e28a5c7568ee33c46836d878",
+    "parent_audit": "1654e0927749972e61184ee5a41c3dc0f384f2185d7d569cbc48391e14b23214",
+    "sensitivity_manifest": "8c1f4e096dfadb683b7d1a6ddf92c256d32c33cf2ad1b6ecb29760ffbd993ce2"
+  },
+  "outer_fold": 4,
+  "parent_decision": "STOP_CURRENT_VISUAL_MAIN_CLAIM",
+  "parent_decision_is_immutable": true,
+  "physical_gpu": {
+    "name": "NVIDIA GeForce RTX 3090",
+    "physical_index": 0,
+    "uuid": "GPU-0e5bc8ea-fa1d-bd58-3df3-44acb6d3e232"
+  },
+  "prediction_sha256": "9158a73029253654a86f688eca7e87e62f4ad368a066734eb950725ce3f3e960",
+  "runner_sha256": "08dd7e7185d65b3d099c27da77d0c6655b19620001ef5fe64f21a245b3a6aa61",
+  "runtime_seconds": 58.43034618603997,
+  "schema": "aorta.r005e2s.fold_job.v1",
+  "schemes": [
+    "S2_disjoint_geometry",
+    "S3_hash_random"
+  ],
+  "scientific_metrics_emitted": false,
+  "seeds": [
+    20261025,
+    20261026,
+    20261027
+  ],
+  "status": "COMPLETED",
+  "test_anchor_count": 112
+}

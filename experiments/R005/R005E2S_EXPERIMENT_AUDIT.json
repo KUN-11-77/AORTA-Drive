@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-26",
+  "auditor": "frozen-mechanical-auditor-plus-local-sha-replay",
+  "external_reviewer": "unavailable",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "mechanical_status": "pass",
+  "scientific_classification": "RELATION_ONLY_BINDING_SECONDARY",
+  "parent_decision": "STOP_CURRENT_VISUAL_MAIN_CLAIM",
+  "parent_decision_is_immutable": true,
+  "checks": {
+    "gt_provenance": {
+      "status": "pass",
+      "details": "Frozen source-fit U_ctx target and legal candidate mask; only donor visual identity changes."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "Raw relation MSE and decision regret with 42-group paired bootstrap; distance ledgers are not gates."
+    },
+    "result_existence": {
+      "status": "pass",
+      "details": "6 primary plus 6 replay jobs; bit-exact arrays, same-GPU replay, parent checkpoint hashes, and server/local SHA manifests pass."
+    },
+    "dead_code": {
+      "status": "warn",
+      "details": "Registered outputs are present, but the independent cross-model reviewer backend was unavailable."
+    },
+    "scope": {
+      "status": "warn",
+      "details": "Secondary source-fit OOF frozen-checkpoint interventions only; no OOD, behavior, planner, or latency evidence."
+    },
+    "eval_type": "simulation_only_official_evaluator_derived_contextual_target_source_fit_group_oof_frozen_checkpoint_intervention"
+  },
+  "claims": [
+    {
+      "id": "C28-donor-robust-relation-binding",
+      "impact": "secondary_supported"
+    },
+    {
+      "id": "C27-decision-sufficient-visual-information",
+      "impact": "unsupported"
+    },
+    {
+      "id": "C19-differential-query",
+      "impact": "untested"
+    }
+  ]
+}

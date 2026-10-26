@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R005E2S：`MECHANICAL_PASS__RELATION_ONLY_BINDING_SECONDARY__PARENT_STOP_IMMUTABLE`。**
+> 冻结V2 checkpoints在S2 disjoint-geometry与S3 hash-random donor输入干预下完成6-fold primary/replay，
+> exact replay、parent state、fold/donor隔离、finite与sealed-role门全部通过。S2/S3相对correct的relation
+> MSE差为`+0.021940 [0.015855,0.028243]`与`+0.033896 [0.025969,0.042040]`，但regret差的CI均跨零；
+> 因此只支持donor-robust平均relation binding，不支持decision-sufficient视觉信息。R005E2B父STOP不变；
+> 按预结果第一性决策树，只允许预注册最小decision-aligned objective qualification，不直接训练DQ或读NavDream。
+
 > **2026-10-26 R005E2S donor sensitivity：`IMPLEMENTATION_FROZEN__SECONDARY_ONLY__PARENT_STOP_IMMUTABLE`。**
 > 在R005E2B主门严格STOP后，按既有预注册冻结实现S2 disjoint-geometry与S3 hash-random两种
 > donor输入干预；复用既有V2 checkpoints，不训练、不选模、不读取封存角色。正式链为6-fold

@@ -1399,3 +1399,20 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R005/R005E2B_RESULTS.md`；
   `experiments/R005/R005E2B_EXPERIMENT_AUDIT.md`；
   `experiments/R005/R005E2B_FAILURE_ANATOMY_PROTOCOL.md`。
+
+## ADR-0095：R005E2S支持donor-robust平均关系绑定，但不支持决策绑定
+
+- **Decision:** `RELATION_ONLY_BINDING_SECONDARY__OBJECTIVE_QUALIFICATION_ONLY`。
+- **Evidence:** 冻结V2 checkpoints在S2 disjoint-geometry和S3 hash-random输入替换下完成6-fold
+  primary/replay并通过exact机械审计。两规则相对correct的relation MSE均可靠恶化，组级差及95% CI为
+  `+0.021940 [0.015855,0.028243]`和`+0.033896 [0.025969,0.042040]`；decision regret差为
+  `+0.001551 [-0.000243,0.003901]`与`+0.001858 [-0.001303,0.005236]`，均未通过。
+- **Interpretation:** 当前正确视觉包含不依赖单一S1 donor的平均relation信息，但尚无证据说明该信息
+  decision-sufficient。更强donor造成更大MSE不能被解释为更强道路理解，因为输入分布距离同时变化。
+- **Consequence:** R005E2B父`STOP_CURRENT_VISUAL_MAIN_CLAIM`保持不可变；只授权设计并预注册一个
+  同模型/数据/预算的最小decision-aligned objective qualification。必须先比较简单pairwise或soft-regret
+  surrogate与原MSE；不得直接训练Differential Query、读取NavDream或增加复杂模块。
+- **Boundary:** secondary source-fit OOF frozen-checkpoint intervention；不是conditional MI、严格条件
+  随机化、OOD外观、行为收益或安全证据。外部cross-model reviewer不可用，完整性为WARN。
+- **Artifacts:** `experiments/R005/R005E2S_RESULTS.md`；
+  `experiments/R005/R005_POST_STOP_FIRST_PRINCIPLES_DECISION_TREE.md`。

@@ -1,6 +1,6 @@
 # R005E2S Donor Sensitivity Implementation Status
 
-状态：`IMPLEMENTATION_FROZEN__READY_TO_RUN__SECONDARY_ONLY`
+状态：`SUPERSEDED_BY_COMPLETED_RESULT__SEE_R005E2S_RESULTS`
 
 ## 科学职责
 
@@ -35,3 +35,6 @@ scene binding。它不是条件互信息检验，不证明 Differential Query、
 R005E2S 各类可能结果所允许的唯一后续动作，已在科学结果可见前冻结于
 `R005_POST_STOP_FIRST_PRINCIPLES_DECISION_TREE.md`；其中同时明确了平方回归的总体决策一致性边界，
 避免把有限实验失败错误归因于一个并不存在的普遍理论缺陷。
+
+正式结果已完成并命中预冻结 Branch B：`RELATION_ONLY_BINDING_SECONDARY`。完整数值、审计与后续
+资格见`R005E2S_RESULTS.md`和`R005E2S_EXPERIMENT_AUDIT.md`。
