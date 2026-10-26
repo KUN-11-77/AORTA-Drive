@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-26",
+  "auditor": "REVIEW_UNAVAILABLE_plus_mechanical_audit",
+  "overall_verdict": "warn",
+  "integrity_status": "mechanical_pass_external_review_unavailable",
+  "checks": {
+    "gt_provenance": {"status": "not_applicable", "details": "Resource benchmark only."},
+    "score_normalization": {"status": "pass", "details": "No scientific objective emitted."},
+    "result_existence": {"status": "pass", "details": "Runner, audit, and exit codes exist."},
+    "dead_code": {"status": "pass", "details": "38 mechanical audit checks executed."},
+    "scope": {"status": "pass", "details": "Registered C3/C4 batch-size resource gate only."},
+    "eval_type": "synthetic_tangent_real_tail_resource_benchmark"
+  },
+  "warnings": ["Independent external reviewer backend was unavailable."],
+  "claim_impact": "Streaming batch size 128 qualified; no scientific method claim."
+}

@@ -94,7 +94,9 @@ basis_qualification:
   solver:
     manifold: stiefel_channel_basis
     full_objective_reduction: fixed_order_sample_count_weighted_exact_mean
-    streaming_batch_size: pending_non_scientific_resource_benchmark
+    streaming_batch_size: 128
+    streaming_batch_selection_rule: largest_of_16_32_64_128_below_18GiB_on_C3_and_C4
+    streaming_resource_benchmark_commit: b3633fa11c6dd7bd38a4595739e33182edf62610
     initializations: [discovery_channel_drift_pca, random_20261026, random_20261027]
     retraction: qr
     line_search: {type: armijo, initial_step: 1.0, shrink: 0.5, sufficient_decrease: 0.0001}

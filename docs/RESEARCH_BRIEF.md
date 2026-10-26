@@ -6,11 +6,11 @@
 > clean `navsim/`执行子树及Git tree object已闭合，封存角色未访问且无科学指标。只解锁资源benchmark与
 > 正式runner冻结；不构成低秩介导、DINO、CPTR、OOD、行为或安全证据。
 
-> **2026-10-26 R006V0 solver semantics：`STREAMING_EXACT_REDUCTION_PASS__BATCH_BUDGET_PENDING__NO_SCIENCE_CLAIM`。**
+> **2026-10-26 R006V0 solver semantics：`STREAMING_EXACT_REDUCTION_PASS__BATCH_128_FROZEN__NO_SCIENCE_CLAIM`。**
 > 正式discovery所需的流式Stiefel solver已实现为固定顺序、按batch样本数加权的完整目标值与梯度精确
 > 归约；19个非整除合成样本上与稠密参考目标一致并恢复同一真实投影子空间。primary trajectory度量
-> 同时冻结为`W=I_(2T)/T`，即每时间步二维物理位移平方均值。该结果只闭合数学对象与显存实现的一致性；
-> batch size仍须由无科学endpoint资源benchmark冻结，不证明真实planner存在低秩外观介导。
+> 同时冻结为`W=I_(2T)/T`，即每时间步二维物理位移平方均值。真实tail+合成tangent资源门38/38 PASS，
+> 按预冻结规则选择batch=128。该结果只闭合数学对象与显存实现的一致性，不证明真实planner存在低秩介导。
 
 > **2026-10-26 R006V0 controls：`A2_DONOR_MANIFEST_PASS__A4_A5_PRIMITIVES_PASS__SCIENCE_NOT_STARTED`。**
 > 为避免弱对照制造“scene-specific”假象，A2的672个wrong-scene donors已按同anchor index、最近组内

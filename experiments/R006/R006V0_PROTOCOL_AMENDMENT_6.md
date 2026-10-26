@@ -46,3 +46,7 @@ L(B)=\frac{1}{N}\sum_b |\mathcal B_b|L_b(B),\qquad
 已加入合成反例测试：19个样本、非整除 batch size=5 时，流式 solver 与完整稠密目标达到相同
 objective，并恢复同一真实投影子空间。该测试只证明实现等价，不证明真实 planner 存在低秩介导。
 
+随后按预冻结规则完成真实C3/C4 tail、rank 32、合成tangent资源benchmark；batch 16/32/64/128在两层
+均低于18 GiB，故唯一选择最大登记值128。38/38机械审计PASS，未产生科学endpoint。正式运行的
+`streaming_batch_size`因此冻结为128。
+

@@ -1,0 +1,84 @@
+{
+  "artifact": "R006V0_STREAMING_RESOURCE_BENCHMARK_V1",
+  "status": "PASS",
+  "scientific_metrics_emitted": false,
+  "development_calibration_test_navdream_target_accessed": false,
+  "selection_rule": "largest_registered_batch_below_18GiB_on_both_stages",
+  "selected_batch_size": 128,
+  "rank": 32,
+  "repeats": 3,
+  "memory_ceiling_bytes": 19327352832,
+  "measurements": {
+    "c3_planner_memory": [
+      {
+        "batch_size": 16,
+        "status": "PASS",
+        "median_step_seconds": 0.04265716695226729,
+        "samples_per_second": 375.08351217753756,
+        "peak_allocated_bytes": 388812800
+      },
+      {
+        "batch_size": 32,
+        "status": "PASS",
+        "median_step_seconds": 0.04498018091544509,
+        "samples_per_second": 711.4244395804994,
+        "peak_allocated_bytes": 470555648
+      },
+      {
+        "batch_size": 64,
+        "status": "PASS",
+        "median_step_seconds": 0.04457154404371977,
+        "samples_per_second": 1435.8937158924325,
+        "peak_allocated_bytes": 651451392
+      },
+      {
+        "batch_size": 128,
+        "status": "PASS",
+        "median_step_seconds": 0.04940413893200457,
+        "samples_per_second": 2590.8760433243806,
+        "peak_allocated_bytes": 1009145344
+      }
+    ],
+    "c4_trajectory_query": [
+      {
+        "batch_size": 16,
+        "status": "PASS",
+        "median_step_seconds": 0.006447946885600686,
+        "samples_per_second": 2481.4100183937003,
+        "peak_allocated_bytes": 294499840
+      },
+      {
+        "batch_size": 32,
+        "status": "PASS",
+        "median_step_seconds": 0.004815127933397889,
+        "samples_per_second": 6645.721659448947,
+        "peak_allocated_bytes": 294634496
+      },
+      {
+        "batch_size": 64,
+        "status": "PASS",
+        "median_step_seconds": 0.0047787080984562635,
+        "samples_per_second": 13392.741025691623,
+        "peak_allocated_bytes": 294903808
+      },
+      {
+        "batch_size": 128,
+        "status": "PASS",
+        "median_step_seconds": 0.004680862883105874,
+        "samples_per_second": 27345.385497613355,
+        "peak_allocated_bytes": 295585792
+      }
+    ]
+  },
+  "provenance": {
+    "checkpoint_sha256": "d08e97ba6beb937412697d619171553041622859e026a06935a2e0e118e6309d",
+    "cache_shard_sha256": "2a921f29077460eac78858c41e45e81e526f4d70b4de680827d76535a1a2cb00",
+    "runner_sha256": "e5f07642732b7a7de6f874ebdfd4dfcdddfd7a7a4c2c1aadd6584f039a08524a",
+    "python": "3.10.18",
+    "torch": "2.7.1+cu118",
+    "cuda": "11.8",
+    "device": "cuda:0",
+    "seed": 20261026
+  },
+  "claim_boundary": "resource qualification only; no mediation or method claim"
+}

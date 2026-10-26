@@ -15,8 +15,8 @@
 
 正式 discovery 的流式 Stiefel solver 已实现为固定顺序、按样本数加权的完整目标值与梯度精确归约；
 19个非整除合成样本上与稠密参考目标一致并恢复同一真实投影子空间。primary trajectory二次型同时
-冻结为 `W=I_(2T)/T`，即每时间步二维物理位移平方均值。流式 batch size 仍须由无科学endpoint的
-资源benchmark冻结；详见协议修正6。
+冻结为 `W=I_(2T)/T`，即每时间步二维物理位移平方均值。无科学endpoint资源benchmark随后按冻结
+规则选择batch=128，38/38审计PASS；详见协议修正6与`R006V0R_STREAMING_RESOURCE_RESULTS.md`。
 
 同日一组×16 anchors 的真实 activation-cache smoke 完成，4种冻结条件、C3/C4 schema、repair mask、
 sealed-role与no-science-metrics共14/14审计PASS。它只资格化缓存管线，不替代42组正式缓存或科学实验。
@@ -73,7 +73,7 @@ clean且Git tree object固定；与第一次完整运行的42/42 shard hashes逐
 3. ~~运行显式 Jacobian synthetic oracle；~~ `PASS`
 4. ~~运行 1–2 anchors 的 identity/full-patch smoke；~~ `PASS`
 5. ~~运行一组真实 activation-cache smoke 并审计 site semantics；~~ `PASS`
-6. 用 smoke 的非科学耗时与真实 tensor shape 冻结正式预算；
+6. ~~用 smoke 的非科学耗时与真实 tensor shape 冻结正式预算；~~ `PASS: streaming batch=128`
 7. 重新生成 config/manifest SHA；
 8. 一次性执行 R006V0，不在途中读取部分科学指标。
 

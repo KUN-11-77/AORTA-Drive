@@ -1,0 +1,161 @@
+{
+  "artifact": "R006V0_STREAMING_RESOURCE_AUDIT_V1",
+  "status": "PASS",
+  "check_count": 38,
+  "failed_check_count": 0,
+  "checks": [
+    {
+      "check": "artifact",
+      "pass": true
+    },
+    {
+      "check": "runner PASS",
+      "pass": true
+    },
+    {
+      "check": "sealed roles untouched",
+      "pass": true
+    },
+    {
+      "check": "no scientific metrics",
+      "pass": true
+    },
+    {
+      "check": "fixed rank",
+      "pass": true
+    },
+    {
+      "check": "fixed repeats",
+      "pass": true
+    },
+    {
+      "check": "fixed memory ceiling",
+      "pass": true
+    },
+    {
+      "check": "stage roster",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory: batch roster",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/16: status valid",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/16: finite resources",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/16: below ceiling",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/32: status valid",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/32: finite resources",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/32: below ceiling",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/64: status valid",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/64: finite resources",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/64: below ceiling",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/128: status valid",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/128: finite resources",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory/128: below ceiling",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query: batch roster",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/16: status valid",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/16: finite resources",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/16: below ceiling",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/32: status valid",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/32: finite resources",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/32: below ceiling",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/64: status valid",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/64: finite resources",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/64: below ceiling",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/128: status valid",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/128: finite resources",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query/128: below ceiling",
+      "pass": true
+    },
+    {
+      "check": "at least one joint passing batch",
+      "pass": true
+    },
+    {
+      "check": "selection rule exact",
+      "pass": true
+    },
+    {
+      "check": "selected largest joint pass",
+      "pass": true
+    },
+    {
+      "check": "provenance hashes",
+      "pass": true
+    }
+  ],
+  "claim_boundary": "resource qualification only; no mediation or method claim"
+}
