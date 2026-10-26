@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-26",
+  "auditor": "internal-strengthened-mechanical-audit; external-reviewer-unavailable",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "mechanical_status": "pass",
+  "scientific_support": "unsupported",
+  "decision": "FAIL_LINEAR_REALIZABILITY",
+  "checks": {
+    "gt_provenance": {
+      "status": "pass",
+      "details": "Frozen bundle target_margin; exact per-index target and mask recomputation; scoped U_ctx proxy only."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "Raw native-relative gain and regret reported; oracle denominator is target-derived, not prediction-derived."
+    },
+    "result_existence": {
+      "status": "pass",
+      "details": "Primary, replay, predictions, two audits and checksum manifests exist; compact 14/14 hashes verified."
+    },
+    "dead_code": {
+      "status": "pass",
+      "details": "Registered metric and classification functions are called and their outputs are present."
+    },
+    "scope": {
+      "status": "warn",
+      "details": "Single fold and seed on source-fit outer-train; only optimization/realizability qualification."
+    },
+    "eval_type": "real_gt_for_scoped_evaluator_derived_proxy"
+  },
+  "reviewer": {
+    "status": "REVIEW_UNAVAILABLE",
+    "reason": "No independent codex or manual-review backend was available in this session."
+  },
+  "claims": [
+    {
+      "id": "C29",
+      "impact": "unsupported"
+    },
+    {
+      "id": "C30",
+      "impact": "unsupported"
+    }
+  ]
+}

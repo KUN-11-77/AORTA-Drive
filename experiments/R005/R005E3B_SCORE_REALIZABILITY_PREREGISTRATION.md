@@ -1,7 +1,7 @@
 # R005E3B：无界相对score的优化/可实现性资格预注册
 
 日期：2026-10-26  
-状态：`IMPLEMENTATION_QUALIFIED__SOURCE_ONLY_RUN_AUTHORIZED`  
+状态：`COMPLETED__MECHANICAL_PASS__UNSUPPORTED__FAIL_LINEAR_REALIZABILITY`  
 父结果：R005E3A `FROZEN_MIXED__ALL_NATIVE_COLLAPSE`
 
 ## 1. 唯一问题
@@ -121,4 +121,10 @@ PASS只解锁6-fold×3-seed OOF确认实验的设计，不自动运行，不允�
 - 默认`tanh`与新增identity共享完全相同的state dict和参数量；
 - 已冻结bundle、cross-fit、mismatch、视觉cache manifest及父job结果SHA；
 - 正式运行前仍须在服务器用既有checkpoint完成默认`tanh`预测逐数组兼容复算。
+
+## 9. 冻结结果
+
+兼容复算通过，primary/replay及强化机械审计PASS；但correct outer-train仍为560/560 native，
+`G_model=0`、absolute oracle capture=0、beneficial/nonnative均0，故按预注册规则裁决
+`FAIL_LINEAR_REALIZABILITY`。该负结果及理论更新见`R005E3B_RESULTS.md`，不得以新阈值或延长训练改写。
 

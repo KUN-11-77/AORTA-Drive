@@ -1,14 +1,13 @@
 # AORTA-Drive Research Brief
 
-> **2026-10-26 R005E3B：`FORMAL_SOURCE_ONLY_REALIZABILITY_RUNNING__NO_RESULT_YET`。**
-> 针对R005E3A的all-native collapse，本轮只把相对score从`tanh(r_i-r_0)`改为`r_i-r_0`；网络、
-> 参数、初始化、数据、soft-regret、温度、optimizer、schedule、epoch与step预算均冻结。完整本地测试
-> `495/495`、服务器定向测试`38/38`通过；新实现加载旧checkpoint后，默认tanh路径的index、mask、
-> target与prediction逐数组exact。正式fold0×seed20261025 outer-train primary→replay→audit链运行中，
-> development/calibration/test/NavDream/target封存。预结果理论进一步证明：identity只删除activation
-> Jacobian，仍保留softmax低概率尾部的指数梯度衰减；若本轮失败，只允许预注册具备错排非消失梯度
-> 与hard-regret上界的最小surrogate诊断，不允许直接扩网。见
-> `experiments/R005/R005E3B_OPTIMIZATION_GEOMETRY_THEORY_NOTE.md`。
+> **2026-10-26 R005E3B：`MECHANICAL_PASS__UNSUPPORTED__FAIL_LINEAR_REALIZABILITY`。**
+> 单因素删除最终`tanh`后，fold0×seed20261025 outer-train primary/replay及强化审计全部闭合；父初始化、
+> 参数量、14 epochs/7,840 steps、温度、训练组、prediction与final state exact，封存角色未访问。但560个
+> anchors仍100%选择native，`G_model=0`、absolute oracle capture=0，C30被否定。challenger由初始化
+> `[-0.0623,-0.0276]`降至`[-2.4063,-2.3125]`，遗漏优候选score-gradient均值从`0.142925`衰减到
+> `1.6981e-9`（约`8.42e7`倍）。因此`tanh`不是充分解释；identity仍进入softmax低概率近吸收区。
+> 下一步只允许不更新权重的机会/梯度质量诊断，证据成立后才可预注册已冻结理论中的最小pairwise
+> surrogate；OOF、DQ、NavDream与行为继续HOLD。完整结果见`experiments/R005/R005E3B_RESULTS.md`。
 
 > **2026-10-26 R005E3A：`MECHANICAL_PASS__FROZEN_MIXED__ALL_NATIVE_COLLAPSE`。**
 > 18 primary +18 same-GPU replay全部闭合，prediction/model-state exact及所有provenance、finite、fold、

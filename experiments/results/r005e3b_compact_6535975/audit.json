@@ -1,0 +1,61 @@
+{
+  "claim_boundary": "Fold-0 outer-train optimization/realizability qualification only; not OOF generalization, visual scene binding, Differential Query, appearance robustness, NavDream, behavior, or safety evidence.",
+  "condition_summaries": {
+    "S1_refit_train_mismatch": {
+      "absolute_oracle_capture": 0.0,
+      "anchor_count": 560,
+      "beneficial_nonnative_count": 0,
+      "harmful_nonnative_count": 0,
+      "mean_gain_over_native": 0.0,
+      "mean_hard_regret": 0.01903635216208995,
+      "mean_oracle_gain_over_native": 0.01903635216208995,
+      "native_choice_fraction": 1.0,
+      "neutral_nonnative_count": 0,
+      "nonnative_choice_count": 0
+    },
+    "correct": {
+      "absolute_oracle_capture": 0.0,
+      "anchor_count": 560,
+      "beneficial_nonnative_count": 0,
+      "harmful_nonnative_count": 0,
+      "mean_gain_over_native": 0.0,
+      "mean_hard_regret": 0.01903635216208995,
+      "mean_oracle_gain_over_native": 0.01903635216208995,
+      "native_choice_fraction": 1.0,
+      "neutral_nonnative_count": 0,
+      "nonnative_choice_count": 0
+    },
+    "removed": {
+      "absolute_oracle_capture": 0.0,
+      "anchor_count": 560,
+      "beneficial_nonnative_count": 0,
+      "harmful_nonnative_count": 0,
+      "mean_gain_over_native": 0.0,
+      "mean_hard_regret": 0.01903635216208995,
+      "mean_oracle_gain_over_native": 0.01903635216208995,
+      "native_choice_fraction": 1.0,
+      "neutral_nonnative_count": 0,
+      "nonnative_choice_count": 0
+    }
+  },
+  "decision": "FAIL_LINEAR_REALIZABILITY",
+  "mechanical_gates": {
+    "finite_values": true,
+    "fold_target_and_mask_exact": true,
+    "independent_metric_recomputation_exact": true,
+    "primary_replay_model_states_exact": true,
+    "primary_replay_predictions_bit_exact": true,
+    "provenance_exact": true,
+    "sealed_roles_accessed": false,
+    "source_fit_outer_train_only": true
+  },
+  "schema": "aorta.r005e3b.score_realizability_audit.v1",
+  "scientific_gates": {
+    "absolute_oracle_capture_at_least_0_10": false,
+    "beneficial_nonnative_count_at_least_one": false,
+    "mean_gain_over_native_strictly_positive": false,
+    "nonnative_choice_count_at_least_one": false
+  },
+  "status": "PASS",
+  "support": "UNSUPPORTED"
+}

@@ -1,6 +1,6 @@
 experiment_id: R005E3B-score-realizability-v1
 date: 2026-10-26
-status: implementation_qualified_source_only_run_authorized
+status: completed_mechanical_pass_unsupported_fail_linear_realizability
 parent:
   experiment: R005E3A
   implementation_commit: 77f37e43862bc352a753d6ee9141c907c9ac926b

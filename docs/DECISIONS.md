@@ -1450,3 +1450,22 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R005/R005E3A_RESULTS.md`；
   `experiments/R005/R005E3A_EXPERIMENT_AUDIT.md`；
   `experiments/results/R005E3A_77F37E4/`。
+
+## ADR-0098：删除`tanh`仍all-native，问题推进到softmax尾部与梯度质量
+
+- **Decision:** `IDENTITY_SCORE_INSUFFICIENT__READ_ONLY_GRADIENT_MASS_DIAGNOSIS_NEXT`。
+- **Evidence:** R005E3B只删除最终`tanh`，其余模型、初始化、source-fit fold0 outer-train、soft-regret、
+  `T=0.125`及7,840 steps冻结。primary/replay及强化审计机械PASS，但560/560仍选择native，
+  `G_model=0`、absolute oracle capture=0。challenger score由初始化约`-0.03~-0.06`降至
+  `-2.31~-2.41`，遗漏优候选score-gradient均值从`0.142925`降至`1.6981e-9`。
+- **Interpretation:** `tanh` Jacobian不是all-native collapse的充分解释。identity删除一个饱和因子后，
+  softmax概率仍把低分候选的纠错梯度指数压低；多数负utility机会、共享参数梯度冲突与正机会稀疏仍是
+  未区分的竞争解释。有限训练失败不否定无界总体风险方向，也不证明RGB信息不存在。
+- **Consequence:** 不延长训练、不调温度、不扩网。下一步先进行不更新权重的target机会与初始化score-
+  gradient质量审计。只有其支持预结果冻结机制，才允许预注册utility-gap加权pairwise logistic单因素
+  资格实验；该surrogate必须保持模型/数据/预算不变，并用绝对gain而非父regret过门。
+- **Boundary:** 单fold、单seed、outer-train优化资格负结果；不支持或否定OOF视觉绑定、Differential
+  Query、NavDream、行为或安全。外部cross-model reviewer不可用，完整性为WARN、机械状态为PASS。
+- **Artifacts:** `experiments/R005/R005E3B_RESULTS.md`；
+  `experiments/R005/R005E3B_OPTIMIZATION_GEOMETRY_THEORY_NOTE.md`；
+  `experiments/results/r005e3b_compact_6535975/`。
