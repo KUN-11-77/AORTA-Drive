@@ -68,6 +68,10 @@ experiments/**/results/**/audit_inputs/
 experiments/**/results/**/*.log
 experiments/**/results/**/run.pid
 .tmp/
+tmp/
+
+# Locally fetched review sources; distilled URLs and notes are committed instead.
+refine-logs/**/sources/
 
 # Locally fetched paper bodies (commit only metadata/notes, not redistributed full text)
 references/sources/*.html

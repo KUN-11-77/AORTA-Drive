@@ -1,0 +1,123 @@
+experiment_id: R006V0-causal-visual-mediation-v1
+date: 2026-10-26
+status: design_ready_implementation_not_ready
+scope: source_fit_nested_group_heldout_low_rank_controlled_appearance_zero_training
+planner:
+  primary: frozen_transfuser_or_ltf_with_verified_hooks
+  trainable_parameters: 0
+layers:
+  - early_visual
+  - fused_bev
+  - planner_memory
+  - trajectory_query_secondary
+ranks: [4, 8, 16, 32]
+splits:
+  outer_folds: 6
+  outer_groups_per_fold: 7
+  inner_split: deterministic_hash_basis_discovery_vs_layer_rank_selection
+  outer_confirmation_used_for_selection: false
+appearances:
+  - low_exposure
+  - low_contrast
+  - cool_cast
+arms:
+  - shifted_no_patch
+  - same_scene_low_rank_clean_coefficient_patch
+  - conditionally_matched_wrong_scene_clean_coefficient_patch
+  - shifted_self_identity_patch
+  - equal_dim_energy_matched_random_subspace_patch
+  - energy_matched_noise
+  - reverse_clean_to_shift_low_rank_patch
+  - dose_response_0_0p25_0p5_0p75_1
+data:
+  independent_unit: recording_group
+  source_fit_groups: 42
+  forbidden_roles: [development, calibration, test, NavDream, target]
+mechanical_gates:
+  non_image_context_exact: true
+  primary_replay_exact: true
+  identity_patch_exact: true
+  donor_same_group_allowed: false
+  nonfinite_allowed: 0
+  missing_anchor_allowed: 0
+statistics:
+  group_equal: true
+  bootstrap_groups: 42
+  bootstrap_replicates: 10000
+  confidence: 0.95
+basis_qualification:
+  objective: minimize_uncovered_task_weighted_appearance_drift
+  spatial_structure: identity_over_spatial_positions_times_channel_projector
+  primary_output_metric: trajectory_xy_physical_rms
+  secondary_output_metrics: [yaw_drift, heading_drift]
+  selection_mean_coverage_min: 0.90
+  selection_worst_group_mean_coverage_min: 0.50
+  choose_smallest_qualifying_rank: true
+  solver:
+    manifold: stiefel_channel_basis
+    initializations: [discovery_channel_drift_pca, random_20261026, random_20261027]
+    retraction: qr
+    line_search: {type: armijo, initial_step: 1.0, shrink: 0.5, sufficient_decrease: 0.0001}
+    relative_improvement_tolerance: 0.000001
+    patience: 20
+    max_steps: 500
+    restart_selection: lowest_discovery_objective_only
+  deployment_uniqueness:
+    layer_same_in_at_least_folds: 5
+    rank_same_in_at_least_folds: 4
+    final_layer: unique_mode
+    rank_votes_count_only_folds_selecting_final_layer: true
+    final_rank: unique_mode_with_at_least_four_of_all_six_folds
+    stop_if_no_unique_qualified_rank: true
+    refit_basis_on_all_42_source_groups_after_freeze: true
+controls:
+  random_subspace:
+    instances_per_anchor: 16
+    seeds: [20261026, 20261027, 20261028, 20261029, 20261030, 20261031, 20261032, 20261033, 20261034, 20261035, 20261036, 20261037, 20261038, 20261039, 20261040, 20261041]
+    distribution: haar_channel_subspace
+    coefficient_energy_match: per_anchor_frobenius_to_same_scene_patch
+    aggregate: mean_within_anchor_before_group_statistics
+  matched_noise:
+    instances_per_anchor: 16
+    seeds: [20261026, 20261027, 20261028, 20261029, 20261030, 20261031, 20261032, 20261033, 20261034, 20261035, 20261036, 20261037, 20261038, 20261039, 20261040, 20261041]
+    distribution: gaussian_coefficient_field
+    covariance_source: outer_train_same_scene_coefficients_only
+    coefficient_energy_match: per_anchor_frobenius_to_same_scene_patch
+    aggregate: mean_within_anchor_before_group_statistics
+  activation_support_distance:
+    role: descriptive_only
+    enters_pass_or_stop: false
+dose_response:
+  doses: [0.0, 0.25, 0.5, 0.75, 1.0]
+  fit: per_anchor_ols_with_intercept_fixed_at_zero
+  group_summary: median_anchor_slope
+  pass: bootstrap_ci_lower_of_group_median_slope_gt_zero
+reverse_intervention:
+  group_statistic: median_reverse_damage
+  pass: bootstrap_ci_lower_of_group_median_gt_zero
+decision:
+  support_requires:
+    - all_six_outer_folds_produce_qualified_layer_and_rank
+    - same_scene_low_rank_restoration_ci_lower_gt_zero
+    - same_scene_minus_wrong_scene_ci_lower_gt_zero
+    - same_scene_minus_random_subspace_ci_lower_gt_zero
+    - same_scene_minus_noise_ci_lower_gt_zero
+    - median_restoration_bootstrap_ci_lower_gt_zero
+    - positive_restoration_groups_at_least_22
+    - layer_and_rank_stability_gate
+    - reverse_damage_group_median_bootstrap_ci_lower_gt_zero
+    - dose_restoration_group_median_slope_bootstrap_ci_lower_gt_zero
+    - all_mechanical_gates_pass
+  stop:
+    - full_patch_smoke_fails
+    - global_low_rank_basis_coverage_fails
+    - low_rank_patch_not_scene_specific
+    - no_unique_global_layer_or_rank
+  hold:
+    - patch_effect_not_scene_specific
+claim_boundary:
+  - causal_mediation_candidate_only
+  - not_DINO_recoverability
+  - not_final_method
+  - not_NavDream_or_real_weather
+  - not_driving_safety

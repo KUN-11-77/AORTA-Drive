@@ -1,0 +1,65 @@
+experiment_id: R005E3E0-causal-temporal-interface-v1
+date: 2026-10-26
+status: hold_visual_first_not_executed
+scope: source_fit_zero_training_interface_qualification
+problem_anchor:
+  observed_failure: four_R005E3D_harmful_choices_were_dominated_by_exact_negative_one_eighth_temporal_contribution
+  question: can_two_frame_comfort_be_computed_causally_exactly_and_cheaply_at_inference
+inputs:
+  allowed:
+    - current_ego_state_and_timestamp
+    - frozen_legal_candidate_poses
+    - previous_actual_selected_realized_states_and_timestamp
+    - frozen_vehicle_execution_operator
+  prohibited:
+    - future_ground_truth
+    - Uctx_or_candidate_utility
+    - hard_metric_outcomes
+    - development
+    - calibration
+    - test
+    - NavDream
+    - target_domain
+frozen_provenance:
+  r005e1b_primary_result_sha256: 7673f6fe216db7b91e90aaabc2eba48311c6432c96bbb4769691f06dda8dfd5f
+  r005e2_bundle_manifest_sha256: f586e58907fadd13d4d3d1c462a7304910a7ee6b8c83e4ab356cdfd15cf365ee
+  official_two_frame_comfort_source_sha256: 883b606cc5f98285bd6ff917e9a4129c608b709d58fe6c2435f6b7bd27c2e6ce
+  source_commit: f0ef323
+operator:
+  candidate_batch_size: full_legal_panel_per_anchor
+  current_execution: deterministic_PDM_vehicle_simulator
+  previous_context: stored_previous_actual_selected_realized_states
+  overlap_rule: round_observation_gap_over_0p1_seconds
+  comfort_rule: official_RMS_acceleration_jerk_yaw_rate_yaw_accel_threshold_conjunction
+  target_result_read_by_materializer: false
+  label_join_allowed_only_in_independent_auditor: true
+exactness_gates:
+  anchors: 672
+  all_legal_candidates_must_be_compared: true
+  primary_replay_bit_exact: true
+  comfort_match_count_must_equal_candidate_count: true
+  mismatches_allowed: 0
+  nonfinite_allowed: 0
+  sealed_role_access_allowed: false
+latency:
+  observation_period_ms: 500.0
+  preexisting_V2_scorer_only_p95_ms: 16.12
+  scorer_plus_temporal_operator_budget_ms: 25.0
+  temporal_operator_p95_budget_ms: 8.88
+  warmup_iterations: 20
+  measured_iterations: 200
+  report: [p50_ms, p95_ms, p99_ms, maximum_ms, candidate_count_scaling]
+decision:
+  go: exact_causal_interface_within_frozen_latency_budget
+  hold: exact_but_latency_budget_exceeded_optimize_operator_without_training
+  stop:
+    - any_target_or_future_leakage
+    - any_exactness_or_determinism_failure
+    - operator_requires_unavailable_deployment_state
+claim_boundary:
+  - interface_qualification_only
+  - not_network_success
+  - not_visual_increment
+  - not_Differential_Query
+  - not_appearance_robustness
+  - not_behavior_or_safety

@@ -1513,3 +1513,20 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R005/R005E3D_RESULTS.md`；
   `experiments/R005/R005E3D_EXPERIMENT_AUDIT.md`；
   `experiments/R005/R005E3E_STRUCTURED_UTILITY_FACTORIZATION_THEORY_NOTE.md`。
+
+## ADR-0101：视觉主线改为“因果定位—增量可恢复性—低秩受限修复”
+
+- **Decision:** `VISUAL_FIRST__DINO_IS_FROZEN_EVIDENCE_NOT_NOVELTY__CAUSAL_MEDIATION_BEFORE_REPAIR`。
+- **Reason:** Constant Eye已证明冻结DINOv3-H+配合per-planner adapter/head retraining可提升外观OOD；重复
+  DINO接口不构成贡献。AORTA旧generic scorer结果又表明平均视觉relation改善不自动转化为decision
+  gain。第一性缺口因此不是“再训练什么head”，而是原生冻结planner内部哪些外观漂移方向实际介导行为、
+  DINO是否对这些任务统计量提供组外增量可预测信息、以及是否能在不重训planner时实施低秩受限修复。
+- **Theory:** 以planner pullback metric `G=J^T W J`区分task-sensitive row-space与一阶null-space；以
+  same-scene interchange intervention区别敏感性和因果介导；以观测碰撞反例限制DINO-to-native
+  identifiability；只在介导性与函数类受限增量可恢复性成立时使用低秩residual repair。
+- **Consequence:** R005E3E0转为`HOLD_VISUAL_FIRST`但保留历史协议。下一唯一执行门是R006V0零训练
+  causal mediation；通过才设计DINO recoverability，二者通过才允许CPTR训练。NavDream保持封存，
+  Constant Eye成为最近方法基线，DINO、Jacobian、activation patching和adapter均不得单独列为创新。
+- **Boundary:** 当前只有理论资格合同和预注册，无新视觉、行为、OOD、安全或投稿结论。
+- **Artifacts:** `docs/AORTA_VISUAL_FIRST_THEORY_V2_CN.md`；
+  `experiments/R006/R006V0_CAUSAL_VISUAL_MEDIATION_PREREGISTRATION.md`。

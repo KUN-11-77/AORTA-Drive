@@ -1,5 +1,17 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 Visual-First战略重构：`DESIGN_READY__IMPLEMENTATION_NOT_READY__NO_METHOD_CLAIM`。**
+> Constant Eye已把冻结DINOv3-H+作为稳定视觉接口并为各planner重训adapter/head；AORTA不重复该贡献。
+> 当前主问题改为：对冻结原生planner，哪些外观漂移方向真正介导行为变化、这些planner-sensitive任务统计
+> 是否能由DINO证据提供组外增量可恢复信息、以及能否只在该低秩切空间中做rank-constrained repair。
+> 理论链固定为“任务敏感性→组外因果介导→增量可恢复性→条件行为保持”，候选方法为
+> Causal Planner-Tangent Repair。三轮独立方法复核从`6.8→7.7→9.0`，最终为`DESIGN_READY`；这只表示
+> 理论和预注册有资格进入实现，不是正向方法证据。R005E3E0保留但转为`HOLD_VISUAL_FIRST`；下一唯一执行门
+> 是R006V0S实现资格与零训练smoke，随后才是R006V0 activation-intervention。R006V0通过前禁止训练
+> repairer、读取NavDream或把DINO稳定性表述为决策/安全收益。详见
+> `docs/AORTA_VISUAL_FIRST_THEORY_V2_CN.md`与
+> `experiments/R006/R006V0_CAUSAL_VISUAL_MEDIATION_PREREGISTRATION.md`。
+
 > **2026-10-26 R005E3D与结构化效用重构：`MECHANICAL_PASS__SCIENTIFIC_UNSUPPORTED__FAILURE_LOCALIZED`。**
 > Proper native-relative MSE使当前identity scorer从100% native塌缩恢复到22次non-native选择，并使correct
 > relation MSE降至`0.08040`（mismatch `0.14346`、removed `0.16661`），但实际mean gain仍为
