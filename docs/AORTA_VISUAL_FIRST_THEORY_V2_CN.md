@@ -22,7 +22,7 @@ Constant Eye 已经给出一个重要事实：冻结 DINOv3-H+ 并为不同 plan
 场景重建，而是在预注册rank字典中选择最小合格rank，只修复“影响决策且视觉确实可恢复”的低秩证据。若低秩介导、视觉增量或 matched
 adapter 优势任一失败，方法主张即停止。
 
-一句话：**不是让视觉特征处处不变，而是识别并修复外观扰动中真正改变冻结 planner 决策的低秩因果方向。**
+一句话：**不是让视觉特征处处不变，而是识别并修复外观扰动中经组外内部干预资格化、真正改变冻结 planner 行为的共享低秩通道方向。**
 
 ## 1. 第一性对象
 
@@ -39,25 +39,31 @@ z^\ell=\phi_{\leq\ell}(X,H),\qquad
 o=f_{>\ell}(z^\ell,H),
 \]
 
-其中 \(o\) 是硬选择前的轨迹、候选分数或分布参数。任务评价记为 \(U(S,o,H)\)。
+其中 \(o\) 是硬选择前的轨迹、候选分数或分布参数。任务评价记为 \(U(S,o,H)\)。受控外观配对只在
+\((S,H)\) 与除 RGB 外的 planner 输入完全一致时定义；否则 \(z_c-z_a\) 不能解释为外观效应。
 
 ### 1.1 外观效应的行为介导充分性，而非一般充分统计量
 
-一般“存在充分统计量”是空泛的，因为总可以取 \(T(z)=f(z,H)\)。本研究只要求更强、可否定的对象：存在**低维、跨场景共享、测试时可恢复**的表示，能够在典型组中解释给定外观族诱发的过半行为差异。
+一般“存在充分统计量”是空泛的，因为总可以取 \(T(z)=f(z,H)\)。本研究不把“重建任意输入下的完整
+planner 输出”作为必要条件，而要求一个更窄、可否定的对象：存在**低通道秩、跨场景共享、测试时可恢复**
+的表示，能够在典型组中解释给定外观族诱发的过半可 patch 行为差异。
 
-若存在低维 \(T_\ell(z^\ell)\) 与 \(q_\ell\) 使
+下面的完整因子分解是一个足够但非必要的强条件。若存在低维 \(T_\ell(z^\ell)\) 与 \(q_\ell\) 使
 
 \[
 f_{>\ell}(z^\ell,H)=q_\ell(T_\ell(z^\ell),H)
 \]
 
-在研究域内近似成立，并且 \(T_\ell\) 能在 group-held-out 场景中由测试时证据恢复，才称为候选介导表示。统计版本
+在研究域内近似成立，并且 \(T_\ell\) 能在 group-held-out 场景中由测试时证据恢复，则它当然是候选介导
+表示；但 AORTA 的主实验只检验更弱的**配对外观效应介导**：低秩干预能否恢复 full same-scene patch
+所定义的有限行为差异。统计版本
 
 \[
 I(O;X\mid T_\ell,H)=0.
 \]
 
-只提供背景约束，不能独立构成贡献。稳定但常数的表示满足外观不变，却不满足任务需要；因此 feature drift 不是主要优化对象。
+只提供背景约束，不能独立构成贡献，也不是 R006V0 的经验 estimand。稳定但常数的表示满足外观不变，
+却不满足任务需要；因此 feature drift 不是主要优化对象。
 
 ### 1.2 决策等价类
 
@@ -79,23 +85,30 @@ AORTA 需要恢复的是等价类中影响行为的坐标，而不是 clean feat
 J_\ell(z,H)=\frac{\partial f_{>\ell}}{\partial z}\bigg|_{z,H}.
 \]
 
-用任务输出度量 \(W\succeq0\) 定义 pullback metric
+用任务输出度量 \(W\succeq0\) 定义位置相关的 pullback metric
 
 \[
-G_\ell(z_c,H)=J_\ell^\top WJ_\ell.
+G_\ell(z,H)=J_\ell(z,H)^\top WJ_\ell(z,H).
 \]
 
-外观漂移 \(\delta z=z_a-z_c\) 的一阶任务影响为
+运行时待修复漂移 \(\delta=z_c-z_a\) 在 shifted 起点的一阶任务影响为
 
 \[
-D_{task}^2(\delta z)=\delta z^\top G_\ell\delta z.
+D_{task,a}^2(\delta)=\delta^\top G_\ell(z_a,H)\delta.
 \]
 
-若 Hessian 算子范数在邻域内不超过 \(M\)，则对局部增量 \(v\)
+记 \(\|y\|_W=\sqrt{y^\top Wy}\)。当 \(W\) 奇异时这是半范数。若在所研究邻域内
 
 \[
-\|f(z+v)-f(z)-J_\ell(z,H)v\|
-\leq \frac{M}{2}\|v\|^2.
+\|J_\ell(z_1,H)-J_\ell(z_2,H)\|_{2\to W}
+\leq L_J\|z_1-z_2\|_2,
+\]
+
+其中 \(\|A\|_{2\to W}=\sup_{\|v\|_2=1}\|Av\|_W\)，则对局部增量 \(v\)
+
+\[
+\|f(z+v)-f(z)-J_\ell(z,H)v\|_W
+\leq \frac{L_J}{2}\|v\|_2^2.
 \]
 
 因此：
@@ -106,38 +119,62 @@ D_{task}^2(\delta z)=\delta z^\top G_\ell\delta z.
 
 ### 2.1 由 task-weighted appearance drift 直接定义低秩基
 
-对第 \(i\) 个 source clean/shift pair，定义
+对第 \(i\) 个 source clean/shift pair，令
 
 \[
-\delta_i=z_{c,i}-z_{a,i},\qquad P_B=BB^\top,\qquad B^\top B=I_r.
+\Delta Z_i=Z_{c,i}-Z_{a,i}\in\mathbb R^{P\times C}.
 \]
 
-固定秩 \(r\) 的共享基直接由
+固定行优先向量化 \(\operatorname{rvec}\)，使 \(\delta_i=\operatorname{rvec}(\Delta Z_i)\)。令
+\(S_\ell\in\{0,1\}^{P\times P_{repair}}\) 为保序 site selector，满足
+\(S_\ell^\top S_\ell=I\) 与 \(M_\ell=S_\ell S_\ell^\top\)。对共享通道基
+\(B\in\mathbb R^{C\times r}\)、\(B^\top B=I_r\)，定义
+
+\[
+\mathcal B_{S,B}=S_\ell\otimes B,
+\qquad
+\Pi_{M,B}=\mathcal B_{S,B}\mathcal B_{S,B}^\top
+=M_\ell\otimes BB^\top.
+\]
+
+于是对任意 site coefficient field \(A\in\mathbb R^{P_{repair}\times r}\)，
+
+\[
+\operatorname{rvec}(S_\ell AB^\top)=\mathcal B_{S,B}\operatorname{rvec}(A),
+\]
+
+且 \(\Pi_{M,B}\delta_i=\operatorname{rvec}(M_\ell\Delta Z_iBB^\top)\)。固定通道秩 \(r\) 的共享基由
 
 \[
 \boxed{
 B_r^*=\arg\min_{B^\top B=I_r}
-\mathbb E_i\left[\|J_{a,i}(I-P_B)\delta_i\|_W^2\right],
+\mathbb E_i\left[
+\|J_{a,i}(I-\Pi_{M,B})\delta_i\|_W^2
+\right],
 \qquad
 J_{a,i}=J_\ell(z_{a,i},H_i)
 }
 \]
 
-定义。它最小化“投影后仍未覆盖的 planner-sensitive 外观效应”，同时排除只敏感但未受外观扰动、或受扰动但位于任务 null space 的方向。\(W\) 是结果可见前冻结的输出度量：回归 planner 主分析使用物理单位归一化的轨迹位置度量，yaw/heading 为独立次指标；不得用 official outcome 反向选择 \(W\)。实现使用 JVP/VJP 或随机低秩算子，不显式构造完整 Jacobian。
+定义。它最小化“投影后仍未覆盖的 planner-sensitive 外观效应”，同时排除只敏感但未受外观扰动、
+或受扰动但位于任务 null space 的方向。\(W\) 是结果可见前冻结的输出度量：回归 planner 主分析使用
+物理单位归一化的轨迹位置度量，yaw/heading 为独立次指标；不得用 official outcome 反向选择 \(W\)。
+实现使用 JVP/VJP，不显式构造完整 Jacobian。
 
 这里必须在 shifted 点求导，因为运行时修复从 \(z_a\) 出发。clean 点 Jacobian 可以作为稳定性诊断，但不得
 替代正式目标；代码、缓存、求解器和论文公式统一使用 \(J_a\)。
 
-对一般接口 \(Z\in\mathbb R^{P\times C}\)，主架构不学习混合任意sites的巨大基，而使用保持接口
-拓扑的通道子空间
+主架构不学习混合任意 sites 的巨大基，而使用保持接口拓扑的共享通道子空间
 
 \[
 \mathcal P_B^\ell[\Delta Z]=M_\ell\Delta ZBB^\top,
 \qquad B\in\mathbb R^{C\times r}.
 \]
 
-reader 预测site系数 \(A\in\mathbb R^{P_{repair}\times r}\)，残差为 \(AB^\top\)。这样rank描述通道
-机制复杂度，site语义由真实planner接口保持。对LTF C3，64个8×8 BEV memory sites可修复，第65个
+reader 预测 site 系数 \(A\in\mathbb R^{P_{repair}\times r}\)，嵌入接口后的残差为
+\(S_\ell AB^\top\)。因此 \(r\) 是**共享通道秩**，不是整个干预只有 \(r\) 个自由度；系数场仍有
+\(P_{repair}r\) 个标量自由度，而修复矩阵的通道秩至多为 \(r\)。site 语义由真实 planner 接口保持。
+对LTF C3，64个8×8 BEV memory sites可修复，第65个
 non-image status site严格冻结；对C4，\(P_{repair}=1\)且其语义是trajectory query，不得称为空间位置。
 具体地，\(M_{C3}=\operatorname{diag}(\mathbf1_{64},0)\)，\(M_{C4}=[1]\)。因此
 
@@ -148,14 +185,16 @@ non-image status site严格冻结；对C4，\(P_{repair}=1\)且其语义是traje
 \mathcal P_B^{C4}[\Delta Z]=\Delta ZBB^\top.
 \]
 
-正式目标写为
+矩阵形式的残差目标与上面的 \((I-\Pi_{M,B})\delta_i\) 完全相同，从而 tensor 顺序、site mask 与
+status 不可修复约束完全显式。
 
-\[
-\mathbb E_i\left\|J_{a,i}\operatorname{vec}\!\left(
-\Delta Z_i-\mathcal P_B^\ell[\Delta Z_i]\right)\right\|_W^2,
-\]
+该目标只依赖投影子空间：对任意 \(Q\in O(r)\)，\(B\) 与 \(BQ\) 给出同一
+\(\Pi_{M,B}\)。因此可识别对象是 \(\operatorname{span}(B)\) 或投影矩阵，而不是单根 basis vector 的符号、
+顺序或语义。跨重启/跨折稳定性必须用 projector distance 或 principal angles 比较；未来 reader 的系数监督
+只能在部署时冻结的确定性 basis gauge 内解释，不能把某一列系数赋予跨 gauge 的自然语义。
 
-从而tensor顺序、site mask与status不可修复约束完全显式。
+最后，tail 输出维度有限只说明**每个样本**的 Jacobian 行空间秩有上界；它不推出不同场景、不同 sites
+存在同一个低秩通道子空间。后者是 R006V0 明确要否证或支持的经验假设，而不是线性代数恒等式。
 
 ### 2.2 冻结求解器
 
@@ -177,11 +216,13 @@ non-image status site严格冻结；对C4，\(P_{repair}=1\)且其语义是traje
 
 \[
 \kappa_i(B)=1-
-\frac{\|J_{a,i}(I-P_B)\delta_i\|_W^2}
+\frac{\|J_{a,i}(I-\Pi_{M,B})\delta_i\|_W^2}
 {\|J_{a,i}\delta_i\|_W^2+\epsilon}.
 \]
 
 必须报告 rank–coverage 曲线、组分布、最差组以及转弯/路口/高曲率分层。若共享低秩基只覆盖常见场景而遗漏关键组，则停止全局 CPTR；不得事后增大 rank。
+有限 source groups 上通过该门只支持登记采样总体中的经验共享性；group bootstrap 的外推单位是 recording
+group，不构成对任意道路、天气或 planner 的分布无关泛化定理。
 
 ### 2.3 从局部 Jacobian 到有限外观干预
 
@@ -193,17 +234,30 @@ f(z_c)-f(z_a)=\int_0^1J_\ell(z_a+t\delta,H)\,\delta\,dt,
 \]
 
 因此低秩 Jacobian coverage 只描述路径起点处的一阶可覆盖性，不等于有限位移已经被修复。令
-\(q=\widetilde B\widehat a\) 为实际修复量。若路径邻域内 Jacobian 是 \(M\)-Lipschitz，则
+\(a^*=\mathcal B_{S,B}^\top\delta\)、\(q=\mathcal B_{S,B}\widehat a\) 为目标投影系数与实际修复量。
+若包含 \(z_a\)、\(z_a+q\) 与 \(z_c\) 的星形路径邻域内，
+Jacobian 满足 2 节定义的 \(L_J\)-Lipschitz 条件，则
 
 \[
 \boxed{
 \begin{aligned}
 \|f(z_a+q)-f(z_c)\|_W
-\leq{}&\|J_a\widetilde B(\widehat a-a^*)\|_W\\
-&+\|J_a(I-\widetilde P_B)\delta\|_W\\
-&+\frac{M}{2}\bigl(\|q\|^2+\|\delta\|^2\bigr).
+\leq{}&\|J_a\mathcal B_{S,B}(\widehat a-a^*)\|_W\\
+&+\|J_a(I-\Pi_{M,B})\delta\|_W\\
+&+\frac{L_J}{2}\bigl(\|q\|_2^2+\|\delta\|_2^2\bigr).
 \end{aligned}}
 \]
+
+证明：令
+\(r(v)=f(z_a+v)-f(z_a)-J_av\)。由 Jacobian 的诱导范数 Lipschitz 条件与路径积分，
+\(\|r(v)\|_W\le L_J\|v\|_2^2/2\)。又
+
+\[
+f(z_a+q)-f(z_c)=J_a(q-\delta)+r(q)-r(\delta),
+\]
+
+并且
+\(q-\delta=\mathcal B_{S,B}(\widehat a-a^*)-(I-\Pi_{M,B})\delta\)。对三项使用三角不等式即得。
 
 前两项分别对应 reader 误差与低秩基未覆盖误差，第三项是从局部线性算子走到有限干预的非线性账本。
 所以 R006V0 必须同时报告 held-out Jacobian coverage 与真实冻结 tail 上的 patch restoration；任一单独成立
@@ -286,39 +340,47 @@ T_\ell(z_c(s_1))\neq T_\ell(z_c(s_2)),
 \leq L(\varepsilon_D+\varepsilon_R)+2\varepsilon_F.
 \]
 
+证明：分别对 \(\widehat z_a\) 与 \(z_c\) 使用 A1，并以三角不等式分离两个 residual；再由 A2 得到
+\(L\|T_\ell(\widehat z_a)-T_\ell(z_c)\|\)，最后插入 \(\widehat T_a\) 并使用 A3、A4。
+
 该界只控制模型行为相对 clean 的偏差；clean 本身错误时不保证效用改善或安全。
 
 ### 命题 3：方法特有的误差分解
 
-对空间接口令
+沿用 2.1 节的 row-vectorization 与 site selector，令
 
 \[
-\widetilde B=I_P\otimes B_r^*,\qquad
-\widetilde P_B=\widetilde B\widetilde B^\top,
+\mathcal B^*=S_\ell\otimes B_r^*,\qquad
+\Pi^*=M_\ell\otimes B_r^*B_r^{*\top}.
 \]
 
 且 \(\Delta Z_i=Z_{c,i}-Z_{a,i}\)。真实的逐位置系数场及其向量化形式为
 
 \[
-A_i^*=\Delta Z_iB_r^*,\qquad a_i^*=\operatorname{vec}(A_i^*).
+A_i^*=S_\ell^\top\Delta Z_iB_r^*,\qquad
+a_i^*=\operatorname{rvec}(A_i^*).
 \]
 
-修复器预测 \(\widehat A_i\)，令 \(\widehat a_i=\operatorname{vec}(\widehat A_i)\) 以及
+修复器预测 \(\widehat A_i\)，令 \(\widehat a_i=\operatorname{rvec}(\widehat A_i)\)、
+\(\delta_i=\operatorname{rvec}(\Delta Z_i)\) 以及
 
 \[
-\widehat z_i=z_{a,i}+\widetilde B\widehat a_i.
+\widehat z_i=z_{a,i}+\mathcal B^*\widehat a_i.
 \]
 
 则相对 clean 的向量化表示误差为
 
 \[
 e_i=\widehat z_i-z_{c,i}
-=\widetilde B(\widehat a_i-a_i^*)-(I-\widetilde P_B)\delta_i.
+=\mathcal B^*(\widehat a_i-a_i^*)-(I-\Pi^*)\delta_i.
 \]
 
-定义 \(\|v\|_W=\sqrt{v^\top Wv}\)；当 \(W\succeq0\) 奇异时它是半范数。行为误差使用2.3节
-以 shifted 点 \(J_{a,i}\) 为起点的有限干预界：reader误差、低秩基未覆盖误差，以及
-\(M_i(\|q_i\|^2+\|\delta_i\|^2)/2\) 的非线性余项。这三个可测对象才是 CPTR 的直接理论来源；
+该等式直接来自
+\(\delta_i=\Pi^*\delta_i+(I-\Pi^*)\delta_i\) 与
+\(\Pi^*\delta_i=\mathcal B^*a_i^*\)，因此在固定 vectorization 与 selector 下是精确恒等式，而非近似。
+
+行为误差使用2.3节以 shifted 点 \(J_{a,i}\) 为起点的有限干预界：reader误差、低秩基未覆盖误差，以及
+\(L_{J,i}(\|q_i\|_2^2+\|\delta_i\|_2^2)/2\) 的非线性余项。这三个可测对象才是 CPTR 的直接理论来源；
 不得把起点局部 coverage 写成有限扰动的全局保证。
 
 对候选打分 planner，若 clean top-1 margin 为 \(\gamma\)，且修复后
@@ -342,7 +404,7 @@ shifted RGB -----------------> frozen native encoder -> z_a^ell ----+----> froze
                                                                     |
               source-derived, intervention-qualified basis B_l <---+
                                                                     |
-                                     Z_hat_a = Z_a + A_theta B_r^T
+                                     Z_hat_a = Z_a + S_l A_theta B_r^T
 ```
 
 ### 5.2 冻结与可训练边界
@@ -363,7 +425,7 @@ uncertainty/abstention head，且仅在增量可恢复性失败证据出现后�
 source-only clean/controlled-appearance pair 上：
 
 \[
-\widehat Z_a=Z_a+A_\theta(D_a,Z_a,H)B_r^{*\top}.
+\widehat Z_a=Z_a+S_\ell A_\theta(D_a,Z_a,H)B_r^{*\top}.
 \]
 
 主损失为冻结 planner 的 functional restoration：
@@ -376,7 +438,7 @@ source-only clean/controlled-appearance pair 上：
 
 \[
 \mathcal L=\mathcal L_{func}
-+\lambda_T\|\widehat A-(Z_c-Z_a)B_r^*\|_F^2
++\lambda_T\|\widehat A-S_\ell^\top(Z_c-Z_a)B_r^*\|_F^2
 +\lambda_E\|\widehat A\|_F^2
 +\lambda_{id}\|A_\theta(D_c,Z_c,H)\|_F^2.
 \]
@@ -385,6 +447,9 @@ source-only clean/controlled-appearance pair 上：
 - 投影项：只对资格化 task subspace 提供 source supervision；
 - residual-energy 项：在资格化子空间内限制不必要的干预，但不声称得到全局最小范数解；
 - clean identity：直接约束 no-harm。
+
+系数损失只在冻结的 deterministic basis gauge 内定义；方法与行为主张依赖的是
+\(S_\ell\widehat A B_r^{*\top}\) 和 frozen-tail 输出，而不是某一列 basis coefficient 的独立语义。
 
 权重必须在 source selection split 预冻结；不可根据 NavDream 调整。
 

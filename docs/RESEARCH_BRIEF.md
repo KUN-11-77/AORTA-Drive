@@ -1,5 +1,13 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 Best-Paper理论审查：`CONDITIONALLY_COHERENT__NO_REDESIGN__EMPIRICAL_CORE_UNPROVEN`。**
+> 三轮拒稿视角审查确认Visual-First主链无需重构，但修正了site mask的Kronecker表达、basis旋转
+> 不可识别性、shared-channel-rank含义、\(W\)-半范数下的Jacobian Lipschitz条件，并明确低维输出不
+> 推出跨场景共享通道子空间。修订只澄清数学与主张边界，不改变正在运行的R006V0数据、层、rank、
+> 阈值、求解器或裁决。当前理论达到“可被正式证伪”的条件严谨度；低秩介导、DINO可恢复、CPTR相对
+> matched baselines的优势及NavDream/行为/时延仍全部未证明。详见
+> `docs/AORTA_BEST_PAPER_THEORY_REVIEW_20261026.md`。
+
 > **2026-10-26 R006V0C formal cache：`MECHANICAL_PASS__42_SHARDS_EXACT_REPLAY__SCIENCE_NOT_STARTED`。**
 > 42 source-fit groups、672 anchors、四种冻结外观的C3/C4缓存已完成；V2 cache audit 265/265 PASS，
 > 与第一次完整运行比较42/42 shard hashes逐组一致、replay audit 65/65 PASS。checkpoint、planner commit、
