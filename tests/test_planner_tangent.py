@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import torch
+import pytest
 
 from aorta_drive.vision.planner_tangent import (
     matrix_free_uncovered_objective,
     orthonormalize,
     projector_distance,
     solve_task_weighted_basis,
+    solve_streaming_matrix_free_basis,
     task_weighted_uncovered_objective,
 )
 
@@ -40,8 +42,14 @@ def test_uncovered_objective_rejects_nonorthogonal_irrelevant_basis() -> None:
     metric = torch.ones(1, 1, dtype=dtype)
     relevant = torch.tensor([[1.0], [0.0], [0.0]], dtype=dtype)
     irrelevant = torch.tensor([[0.0], [1.0], [0.0]], dtype=dtype)
-    assert float(task_weighted_uncovered_objective(deltas, jacobian, metric, relevant)) == 0.0
-    assert float(task_weighted_uncovered_objective(deltas, jacobian, metric, irrelevant)) == 1.0
+    assert (
+        float(task_weighted_uncovered_objective(deltas, jacobian, metric, relevant))
+        == 0.0
+    )
+    assert (
+        float(task_weighted_uncovered_objective(deltas, jacobian, metric, irrelevant))
+        == 1.0
+    )
 
 
 def test_matrix_free_objective_and_gradient_match_dense_oracle() -> None:
@@ -55,9 +63,7 @@ def test_matrix_free_objective_and_gradient_match_dense_oracle() -> None:
     dense_basis = orthonormalize(torch.randn(c, rank, dtype=dtype)).requires_grad_(True)
     free_basis = dense_basis.detach().clone().requires_grad_(True)
 
-    dense = task_weighted_uncovered_objective(
-        deltas, jacobians, metric, dense_basis
-    )
+    dense = task_weighted_uncovered_objective(deltas, jacobians, metric, dense_basis)
     free = matrix_free_uncovered_objective(
         deltas,
         metric,
@@ -67,9 +73,7 @@ def test_matrix_free_objective_and_gradient_match_dense_oracle() -> None:
     dense_gradient = torch.autograd.grad(dense, dense_basis)[0]
     free_gradient = torch.autograd.grad(free, free_basis)[0]
     torch.testing.assert_close(free, dense, rtol=1e-12, atol=1e-12)
-    torch.testing.assert_close(
-        free_gradient, dense_gradient, rtol=1e-12, atol=1e-12
-    )
+    torch.testing.assert_close(free_gradient, dense_gradient, rtol=1e-12, atol=1e-12)
 
 
 def test_autograd_jvp_preserves_basis_gradient_through_tangent() -> None:
@@ -80,9 +84,7 @@ def test_autograd_jvp_preserves_basis_gradient_through_tangent() -> None:
     delta = torch.randn(6, dtype=dtype)
     basis = orthonormalize(torch.randn(6, 2, dtype=dtype)).requires_grad_(True)
     tangent = delta - (delta @ basis) @ basis.T
-    _, product = torch.func.jvp(
-        lambda value: operator @ value, (base,), (tangent,)
-    )
+    _, product = torch.func.jvp(lambda value: operator @ value, (base,), (tangent,))
     loss = torch.sum(product * product)
     gradient = torch.autograd.grad(loss, basis)[0]
     assert torch.isfinite(gradient).all()
@@ -99,9 +101,7 @@ def test_site_mask_keeps_frozen_site_drift_uncovered() -> None:
     basis = torch.tensor([[1.0], [0.0]], dtype=dtype)
     repair_first_only = torch.tensor([1.0, 0.0], dtype=dtype)
 
-    unmasked = task_weighted_uncovered_objective(
-        deltas, jacobian, metric, basis
-    )
+    unmasked = task_weighted_uncovered_objective(deltas, jacobian, metric, basis)
     masked = task_weighted_uncovered_objective(
         deltas,
         jacobian,
@@ -141,3 +141,41 @@ def test_site_mask_rejects_nonbinary_values() -> None:
         assert "binary" in str(error)
     else:
         raise AssertionError("non-binary site mask must fail closed")
+
+
+def test_streaming_solver_matches_full_dense_objective() -> None:
+    torch.manual_seed(31)
+    dtype = torch.float64
+    n, p, c, m, rank = 19, 3, 7, 4, 2
+    truth = orthonormalize(torch.randn(c, rank, dtype=dtype))
+    deltas = torch.randn(n, p, rank, dtype=dtype) @ truth.T
+    jacobians = torch.randn(n, m, p, c, dtype=dtype)
+    metric = torch.eye(m, dtype=dtype)
+
+    def batch_objective(basis: torch.Tensor, start: int, end: int) -> torch.Tensor:
+        return task_weighted_uncovered_objective(
+            deltas[start:end],
+            jacobians[start:end],
+            metric,
+            basis,
+        )
+
+    streaming = solve_streaming_matrix_free_basis(
+        deltas,
+        rank,
+        batch_objective,
+        batch_size=5,
+        max_steps=300,
+        patience=10,
+    )
+    dense = solve_task_weighted_basis(
+        deltas,
+        jacobians,
+        metric,
+        rank,
+        max_steps=300,
+        patience=10,
+    )
+    assert streaming.objective < 1e-10
+    assert streaming.objective == pytest.approx(dense.objective, abs=1e-10)
+    assert float(projector_distance(streaming.basis, truth)) < 1e-4

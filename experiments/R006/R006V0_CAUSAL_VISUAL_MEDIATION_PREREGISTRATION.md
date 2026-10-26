@@ -1,6 +1,6 @@
 # R006V0：冻结 planner 的低秩外观介导资格实验
 
-状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENTS_1_TO_5_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
+状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENTS_1_TO_6_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
 
 2026-10-26、任何正式科学结果可见前，R006V0J 矩阵自由算子资格将候选层收缩为 C3 planner memory 与
 C4 trajectory query；其余合同不变。见 `R006V0_PROTOCOL_AMENDMENT_1.md`。
@@ -16,6 +16,9 @@ full-patch归一化最小效应门。见 `R006V0_PROTOCOL_AMENDMENT_2.md`。
 
 同日、正式科学结果可见前，协议修正5冻结672个wrong-scene donor的outcome-free唯一映射与逐anchor
 等能量语义。见 `R006V0_PROTOCOL_AMENDMENT_5.md`。
+
+同日、正式科学结果可见前，协议修正6冻结轨迹物理RMS的二次型与流式完整目标精确归约语义；流式实现
+只降低JVP计算图驻留，不改变完整discovery均值目标。见 `R006V0_PROTOCOL_AMENDMENT_6.md`。
 
 ## 1. 唯一问题
 

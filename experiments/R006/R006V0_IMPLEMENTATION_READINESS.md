@@ -13,6 +13,11 @@
 28/28机械审计PASS。正式运行可缓存因果切口及固定下游上下文，再仅对资格化尾部计算JVP；该变化不
 改变估计对象或科学阈值。
 
+正式 discovery 的流式 Stiefel solver 已实现为固定顺序、按样本数加权的完整目标值与梯度精确归约；
+19个非整除合成样本上与稠密参考目标一致并恢复同一真实投影子空间。primary trajectory二次型同时
+冻结为 `W=I_(2T)/T`，即每时间步二维物理位移平方均值。流式 batch size 仍须由无科学endpoint的
+资源benchmark冻结；详见协议修正6。
+
 同日一组×16 anchors 的真实 activation-cache smoke 完成，4种冻结条件、C3/C4 schema、repair mask、
 sealed-role与no-science-metrics共14/14审计PASS。它只资格化缓存管线，不替代42组正式缓存或科学实验。
 详见 `R006V0C_CACHE_SMOKE_RESULTS.md`。
@@ -28,6 +33,7 @@ sealed-role与no-science-metrics共14/14审计PASS。它只资格化缓存管线
 - C3/C4唯一选择顺序：最小合格rank→最差组coverage→组等权mean→固定层顺序；
 - 全部干预强制registered site mask，A4 Haar与A5完整经验协方差等能量控制；
 - 672个A2 wrong-scene donors outcome-free唯一映射与独立审计；
+- primary trajectory metric固定为`W=I_(2T)/T`，流式目标按样本数精确归约；
 - candidate layer、rank 字典、外观算子与科学 arms；
 - 16 个固定 random/noise seeds；
 - group-level bootstrap 统计和 GO/STOP 结构；
