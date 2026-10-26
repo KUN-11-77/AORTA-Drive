@@ -102,6 +102,10 @@ R_{model}=G_{oracle}-G_{model}.
 
 PASS只解锁6-fold×3-seed OOF确认实验的设计，不自动运行，不允许回填R005E3A、C27、DQ或NavDream。
 
+本轮参数化的精确梯度分解、identity仍可能softmax尾部衰减的两候选反例，以及仅在本轮失败后才允许
+预注册的非消失错排梯度surrogate，冻结于
+`experiments/R005/R005E3B_OPTIMIZATION_GEOMETRY_THEORY_NOTE.md`。该说明不改变本轮门槛。
+
 ## 7. 数据角色与停止规则
 
 - 仅使用source-fit outer-train；

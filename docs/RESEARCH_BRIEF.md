@@ -1,5 +1,15 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R005E3B：`FORMAL_SOURCE_ONLY_REALIZABILITY_RUNNING__NO_RESULT_YET`。**
+> 针对R005E3A的all-native collapse，本轮只把相对score从`tanh(r_i-r_0)`改为`r_i-r_0`；网络、
+> 参数、初始化、数据、soft-regret、温度、optimizer、schedule、epoch与step预算均冻结。完整本地测试
+> `495/495`、服务器定向测试`38/38`通过；新实现加载旧checkpoint后，默认tanh路径的index、mask、
+> target与prediction逐数组exact。正式fold0×seed20261025 outer-train primary→replay→audit链运行中，
+> development/calibration/test/NavDream/target封存。预结果理论进一步证明：identity只删除activation
+> Jacobian，仍保留softmax低概率尾部的指数梯度衰减；若本轮失败，只允许预注册具备错排非消失梯度
+> 与hard-regret上界的最小surrogate诊断，不允许直接扩网。见
+> `experiments/R005/R005E3B_OPTIMIZATION_GEOMETRY_THEORY_NOTE.md`。
+
 > **2026-10-26 R005E3A：`MECHANICAL_PASS__FROZEN_MIXED__ALL_NATIVE_COLLAPSE`。**
 > 18 primary +18 same-GPU replay全部闭合，prediction/model-state exact及所有provenance、finite、fold、
 > target、temperature与sealed-role门通过。冻结规则下treatment相对parent regret为`-0.0026503`
