@@ -1,0 +1,67 @@
+experiment_id: R005E2S-donor-sensitivity-v1
+date: 2026-10-26
+status: preregistered_secondary_parent_stop_immutable
+scope: frozen_V2_checkpoint_S2_S3_outer_test_input_interventions
+
+parent:
+  experiment: R005E2B
+  implementation_commit: 0fdee4b464865d76f2efbc62955baa7e8f7ca8f5
+  decision: STOP_CURRENT_VISUAL_MAIN_CLAIM
+  decision_is_immutable: true
+  retraining: prohibited
+
+inputs:
+  source_groups: 42
+  anchors: 672
+  outer_folds: 6
+  seeds: [20261025, 20261026, 20261027]
+  schemes: [S2_disjoint_geometry, S3_hash_random]
+  donor_manifest_sha256: 8c1f4e096dfadb683b7d1a6ddf92c256d32c33cf2ad1b6ecb29760ffbd993ce2
+  development_calibration_test_navdream_target_accessed: false
+
+intervention:
+  model: frozen_parent_V2_correct_checkpoint
+  candidate_history_target_mask: exact_parent_outer_test
+  changed_input_only: donor_visual_identity
+  S2_primary_edges_forbidden: true
+  S3_salt: aorta-r005e2-donor-sensitivity-random-v1
+  dino_distance: per_anchor_RMS_over_all_12x18x32x1280_bfloat16_decoded_values
+
+execution:
+  jobs_per_phase: 6
+  one_job_per_outer_fold: true
+  seeds_per_job: 3
+  phase_order: [primary, replay, mechanical_audit]
+  same_fold_same_gpu_primary_replay: true
+  partial_scientific_metric_reading: prohibited
+  failure_policy: fail_closed_no_automatic_third_run
+
+statistics:
+  independent_unit: recording_group
+  seeds_aggregated_within_group_first: true
+  bootstrap_seed: 20261025
+  bootstrap_replicates: 10000
+  confidence_interval: 0.95
+  metrics: [relation_mse, decision_regret, top_choice_flip, dino_rms_distance]
+
+classification:
+  consistent_decision_binding:
+    - both_S2_and_S3_regret_minus_correct_CI95_lower_strictly_above_zero
+  relation_only_binding:
+    - both_S2_and_S3_relation_MSE_minus_correct_CI95_lower_strictly_above_zero
+    - consistent_decision_binding_is_false
+  donor_sensitive_or_inconsistent:
+    - at_least_one_scheme_supports_relation_or_decision_binding
+    - neither_consistent_decision_binding_nor_relation_only_binding_holds
+  no_consistent_scene_binding:
+    - neither_scheme_supports_relation_or_decision_binding
+  all_classifications_are_secondary_and_cannot_change_parent_stop: true
+
+claim_boundary:
+  - sensitivity_to_two_preconstructed_donor_rules_on_source_fit_OOF_only
+  - not_conditional_mutual_information
+  - not_Differential_Query
+  - not_appearance_robustness
+  - not_NavDream
+  - not_driving_gain_or_safety
+
