@@ -470,6 +470,41 @@ R_{model}=\mathbb E[U^*-U_{\hat i}].
 R005E3A提供了必要反例：100%选择native可显著优于有害parent，却有`G_model=0`且对所有视觉干预
 完全不敏感。因此native fallback既是保守部署机制，也是必须显式排除的学习退化解。
 
+### 13.2 条件期望决策、surrogate 与有限网络必须分层
+
+当前G1的规范对象是
+
+\[
+m_i(X)=\mathbb E[U_i-U_0\mid X],
+\qquad i^*(X)\in\arg\max_i m_i(X).
+\]
+
+因此必须严格区分：
+
+\[
+G_{hindsight}>0
+\not\Rightarrow G_{Bayes}(X)>0
+\not\Rightarrow \exists f\in\mathcal F:G_f>0
+\not\Rightarrow \operatorname{Opt}(f,\theta_0)>0
+\not\Rightarrow G_{heldout}>0.
+\]
+
+R005E3C只读诊断显示，当前soft-regret在初始化处对94.54%的正收益候选给出raise方向，但正/非正机会
+的聚合参数梯度近乎反向，且训练终点正收益score-gradient均值衰减约`8.42e7`倍。这支持softmax低概率
+尾部纠错衰减与梯度冲突的局部描述，不构成单一根因或函数类不可实现性证明。
+
+utility-gap pairwise logistic虽然有逐样本错排梯度与hard-regret上界，但一般多候选随机效用下不保证
+恢复条件期望utility排序；故不得作为Bayes一致性桥。当前最小资格处理是identity输出下的
+native-relative proper mean regression：在平方可积、正且只依赖输入的权重、无限函数类和总体风险
+最优化条件下，其解为`E[U_i-U_0|X]`。对任意预测score，还有逐输入界
+
+\[
+m_{i^*}-m_{\hat i}\le2\|s-m\|_\infty\le2\|s-m\|_2.
+\]
+
+但有限网络、AdamW、有限样本、候选支持变化与外观移位均不在该定理保证内。因此R005E3D即使通过，
+也只解锁组外资格实验，不直接解锁视觉、Differential Query或NavDream。
+
 ## 14. 模块准入五问
 
 任何新公式、模块、loss 或训练阶段必须回答：
@@ -511,6 +546,8 @@ uncertainty、conformal、native fallback、Adapter/LoRA 本身均不是 AORTA �
 - source-fit 冻结合法候选域上的 `U_ctx` 存在可复算 oracle opportunity；
 - R005E2 的目标、输入、对照、统计单位和失败解释具有闭合预注册；
 - Differential Query 有由 common-min、late-fork、ROI/support 失败驱动的结构动机。
+- 当前soft-regret塌缩伴随可复算的概率尾部score-gradient衰减；proper mean是具有总体条件均值依据的
+  最小资格对照，而不是论文创新。
 
 当前不可以说：
 

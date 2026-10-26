@@ -1469,3 +1469,25 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R005/R005E3B_RESULTS.md`；
   `experiments/R005/R005E3B_OPTIMIZATION_GEOMETRY_THEORY_NOTE.md`；
   `experiments/results/r005e3b_compact_6535975/`。
+
+## ADR-0099：撤回pairwise总体一致性桥，以proper conditional mean做单因素资格
+
+- **Decision:** `PAIRWISE_CALIBRATION_CLAIM_RETRACTED__PROPER_MEAN_QUALIFICATION_FROZEN`。
+- **Evidence:** R005E3C在source-fit fold0 outer-train完成只读primary/replay：236/560 anchors存在正机会，
+  623/3235 challengers为正收益；初始化正收益raise方向94.54%，正/非正聚合参数梯度cosine
+  `-0.9999899`、范数比`2.6682`，终点正收益score-gradient均值从`0.1429245`降至
+  `1.6981e-9`。强化机械复算PASS，外部完整性审查WARN，因为初始化梯度张量未归档。
+- **Theory correction:** utility-gap all-pair logistic的逐样本错排性质不能推出一般多候选随机效用下的
+  population Bayes排序一致性；已构造条件均值最优候选与pairwise总体最优排序不一致的反例。因此
+  ADR-0098中“E3C支持后进入pairwise”的后续路线被本ADR取代，但其历史实验事实不改写。
+- **Replacement:** 在完全相同identity scorer、初始化、数据顺序、AdamW、BF16、14 epochs与7,840
+  steps下，只把soft-regret替换为native-relative proper mean MSE。总体平方风险在正、输入可测权重下
+  恢复`E[U_i-U_0|X]`，且条件选择regret由两倍score条件均值误差的无穷范数上界。
+- **Consequence:** R005E3D只用实际`G_model>0`、absolute oracle capture至少10%、有益非native和
+  非native选择四门资格化训练域。PASS只解锁job-level group-heldout预注册；FAIL逐项报告，不声称
+  “函数类不可实现”或自动搜索复杂架构。
+- **Boundary:** proper MSE不是AORTA创新；E3C不是因果根因证明；本ADR不解锁视觉条件增量、
+  Differential Query、外观鲁棒、NavDream、行为或安全。
+- **Artifacts:** `experiments/R005/R005E3C_RESULTS.md`；
+  `experiments/R005/R005E3D_PROPER_MEAN_THEORY_NOTE.md`；
+  `experiments/R005/R005E3D_PROPER_MEAN_PREREGISTRATION.md`。
