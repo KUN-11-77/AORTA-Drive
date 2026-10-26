@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable
+from typing import Callable, Iterable
 
 import torch
 
@@ -55,6 +55,38 @@ def task_weighted_uncovered_objective(
     projected = torch.matmul(torch.matmul(deltas, basis), basis.transpose(0, 1))
     residual = deltas - projected
     output_residual = torch.einsum("nmpc,npc->nm", jacobians, residual)
+    weighted = torch.einsum(
+        "nm,mk,nk->n", output_residual, output_metric, output_residual
+    )
+    return weighted.mean()
+
+
+def matrix_free_uncovered_objective(
+    deltas: torch.Tensor,
+    output_metric: torch.Tensor,
+    basis: torch.Tensor,
+    jvp: Callable[[torch.Tensor], torch.Tensor],
+) -> torch.Tensor:
+    """Evaluate the same objective using only Jacobian-vector products.
+
+    ``jvp`` receives a tangent with shape ``[N, P, C]`` and must return
+    ``J tangent`` with shape ``[N, M]``.  The callable may retain autograd
+    dependence on the tangent; production LTF code uses this property to
+    differentiate the Stiefel objective without materializing a Jacobian.
+    """
+
+    if deltas.ndim != 3 or basis.ndim != 2:
+        raise ValueError("expected deltas [N,P,C] and basis [C,r]")
+    if basis.shape[0] != deltas.shape[-1]:
+        raise ValueError("basis channel dimension disagrees with deltas")
+    projected = torch.matmul(torch.matmul(deltas, basis), basis.transpose(0, 1))
+    output_residual = jvp(deltas - projected)
+    if output_residual.ndim != 2:
+        raise ValueError("jvp must return [N,M]")
+    if output_metric.shape != (output_residual.shape[1], output_residual.shape[1]):
+        raise ValueError("output metric shape disagrees with jvp output")
+    if not torch.isfinite(output_residual).all():
+        raise ValueError("jvp returned non-finite values")
     weighted = torch.einsum(
         "nm,mk,nk->n", output_residual, output_metric, output_residual
     )
@@ -117,6 +149,43 @@ def solve_task_weighted_basis(
 ) -> StiefelSolveResult:
     """Solve the preregistered Stiefel problem using QR-retracted GD."""
 
+    return solve_matrix_free_basis(
+        deltas,
+        rank,
+        lambda basis: task_weighted_uncovered_objective(
+            deltas, jacobians, output_metric, basis
+        ),
+        random_seeds=random_seeds,
+        initial_step=initial_step,
+        armijo_shrink=armijo_shrink,
+        armijo_c=armijo_c,
+        relative_tolerance=relative_tolerance,
+        patience=patience,
+        max_steps=max_steps,
+        max_line_search_steps=max_line_search_steps,
+    )
+
+
+def solve_matrix_free_basis(
+    deltas: torch.Tensor,
+    rank: int,
+    objective_fn: Callable[[torch.Tensor], torch.Tensor],
+    *,
+    random_seeds: Iterable[int] = (20261026, 20261027),
+    initial_step: float = 1.0,
+    armijo_shrink: float = 0.5,
+    armijo_c: float = 1e-4,
+    relative_tolerance: float = 1e-6,
+    patience: int = 20,
+    max_steps: int = 500,
+    max_line_search_steps: int = 50,
+) -> StiefelSolveResult:
+    """Solve a differentiable matrix-free Stiefel objective.
+
+    The initialization and optimization contract is identical to the dense
+    oracle solver.  Only the implementation of ``objective_fn`` changes.
+    """
+
     channels = deltas.shape[-1]
     if rank <= 0 or rank > channels:
         raise ValueError("rank must lie in [1, C]")
@@ -149,9 +218,9 @@ def solve_task_weighted_basis(
         completed_steps = 0
         for step_index in range(max_steps):
             variable = basis.detach().requires_grad_(True)
-            objective = task_weighted_uncovered_objective(
-                deltas, jacobians, output_metric, variable
-            )
+            objective = objective_fn(variable)
+            if objective.ndim != 0 or not torch.isfinite(objective):
+                raise ValueError("objective_fn must return one finite scalar")
             (euclidean,) = torch.autograd.grad(objective, variable)
             symmetric = 0.5 * (
                 variable.transpose(0, 1) @ euclidean
@@ -172,9 +241,7 @@ def solve_task_weighted_basis(
                 candidate = orthonormalize(
                     basis - step_size * riemannian.detach()
                 ).detach()
-                candidate_value = task_weighted_uncovered_objective(
-                    deltas, jacobians, output_metric, candidate
-                ).detach()
+                candidate_value = objective_fn(candidate).detach()
                 if candidate_value <= old_value - armijo_c * step_size * gradient_sq:
                     accepted = True
                     break
@@ -190,11 +257,7 @@ def solve_task_weighted_basis(
             if stale >= patience:
                 break
 
-        final_value = float(
-            task_weighted_uncovered_objective(
-                deltas, jacobians, output_metric, basis
-            ).detach()
-        )
+        final_value = float(objective_fn(basis).detach())
         results.append(
             StiefelSolveResult(
                 basis=basis,
