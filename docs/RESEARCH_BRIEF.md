@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R005E3A实现资格：`QUALIFIED__FORMAL_PRIMARY_RUNNING__NO_RESULT_YET`。**
+> 冻结实现提交`77f37e43862bc352a753d6ee9141c907c9ac926b`已完成本地与服务器各485项全仓库测试；
+> 单fold×seed GPU primary/replay在同卡上实现prediction、final model state、temperature ledger、训练顺序
+> hash、父初始化、selected epoch与7,840 optimizer steps exact。正式18 primary +18 same-GPU replay已在
+> GPU 0–3启动，每卡最多4个独立job。运行中禁止读取loss、prediction或部分科学指标；当前仍无C29结果，
+> development/calibration/test/NavDream/target保持封存。
+
 > **2026-10-26 R005E3A：`PREREGISTERED__LOSS_ONLY_OBJECTIVE_QUALIFICATION__NO_RESULT_YET`。**
 > R005E2S只支持平均relation binding而不支持decision binding，因此下一步严格限制为一个单因素
 > 资格实验：保持`FullContextSetScorer`、正确DINO输入、初始化、outer-train顺序、optimizer、schedule
