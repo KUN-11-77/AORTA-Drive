@@ -36,7 +36,8 @@ p_i(s;T)=
 decision alignment，不支持校准或条件分布主张。
 
 温度不调参。每个outer fold使用outer-train合法候选中严格正的
-\(\max_j u_j-u_i\)的中位数；ties用`1e-12`排除。若不存在正gap，实验INVALID。该规则只使用训练角色
+\(\max_j u_j-u_i\)的中位数；偶数个gap时取两个中央次序统计量的算术平均，ties用`1e-12`排除。
+若不存在正gap，实验INVALID。该规则只使用训练角色
 target，按效用自然尺度确定平滑宽度，不读取outer-test或封存数据。
 
 ## 3. 最小、计算匹配的处理

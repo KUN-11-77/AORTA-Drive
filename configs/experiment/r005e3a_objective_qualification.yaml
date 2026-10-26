@@ -42,6 +42,7 @@ objective:
   formula: max_valid_target_minus_softmax_prediction_over_temperature_dot_target
   temperature:
     rule: median_strictly_positive_best_minus_candidate_gap_on_outer_train
+    even_count_median: arithmetic_mean_of_two_central_order_statistics
     tie_tolerance: 1.0e-12
     tuning_or_search: prohibited
     no_positive_gap: INVALID

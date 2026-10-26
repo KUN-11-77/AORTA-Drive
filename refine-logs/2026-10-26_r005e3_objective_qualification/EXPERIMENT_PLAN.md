@@ -76,6 +76,7 @@ relation信号转化为候选决策收益。
 - exact ties使classification不稳定：主端点使用utility regret，不用top-choice accuracy。
 - soft-regret不校准margin：明确只作objective qualification，不承担最终distribution claim。
 - 温度被事后调优：固定为outer-train正regret-gap中位数，不搜索。
+- 中位数实现歧义：偶数个正gap时固定取两个中央次序统计量的算术平均。
 - parent epoch可能偏向MSE：这是保守的compute-match；失败只否定该冻结预算下的surrogate。
 - donor shift强度不同：分别报告，不按距离筛选或作单调因果解释。
 
