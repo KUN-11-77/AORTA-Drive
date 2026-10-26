@@ -35,7 +35,6 @@ from run_r005e2_fold_job import (
     _write_json,
 )
 from run_r005e3a_fold_job import (
-    _parent_result,
     _temperature_from_outer_train,
     _train_soft_epoch,
 )
@@ -44,6 +43,22 @@ from run_r005e3a_fold_job import (
 OUTER_FOLD = 0
 SEED = 20261025
 TIE_TOLERANCE = 1.0e-12
+
+
+def _objective_parent_result(
+    parent_run_root: Path, *, outer_fold: int, seed: int
+) -> tuple[Path, dict[str, Any]]:
+    root = parent_run_root / "primary" / f"fold{outer_fold}_seed{seed}"
+    result = cast(dict[str, Any], json.loads((root / "result.json").read_text("utf-8")))
+    if (
+        result.get("schema") != "aorta.r005e3a.fold_job.v1"
+        or result.get("status") != "COMPLETED"
+        or result.get("outer_fold") != outer_fold
+        or result.get("seed") != seed
+        or result.get("objective") != "soft_selection_regret"
+    ):
+        raise ValueError("R005E3A parent job contract failed")
+    return root, result
 
 
 def _decision_summary(
@@ -205,7 +220,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         visual_root=args.visual_root,
         mismatch_manifest=mismatch,
     )
-    parent_root, parent = _parent_result(
+    parent_root, parent = _objective_parent_result(
         args.parent_run_root, outer_fold=OUTER_FOLD, seed=SEED
     )
     selected_epoch = int(parent["selected_epoch"])
@@ -216,7 +231,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     )
     device = torch.device("cuda")
     model, initial_hash = _new_model(SEED, device)
-    if initial_hash != parent["refit_initial_state_sha256"]:
+    if initial_hash != parent["initial_model_state_sha256"]:
         raise ValueError("initialization differs from frozen parent")
     model.output_activation = "identity"
     optimizer = torch.optim.AdamW(model.parameters(), lr=3.0e-4, weight_decay=1.0e-4)
@@ -327,7 +342,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             np.asarray(training_order, dtype=np.int64).tobytes()
         ).hexdigest(),
         "initial_model_state_sha256": initial_hash,
-        "parent_refit_initial_state_sha256": parent["refit_initial_state_sha256"],
+        "parent_initial_model_state_sha256": parent["initial_model_state_sha256"],
         "parent_job_result_sha256": sha256_file(parent_root / "result.json"),
         "input_sha256": {
             "bundle_manifest": sha256_file(args.bundle_root / "manifest.json"),

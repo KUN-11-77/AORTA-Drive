@@ -1,10 +1,16 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import numpy as np
 import pytest
 
 from audit_r005e3b_score_realizability import _classify, _summary
-from run_r005e3b_score_realizability import _decision_summary
+from run_r005e3b_score_realizability import (
+    _decision_summary,
+    _objective_parent_result,
+)
 
 
 def test_gain_decomposition_and_absolute_capture() -> None:
@@ -54,3 +60,19 @@ def test_independent_audit_rejects_native_fallback() -> None:
     target = np.asarray([[0.0, 0.2], [0.0, -0.1]], dtype=np.float32)
     mask = np.ones_like(prediction, dtype=np.bool_)
     assert _classify(_summary(prediction, target, mask)) == "FAIL_LINEAR_REALIZABILITY"
+
+
+def test_objective_parent_uses_r005e3a_job_identity(tmp_path: Path) -> None:
+    root = tmp_path / "primary" / "fold0_seed20261025"
+    root.mkdir(parents=True)
+    payload = {
+        "schema": "aorta.r005e3a.fold_job.v1",
+        "status": "COMPLETED",
+        "outer_fold": 0,
+        "seed": 20261025,
+        "objective": "soft_selection_regret",
+    }
+    (root / "result.json").write_text(json.dumps(payload), encoding="utf-8")
+    resolved, loaded = _objective_parent_result(tmp_path, outer_fold=0, seed=20261025)
+    assert resolved == root
+    assert loaded == payload
