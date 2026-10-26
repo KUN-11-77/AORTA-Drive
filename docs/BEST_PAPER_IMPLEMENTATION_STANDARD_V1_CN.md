@@ -44,15 +44,32 @@ p_\theta(Y_B\mid I,B),
 
 而不是把 BEV、SDF、道路场、风险热图、feature invariance 或完整 world reconstruction 当作主目标。
 
-### 1.2 决策商空间
+### 1.2 潜在决策商、观测预测商与外观可辨识性
 
-对固定的 \(B\)，定义
+对固定的 \(B\)，潜在状态按任务分布等价：
 
 \[
-I\equiv_B I'
+S\equiv_B^{\mathrm{lat}}S'
+\iff
+p(Y_B\mid S,B)=p(Y_B\mid S',B).
+\]
+
+有限观测上的预测等价关系为
+
+\[
+I\equiv_B^{\mathrm{obs}} I'
 \iff
 p(Y_B\mid I,B)=p(Y_B\mid I',B).
 \]
+
+任务保持的外观不一定信息保持。只有当任意观测碰撞
+
+\[
+g(S_1,a_1)=g(S_2,a_2)
+\]
+
+都蕴含两个状态属于同一潜在决策商类时，才存在对全部合法外观确定性、外观不变且决策充分的表示。
+否则实现必须允许条件分布变宽并拒判，禁止用强制feature/point consistency制造过度自信。
 
 实现中的 appearance consistency、distributional head、visual controls 和 arbitration 都必须服务于
 这一对象。任何 loss 若不能说明自己约束了上述条件分布的哪一性质，不得进入主方法。

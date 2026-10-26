@@ -1,5 +1,11 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 潜在商—观测信念分离：`THEORY_CORRECTED__NO_PROTOCOL_CHANGE`。**
+> 原“合法外观必处于同一观测商类”表述过强：外观可以保持真实任务效用，却通过遮挡、低照度或伪影
+> 销毁可辨识信息。理论现区分潜在状态的决策商与图像诱导的预测分布，并给出确定性、外观不变且决策
+> 充分表示存在的充要条件：任意合法外观造成的观测碰撞只能发生在同一潜在商类内。条件失败时，正确
+> 机制是后验变宽与拒判，而不是强制point/feature不变。该修正不改变正在运行的source-only R005E3A。
+
 > **2026-10-26 R005E3A预结果失败规则：`FALSIFICATION_LADDER_FROZEN__NO_PROTOCOL_CHANGE`。**
 > 在正式结果可见前，已把失败解释固定为对象/实现、目标一致性、优化与可实现性、组级泛化、视觉绑定、
 > 结构必要性六层。无界soft-regret的总体条件风险等价于最大化候选条件期望utility；当前`tanh`有界score
@@ -61,9 +67,9 @@
 > 不保证正结果、录用或Best Paper奖项。
 
 > **2026-10-25 Best-Paper first-principles blueprint：`DECISION_QUOTIENT_NORTH_STAR__EMPIRICAL_QUALIFICATION_PENDING`。**
-> 顶级论文主线进一步收紧为“视觉观测的决策充分商空间”：对固定候选与因果历史，两个观测仅在
-> 诱导相同native-relative contextual-relation分布时等价。外观鲁棒不再定义为全局feature相同，
-> 而定义为跨外观保持该条件分布。AORTA用完整时空signed candidate difference提出query、全局视觉
+> 顶级论文主线当时收紧为“视觉观测的决策充分商空间”；2026-10-26的理论修正进一步将其分成潜在
+> 决策商与观测预测信念，避免假定任务保持外观必然信息保持。外观鲁棒不再定义为全局feature相同，
+> 而定义为可辨识时保持正确关系、不可辨识时校准地扩大不确定性并拒判。AORTA用完整时空signed candidate difference提出query、全局视觉
 > 回答、同时下界决定是否干预。该构型只保留一个主贡献和一个从属机制；Best Paper资格取决于
 > decision-sufficiency gap、matched differential advantage与跨外观/跨planner行为闭环三项发现。
 > 详见`refine-logs/2026-10-25_aorta_best_paper_blueprint/AORTA_BEST_PAPER_FIRST_PRINCIPLES_BLUEPRINT_V1_CN.md`。

@@ -20,15 +20,14 @@
 
 ## 2. 一句话论文命题
 
-> Robust driving does not require appearance-invariant features; it requires a decision-sufficient quotient of
-> visual observations. AORTA approximates this quotient by querying global visual evidence with the full-horizon
-> signed difference between a challenger and the native plan, and intervenes only when the relative utility is
-> identifiable.
+> Robust driving does not require appearance-invariant features; it requires calibrated inference over a latent
+> decision quotient. AORTA queries global visual evidence with the full-horizon signed difference between a
+> challenger and the native plan, and intervenes only when the relative utility remains identifiable.
 
 中文版本：
 
-> 鲁棒驾驶需要的不是外观不变特征，而是视觉观测的决策充分商空间；AORTA 用 challenger 与 native
-> 的完整时空 signed difference 查询全局视觉证据来逼近该商空间，并只在相对效用可辨识时干预。
+> 鲁棒驾驶需要的不是外观不变特征，而是对潜在决策商空间的校准推断；AORTA 用 challenger 与 native
+> 的完整时空 signed difference 查询全局视觉证据来推断相对效用条件分布，并只在相对效用可辨识时干预。
 
 这是全文唯一主 thesis。
 
@@ -50,24 +49,28 @@ Y_B=(\Delta_{10},\ldots,\Delta_{K0}),
 \Delta_{i0}=U(\tau_i;S,h)-U(\tau_0;S,h).
 \]
 
-### 3.2 决策等价关系
+### 3.2 潜在决策等价与观测预测等价
 
-对固定候选上下文 \(B\)，定义两个视觉观测决策等价：
+对固定候选上下文 \(B\)，先定义物理状态的任务等价：
 
 \[
-I\equiv_B I'
+S\equiv_B^{\mathrm{lat}}S'
+\iff
+P(Y_B\mid S,B)=P(Y_B\mid S',B),
+\qquad Q_B=q_B(S).
+\]
+
+有限视觉观测上的预测等价为：
+
+\[
+I\equiv_B^{\mathrm{obs}} I'
 \iff
 P(Y_B\mid I,B)=P(Y_B\mid I',B).
 \]
 
-商空间
-
-\[
-\mathcal Q_B=\mathcal I/\!\equiv_B
-\]
-
-保留所有影响候选相对效用分布的信息，删除只改变像素、风格或其他无关细节的信息。它是论文应
-追求的理论对象，而不是预设某一 BEV、SDF、risk map 或 backbone feature 为正确表示。
+潜在商变量删除所有不改变候选相对效用分布的物理细节；观测预测商描述图像在当前数据分布下提供的
+Bayes 决策信息。论文不应预设某一 BEV、SDF、risk map 或 backbone feature 为正确表示，也不能假定
+每个外观图像都能确定性恢复潜在商变量。
 
 ### 3.3 决策充分表示
 
@@ -88,22 +91,28 @@ P(Y_B\mid I,B)=P(Y_B\mid T(I,B),B).
 
 ### 3.4 外观鲁棒性的正确含义
 
-对固定物理状态与候选上下文，合法外观干预应满足：
+合法外观首先必须保持真实任务对象 \(q_B(S)\)，但未必保持可辨识信息。忽略观测噪声时，存在映射
 
 \[
-I(S,a_1)\equiv_B I(S,a_2).
+r_B(g(S,a))=q_B(S),\qquad\forall S,a,
 \]
 
-这比要求 \(\Phi(I(S,a_1))=\Phi(I(S,a_2))\) 更弱、更贴近任务。全局 feature invariance 不是充分
-条件：常数表示完全不变却不决策充分；也不是必要条件：不同视觉特征可以诱导相同的目标条件
-分布。
+当且仅当任意外观轨道间的观测碰撞只发生在同一潜在商类内：
+
+\[
+g(S_1,a_1)=g(S_2,a_2)\Rightarrow q_B(S_1)=q_B(S_2).
+\]
+
+这是确定性外观不变、决策充分表示存在的充要条件。若低照度、遮挡或伪影破坏该条件，鲁棒系统应
+扩大后验不确定性并拒绝干预，而不是强迫point prediction相同。全局 feature invariance 仍既非充分
+也非必要：常数表示完全不变却不决策充分；不同视觉特征也可以诱导相同的目标条件分布。
 
 ### 3.5 Best Paper 级洞见候选
 
 如果实验支持，上述对象允许论文提出一个可推广命题：
 
-> 视觉鲁棒性的适当等价关系由下游决策条件分布决定，而不是由像素、特征或完整场景表示的距离
-> 预先规定。
+> 视觉鲁棒性的适当等价关系由潜在决策商与其可辨识性共同决定，而不是由像素、特征或完整场景表示
+> 的距离预先规定；外观销毁信息时，鲁棒性的表现应是校准的不确定性与拒判，而非虚假不变性。
 
 该命题可以迁移到机器人操作、导航、视觉控制和其他候选决策系统，因而比 NAVSIM 专用 reranker
 更有领域影响力。

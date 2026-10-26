@@ -87,26 +87,64 @@ Q_{\pi_{ref}},\quad J(\pi).
 
 任何主张都必须标出自己对应的对象。
 
-### 3.1 Decision Quotient
+### 3.1 潜在决策商与观测预测商
 
-对固定候选上下文 \(B\)，定义两个视觉观测决策等价：
+首先在物理状态上定义真正的任务对象。对固定候选上下文 \(B\)，令
 
 \[
-I\equiv_B I'
+S\equiv_B^{\mathrm{lat}}S'
 \iff
-P(Y_B\mid I,B)=P(Y_B\mid I',B),
+P(Y_B\mid S,B)=P(Y_B\mid S',B),
 \]
 
-其中 \(Y_B\) 是合法候选域上的 native-relative contextual margin 向量。商空间
+并记潜在决策商变量为
 
 \[
-\mathcal Q_B=\mathcal I/\!\equiv_B
+Q_B=q_B(S)=[S]_{\equiv_B^{\mathrm{lat}}}.
 \]
 
-是当前 Best-Paper north star 中的第一性表示对象：它保留影响候选关系条件分布的信息，删除与该
-决策无关的视觉差异。外观鲁棒意味着合法外观干预尽可能停留在同一决策等价类，而不是要求任意
-中间 feature 完全相同。该定义使用标准条件充分性思想；其作为 AORTA 方法主线的价值必须由
-decision-sufficiency gap、matched architecture advantage 和 behavior closure 共同证明。
+它删除所有不改变候选相对效用分布的物理细节。另一方面，有限图像只能诱导对该潜在商变量的信念。
+两个观测在当前数据分布下预测等价，当且仅当
+
+\[
+I\equiv_B^{\mathrm{obs}} I'
+\iff
+P(Y_B\mid I,B)=P(Y_B\mid I',B).
+\]
+
+观测预测商是 Bayes 决策可用的规范对象，但它不应与潜在决策商混同：不同外观可能改变可见信息，
+从而使同一物理状态的两个图像诱导不同宽度的后验。最终网络应逼近
+\(P(Y_B\mid I,B)\) 或等价的决策统计量，并在信息不足时表达不确定性，而不是假设每个图像都能
+确定性恢复 \(Q_B\)。
+
+### 3.2 外观轨道可恢复性的充要条件
+
+先忽略观测噪声。给定合法外观集合 \(\mathcal A\)，存在确定性映射 \(r_B\)，使得
+
+\[
+r_B(g(S,a))=q_B(S),
+\qquad \forall S,\ a\in\mathcal A,
+\]
+
+当且仅当满足碰撞一致性：
+
+\[
+g(S_1,a_1)=g(S_2,a_2)
+\Longrightarrow
+q_B(S_1)=q_B(S_2)
+\]
+
+对所有合法 \((S_1,a_1),(S_2,a_2)\) 成立。
+
+证明：必要性由对同一观测应用 \(r_B\) 立即得到。充分性下，对任意可达观测 \(i\)，从其任一原像
+\((S,a)\) 定义 \(r_B(i)=q_B(S)\)；碰撞一致性保证定义与原像选择无关。证毕。
+
+这个充要条件把两件事严格分开：外观可以是**任务保持的**，即不改变 \(q_B(S)\)；但它不一定是
+**信息保持的**，因为低照度、遮挡或渲染伪影可能让不同潜在商类碰撞到不可区分观测。后者失败时，
+任何确定性“外观不变且决策充分”表示都不存在；正确目标是后验不确定性扩大与拒判，而不是强迫
+feature 或point prediction保持不变。带噪声情形由后续的观测纤维与条件分布处理。该命题固定候选
+上下文 \(B\)；当 planner 的候选供给本身随外观变化时，还必须单独分析 candidate-supply regret，不能
+用选择器的可恢复性结论覆盖它。
 
 ## 4. 视觉价值的第一性检验
 
@@ -143,14 +181,15 @@ X_0=(C,H),\qquad X_1=(C,H,Z).
 \Phi(I^{a_1})\approx\Phi(I^{a_2})
 \]
 
-既非必要也非充分；常数表示可以完美稳定却没有任务信息。AORTA 关心的是条件决策关系：
+既非必要也非充分；常数表示可以完美稳定却没有任务信息。AORTA 关心的是条件决策关系，但先区分
+外观是否保留商变量的可辨识信息。对信息保持的合法外观，定义：
 
 \[
 m_i^{(a)}
 =\mathbb E[\Delta_{i0}\mid I^{(a)},B].
 \]
 
-目标必须同时满足：
+目标应同时满足：
 
 \[
 m_i^{(a_1)}\approx m_i^{(a_2)},
@@ -159,8 +198,10 @@ m_i^{(a)}\approx
 \mathbb E[\Delta_{i0}\mid S,B].
 \]
 
-即“任务信息保留 + 外观条件稳定”。任何 appearance consistency loss 都必须与 task/regret 和
-non-collapse control 同时报告，不能用稳定性掩盖错误预测。
+即“任务信息保留 + 外观条件稳定”。对任务保持但信息破坏的外观，不要求point prediction机械相等；
+要求其条件分布保持校准、区间适当变宽，并在无法辨识margin符号时拒绝覆盖native。任何 appearance
+consistency loss 都必须与 task/regret、uncertainty/coverage、abstention 和 non-collapse control
+同时报告，不能用稳定性掩盖错误预测或过度自信。
 
 ## 6. 可辨识性边界
 
