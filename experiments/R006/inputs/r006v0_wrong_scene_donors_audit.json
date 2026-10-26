@@ -1,0 +1,16 @@
+{
+  "artifact": "R006V0_WRONG_SCENE_DONOR_AUDIT_V1",
+  "status": "PASS",
+  "manifest_sha256_without_self": "16769ffff83dca52c9a2e0ce1ae8cc222a23c29affb03fa96841f0b7557d3b98",
+  "checks": {
+    "status": "PASS",
+    "assignment_count": 672,
+    "recipient_coverage_exact": true,
+    "donors_outer_train_only": true,
+    "same_anchor_index": true,
+    "outcome_free": true
+  },
+  "provenance_exact": true,
+  "scientific_metrics_emitted": false,
+  "development_calibration_test_navdream_target_accessed": false
+}

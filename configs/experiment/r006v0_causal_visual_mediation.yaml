@@ -112,6 +112,14 @@ basis_qualification:
     stop_if_no_unique_qualified_rank: true
     refit_basis_on_all_42_source_groups_after_freeze: true
 controls:
+  wrong_scene:
+    donor_role: same_fold_outer_train_only
+    same_anchor_index: true
+    primary_match: nearest_within_group_normalized_session_position
+    tie_break_salt: aorta-r006v0-wrong-scene-donor-v1
+    patch_semantics: donor_own_clean_minus_same_condition_shift_delta
+    coefficient_energy_match: per_recipient_anchor_frobenius_to_same_scene_patch
+    manifest_sha256: 16769ffff83dca52c9a2e0ce1ae8cc222a23c29affb03fa96841f0b7557d3b98
   random_subspace:
     instances_per_anchor: 16
     seeds: [20261026, 20261027, 20261028, 20261029, 20261030, 20261031, 20261032, 20261033, 20261034, 20261035, 20261036, 20261037, 20261038, 20261039, 20261040, 20261041]

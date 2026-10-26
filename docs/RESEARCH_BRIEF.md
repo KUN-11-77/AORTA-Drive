@@ -1,5 +1,11 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R006V0 controls：`A2_DONOR_MANIFEST_PASS__A4_A5_PRIMITIVES_PASS__SCIENCE_NOT_STARTED`。**
+> 为避免弱对照制造“scene-specific”假象，A2的672个wrong-scene donors已按同anchor index、最近组内
+> 归一化时间位置与固定hash，从各fold outer-train中唯一确定并独立审计PASS；运行时使用donor自身
+> clean−shift delta且逐anchor匹配A1能量。A4 Haar同rank与A5完整经验coefficient-field协方差控制已实现，
+> 全部correction强制C3 status site为零；相关26项测试PASS。仍无介导科学结果。
+
 > **2026-10-26 R006V0 nested protocol：`OUTCOME_FREE_MANIFEST_PASS__SCIENCE_NOT_STARTED`。**
 > 原协议中未闭合的inner组数、hash salt和C3/C4同时合格时的tie-break已在任何正式科学endpoint产生前
 > 冻结：每折7 outer-confirmation、28 discovery、7 selection；split只接收group ID；层/rank依次按

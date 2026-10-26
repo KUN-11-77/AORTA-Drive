@@ -1,6 +1,6 @@
 # R006V0：冻结 planner 的低秩外观介导资格实验
 
-状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENTS_1_TO_4_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
+状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENTS_1_TO_5_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
 
 2026-10-26、任何正式科学结果可见前，R006V0J 矩阵自由算子资格将候选层收缩为 C3 planner memory 与
 C4 trajectory query；其余合同不变。见 `R006V0_PROTOCOL_AMENDMENT_1.md`。
@@ -13,6 +13,9 @@ full-patch归一化最小效应门。见 `R006V0_PROTOCOL_AMENDMENT_2.md`。
 
 同日、正式科学结果可见前，协议修正4把site mask写入全部干预，并冻结A4/A5完整等能量控制的采样
 语义。见 `R006V0_PROTOCOL_AMENDMENT_4.md`。
+
+同日、正式科学结果可见前，协议修正5冻结672个wrong-scene donor的outcome-free唯一映射与逐anchor
+等能量语义。见 `R006V0_PROTOCOL_AMENDMENT_5.md`。
 
 ## 1. 唯一问题
 
@@ -132,7 +135,9 @@ OOF结果评价的是选择程序；全42组重估只生成唯一部署方法，
 - A6：reverse clean-to-shift low-rank patch；
 - A7：dose response，强度 `0, .25, .5, .75, 1`。
 
-wrong-scene donor 只由 outer-train metadata 构造，不使用 RGB 内容、activation、trajectory output 或 label。
+wrong-scene donor只由outer-train metadata构造：同anchor index、最近组内归一化session position，再以
+冻结salt hash决胜；不使用RGB、activation、trajectory output或label。运行时使用donor自身同appearance
+condition的clean-minus-shift delta，并逐recipient anchor匹配A1能量。
 所有correction严格乘注册site mask。A1能量小于等于`1e-12`时A4/A5为零；A1非零但控制原始能量小于
 等于`1e-12`时机械失败且不重抽seed。
 

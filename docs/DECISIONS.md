@@ -1610,3 +1610,17 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Boundary:** 该实现只加强竞争解释，不能使A1自动成为因果机制；最终仍要求A1可靠胜过A2/A4/A5。
 - **Artifacts:** `experiments/R006/R006V0_PROTOCOL_AMENDMENT_4.md`；
   `src/aorta_drive/vision/r006_interventions.py`；`tests/test_r006_interventions.py`。
+
+## ADR-0108：wrong-scene donor只由outer-train时间元数据唯一确定
+
+- **Decision:** `FREEZE_OUTCOME_FREE_WRONG_SCENE_DONOR_MAP`。
+- **Rule:** 同anchor index、最近组内归一化session position、固定salt hash决胜；donor严格来自recipient
+  fold的outer-train且不同group。运行时使用donor自身同appearance的clean-minus-shift delta，并匹配
+  recipient A1能量。
+- **Evidence:** 42组×16 anchors的672个映射全部覆盖，独立role/provenance/self-hash审计PASS；封存角色与
+  科学指标均未访问。
+- **Boundary:** 元数据匹配不能保证道路/交通语义相同，故A2不能单独承担scene-specific结论，仍须联合
+  A4 Haar与A5经验协方差控制。
+- **Artifacts:** `experiments/R006/R006V0_PROTOCOL_AMENDMENT_5.md`；
+  `experiments/R006/inputs/r006v0_wrong_scene_donors.json`；
+  `experiments/R006/inputs/r006v0_wrong_scene_donors_audit.json`。
