@@ -8,7 +8,7 @@
 | T2 | task-weighted rank-\(r\) basis | shifted 点 \(J_a\)；空间共享 channel basis；登记数值求解器 | synthetic dense oracle；nested discovery/selection；rank–coverage | 登记函数类中的数值候选近似最小化未覆盖的一阶任务漂移 | 不声称 Stiefel 非凸问题全局最优 |
 | T3 | 局部到有限干预界 | shifted-clean路径邻域内 Jacobian Lipschitz | coverage 与真实 tail patch restoration 同时报；dose/reverse | 可把误差分成 reader、未覆盖、非线性三项 | coverage 单独不证明有限修复 |
 | T4 | 冻结模型内部低秩介导 | 组外共享性；same-scene patch有效且具scene specificity | R006V0 wrong-scene/random/noise/identity/reverse/dose，42组OOF | 指定planner、层和外观族中的内部行为介导 | 不声称唯一自然机制或真实世界语义因果 |
-| T5 | DINO增量可恢复性 | shifted RGB仍含目标信息；注册空间绑定；匹配函数类可学 | R006V1 correct/mismatch/removed/native-only group-held-out probe | 指定函数类和训练合同下的增量可预测价值 | 不证明理想互信息、严格可识别性或任意OOD恢复 |
+| T5 | DINO增量可恢复性 | shifted RGB仍含目标信息；site-conditioned evidence binding；匹配函数类可学 | R006V1 correct/mismatch/removed/native-only group-held-out probe | 指定函数类和训练合同下的增量可预测价值 | 不证明理想互信息、严格可识别性或任意OOD恢复 |
 | T6 | CPTR功能恢复 | T4、T5成立；reader误差与非线性项受控 | R006V2 coefficient、frozen-tail output、matched adapter/full-feature/random basis | rank-constrained修复优于匹配替代的经验结论 | 不由此推出official utility或安全 |
 | T7 | benchmark效用与泛化 | 冻结方法；评估协议合法；独立外观与planner | R006V3 clean/NavDream/cross-planner/latency/official utility | 指定benchmark上的经验收益和边界 | 不宣称任意分布OOD、闭环安全定理 |
 | T8 | 科学图到快速部署图可迁移 | 全确认集数值容差与离散决策完全一致 | default/math backend equivalence + batch-1端到端时延 | 可在通过门后使用官方快速图部署 | 单anchor数值接近不能证明全数据决策等价 |

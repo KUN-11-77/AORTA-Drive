@@ -26,7 +26,8 @@ B_r^*=\arg\min_{B^TB=I_r}\mathbb E\|J_{a,i}(I-BB^T)\delta_i\|_W^2,
 \widehat Z_a=Z_a+A_\theta(D_a,Z_a,H)B_r^{*T}.
 \]
 
-该对象直接最小化低秩投影未覆盖的 planner-sensitive appearance effect。
+该对象在预注册rank字典中选择最小合格rank，近似最小化低秩投影未覆盖的planner-sensitive appearance
+effect；不声称全局最小、唯一或因果必要。
 
 真实LTF接口语义冻结为：C3是64个8×8 BEV memory tokens加一个不可修复的status token；C4是单个
 trajectory-query token，不宣称空间对应。统一reader以native sites为queries、DINO patches为keys/values

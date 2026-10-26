@@ -1,6 +1,6 @@
 # R006V0 实现资格清单
 
-状态：`R006V0S_PASS__R006V0J_C3_C4_PASS__FORMAL_R006V0_IMPLEMENTATION_IN_PROGRESS`。
+状态：`R006V0S_PASS__R006V0J_C3_C4_PASS__CACHE_SMOKE_PASS__FORMAL_R006V0_IMPLEMENTATION_IN_PROGRESS`。
 
 2026-10-26 更新：synthetic dense-Jacobian oracle 与 2-anchor R006V0S primary/replay 已通过；55 项
 机械审计为 PASS。旧 C1 hook 因位于多轮 fusion 之后而被反例否定，现已冻结为第一次视觉编码输出、
@@ -12,6 +12,10 @@
 随后 C3/C4 tail-only 执行路径完成资格：其输出与完整冻结模型一致，primary/replay逐字节一致，
 28/28机械审计PASS。正式运行可缓存因果切口及固定下游上下文，再仅对资格化尾部计算JVP；该变化不
 改变估计对象或科学阈值。
+
+同日一组×16 anchors 的真实 activation-cache smoke 完成，4种冻结条件、C3/C4 schema、repair mask、
+sealed-role与no-science-metrics共14/14审计PASS。它只资格化缓存管线，不替代42组正式缓存或科学实验。
+详见 `R006V0C_CACHE_SMOKE_RESULTS.md`。
 
 本文件只管理实现来源与机械资格，不改变 R006V0 科学问题、数据、层、rank、控制或裁决阈值。
 
@@ -54,9 +58,10 @@
 2. ~~冻结 checkpoint/source/hook provenance；~~ `PASS`
 3. ~~运行显式 Jacobian synthetic oracle；~~ `PASS`
 4. ~~运行 1–2 anchors 的 identity/full-patch smoke；~~ `PASS`
-5. 用 smoke 的非科学耗时与真实 tensor shape 冻结正式预算；
-6. 重新生成 config/manifest SHA；
-7. 一次性执行 R006V0，不在途中读取部分科学指标。
+5. ~~运行一组真实 activation-cache smoke 并审计 site semantics；~~ `PASS`
+6. 用 smoke 的非科学耗时与真实 tensor shape 冻结正式预算；
+7. 重新生成 config/manifest SHA；
+8. 一次性执行 R006V0，不在途中读取部分科学指标。
 
 当前仍缺完整 activation cache、nested fold 选择器、全部 A0–A7 控制与运行预算 manifest；
 这些完成前，状态保持 `FORMAL_R006V0_IMPLEMENTATION_NOT_READY`。

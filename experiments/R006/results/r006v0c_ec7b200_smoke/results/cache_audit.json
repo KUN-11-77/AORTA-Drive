@@ -1,0 +1,66 @@
+{
+  "artifact": "R006V0_ACTIVATION_CACHE_AUDIT_V1",
+  "status": "PASS",
+  "integrity_scope": "source-fit activation-cache mechanics only",
+  "manifest_sha256": "cda3b113a73c8e868e68e427e282074ad0fe5628343ee7d9b7abaf8ccbfe41c8",
+  "check_count": 14,
+  "failed_check_count": 0,
+  "checks": [
+    {
+      "check": "manifest PASS",
+      "pass": true
+    },
+    {
+      "check": "sealed roles untouched",
+      "pass": true
+    },
+    {
+      "check": "no scientific metrics",
+      "pass": true
+    },
+    {
+      "check": "stage site semantics exact",
+      "pass": true
+    },
+    {
+      "check": "smoke group count positive",
+      "pass": true
+    },
+    {
+      "check": "smoke anchor count",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: exists",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: hash",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: group binding",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: unique group",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: unique file",
+      "pass": true
+    },
+    {
+      "check": "group_01.pt: schema",
+      "pass": true
+    },
+    {
+      "check": "shard count",
+      "pass": true
+    },
+    {
+      "check": "anchor total",
+      "pass": true
+    }
+  ]
+}

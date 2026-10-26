@@ -1574,3 +1574,16 @@ the current open-ended geometry certificate iteration remains STOP.
   或安全收益。
 - **Consequence:** 正式实现先构建source-fit activation cache，再运行冻结nested-OOF与A0–A7；不得用
   运行效率理由改变fold、rank、控制或裁决阈值。
+
+## ADR-0105：真实 activation-cache smoke 只解除缓存实现风险
+
+- **Decision:** `CACHE_SMOKE_PASS__FORMAL_SCIENCE_STILL_BLOCKED`。
+- **Evidence:** 真实冻结LTF上一组×16 anchors、4种受控外观完成C3/C4缓存；runner exit 0，manifest
+  PASS，14/14审计PASS。C3 `[1,65,256]`只允许前64个BEV memory sites修复并冻结status site；C4
+  `[1,1,256]`为单trajectory-query site。sealed roles未访问，未产生科学指标。
+- **Failure record:** 首次尝试在数值缓存后因跨用户checkout的Git ownership provenance检查fail-closed；
+  只修复只读HEAD解析并以新目录重跑，未修改数据、checkpoint、外观、schema或科学协议。
+- **Consequence:** 缓存管线小规模资格完成，但42组正式缓存、nested-OOF solver、A0–A7 controls、预算
+  与最终manifest仍是阻塞项。禁止把smoke写成低秩介导、DINO可恢复、CPTR或OOD/行为证据。
+- **Artifacts:** `experiments/R006/R006V0C_CACHE_SMOKE_RESULTS.md`；
+  `experiments/R006/results/r006v0c_ec7b200_smoke/results/cache_audit.json`。

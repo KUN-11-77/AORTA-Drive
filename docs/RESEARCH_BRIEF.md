@@ -1,5 +1,11 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R006V0C：`ACTIVATION_CACHE_SMOKE_PASS__FORMAL_R006V0_NOT_READY__NO_SCIENCE_CLAIM`。**
+> 真实冻结LTF上一组×16 anchors、4种受控外观的C3/C4 activation cache已完成；runner exit 0，
+> 14/14机械审计PASS，C3的64个BEV sites与冻结status site、C4单trajectory-query site语义一致，
+> sealed roles未访问且未产生科学指标。该结果只资格化小规模缓存管线；42组正式缓存、nested-OOF
+> basis、A0–A7与低秩介导仍未执行。下一步先冻结完整solver与预算，再一次性运行正式R006V0。
+
 > **2026-10-26 R006V0J：`C3_C4_OPERATOR_PASS__C1_C2_EXCLUDED__NO_SCIENCE_CLAIM`。**
 > 项目自有LTF运行接口与矩阵自由JVP已实现。真实冻结LTF上，C3 planner-memory与C4 trajectory-query
 > 的JVP/VJP伴随误差为`1.86e-7/4.34e-7`，basis gradient非零，primary/replay逐字节一致，25/25审计
@@ -20,7 +26,7 @@
 > 当前主问题改为：对冻结原生planner，哪些外观漂移方向真正介导行为变化、这些planner-sensitive任务统计
 > 是否能由DINO证据提供组外增量可恢复信息、以及能否只在该低秩切空间中做rank-constrained repair。
 > 理论链固定为“任务敏感性→组外因果介导→增量可恢复性→条件行为保持”，候选方法为
-> Causal Planner-Tangent Repair。三轮独立方法复核从`6.8→7.7→9.0`，最终为`DESIGN_READY`；这只表示
+> Causal Planner-Tangent Repair。多轮独立方法复核最终为`8.9/10 DESIGN_READY`；这只表示
 > 理论和预注册有资格进入实现，不是正向方法证据。R005E3E0保留但转为`HOLD_VISUAL_FIRST`；下一唯一执行门
 > 是R006V0S实现资格与零训练smoke，随后才是R006V0 activation-intervention。R006V0通过前禁止训练
 > repairer、读取NavDream或把DINO稳定性表述为决策/安全收益。详见

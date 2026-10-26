@@ -58,16 +58,27 @@ statistics:
   bootstrap_seed: 20261026
   confidence_interval_type: percentile_paired_group_bootstrap
   minimum_valid_resample_fraction: 1.0
+minimum_scientific_effect:
+  estimand: group_aggregated_full_patch_normalized_restoration_ratio
+  epsilon: 0.000000000001
+  zero_denominator_value: 0.0
+  denominator_gate_applied_before_epsilon: true
+  clipping: none_allow_below_zero_and_above_one
+  statistic: median_over_42_outer_confirmation_groups
+  pass: bootstrap_95ci_lower_strictly_gt_0p50
 basis_qualification:
   objective: minimize_shifted_point_jacobian_uncovered_task_weighted_appearance_drift
   jacobian_evaluation_point: shifted_activation
-  spatial_structure: identity_over_spatial_positions_times_channel_projector
+  spatial_structure: registered_repairable_site_mask_times_channel_projector
   primary_output_metric: trajectory_xy_physical_rms
   secondary_output_metrics: [yaw_drift, heading_drift]
   selection_mean_coverage_min: 0.90
   selection_worst_group_mean_coverage_min: 0.50
   coverage_epsilon: 0.000000000001
   choose_smallest_qualifying_rank: true
+  projection_operators:
+    planner_memory: masked_channel_projection_first_64_sites_status_site_zero
+    trajectory_query_secondary: single_site_channel_projection
   solver:
     manifold: stiefel_channel_basis
     initializations: [discovery_channel_drift_pca, random_20261026, random_20261027]
@@ -123,6 +134,7 @@ decision:
     - same_scene_minus_random_subspace_ci_lower_gt_zero
     - same_scene_minus_noise_ci_lower_gt_zero
     - median_restoration_bootstrap_ci_lower_gt_zero
+    - median_full_patch_normalized_restoration_ratio_ci_lower_gt_0p50
     - positive_restoration_groups_at_least_22
     - layer_and_rank_stability_gate
     - reverse_damage_group_median_bootstrap_ci_lower_gt_zero

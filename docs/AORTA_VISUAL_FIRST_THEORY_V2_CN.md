@@ -19,7 +19,7 @@ Constant Eye 已经给出一个重要事实：冻结 DINOv3-H+ 并为不同 plan
 方向影响行为，而大量 feature drift 可能位于决策等价类内。AORTA 因此先用组外双向 interchange intervention 找出真正介导
 行为的低秩 planner-tangent subspace，再检验冻结 DINO 是否能从受扰图像恢复这些坐标；只有两门都通过，
 才训练一个只在该子空间中工作的 Causal Planner-Tangent Repair。这样既不重训原 planner，也不追求完整
-场景重建，而是修复“改变决策所必需、且视觉确实可恢复”的最小证据。若低秩介导、视觉增量或 matched
+场景重建，而是在预注册rank字典中选择最小合格rank，只修复“影响决策且视觉确实可恢复”的低秩证据。若低秩介导、视觉增量或 matched
 adapter 优势任一失败，方法主张即停止。
 
 一句话：**不是让视觉特征处处不变，而是识别并修复外观扰动中真正改变冻结 planner 决策的低秩因果方向。**
@@ -43,7 +43,7 @@ o=f_{>\ell}(z^\ell,H),
 
 ### 1.1 外观效应的行为介导充分性，而非一般充分统计量
 
-一般“存在充分统计量”是空泛的，因为总可以取 \(T(z)=f(z,H)\)。本研究只要求更强、可否定的对象：存在**低维、跨场景共享、测试时可恢复**的表示，能够解释给定外观族诱发的大部分行为差异。
+一般“存在充分统计量”是空泛的，因为总可以取 \(T(z)=f(z,H)\)。本研究只要求更强、可否定的对象：存在**低维、跨场景共享、测试时可恢复**的表示，能够在典型组中解释给定外观族诱发的过半行为差异。
 
 若存在低维 \(T_\ell(z^\ell)\) 与 \(q_\ell\) 使
 
@@ -132,12 +132,30 @@ J_{a,i}=J_\ell(z_{a,i},H_i)
 拓扑的通道子空间
 
 \[
-\mathcal P_B=I_{P_{repair}}\otimes BB^\top,\qquad B\in\mathbb R^{C\times r}.
+\mathcal P_B^\ell[\Delta Z]=M_\ell\Delta ZBB^\top,
+\qquad B\in\mathbb R^{C\times r}.
 \]
 
 reader 预测site系数 \(A\in\mathbb R^{P_{repair}\times r}\)，残差为 \(AB^\top\)。这样rank描述通道
 机制复杂度，site语义由真实planner接口保持。对LTF C3，64个8×8 BEV memory sites可修复，第65个
 non-image status site严格冻结；对C4，\(P_{repair}=1\)且其语义是trajectory query，不得称为空间位置。
+具体地，\(M_{C3}=\operatorname{diag}(\mathbf1_{64},0)\)，\(M_{C4}=[1]\)。因此
+
+\[
+\mathcal P_B^{C3}[\Delta Z]
+=\begin{bmatrix}\Delta Z_{1:64}BB^\top\\0_{1\times C}\end{bmatrix},
+\qquad
+\mathcal P_B^{C4}[\Delta Z]=\Delta ZBB^\top.
+\]
+
+正式目标写为
+
+\[
+\mathbb E_i\left\|J_{a,i}\operatorname{vec}\!\left(
+\Delta Z_i-\mathcal P_B^\ell[\Delta Z_i]\right)\right\|_W^2,
+\]
+
+从而tensor顺序、site mask与status不可修复约束完全显式。
 
 ### 2.2 冻结求解器
 
@@ -218,6 +236,17 @@ z_{patch}^{\ell}=(I-P)z_a^{\ell}+Pz_c^{\ell}.
 6. reverse clean-to-shift patch。
 
 full clean patch 只证明 hook 与 tail 的机械上界，在确定性分解下本身接近构造性结果。科学证据必须来自低秩 patch 在严格 group-held-out 数据上的恢复、双向干预、剂量—响应，以及相对这些对照的差异。它仍只支持模型内部因果介导，不等价于真实世界语义或安全因果。
+
+为排除“极小但统计显著”，对每组定义full-patch归一化有限恢复比例
+
+\[
+\rho_g=
+\frac{\sum_{i\in g}\left[D(o_{a,i},o_{c,i})-D(o_{patch,i},o_{c,i})\right]}
+{\sum_{i\in g}\left[D(o_{a,i},o_{c,i})-D(o_{full,i},o_{c,i})\right]+10^{-12}}.
+\]
+
+只有42组 \(\rho_g\) 中位数的group-bootstrap 95% CI下界超过0.5，才允许主张“典型组中解释大部分
+可patch行为漂移”并解锁CPTR；否则即使存在稳定正效应，也只记录为弱介导并停止主方法分支。
 
 ## 4. 增量可恢复性边界
 

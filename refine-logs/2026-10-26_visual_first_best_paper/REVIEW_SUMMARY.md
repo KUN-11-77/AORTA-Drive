@@ -9,6 +9,10 @@ site语义、shifted-vs-clean Jacobian和科学图/部署图问题，因此第�
 有限patch；C3仅修复64个BEV memory sites并冻结status token；C4按single trajectory-query解释；统一
 reader改为site-conditioned DINO cross-attention；新增全确认集快速图等价门。待同一审稿线程复核。
 
+第五轮评分`8.4/10 REVISE`，只剩“极小但显著”的科学效应门和C3/C4投影记号。第六轮将投影冻结为
+\(\mathcal P_B^\ell[\Delta Z]=M_\ell\Delta ZBB^\top\)，并新增典型组full-patch归一化恢复比例CI下界
+严格大于0.50的SESOI；最终复核为`8.9/10 DESIGN_READY`。该评分只评价设计与协议，不预支方法结果。
+
 任何设计评分只说明问题定义、数学对象、算法推导、对照和停止规则的成熟度。它不表示低秩机制存在、
 DINO能恢复目标、CPTR有效或已具备ICCV方法证据。正式运行仍受
 `experiments/R006/R006V0_IMPLEMENTATION_READINESS.md`约束。

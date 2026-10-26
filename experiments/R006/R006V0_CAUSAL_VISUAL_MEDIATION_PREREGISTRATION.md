@@ -1,13 +1,17 @@
 # R006V0：冻结 planner 的低秩外观介导资格实验
 
-状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENT_1_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
+状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENT_1_AND_2_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
 
 2026-10-26、任何正式科学结果可见前，R006V0J 矩阵自由算子资格将候选层收缩为 C3 planner memory 与
 C4 trajectory query；其余合同不变。见 `R006V0_PROTOCOL_AMENDMENT_1.md`。
 
+同日、正式科学结果可见前，协议修正2冻结C3/C4 site mask、shifted-point Jacobian、统一视觉reader与
+full-patch归一化最小效应门。见 `R006V0_PROTOCOL_AMENDMENT_2.md`。
+
 ## 1. 唯一问题
 
-对同一 source 场景、完全相同非图像上下文，是否存在一个低秩、跨场景共享的内部子空间，能够解释受控外观变化诱发的大部分 planner 行为差异，并在组外场景中产生 scene-specific 的双向干预效果？
+对同一 source 场景、完全相同非图像上下文，是否存在一个低秩、跨场景共享的内部子空间，能够在典型
+组中解释受控外观变化诱发的过半 planner 行为差异，并在组外场景中产生 scene-specific 的双向干预效果？
 
 full clean activation patch 只作为 hook/分解的机械上界，不构成主科学结果。
 
@@ -47,7 +51,20 @@ B_r^*=\arg\min_{B^\top B=I_r}
 实现必须在 shifted activation 处使用 JVP/VJP 或等价矩阵自由算子，并用小型显式 Jacobian合成测试
 校验。选择 shifted 点是因为干预从 \(z_a\) 出发；不得以 clean 点 Jacobian 或全 feature PCA 冒充该目标。
 
-对一般接口 sites，basis 仅作用于通道维，投影固定为 `I_repairable-sites ⊗ BB^T`，不得跨site任意混合。
+对一般接口 sites，basis 仅作用于通道维，不得跨site任意混合。令
+\(M_{C3}=\operatorname{diag}(\mathbf1_{64},0)\)、\(M_{C4}=[1]\)，冻结投影算子
+
+\[
+\mathcal P_B^\ell[\Delta Z]=M_\ell\Delta ZBB^\top.
+\]
+
+即 \(\mathcal P_B^{C3}[\Delta Z]=[\Delta Z_{1:64}BB^\top;0_{1\times C}]\)，
+\(\mathcal P_B^{C4}[\Delta Z]=\Delta ZBB^\top\)。正式目标为
+
+\[
+\mathbb E\left\|J_a\operatorname{vec}(\Delta Z-\mathcal P_B^\ell[\Delta Z])\right\|_W^2.
+\]
+
 C3 的 status token 不属于 repairable sites；C4 的唯一 trajectory-query site 可修复，但不得解释为空间位置。
 主输出度量冻结为轨迹 XY 的物理单位 RMS；yaw/heading只作独立次指标，不参与选层/rank。
 
@@ -137,6 +154,21 @@ R006V0 的基发现和有限干预统一使用已资格化的 math-SDPA、MHA-fa
 
 统计以 42 个 outer-confirmation recording groups 的 OOF 结果为单位，使用配对 group bootstrap 95% CI；anchors/appearances/doses 都是组内重复测量。
 
+### 7.1 最小科学效应（SESOI）
+
+令full clean activation patch输出为 \(o_{full}\)。对每个outer-confirmation group先聚合全部anchor与appearance：
+
+\[
+\rho_g=
+\frac{\sum_{i\in g}[D(o_{a,i},o_{c,i})-D(o_{patch,i},o_{c,i})]}
+{\sum_{i\in g}[D(o_{a,i},o_{c,i})-D(o_{full,i},o_{c,i})]+10^{-12}}.
+\]
+
+若分母不大于`1e-12`，冻结定义 \(\rho_g=0\)，不得删组。只有 \(\rho_g\) 中位数的42组bootstrap
+95% CI下界严格大于`0.50`，才称为非平凡介导并解锁后续CPTR。该阈值对应“典型组恢复超过full-patch
+可恢复差异的一半”的字面主张，不由结果选择。分母门使用**加epsilon之前**的原始full-patch gain；
+\(\rho_g\) 不做区间裁剪，允许大于1或小于0，并原样进入统计。
+
 ## 8. 预注册裁决
 
 `SUPPORTED_LOW_RANK_INTERNAL_MEDIATION` 要求：
@@ -145,9 +177,10 @@ R006V0 的基发现和有限干预统一使用已资格化的 math-SDPA、MHA-fa
 2. A1 的 \(\Delta D\) group-bootstrap CI 下界大于 0；
 3. A1−A2、A1−A4、A1−A5 的 CI 下界均大于 0；
 4. group median restoration 的bootstrap 95% CI下界大于0，且至少22/42 outer groups恢复为正；
-5. layer在至少5/6 folds、rank在至少4/6 folds一致；
-6. 对每个 group，先在组内汇总 reverse damage \(R_g=D(o_{reverse},o_c)-D(o_c,o_c)\)，其42组中位数的配对 bootstrap 95% CI 下界必须大于0；对每个 anchor 的五个 dose–restoration 点做固定截距 OLS，先组内汇总 slope，再要求42组 slope 中位数的 bootstrap 95% CI 下界大于0；
-7. 所有机械门通过。
+5. full-patch归一化 \(\rho_g\) 中位数的bootstrap 95% CI下界严格大于0.50；
+6. layer在至少5/6 folds、rank在至少4/6 folds一致；
+7. 对每个 group，先在组内汇总 reverse damage \(R_g=D(o_{reverse},o_c)-D(o_c,o_c)\)，其42组中位数的配对 bootstrap 95% CI 下界必须大于0；对每个 anchor 的五个 dose–restoration 点做固定截距 OLS，先组内汇总 slope，再要求42组 slope 中位数的 bootstrap 95% CI 下界大于0；
+8. 所有机械门通过。
 
 若 full patch smoke 失败，裁决 `STOP_HOOK_OR_REGISTERED_INTERFACE`。若共享低秩 basis coverage 不合格，裁决 `STOP_GLOBAL_LOW_RANK_CPTR`；只允许在独立理论审查后考虑条件化/少量情景 basis。若 low-rank patch 不优于 wrong-scene/random/noise，裁决 `UNSPECIFIC_PATCH_EFFECT__STOP`。
 

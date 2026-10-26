@@ -2,7 +2,7 @@
 
 **Problem**: 冻结驾驶planner在外观变化下哪些内部变化真正影响决策，以及能否只修复这些变化。  
 **Final Method Thesis**: 用组外有限干预资格化planner-sensitive低秩接口，再由冻结DINO通过site-conditioned reader仅恢复这些坐标。  
-**Final Verdict**: REVISE（理论修正已写入，等待复核与正式R006V0证据）  
+**Final Verdict**: DESIGN_READY 8.9/10（仅设计资格；等待正式R006V0科学证据）
 **Date**: 2026-10-26
 
 ## Final Deliverables
