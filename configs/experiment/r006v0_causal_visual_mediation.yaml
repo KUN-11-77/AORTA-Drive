@@ -1,15 +1,16 @@
 experiment_id: R006V0-causal-visual-mediation-v1
 date: 2026-10-26
-status: design_ready_implementation_not_ready
+status: operator_qualified_formal_implementation_in_progress
 scope: source_fit_nested_group_heldout_low_rank_controlled_appearance_zero_training
 planner:
   primary: frozen_transfuser_or_ltf_with_verified_hooks
   trainable_parameters: 0
 layers:
-  - early_visual
-  - fused_bev
   - planner_memory
   - trajectory_query_secondary
+mechanically_excluded_layers:
+  early_visual: matrix_free_adjoint_relative_error_above_1e-4
+  fused_bev: matrix_free_adjoint_relative_error_above_1e-4
 ranks: [4, 8, 16, 32]
 splits:
   outer_folds: 6

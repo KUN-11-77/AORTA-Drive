@@ -1,10 +1,13 @@
 # R006V0 实现资格清单
 
-状态：`R006V0S_MECHANICAL_PASS__FORMAL_R006V0_IMPLEMENTATION_NOT_READY`。
+状态：`R006V0S_PASS__R006V0J_C3_C4_PASS__FORMAL_R006V0_IMPLEMENTATION_IN_PROGRESS`。
 
 2026-10-26 更新：synthetic dense-Jacobian oracle 与 2-anchor R006V0S primary/replay 已通过；55 项
 机械审计为 PASS。旧 C1 hook 因位于多轮 fusion 之后而被反例否定，现已冻结为第一次视觉编码输出、
 任何跨模态 fusion 之前的完整因果切口。详见 `R006V0S_RESULTS.md`。这不是低秩介导的正向证据。
+
+同日 R006V0J 对真实 LTF 矩阵自由算子完成资格：C3/C4 primary/replay 与25项审计PASS；C1/C2在冻结
+`1e-4`伴随门下失败并于科学运行前排除。详见 `R006V0J_RESULTS.md`与协议修正1。
 
 本文件只管理实现来源与机械资格，不改变 R006V0 科学问题、数据、层、rank、控制或裁决阈值。
 

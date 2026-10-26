@@ -1,5 +1,11 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R006V0J：`C3_C4_OPERATOR_PASS__C1_C2_EXCLUDED__NO_SCIENCE_CLAIM`。**
+> 项目自有LTF运行接口与矩阵自由JVP已实现。真实冻结LTF上，C3 planner-memory与C4 trajectory-query
+> 的JVP/VJP伴随误差为`1.86e-7/4.34e-7`，basis gradient非零，primary/replay逐字节一致，25/25审计
+> PASS。C1/C2在保持`1e-4`门槛时稳定FAIL，已在任何科学结果可见前机械排除；不作理论无效解释。
+> 正式R006V0候选层收缩为C3/C4，其余rank、fold、controls与裁决不变。
+
 > **2026-10-26 R006V0S：`MECHANICAL_PASS__FORMAL_R006V0_NOT_READY__NO_METHOD_CLAIM`。**
 > synthetic dense-Jacobian oracle 通过；冻结 LTF 在2个不同 source-fit groups 上完成 primary/replay，
 > 结果逐字节一致，55/55机械审计通过且封存角色未访问。旧 C1 位于多轮跨模态 fusion 后，不是完整因果

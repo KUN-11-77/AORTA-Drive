@@ -1,0 +1,67 @@
+{
+  "artifact": "R006V0J_REAL_LTF_MATRIX_FREE_JVP_SMOKE_V1",
+  "status": "PASS",
+  "scientific_metrics_emitted": false,
+  "development_calibration_test_navdream_target_accessed": false,
+  "recording_group": "2021.05.12.22.28.35_veh-35",
+  "scene_token": "185b926e03ad5fc6",
+  "condition": "low_exposure",
+  "selected_stages": [
+    "c3_planner_memory",
+    "c4_trajectory_query"
+  ],
+  "finite_difference_epsilon": 0.001,
+  "relative_tolerance": 0.01,
+  "absolute_tolerance": 1e-05,
+  "adjoint_relative_tolerance": 0.0001,
+  "adjoint_absolute_tolerance": 1e-06,
+  "backend_output_tolerance": 1e-05,
+  "backend_output_max_abs_difference": 1.9073486328125e-06,
+  "backend_semantics_pass": true,
+  "autodiff_head_max_abs_difference": 0.0,
+  "autodiff_head_semantics_pass": true,
+  "deterministic_algorithms_warn_only": true,
+  "sdpa_backend": "math_only__flash_false__mem_efficient_false",
+  "mha_fastpath_enabled": false,
+  "jvp_implementation": "reverse_over_reverse_with_math_sdpa",
+  "checkpoint_sha256": "d08e97ba6beb937412697d619171553041622859e026a06935a2e0e118e6309d",
+  "runner_sha256": "106d9f8eb6baf10d86f15823a65ad7e713f7ed064d3ce225264992cd4bd64cf7",
+  "stages": [
+    {
+      "stage": "c3_planner_memory",
+      "activation_shape": [
+        1,
+        65,
+        256
+      ],
+      "tangent_norm": 33.4011344909668,
+      "jvp_norm": 0.4526793956756592,
+      "finite_difference_absolute_error": 0.003315662033855915,
+      "finite_difference_relative_error": 0.007324526067520771,
+      "finite_difference_diagnostic_only": true,
+      "adjoint_absolute_error": 2.662297457489693e-08,
+      "adjoint_relative_error": 1.8637367690029453e-07,
+      "basis_gradient_norm": 0.025671949610114098,
+      "finite": true,
+      "pass": true
+    },
+    {
+      "stage": "c4_trajectory_query",
+      "activation_shape": [
+        1,
+        1,
+        256
+      ],
+      "tangent_norm": 0.7935854196548462,
+      "jvp_norm": 0.342591792345047,
+      "finite_difference_absolute_error": 0.0018049569334834814,
+      "finite_difference_relative_error": 0.00526853524752744,
+      "finite_difference_diagnostic_only": true,
+      "adjoint_absolute_error": 6.2969278888380664e-09,
+      "adjoint_relative_error": 4.337247391575935e-07,
+      "basis_gradient_norm": 0.023424619808793068,
+      "finite": true,
+      "pass": true
+    }
+  ]
+}

@@ -1547,3 +1547,17 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R006/R006V0S_RESULTS.md`；
   `experiments/R006/R006V0S_EXPERIMENT_AUDIT.md`；
   `experiments/R006/results/r006v0s_e6208cd/`。
+
+## ADR-0103：矩阵自由算子资格将正式层字典收缩为 C3/C4
+
+- **Decision:** `C3_C4_OPERATOR_QUALIFIED__C1_C2_EXCLUDED_BEFORE_SCIENCE`。
+- **Evidence:** 默认与math-attention输出最大差`1.91e-6`，out-of-place trajectory head与官方输出差0。
+  C3/C4 JVP/VJP伴随相对误差`1.86e-7/4.34e-7`、basis gradient非零、primary/replay逐字节一致、
+  25/25审计PASS。C1/C2在多种合法JVP实现下稳定约`7.3e-4/2.2e-4`，超过冻结`1e-4`门。
+- **Interpretation:** C1/C2只是当前CUDA/PyTorch矩阵自由实现未资格，不证明理论上不存在介导。
+- **Consequence:** 正式R006V0只允许C3 planner-memory和C4 trajectory-query；其余科学合同不变，
+  正式失败后不得回看C1/C2补救。
+- **Boundary:** 单anchor机械自动微分资格，无低秩介导、DINO、OOD、行为或安全结论。
+- **Artifacts:** `experiments/R006/R006V0J_RESULTS.md`；
+  `experiments/R006/R006V0_PROTOCOL_AMENDMENT_1.md`；
+  `experiments/R006/results/r006v0j_f4feef5/`。
