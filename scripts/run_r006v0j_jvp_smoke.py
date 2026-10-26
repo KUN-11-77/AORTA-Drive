@@ -42,7 +42,10 @@ def main() -> None:
 
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
-    torch.use_deterministic_algorithms(True)
+    # CUDA adaptive_avg_pool2d backward has no officially deterministic kernel
+    # in this PyTorch build.  Qualification therefore records warn-only mode
+    # and requires an exact same-GPU replay before any formal science run.
+    torch.use_deterministic_algorithms(True, warn_only=True)
     device = torch.device(args.device)
     if device.type != "cuda" or not torch.cuda.is_available():
         raise RuntimeError("an explicitly selected CUDA device is required")
@@ -154,6 +157,7 @@ def main() -> None:
         "finite_difference_epsilon": epsilon,
         "relative_tolerance": args.relative_tolerance,
         "absolute_tolerance": args.absolute_tolerance,
+        "deterministic_algorithms_warn_only": True,
         "checkpoint_sha256": sha256_file(args.checkpoint),
         "runner_sha256": sha256_file(Path(__file__)),
         "stages": reports,
