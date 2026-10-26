@@ -304,6 +304,33 @@ class LTFCausalRuntime:
             head.forward = original_forward
         return trajectory[..., :2].reshape(trajectory.shape[0], -1)
 
+    def _trajectory_from_query_out_of_place(self, query: torch.Tensor) -> torch.Tensor:
+        head = self.model._trajectory_head
+        raw = head._mlp(query).reshape(-1, head._num_poses, 3)
+        heading = torch.tanh(raw[..., 2:3]) * np.pi
+        return torch.cat((raw[..., :2], heading), dim=-1)
+
+    def trajectory_xy_from_qualified_stage(
+        self, stage: str, activation: torch.Tensor
+    ) -> torch.Tensor:
+        """Run only the causal tail after a mechanically qualified stage."""
+
+        if stage == "c3_planner_memory":
+            batch_size = activation.shape[0]
+            query = self.model._query_embedding.weight[None, ...].repeat(
+                batch_size, 1, 1
+            )
+            query_out = self.model._tf_decoder(query, activation)
+            trajectory_query, _ = query_out.split(self.model._query_splits, dim=1)
+            trajectory = self._trajectory_from_query_out_of_place(trajectory_query)
+        elif stage == "c4_trajectory_query":
+            trajectory = self._trajectory_from_query_out_of_place(activation)
+        else:
+            raise ValueError(
+                f"{stage} has no qualified tail-only matrix-free interface"
+            )
+        return trajectory[..., :2].reshape(trajectory.shape[0], -1)
+
 
 def trajectory_rms(left: torch.Tensor | np.ndarray, right: torch.Tensor | np.ndarray) -> float:
     left_value = torch.as_tensor(left, dtype=torch.float64)[..., :2]

@@ -11,7 +11,6 @@ import numpy as np
 import torch
 
 from aorta_drive.vision.ltf_causal_runtime import (
-    STAGES,
     LTFCausalRuntime,
     activation_to_npc,
     build_frozen_ltf,
@@ -22,6 +21,8 @@ from aorta_drive.vision.ltf_causal_runtime import (
 )
 from aorta_drive.vision.planner_tangent import orthonormalize
 from run_r006v0s_smoke import apply_condition, select_fit_anchors, sha256_file
+
+QUALIFIED_STAGES = ("c3_planner_memory", "c4_trajectory_query")
 
 
 def main() -> None:
@@ -34,7 +35,9 @@ def main() -> None:
     parser.add_argument("--time-set", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--device", default="cuda:0")
-    parser.add_argument("--stages", nargs="+", choices=STAGES, default=list(STAGES))
+    parser.add_argument(
+        "--stages", nargs="+", choices=QUALIFIED_STAGES, default=list(QUALIFIED_STAGES)
+    )
     parser.add_argument("--seed", type=int, default=20261026)
     parser.add_argument("--finite-difference-epsilon", type=float, default=1e-3)
     parser.add_argument("--relative-tolerance", type=float, default=1e-2)
@@ -114,9 +117,26 @@ def main() -> None:
     autodiff_head_semantics_pass = bool(
         autodiff_head_max_abs_difference <= args.backend_output_tolerance
     )
+    direct_tail_differences = {}
+    for qualified_stage in ("c3_planner_memory", "c4_trajectory_query"):
+        with torch.no_grad():
+            direct = runtime.trajectory_xy_from_qualified_stage(
+                qualified_stage, clean_capture[qualified_stage].to(device)
+            )
+        direct_tail_differences[qualified_stage] = float(
+            torch.max(torch.abs(direct - official_clean_xy))
+        )
+    direct_tail_semantics_pass = all(
+        value <= args.backend_output_tolerance
+        for value in direct_tail_differences.values()
+    )
 
     reports = []
-    all_pass = backend_semantics_pass and autodiff_head_semantics_pass
+    all_pass = (
+        backend_semantics_pass
+        and autodiff_head_semantics_pass
+        and direct_tail_semantics_pass
+    )
     epsilon = float(args.finite_difference_epsilon)
     selected_stages = tuple(args.stages)
     if len(set(selected_stages)) != len(selected_stages):
@@ -129,8 +149,8 @@ def main() -> None:
         if tangent_norm == 0.0:
             raise RuntimeError(f"zero clean-shift tangent at {stage}")
 
-        function = lambda value, stage=stage: runtime.trajectory_xy_from_stage(
-            shifted_features, stage, value
+        function = lambda value, stage=stage: runtime.trajectory_xy_from_qualified_stage(
+            stage, value
         )
         _, product = torch.autograd.functional.jvp(
             function, shifted, tangent, create_graph=False, strict=True
@@ -234,6 +254,8 @@ def main() -> None:
         "backend_semantics_pass": backend_semantics_pass,
         "autodiff_head_max_abs_difference": autodiff_head_max_abs_difference,
         "autodiff_head_semantics_pass": autodiff_head_semantics_pass,
+        "direct_tail_max_abs_difference": direct_tail_differences,
+        "direct_tail_semantics_pass": direct_tail_semantics_pass,
         "deterministic_algorithms_warn_only": True,
         "sdpa_backend": "math_only__flash_false__mem_efficient_false",
         "mha_fastpath_enabled": False,
