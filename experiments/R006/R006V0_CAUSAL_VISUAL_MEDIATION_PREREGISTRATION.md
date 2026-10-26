@@ -1,12 +1,15 @@
 # R006V0：冻结 planner 的低秩外观介导资格实验
 
-状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENT_1_AND_2_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
+状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENTS_1_TO_3_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
 
 2026-10-26、任何正式科学结果可见前，R006V0J 矩阵自由算子资格将候选层收缩为 C3 planner memory 与
 C4 trajectory query；其余合同不变。见 `R006V0_PROTOCOL_AMENDMENT_1.md`。
 
 同日、正式科学结果可见前，协议修正2冻结C3/C4 site mask、shifted-point Jacobian、统一视觉reader与
 full-patch归一化最小效应门。见 `R006V0_PROTOCOL_AMENDMENT_2.md`。
+
+同日、正式科学结果可见前，协议修正3冻结nested组数、hash salt以及C3/C4同时合格时的唯一选择规则。
+见 `R006V0_PROTOCOL_AMENDMENT_3.md`。
 
 ## 1. 唯一问题
 
@@ -19,7 +22,8 @@ full clean activation patch 只作为 hook/分解的机械上界，不构成主�
 
 - 仅使用 42 个 source-fit recording groups；group 是统计单位；
 - 采用 6-fold outer group cross-fitting，每折 7 个 groups 只用于 confirmation；
-- 每个 outer-train 内再由固定 hash 划分 basis-discovery 与 layer/rank-selection；
+- 每个outer-train的35组由固定hash划分28组basis-discovery与7组layer/rank-selection；outer salt固定为
+  `aorta-r006v0-outer-v1`，inner salt固定为`aorta-r006v0-inner-selection-v1`；
 - outer-confirmation 不参与层、rank、基、阈值或控制设计；
 - 每组 anchors、相机历史、车辆状态和 planner 上下文冻结；
 - 外观只使用已登记的 `low_exposure`、`low_contrast`、`cool_cast`；
@@ -69,6 +73,9 @@ C3 的 status token 不属于 repairable sites；C4 的唯一 trajectory-query s
 主输出度量冻结为轨迹 XY 的物理单位 RMS；yaw/heading只作独立次指标，不参与选层/rank。
 
 selection split 的 rank 合格条件：mean coverage 至少 0.90、最差 recording group 均值至少 0.50；不合格时该层/rank不得进入 outer-confirmation。
+coverage不裁剪，先在组内平均，再对7个selection groups等权。每层取最小合格rank；C3/C4同时合格时，
+依次按更小rank、更高最差组coverage、更高组等权mean coverage、固定层顺序C3→C4唯一选择。无候选
+合格则该fold fail-closed，不得读取outer-confirmation补救。
 
 coverage 是局部一阶资格，不是有限干预结果。对 \(\delta=z_c-z_a\) 和实际修复量 \(q\)，若路径邻域内
 Jacobian为 \(M\)-Lipschitz，则有限行为误差还包含

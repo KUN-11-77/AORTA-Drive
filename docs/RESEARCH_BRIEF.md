@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R006V0 nested protocol：`OUTCOME_FREE_MANIFEST_PASS__SCIENCE_NOT_STARTED`。**
+> 原协议中未闭合的inner组数、hash salt和C3/C4同时合格时的tie-break已在任何正式科学endpoint产生前
+> 冻结：每折7 outer-confirmation、28 discovery、7 selection；split只接收group ID；层/rank依次按
+> 最小合格rank、最差组coverage、组等权mean、固定C3→C4顺序选择。42组manifest独立审计PASS，
+> SHA-256为`a66bfc8d30641f2521323cf43f93a5ed3e85c17a5e6e63b7c013270aefa9a5d1`。该结果只消除
+> 选择自由度与泄漏风险，不证明存在合格layer/rank或低秩介导。
+
 > **2026-10-26 R006V0C：`ACTIVATION_CACHE_SMOKE_PASS__FORMAL_R006V0_NOT_READY__NO_SCIENCE_CLAIM`。**
 > 真实冻结LTF上一组×16 anchors、4种受控外观的C3/C4 activation cache已完成；runner exit 0，
 > 14/14机械审计PASS，C3的64个BEV sites与冻结status site、C4单trajectory-query site语义一致，

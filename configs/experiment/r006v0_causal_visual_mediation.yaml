@@ -24,7 +24,12 @@ ranks: [4, 8, 16, 32]
 splits:
   outer_folds: 6
   outer_groups_per_fold: 7
-  inner_split: deterministic_hash_basis_discovery_vs_layer_rank_selection
+  outer_salt: aorta-r006v0-outer-v1
+  inner_salt: aorta-r006v0-inner-selection-v1
+  outer_train_groups: 35
+  basis_discovery_groups: 28
+  layer_rank_selection_groups: 7
+  split_inputs: recording_group_identifiers_only
   outer_confirmation_used_for_selection: false
 appearances:
   - low_exposure
@@ -76,6 +81,11 @@ basis_qualification:
   selection_worst_group_mean_coverage_min: 0.50
   coverage_epsilon: 0.000000000001
   choose_smallest_qualifying_rank: true
+  layer_rank_selection_order:
+    - smallest_qualifying_rank
+    - highest_worst_group_mean_coverage
+    - highest_group_equal_mean_coverage
+    - fixed_layer_order_planner_memory_then_trajectory_query
   projection_operators:
     planner_memory: masked_channel_projection_first_64_sites_status_site_zero
     trajectory_query_secondary: single_site_channel_projection

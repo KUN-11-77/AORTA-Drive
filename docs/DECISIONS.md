@@ -1587,3 +1587,15 @@ the current open-ended geometry certificate iteration remains STOP.
   与最终manifest仍是阻塞项。禁止把smoke写成低秩介导、DINO可恢复、CPTR或OOD/行为证据。
 - **Artifacts:** `experiments/R006/R006V0C_CACHE_SMOKE_RESULTS.md`；
   `experiments/R006/results/r006v0c_ec7b200_smoke/results/cache_audit.json`。
+
+## ADR-0106：正式科学结果前消除 nested selection 自由度
+
+- **Decision:** `FREEZE_28_DISCOVERY_7_SELECTION_AND_DETERMINISTIC_INTERFACE_RULE`。
+- **Reason:** 原协议未冻结inner组数、hash salt和C3/C4同时合格的tie-break；若结果可见后决定，会污染
+  outer-confirmation解释。
+- **Rule:** 每折7 outer-confirmation；35 outer-train固定分成28 discovery与7 selection。每层先取最小
+  合格rank；跨层按更小rank、更高最差组coverage、更高组等权mean、固定C3→C4顺序选择。coverage不
+  裁剪；split函数只接收group ID。
+- **Boundary:** 这是协议确定性与无泄漏资格，不是低秩介导证据，也不保证任何fold存在合格候选。
+- **Artifacts:** `experiments/R006/R006V0_PROTOCOL_AMENDMENT_3.md`；
+  `src/aorta_drive/vision/r006_protocol.py`；`tests/test_r006_protocol.py`。

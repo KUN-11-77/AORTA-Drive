@@ -1,0 +1,16 @@
+{
+  "artifact": "R006V0_NESTED_MANIFEST_AUDIT_V1",
+  "status": "PASS",
+  "manifest_sha256_without_self": "a66bfc8d30641f2521323cf43f93a5ed3e85c17a5e6e63b7c013270aefa9a5d1",
+  "checks": {
+    "source_fit_groups_exact": true,
+    "outer_confirmation_exact_once": true,
+    "outcome_free_split": true,
+    "outer_folds": 6,
+    "outer_confirmation_groups_per_fold": 7,
+    "basis_discovery_groups_per_fold": 28,
+    "layer_rank_selection_groups_per_fold": 7
+  },
+  "scientific_metrics_emitted": false,
+  "development_calibration_test_navdream_target_accessed": false
+}

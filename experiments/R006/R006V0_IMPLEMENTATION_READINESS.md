@@ -24,6 +24,8 @@ sealed-role与no-science-metrics共14/14审计PASS。它只资格化缓存管线
 - 理论对象：task-weighted channel basis 与逐位置 coefficient field；
 - 数据角色：42 source-fit groups；其余角色全部封存；
 - 6-fold nested group-held-out 选择程序；
+- 每折7 outer-confirmation、28 discovery、7 selection及固定hash salts；
+- C3/C4唯一选择顺序：最小合格rank→最差组coverage→组等权mean→固定层顺序；
 - candidate layer、rank 字典、外观算子与科学 arms；
 - 16 个固定 random/noise seeds；
 - group-level bootstrap 统计和 GO/STOP 结构；
@@ -63,5 +65,6 @@ sealed-role与no-science-metrics共14/14审计PASS。它只资格化缓存管线
 7. 重新生成 config/manifest SHA；
 8. 一次性执行 R006V0，不在途中读取部分科学指标。
 
-当前仍缺完整 activation cache、nested fold 选择器、全部 A0–A7 控制与运行预算 manifest；
+当前nested fold与layer/rank选择器已实现并由合成反例测试；仍缺完整 activation cache、真实JVP接入、
+全部 A0–A7 控制与运行预算 manifest；
 这些完成前，状态保持 `FORMAL_R006V0_IMPLEMENTATION_NOT_READY`。
