@@ -1,5 +1,12 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-26 R005E2S donor sensitivity：`IMPLEMENTATION_FROZEN__SECONDARY_ONLY__PARENT_STOP_IMMUTABLE`。**
+> 在R005E2B主门严格STOP后，按既有预注册冻结实现S2 disjoint-geometry与S3 hash-random两种
+> donor输入干预；复用既有V2 checkpoints，不训练、不选模、不读取封存角色。正式链为6-fold
+> primary、同卡exact replay与独立机械audit，统计以42个recording groups为单位。无论结果为何，
+> 均不得改写R005E2B的`STOP_CURRENT_VISUAL_MAIN_CLAIM`；本实验只区分scene-binding结论是否依赖
+> primary donor构造。实现提交`73b5e46d5e06e064d1da60007d3af6e8878bf746`，469项仓库测试通过。
+
 > **2026-10-26 R005E2B视觉可恢复性：`MECHANICAL_PASS__UNSUPPORTED__STOP_CURRENT_VISUAL_MAIN_CLAIM`。**
 > 6 folds×3 arms×3 seeds的54个primary与54个replay全部完成，prediction/model-state exact、OOF/fold/
 > target/provenance/finite/sealed-role门通过。V2 correct relation MSE相对mismatch改善`-0.008010`
