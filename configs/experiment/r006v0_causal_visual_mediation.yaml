@@ -8,6 +8,15 @@ planner:
 layers:
   - planner_memory
   - trajectory_query_secondary
+layer_site_semantics:
+  planner_memory:
+    shape: [65, 256]
+    repairable_sites: first_64_8x8_bev_memory_tokens
+    frozen_sites: [64_status_token]
+  trajectory_query_secondary:
+    shape: [1, 256]
+    repairable_sites: [0_trajectory_query]
+    frozen_sites: []
 mechanically_excluded_layers:
   early_visual: matrix_free_adjoint_relative_error_above_1e-4
   fused_bev: matrix_free_adjoint_relative_error_above_1e-4
@@ -50,7 +59,8 @@ statistics:
   confidence_interval_type: percentile_paired_group_bootstrap
   minimum_valid_resample_fraction: 1.0
 basis_qualification:
-  objective: minimize_uncovered_task_weighted_appearance_drift
+  objective: minimize_shifted_point_jacobian_uncovered_task_weighted_appearance_drift
+  jacobian_evaluation_point: shifted_activation
   spatial_structure: identity_over_spatial_positions_times_channel_projector
   primary_output_metric: trajectory_xy_physical_rms
   secondary_output_metrics: [yaw_drift, heading_drift]
@@ -131,3 +141,8 @@ claim_boundary:
   - not_final_method
   - not_NavDream_or_real_weather
   - not_driving_safety
+deployment_graph:
+  discovery_backend: math_sdpa_fastpath_disabled_for_jvp
+  intervention_science_backend: same_as_discovery
+  final_inference_backend: original_fast_backend_only_after_full_equivalence_gate
+  equivalence_gate: max_abs_trajectory_diff_le_1e-5_and_decision_exact

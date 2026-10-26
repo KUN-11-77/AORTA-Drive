@@ -26,7 +26,12 @@ full clean activation patch 只作为 hook/分解的机械上界，不构成主�
 
 第一阶段只使用已有 hook 与 checkpoint provenance 完整的官方冻结 TransFuser/LTF。
 
-候选层冻结为：early visual、fused BEV、planner memory、trajectory query（secondary）。候选 rank 字典在结果可见前固定为 `r ∈ {4, 8, 16, 32}`，且不得超过该层通道维度。selection split 上选取满足预定义 coverage 规则的最小 rank；若没有 rank 合格，该 fold fail-closed。不得看到 outer-confirmation 后增加 rank 或移动 hook。
+经 R006V0J 机械资格后，候选层冻结为 planner memory 与 trajectory query（secondary）。planner memory
+是64个8×8 BEV memory tokens加1个非视觉status token；正式投影和所有random/noise控制只允许作用于
+前64个视觉memory sites，status site固定不变。trajectory query是单个decoder输出query，不具有像素/BEV
+一一对应语义。候选 rank 字典在结果可见前固定为 `r ∈ {4, 8, 16, 32}`，且不得超过该层通道维度。
+selection split 上选取满足预定义 coverage 规则的最小 rank；若没有 rank 合格，该 fold fail-closed。不得
+看到 outer-confirmation 后增加 rank 或移动 hook。
 
 ## 4. task-weighted drift basis
 
@@ -35,14 +40,23 @@ full clean activation patch 只作为 hook/分解的机械上界，不构成主�
 \[
 \delta_i=z_{c,i}-z_{a,i},\qquad
 B_r^*=\arg\min_{B^\top B=I_r}
-\mathbb E\|J_i(I-BB^\top)\delta_i\|_W^2.
+\mathbb E\|J_{a,i}(I-BB^\top)\delta_i\|_W^2,
+\qquad J_{a,i}=\left.\frac{\partial f_{>\ell}}{\partial z}\right|_{z_{a,i},H_i}.
 \]
 
-实现必须使用 JVP/VJP 或等价矩阵自由算子，并用小型显式 Jacobian 合成测试校验。不得以全 feature PCA 冒充该目标。
+实现必须在 shifted activation 处使用 JVP/VJP 或等价矩阵自由算子，并用小型显式 Jacobian合成测试
+校验。选择 shifted 点是因为干预从 \(z_a\) 出发；不得以 clean 点 Jacobian 或全 feature PCA 冒充该目标。
 
-对空间 feature，basis 仅作用于通道维，投影固定为 `I_spatial ⊗ BB^T`，不得跨 token/BEV 位置任意混合。主输出度量冻结为轨迹 XY 的物理单位 RMS；yaw/heading 只作独立次指标，不参与选层/rank。
+对一般接口 sites，basis 仅作用于通道维，投影固定为 `I_repairable-sites ⊗ BB^T`，不得跨site任意混合。
+C3 的 status token 不属于 repairable sites；C4 的唯一 trajectory-query site 可修复，但不得解释为空间位置。
+主输出度量冻结为轨迹 XY 的物理单位 RMS；yaw/heading只作独立次指标，不参与选层/rank。
 
 selection split 的 rank 合格条件：mean coverage 至少 0.90、最差 recording group 均值至少 0.50；不合格时该层/rank不得进入 outer-confirmation。
+
+coverage 是局部一阶资格，不是有限干预结果。对 \(\delta=z_c-z_a\) 和实际修复量 \(q\)，若路径邻域内
+Jacobian为 \(M\)-Lipschitz，则有限行为误差还包含
+\(M(\|q\|^2+\|\delta\|^2)/2\) 的非线性余项。因此正式裁决同时要求真实冻结tail上的组外patch
+restoration、双向和dose证据；不得仅凭coverage通过。
 
 ### 4.1 冻结求解器
 
@@ -103,6 +117,13 @@ wrong-scene donor 只由 outer-train metadata 构造，不使用 RGB 内容、ac
 - checkpoint、planner source、appearance source、preprocess、roster、fold、rank 字典全部 SHA-256 冻结。
 
 任一机械门失败，不读取科学结论。
+
+### 6.1 科学图与部署图
+
+R006V0 的基发现和有限干预统一使用已资格化的 math-SDPA、MHA-fastpath关闭图，以保证JVP/VJP定义一致。
+最终 CPTR 推理优先恢复官方快速图，但必须先在完整冻结source确认集上满足：轨迹最大绝对差不超过
+`1e-5`，并且所有离散选择完全一致。若不满足，部署必须保留科学图并按其真实时延报告；不得将单anchor
+资格结果外推成全数据等价。
 
 ## 7. 指标
 

@@ -8,20 +8,29 @@ Constant Eye 已证明冻结 DINOv3-H+ 是有效的外观稳定视觉底座，�
 
 用组外因果干预资格化一个低秩 planner-tangent target，并用冻结 DINO 仅预测该 target 的空间系数；这是 rank-constrained repair，不声称全局最小范数，也不是一般 adapter 或全局 feature invariance。
 
+一句话：**不让特征处处不变，而是定位并修复外观扰动中真正改变冻结planner决策、且视觉证据能够恢复的低秩内部坐标。**
+
 ## Core definition
 
 \[
-B_r^*=\arg\min_{B^TB=I_r}\mathbb E\|J_i(I-BB^T)\delta_i\|_W^2,
+B_r^*=\arg\min_{B^TB=I_r}\mathbb E\|J_{a,i}(I-BB^T)\delta_i\|_W^2,
 \qquad \delta_i=z_{c,i}-z_{a,i}.
 \]
 
-对空间接口，投影为 \(I_P\otimes BB^T\)，修复为
+其中 \(J_{a,i}\) 在shifted activation处求值，因为修复从 \(z_a\) 出发。单点Jacobian只产生候选
+方向；有限外观位移的资格来自冻结nonlinear tail上的held-out patch、reverse、dose与错误方向控制。
+
+对一般interface sites，投影为 \(I_{P_{repair}}\otimes BB^T\)，修复为
 
 \[
 \widehat Z_a=Z_a+A_\theta(D_a,Z_a,H)B_r^{*T}.
 \]
 
 该对象直接最小化低秩投影未覆盖的 planner-sensitive appearance effect。
+
+真实LTF接口语义冻结为：C3是64个8×8 BEV memory tokens加一个不可修复的status token；C4是单个
+trajectory-query token，不宣称空间对应。统一reader以native sites为queries、DINO patches为keys/values
+做site-conditioned cross-attention；C3输出64×r并给status补零，C4输出1×r。
 
 Basis 使用预注册 Stiefel 梯度、QR retraction 与 Armijo line search，通过显式 Jacobian synthetic oracle 后才能运行。六折需满足 layer 5/6、rank 4/6 一致性；先取满足5/6的唯一 layer 众数，再只在选择该 layer 的 folds 中取至少占全部六折4折的唯一 rank 众数，最后在全部 source groups 重估唯一部署 basis。
 
@@ -32,6 +41,9 @@ Basis 使用预注册 Stiefel 梯度、QR retraction 与 Armijo line search，�
 ## Training
 
 planner 与 DINO 全冻结。主损失为 frozen-tail functional restoration；从属损失为 coefficient supervision、residual-energy regularization 和 clean identity。该正则只约束不必要干预，不声称求得全局最小范数解。所有超参数在 source split 冻结。
+
+机制发现使用资格化math-SDPA计算图；最终快速图只有在完整确认集满足轨迹最大绝对差`<=1e-5`且离散
+选择完全一致后才可部署，否则保留科学图并报告真实端到端时延。
 
 ## Validation chain
 

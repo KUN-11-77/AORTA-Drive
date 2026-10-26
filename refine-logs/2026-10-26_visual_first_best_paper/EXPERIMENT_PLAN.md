@@ -27,6 +27,8 @@
 - Success：R006V0 联合门通过。
 - Failure：停止 registered interfaces 上的 repair；不训练 CPTR。
 - Target：主文 Fig. 2 mechanism localization 或论文停止。
+- 必须成对报告shifted点Jacobian coverage与真实nonlinear-tail有限patch restoration；只通过前者不算成功。
+- C3只修复64个视觉memory sites，status token保持exact；C4按single-query语义评估。
 
 ## B1：任务子空间与增量可恢复性（MUST-RUN，B0 后）
 
@@ -48,6 +50,9 @@
 7. CPTR。
 
 主指标：group-held-out official utility、appearance-induced output drift、clean no-harm；次指标为 feature/coefficient error。必须报告参数、FLOPs、峰值显存和 batch-1 增量时延。
+
+核心反例：若direct-output residual或frozen-tail matched adapter达到同等结果，CPTR内部修复必要性不成立。
+Constant Eye faithful与frozen-tail matched必须分开报告，不能用不公平冻结边界制造优势。
 
 ## B3：NavDream 与跨 planner（MUST-RUN，架构冻结后）
 
@@ -77,6 +82,13 @@
 1. exact native-shift identity patch smoke；
 2. one-anchor clean/controlled-shift full-layer patch smoke，只验证形状、非图像一致、tail分解与有限值；
 3. 冻结实现、manifest、统计和 audit 后一次性 R006V0。
+
+## 计算图与时延门
+
+- M1机制发现/干预统一使用math-SDPA图；
+- M2前执行完整source确认集的default-vs-math等价门；
+- 通过才允许最终推理使用官方快速图；否则所有准确率和时延都基于math图；
+- 端到端时延包含native encoder、DINOv3-H+、site reader和planner tail。
 
 ## Final Checklist
 

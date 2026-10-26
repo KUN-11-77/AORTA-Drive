@@ -31,6 +31,7 @@ from aorta_drive.vision.ltf_causal_runtime import (
 )
 from aorta_drive.vision.r006_cache import (
     QUALIFIED_STAGES,
+    STAGE_SITE_SEMANTICS,
     load_source_fit_rows,
     sha256_file,
     validate_group_shard,
@@ -45,11 +46,26 @@ def git_revision(path: Path) -> dict[str, Any]:
             stderr=subprocess.DEVNULL,
         ).strip()
 
-    return {
-        "root": str(path.resolve()),
-        "commit": run("rev-parse", "HEAD"),
-        "dirty": bool(run("status", "--porcelain")),
-    }
+    try:
+        return {
+            "root": str(path.resolve()),
+            "commit": run("rev-parse", "HEAD"),
+            "dirty": bool(run("status", "--porcelain")),
+        }
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        # Read-only cross-user checkouts can reject Git ownership checks even
+        # though their source tree is valid.  Preserve provenance from HEAD
+        # rather than silently dropping it; dirty state remains unknown.
+        git_dir = path / ".git"
+        try:
+            head = (git_dir / "HEAD").read_text(encoding="utf-8").strip()
+            if head.startswith("ref: "):
+                commit = (git_dir / head[5:]).read_text(encoding="utf-8").strip()
+            else:
+                commit = head
+        except OSError:
+            commit = None
+        return {"root": str(path.resolve()), "commit": commit, "dirty": None}
 
 
 def main() -> None:
@@ -181,6 +197,7 @@ def main() -> None:
         "conditions": ["clean", *CONTROLLED_APPEARANCES],
         "qualified_stages": list(QUALIFIED_STAGES),
         "schema": global_schema,
+        "stage_site_semantics": STAGE_SITE_SEMANTICS,
         "shards": shard_records,
         "provenance": {
             "checkpoint": str(args.checkpoint),

@@ -6,7 +6,11 @@ import pytest
 import torch
 
 from aorta_drive.vision.ltf_causal_runtime import apply_controlled_appearance
-from aorta_drive.vision.r006_cache import load_source_fit_rows, validate_group_shard
+from aorta_drive.vision.r006_cache import (
+    STAGE_SITE_SEMANTICS,
+    load_source_fit_rows,
+    validate_group_shard,
+)
 
 
 def test_controlled_appearances_are_deterministic_and_bounded():
@@ -58,6 +62,7 @@ def test_validate_group_shard_rejects_missing_condition():
         ],
     }
     assert validate_group_shard(payload)["c4_trajectory_query"] == [1, 1, 256]
+    assert STAGE_SITE_SEMANTICS["c3_planner_memory"]["frozen_site_indices"] == [64]
     del payload["anchors"][0]["conditions"]["cool_cast"]
     with pytest.raises(ValueError, match="condition roster"):
         validate_group_shard(payload)

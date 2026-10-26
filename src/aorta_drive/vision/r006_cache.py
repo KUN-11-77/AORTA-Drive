@@ -18,6 +18,22 @@ from .ltf_causal_runtime import CONTROLLED_APPEARANCES
 
 
 QUALIFIED_STAGES = ("c3_planner_memory", "c4_trajectory_query")
+STAGE_SITE_SEMANTICS = {
+    "c3_planner_memory": {
+        "sites": 65,
+        "channels": 256,
+        "repairable_site_indices": list(range(64)),
+        "frozen_site_indices": [64],
+        "meaning": "8x8_bev_memory_tokens_plus_one_nonvisual_status_token",
+    },
+    "c4_trajectory_query": {
+        "sites": 1,
+        "channels": 256,
+        "repairable_site_indices": [0],
+        "frozen_site_indices": [],
+        "meaning": "single_trajectory_query_token_after_transformer_decoder",
+    },
+}
 EXPECTED_GROUPS = 42
 EXPECTED_ANCHORS_PER_GROUP = 16
 
@@ -106,6 +122,9 @@ def validate_group_shard(payload: dict[str, Any]) -> dict[str, list[int]]:
                 if not isinstance(value, torch.Tensor) or not torch.isfinite(value).all():
                     raise ValueError(f"invalid activation at {stage}")
                 shape = list(value.shape)
+                expected = STAGE_SITE_SEMANTICS[stage]
+                if shape != [1, expected["sites"], expected["channels"]]:
+                    raise ValueError(f"registered site semantics disagree at {stage}")
                 if stage in schema and schema[stage] != shape:
                     raise ValueError(f"activation schema changed at {stage}")
                 schema.setdefault(stage, shape)

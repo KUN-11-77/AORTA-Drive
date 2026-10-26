@@ -9,7 +9,11 @@ from pathlib import Path
 
 import torch
 
-from aorta_drive.vision.r006_cache import sha256_file, validate_group_shard
+from aorta_drive.vision.r006_cache import (
+    STAGE_SITE_SEMANTICS,
+    sha256_file,
+    validate_group_shard,
+)
 
 
 def main() -> None:
@@ -29,6 +33,7 @@ def main() -> None:
     check("manifest PASS", manifest.get("status") == "PASS")
     check("sealed roles untouched", manifest.get("development_calibration_test_navdream_target_accessed") is False)
     check("no scientific metrics", manifest.get("scientific_metrics_emitted") is False)
+    check("stage site semantics exact", manifest.get("stage_site_semantics") == STAGE_SITE_SEMANTICS)
     expected_groups = int(manifest.get("groups", -1))
     expected_anchors = int(manifest.get("anchors", -1))
     if not args.allow_smoke:

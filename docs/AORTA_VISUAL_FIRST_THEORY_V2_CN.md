@@ -15,8 +15,8 @@ Constant Eye 已经给出一个重要事实：冻结 DINOv3-H+ 并为不同 plan
 
 现有视觉鲁棒驾驶通常试图让整幅表示在天气变化下保持稳定；Constant Eye 进一步表明，冻结 DINO
 并为各 planner 重训接口可以改善外观 OOD。但 planner 并不需要全部视觉信息，而且“整体稳定”不保证
-“决策稳定”。我们的关键观察是：外观扰动只在 planner Jacobian 所定义的少数任务敏感方向上影响行为，
-大量 feature drift 位于决策等价类内。AORTA 因此先用组外双向 interchange intervention 找出真正介导
+“决策稳定”。我们的核心待检验假设是：外观扰动可能主要通过 planner Jacobian 所定义的少数任务敏感
+方向影响行为，而大量 feature drift 可能位于决策等价类内。AORTA 因此先用组外双向 interchange intervention 找出真正介导
 行为的低秩 planner-tangent subspace，再检验冻结 DINO 是否能从受扰图像恢复这些坐标；只有两门都通过，
 才训练一个只在该子空间中工作的 Causal Planner-Tangent Repair。这样既不重训原 planner，也不追求完整
 场景重建，而是修复“改变决策所必需、且视觉确实可恢复”的最小证据。若低秩介导、视觉增量或 matched
@@ -73,10 +73,10 @@ AORTA 需要恢复的是等价类中影响行为的坐标，而不是 clean feat
 
 ## 2. planner-sensitive 几何
 
-当 tail network 在 \(z_c\) 邻域可微，令
+当 tail network 在激活 \(z\) 邻域可微，令
 
 \[
-J_\ell(z_c,H)=\frac{\partial f_{>\ell}}{\partial z}\bigg|_{z_c,H}.
+J_\ell(z,H)=\frac{\partial f_{>\ell}}{\partial z}\bigg|_{z,H}.
 \]
 
 用任务输出度量 \(W\succeq0\) 定义 pullback metric
@@ -91,11 +91,11 @@ G_\ell(z_c,H)=J_\ell^\top WJ_\ell.
 D_{task}^2(\delta z)=\delta z^\top G_\ell\delta z.
 \]
 
-若 Hessian 算子范数在邻域内不超过 \(M\)，则
+若 Hessian 算子范数在邻域内不超过 \(M\)，则对局部增量 \(v\)
 
 \[
-\|f(z_c+\delta z)-f(z_c)-J_\ell\delta z\|
-\leq \frac{M}{2}\|\delta z\|^2.
+\|f(z+v)-f(z)-J_\ell(z,H)v\|
+\leq \frac{M}{2}\|v\|^2.
 \]
 
 因此：
@@ -117,19 +117,27 @@ D_{task}^2(\delta z)=\delta z^\top G_\ell\delta z.
 \[
 \boxed{
 B_r^*=\arg\min_{B^\top B=I_r}
-\mathbb E_i\left[\|J_i(I-P_B)\delta_i\|_W^2\right]
+\mathbb E_i\left[\|J_{a,i}(I-P_B)\delta_i\|_W^2\right],
+\qquad
+J_{a,i}=J_\ell(z_{a,i},H_i)
 }
 \]
 
 定义。它最小化“投影后仍未覆盖的 planner-sensitive 外观效应”，同时排除只敏感但未受外观扰动、或受扰动但位于任务 null space 的方向。\(W\) 是结果可见前冻结的输出度量：回归 planner 主分析使用物理单位归一化的轨迹位置度量，yaw/heading 为独立次指标；不得用 official outcome 反向选择 \(W\)。实现使用 JVP/VJP 或随机低秩算子，不显式构造完整 Jacobian。
 
-对空间 feature \(Z\in\mathbb R^{P\times C}\)，主架构不学习混合任意空间位置的巨大基，而使用保持 token/BEV 拓扑的通道子空间
+这里必须在 shifted 点求导，因为运行时修复从 \(z_a\) 出发。clean 点 Jacobian 可以作为稳定性诊断，但不得
+替代正式目标；代码、缓存、求解器和论文公式统一使用 \(J_a\)。
+
+对一般接口 \(Z\in\mathbb R^{P\times C}\)，主架构不学习混合任意sites的巨大基，而使用保持接口
+拓扑的通道子空间
 
 \[
-\mathcal P_B=I_P\otimes BB^\top,\qquad B\in\mathbb R^{C\times r}.
+\mathcal P_B=I_{P_{repair}}\otimes BB^\top,\qquad B\in\mathbb R^{C\times r}.
 \]
 
-reader 预测空间系数场 \(A\in\mathbb R^{P\times r}\)，残差为 \(AB^\top\)。这样 rank 描述通道机制复杂度，而空间位置仍由原 planner 接口和注册投影保持。
+reader 预测site系数 \(A\in\mathbb R^{P_{repair}\times r}\)，残差为 \(AB^\top\)。这样rank描述通道
+机制复杂度，site语义由真实planner接口保持。对LTF C3，64个8×8 BEV memory sites可修复，第65个
+non-image status site严格冻结；对C4，\(P_{repair}=1\)且其语义是trajectory query，不得称为空间位置。
 
 ### 2.2 冻结求解器
 
@@ -151,11 +159,37 @@ reader 预测空间系数场 \(A\in\mathbb R^{P\times r}\)，残差为 \(AB^\top
 
 \[
 \kappa_i(B)=1-
-\frac{\|J_i(I-P_B)\delta_i\|_W^2}
-{\|J_i\delta_i\|_W^2+\epsilon}.
+\frac{\|J_{a,i}(I-P_B)\delta_i\|_W^2}
+{\|J_{a,i}\delta_i\|_W^2+\epsilon}.
 \]
 
 必须报告 rank–coverage 曲线、组分布、最差组以及转弯/路口/高曲率分层。若共享低秩基只覆盖常见场景而遗漏关键组，则停止全局 CPTR；不得事后增大 rank。
+
+### 2.3 从局部 Jacobian 到有限外观干预
+
+若从 shifted 到 clean 的线段上 tail 可微，则有精确路径积分
+
+\[
+f(z_c)-f(z_a)=\int_0^1J_\ell(z_a+t\delta,H)\,\delta\,dt,
+\qquad \delta=z_c-z_a.
+\]
+
+因此低秩 Jacobian coverage 只描述路径起点处的一阶可覆盖性，不等于有限位移已经被修复。令
+\(q=\widetilde B\widehat a\) 为实际修复量。若路径邻域内 Jacobian 是 \(M\)-Lipschitz，则
+
+\[
+\boxed{
+\begin{aligned}
+\|f(z_a+q)-f(z_c)\|_W
+\leq{}&\|J_a\widetilde B(\widehat a-a^*)\|_W\\
+&+\|J_a(I-\widetilde P_B)\delta\|_W\\
+&+\frac{M}{2}\bigl(\|q\|^2+\|\delta\|^2\bigr).
+\end{aligned}}
+\]
+
+前两项分别对应 reader 误差与低秩基未覆盖误差，第三项是从局部线性算子走到有限干预的非线性账本。
+所以 R006V0 必须同时报告 held-out Jacobian coverage 与真实冻结 tail 上的 patch restoration；任一单独成立
+都不足以通过机制门。实际 Stiefel 求解只能得到登记初始化和优化合同下的数值近似解，不声称全局最优。
 
 ## 3. 因果介导资格
 
@@ -253,19 +287,10 @@ e_i=\widehat z_i-z_{c,i}
 =\widetilde B(\widehat a_i-a_i^*)-(I-\widetilde P_B)\delta_i.
 \]
 
-定义 \(\|v\|_W=\sqrt{v^\top Wv}\)；当 \(W\succeq0\) 奇异时它是半范数。若局部二阶余项在该 \(W\)-输出半范数下满足 \(\|r_i\|_W\le M_i\|e_i\|^2/2\)，则
-
-\[
-\boxed{
-\|f(\widehat z_i)-f(z_{c,i})\|_W
-\leq
-\|J_i\widetilde B(\widehat a_i-a_i^*)\|_W
-+\|J_i(I-\widetilde P_B)\delta_i\|_W
-+\frac{M_i}{2}\|e_i\|^2
-}
-\]
-
-三个可测项分别对应 reader 误差、低秩基未覆盖误差和非线性余项。这才是 CPTR 的直接理论来源。
+定义 \(\|v\|_W=\sqrt{v^\top Wv}\)；当 \(W\succeq0\) 奇异时它是半范数。行为误差使用2.3节
+以 shifted 点 \(J_{a,i}\) 为起点的有限干预界：reader误差、低秩基未覆盖误差，以及
+\(M_i(\|q_i\|^2+\|\delta_i\|^2)/2\) 的非线性余项。这三个可测对象才是 CPTR 的直接理论来源；
+不得把起点局部 coverage 写成有限扰动的全局保证。
 
 对候选打分 planner，若 clean top-1 margin 为 \(\gamma\)，且修复后
 
@@ -284,7 +309,7 @@ CPTR 是 **rank-constrained repair**，不声称求得满足行为约束的全�
 ```text
 shifted RGB -----------------> frozen native encoder -> z_a^ell ----+----> frozen planner tail -> output
        \                                                           |
-        +-> frozen DINOv3-H+ -> registered spatial evidence -------+-> per-location low-rank coefficients
+        +-> frozen DINOv3-H+ -> site-conditioned evidence reader ---+-> per-site low-rank coefficients
                                                                     |
               source-derived, intervention-qualified basis B_l <---+
                                                                     |
@@ -294,7 +319,11 @@ shifted RGB -----------------> frozen native encoder -> z_a^ell ----+----> froze
 ### 5.2 冻结与可训练边界
 
 冻结：原 planner 全部参数、DINOv3-H+、候选生成器、评估器、通过 nested group-held-out R006V0 资格化的接口层、rank 和基 \(B_r^*\)。
-新增：一个共享 evidence-to-spatial-coefficient reader \(A_\theta\)。DINO 到 native interface 的空间绑定必须使用冻结相机/BEV投影并通过错配与坐标哨兵；若某层没有合法空间绑定，该层不得进入 R006V1。最多再允许一个 uncertainty/abstention head，且仅在增量可恢复性失败证据出现后加入。
+新增：一个共享 evidence-to-site-coefficient reader \(A_\theta\)。它以native interface sites为queries、
+以冻结DINO patch tokens为keys/values做cross-attention，再输出每个repairable site的rank-r系数。C3输出
+64×r并为status site补严格零；C4输出1×r的query-conditioned系数。该设计不假设DINO patch与BEV或
+trajectory query一一对应，而把“正确视觉证据能否读取”留给R006V1检验。最多再允许一个
+uncertainty/abstention head，且仅在增量可恢复性失败证据出现后加入。
 
 ### 5.3 为什么不是普通 adapter
 
@@ -338,7 +367,8 @@ R006V0 只做 activation intervention，不训练 CPTR。full patch 仅为机械
 
 ### P2：DINO 增量可恢复性
 
-在冻结 P1 目标上做 source group-held-out probe。令
+在冻结 P1 目标上做 source group-held-out probe。C3/C4都使用上述同一site-conditioned reader family，
+仅site数量与status mask不同。令
 
 \[
 \mathcal R_D(\mathcal F)=\inf_{r\in\mathcal F}\mathbb E\|a^*-r(z_a,D_a,H)\|^2,
@@ -347,6 +377,12 @@ R006V0 只做 activation intervention，不训练 CPTR。full patch 仅为机械
 \]
 
 其中两臂使用参数量、输入维度、训练预算、优化器与选择协议匹配的函数类 \(\mathcal F\)，removed arm 以零证据保持同一网络。有限实验只能支持“DINO 在指定函数类与训练合同下提供组外增量可预测信息”，不能证明 Bayes risk 顺序或严格可识别性。correct DINO 必须优于条件匹配 mismatch、removed、native-only；报告目标系数误差与 functional restoration。失败不允许直接扩大网络。
+
+### P2.1 科学计算图与部署计算图
+
+机制发现需要math-SDPA与关闭MHA fastpath以获得资格化JVP；最终推理优先使用官方快速图。二者只有在
+完整确认集上轨迹最大绝对差不超过`1e-5`且离散选择完全一致时才可互换。否则CPTR必须在科学图上部署，
+并把DINO、native encoder、reader和tail的batch-1 P50/P95全部计入时延。
 
 ### P3：rank-constrained 修复的行为闭环
 
