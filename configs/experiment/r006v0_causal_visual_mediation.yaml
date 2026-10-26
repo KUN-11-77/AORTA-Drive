@@ -45,6 +45,9 @@ statistics:
   bootstrap_groups: 42
   bootstrap_replicates: 10000
   confidence: 0.95
+  bootstrap_seed: 20261026
+  confidence_interval_type: percentile_paired_group_bootstrap
+  minimum_valid_resample_fraction: 1.0
 basis_qualification:
   objective: minimize_uncovered_task_weighted_appearance_drift
   spatial_structure: identity_over_spatial_positions_times_channel_projector
@@ -52,6 +55,7 @@ basis_qualification:
   secondary_output_metrics: [yaw_drift, heading_drift]
   selection_mean_coverage_min: 0.90
   selection_worst_group_mean_coverage_min: 0.50
+  coverage_epsilon: 0.000000000001
   choose_smallest_qualifying_rank: true
   solver:
     manifold: stiefel_channel_basis
@@ -62,6 +66,11 @@ basis_qualification:
     patience: 20
     max_steps: 500
     restart_selection: lowest_discovery_objective_only
+  synthetic_dense_jacobian_oracle:
+    dtype: float64
+    objective_relative_tolerance: 0.00000001
+    gradient_relative_tolerance: 0.0000001
+    recovered_projector_distance_tolerance: 0.05
   deployment_uniqueness:
     layer_same_in_at_least_folds: 5
     rank_same_in_at_least_folds: 4
