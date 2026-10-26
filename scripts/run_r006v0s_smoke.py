@@ -54,7 +54,9 @@ def load_module(path: Path, name: str):
 def git_revision(path: Path) -> dict[str, Any]:
     def run(*args: str) -> str:
         return subprocess.check_output(
-            ["git", "-c", "safe.directory=*", "-C", str(path), *args], text=True
+            ["git", "-c", "safe.directory=*", "-C", str(path), *args],
+            text=True,
+            stderr=subprocess.DEVNULL,
         ).strip()
 
     try:
@@ -64,7 +66,42 @@ def git_revision(path: Path) -> dict[str, Any]:
             "dirty": bool(run("status", "--porcelain")),
         }
     except (subprocess.CalledProcessError, FileNotFoundError):
-        return {"root": str(path), "commit": None, "dirty": None}
+        git_dir = path / ".git"
+        try:
+            head = (git_dir / "HEAD").read_text(encoding="utf-8").strip()
+            if head.startswith("ref: "):
+                commit = (git_dir / head[5:]).read_text(encoding="utf-8").strip()
+            else:
+                commit = head
+        except OSError:
+            commit = None
+        return {"root": str(path), "commit": commit, "dirty": None}
+
+
+def bind_complete_early_visual_cut(prototype: Any) -> str:
+    """Bind C1 to the first encoder return layer, before any image/BEV fusion.
+
+    The legacy probe used the final image return layer.  In TransFuser that is
+    not a causal cut because earlier fusion blocks have already copied visual
+    information into the latent BEV stream.  Patching only that final image
+    tensor therefore cannot restore the clean computation.  The first return
+    layer lies before the first fusion and intercepts every downstream visual
+    path while remaining a learned visual representation.
+    """
+
+    def first_image_module(model):
+        encoder = model._backbone.image_encoder
+        names = list(encoder.return_layers.keys())
+        if not names:
+            raise RuntimeError("image encoder has no return layers")
+        modules = dict(encoder.named_modules())
+        name = names[0]
+        if name not in modules:
+            raise RuntimeError(f"cannot resolve first image return layer {name}")
+        return name, modules[name]
+
+    prototype.final_image_module = first_image_module
+    return "first_image_encoder_return_layer_before_any_cross_modal_fusion"
 
 
 def select_fit_anchors(
@@ -169,6 +206,7 @@ def main() -> None:
         raise RuntimeError("R006V0S requires an explicitly selected CUDA device")
 
     prototype = load_module(args.instrumentation, "r006v0s_instrumentation")
+    c1_cut_definition = bind_complete_early_visual_cut(prototype)
     imported_model_path = Path(inspect.getfile(prototype.TransfuserModel)).resolve()
     imported_builder_path = Path(
         inspect.getfile(prototype.TransfuserFeatureBuilder)
@@ -337,6 +375,7 @@ def main() -> None:
         "development_calibration_test_navdream_target_accessed": False,
         "appearance_condition": args.condition,
         "appearance_application_point": "after_official_stitch_resize_before_frozen_backbone",
+        "c1_cut_definition": c1_cut_definition,
         "anchors": len(selected),
         "tail_rms_tolerance": args.tail_rms_tolerance,
         "device": str(device),
