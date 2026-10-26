@@ -34,6 +34,14 @@ C3/C4 primary/replay 逐字节一致，SHA-256 均为
 `afe3c1f880adc19fb260debd681cbb2594c0b0ef9f04b3498e19d450f6313de4`。25/25 自动机械审计通过，
 封存角色未访问，未产生科学指标。
 
+## 尾部执行资格补充
+
+为避免正式 nested-OOF 运行对每次 JVP 重算图像骨干，项目进一步把 C3/C4 的下游映射写成显式
+tail-only 算子：C3 只重放 planner decoder 与 trajectory head，C4 只重放 trajectory head。两条
+tail-only 路径与同一冻结模型完整前向的最大绝对差均未超过 `1e-5`；primary/replay 逐字节一致，
+SHA-256 均为 `1d1047a2dc89838b65a6be86f04bdb8e64a1ffe3f32c1bb8ddd7c203a9a39cf1`，28/28
+机械审计通过。该补充只证明计算图等价、伴随一致和可复算，不产生科学指标。
+
 ## 决策
 
 正式 R006V0 的候选层字典在科学运行前收缩为 C3 planner memory 与 C4 trajectory query；rank、fold、

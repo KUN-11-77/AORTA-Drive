@@ -5,6 +5,8 @@
 > 的JVP/VJP伴随误差为`1.86e-7/4.34e-7`，basis gradient非零，primary/replay逐字节一致，25/25审计
 > PASS。C1/C2在保持`1e-4`门槛时稳定FAIL，已在任何科学结果可见前机械排除；不作理论无效解释。
 > 正式R006V0候选层收缩为C3/C4，其余rank、fold、controls与裁决不变。
+> C3/C4 tail-only执行也已资格化：与完整冻结模型输出一致，primary/replay逐字节一致，28/28机械审计
+> PASS。该结果只解锁可行的activation-cache与尾部JVP实现，不增加任何科学主张。
 
 > **2026-10-26 R006V0S：`MECHANICAL_PASS__FORMAL_R006V0_NOT_READY__NO_METHOD_CLAIM`。**
 > synthetic dense-Jacobian oracle 通过；冻结 LTF 在2个不同 source-fit groups 上完成 primary/replay，

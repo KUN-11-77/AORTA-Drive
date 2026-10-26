@@ -1561,3 +1561,16 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R006/R006V0J_RESULTS.md`；
   `experiments/R006/R006V0_PROTOCOL_AMENDMENT_1.md`；
   `experiments/R006/results/r006v0j_f4feef5/`。
+
+## ADR-0104：正式介导实验采用等价的 tail-only 算子
+
+- **Decision:** `USE_CAUSAL_CUT_CACHE_PLUS_QUALIFIED_TAIL_ONLY_JVP`。
+- **Evidence:** C3/C4 tail-only输出与完整冻结模型差值不超过`1e-5`；JVP/VJP伴随门与basis-gradient门继续
+  PASS；primary/replay逐字节一致，SHA-256均为
+  `1d1047a2dc89838b65a6be86f04bdb8e64a1ffe3f32c1bb8ddd7c203a9a39cf1`；28/28机械审计PASS。
+- **Rationale:** 因果干预发生在已冻结切口，切口之前的表示和与该切口无关的下游条件是常量；缓存这些
+  常量再重放同一下游函数不改变估计对象，但避免在每次矩阵自由乘法中重复运行图像骨干。
+- **Boundary:** 只证明计算等价与确定性；不证明低秩介导、scene specificity、DINO可恢复性、OOD、行为
+  或安全收益。
+- **Consequence:** 正式实现先构建source-fit activation cache，再运行冻结nested-OOF与A0–A7；不得用
+  运行效率理由改变fold、rank、控制或裁决阈值。

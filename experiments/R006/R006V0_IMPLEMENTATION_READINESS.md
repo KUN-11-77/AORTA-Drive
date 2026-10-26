@@ -9,6 +9,10 @@
 同日 R006V0J 对真实 LTF 矩阵自由算子完成资格：C3/C4 primary/replay 与25项审计PASS；C1/C2在冻结
 `1e-4`伴随门下失败并于科学运行前排除。详见 `R006V0J_RESULTS.md`与协议修正1。
 
+随后 C3/C4 tail-only 执行路径完成资格：其输出与完整冻结模型一致，primary/replay逐字节一致，
+28/28机械审计PASS。正式运行可缓存因果切口及固定下游上下文，再仅对资格化尾部计算JVP；该变化不
+改变估计对象或科学阈值。
+
 本文件只管理实现来源与机械资格，不改变 R006V0 科学问题、数据、层、rank、控制或裁决阈值。
 
 ## 已冻结
@@ -46,13 +50,13 @@
 
 ## 解除阻塞的唯一顺序
 
-1. 移植 hook 与 tail replay，生成 schema；
-2. 冻结所有 provenance；
+1. ~~移植 hook 与 tail replay，生成 schema；~~ `PASS`
+2. ~~冻结 checkpoint/source/hook provenance；~~ `PASS`
 3. ~~运行显式 Jacobian synthetic oracle；~~ `PASS`
 4. ~~运行 1–2 anchors 的 identity/full-patch smoke；~~ `PASS`
 5. 用 smoke 的非科学耗时与真实 tensor shape 冻结正式预算；
 6. 重新生成 config/manifest SHA；
 7. 一次性执行 R006V0，不在途中读取部分科学指标。
 
-当前仍缺正式矩阵自由 JVP/VJP 数据管线、nested fold 选择器、全部 A0–A7 控制与运行预算 manifest；
+当前仍缺完整 activation cache、nested fold 选择器、全部 A0–A7 控制与运行预算 manifest；
 这些完成前，状态保持 `FORMAL_R006V0_IMPLEMENTATION_NOT_READY`。

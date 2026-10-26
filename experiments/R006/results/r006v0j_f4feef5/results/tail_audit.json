@@ -1,0 +1,131 @@
+{
+  "artifact": "R006V0J_MATRIX_FREE_OPERATOR_AUDIT_V2",
+  "status": "PASS",
+  "integrity_scope": "mechanical operator qualification only",
+  "qualified_stages": [
+    "c3_planner_memory",
+    "c4_trajectory_query"
+  ],
+  "mechanically_excluded_stages": [
+    "c1_early_visual",
+    "c2_fused_bev"
+  ],
+  "primary_sha256": "1d1047a2dc89838b65a6be86f04bdb8e64a1ffe3f32c1bb8ddd7c203a9a39cf1",
+  "replay_sha256": "1d1047a2dc89838b65a6be86f04bdb8e64a1ffe3f32c1bb8ddd7c203a9a39cf1",
+  "check_count": 28,
+  "failed_check_count": 0,
+  "checks": [
+    {
+      "check": "primary/replay byte exact",
+      "pass": true
+    },
+    {
+      "check": "primary/replay payload equal",
+      "pass": true
+    },
+    {
+      "check": "qualified primary PASS",
+      "pass": true
+    },
+    {
+      "check": "selected stage roster exact",
+      "pass": true
+    },
+    {
+      "check": "sealed roles untouched",
+      "pass": true
+    },
+    {
+      "check": "no scientific metrics emitted",
+      "pass": true
+    },
+    {
+      "check": "math backend semantics",
+      "pass": true
+    },
+    {
+      "check": "out-of-place head semantics",
+      "pass": true
+    },
+    {
+      "check": "direct tail semantics",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory: direct tail tolerance",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query: direct tail tolerance",
+      "pass": true
+    },
+    {
+      "check": "all-stage qualification failure retained",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory: present",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory: finite",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory: basis gradient nonzero",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory: adjoint tolerance",
+      "pass": true
+    },
+    {
+      "check": "c3_planner_memory: pass",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query: present",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query: finite",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query: basis gradient nonzero",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query: adjoint tolerance",
+      "pass": true
+    },
+    {
+      "check": "c4_trajectory_query: pass",
+      "pass": true
+    },
+    {
+      "check": "c1_early_visual: exclusion evidence present",
+      "pass": true
+    },
+    {
+      "check": "c1_early_visual: failed frozen operator gate",
+      "pass": true
+    },
+    {
+      "check": "c1_early_visual: finite/nonzero despite exclusion",
+      "pass": true
+    },
+    {
+      "check": "c2_fused_bev: exclusion evidence present",
+      "pass": true
+    },
+    {
+      "check": "c2_fused_bev: failed frozen operator gate",
+      "pass": true
+    },
+    {
+      "check": "c2_fused_bev: finite/nonzero despite exclusion",
+      "pass": true
+    }
+  ]
+}

@@ -39,6 +39,15 @@ def main() -> None:
     check("no scientific metrics emitted", primary.get("scientific_metrics_emitted") is False)
     check("math backend semantics", bool(primary.get("backend_semantics_pass")))
     check("out-of-place head semantics", bool(primary.get("autodiff_head_semantics_pass")))
+    check("direct tail semantics", bool(primary.get("direct_tail_semantics_pass")))
+    direct_tail_differences = primary.get("direct_tail_max_abs_difference", {})
+    for stage in QUALIFIED:
+        check(
+            f"{stage}: direct tail tolerance",
+            stage in direct_tail_differences
+            and float(direct_tail_differences[stage])
+            <= float(primary.get("backend_output_tolerance", 1e-5)),
+        )
     check("all-stage qualification failure retained", failure.get("status") == "FAIL")
 
     qualified_reports = {row["stage"]: row for row in primary.get("stages", [])}
@@ -58,7 +67,7 @@ def main() -> None:
 
     passed = all(bool(row["pass"]) for row in checks)
     report = {
-        "artifact": "R006V0J_MATRIX_FREE_OPERATOR_AUDIT_V1",
+        "artifact": "R006V0J_MATRIX_FREE_OPERATOR_AUDIT_V2",
         "status": "PASS" if passed else "FAIL",
         "integrity_scope": "mechanical operator qualification only",
         "qualified_stages": QUALIFIED,
