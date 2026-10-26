@@ -90,9 +90,7 @@ def main() -> None:
         function = lambda value, stage=stage: runtime.trajectory_xy_from_stage(
             shifted_features, stage, value
         )
-        _, product = torch.autograd.functional.jvp(
-            function, shifted, tangent, create_graph=False, strict=True
-        )
+        _, product = torch.func.jvp(function, (shifted,), (tangent,))
         with torch.no_grad():
             upper = function(shifted + epsilon * tangent)
             lower = function(shifted - epsilon * tangent)
@@ -111,8 +109,8 @@ def main() -> None:
         ).requires_grad_(True)
         residual_npc = npc_tangent - (npc_tangent @ basis) @ basis.T
         residual = npc_to_activation(residual_npc, tangent)
-        _, differentiable_product = torch.autograd.functional.jvp(
-            function, shifted, residual, create_graph=True, strict=True
+        _, differentiable_product = torch.func.jvp(
+            function, (shifted,), (residual,)
         )
         objective = torch.mean(differentiable_product * differentiable_product)
         gradient = torch.autograd.grad(objective, basis)[0]

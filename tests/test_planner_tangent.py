@@ -80,12 +80,8 @@ def test_autograd_jvp_preserves_basis_gradient_through_tangent() -> None:
     delta = torch.randn(6, dtype=dtype)
     basis = orthonormalize(torch.randn(6, 2, dtype=dtype)).requires_grad_(True)
     tangent = delta - (delta @ basis) @ basis.T
-    _, product = torch.autograd.functional.jvp(
-        lambda value: operator @ value,
-        base,
-        tangent,
-        create_graph=True,
-        strict=True,
+    _, product = torch.func.jvp(
+        lambda value: operator @ value, (base,), (tangent,)
     )
     loss = torch.sum(product * product)
     gradient = torch.autograd.grad(loss, basis)[0]
