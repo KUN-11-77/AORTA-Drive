@@ -1,6 +1,6 @@
 # R006V0F experiment record
 
-状态：`IMPLEMENTED__GPU_SMOKE_PENDING__FORMAL_NOT_STARTED`。
+状态：`REAL_GPU_SMOKE_PASS__FORMAL_RUNNING`。
 
 ## 问题
 
@@ -39,3 +39,6 @@ fold间有效维数异质和共享方向失败。R006V0F仅在已开封inner角�
 真实GPU smoke由`scripts/run_r006v0f_gpu_smoke.py`执行：仅使用一个已登记discovery group、一个
 selection group、rank 4、一个冻结随机种子与两个优化步，并在同一GPU上做精确回放。它不输出科学
 指标，只用于核验checkpoint、cache、planner tail、CUDA/JVP、random-only初始化和确定性回放。
+
+2026-10-27烟测在提交`a0675d60f5093540fff3954ba6802c30b9c6a6a7`上PASS；正式运行目录为
+`/data/khsong/aorta_runs/r006v0f_a0675d6_formal`。正式结果完成前不得读取fold日志或部分科学量。
