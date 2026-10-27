@@ -78,6 +78,38 @@ intervention 证明方向具有 scene-specific causal efficacy。basis coverage 
 
 ## 5. 若 A 成立，候选方法怎样从理论自然导出
 
+### 5.0 若首先得到 estimator instability：用凸松弛区分优化失败与结构失败
+
+不能因多初始化不稳定就直接换更复杂网络。令 Fantope
+
+\[
+\mathcal F_r=\{P=P^\top:0\preceq P\preceq I,\ \operatorname{tr}(P)=r\}.
+\]
+
+把非凸 rank-\(r\) projector 约束放宽为 \(P\in\mathcal F_r\)：
+
+\[
+\min_{P\in\mathcal F_r}
+\sum_i\left\|J_i(I-P)\delta_i\right\|_{W_i}^2.
+\]
+
+对每个样本，\(P\mapsto W_i^{1/2}J_i(I-P)\delta_i\) 是仿射映射，平方范数为凸函数；
+\(\mathcal F_r\) 也是凸紧集，因此该松弛存在全局最优解，且不会把随机初始化方差与结构异质性混在一起。
+它只是一项 estimator diagnosis：最优 \(P\) 可以具有分数特征值，并不自动对应 rank-\(r\) 子空间；若
+取 top-\(r\) 特征向量舍入，还必须报告松弛目标与舍入目标的 gap。
+
+该诊断给出可区分预测：
+
+- 若凸最优与舍入解跨重复稳定，而现有 Stiefel 解不稳定，主要问题属于求解器/参数化；
+- 若凸最优本身对 group resample 高度不稳定，不能再用“非凸局部极值”挽救共享结构；
+- 若凸软解稳定但任何 projector 舍入都有大 gap，证据支持软 task metric，而非固定低秩接口；
+- 无论哪种情况，都不能跳过有限 patch、DINO 可恢复性与 matched 方法对照。
+
+只有正式 R006V0F 返回 `RANK_ESTIMATION_UNSTABLE` 时，才允许把这一凸审计预注册为下一实验；当前不
+执行，也不改变本轮路线。
+
+### 5.1 若共享方向稳定但有效维数异质
+
 可以预注册“共享有序 flag + 自适应有效维数”，而不是事后固定 rank32。令
 
 \[
