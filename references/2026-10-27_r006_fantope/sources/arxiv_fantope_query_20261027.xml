@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/++aGNuE6z6gf/A52qmnBzMGqAzE</id>
+  <title>arXiv Query: search_query=all:"Fantope Projection and Selection"&amp;id_list=&amp;start=0&amp;max_results=5</title>
+  <updated>2026-10-27T02:58:42Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=all:%22Fantope+Projection+and+Selection%22&amp;start=0&amp;max_results=5&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>2</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/1911.08048v1</id>
+    <title>Gradient-based Sparse Principal Component Analysis with Extensions to Online Learning</title>
+    <updated>2019-11-19T02:17:09Z</updated>
+    <link href="https://arxiv.org/abs/1911.08048v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1911.08048v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Sparse principal component analysis (PCA) is an important technique for dimensionality reduction of high-dimensional data. However, most existing sparse PCA algorithms are based on non-convex optimization, which provide little guarantee on the global convergence. Sparse PCA algorithms based on a convex formulation, for example the Fantope projection and selection (FPS), overcome this difficulty, but are computationally expensive. In this work we study sparse PCA based on the convex FPS formulation, and propose a new algorithm that is computationally efficient and applicable to large and high-dimensional data sets. Nonasymptotic and explicit bounds are derived for both the optimization error and the statistical accuracy, which can be used for testing and inference problems. We also extend our algorithm to online learning problems, where data are obtained in a streaming fashion. The proposed algorithm is applied to high-dimensional gene expression data for the detection of functional gene groups.</summary>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.CO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-11-19T02:17:09Z</published>
+    <arxiv:primary_category term="stat.ME"/>
+    <author>
+      <name>Yixuan Qiu</name>
+    </author>
+    <author>
+      <name>Jing Lei</name>
+    </author>
+    <author>
+      <name>Kathryn Roeder</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1401.6978v3</id>
+    <title>Sparsistency and agnostic inference in sparse PCA</title>
+    <updated>2015-03-05T07:56:59Z</updated>
+    <link href="https://arxiv.org/abs/1401.6978v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1401.6978v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The presence of a sparse "truth" has been a constant assumption in the theoretical analysis of sparse PCA and is often implicit in its methodological development. This naturally raises questions about the properties of sparse PCA methods and how they depend on the assumption of sparsity. Under what conditions can the relevant variables be selected consistently if the truth is assumed to be sparse? What can be said about the results of sparse PCA without assuming a sparse and unique truth? We answer these questions by investigating the properties of the recently proposed Fantope projection and selection (FPS) method in the high-dimensional setting. Our results provide general sufficient conditions for sparsistency of the FPS estimator. These conditions are weak and can hold in situations where other estimators are known to fail. On the other hand, without assuming sparsity or identifiability, we show that FPS provides a sparse, linear dimension-reducing transformation that is close to the best possible in terms of maximizing the predictive covariance.</summary>
+    <category term="math.ST" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2014-01-27T19:38:27Z</published>
+    <arxiv:comment>Published in at http://dx.doi.org/10.1214/14-AOS1273 the Annals of Statistics (http://www.imstat.org/aos/) by the Institute of Mathematical Statistics (http://www.imstat.org)</arxiv:comment>
+    <arxiv:primary_category term="math.ST"/>
+    <arxiv:journal_ref>Annals of Statistics 2015, Vol. 43, No. 1, 299-322</arxiv:journal_ref>
+    <author>
+      <name>Jing Lei</name>
+    </author>
+    <author>
+      <name>Vincent Q. Vu</name>
+    </author>
+    <arxiv:doi>10.1214/14-AOS1273</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1214/14-AOS1273" title="doi"/>
+  </entry>
+</feed>

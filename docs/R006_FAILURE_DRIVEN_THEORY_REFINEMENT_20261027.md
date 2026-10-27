@@ -105,8 +105,9 @@ intervention 证明方向具有 scene-specific causal efficacy。basis coverage 
 - 若凸软解稳定但任何 projector 舍入都有大 gap，证据支持软 task metric，而非固定低秩接口；
 - 无论哪种情况，都不能跳过有限 patch、DINO 可恢复性与 matched 方法对照。
 
-只有正式 R006V0F 返回 `RANK_ESTIMATION_UNSTABLE` 时，才允许把这一凸审计预注册为下一实验；当前不
-执行，也不改变本轮路线。
+只有正式 R006V0F 返回 RANK_ESTIMATION_UNSTABLE 时，才允许把这一凸审计预注册为下一实验；当前不
+执行，也不改变本轮路线。Fantope 是已有凸谱松弛对象，不能作为 AORTA 创新；文献出处与合法借用边界见
+references/2026-10-27_r006_fantope_boundary.md。
 
 ### 5.1 若共享方向稳定但有效维数异质
 

@@ -1,0 +1,18 @@
+{
+  "requested_url": "https://papers.nips.cc/paper_files/paper/2013/hash/81e5f81db77c596492e6f1a5a792ed53-Abstract.html",
+  "retrieved_at_utc": "2026-10-27T03:01:23.888529+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://papers.nips.cc/paper_files/paper/2013/hash/81e5f81db77c596492e6f1a5a792ed53-Abstract.html",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 9317,
+  "sha256": "dd9060287989ed20753450ec1de0be1ea23bda39da07025841a6c42b951080df",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-27_r006_fantope\\sources\\fantope_neurips2013.html",
+  "elapsed_seconds": 0.922,
+  "pdf_detected": false,
+  "text_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-27_r006_fantope\\sources\\fantope_neurips2013.html.text.txt",
+  "links_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-27_r006_fantope\\sources\\fantope_neurips2013.html.links.json"
+}

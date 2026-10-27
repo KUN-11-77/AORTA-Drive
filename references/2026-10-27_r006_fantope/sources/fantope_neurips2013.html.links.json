@@ -1,0 +1,46 @@
+[
+  {
+    "url": "https://papers.nips.cc/",
+    "text": "NeurIPS Proceedings"
+  },
+  {
+    "url": "https://papers.nips.cc/admin/login/?next=/admin/",
+    "text": ""
+  },
+  {
+    "url": "https://papers.nips.cc/admin/logout/?nextp=/admin",
+    "text": ""
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2013",
+    "text": "Advances in Neural Information Processing Systems 26 (NIPS 2013)"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2013/file/81e5f81db77c596492e6f1a5a792ed53-Bibtex.bib",
+    "text": "Bibtex"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2013/file/81e5f81db77c596492e6f1a5a792ed53-Metadata.json",
+    "text": "Metadata"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2013/file/81e5f81db77c596492e6f1a5a792ed53-Paper.pdf",
+    "text": "Paper"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2013/file/81e5f81db77c596492e6f1a5a792ed53-Reviews.html",
+    "text": "Reviews"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2013/file/81e5f81db77c596492e6f1a5a792ed53-Supplemental.zip",
+    "text": "Supplemental"
+  },
+  {
+    "url": "https://neurips.cc/Help/Contact?select=Conference",
+    "text": "Report an Issue"
+  },
+  {
+    "url": "https://papers.nips.cc/paper_files/paper/2013/hash/81e5f81db77c596492e6f1a5a792ed53-Abstract.html",
+    "text": "Name Change Policy"
+  }
+]

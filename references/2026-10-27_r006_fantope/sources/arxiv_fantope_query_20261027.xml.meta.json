@@ -1,0 +1,16 @@
+{
+  "requested_url": "https://export.arxiv.org/api/query?search_query=all:%22Fantope%20Projection%20and%20Selection%22&start=0&max_results=5",
+  "retrieved_at_utc": "2026-10-27T03:01:28.680037+00:00",
+  "max_bytes": 33554432,
+  "timeout_seconds": 30,
+  "final_url": "https://export.arxiv.org/api/query?search_query=all:%22Fantope%20Projection%20and%20Selection%22&start=0&max_results=5",
+  "status": 200,
+  "content_type": "application/atom+xml; charset=utf-8",
+  "last_modified": null,
+  "etag": null,
+  "bytes": 4971,
+  "sha256": "b3c9a131a78d8e1e360776d00ae3b731aee6380d681e98b0e8cc910497d24606",
+  "output_path": "D:\\AORTA-Drive-worktrees\\gate-b-protocol\\references\\2026-10-27_r006_fantope\\sources\\arxiv_fantope_query_20261027.xml",
+  "elapsed_seconds": 0.619,
+  "pdf_detected": false
+}
