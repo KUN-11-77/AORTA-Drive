@@ -1650,3 +1650,15 @@ the current open-ended geometry certificate iteration remains STOP.
   `RANK_ESTIMATION_UNSTABLE`；否则检查至少5/6 folds是否各有7/8稳定但不同的非空rank mode。
 - **Boundary:** 这是父STOP之后的inner机制诊断，不是新方法或介导确认；不能事后解锁outer、DINO、
   CPTR、NavDream、行为或安全。
+
+## ADR-0111：任务 pullback coverage 不沿 rank 自动单调
+
+- **Decision:** R006V0F 与后续 ordered-flag 研究不得把 rank 解释为普通 PCA explained-variance rank。
+  对嵌套 projector 增量 $Q$，task residual 的变化为
+  `||JQδ||_W^2 - 2 <J(I-P)δ, JQδ>_W`，其符号在无额外正交/交换假设时不确定。
+- **Why:** 冻结 planner 的 Jacobian 会在输出空间混合通道分量；新增投影可能移除原本用于抵消其他
+  输出扰动的分量。独立 rank coverage 的非单调性因此既可能来自优化，也可能是任务几何本身。
+- **Consequence:** “最小合格 rank”只作为冻结阈值下的操作性诊断。ordered flag 即使被后续授权，
+  也必须逐前缀报告 task residual，并证明或实证检验单调性；R006V0F 的三条路线均不得自动解锁
+  adaptive-rank、DINO reader、CPTR 或行为主张。
+- **Record:** `docs/R006V0F_PRE_RESULT_THEORY_AUDIT.md`。
