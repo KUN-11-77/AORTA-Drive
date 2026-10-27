@@ -248,7 +248,9 @@ a=J(I-P_r)\delta,\qquad b=JQ\delta,
 
 1. 最小合格rank只是给定fold、estimator和threshold下的操作性量，不是内在维数；
 2. ordered flag只能消除独立rank子空间不可比性，不能自动保证coverage单调；
-3. R006V0F只诊断初始化敏感性与折间模式，不能解锁adaptive-rank、DINO reader或CPTR；
+3. R006V0F已在4/6 folds观察到同fold/rank的seed资格翻转，按冻结规则裁决
+   `RANK_ESTIMATION_UNSTABLE`；它只授权一次凸estimator/group-refit诊断，不能解锁adaptive-rank、
+   DINO reader或CPTR；
 4. 若跨折方向差异未显著超过seed内分散度，global-basis路线应停止，而不是继续扩大rank。
 
 ### 2.3 从局部 Jacobian 到有限外观干预
@@ -533,3 +535,7 @@ R006V0 只做 activation intervention，不训练 CPTR。full patch 仅为机械
 任一核心门失败，降低主张或停止该分支；不得以新增模块、阈值搜索或删样替代裁决。
 低秩、固定 layer、固定 rank 与 CPTR 均是可淘汰的结构假设，不是第一性目标。详细假设预算与停止规则见
 `docs/AORTA_HYPOTHESIS_TASTE_GATE.md`。
+
+截至R006V0F，Best-Paper故事仍未获得方法级正证据：当前最扎实的贡献是排除了“固定全局最小rank”与
+“单次best-of-restarts足以资格化basis”两个接口。只有凸诊断能证明稳定task metric、有限干预显示
+scene-specific介导、DINO提供组外增量信息，并且matched架构与行为闭环同时通过，才可恢复方法主张。

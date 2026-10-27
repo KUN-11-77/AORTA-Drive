@@ -1684,3 +1684,19 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Consequence:** 本轮 rank-mode failure route 保留，但任何“方向跨折稳定/不稳定”的推断保持 HOLD。
   若结果值得继续，另行预注册 group-resample refit 确认实验，不能事后并入本轮正式结果。
 - **Record:** `docs/R006V0F_PRE_RESULT_THEORY_AUDIT.md`。
+
+## ADR-0114：R006V0F裁决为estimator instability，只授权一次凸诊断
+
+- **Decision:** `RANK_ESTIMATION_UNSTABLE__CONVEX_DIAGNOSTIC_ONLY__NO_METHOD_UNLOCK`。
+- **Evidence:** 6/6 folds完成，same-GPU primary/replay逐文件一致，逐折643项审计与聚合83项审计均
+  PASS。fold 0/2/4/5出现同fold/rank的seed资格翻转；fold 1/3的8个seed均无合格rank。按ADR-0110
+  冻结优先级，首个条件触发`RANK_ESTIMATION_UNSTABLE`。
+- **Interpretation:** 该结果否定当前Stiefel estimator作为稳定fixed-rank接口的资格；不等于真实共享
+  方向不存在，也不允许用best-of-restarts、事后rank32或阈值修改挽救。缺少recording-group resample
+  refit，故projector geometry推断保持`UNAVAILABLE_NO_GROUP_LEVEL_REFITS`。
+- **Consequence:** 父`STOP_GLOBAL_SHARED_INTERFACE`不可变。下一步最多预注册一次冻结Fantope软解、
+  group-resample refit与rounding-gap诊断；`method_unlock=false`，R006V1、DINO reader、CPTR、outer、
+  NavDream、行为、时延与安全继续HOLD。若软解或舍入仍不稳定，停止全局低秩接口家族。
+- **Record:** `experiments/R006V0F/RESULTS.md`；
+  `experiments/R006V0F/aggregate_audit.json`；
+  `docs/R006_FAILURE_DRIVEN_THEORY_REFINEMENT_20261027.md`。

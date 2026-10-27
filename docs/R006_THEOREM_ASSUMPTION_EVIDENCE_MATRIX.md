@@ -14,7 +14,8 @@
 | T7 | benchmark效用与泛化 | 冻结方法；评估协议合法；独立外观与planner | R006V3 clean/NavDream/cross-planner/latency/official utility | 指定benchmark上的经验收益和边界 | 不宣称任意分布OOD、闭环安全定理 |
 | T8 | 科学图到快速部署图可迁移 | 全确认集数值容差与离散决策完全一致 | default/math backend equivalence + batch-1端到端时延 | 可在通过门后使用官方快速图部署 | 单anchor数值接近不能证明全数据决策等价 |
 | T9 | planner-pullback residual 的rank增量恒等式 | 嵌套projector满足\(P_{r+1}=P_r+Q\)，且\(Q\)与\(P_r\)正交 | 解析恒等式与`tests/test_r006_rank_geometry.py`三通道反例 | residual变化精确为\(\|JQ\delta\|_W^2-2\langle J(I-P_r)\delta,JQ\delta\rangle_W\)；rank单调改善需要额外条件 | 不得套用PCA explained-variance单调性；ordered flag也不自动修复该问题 |
-| T10 | Fantope estimator 松弛 | \(P=P^\top,0\preceq P\preceq I,\operatorname{tr}P=r\)；冻结样本/JVP/W | 若R006V0F返回estimator instability，再预注册凸求解、group-resample稳定性及projector舍入gap | 目标是仿射映射平方范数之和，故在Fantope上为凸并存在全局最优；可区分非凸优化失败与软metric结构 | 软最优不等于rank-\(r\)子空间；不证明共享结构、有限介导或方法收益 |
+| T10 | Fantope estimator 松弛 | \(P=P^\top,0\preceq P\preceq I,\operatorname{tr}P=r\)；冻结样本/JVP/W | R006V0F已返回`RANK_ESTIMATION_UNSTABLE`：4/6 folds资格翻转、2/6 folds全seed无合格rank；下一步仅预注册凸求解、recording-group resample refit及projector舍入gap | 目标是仿射映射平方范数之和，故在Fantope上为凸并存在全局最优；该诊断可区分非凸参数化失败、软metric结构与样本不稳定 | 软最优不等于rank-\(r\)子空间；不证明共享结构、有限介导或方法收益；当前`method_unlock=false` |
+| T11 | R006V0F失败分解路由 | seed只是估计重复；fold是blocked诊断因子；冻结qualification与优先级 | 6 folds×4 ranks×8 random-only seeds；same-GPU exact replay；83/83聚合审计 | 在冻结Stiefel估计器与阈值下，`RANK_ESTIMATION_UNSTABLE`操作性成立；可授权最小凸estimator诊断 | 不推出真实秩、共享方向存在/不存在、group-level projector稳定性、DINO/CPTR/OOD/行为结论 |
 
 ## 论文中的使用原则
 
@@ -25,4 +26,5 @@
 5. \(B\) 与 \(BQ\)（\(Q\in O(r)\)）表示同一方法对象；跨运行只比较 projector/principal angles，不比较单列basis语义。
 6. “低秩”统一指共享通道秩；site-conditioned coefficient field 仍有 \(P_{repair}r\) 个标量自由度。
 7. “最小合格rank”只是冻结threshold与estimator下的操作性诊断；R006V0F只分解其不稳定来源，不能把它升级为内在维数。
-8. Fantope 只在冻结路线返回 estimator instability 时作为最小诊断；不得把凸性写成视觉鲁棒性或方法创新。
+8. R006V0F已触发estimator-instability路线；Fantope只作为一次最小诊断，不得把凸性写成视觉鲁棒性或方法创新。
+9. projector overlap缺少recording-group resample refit，故当前只能描述；禁止对共享同一basis的pair做伪bootstrap。

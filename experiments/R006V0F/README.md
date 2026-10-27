@@ -1,6 +1,6 @@
 # R006V0F experiment record
 
-状态：`REAL_GPU_SMOKE_PASS__FORMAL_RUNNING`。
+状态：`MECHANICAL_PASS__RANK_ESTIMATION_UNSTABLE__PARENT_STOP_IMMUTABLE`。
 
 ## 问题
 
@@ -33,8 +33,7 @@ fold间有效维数异质和共享方向失败。R006V0F仅在已开封inner角�
 - runner：`scripts/run_r006v0f_chain.py`；
 - 独立聚合审计：`scripts/audit_r006v0f_chain.py`。
 
-正式运行前必须完成真实GPU smoke、固定实现commit、归档hash与服务器路径；结果完成后在本目录增加
-`RESULTS.md`与审计报告，并更新claim–evidence matrix。
+正式运行已完成；结果见`RESULTS.md`、`aggregate_audit.json`与`EXPERIMENT_AUDIT.md`。
 
 真实GPU smoke由`scripts/run_r006v0f_gpu_smoke.py`执行：仅使用一个已登记discovery group、一个
 selection group、rank 4、一个冻结随机种子与两个优化步，并在同一GPU上做精确回放。它不输出科学
@@ -47,5 +46,9 @@ selection group、rank 4、一个冻结随机种子与两个优化步，并在�
 冻结运行未包含recording-group bootstrap refit，因此projector overlap只能描述性报告；禁止对相关fold
 pair做伪bootstrap，最终审计必须标记`UNAVAILABLE_NO_GROUP_LEVEL_REFITS`且`method_unlock=false`。
 
-2026-10-27烟测在提交`a0675d60f5093540fff3954ba6802c30b9c6a6a7`上PASS；正式运行目录为
-`/data/khsong/aorta_runs/r006v0f_a0675d6_formal`。正式结果完成前不得读取fold日志或部分科学量。
+2026-10-27烟测与正式运行均基于提交`a0675d60f5093540fff3954ba6802c30b9c6a6a7`；正式目录为
+`/data/khsong/aorta_runs/r006v0f_a0675d6_formal`。6/6 folds、same-GPU replay及逐折审计完成，聚合审计
+83/83 PASS。4/6 folds出现同fold/rank的seed间资格翻转，按冻结规则裁决
+`RANK_ESTIMATION_UNSTABLE`；其余fold 1与3的8个seed均无合格rank。该结果只授权预注册凸estimator
+诊断，不授权adaptive reader、DINO reader、CPTR、outer intervention或NavDream。父实验
+`STOP_GLOBAL_SHARED_INTERFACE`保持不变。

@@ -105,9 +105,16 @@ intervention 证明方向具有 scene-specific causal efficacy。basis coverage 
 - 若凸软解稳定但任何 projector 舍入都有大 gap，证据支持软 task metric，而非固定低秩接口；
 - 无论哪种情况，都不能跳过有限 patch、DINO 可恢复性与 matched 方法对照。
 
-只有正式 R006V0F 返回 RANK_ESTIMATION_UNSTABLE 时，才允许把这一凸审计预注册为下一实验；当前不
-执行，也不改变本轮路线。Fantope 是已有凸谱松弛对象，不能作为 AORTA 创新；文献出处与合法借用边界见
-references/2026-10-27_r006_fantope_boundary.md。
+正式 R006V0F 已返回`RANK_ESTIMATION_UNSTABLE`：fold 0/2/4/5出现同fold/rank的seed资格翻转，
+fold 1/3的8个seed均无合格rank；same-GPU replay、finite、正交性、28/7/7角色与83/83聚合审计全部
+通过。因此现在只允许把这一凸审计**另行预注册**为下一实验；不得把当前结果解释为共享方向不存在，
+也不得直接设计adaptive-rank reader。Fantope 是已有凸谱松弛对象，不能作为 AORTA 创新；文献出处与
+合法借用边界见`references/2026-10-27_r006_fantope_boundary.md`。
+
+凸诊断必须补足本轮缺失的推断单位：对recording groups做resample后重新拟合完整软解，而不是对共享
+basis的fold/seed projector pair做伪bootstrap。必须同时报告软目标、Stiefel gap、top-r舍入gap、特征值
+谱与resample稳定性。若软解本身不稳定或舍入gap系统性过大，则停止fixed-projector方法家族；不得把
+“凸求解成功”写成视觉机制成立。
 
 ### 5.1 若共享方向稳定但有效维数异质
 
@@ -141,6 +148,8 @@ fixed-rank基线；不得使用 outcome 或 test label 选维数。
 
 ## 6. 当前裁决
 
-R006V0 原 fixed-global-rank 分支停止，R006V1、CPTR 与 NavDream 不解锁。下一步只允许预注册的
-inner failure decomposition；根据 A/B/C 结果决定修正 estimator、提出 adaptive-rank 方法，或放弃
-全局子空间假设。保持这一可证伪性，比强行让当前实验“通过”更接近 Best Paper 标准。
+R006V0 原 fixed-global-rank 分支继续停止，R006V1、DINO reader、CPTR 与 NavDream 不解锁。R006V0F
+已经把首要失败定位为冻结estimator的初始化不稳定，但没有对共享方向作group-level推断。下一步最多
+进行一次冻结的Fantope/group-refit诊断；它若不能给出稳定软metric或低gap projector，则终止全局低秩
+接口家族并回到更一般的planner-sensitive外观效应对象。保持这一可证伪性，比强行让当前实验“通过”
+更接近 Best Paper 标准。

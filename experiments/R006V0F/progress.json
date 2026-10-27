@@ -1,0 +1,42 @@
+{
+  "completed_fold_count": 6,
+  "development_calibration_test_navdream_target_accessed": false,
+  "failed_fold_count": 0,
+  "gpu_roster": [
+    0,
+    1,
+    6,
+    7
+  ],
+  "outcomes": [
+    {
+      "outer_fold": 0,
+      "status": "PASS"
+    },
+    {
+      "outer_fold": 1,
+      "status": "PASS"
+    },
+    {
+      "outer_fold": 2,
+      "status": "PASS"
+    },
+    {
+      "outer_fold": 3,
+      "status": "PASS"
+    },
+    {
+      "outer_fold": 4,
+      "status": "PASS"
+    },
+    {
+      "outer_fold": 5,
+      "status": "PASS"
+    }
+  ],
+  "phase": "complete",
+  "running_fold_count": 0,
+  "scientific_metrics_emitted": true,
+  "status": "COMPLETE",
+  "total_fold_count": 6
+}

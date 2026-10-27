@@ -1,0 +1,907 @@
+{
+  "artifact": "R006V0F_CHAIN_AUDIT_V1",
+  "auditor_provenance": {
+    "scope": "post-run independent aggregate audit; not a scientific runner",
+    "script_sha256": "4f1fda4ce850331257cd50c6737c31c617a61b08bfe1ee75cb313847317d5308"
+  },
+  "check_count": 83,
+  "checks": [
+    {
+      "check": "top-level exit code zero",
+      "pass": true
+    },
+    {
+      "check": "progress complete",
+      "pass": true
+    },
+    {
+      "check": "six folds complete",
+      "pass": true
+    },
+    {
+      "check": "zero failed folds",
+      "pass": true
+    },
+    {
+      "check": "zero running folds",
+      "pass": true
+    },
+    {
+      "check": "sealed roles untouched",
+      "pass": true
+    },
+    {
+      "check": "diagnostic science emitted",
+      "pass": true
+    },
+    {
+      "check": "nested manifest has six folds",
+      "pass": true
+    },
+    {
+      "check": "fold 0: primary exists",
+      "pass": true
+    },
+    {
+      "check": "fold 0: replay exists",
+      "pass": true
+    },
+    {
+      "check": "fold 0: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 0: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 0: stored audit pass",
+      "pass": true
+    },
+    {
+      "check": "fold 0: stored replay exact",
+      "pass": true
+    },
+    {
+      "check": "fold 0: independent result audit",
+      "pass": true
+    },
+    {
+      "check": "fold 0: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 0: frozen physical GPU assignment",
+      "pass": true
+    },
+    {
+      "check": "fold 0: coverage denominator invariant",
+      "pass": true
+    },
+    {
+      "check": "fold 1: primary exists",
+      "pass": true
+    },
+    {
+      "check": "fold 1: replay exists",
+      "pass": true
+    },
+    {
+      "check": "fold 1: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 1: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 1: stored audit pass",
+      "pass": true
+    },
+    {
+      "check": "fold 1: stored replay exact",
+      "pass": true
+    },
+    {
+      "check": "fold 1: independent result audit",
+      "pass": true
+    },
+    {
+      "check": "fold 1: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 1: frozen physical GPU assignment",
+      "pass": true
+    },
+    {
+      "check": "fold 1: coverage denominator invariant",
+      "pass": true
+    },
+    {
+      "check": "fold 2: primary exists",
+      "pass": true
+    },
+    {
+      "check": "fold 2: replay exists",
+      "pass": true
+    },
+    {
+      "check": "fold 2: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 2: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 2: stored audit pass",
+      "pass": true
+    },
+    {
+      "check": "fold 2: stored replay exact",
+      "pass": true
+    },
+    {
+      "check": "fold 2: independent result audit",
+      "pass": true
+    },
+    {
+      "check": "fold 2: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 2: frozen physical GPU assignment",
+      "pass": true
+    },
+    {
+      "check": "fold 2: coverage denominator invariant",
+      "pass": true
+    },
+    {
+      "check": "fold 3: primary exists",
+      "pass": true
+    },
+    {
+      "check": "fold 3: replay exists",
+      "pass": true
+    },
+    {
+      "check": "fold 3: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 3: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 3: stored audit pass",
+      "pass": true
+    },
+    {
+      "check": "fold 3: stored replay exact",
+      "pass": true
+    },
+    {
+      "check": "fold 3: independent result audit",
+      "pass": true
+    },
+    {
+      "check": "fold 3: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 3: frozen physical GPU assignment",
+      "pass": true
+    },
+    {
+      "check": "fold 3: coverage denominator invariant",
+      "pass": true
+    },
+    {
+      "check": "fold 4: primary exists",
+      "pass": true
+    },
+    {
+      "check": "fold 4: replay exists",
+      "pass": true
+    },
+    {
+      "check": "fold 4: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 4: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 4: stored audit pass",
+      "pass": true
+    },
+    {
+      "check": "fold 4: stored replay exact",
+      "pass": true
+    },
+    {
+      "check": "fold 4: independent result audit",
+      "pass": true
+    },
+    {
+      "check": "fold 4: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 4: frozen physical GPU assignment",
+      "pass": true
+    },
+    {
+      "check": "fold 4: coverage denominator invariant",
+      "pass": true
+    },
+    {
+      "check": "fold 5: primary exists",
+      "pass": true
+    },
+    {
+      "check": "fold 5: replay exists",
+      "pass": true
+    },
+    {
+      "check": "fold 5: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 5: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 5: stored audit pass",
+      "pass": true
+    },
+    {
+      "check": "fold 5: stored replay exact",
+      "pass": true
+    },
+    {
+      "check": "fold 5: independent result audit",
+      "pass": true
+    },
+    {
+      "check": "fold 5: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 5: frozen physical GPU assignment",
+      "pass": true
+    },
+    {
+      "check": "fold 5: coverage denominator invariant",
+      "pass": true
+    },
+    {
+      "check": "all fold payloads available",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: basis_module_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: cache_checkpoint_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: cache_manifest_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: cache_planner_execution_tree",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: checkpoint_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: config_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: cuda",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: diagnostic_module_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: nested_manifest_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: python",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: runner_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: solver_module_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: source_commit",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: torch",
+      "pass": true
+    }
+  ],
+  "claim_boundary": "Post-failure inner diagnostic only. The parent STOP is immutable; folds and seeds are blocked/repeated diagnostic factors rather than independent scientific replicates. Projector geometry has no valid group-level bootstrap because no bootstrap refits were frozen. No outer mediation or downstream method claim is supported.",
+  "coverage_denominator_diagnostics": {
+    "0": {
+      "interpretation": "descriptive denominator-health diagnostic only; the frozen coverage formula and route are unchanged",
+      "maximum": 2.209456443786621,
+      "median": 0.07269351184368134,
+      "minimum": 3.997569001512602e-05,
+      "minimum_positive": 3.997569001512602e-05,
+      "near_zero_count": 0,
+      "near_zero_fraction": 0.0,
+      "sample_count": 336
+    },
+    "1": {
+      "interpretation": "descriptive denominator-health diagnostic only; the frozen coverage formula and route are unchanged",
+      "maximum": 2.1136302947998047,
+      "median": 0.05250823311507702,
+      "minimum": 2.2546966647496447e-05,
+      "minimum_positive": 2.2546966647496447e-05,
+      "near_zero_count": 0,
+      "near_zero_fraction": 0.0,
+      "sample_count": 336
+    },
+    "2": {
+      "interpretation": "descriptive denominator-health diagnostic only; the frozen coverage formula and route are unchanged",
+      "maximum": 2.889889717102051,
+      "median": 0.07102033495903015,
+      "minimum": 3.0345083359861746e-05,
+      "minimum_positive": 3.0345083359861746e-05,
+      "near_zero_count": 0,
+      "near_zero_fraction": 0.0,
+      "sample_count": 336
+    },
+    "3": {
+      "interpretation": "descriptive denominator-health diagnostic only; the frozen coverage formula and route are unchanged",
+      "maximum": 2.071871280670166,
+      "median": 0.06189228408038616,
+      "minimum": 1.1140173228341155e-05,
+      "minimum_positive": 1.1140173228341155e-05,
+      "near_zero_count": 0,
+      "near_zero_fraction": 0.0,
+      "sample_count": 336
+    },
+    "4": {
+      "interpretation": "descriptive denominator-health diagnostic only; the frozen coverage formula and route are unchanged",
+      "maximum": 2.889889717102051,
+      "median": 0.07460824400186539,
+      "minimum": 3.997569001512602e-05,
+      "minimum_positive": 3.997569001512602e-05,
+      "near_zero_count": 0,
+      "near_zero_fraction": 0.0,
+      "sample_count": 336
+    },
+    "5": {
+      "interpretation": "descriptive denominator-health diagnostic only; the frozen coverage formula and route are unchanged",
+      "maximum": 2.969736099243164,
+      "median": 0.07838768512010574,
+      "minimum": 2.2546966647496447e-05,
+      "minimum_positive": 2.2546966647496447e-05,
+      "near_zero_count": 0,
+      "near_zero_fraction": 0.0,
+      "sample_count": 336
+    }
+  },
+  "diagnostic_route": {
+    "per_fold_mode_counts": {
+      "0": {
+        "4": 4,
+        "8": 4
+      },
+      "1": {
+        "none": 8
+      },
+      "2": {
+        "4": 5,
+        "8": 3
+      },
+      "3": {
+        "none": 8
+      },
+      "4": {
+        "4": 3,
+        "8": 5
+      },
+      "5": {
+        "32": 2,
+        "none": 6
+      }
+    },
+    "stable_fold_count": 2,
+    "stable_fold_modes": {
+      "1": null,
+      "3": null
+    },
+    "status": "RANK_ESTIMATION_UNSTABLE",
+    "unstable_fold_count": 4
+  },
+  "failed_check_count": 0,
+  "fold_audits": [
+    {
+      "outer_fold": 0,
+      "recomputed_check_count": 629,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 643
+    },
+    {
+      "outer_fold": 1,
+      "recomputed_check_count": 629,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 643
+    },
+    {
+      "outer_fold": 2,
+      "recomputed_check_count": 629,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 643
+    },
+    {
+      "outer_fold": 3,
+      "recomputed_check_count": 629,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 643
+    },
+    {
+      "outer_fold": 4,
+      "recomputed_check_count": 629,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 643
+    },
+    {
+      "outer_fold": 5,
+      "recomputed_check_count": 629,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 643
+    }
+  ],
+  "mechanical_status": "PASS",
+  "projector_geometry": {
+    "16": {
+      "across_fold_same_seed_overlap": {
+        "count": 120,
+        "maximum": 0.9970379397758248,
+        "mean": 0.992362258075086,
+        "minimum": 0.9869018030744695
+      },
+      "within_fold_across_seed_overlap": {
+        "count": 168,
+        "maximum": 0.273734954218139,
+        "mean": 0.2557312369824321,
+        "minimum": 0.23648491683746975
+      }
+    },
+    "32": {
+      "across_fold_same_seed_overlap": {
+        "count": 120,
+        "maximum": 0.9984364861504188,
+        "mean": 0.9965362397656407,
+        "minimum": 0.9941551156821948
+      },
+      "within_fold_across_seed_overlap": {
+        "count": 168,
+        "maximum": 0.22213367018124963,
+        "mean": 0.21359474885207663,
+        "minimum": 0.20095708987026523
+      }
+    },
+    "4": {
+      "across_fold_same_seed_overlap": {
+        "count": 120,
+        "maximum": 0.9931954406708765,
+        "mean": 0.9441522231070576,
+        "minimum": 0.7255102398748465
+      },
+      "within_fold_across_seed_overlap": {
+        "count": 168,
+        "maximum": 0.8221980701937102,
+        "mean": 0.7595032829017954,
+        "minimum": 0.658255067240765
+      }
+    },
+    "8": {
+      "across_fold_same_seed_overlap": {
+        "count": 120,
+        "maximum": 0.9948570304628291,
+        "mean": 0.9836667997796661,
+        "minimum": 0.9628610442887495
+      },
+      "within_fold_across_seed_overlap": {
+        "count": 168,
+        "maximum": 0.4417024647615891,
+        "mean": 0.4238420781541529,
+        "minimum": 0.4021218292155092
+      }
+    }
+  },
+  "projector_geometry_inference": {
+    "method_unlock": false,
+    "reason": "The frozen run stores one fitted basis per fold/rank/seed. A recording-group bootstrap would require refitting each bootstrap resample; bootstrapping correlated fold pairs would be pseudoreplication. Projector overlap is therefore descriptive only.",
+    "status": "UNAVAILABLE_NO_GROUP_LEVEL_REFITS"
+  },
+  "provenance_distinct_values": {
+    "basis_module_sha256": [
+      "e2b259a5689fb00df245fb3c6060a19d7261d10252ea59ac5ec7afd3130d193f"
+    ],
+    "cache_checkpoint_sha256": [
+      "d08e97ba6beb937412697d619171553041622859e026a06935a2e0e118e6309d"
+    ],
+    "cache_manifest_sha256": [
+      "f3658ea5b0a85547129587ed39691bda6ba1853e83e0c83cf569854bfc0f01bb"
+    ],
+    "cache_planner_execution_tree": [
+      "615a051a2d6bef1ef2ca49a7e439b0020bd1aaf4"
+    ],
+    "checkpoint_sha256": [
+      "d08e97ba6beb937412697d619171553041622859e026a06935a2e0e118e6309d"
+    ],
+    "config_sha256": [
+      "1c74a3f76dd96eb4be69ebd6c7ddf8242388f334eb59aa823a3d4a2a6e7d762a"
+    ],
+    "cuda": [
+      "11.8"
+    ],
+    "diagnostic_module_sha256": [
+      "4e2f4c3df8c0d09d55c56026ee6a9ff796169e01d97980ab63a7ba93120e74b1"
+    ],
+    "nested_manifest_sha256": [
+      "449578209aa2621c932124236b1740b4930d5321c467777e02d9e3cc40a7ced7"
+    ],
+    "python": [
+      "3.10.18"
+    ],
+    "runner_sha256": [
+      "cef4609b9d1f9d26dc4ad11a2e2b8b88884d25b4f4ebe1f553fb000fdd91de9e"
+    ],
+    "solver_module_sha256": [
+      "b8dd0e1152d66faf862bd8f0480c6f98785a7381aebf96e7f5f563d14903e41e"
+    ],
+    "source_commit": [
+      "a0675d60f5093540fff3954ba6802c30b9c6a6a7"
+    ],
+    "torch": [
+      "2.7.1+cu118"
+    ]
+  },
+  "qualification_by_fold_rank_seed": {
+    "0": {
+      "16": {
+        "2026102701": true,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": true,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      },
+      "32": {
+        "2026102701": true,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": true,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      },
+      "4": {
+        "2026102701": false,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": false
+      },
+      "8": {
+        "2026102701": true,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": true,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      }
+    },
+    "1": {
+      "16": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      },
+      "32": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      },
+      "4": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      },
+      "8": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      }
+    },
+    "2": {
+      "16": {
+        "2026102701": true,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": true,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      },
+      "32": {
+        "2026102701": true,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": true,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      },
+      "4": {
+        "2026102701": false,
+        "2026102702": true,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      },
+      "8": {
+        "2026102701": true,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": true,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      }
+    },
+    "3": {
+      "16": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      },
+      "32": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      },
+      "4": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      },
+      "8": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      }
+    },
+    "4": {
+      "16": {
+        "2026102701": true,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": true,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      },
+      "32": {
+        "2026102701": true,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": true,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      },
+      "4": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      },
+      "8": {
+        "2026102701": true,
+        "2026102702": true,
+        "2026102703": true,
+        "2026102704": true,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": true,
+        "2026102708": true
+      }
+    },
+    "5": {
+      "16": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      },
+      "32": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": true,
+        "2026102706": true,
+        "2026102707": false,
+        "2026102708": false
+      },
+      "4": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      },
+      "8": {
+        "2026102701": false,
+        "2026102702": false,
+        "2026102703": false,
+        "2026102704": false,
+        "2026102705": false,
+        "2026102706": false,
+        "2026102707": false,
+        "2026102708": false
+      }
+    }
+  },
+  "qualification_flip_folds": [
+    0,
+    2,
+    4,
+    5
+  ],
+  "seed_minimum_ranks": {
+    "0": {
+      "2026102701": 8,
+      "2026102702": 4,
+      "2026102703": 4,
+      "2026102704": 8,
+      "2026102705": 8,
+      "2026102706": 4,
+      "2026102707": 4,
+      "2026102708": 8
+    },
+    "1": {
+      "2026102701": null,
+      "2026102702": null,
+      "2026102703": null,
+      "2026102704": null,
+      "2026102705": null,
+      "2026102706": null,
+      "2026102707": null,
+      "2026102708": null
+    },
+    "2": {
+      "2026102701": 8,
+      "2026102702": 4,
+      "2026102703": 8,
+      "2026102704": 8,
+      "2026102705": 4,
+      "2026102706": 4,
+      "2026102707": 4,
+      "2026102708": 4
+    },
+    "3": {
+      "2026102701": null,
+      "2026102702": null,
+      "2026102703": null,
+      "2026102704": null,
+      "2026102705": null,
+      "2026102706": null,
+      "2026102707": null,
+      "2026102708": null
+    },
+    "4": {
+      "2026102701": 8,
+      "2026102702": 8,
+      "2026102703": 8,
+      "2026102704": 8,
+      "2026102705": 8,
+      "2026102706": 4,
+      "2026102707": 4,
+      "2026102708": 4
+    },
+    "5": {
+      "2026102701": null,
+      "2026102702": null,
+      "2026102703": null,
+      "2026102704": null,
+      "2026102705": 32,
+      "2026102706": 32,
+      "2026102707": null,
+      "2026102708": null
+    }
+  }
+}

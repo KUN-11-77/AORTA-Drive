@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-27",
+  "auditor": "internal-mechanical-audit",
+  "review_status": "PROVISIONAL_INTERNAL_REVIEW",
+  "external_reviewer": "REVIEW_UNAVAILABLE",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "mechanical_status": "pass",
+  "checks": {
+    "gt_provenance": {
+      "status": "pass",
+      "details": "Explicit source-inner internal-mechanism diagnostic; sealed roles remained untouched."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "Frozen coverage thresholds and invariant denominators; no prediction-statistic normalization."
+    },
+    "result_existence": {
+      "status": "pass",
+      "details": "Exit 0, COMPLETE progress, six exact fold replays, 83/83 aggregate checks."
+    },
+    "dead_code": {
+      "status": "pass",
+      "details": "Registered route, exactness, finite and orthogonality checks were executed and materialized."
+    },
+    "scope": {
+      "status": "warn",
+      "details": "No outer confirmation or recording-group bootstrap refits; projector inference unavailable."
+    },
+    "eval_type": "self_supervised_proxy_internal_mechanism_diagnostic"
+  },
+  "claims": [
+    {
+      "id": "R006V0F-route",
+      "impact": "supported_operationally",
+      "value": "RANK_ESTIMATION_UNSTABLE"
+    },
+    {
+      "id": "global-shared-direction",
+      "impact": "unresolved"
+    },
+    {
+      "id": "parent-stop",
+      "impact": "immutable",
+      "value": "STOP_GLOBAL_SHARED_INTERFACE"
+    },
+    {
+      "id": "downstream-method",
+      "impact": "unsupported"
+    }
+  ]
+}

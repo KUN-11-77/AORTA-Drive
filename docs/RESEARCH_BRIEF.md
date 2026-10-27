@@ -1,5 +1,15 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-27 R006V0F：`MECHANICAL_PASS__RANK_ESTIMATION_UNSTABLE__PARENT_STOP_IMMUTABLE`。**
+> 6/6 folds完成，每折32个primary与32个same-GPU replay精确一致；逐折643项审计均PASS，聚合审计
+> 83/83 PASS，封存角色未访问。fold 0/2/4/5出现同fold/rank的seed间资格翻转，达到冻结首路由条件；
+> fold 1/3的8个seed均无合格rank。因此当前Stiefel估计器的“最小合格rank”不具备初始化稳定性，正式
+> 路线为`RANK_ESTIMATION_UNSTABLE`。冻结运行没有recording-group bootstrap refit，projector推断标记
+> `UNAVAILABLE_NO_GROUP_LEVEL_REFITS`且`method_unlock=false`。父
+> `STOP_GLOBAL_SHARED_INTERFACE`不变；只允许预注册一次Fantope/group-refit凸estimator诊断，不解锁
+> adaptive reader、DINO reader、CPTR、outer intervention、NavDream、行为、时延或安全主张。外部
+> reviewer不可用，完整性审查为`PROVISIONAL_INTERNAL_REVIEW`。详见`experiments/R006V0F/RESULTS.md`。
+
 > **2026-10-27 假设品味门：`FIRST_PRINCIPLES_FIXED__LOW_RANK_DISPOSABLE__NO_RESCUE_CLAUSE`。**
 > AORTA 的稳定对象固定为受控外观改变如何介导冻结 planner 行为，以及测试时证据能否恢复该效应；
 > 低秩、固定 layer/rank 与 CPTR 均降为可淘汰结构假设。每个结构假设最多获得一次冻结失败分解和一次
