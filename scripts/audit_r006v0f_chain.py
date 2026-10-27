@@ -271,6 +271,17 @@ def audit_chain(
         },
         "qualification_by_fold_rank_seed": qualification_by_fold_rank_seed,
         "projector_geometry": geometry,
+        "projector_geometry_inference": {
+            "status": "UNAVAILABLE_NO_GROUP_LEVEL_REFITS",
+            "reason": (
+                "The frozen run stores one fitted basis per fold/rank/seed. "
+                "A recording-group bootstrap would require refitting each "
+                "bootstrap resample; bootstrapping correlated fold pairs would "
+                "be pseudoreplication. Projector overlap is therefore "
+                "descriptive only."
+            ),
+            "method_unlock": False,
+        },
         "coverage_denominator_diagnostics": denominator_diagnostics,
         "fold_audits": fold_audits,
         "provenance_distinct_values": {
@@ -286,8 +297,9 @@ def audit_chain(
         "claim_boundary": (
             "Post-failure inner diagnostic only. The parent STOP is immutable; "
             "folds and seeds are blocked/repeated diagnostic factors rather than "
-            "independent scientific replicates. No outer mediation or downstream "
-            "method claim is supported."
+            "independent scientific replicates. Projector geometry has no valid "
+            "group-level bootstrap because no bootstrap refits were frozen. No "
+            "outer mediation or downstream method claim is supported."
         ),
     }
 

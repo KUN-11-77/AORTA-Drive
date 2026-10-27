@@ -103,3 +103,14 @@ R006V0F 不是论文效果实验，而是决定数学对象是否值得保留的
 
 只有后续有限干预显示该结构具有 scene-specific causal mediation，DINO 又能组外恢复其系数，并且
 容量匹配普通 adapter 不能复现收益，才有资格形成方法贡献。当前文件不提供这些经验结论。
+
+## 5. 预注册 projector bootstrap 的实现缺口
+
+结果前代码核验发现，冻结运行每个 fold/rank/seed 只保存一次完整 discovery 拟合所得 basis，并未保存
+recording-group bootstrap 的重复拟合。对由同六折构成的全部 fold-pair overlap 直接 bootstrap 会把高度
+相关的 pair 当成独立样本，属于伪重复；对 seed 重采样也只能描述优化分散度，不能替代 group bootstrap。
+
+因此最终审计必须把 projector overlap 标为 `DESCRIPTIVE_ONLY`，把 group-level inference 标为
+`UNAVAILABLE_NO_GROUP_LEVEL_REFITS`，且不得据此声称“跨折方向显著稳定/不稳定”或解锁条件化 basis。
+如果该方向在 R006V0F 之后仍值得研究，必须另行预注册带真实 group-resample refit 的确认实验；不得把
+事后 refit 合并进本轮正式结论。该缺口不改变 frozen rank-mode route，但收缩其后续含义。

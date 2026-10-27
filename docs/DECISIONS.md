@@ -1673,3 +1673,14 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Consequence:** 每个结构假设最多获得一次冻结失败分解和一次由新预测驱动的前瞻确认；确认失败即
   停止该家族。R006V0F 只负责对低秩家族作终止性分流，不自动解锁 adaptive reader、CPTR 或 NavDream。
 - **Record:** `docs/AORTA_HYPOTHESIS_TASTE_GATE.md`。
+
+## ADR-0113：缺失 group-refit 时禁止把 projector pair 当独立 bootstrap 样本
+
+- **Decision:** R006V0F 的 fold-pair/seed-pair projector overlap 仅作描述。冻结运行没有对 recording
+  groups 做 bootstrap resample 后重新拟合 basis，故最终审计显式标记 group-level inference 不可用，
+  不对相关 pair 做伪 bootstrap，也不由 overlap 解锁后续方法。
+- **Reason:** 多个 pair 共享同一 fold basis，seed 又只是优化重复；将这些 pair 当独立样本会人为缩小
+  不确定性。真正的 group bootstrap 需要每个 resample 都重新拟合完整 basis。
+- **Consequence:** 本轮 rank-mode failure route 保留，但任何“方向跨折稳定/不稳定”的推断保持 HOLD。
+  若结果值得继续，另行预注册 group-resample refit 确认实验，不能事后并入本轮正式结果。
+- **Record:** `docs/R006V0F_PRE_RESULT_THEORY_AUDIT.md`。
