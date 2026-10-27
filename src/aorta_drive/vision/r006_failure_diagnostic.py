@@ -68,6 +68,42 @@ class FailureDecompositionRoute:
     per_fold_mode_counts: dict[int, dict[str, int]]
 
 
+@dataclass(frozen=True)
+class DriftDenominatorSummary:
+    sample_count: int
+    near_zero_count: int
+    near_zero_fraction: float
+    minimum: float
+    median: float
+    maximum: float
+    minimum_positive: float | None
+
+
+def summarize_drift_denominators(
+    values: Sequence[float], *, epsilon: float
+) -> DriftDenominatorSummary:
+    """Summarize denominator health without changing the frozen coverage rule."""
+
+    array = np.asarray(values, dtype=np.float64)
+    if array.ndim != 1 or array.size == 0:
+        raise ValueError("drift denominator values must be a nonempty vector")
+    if epsilon <= 0.0:
+        raise ValueError("epsilon must be positive")
+    if not np.isfinite(array).all() or np.any(array < 0.0):
+        raise ValueError("drift denominators must be finite and nonnegative")
+    positives = array[array > epsilon]
+    near_zero_count = int(np.count_nonzero(array <= epsilon))
+    return DriftDenominatorSummary(
+        sample_count=int(array.size),
+        near_zero_count=near_zero_count,
+        near_zero_fraction=float(near_zero_count / array.size),
+        minimum=float(np.min(array)),
+        median=float(np.median(array)),
+        maximum=float(np.max(array)),
+        minimum_positive=float(np.min(positives)) if positives.size else None,
+    )
+
+
 def normalized_projector_overlap(left: np.ndarray, right: np.ndarray) -> float:
     """Return ``tr(P_left P_right) / rank`` without materializing projectors."""
 

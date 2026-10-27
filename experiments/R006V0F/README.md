@@ -40,5 +40,9 @@ fold间有效维数异质和共享方向失败。R006V0F仅在已开封inner角�
 selection group、rank 4、一个冻结随机种子与两个优化步，并在同一GPU上做精确回放。它不输出科学
 指标，只用于核验checkpoint、cache、planner tail、CUDA/JVP、random-only初始化和确定性回放。
 
+最终聚合审计还必须逐fold核验冻结物理GPU映射、所有rank/seed共享完全相同的coverage分母，并报告
+`total_task_drift_sq<=1e-12`的近零分母比例。该诊断不改变冻结coverage公式或科学路线，只防止把
+近零task drift上的数值高coverage误写成有意义的机制覆盖。
+
 2026-10-27烟测在提交`a0675d60f5093540fff3954ba6802c30b9c6a6a7`上PASS；正式运行目录为
 `/data/khsong/aorta_runs/r006v0f_a0675d6_formal`。正式结果完成前不得读取fold日志或部分科学量。

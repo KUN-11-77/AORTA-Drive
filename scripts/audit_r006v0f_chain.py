@@ -19,7 +19,9 @@ from aorta_drive.vision.r006_failure_diagnostic import (
     normalized_projector_overlap,
     route_as_dict,
     route_failure_decomposition,
+    summarize_drift_denominators,
 )
+from aorta_drive.vision.r006_cache import sha256_file
 from aorta_drive.vision.r006_protocol import audit_r006_nested_manifest
 
 
@@ -89,6 +91,8 @@ def audit_chain(
     bases: dict[tuple[int, int, int], np.ndarray] = {}
     provenance: dict[str, set[str]] = {}
     fold_audits: list[dict[str, Any]] = []
+    denominator_diagnostics: dict[str, Any] = {}
+    expected_gpu_by_fold = {0: "0", 1: "1", 2: "6", 3: "7", 4: "0", 5: "1"}
     for fold in range(6):
         fold_root = result_root / f"fold_{fold}"
         primary_dir = fold_root / "primary"
@@ -143,6 +147,58 @@ def audit_chain(
             primary.get("provenance", {}).get("source_commit")
             == expected_source_commit,
         )
+        check(
+            f"fold {fold}: frozen physical GPU assignment",
+            str(primary.get("provenance", {}).get("cuda_visible_devices"))
+            == expected_gpu_by_fold[fold],
+        )
+
+        reference_samples = primary["candidates"][str(R006V0F_RANKS[0])][
+            str(R006V0F_SEEDS[0])
+        ]["selection_samples"]
+        reference_keys = [
+            (
+                str(row["recording_group"]),
+                int(row["anchor_index"]),
+                str(row["condition"]),
+            )
+            for row in reference_samples
+        ]
+        reference_totals = np.asarray(
+            [float(row["total_task_drift_sq"]) for row in reference_samples],
+            dtype=np.float64,
+        )
+        invariant = True
+        for rank in R006V0F_RANKS:
+            for seed in R006V0F_SEEDS:
+                samples = primary["candidates"][str(rank)][str(seed)][
+                    "selection_samples"
+                ]
+                keys = [
+                    (
+                        str(row["recording_group"]),
+                        int(row["anchor_index"]),
+                        str(row["condition"]),
+                    )
+                    for row in samples
+                ]
+                totals = np.asarray(
+                    [float(row["total_task_drift_sq"]) for row in samples],
+                    dtype=np.float64,
+                )
+                invariant = (
+                    invariant
+                    and keys == reference_keys
+                    and np.array_equal(totals, reference_totals)
+                )
+        check(f"fold {fold}: coverage denominator invariant", invariant)
+        denominator_diagnostics[str(fold)] = {
+            **vars(summarize_drift_denominators(reference_totals, epsilon=1e-12)),
+            "interpretation": (
+                "descriptive denominator-health diagnostic only; the frozen "
+                "coverage formula and route are unchanged"
+            ),
+        }
 
     check("all fold payloads available", set(fold_payloads) == set(range(6)))
     for key, values in sorted(provenance.items()):
@@ -215,6 +271,7 @@ def audit_chain(
         },
         "qualification_by_fold_rank_seed": qualification_by_fold_rank_seed,
         "projector_geometry": geometry,
+        "coverage_denominator_diagnostics": denominator_diagnostics,
         "fold_audits": fold_audits,
         "provenance_distinct_values": {
             key: sorted(values) for key, values in provenance.items()
@@ -222,6 +279,10 @@ def audit_chain(
         "check_count": len(checks),
         "failed_check_count": len(failed_checks),
         "checks": checks,
+        "auditor_provenance": {
+            "script_sha256": sha256_file(Path(__file__)),
+            "scope": "post-run independent aggregate audit; not a scientific runner",
+        },
         "claim_boundary": (
             "Post-failure inner diagnostic only. The parent STOP is immutable; "
             "folds and seeds are blocked/repeated diagnostic factors rather than "

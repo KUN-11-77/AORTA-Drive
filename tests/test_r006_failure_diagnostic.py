@@ -11,6 +11,7 @@ from aorta_drive.vision.r006_failure_diagnostic import (
     minimum_qualifying_rank,
     normalized_projector_overlap,
     route_failure_decomposition,
+    summarize_drift_denominators,
 )
 from aorta_drive.vision.r006_cache import sha256_file
 from aorta_drive.vision.r006_protocol import summarize_basis_coverage
@@ -50,6 +51,22 @@ def test_route_is_inconclusive_when_stable_folds_include_no_interface() -> None:
     rows = {fold: _seed_map(None if fold == 5 else 8) for fold in range(6)}
     route = route_failure_decomposition(rows, qualification_flip_folds=[])
     assert route.status == "INCONCLUSIVE_DIRECTION_OR_THRESHOLD_STRUCTURE"
+
+
+def test_drift_denominator_summary_exposes_near_zero_mass() -> None:
+    summary = summarize_drift_denominators([0.0, 1e-13, 1e-6, 2.0], epsilon=1e-12)
+    assert summary.sample_count == 4
+    assert summary.near_zero_count == 2
+    assert summary.near_zero_fraction == pytest.approx(0.5)
+    assert summary.minimum_positive == pytest.approx(1e-6)
+    assert summary.median == pytest.approx((1e-13 + 1e-6) / 2.0)
+
+
+def test_drift_denominator_summary_rejects_invalid_values() -> None:
+    with pytest.raises(ValueError):
+        summarize_drift_denominators([], epsilon=1e-12)
+    with pytest.raises(ValueError):
+        summarize_drift_denominators([1.0, -1.0], epsilon=1e-12)
 
 
 def test_fold_audit_recomputes_every_rank_seed_and_detects_hash_tamper(
