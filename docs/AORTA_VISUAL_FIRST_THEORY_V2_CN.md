@@ -523,11 +523,13 @@ R006V0 只做 activation intervention，不训练 CPTR。full patch 仅为机械
 
 只有同时满足以下条件，才允许称为 Best-Paper 候选：
 
-1. 发现性：多个 planner 中存在可重复的低秩、规划敏感外观漂移机制；
+1. 发现性：多个 planner 中存在可重复的任务敏感外观失效规律，或其异质性可由因果可用变量前瞻预测；
 2. 必要性：因果 patch 优于 wrong-scene/random/energy controls；
 3. 增量可恢复性：DINO 对该机制目标有不可替代的 held-out 信息；
-4. 方法优势：CPTR 在相同数据、backbone、参数/FLOPs 下优于 Constant Eye 与普通 adapter；
+4. 方法优势：由机制导出的结构在相同数据、backbone、参数/FLOPs 下优于 Constant Eye 与普通 adapter；
 5. 行为闭环：NavDream、clean、跨 planner、时延和 official utility 同时闭合；
 6. 诚实边界：不把恢复 clean 行为写成安全保证，不把 source 干预写成任意 OOD 因果定理。
 
 任一核心门失败，降低主张或停止该分支；不得以新增模块、阈值搜索或删样替代裁决。
+低秩、固定 layer、固定 rank 与 CPTR 均是可淘汰的结构假设，不是第一性目标。详细假设预算与停止规则见
+`docs/AORTA_HYPOTHESIS_TASTE_GATE.md`。

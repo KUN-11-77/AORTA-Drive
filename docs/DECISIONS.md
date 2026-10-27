@@ -1662,3 +1662,14 @@ the current open-ended geometry certificate iteration remains STOP.
   也必须逐前缀报告 task residual，并证明或实证检验单调性；R006V0F 的三条路线均不得自动解锁
   adaptive-rank、DINO reader、CPTR 或行为主张。
 - **Record:** `docs/R006V0F_PRE_RESULT_THEORY_AUDIT.md`。
+
+## ADR-0112：第一性问题与低秩实现假设分离
+
+- **Decision:** AORTA 的稳定研究对象固定为“外观干预中哪些内部变化真实介导冻结 planner 行为，以及
+  测试时视觉证据能否恢复这些变化”。低秩、固定 layer、固定 rank 与 CPTR 只作为可证伪结构假设，
+  不得写入第一性问题或 Best-Paper 资格的先验答案。
+- **Reason:** R006V0 已否定固定全局最小 rank。若仍把“发现低秩”设为成功定义，研究会通过升 rank、
+  改阈值或增加门控挽救一个可能错误的局部假设，而不是解释广泛视觉—决策失效。
+- **Consequence:** 每个结构假设最多获得一次冻结失败分解和一次由新预测驱动的前瞻确认；确认失败即
+  停止该家族。R006V0F 只负责对低秩家族作终止性分流，不自动解锁 adaptive reader、CPTR 或 NavDream。
+- **Record:** `docs/AORTA_HYPOTHESIS_TASTE_GATE.md`。
