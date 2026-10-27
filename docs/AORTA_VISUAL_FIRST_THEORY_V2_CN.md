@@ -1,5 +1,9 @@
 # AORTA Visual-First Theory V2：从稳定视觉到可恢复的规划敏感修复
 
+> **Superseded on 2026-10-27.** R006V0/R006V0F 后 fixed-global-rank/CPTR 主线已停止；当前 canonical
+> 视觉理论为 `docs/AORTA_DINO_INTERFACE_FIRST_PRINCIPLES_V1_CN.md`。本文保留为历史假设与数学账本，
+> 不再授权Fantope、DINO reader、CPTR或VJP训练。
+
 状态：`FIXED_GLOBAL_RANK_FALSIFIED__FAILURE_DECOMPOSITION_RUNNING__CPTR_HOLD`；候选理论体系，尚未获得方法有效性或投稿资格。
 日期：2026-10-26
 

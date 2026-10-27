@@ -1700,3 +1700,19 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Record:** `experiments/R006V0F/RESULTS.md`；
   `experiments/R006V0F/aggregate_audit.json`；
   `docs/R006_FAILURE_DRIVEN_THEORY_REFINEMENT_20261027.md`。
+
+## ADR-0115：停止低秩救援，统一转向DINOv3-H+接口因果审计
+
+- **Decision:** `STOP_FIXED_PROJECTOR_MAINLINE__GO_DINO_INTERFACE_AUDIT__HOLD_METHOD_TRAINING`。
+- **Reason:** DINOv3-H+已有Constant Eye与项目既有正向依据；R006V0/R006V0F连续否定固定最小rank与
+  当前estimator资格。继续Fantope只会诊断旧接口，不能回答稳定DINO证据如何进入冻结planner。
+- **Design:** 后续正式实验统一冻结同一DINOv3-H+，先做native path×DINO path因子化交换与
+  full/compressed/skip-token组外probe，允许`AMPLIFICATION/COMPRESSION/MIXED/UNRESOLVED`。
+  只对信息保持外观要求功能保持；信息损失外观评价风险与拒判。
+- **Consequence:** FQB、VJP与新adapter训练HOLD。只发现compression先比较full-token bridge；只发现
+  amplification先比较ordinary functional consistency；二者均有不可替代证据才允许组合。简单方法
+  等效则删除复杂结构。
+- **Record:** `docs/AORTA_DINO_INTERFACE_FIRST_PRINCIPLES_V1_CN.md`；
+  `experiments/R007/R007V0_DINO_INTERFACE_CAUSAL_AUDIT_PREREGISTRATION.md`；
+  `refine-logs/2026-10-27_post_r006_first_principles/FINAL_PROPOSAL.md`；
+  `refine-logs/2026-10-27_post_r006_first_principles/EXPERIMENT_PLAN.md`。

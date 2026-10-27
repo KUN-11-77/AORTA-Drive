@@ -1,5 +1,17 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-27 post-R006 DINO主线重构：`GO_DINO_INTERFACE_AUDIT__HOLD_METHOD_TRAINING`。**
+> Constant Eye与学长实验已将DINOv3-H+资格化为共同视觉底座，后续正式实验不再重复比较视觉
+> backbone，而统一冻结DINOv3-H+。固定全局低秩、Fantope主线与CPTR停止；R006V0F的estimator
+> instability不再触发低秩救援。新的第一性对象是信息保持appearance orbit上冻结planner的功能保持，
+> 并通过native-path×DINO-path因子化交换、full/compressed/skip-token组外probe区分接口放大、压缩
+> 丢失、混合、未决或当前接口不可恢复。严格复审只授权R007 DINO接口因果审计的预注册与实现；
+> FQB、VJP及任何新方法训练继续HOLD。详见
+> `docs/AORTA_DINO_INTERFACE_FIRST_PRINCIPLES_V1_CN.md`与
+> `experiments/R007/R007V0_DINO_INTERFACE_CAUSAL_AUDIT_PREREGISTRATION.md`。所有新实验必须沿
+> “已有线索→竞争解释→区分实验→组外确认→唯一许可方法”推进；某个实现假设明显不成立时立即停止，
+> 不得围绕低秩、rank、seed或新loss继续自证。
+
 > **2026-10-27 R006V0F：`MECHANICAL_PASS__RANK_ESTIMATION_UNSTABLE__PARENT_STOP_IMMUTABLE`。**
 > 6/6 folds完成，每折32个primary与32个same-GPU replay精确一致；逐折643项审计均PASS，聚合审计
 > 83/83 PASS，封存角色未访问。fold 0/2/4/5出现同fold/rank的seed间资格翻转，达到冻结首路由条件；
