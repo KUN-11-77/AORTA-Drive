@@ -67,6 +67,8 @@ a=J(I-P_r)\delta,\qquad b=JQ\delta.
 
 后续若提出 ordered flag，必须显式报告每个前缀的 task residual，并将单调性作为可否定经验性质或在
 额外的 pullback-orthogonality/commutation 假设下证明，不能沿用 PCA 直觉。
+对应的三通道嵌套-projector反例与残差增量恒等式已固化为
+`tests/test_r006_rank_geometry.py`，防止后续实现回退到未经证明的单调性假设。
 
 ## 3. R006V0F 三条路线的合法解释
 
