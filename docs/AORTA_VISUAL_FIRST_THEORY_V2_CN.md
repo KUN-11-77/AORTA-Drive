@@ -1,6 +1,6 @@
 # AORTA Visual-First Theory V2：从稳定视觉到可恢复的规划敏感修复
 
-状态：候选理论体系；尚未获得方法有效性或投稿资格。
+状态：`FIXED_GLOBAL_RANK_FALSIFIED__FAILURE_DECOMPOSITION_RUNNING__CPTR_HOLD`；候选理论体系，尚未获得方法有效性或投稿资格。
 日期：2026-10-26
 
 ## 0. 研究锚点
@@ -15,14 +15,15 @@ Constant Eye 已经给出一个重要事实：冻结 DINOv3-H+ 并为不同 plan
 
 现有视觉鲁棒驾驶通常试图让整幅表示在天气变化下保持稳定；Constant Eye 进一步表明，冻结 DINO
 并为各 planner 重训接口可以改善外观 OOD。但 planner 并不需要全部视觉信息，而且“整体稳定”不保证
-“决策稳定”。我们的核心待检验假设是：外观扰动可能主要通过 planner Jacobian 所定义的少数任务敏感
-方向影响行为，而大量 feature drift 可能位于决策等价类内。AORTA 因此先用组外双向 interchange intervention 找出真正介导
-行为的低秩 planner-tangent subspace，再检验冻结 DINO 是否能从受扰图像恢复这些坐标；只有两门都通过，
-才训练一个只在该子空间中工作的 Causal Planner-Tangent Repair。这样既不重训原 planner，也不追求完整
-场景重建，而是在预注册rank字典中选择最小合格rank，只修复“影响决策且视觉确实可恢复”的低秩证据。若低秩介导、视觉增量或 matched
-adapter 优势任一失败，方法主张即停止。
+“决策稳定”。我们的核心待检验假设是：外观扰动可能主要通过 planner Jacobian 所定义的任务敏感方向
+影响行为，而大量 feature drift 可能位于决策等价类内。第一轮 nested 实验已否定“固定阈值下存在跨折
+一致的全局最小rank”这一强接口，故当前不再预设共享固定维数，也未获得 CPTR 训练资格。AORTA 先用
+结果前冻结的 repeated-initialization 诊断区分估计器不稳定、折间条件复杂度和方向不共享；只有得到稳定
+且可干预的 planner-tangent 对象，再证明冻结 DINO 能组外恢复其坐标，才允许训练受约束修复器。若任何
+一门失败，方法主张停止或收缩，而不是事后采用rank 32。
 
-一句话：**不是让视觉特征处处不变，而是识别并修复外观扰动中经组外内部干预资格化、真正改变冻结 planner 行为的共享低秩通道方向。**
+一句话：**不是让视觉特征处处不变，而是先验证外观扰动是否存在可稳定估计、可组外干预、可由DINO
+恢复的 planner-sensitive 介导结构；固定全局低秩只是已被否定的一种候选接口，而不是预设答案。**
 
 ## 1. 第一性对象
 
@@ -223,6 +224,32 @@ status 不可修复约束完全显式。
 必须报告 rank–coverage 曲线、组分布、最差组以及转弯/路口/高曲率分层。若共享低秩基只覆盖常见场景而遗漏关键组，则停止全局 CPTR；不得事后增大 rank。
 有限 source groups 上通过该门只支持登记采样总体中的经验共享性；group bootstrap 的外推单位是 recording
 group，不构成对任意道路、天气或 planner 的分布无关泛化定理。
+
+#### 2.2.1 R006V0 后的 rank 理论修正
+
+R006V0 在机械审计通过后得到每折最小合格rank `[8,32,4,32,4,32]`，未达到冻结的4/6共识门，故
+`STOP_GLOBAL_SHARED_INTERFACE`不可被rank 32的事后6/6通过改写。更重要的是，task coverage并不具有
+普通PCA的自动单调性。对嵌套projector $P_{r+1}=P_r+Q$，令
+
+\[
+a=J(I-P_r)\delta,\qquad b=JQ\delta,
+\]
+
+则
+
+\[
+\|a-b\|_W^2-\|a\|_W^2
+=\|b\|_W^2-2\langle a,b\rangle_W.
+\]
+
+因此只有当 $2\langle a,b\rangle_W\ge\|b\|_W^2$ 时，新增rank才改善该样本的task residual；planner
+输出空间中的抵消项会使更大rank反而恶化coverage。该恒等式和反例已由
+`tests/test_r006_rank_geometry.py`固化。由此：
+
+1. 最小合格rank只是给定fold、estimator和threshold下的操作性量，不是内在维数；
+2. ordered flag只能消除独立rank子空间不可比性，不能自动保证coverage单调；
+3. R006V0F只诊断初始化敏感性与折间模式，不能解锁adaptive-rank、DINO reader或CPTR；
+4. 若跨折方向差异未显著超过seed内分散度，global-basis路线应停止，而不是继续扩大rank。
 
 ### 2.3 从局部 Jacobian 到有限外观干预
 
