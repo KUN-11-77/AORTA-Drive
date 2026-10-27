@@ -1,5 +1,13 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-27 假设品味门：`FIRST_PRINCIPLES_FIXED__LOW_RANK_DISPOSABLE__NO_RESCUE_CLAUSE`。**
+> AORTA 的稳定对象固定为受控外观改变如何介导冻结 planner 行为，以及测试时证据能否恢复该效应；
+> 低秩、固定 layer/rank 与 CPTR 均降为可淘汰结构假设。每个结构假设最多获得一次冻结失败分解和一次
+> 由新预测驱动的前瞻确认，确认失败即停止，不以升 rank、改阈值、删组或增加 loss 挽救。Best-Paper
+> 资格改为跨 planner 的可复现失效规律或可前瞻预测异质性、matched 架构必要性与完整行为闭环，而非
+> 预设必须发现低秩。该规则是研究治理，不是科学证据；详见
+> `docs/AORTA_HYPOTHESIS_TASTE_GATE.md`与 ADR-0112。
+
 > **2026-10-27 R006V0 basis：`MECHANICAL_PASS__STOP_GLOBAL_SHARED_INTERFACE`。**
 > 6/6 folds完成、primary/replay逐文件一致，本地聚合审计93/93 PASS且所有封存角色未访问。C4
 > trajectory-query层在6/6折被选择，但按预注册“每折最小合格rank”规则得到`[8,32,4,32,4,32]`，
