@@ -20,6 +20,45 @@ R006V0F_SEEDS = tuple(range(2026102701, 2026102709))
 R006V0F_CONDITIONS = ("low_exposure", "low_contrast", "cool_cast")
 
 
+def audit_smoke_replay(
+    primary_basis: np.ndarray,
+    replay_basis: np.ndarray,
+    *,
+    expected_rank: int,
+) -> dict[str, object]:
+    """Audit a same-process/same-GPU mechanical replay without science metrics."""
+
+    expected_shape = (256, expected_rank)
+    primary_finite = bool(np.isfinite(primary_basis).all())
+    replay_finite = bool(np.isfinite(replay_basis).all())
+    exact = bool(
+        primary_basis.shape == replay_basis.shape
+        and np.array_equal(primary_basis, replay_basis)
+    )
+    orthonormal = False
+    if primary_basis.shape == expected_shape and primary_finite:
+        gram = primary_basis.astype(np.float64).T @ primary_basis.astype(np.float64)
+        orthonormal = bool(np.max(np.abs(gram - np.eye(expected_rank))) <= 2e-5)
+    passed = bool(
+        primary_basis.shape == expected_shape
+        and replay_basis.shape == expected_shape
+        and primary_finite
+        and replay_finite
+        and exact
+        and orthonormal
+    )
+    return {
+        "status": "PASS" if passed else "FAIL",
+        "expected_shape": list(expected_shape),
+        "primary_shape": list(primary_basis.shape),
+        "replay_shape": list(replay_basis.shape),
+        "primary_finite": primary_finite,
+        "replay_finite": replay_finite,
+        "exact_primary_replay": exact,
+        "primary_orthonormal": orthonormal,
+    }
+
+
 @dataclass(frozen=True)
 class FailureDecompositionRoute:
     status: str

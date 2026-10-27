@@ -35,3 +35,7 @@ fold间有效维数异质和共享方向失败。R006V0F仅在已开封inner角�
 
 正式运行前必须完成真实GPU smoke、固定实现commit、归档hash与服务器路径；结果完成后在本目录增加
 `RESULTS.md`与审计报告，并更新claim–evidence matrix。
+
+真实GPU smoke由`scripts/run_r006v0f_gpu_smoke.py`执行：仅使用一个已登记discovery group、一个
+selection group、rank 4、一个冻结随机种子与两个优化步，并在同一GPU上做精确回放。它不输出科学
+指标，只用于核验checkpoint、cache、planner tail、CUDA/JVP、random-only初始化和确定性回放。
