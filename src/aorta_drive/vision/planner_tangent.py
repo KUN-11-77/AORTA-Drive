@@ -192,6 +192,7 @@ def solve_task_weighted_basis(
     max_steps: int = 500,
     max_line_search_steps: int = 50,
     site_mask: torch.Tensor | None = None,
+    include_pca_initialization: bool = True,
 ) -> StiefelSolveResult:
     """Solve the preregistered Stiefel problem using QR-retracted GD."""
 
@@ -213,6 +214,7 @@ def solve_task_weighted_basis(
         patience=patience,
         max_steps=max_steps,
         max_line_search_steps=max_line_search_steps,
+        include_pca_initialization=include_pca_initialization,
     )
 
 
@@ -229,6 +231,7 @@ def solve_matrix_free_basis(
     patience: int = 20,
     max_steps: int = 500,
     max_line_search_steps: int = 50,
+    include_pca_initialization: bool = True,
 ) -> StiefelSolveResult:
     """Solve a differentiable matrix-free Stiefel objective.
 
@@ -263,6 +266,7 @@ def solve_matrix_free_basis(
         patience=patience,
         max_steps=max_steps,
         max_line_search_steps=max_line_search_steps,
+        include_pca_initialization=include_pca_initialization,
     )
 
 
@@ -280,6 +284,7 @@ def solve_streaming_matrix_free_basis(
     patience: int = 20,
     max_steps: int = 500,
     max_line_search_steps: int = 50,
+    include_pca_initialization: bool = True,
 ) -> StiefelSolveResult:
     """Solve the same Stiefel objective with exact fixed-order batch reduction.
 
@@ -335,6 +340,7 @@ def solve_streaming_matrix_free_basis(
         patience=patience,
         max_steps=max_steps,
         max_line_search_steps=max_line_search_steps,
+        include_pca_initialization=include_pca_initialization,
     )
 
 
@@ -352,6 +358,7 @@ def _solve_stiefel_with_oracle(
     patience: int,
     max_steps: int,
     max_line_search_steps: int,
+    include_pca_initialization: bool,
 ) -> StiefelSolveResult:
     """Shared deterministic QR-retracted optimization loop."""
 
@@ -363,9 +370,11 @@ def _solve_stiefel_with_oracle(
     if min(initial_step, armijo_c, relative_tolerance) <= 0:
         raise ValueError("solver tolerances and steps must be positive")
 
-    initializations: list[tuple[str, torch.Tensor]] = [
-        ("discovery_channel_drift_pca", _pca_initialization(deltas, rank))
-    ]
+    initializations: list[tuple[str, torch.Tensor]] = []
+    if include_pca_initialization:
+        initializations.append(
+            ("discovery_channel_drift_pca", _pca_initialization(deltas, rank))
+        )
     for seed in random_seeds:
         initializations.append(
             (
@@ -379,6 +388,8 @@ def _solve_stiefel_with_oracle(
                 ),
             )
         )
+    if not initializations:
+        raise ValueError("at least one PCA or random initialization is required")
 
     results: list[StiefelSolveResult] = []
     for name, initial in initializations:

@@ -1,0 +1,79 @@
+experiment_id: R006V0F-fixed-rank-failure-decomposition-v1
+date: 2026-10-27
+status: preregistered_diagnostic_not_executed
+parent:
+  experiment_id: R006V0-causal-visual-mediation-v1
+  scientific_decision: STOP_GLOBAL_SHARED_INTERFACE
+  decision_immutable: true
+scope: source_fit_inner_only_repeated_initialization_failure_decomposition
+planner:
+  trainable_parameters: 0
+layer: trajectory_query_secondary
+stage: c4_trajectory_query
+ranks: [4, 8, 16, 32]
+random_only_initialization_seeds:
+  - 2026102701
+  - 2026102702
+  - 2026102703
+  - 2026102704
+  - 2026102705
+  - 2026102706
+  - 2026102707
+  - 2026102708
+splits:
+  nested_manifest: experiments/R006/inputs/r006v0_nested_manifest.json
+  outer_folds: 6
+  basis_discovery_groups: 28
+  layer_rank_selection_groups: 7
+  outer_confirmation_groups_per_fold: 7
+  outer_confirmation_accessed: false
+appearances: [low_exposure, low_contrast, cool_cast]
+basis_qualification:
+  output_metric_matrix: identity_2T_divided_by_T
+  jacobian_evaluation_point: shifted_activation
+  selection_mean_coverage_min: 0.90
+  selection_worst_group_mean_coverage_min: 0.50
+  coverage_epsilon: 0.000000000001
+  choose_smallest_qualifying_rank: true
+  solver:
+    manifold: stiefel_channel_basis
+    include_pca_initialization: false
+    one_random_initialization_per_seed_job: true
+    streaming_batch_size: 128
+    retraction: qr
+    line_search: {type: armijo, initial_step: 1.0, shrink: 0.5, sufficient_decrease: 0.0001}
+    max_line_search_steps: 50
+    relative_improvement_tolerance: 0.000001
+    patience: 20
+    max_steps: 500
+design:
+  blocking_unit: outer_fold_rank
+  repeated_factor: initialization_seed
+  independent_scientific_unit: none_diagnostic_only
+  pseudoreplication_warning: seeds_and_fold_pairs_are_not_independent_recording_groups
+  run_order: fixed_fold_rank_seed_with_same_gpu_primary_replay
+execution:
+  gpu_roster: [0, 1, 6, 7]
+  max_concurrent_fold_chains: 4
+  fold_assignment: round_robin_by_roster_position
+  primary_replay_order: sequential_same_gpu
+diagnostic_routes:
+  rank_estimation_unstable:
+    rule: qualification_pass_fail_flip_within_same_fold_rank_in_at_least_2_of_6_folds
+  stable_fold_heterogeneous_effective_dimension:
+    rule: at_least_5_of_6_fold_rank_modes_have_7_of_8_seed_support_all_nonnull_and_modes_differ
+  fallback: INCONCLUSIVE_DIRECTION_OR_THRESHOLD_STRUCTURE
+mechanical_gates:
+  exact_primary_replay: true
+  same_job_same_gpu: true
+  basis_hash_shape_finite_orthonormal: true
+  sample_roster_and_coverage_recomputed: true
+  source_commit_and_all_input_hashes_exact: true
+  sealed_roles_untouched: true
+claim_boundary:
+  - post_failure_diagnostic_only
+  - parent_stop_immutable
+  - not_outer_mediation
+  - not_DINO_recoverability
+  - not_CPTR_or_NavDream
+  - not_behavior_latency_or_safety

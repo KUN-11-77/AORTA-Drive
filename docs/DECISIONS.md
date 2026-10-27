@@ -1638,3 +1638,15 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R006/R006V0_BASIS_RESULTS.md`；
   `docs/R006_FAILURE_DRIVEN_THEORY_REFINEMENT_20261027.md`；
   `experiments/R006/R006V0F_FAILURE_DECOMPOSITION_PREREGISTRATION.md`。
+
+## ADR-0110：R006V0F使用blocked random-only重复，不用best-of-restarts掩盖方差
+
+- **Decision:** `FREEZE_6_FOLDS_X_4_RANKS_X_8_RANDOM_ONLY_INITIALIZATIONS`。
+- **Reason:** 原求解器同时运行PCA与两个随机初始化后只保留最低discovery objective，适合寻找候选basis，
+  但不能估计初始化敏感性。若继续best-of-restarts，会把需要诊断的优化方差机械删除。
+- **Design:** fold×rank为blocking结构，seed为重复因子；每个seed禁用PCA且单独保存basis、objective、
+  selection coverage与qualification。seed/fold-pair不是独立科学样本。primary/replay保持same-GPU。
+- **Route:** 至少2/6 folds出现同fold/rank seed间PASS/FAIL翻转，优先判
+  `RANK_ESTIMATION_UNSTABLE`；否则检查至少5/6 folds是否各有7/8稳定但不同的非空rank mode。
+- **Boundary:** 这是父STOP之后的inner机制诊断，不是新方法或介导确认；不能事后解锁outer、DINO、
+  CPTR、NavDream、行为或安全。

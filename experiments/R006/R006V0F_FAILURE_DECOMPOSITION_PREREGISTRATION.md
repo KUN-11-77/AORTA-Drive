@@ -70,3 +70,10 @@ d_{seed}^2=r-\|B_{f,r,s}^{\top}B_{f,r,s'}\|_F^2,
 
 每个job必须same-GPU primary/replay、basis逐文件hash exact、有限/正交、输入角色与source commit一致。
 任何机械失败只允许修复实现并以新目录重跑一次；不得更改rank、seed、threshold或读取outer endpoint。
+
+## 6. 实验设计来源
+
+本诊断把outer fold×rank作为blocking结构、初始化seed作为重复因子，并明确seed与fold-pair不是独立
+科学样本，以避免伪重复。程序化设计原则参考：Kassis, T., Agarwal, V., He, Y., Patel, D., &
+Brueckner, A. M. (2026). *Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents*.
+arXiv:2609.00065v2. 该引用只记录实验设计工作流来源，不构成AORTA方法或结果证据。

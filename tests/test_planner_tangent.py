@@ -179,3 +179,57 @@ def test_streaming_solver_matches_full_dense_objective() -> None:
     assert streaming.objective < 1e-10
     assert streaming.objective == pytest.approx(dense.objective, abs=1e-10)
     assert float(projector_distance(streaming.basis, truth)) < 1e-4
+
+
+def test_streaming_solver_can_isolate_one_random_initialization() -> None:
+    torch.manual_seed(37)
+    dtype = torch.float64
+    n, p, c, m, rank = 12, 2, 6, 3, 2
+    deltas = torch.randn(n, p, c, dtype=dtype)
+    jacobians = torch.randn(n, m, p, c, dtype=dtype)
+    metric = torch.eye(m, dtype=dtype)
+
+    def batch_objective(basis: torch.Tensor, start: int, end: int) -> torch.Tensor:
+        return task_weighted_uncovered_objective(
+            deltas[start:end],
+            jacobians[start:end],
+            metric,
+            basis,
+        )
+
+    first = solve_streaming_matrix_free_basis(
+        deltas,
+        rank,
+        batch_objective,
+        batch_size=5,
+        random_seeds=(2026102701,),
+        include_pca_initialization=False,
+        max_steps=5,
+    )
+    replay = solve_streaming_matrix_free_basis(
+        deltas,
+        rank,
+        batch_objective,
+        batch_size=5,
+        random_seeds=(2026102701,),
+        include_pca_initialization=False,
+        max_steps=5,
+    )
+    assert first.initialization == "random_2026102701"
+    assert replay.initialization == first.initialization
+    assert replay.objective == first.objective
+    assert torch.equal(replay.basis, first.basis)
+
+
+def test_solver_rejects_empty_initialization_roster() -> None:
+    deltas = torch.zeros(2, 1, 3, dtype=torch.float64)
+
+    with pytest.raises(ValueError, match="at least one"):
+        solve_streaming_matrix_free_basis(
+            deltas,
+            1,
+            lambda basis, start, end: torch.sum(basis * basis),
+            batch_size=1,
+            random_seeds=(),
+            include_pca_initialization=False,
+        )
