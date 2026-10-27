@@ -5,11 +5,17 @@
 > backbone，而统一冻结DINOv3-H+。固定全局低秩、Fantope主线与CPTR停止；R006V0F的estimator
 > instability不再触发低秩救援。新的第一性对象是信息保持appearance orbit上冻结planner的功能保持，
 > 并通过真实拓扑条件化干预（DINO-only顺序stage interchange；hybrid才做native×DINO因子交换）及
-> full/compressed/skip-token组外probe区分接口放大、压缩丢失、混合、未决或当前接口不可恢复。
+> final/last-four/intermediate/full/compressed/skip-token组外probe区分证据分布、接口放大、压缩丢失、
+> 层间互补、混合、未决或当前接口不可恢复；probe可读性必须经真实planner consequence闭合。
 > 严格复审只授权R007 DINO接口因果审计的预注册与实现；
 > 任何新 DINO 接口与 VJP 训练继续HOLD。详见
 > `docs/AORTA_DINO_INTERFACE_FIRST_PRINCIPLES_V1_CN.md`与
 > `experiments/R007/R007V0_DINO_INTERFACE_CAUSAL_AUDIT_PREREGISTRATION.md`。所有新实验必须沿
+> 四层链推进：DINO任务信息、接口压缩、冻结tail可实现性、真实行为结果。DINOv3-H+本身不是VLM；
+> 普通planner只做机制控制，最终VLM/VLA视觉鲁棒性主张必须落在真实多模态驾驶策略上，并把图像派生
+> caption/query/history纳入受干预路径。新增C41写入目标失配与C42任务前置压缩均为待检验竞争假设，
+> 不能由数学反例或架构直觉直接解锁reader–writer训练。详见
+> `docs/AORTA_DINO_DECISION_SUFFICIENCY_THEORY_V1_CN.md`。
 > “已有线索→竞争解释→区分实验→组外确认→唯一许可方法”推进；某个实现假设明显不成立时立即停止，
 > 不得围绕低秩、rank、seed或新loss继续自证。
 

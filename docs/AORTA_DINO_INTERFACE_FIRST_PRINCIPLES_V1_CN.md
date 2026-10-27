@@ -24,6 +24,9 @@ Constant Eye 已证明冻结 DINOv3-H+ 可以成为跨规划范式的外观稳�
 因此“低秩是否存在”不是论文问题；它最多是某个接口的可淘汰性质。论文问题是 DINO 任务证据的
 **充分性、传输与使用**。
 
+相关命题、证明假设与决策误差边界见
+`docs/AORTA_DINO_DECISION_SUFFICIENCY_THEORY_V1_CN.md`。
+
 ## 1. 数学对象：appearance orbit 上的功能商
 
 设物理场景 \(S\)、外观 \(a\)、历史 \(H\)，冻结 DINO 特征为
@@ -66,8 +69,13 @@ O_\theta^{a'}-O_\theta^a
 2. **接口放大：**DINO residual drift 小，但 adapter/tail 把它放大为显著输出变化；
 3. **压缩丢失：**完整 DINO 可组外恢复任务目标，通用 adapter 后表示不行；
 4. **场景先验：**correct DINO 不优于 mismatch/removed。
+5. **层间互补：**预冻结的中间层在最后层/last-four mean 之外提供组外任务增量，并能经真实接口影响
+   planner 输出或效用。
 
-它们通过同一冻结审计分层裁决，允许 `AMPLIFICATION`、`COMPRESSION`、`MIXED` 与 `UNRESOLVED`；不能为了故事强迫唯一归因，也不能因为某个相关性显著而跳到预设网络。full-token probe 失败只停止当前接口与读出合同，不证明 DINO 在信息论意义上不足。
+它们通过同一冻结审计分层裁决，允许 `AMPLIFICATION`、`COMPRESSION`、`LAYER_COMPLEMENTARITY`、
+`MIXED` 与 `UNRESOLVED`；不能为了故事强迫唯一归因，也不能因为某个相关性显著而跳到预设网络。
+full-token probe 失败只停止当前接口与读出合同，不证明 DINO 在信息论意义上不足。单层/多层 probe
+提升若不能传递为真实 planner consequence，只能写成可读性结果，不能授权多层融合方法。
 
 ## 4. 因果审计与信息审计
 
@@ -110,6 +118,8 @@ clean token interchange 只提供特权诊断上界，不是部署算法。wrong
 - full DINO tokens；
 - compressed adapter tokens；
 - compressed + skip full tokens；
+- last layer、冻结 last-four mean 与由 discovery-only 规则产生的有限中间层候选；
+- 预冻结的单层与等维层组合；
 - history/native-only；
 - correct / mismatch / removed。
 
@@ -145,6 +155,8 @@ d_Y(F(B,D^a),F(B,D^{clean})),
 - 若 \(\Delta_{orb}\) 无可靠证据：禁止增加功能一致性约束；
 - 若 correct DINO 不优于 mismatch/removed：停止当前视觉主张，不能用更复杂接口救援；
 - 只支持压缩丢失：比较最小 full-token skip/reader 与容量匹配普通 adapter；
+- 只支持层间互补：比较固定等权层组合与同参数简单 learned scalar mixture；若简单混合等效，不增加
+  多层路由器；
 - 只支持接口放大：在原接口上比较最小 task-output orbit regularization；
 - 两者独立成立：才允许组合成一个 task-conditioned DINO evidence interface，并逐项做删除消融。
 

@@ -1,7 +1,7 @@
 experiment_id: R007V0-dino-interface-causal-audit-v1
 date: 2026-10-27
 status: preregistration_draft_method_training_hold
-claim_ids: [C38]
+claim_ids: [C38, C40, C41, C42]
 scope: source_fit_dino_interface_mechanism_topology_conditioned
 backbone:
   name: dinov3_vith16plus
@@ -48,11 +48,63 @@ controls:
   - joint_full_cut
 probe_arms:
   - native_history_only
-  - full_correct_dino
+  - normalized_final_layer_correct_dino
+  - normalized_last_four_layer_mean_correct_dino
   - compressed_correct_dino
   - compressed_plus_full_skip
   - full_mismatch_dino
   - full_removed_dino
+layer_evidence_audit:
+  enabled: true
+  model_depth_source: runtime_len_model_blocks
+  discovery_candidate_rule: fixed_depth_quartiles_plus_last_four_layers
+  selection_and_outer_search_forbidden: true
+  single_layer_normalization: model_native_normalized_output
+  pair_combination: equal_weight_normalized_mean
+  concatenation_forbidden: true
+  learned_scalar_mixture_training_allowed: false
+targets:
+  task_target_required: true
+  clean_planner_output_is_mechanism_only: true
+  clean_planner_output_must_not_substitute_task_correctness: true
+writer_target_audit:
+  enabled_after_task_increment_only: true
+  frozen_tail: true
+  gradient_through_tail_required: true
+  matched_reader_writer_cut: true
+  arms:
+    - native_hidden_state_mse
+    - final_feature_model_stitching
+    - frozen_tail_task_output_matching
+    - task_supervision
+  required_joint_outputs:
+    - hidden_feature_error
+    - frozen_tail_output_error
+    - task_utility
+context_timing_factorial:
+  enabled_after_full_evidence_increment_only: true
+  evidence_levels: [compressed, raw_full]
+  context_levels: [context_free, task_conditioned]
+  matched:
+    - data
+    - output_token_budget
+    - writer_cut
+    - parameter_count
+    - flops
+    - optimizer_steps
+    - search_budget
+  primary_estimand: risk_difference_in_differences
+counterfactual_response_audit:
+  valid_label_required: true
+  arms:
+    - appearance_preserving_same_task_should_hold
+    - legal_task_change_should_respond
+    - task_relevant_scene_change_should_respond
+    - task_irrelevant_background_change_should_hold
+vlm_vla_scope:
+  dino_is_not_vlm: true
+  actual_vlm_or_vla_required_for_final_behavior_claim: true
+  image_derived_caption_query_history_are_intervened_path: true
 mechanical_gates:
   source_and_checkpoint_topology_agree: true
   factorial_path_fingerprints_exact: when_hybrid_native_dino
@@ -73,10 +125,13 @@ statistics:
 decision_labels:
   - AMPLIFICATION
   - COMPRESSION
+  - LAYER_COMPLEMENTARITY
   - MIXED
   - SCENE_PRIOR
   - UNRESOLVED
   - CURRENT_INTERFACE_UNRECOVERABLE
+  - WRITER_TARGET_MISMATCH
+  - TASK_BEFORE_COMPRESSION
 stopped_routes:
   - fixed_global_low_rank
   - fantope

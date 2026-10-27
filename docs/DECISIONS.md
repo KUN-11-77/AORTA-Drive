@@ -1729,3 +1729,33 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Consequence:** FQB 名称与结构不再是预设候选。cross-attention、低秩、VJP、旧 loss 或内部切口均
   只能作为可淘汰实现；若 simple matched arm 等效，复杂结构必须删除。历史文件保留用于追溯，不拥有
   当前训练资格。
+
+## ADR-0117：R007 从接口故障诊断升级为 DINO 驾驶证据四级链
+
+- **Decision:** `EVIDENCE_AVAILABILITY__DISTRIBUTION__INTERFACE_CAUSALITY__DECISION_VALUE`。
+- **Reason:** 只证明某个 adapter 压缩有问题，最多形成局部工程修补；要超越 Constant Eye，必须先回答
+  完整 DINO 是否包含任务增量、证据分布在哪些层/空间结构、真实接口是否破坏它，以及恢复后是否改变
+  planner 的任务输出或效用。
+- **Design:** R007V0P 同时冻结 (Y_{task}) 与机制参考 (O_{clean})，比较 final layer、既有 last-four mean、
+  compressed/skip 与有限中间层。中间层候选只在 discovery 产生，selection 前锁定，outer 不搜索；双层
+  默认等权 normalized mean，禁止用 concat 的额外容量制造“互补”。probe 增量还必须经真实 stage
+  interchange 产生 output/utility consequence，才能授权方法。
+- **Consequence:** 多层融合不是预设贡献。若中间层无独立增量，立即删除该路线；若只有 probe 增量而
+  planner consequence 不成立，只保留表征分析；若简单等权/scalar mixture 等效，禁止复杂层路由器。
+- **Record:** `docs/AORTA_DINO_DECISION_SUFFICIENCY_THEORY_V1_CN.md`；
+  `experiments/R007/R007V0_DINO_INTERFACE_CAUSAL_AUDIT_PREREGISTRATION.md`。
+
+## ADR-0118：区分任务信息、冻结 tail 可实现性与 VLM/VLA 行为范围
+
+- **Decision:** `AUDIT_TASK_INFORMATION__WRITER_REALIZABILITY__VLM_BEHAVIOR_SEPARATELY`。
+- **Reason:** full DINO probe 可读不表示压缩接口保留信息，接口可读也不表示冻结非线性 tail 能正确解码；
+  native feature 条件均值甚至可能落在错误功能纤维。另一方面，DINOv3-H+ 是视觉基础模型而非 VLM，
+  普通 planner 机制结果不能支撑 VLM/VLA 范围主张。
+- **Design:** R007 增加同 reader/writer/cut 的四目标写入审计，以及 compressed/raw-full ×
+  context-free/task-conditioned 的等预算 $2\times2$。只有真实学习模型的组外结果支持 C41/C42，才允许
+  实现一个最小任务条件化 reader–writer。最终行为链必须覆盖至少一个真实 VLM/VLA，并将图像派生
+  caption/query/history 纳入干预计算图。
+- **Boundary:** 数学反例证明逻辑可能性而非真实机制；attention、model stitching、task loss 与冻结两端
+  均已有先行工作，不能单独作为创新。Constant Eye 与 frozen-planner 合同分表比较。
+- **Record:** `docs/AORTA_DINO_DECISION_SUFFICIENCY_THEORY_V1_CN.md`；
+  `configs/experiment/r007v0_dino_interface_audit.yaml`。

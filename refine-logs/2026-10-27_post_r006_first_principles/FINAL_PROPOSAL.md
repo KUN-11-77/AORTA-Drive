@@ -38,9 +38,14 @@ d_Y(F(B,D^a),F(B,D^{clean})).
 
 ## Immediate Scientific Task
 
-不先训练新方法。先按每个模型的真实计算图执行 DINO stage interchange 与 full/compressed/skip-token
-组外 probe，区分：scene prior、interface amplification、compression loss、mixed 与当前接口不可恢复。
+不先训练新方法。先按每个模型的真实计算图执行 DINO stage interchange 与
+final/last-four/intermediate/full/compressed/skip-token 组外 probe，区分：scene prior、interface
+amplification、compression loss、layer complementarity、mixed 与当前接口不可恢复。
 DINO-only 模型使用顺序 stage interchange；只有真实 hybrid 模型才使用 native×DINO 因子交换。
+在任务信息增量成立后，再分别审计冻结tail写入目标是否失配，以及任务上下文在压缩前进入是否产生
+等预算组外交互增量；二者未通过前，不实现预设reader–writer。
+probe 使用 task target 与 clean functional reference 双目标；只有可读增量能经真实 planner 干预影响
+输出或效用，才称为可用驾驶证据。
 
 ## Method Authorization
 
@@ -48,6 +53,7 @@ DINO-only 模型使用顺序 stage interchange；只有真实 hybrid 模型才�
 - 没有 amplification 证据：不增加功能一致性约束；
 - correct DINO 不优于 mismatch/removed：停止当前视觉主张；
 - 只有 compression：比较最小 full-token skip/reader 与 matched ordinary adapter；
+- 只有 layer complementarity：先比较等权 normalized layer mean 与同参数 scalar mixture；
 - 只有 amplification：比较原接口上的最小 task-output orbit regularization；
 - 两者独立成立：才组合一个 task-conditioned DINO evidence interface，并做逐项删除消融。
 
@@ -70,3 +76,5 @@ utility、hard-failure 净减少与 batch-1 P50/P95。
 > consistency，同时满足 clean 非劣和实时约束。机制不成立，方法就不出现。
 
 当前只是可证伪的研究闭环，不是已成立的 Best-Paper 方法。
+还必须明确：DINOv3-H+不是VLM。若论文最终声称面向VLM/VLA视觉鲁棒性，主行为验证至少覆盖一个
+真实多模态驾驶策略，并将视觉派生caption、query与history纳入受干预路径；普通planner只承担机制控制。

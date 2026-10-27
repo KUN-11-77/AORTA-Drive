@@ -7,6 +7,7 @@
 > Differential Query 的执行顺序已经失效。R006V0/R006V0F 又否定了 fixed-global-rank 主线。
 > 当前唯一授权的经验入口是冻结 DINOv3-H+ 的接口因果审计，详见
 > `docs/AORTA_DINO_INTERFACE_FIRST_PRINCIPLES_V1_CN.md` 与
+> `docs/AORTA_DINO_DECISION_SUFFICIENCY_THEORY_V1_CN.md`，以及
 > `experiments/R007/R007V0_DINO_INTERFACE_CAUSAL_AUDIT_PREREGISTRATION.md`。任何具体架构必须由
 > 该审计发现的瓶颈唯一授权，不能从本文件的候选网络章节直接获得训练资格。
 
