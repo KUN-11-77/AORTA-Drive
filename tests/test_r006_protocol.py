@@ -7,6 +7,8 @@ import torch
 
 from aorta_drive.vision.r006_protocol import (
     CoverageSummary,
+    InterfaceSelection,
+    aggregate_cross_fold_interfaces,
     audit_r006_nested_manifest,
     build_r006_nested_manifest,
     select_registered_interface,
@@ -130,3 +132,53 @@ def test_interface_selection_fails_closed_without_qualified_candidate() -> None:
                 "trajectory_query_secondary": {},
             }
         )
+
+
+def _selection(layer: str, rank: int) -> InterfaceSelection:
+    return InterfaceSelection(
+        layer=layer,
+        rank=rank,
+        group_equal_mean=0.95,
+        worst_group_mean=0.75,
+        rule="registered",
+    )
+
+
+def test_cross_fold_interface_requires_unique_rank_in_at_least_four_folds() -> None:
+    stopped = aggregate_cross_fold_interfaces(
+        [
+            _selection("trajectory_query_secondary", rank)
+            for rank in (8, 32, 4, 32, 4, 32)
+        ]
+    )
+    assert stopped.status == "STOP_GLOBAL_SHARED_INTERFACE"
+    assert stopped.layer == "trajectory_query_secondary"
+    assert stopped.rank is None
+    assert stopped.layer_counts == {"trajectory_query_secondary": 6}
+    assert stopped.rank_counts_for_consensus_layer == {4: 2, 8: 1, 32: 3}
+
+    passed = aggregate_cross_fold_interfaces(
+        [
+            _selection("trajectory_query_secondary", rank)
+            for rank in (8, 32, 32, 32, 4, 32)
+        ]
+    )
+    assert passed.status == "PASS_GLOBAL_SHARED_INTERFACE"
+    assert passed.layer == "trajectory_query_secondary"
+    assert passed.rank == 32
+
+
+def test_cross_fold_interface_fails_when_any_fold_has_no_qualified_interface() -> None:
+    decision = aggregate_cross_fold_interfaces(
+        [
+            _selection("trajectory_query_secondary", 8),
+            _selection("trajectory_query_secondary", 8),
+            _selection("trajectory_query_secondary", 8),
+            _selection("trajectory_query_secondary", 8),
+            _selection("trajectory_query_secondary", 8),
+            None,
+        ]
+    )
+    assert decision.status == "STOP_GLOBAL_SHARED_INTERFACE"
+    assert decision.selected_fold_count == 5
+    assert decision.rank is None

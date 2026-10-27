@@ -1,6 +1,10 @@
 # R006V0：冻结 planner 的低秩外观介导资格实验
 
-状态：`PREREGISTERED_NOT_EXECUTED__AMENDMENTS_1_TO_7_FROZEN`。本实验不训练 DINO、adapter、repairer 或 planner。
+状态：`BASIS_STAGE_COMPLETED__STOP_GLOBAL_SHARED_INTERFACE__OUTER_INTERVENTION_NOT_RUN`。本实验不训练 DINO、adapter、repairer 或 planner。
+
+2026-10-27：6折basis阶段机械审计93/93 PASS，但预注册的最小rank共识门未通过，因此按协议
+fail-closed停止；outer-confirmation干预未执行。结果与边界见`R006V0_BASIS_RESULTS.md`。以下合同保留为
+不可变历史，不因post-hoc诊断改写。
 
 2026-10-26、任何正式科学结果可见前，R006V0J 矩阵自由算子资格将候选层收缩为 C3 planner memory 与
 C4 trajectory query；其余合同不变。见 `R006V0_PROTOCOL_AMENDMENT_1.md`。

@@ -1,0 +1,24 @@
+{
+  "artifact": "R006V0_BASIS_EXPERIMENT_INTEGRITY_REVIEW_V1",
+  "evaluation_scope": "inner-held-out task-weighted basis qualification only",
+  "external_reviewer_status": "REVIEW_UNAVAILABLE",
+  "integrity_status": "PROVISIONAL_INTERNAL_REVIEW",
+  "mechanical_status": "PASS",
+  "mechanical_check_count": 93,
+  "mechanical_failed_check_count": 0,
+  "primary_replay_exact": true,
+  "sealed_roles_untouched": true,
+  "outer_confirmation_metrics_emitted": false,
+  "scientific_decision": "STOP_GLOBAL_SHARED_INTERFACE",
+  "decision_basis": {
+    "selected_layer": "trajectory_query_secondary",
+    "selected_layer_fold_count": 6,
+    "minimum_rank_counts": {
+      "4": 2,
+      "8": 1,
+      "32": 3
+    },
+    "required_rank_consensus_fold_count": 4
+  },
+  "claim_boundary": "No mediation, DINO recoverability, CPTR efficacy, OOD robustness, utility, latency, behavior, or safety claim is supported."
+}

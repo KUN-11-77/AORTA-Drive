@@ -1,0 +1,751 @@
+{
+  "artifact": "R006V0_FOLD_BASIS_AUDIT_V1",
+  "status": "PASS",
+  "outer_fold": 2,
+  "check_count": 185,
+  "failed_check_count": 0,
+  "primary_replay_exact": true,
+  "checks": [
+    {
+      "check": "artifact",
+      "pass": true
+    },
+    {
+      "check": "mechanical status",
+      "pass": true
+    },
+    {
+      "check": "scientific metrics declared",
+      "pass": true
+    },
+    {
+      "check": "outer confirmation metrics absent",
+      "pass": true
+    },
+    {
+      "check": "sealed roles untouched",
+      "pass": true
+    },
+    {
+      "check": "registered layers",
+      "pass": true
+    },
+    {
+      "check": "registered ranks",
+      "pass": true
+    },
+    {
+      "check": "fixed batch size",
+      "pass": true
+    },
+    {
+      "check": "fixed output metric",
+      "pass": true
+    },
+    {
+      "check": "role exact: basis_discovery_groups",
+      "pass": true
+    },
+    {
+      "check": "role exact: layer_rank_selection_groups",
+      "pass": true
+    },
+    {
+      "check": "role exact: outer_confirmation_groups",
+      "pass": true
+    },
+    {
+      "check": "role cardinalities",
+      "pass": true
+    },
+    {
+      "check": "role disjointness",
+      "pass": true
+    },
+    {
+      "check": "condition roster",
+      "pass": true
+    },
+    {
+      "check": "candidate layer roster",
+      "pass": true
+    },
+    {
+      "check": "planner_memory: rank roster",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: basis exists",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: basis shape",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: basis finite",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: basis orthonormal",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: basis hash",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: recorded basis shape",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: discovery count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: selection count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: solver finite",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: sample count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: sample roster exact",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: finite nonnegative samples",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: summary rank",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: summary group count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: group-equal mean",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: worst-group mean",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: qualification",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: group roster",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank4: group means",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: basis exists",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: basis shape",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: basis finite",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: basis orthonormal",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: basis hash",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: recorded basis shape",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: discovery count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: selection count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: solver finite",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: sample count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: sample roster exact",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: finite nonnegative samples",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: summary rank",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: summary group count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: group-equal mean",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: worst-group mean",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: qualification",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: group roster",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank8: group means",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: basis exists",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: basis shape",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: basis finite",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: basis orthonormal",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: basis hash",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: recorded basis shape",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: discovery count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: selection count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: solver finite",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: sample count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: sample roster exact",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: finite nonnegative samples",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: summary rank",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: summary group count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: group-equal mean",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: worst-group mean",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: qualification",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: group roster",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank16: group means",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: basis exists",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: basis shape",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: basis finite",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: basis orthonormal",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: basis hash",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: recorded basis shape",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: discovery count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: selection count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: solver finite",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: sample count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: sample roster exact",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: finite nonnegative samples",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: summary rank",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: summary group count",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: group-equal mean",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: worst-group mean",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: qualification",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: group roster",
+      "pass": true
+    },
+    {
+      "check": "planner_memory/rank32: group means",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary: rank roster",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: basis exists",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: basis shape",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: basis finite",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: basis orthonormal",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: basis hash",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: recorded basis shape",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: discovery count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: selection count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: solver finite",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: sample count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: sample roster exact",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: finite nonnegative samples",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: summary rank",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: summary group count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: group-equal mean",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: worst-group mean",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: qualification",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: group roster",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank4: group means",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: basis exists",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: basis shape",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: basis finite",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: basis orthonormal",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: basis hash",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: recorded basis shape",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: discovery count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: selection count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: solver finite",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: sample count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: sample roster exact",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: finite nonnegative samples",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: summary rank",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: summary group count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: group-equal mean",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: worst-group mean",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: qualification",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: group roster",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank8: group means",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: basis exists",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: basis shape",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: basis finite",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: basis orthonormal",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: basis hash",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: recorded basis shape",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: discovery count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: selection count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: solver finite",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: sample count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: sample roster exact",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: finite nonnegative samples",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: summary rank",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: summary group count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: group-equal mean",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: worst-group mean",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: qualification",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: group roster",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank16: group means",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: basis exists",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: basis shape",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: basis finite",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: basis orthonormal",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: basis hash",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: recorded basis shape",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: discovery count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: selection count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: solver finite",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: sample count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: sample roster exact",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: finite nonnegative samples",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: summary rank",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: summary group count",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: group-equal mean",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: worst-group mean",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: qualification",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: group roster",
+      "pass": true
+    },
+    {
+      "check": "trajectory_query_secondary/rank32: group means",
+      "pass": true
+    },
+    {
+      "check": "selection decision exact",
+      "pass": true
+    },
+    {
+      "check": "status exact",
+      "pass": true
+    },
+    {
+      "check": "provenance exact: checkpoint_sha256",
+      "pass": true
+    },
+    {
+      "check": "provenance exact: cache_manifest_sha256",
+      "pass": true
+    },
+    {
+      "check": "provenance exact: nested_manifest_sha256",
+      "pass": true
+    },
+    {
+      "check": "provenance exact: config_sha256",
+      "pass": true
+    },
+    {
+      "check": "provenance exact: runner_sha256",
+      "pass": true
+    },
+    {
+      "check": "provenance exact: basis_module_sha256",
+      "pass": true
+    },
+    {
+      "check": "provenance exact: solver_module_sha256",
+      "pass": true
+    },
+    {
+      "check": "source commit exact",
+      "pass": true
+    },
+    {
+      "check": "cache checkpoint binding",
+      "pass": true
+    },
+    {
+      "check": "cache planner tree binding",
+      "pass": true
+    },
+    {
+      "check": "replay independently passes mechanics",
+      "pass": true
+    },
+    {
+      "check": "primary/replay result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "primary/replay basis bytes exact",
+      "pass": true
+    }
+  ],
+  "claim_boundary": "fold-level inner selection mechanics only; no outer-confirmation, mediation, DINO, CPTR, NavDream, behavior, latency, or safety claim"
+}

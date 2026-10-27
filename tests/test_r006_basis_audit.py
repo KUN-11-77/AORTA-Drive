@@ -4,7 +4,36 @@ from pathlib import Path
 
 import numpy as np
 
-from aorta_drive.vision.r006_basis_audit import audit_fold_basis_result
+from aorta_drive.vision.r006_basis_audit import (
+    _selection_matches,
+    audit_fold_basis_result,
+)
+
+
+def test_selection_match_tolerates_last_place_float_rounding() -> None:
+    recorded = {
+        "layer": "trajectory_query_secondary",
+        "rank": 32,
+        "group_equal_mean": 0.9147394303269867,
+        "worst_group_mean": 0.7510256596695123,
+        "rule": "registered",
+    }
+    expected = {
+        **recorded,
+        "group_equal_mean": 0.9147394303269866,
+    }
+    assert _selection_matches(recorded, expected)
+
+
+def test_selection_match_rejects_discrete_decision_change() -> None:
+    recorded = {
+        "layer": "trajectory_query_secondary",
+        "rank": 32,
+        "group_equal_mean": 0.91,
+        "worst_group_mean": 0.75,
+        "rule": "registered",
+    }
+    assert not _selection_matches(recorded, {**recorded, "rank": 16})
 
 
 def _groups(prefix: str, count: int) -> list[str]:

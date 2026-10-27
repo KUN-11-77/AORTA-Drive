@@ -1,6 +1,10 @@
 # R006V0 实现资格清单
 
-状态：`R006V0S_PASS__R006V0J_C3_C4_PASS__FORMAL_CACHE_EXACT_REPLAY_PASS__FORMAL_R006V0_IMPLEMENTATION_IN_PROGRESS`。
+状态：`BASIS_CHAIN_MECHANICAL_PASS__STOP_GLOBAL_SHARED_INTERFACE__OUTER_RUNNER_NOT_AUTHORIZED`。
+
+2026-10-27：六折basis discovery/selection完成，主运行与replay逐文件一致，聚合审计93/93 PASS。
+C4层为6/6，但最小合格rank计数`{4:2,8:1,32:3}`未达到至少4/6共识，故按冻结协议停止。
+outer-confirmation runner不再是待实现阻塞项，而是**未获实现授权**；R006V1/CPTR/NavDream继续HOLD。
 
 2026-10-26 更新：synthetic dense-Jacobian oracle 与 2-anchor R006V0S primary/replay 已通过；55 项
 机械审计为 PASS。旧 C1 hook 因位于多轮 fusion 之后而被反例否定，现已冻结为第一次视觉编码输出、
@@ -79,9 +83,11 @@ selection组，审计器从逐样本task-drift重新计算coverage、验证basis
 5. ~~运行一组真实 activation-cache smoke 并审计 site semantics；~~ `PASS`
 6. ~~用 smoke 的非科学耗时与真实 tensor shape 冻结正式预算；~~ `PASS: streaming batch=128`
 7. ~~冻结每折basis运行器、独立审计器与config SHA；~~ `PASS: this frozen change`
-8. 一次性执行六折basis discovery/selection primary+replay，期间不读取部分科学指标；
-9. 只有六折产生唯一稳定接口后，才实现并冻结A0–A7 outer-confirmation运行器。
+8. ~~一次性执行六折basis discovery/selection primary+replay，期间不读取部分科学指标；~~
+   `MECHANICAL PASS / SCIENTIFIC STOP`
+9. 只有六折产生唯一稳定接口后，才实现并冻结A0–A7 outer-confirmation运行器；当前条件未满足，禁止实现。
 
-当前nested fold、真实JVP basis runner及其独立审计器已经实现并通过合成等价/篡改反例测试；完整缓存、
-资源预算和batch=128均已资格化。下一道门是六折basis discovery/selection；全部A0–A7 outer-confirmation
-运行器仍未实现，因而完整R006V0保持`FORMAL_R006V0_IMPLEMENTATION_NOT_READY`。
+当前nested fold、真实JVP basis runner及其独立审计器均已完成；完整缓存、资源预算和batch=128均已
+资格化。六折结果否定了预注册fixed-global-rank接口，因此全部A0–A7 outer-confirmation运行器保持未实现，
+状态为`SCIENTIFICALLY_STOPPED_BEFORE_OUTER_INTERVENTION`。后续只允许独立登记的inner failure
+decomposition，不得把实现完整度当作继续科学链的理由。

@@ -1,0 +1,536 @@
+{
+  "artifact": "R006V0_BASIS_CHAIN_AUDIT_V1",
+  "check_count": 93,
+  "checks": [
+    {
+      "check": "top-level exit code exists",
+      "pass": true
+    },
+    {
+      "check": "top-level exit code zero",
+      "pass": true
+    },
+    {
+      "check": "progress exists",
+      "pass": true
+    },
+    {
+      "check": "progress complete",
+      "pass": true
+    },
+    {
+      "check": "six folds complete",
+      "pass": true
+    },
+    {
+      "check": "zero failed folds",
+      "pass": true
+    },
+    {
+      "check": "zero running folds",
+      "pass": true
+    },
+    {
+      "check": "sealed roles untouched",
+      "pass": true
+    },
+    {
+      "check": "basis science emitted",
+      "pass": true
+    },
+    {
+      "check": "nested manifest has six folds",
+      "pass": true
+    },
+    {
+      "check": "result fold roster exact",
+      "pass": true
+    },
+    {
+      "check": "fold 0: primary result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 0: replay result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 0: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 0: primary replay file roster exact",
+      "pass": true
+    },
+    {
+      "check": "fold 0: primary replay byte exact",
+      "pass": true
+    },
+    {
+      "check": "fold 0: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 0: independent fold audit",
+      "pass": true
+    },
+    {
+      "check": "fold 0: stored audit status",
+      "pass": true
+    },
+    {
+      "check": "fold 0: stored audit failed count",
+      "pass": true
+    },
+    {
+      "check": "fold 0: stored audit checks all pass",
+      "pass": true
+    },
+    {
+      "check": "fold 0: stored exact replay",
+      "pass": true
+    },
+    {
+      "check": "fold 0: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 1: primary result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 1: replay result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 1: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 1: primary replay file roster exact",
+      "pass": true
+    },
+    {
+      "check": "fold 1: primary replay byte exact",
+      "pass": true
+    },
+    {
+      "check": "fold 1: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 1: independent fold audit",
+      "pass": true
+    },
+    {
+      "check": "fold 1: stored audit status",
+      "pass": true
+    },
+    {
+      "check": "fold 1: stored audit failed count",
+      "pass": true
+    },
+    {
+      "check": "fold 1: stored audit checks all pass",
+      "pass": true
+    },
+    {
+      "check": "fold 1: stored exact replay",
+      "pass": true
+    },
+    {
+      "check": "fold 1: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 2: primary result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 2: replay result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 2: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 2: primary replay file roster exact",
+      "pass": true
+    },
+    {
+      "check": "fold 2: primary replay byte exact",
+      "pass": true
+    },
+    {
+      "check": "fold 2: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 2: independent fold audit",
+      "pass": true
+    },
+    {
+      "check": "fold 2: stored audit status",
+      "pass": true
+    },
+    {
+      "check": "fold 2: stored audit failed count",
+      "pass": true
+    },
+    {
+      "check": "fold 2: stored audit checks all pass",
+      "pass": true
+    },
+    {
+      "check": "fold 2: stored exact replay",
+      "pass": true
+    },
+    {
+      "check": "fold 2: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 3: primary result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 3: replay result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 3: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 3: primary replay file roster exact",
+      "pass": true
+    },
+    {
+      "check": "fold 3: primary replay byte exact",
+      "pass": true
+    },
+    {
+      "check": "fold 3: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 3: independent fold audit",
+      "pass": true
+    },
+    {
+      "check": "fold 3: stored audit status",
+      "pass": true
+    },
+    {
+      "check": "fold 3: stored audit failed count",
+      "pass": true
+    },
+    {
+      "check": "fold 3: stored audit checks all pass",
+      "pass": true
+    },
+    {
+      "check": "fold 3: stored exact replay",
+      "pass": true
+    },
+    {
+      "check": "fold 3: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 4: primary result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 4: replay result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 4: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 4: primary replay file roster exact",
+      "pass": true
+    },
+    {
+      "check": "fold 4: primary replay byte exact",
+      "pass": true
+    },
+    {
+      "check": "fold 4: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 4: independent fold audit",
+      "pass": true
+    },
+    {
+      "check": "fold 4: stored audit status",
+      "pass": true
+    },
+    {
+      "check": "fold 4: stored audit failed count",
+      "pass": true
+    },
+    {
+      "check": "fold 4: stored audit checks all pass",
+      "pass": true
+    },
+    {
+      "check": "fold 4: stored exact replay",
+      "pass": true
+    },
+    {
+      "check": "fold 4: source commit",
+      "pass": true
+    },
+    {
+      "check": "fold 5: primary result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 5: replay result exists",
+      "pass": true
+    },
+    {
+      "check": "fold 5: stored audit exists",
+      "pass": true
+    },
+    {
+      "check": "fold 5: primary replay file roster exact",
+      "pass": true
+    },
+    {
+      "check": "fold 5: primary replay byte exact",
+      "pass": true
+    },
+    {
+      "check": "fold 5: result JSON exact",
+      "pass": true
+    },
+    {
+      "check": "fold 5: independent fold audit",
+      "pass": true
+    },
+    {
+      "check": "fold 5: stored audit status",
+      "pass": true
+    },
+    {
+      "check": "fold 5: stored audit failed count",
+      "pass": true
+    },
+    {
+      "check": "fold 5: stored audit checks all pass",
+      "pass": true
+    },
+    {
+      "check": "fold 5: stored exact replay",
+      "pass": true
+    },
+    {
+      "check": "fold 5: source commit",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: basis_module_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: cache_checkpoint_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: cache_manifest_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: cache_planner_execution_tree",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: checkpoint_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: config_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: nested_manifest_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: runner_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: solver_module_sha256",
+      "pass": true
+    },
+    {
+      "check": "cross-fold provenance stable: source_commit",
+      "pass": true
+    }
+  ],
+  "claim_boundary": "This stage evaluates inner-held-out basis qualification and the preregistered six-fold interface-consensus rule only. It does not read outer-confirmation endpoints or support finite mediation, DINO recoverability, CPTR, OOD, utility, latency, or safety claims.",
+  "cross_fold_consensus": {
+    "layer": "trajectory_query_secondary",
+    "layer_counts": {
+      "trajectory_query_secondary": 6
+    },
+    "rank": null,
+    "rank_counts_for_consensus_layer": {
+      "4": 2,
+      "8": 1,
+      "32": 3
+    },
+    "selected_fold_count": 6,
+    "status": "STOP_GLOBAL_SHARED_INTERFACE"
+  },
+  "failed_check_count": 0,
+  "fold_audits": [
+    {
+      "outer_fold": 0,
+      "primary_replay_exact": true,
+      "recomputed_check_count": 172,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 185
+    },
+    {
+      "outer_fold": 1,
+      "primary_replay_exact": true,
+      "recomputed_check_count": 172,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 185
+    },
+    {
+      "outer_fold": 2,
+      "primary_replay_exact": true,
+      "recomputed_check_count": 172,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 185
+    },
+    {
+      "outer_fold": 3,
+      "primary_replay_exact": true,
+      "recomputed_check_count": 172,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 185
+    },
+    {
+      "outer_fold": 4,
+      "primary_replay_exact": true,
+      "recomputed_check_count": 172,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 185
+    },
+    {
+      "outer_fold": 5,
+      "primary_replay_exact": true,
+      "recomputed_check_count": 172,
+      "recomputed_failed_checks": [],
+      "stored_check_count": 185
+    }
+  ],
+  "mechanical_status": "PASS",
+  "provenance_distinct_values": {
+    "basis_module_sha256": [
+      "e2b259a5689fb00df245fb3c6060a19d7261d10252ea59ac5ec7afd3130d193f"
+    ],
+    "cache_checkpoint_sha256": [
+      "d08e97ba6beb937412697d619171553041622859e026a06935a2e0e118e6309d"
+    ],
+    "cache_manifest_sha256": [
+      "f3658ea5b0a85547129587ed39691bda6ba1853e83e0c83cf569854bfc0f01bb"
+    ],
+    "cache_planner_execution_tree": [
+      "615a051a2d6bef1ef2ca49a7e439b0020bd1aaf4"
+    ],
+    "checkpoint_sha256": [
+      "d08e97ba6beb937412697d619171553041622859e026a06935a2e0e118e6309d"
+    ],
+    "config_sha256": [
+      "5c1b21380b03449b975ca6dddccb294b25958b623ca4c2384f2329ded3fa593d"
+    ],
+    "nested_manifest_sha256": [
+      "449578209aa2621c932124236b1740b4930d5321c467777e02d9e3cc40a7ced7"
+    ],
+    "runner_sha256": [
+      "a62de2518848e653f74ac113de42db8fd797c03997325d5feef06a6b000b2f04"
+    ],
+    "solver_module_sha256": [
+      "472ba50e4f450b6de1b84d9ae87201904d8fd241bd339f252aed9a8e8618448a"
+    ],
+    "source_commit": [
+      "1d2d973cffd7efc4b830373d3a27726843ed4c7b"
+    ]
+  },
+  "qualification_counts_by_layer_rank": {
+    "planner_memory": {
+      "4": 0,
+      "8": 0,
+      "16": 0,
+      "32": 0
+    },
+    "trajectory_query_secondary": {
+      "4": 2,
+      "8": 3,
+      "16": 1,
+      "32": 6
+    }
+  },
+  "scientific_decision": "STOP_GLOBAL_SHARED_INTERFACE",
+  "selected_interfaces": [
+    {
+      "group_equal_mean": 0.9200551606079991,
+      "layer": "trajectory_query_secondary",
+      "outer_fold": 0,
+      "rank": 8,
+      "rule": "smallest_qualifying_rank_then_worst_group_then_group_equal_mean_then_registered_layer_order",
+      "worst_group_mean": 0.8644076473570156
+    },
+    {
+      "group_equal_mean": 0.9147394303269867,
+      "layer": "trajectory_query_secondary",
+      "outer_fold": 1,
+      "rank": 32,
+      "rule": "smallest_qualifying_rank_then_worst_group_then_group_equal_mean_then_registered_layer_order",
+      "worst_group_mean": 0.7510256596695123
+    },
+    {
+      "group_equal_mean": 0.9034247907582994,
+      "layer": "trajectory_query_secondary",
+      "outer_fold": 2,
+      "rank": 4,
+      "rule": "smallest_qualifying_rank_then_worst_group_then_group_equal_mean_then_registered_layer_order",
+      "worst_group_mean": 0.8173002707340485
+    },
+    {
+      "group_equal_mean": 0.9041135146969314,
+      "layer": "trajectory_query_secondary",
+      "outer_fold": 3,
+      "rank": 32,
+      "rule": "smallest_qualifying_rank_then_worst_group_then_group_equal_mean_then_registered_layer_order",
+      "worst_group_mean": 0.7721643935597414
+    },
+    {
+      "group_equal_mean": 0.9048613666009659,
+      "layer": "trajectory_query_secondary",
+      "outer_fold": 4,
+      "rank": 4,
+      "rule": "smallest_qualifying_rank_then_worst_group_then_group_equal_mean_then_registered_layer_order",
+      "worst_group_mean": 0.8405412472620092
+    },
+    {
+      "group_equal_mean": 0.9250750196333073,
+      "layer": "trajectory_query_secondary",
+      "outer_fold": 5,
+      "rank": 32,
+      "rule": "smallest_qualifying_rank_then_worst_group_then_group_equal_mean_then_registered_layer_order",
+      "worst_group_mean": 0.6484513992367337
+    }
+  ]
+}

@@ -1,5 +1,15 @@
 # AORTA-Drive Research Brief
 
+> **2026-10-27 R006V0 basis：`MECHANICAL_PASS__STOP_GLOBAL_SHARED_INTERFACE`。**
+> 6/6 folds完成、primary/replay逐文件一致，本地聚合审计93/93 PASS且所有封存角色未访问。C4
+> trajectory-query层在6/6折被选择，但按预注册“每折最小合格rank”规则得到`[8,32,4,32,4,32]`，
+> 没有rank达到至少4/6共识，因此fail-closed停止，未执行outer finite intervention。post-hoc旋转不变
+> 诊断显示rank4/8跨折projector overlap均值0.9785/0.9827、rank32为0.9563，提示“共享方向核心但
+> 有效维数/估计不稳定”值得独立检验；它不允许事后追认rank32。R006V1、DINO reader、CPTR、NavDream
+> 继续HOLD。下一步仅允许inner failure decomposition，详见
+> `experiments/R006/R006V0_BASIS_RESULTS.md`与
+> `docs/R006_FAILURE_DRIVEN_THEORY_REFINEMENT_20261027.md`。
+
 > **2026-10-26 Best-Paper理论审查：`CONDITIONALLY_COHERENT__NO_REDESIGN__EMPIRICAL_CORE_UNPROVEN`。**
 > 三轮拒稿视角审查确认Visual-First主链无需重构，但修正了site mask的Kronecker表达、basis旋转
 > 不可识别性、shared-channel-rank含义、\(W\)-半范数下的Jacobian Lipschitz条件，并明确低维输出不

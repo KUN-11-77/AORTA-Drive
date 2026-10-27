@@ -1,0 +1,555 @@
+{
+  "artifact": "R006V0_POSTHOC_BASIS_GEOMETRY_DIAGNOSTIC_V1",
+  "fold_count": 6,
+  "input_basis_sha256": {
+    "fold_0/primary/bases/fold_0_trajectory_query_secondary_rank_16.npy": "432292c33c865f94083007cd53ff02bcef2bce384dc2ee03d8678ab69752281b",
+    "fold_0/primary/bases/fold_0_trajectory_query_secondary_rank_32.npy": "22dc010f3771720a8c628c4dd6fe8ddb6e8766562926fa7b23eaf8f855d0d870",
+    "fold_0/primary/bases/fold_0_trajectory_query_secondary_rank_4.npy": "16165d64557440b236347b48a0057c0960a330ee5e3b082b045f0775a0d574f9",
+    "fold_0/primary/bases/fold_0_trajectory_query_secondary_rank_8.npy": "61a348f6fe11f4f2d20d041589c738113e9cfadc85e597c78f9e385cece506bf",
+    "fold_1/primary/bases/fold_1_trajectory_query_secondary_rank_16.npy": "6e1004cfc2bf4ae5f1db3226303f2d6eef1141d258eed961af31a2d6b4d3ba9f",
+    "fold_1/primary/bases/fold_1_trajectory_query_secondary_rank_32.npy": "0bd1ff391d9b61a1591539e1b2f1d3ed4059d921d738ee7b8f9d4a04185c8569",
+    "fold_1/primary/bases/fold_1_trajectory_query_secondary_rank_4.npy": "af4beabc41eaf0e1a76692da3c8fd529e002020e8d32f23ca6f95ce7ed0a2759",
+    "fold_1/primary/bases/fold_1_trajectory_query_secondary_rank_8.npy": "62823608f67a79be273d72f2062111b13d60669498df483a3aaf1e8a3ceb6e78",
+    "fold_2/primary/bases/fold_2_trajectory_query_secondary_rank_16.npy": "697f09c5ac2dc418a21ad281c3863e64f1e0a9e3aea83a7d3e39c2d00a52aa1e",
+    "fold_2/primary/bases/fold_2_trajectory_query_secondary_rank_32.npy": "60e6e7eac87ff582d9e04c258ae16ea1bf08266520ffbef2806cc3f5d341c35e",
+    "fold_2/primary/bases/fold_2_trajectory_query_secondary_rank_4.npy": "9d96c18661b57cbca391d9f4956132f27435519913670e84401ca1f38cdebc57",
+    "fold_2/primary/bases/fold_2_trajectory_query_secondary_rank_8.npy": "8a3c2a09a50f2de3fce2851910c45626e8b14ccde4ff112507a95add0fa18983",
+    "fold_3/primary/bases/fold_3_trajectory_query_secondary_rank_16.npy": "35351641c68953b9d5b6b180e46fa8e4e38f2f861db57d0a1f027999d72a0728",
+    "fold_3/primary/bases/fold_3_trajectory_query_secondary_rank_32.npy": "8233ef860363092bddaa091858528a460a00e97f14483933c6331b09f0fc21bf",
+    "fold_3/primary/bases/fold_3_trajectory_query_secondary_rank_4.npy": "f37850ac18b338e3b6d9a464f8bdd84ae8ad323e8a3d549ef19b1da30c102902",
+    "fold_3/primary/bases/fold_3_trajectory_query_secondary_rank_8.npy": "f1e9917881e09e2acc07478f7020093d8bc493e098ca5f2c22fe8f8a63477efd",
+    "fold_4/primary/bases/fold_4_trajectory_query_secondary_rank_16.npy": "5db2fde3d0653847dbd2eb7c0149e6564ef936f6f06a45c67f683842b6c17592",
+    "fold_4/primary/bases/fold_4_trajectory_query_secondary_rank_32.npy": "bc0440dca320ec7d5d67c023bf4e102dfa9885d9783f84138ad39489772130dc",
+    "fold_4/primary/bases/fold_4_trajectory_query_secondary_rank_4.npy": "d96236eb31473145257ecf034133f3ea9cb4e1776c187351770a0dfe8ac9098e",
+    "fold_4/primary/bases/fold_4_trajectory_query_secondary_rank_8.npy": "fb840594cac28c6be921313e85cc2d88d5134902db216c8dc6a56d0ce5e25d20",
+    "fold_5/primary/bases/fold_5_trajectory_query_secondary_rank_16.npy": "a3c3e9b97d585234cb8afe200e1adf78489dba2fe2f40c8a5d1caea319cb9b71",
+    "fold_5/primary/bases/fold_5_trajectory_query_secondary_rank_32.npy": "07ac871799fb7abdb68b3dc42511de4c08ede7dac548f4b292906c23b371560b",
+    "fold_5/primary/bases/fold_5_trajectory_query_secondary_rank_4.npy": "3dce5af2b396c3378bf9154194d5288b226bc108c9369523c7694032c19778e4",
+    "fold_5/primary/bases/fold_5_trajectory_query_secondary_rank_8.npy": "6bd283fe0b739838521b4abee6318c59801bcf291434a46fd45b63fbf293c1fb"
+  },
+  "interpretation_boundary": "Projector overlap is a rotation-invariant descriptive diagnostic. It neither changes STOP_GLOBAL_SHARED_INTERFACE nor establishes mediation, DINO recoverability, CPTR efficacy, OOD robustness, or driving benefit. Folds have overlapping discovery data, so these pairwise values are not independent confirmation statistics.",
+  "layer": "trajectory_query_secondary",
+  "rank_results": {
+    "16": {
+      "largest_principal_angle_degrees_max": 89.85475731649682,
+      "largest_principal_angle_degrees_mean": 66.12982495162042,
+      "normalized_projector_overlap_max": 0.9534422914455345,
+      "normalized_projector_overlap_mean": 0.904990144338535,
+      "normalized_projector_overlap_min": 0.8737982569843091,
+      "pair_count": 15,
+      "pairs": [
+        {
+          "largest_principal_angle_degrees": 48.449965433584175,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9898831907156913,
+          "normalized_projector_overlap": 0.925118264614296,
+          "right_fold": 1,
+          "smallest_principal_cosine": 0.6632738344839237
+        },
+        {
+          "largest_principal_angle_degrees": 76.00373766368766,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9908594723138688,
+          "normalized_projector_overlap": 0.9178398183819924,
+          "right_fold": 2,
+          "smallest_principal_cosine": 0.24185859829183975
+        },
+        {
+          "largest_principal_angle_degrees": 34.647066790929124,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9915360279158215,
+          "normalized_projector_overlap": 0.9534422914455345,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.8226696239868877
+        },
+        {
+          "largest_principal_angle_degrees": 81.70762845127098,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9855822406488588,
+          "normalized_projector_overlap": 0.8890044230004626,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.1442244526834908
+        },
+        {
+          "largest_principal_angle_degrees": 74.88520213331932,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9832253264384746,
+          "normalized_projector_overlap": 0.8845406601596837,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.26075385401208656
+        },
+        {
+          "largest_principal_angle_degrees": 89.85475731649682,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9905369184369381,
+          "normalized_projector_overlap": 0.9083884023753541,
+          "right_fold": 2,
+          "smallest_principal_cosine": 0.002534960326602122
+        },
+        {
+          "largest_principal_angle_degrees": 52.609389527159294,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9906058884021333,
+          "normalized_projector_overlap": 0.9327209580749933,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.6072456443584352
+        },
+        {
+          "largest_principal_angle_degrees": 78.00596183106165,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9875622090565421,
+          "normalized_projector_overlap": 0.8876593631306349,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.2078099099313317
+        },
+        {
+          "largest_principal_angle_degrees": 66.4442715057785,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9853351774135835,
+          "normalized_projector_overlap": 0.885059527092782,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.3996408547167951
+        },
+        {
+          "largest_principal_angle_degrees": 85.89574215258824,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9909997465625918,
+          "normalized_projector_overlap": 0.9054681895131862,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.07157156740731248
+        },
+        {
+          "largest_principal_angle_degrees": 46.87713260151217,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9842243919281026,
+          "normalized_projector_overlap": 0.9165836162221045,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.6835651353385384
+        },
+        {
+          "largest_principal_angle_degrees": 70.96941468459111,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9827067599538934,
+          "normalized_projector_overlap": 0.8865246334252848,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.3260728395312643
+        },
+        {
+          "largest_principal_angle_degrees": 74.79858565072584,
+          "left_fold": 3,
+          "median_principal_cosine": 0.9823667580111758,
+          "normalized_projector_overlap": 0.8737982569843091,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.26221300004294756
+        },
+        {
+          "largest_principal_angle_degrees": 69.02313844974353,
+          "left_fold": 3,
+          "median_principal_cosine": 0.9802169523762388,
+          "normalized_projector_overlap": 0.8759211849761481,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.35799090122303573
+        },
+        {
+          "largest_principal_angle_degrees": 41.77538008185796,
+          "left_fold": 4,
+          "median_principal_cosine": 0.9892333390377182,
+          "normalized_projector_overlap": 0.9327825756812592,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.7457623389427803
+        }
+      ]
+    },
+    "32": {
+      "largest_principal_angle_degrees_max": 68.54446969280193,
+      "largest_principal_angle_degrees_mean": 45.02957302833957,
+      "normalized_projector_overlap_max": 0.975881252915435,
+      "normalized_projector_overlap_mean": 0.9562680478761441,
+      "normalized_projector_overlap_min": 0.9417074791722675,
+      "pair_count": 15,
+      "pairs": [
+        {
+          "largest_principal_angle_degrees": 58.336418255461,
+          "left_fold": 0,
+          "median_principal_cosine": 0.993973964828465,
+          "normalized_projector_overlap": 0.9514083094000834,
+          "right_fold": 1,
+          "smallest_principal_cosine": 0.5249307537086553
+        },
+        {
+          "largest_principal_angle_degrees": 35.15499276636613,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9958713719574592,
+          "normalized_projector_overlap": 0.9708863739565818,
+          "right_fold": 2,
+          "smallest_principal_cosine": 0.8175974478369571
+        },
+        {
+          "largest_principal_angle_degrees": 27.916889209544426,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9954125456237086,
+          "normalized_projector_overlap": 0.975881252915435,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.883627658940752
+        },
+        {
+          "largest_principal_angle_degrees": 38.28407741119615,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9930304822391308,
+          "normalized_projector_overlap": 0.9536711957685298,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.7849485778116263
+        },
+        {
+          "largest_principal_angle_degrees": 44.72212371054324,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9915160682857724,
+          "normalized_projector_overlap": 0.9478932483539846,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.7105278179742763
+        },
+        {
+          "largest_principal_angle_degrees": 50.1543488712312,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9951621323568001,
+          "normalized_projector_overlap": 0.9592292877371968,
+          "right_fold": 2,
+          "smallest_principal_cosine": 0.6407216357438681
+        },
+        {
+          "largest_principal_angle_degrees": 66.49791845294924,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9958575421328018,
+          "normalized_projector_overlap": 0.950224253096867,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.3987823853166428
+        },
+        {
+          "largest_principal_angle_degrees": 68.54446969280193,
+          "left_fold": 1,
+          "median_principal_cosine": 0.993463985011424,
+          "normalized_projector_overlap": 0.9417074791722675,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.3657789797370829
+        },
+        {
+          "largest_principal_angle_degrees": 54.374736737226755,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9921917856748248,
+          "normalized_projector_overlap": 0.9426634327430244,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.5824814317313808
+        },
+        {
+          "largest_principal_angle_degrees": 33.31702507884931,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9955320524351444,
+          "normalized_projector_overlap": 0.9683419589854008,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.8356441858108549
+        },
+        {
+          "largest_principal_angle_degrees": 41.146330994028595,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9933064012204196,
+          "normalized_projector_overlap": 0.9561179897200274,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.7530315737019814
+        },
+        {
+          "largest_principal_angle_degrees": 37.37087783452056,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9920779486385112,
+          "normalized_projector_overlap": 0.957447144995941,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.7947232334835379
+        },
+        {
+          "largest_principal_angle_degrees": 35.237122571634735,
+          "left_fold": 3,
+          "median_principal_cosine": 0.9913008045096476,
+          "normalized_projector_overlap": 0.9549188475133263,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.8167712499500263
+        },
+        {
+          "largest_principal_angle_degrees": 43.327834276851334,
+          "left_fold": 3,
+          "median_principal_cosine": 0.9922356592501356,
+          "normalized_projector_overlap": 0.9524836635313589,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.7274395013904075
+        },
+        {
+          "largest_principal_angle_degrees": 41.05842956188901,
+          "left_fold": 4,
+          "median_principal_cosine": 0.9942582698031535,
+          "normalized_projector_overlap": 0.9611462802521373,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.7540401466223138
+        }
+      ]
+    },
+    "4": {
+      "largest_principal_angle_degrees_max": 15.419456980157806,
+      "largest_principal_angle_degrees_mean": 11.481390700060839,
+      "normalized_projector_overlap_max": 0.9923123303671287,
+      "normalized_projector_overlap_mean": 0.978531124560115,
+      "normalized_projector_overlap_min": 0.9624077665609427,
+      "pair_count": 15,
+      "pairs": [
+        {
+          "largest_principal_angle_degrees": 10.29082961493277,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9950942045653676,
+          "normalized_projector_overlap": 0.9857750094912958,
+          "right_fold": 1,
+          "smallest_principal_cosine": 0.9839136432360802
+        },
+        {
+          "largest_principal_angle_degrees": 9.735185974350141,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9949229033201329,
+          "normalized_projector_overlap": 0.9864967700119618,
+          "right_fold": 2,
+          "smallest_principal_cosine": 0.9855998120262656
+        },
+        {
+          "largest_principal_angle_degrees": 7.664410546679111,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9976076368890003,
+          "normalized_projector_overlap": 0.9923123303671287,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.9910662344730742
+        },
+        {
+          "largest_principal_angle_degrees": 12.208139336644292,
+          "left_fold": 0,
+          "median_principal_cosine": 0.988119184134256,
+          "normalized_projector_overlap": 0.974363795784513,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.9773858639986684
+        },
+        {
+          "largest_principal_angle_degrees": 14.262373057403327,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9825085399636162,
+          "normalized_projector_overlap": 0.9654192290725535,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9691777301583762
+        },
+        {
+          "largest_principal_angle_degrees": 10.32851134721065,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9947428692531883,
+          "normalized_projector_overlap": 0.98578629266096,
+          "right_fold": 2,
+          "smallest_principal_cosine": 0.9837959411201885
+        },
+        {
+          "largest_principal_angle_degrees": 10.088455155073175,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9951034108713027,
+          "normalized_projector_overlap": 0.9859747148231348,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.9845384956044657
+        },
+        {
+          "largest_principal_angle_degrees": 9.68237148737287,
+          "left_fold": 1,
+          "median_principal_cosine": 0.99246558794595,
+          "normalized_projector_overlap": 0.9838430006203087,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.9857552625014452
+        },
+        {
+          "largest_principal_angle_degrees": 11.48322935379741,
+          "left_fold": 1,
+          "median_principal_cosine": 0.987774811445226,
+          "normalized_projector_overlap": 0.9767729144456435,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9799830182337472
+        },
+        {
+          "largest_principal_angle_degrees": 11.471169206951016,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9942278271191494,
+          "normalized_projector_overlap": 0.9832051114001122,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.9800249009593492
+        },
+        {
+          "largest_principal_angle_degrees": 12.470069432272643,
+          "left_fold": 2,
+          "median_principal_cosine": 0.98641370649389,
+          "normalized_projector_overlap": 0.9733776904763178,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.9764089391356124
+        },
+        {
+          "largest_principal_angle_degrees": 15.419456980157806,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9808228940933246,
+          "normalized_projector_overlap": 0.9624077665609427,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9640051688778936
+        },
+        {
+          "largest_principal_angle_degrees": 12.004587296527873,
+          "left_fold": 3,
+          "median_principal_cosine": 0.985530712114822,
+          "normalized_projector_overlap": 0.9721327794573227,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.9781309514760609
+        },
+        {
+          "largest_principal_angle_degrees": 14.348304779577402,
+          "left_fold": 3,
+          "median_principal_cosine": 0.9839955446580657,
+          "normalized_projector_overlap": 0.9668000375301194,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9688071477559361
+        },
+        {
+          "largest_principal_angle_degrees": 10.76376693196209,
+          "left_fold": 4,
+          "median_principal_cosine": 0.9935333032752018,
+          "normalized_projector_overlap": 0.9832994256994128,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9824055516891792
+        }
+      ]
+    },
+    "8": {
+      "largest_principal_angle_degrees_max": 17.9216855376794,
+      "largest_principal_angle_degrees_mean": 13.358160179631914,
+      "normalized_projector_overlap_max": 0.9926540939884632,
+      "normalized_projector_overlap_mean": 0.9827416097818241,
+      "normalized_projector_overlap_min": 0.9733537772761193,
+      "pair_count": 15,
+      "pairs": [
+        {
+          "largest_principal_angle_degrees": 8.81259886352077,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9962888202797384,
+          "normalized_projector_overlap": 0.9891825019278678,
+          "right_fold": 1,
+          "smallest_principal_cosine": 0.9881947172472122
+        },
+        {
+          "largest_principal_angle_degrees": 10.723043706507488,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9962584837384723,
+          "normalized_projector_overlap": 0.9881140940048347,
+          "right_fold": 2,
+          "smallest_principal_cosine": 0.9825380440871503
+        },
+        {
+          "largest_principal_angle_degrees": 8.781747605292631,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9976147799586117,
+          "normalized_projector_overlap": 0.9919214884079308,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.9882770671401059
+        },
+        {
+          "largest_principal_angle_degrees": 17.26972604542235,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9913403165756078,
+          "normalized_projector_overlap": 0.9755156067560617,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.9549177932087198
+        },
+        {
+          "largest_principal_angle_degrees": 16.204472425000237,
+          "left_fold": 0,
+          "median_principal_cosine": 0.9929030419306892,
+          "normalized_projector_overlap": 0.9749136336939206,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9602719051124519
+        },
+        {
+          "largest_principal_angle_degrees": 7.441710337829935,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9969017015618568,
+          "normalized_projector_overlap": 0.9926540939884632,
+          "right_fold": 2,
+          "smallest_principal_cosine": 0.9915771386492741
+        },
+        {
+          "largest_principal_angle_degrees": 11.820814471294815,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9959205550921755,
+          "normalized_projector_overlap": 0.9870978085918092,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.9787930346295324
+        },
+        {
+          "largest_principal_angle_degrees": 14.3369350775552,
+          "left_fold": 1,
+          "median_principal_cosine": 0.9947823736319898,
+          "normalized_projector_overlap": 0.9822846944831426,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.9688563049506375
+        },
+        {
+          "largest_principal_angle_degrees": 14.876835612994768,
+          "left_fold": 1,
+          "median_principal_cosine": 0.993746735775761,
+          "normalized_projector_overlap": 0.9793840924414259,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9664799577962878
+        },
+        {
+          "largest_principal_angle_degrees": 10.516344440149927,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9957479450812201,
+          "normalized_projector_overlap": 0.9876742339273203,
+          "right_fold": 3,
+          "smallest_principal_cosine": 0.9832028822694173
+        },
+        {
+          "largest_principal_angle_degrees": 14.42866976871121,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9939577838968362,
+          "normalized_projector_overlap": 0.9816364772862378,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.9684585999676774
+        },
+        {
+          "largest_principal_angle_degrees": 17.9216855376794,
+          "left_fold": 2,
+          "median_principal_cosine": 0.9940264468973576,
+          "normalized_projector_overlap": 0.9757234391473821,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9514780061520475
+        },
+        {
+          "largest_principal_angle_degrees": 17.676075548037783,
+          "left_fold": 3,
+          "median_principal_cosine": 0.9910981022523779,
+          "normalized_projector_overlap": 0.9733537772761193,
+          "right_fold": 4,
+          "smallest_principal_cosine": 0.9527883503827368
+        },
+        {
+          "largest_principal_angle_degrees": 16.866916099977768,
+          "left_fold": 3,
+          "median_principal_cosine": 0.9937229439933972,
+          "normalized_projector_overlap": 0.9764481157297737,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9569812826674936
+        },
+        {
+          "largest_principal_angle_degrees": 12.69482715450446,
+          "left_fold": 4,
+          "median_principal_cosine": 0.9952134721707141,
+          "normalized_projector_overlap": 0.9852200890650735,
+          "right_fold": 5,
+          "smallest_principal_cosine": 0.9755543883856822
+        }
+      ]
+    }
+  },
+  "status": "DESCRIPTIVE_ONLY__PREREGISTERED_STOP_IMMUTABLE"
+}

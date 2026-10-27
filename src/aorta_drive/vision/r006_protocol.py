@@ -8,6 +8,7 @@ registered interface.
 
 from __future__ import annotations
 
+from collections import Counter
 from dataclasses import asdict, dataclass
 from typing import Any, Mapping, Sequence
 
@@ -43,6 +44,16 @@ class InterfaceSelection:
     group_equal_mean: float
     worst_group_mean: float
     rule: str
+
+
+@dataclass(frozen=True)
+class CrossFoldInterfaceDecision:
+    status: str
+    layer: str | None
+    rank: int | None
+    layer_counts: dict[str, int]
+    rank_counts_for_consensus_layer: dict[int, int]
+    selected_fold_count: int
 
 
 def build_r006_nested_manifest(
@@ -260,3 +271,75 @@ def selection_as_dict(selection: InterfaceSelection) -> dict[str, Any]:
     """Return a JSON-compatible representation for frozen manifests."""
 
     return asdict(selection)
+
+
+def aggregate_cross_fold_interfaces(
+    selections: Sequence[InterfaceSelection | None],
+    *,
+    expected_fold_count: int = 6,
+    minimum_layer_count: int = 5,
+    minimum_rank_count: int = 4,
+) -> CrossFoldInterfaceDecision:
+    """Apply the preregistered six-fold deployment-interface consensus rule.
+
+    Every fold must first produce a qualified interface.  The layer must have a
+    unique mode present in at least five folds.  Only folds selecting that layer
+    contribute to the rank mode; its count is still measured against all six
+    folds and must be at least four.  No outcome or outer-confirmation endpoint
+    enters this aggregation.
+    """
+
+    if len(selections) != expected_fold_count:
+        raise ValueError("cross-fold interface roster must contain every outer fold")
+    selected = [item for item in selections if item is not None]
+    layer_counts = Counter(item.layer for item in selected)
+    if len(selected) != expected_fold_count:
+        return CrossFoldInterfaceDecision(
+            status="STOP_GLOBAL_SHARED_INTERFACE",
+            layer=None,
+            rank=None,
+            layer_counts=dict(sorted(layer_counts.items())),
+            rank_counts_for_consensus_layer={},
+            selected_fold_count=len(selected),
+        )
+
+    highest_layer_count = max(layer_counts.values(), default=0)
+    layer_modes = sorted(
+        layer for layer, count in layer_counts.items() if count == highest_layer_count
+    )
+    if highest_layer_count < minimum_layer_count or len(layer_modes) != 1:
+        return CrossFoldInterfaceDecision(
+            status="STOP_GLOBAL_SHARED_INTERFACE",
+            layer=None,
+            rank=None,
+            layer_counts=dict(sorted(layer_counts.items())),
+            rank_counts_for_consensus_layer={},
+            selected_fold_count=len(selected),
+        )
+
+    consensus_layer = layer_modes[0]
+    rank_counts = Counter(
+        item.rank for item in selected if item.layer == consensus_layer
+    )
+    highest_rank_count = max(rank_counts.values(), default=0)
+    rank_modes = sorted(
+        rank for rank, count in rank_counts.items() if count == highest_rank_count
+    )
+    if highest_rank_count < minimum_rank_count or len(rank_modes) != 1:
+        return CrossFoldInterfaceDecision(
+            status="STOP_GLOBAL_SHARED_INTERFACE",
+            layer=consensus_layer,
+            rank=None,
+            layer_counts=dict(sorted(layer_counts.items())),
+            rank_counts_for_consensus_layer=dict(sorted(rank_counts.items())),
+            selected_fold_count=len(selected),
+        )
+
+    return CrossFoldInterfaceDecision(
+        status="PASS_GLOBAL_SHARED_INTERFACE",
+        layer=consensus_layer,
+        rank=rank_modes[0],
+        layer_counts=dict(sorted(layer_counts.items())),
+        rank_counts_for_consensus_layer=dict(sorted(rank_counts.items())),
+        selected_fold_count=len(selected),
+    )

@@ -27,6 +27,36 @@ def _close(left: float, right: float, tolerance: float = 1e-12) -> bool:
     return math.isfinite(left) and math.isfinite(right) and abs(left - right) <= tolerance
 
 
+def _selection_matches(
+    recorded: object,
+    expected: Mapping[str, Any] | None,
+) -> bool:
+    """Compare the discrete decision exactly and its statistics numerically.
+
+    JSON serialization and an independent float64 reduction may differ by one
+    unit in the last place.  Such a difference cannot change the registered
+    layer/rank decision and must not invalidate an otherwise exact replay.
+    """
+
+    if expected is None:
+        return recorded is None
+    if not isinstance(recorded, Mapping):
+        return False
+    return bool(
+        recorded.get("layer") == expected.get("layer")
+        and recorded.get("rank") == expected.get("rank")
+        and recorded.get("rule") == expected.get("rule")
+        and _close(
+            float(recorded.get("group_equal_mean", math.nan)),
+            float(expected.get("group_equal_mean", math.nan)),
+        )
+        and _close(
+            float(recorded.get("worst_group_mean", math.nan)),
+            float(expected.get("worst_group_mean", math.nan)),
+        )
+    )
+
+
 def _expected_sample_keys(groups: Sequence[str]) -> set[tuple[str, int, str]]:
     return {
         (str(group), anchor, condition)
@@ -198,7 +228,10 @@ def audit_fold_basis_result(
                 raise
             expected_selection = None
             expected_status = "STOP_NO_QUALIFIED_INTERFACE"
-        check("selection decision exact", result.get("selected_interface") == expected_selection)
+        check(
+            "selection decision exact",
+            _selection_matches(result.get("selected_interface"), expected_selection),
+        )
         check("status exact", result.get("status") == expected_status)
     else:
         check("all summaries recomputable", False)

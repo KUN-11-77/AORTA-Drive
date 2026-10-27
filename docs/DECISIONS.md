@@ -1624,3 +1624,17 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Artifacts:** `experiments/R006/R006V0_PROTOCOL_AMENDMENT_5.md`；
   `experiments/R006/inputs/r006v0_wrong_scene_donors.json`；
   `experiments/R006/inputs/r006v0_wrong_scene_donors_audit.json`。
+
+## ADR-0109：保留 fixed-rank STOP，并把方向共享与最小维数共享拆开
+
+- **Decision:** `STOP_FIXED_GLOBAL_MINIMUM_RANK__DIAGNOSE_BEFORE_REDESIGN`。
+- **Evidence:** R006V0 basis链6/6 folds和93/93聚合审计PASS；C4层6/6一致，但最小合格rank为
+  `[8,32,4,32,4,32]`，没有rank满足至少4/6共识。outer-confirmation未执行。
+- **Interpretation:** 当前结果否定“固定阈值下最小充分rank跨折相同”的复合假设；它不区分共享方向核心、
+  fold异质有效维数、非嵌套rank估计与非凸优化不稳定。post-hoc projector overlap只生成竞争解释，
+  不改变原STOP。
+- **Consequence:** R006V1、DINO reader、CPTR与NavDream继续HOLD。下一步仅执行已登记的R006V0F
+  inner failure decomposition；禁止事后采用rank32、降低共识门或跳过finite intervention。
+- **Artifacts:** `experiments/R006/R006V0_BASIS_RESULTS.md`；
+  `docs/R006_FAILURE_DRIVEN_THEORY_REFINEMENT_20261027.md`；
+  `experiments/R006/R006V0F_FAILURE_DECOMPOSITION_PREREGISTRATION.md`。
