@@ -1,6 +1,14 @@
 # AORTA 第一性原理理论与系统规范 v1
 
-状态：`CANONICAL_THEORY_CONTRACT__EMPIRICAL_CORE_PARTIALLY_UNTESTED`
+状态：`CANONICAL_FOUNDATION__R007_DINO_INTERFACE_AUDIT_ACTIVE__METHOD_HOLD`
+
+> **2026-10-27 execution amendment.** 本文关于潜在决策商、观测可辨识性、视觉条件增量、
+> candidate-supply/selection regret 与保守仲裁的基础理论继续有效；但 R005E2 后预设
+> Differential Query 的执行顺序已经失效。R006V0/R006V0F 又否定了 fixed-global-rank 主线。
+> 当前唯一授权的经验入口是冻结 DINOv3-H+ 的接口因果审计，详见
+> `docs/AORTA_DINO_INTERFACE_FIRST_PRINCIPLES_V1_CN.md` 与
+> `experiments/R007/R007V0_DINO_INTERFACE_CAUSAL_AUDIT_PREREGISTRATION.md`。任何具体架构必须由
+> 该审计发现的瓶颈唯一授权，不能从本文件的候选网络章节直接获得训练资格。
 
 本文件是 AORTA 当前 relation-first 研究路线的统一理论入口。它规定问题对象、基本假设、
 数学结构、网络设计来源、训练与推理边界、证伪顺序以及论文主张资格。它不把尚未完成的实验
@@ -311,9 +319,10 @@ p_\theta(\Delta_{i0}\mid I,B)
 
 ### 8.3 当前 R005E2 与最终网络的区别
 
-R005E2 使用通用 full-context set scorer，只检验正确视觉的条件增量。它不含 signed differential
-support、appearance orbit loss、分布校准或 selective arbitration。只有 R005E2 通过，才允许冻结
-参数、FLOP、token、数据和 seed 匹配的 generic-vs-differential 架构实验。
+R005E2 使用通用 full-context set scorer 检验正确视觉的条件增量，但正式结果未支持 decision-regret
+增益，且 mismatch 干预没有可靠伤害决策。它因此不能解锁 signed differential query。当前先由
+R007V0 区分 full-token 信息保留、接口压缩、原生路径放大与场景先验；只有一个具体瓶颈在组外确认后，
+才允许训练与之对应的最小接口。上述候选结构只是设计字典，不是当前方法规范。
 
 ## 9. Loss 的分层资格
 
@@ -417,8 +426,8 @@ M_{GPU}(\theta)\le M_{max}.
 | Gate | 科学问题 | 当前状态 |
 |---|---|---|
 | G0 Estimand | 合法 `U_ctx` 是否有候选 oracle headroom | source-fit 已支持 |
-| G1 Information | 正确视觉是否提供可学习条件增量 | generic MSE probe未支持；soft-regret出现native-only优化塌缩，尚未有效裁决信息存在性 |
-| G2 Inductive bias | Differential Query 是否胜过 matched generic scorer | 未验证 |
+| G1 Information | 正确视觉是否提供可学习条件增量 | generic scorer未支持decision增益；R007改用full/compressed/skip与factorial swap定位信息保留/接口瓶颈 |
+| G2 Inductive bias | 机制导出的最小接口是否胜过 matched simple scorer | HOLD；R007V0机制确认前不预设Differential Query、FQB或VJP |
 | G3 Robustness | 外观变化下是否稳定且保留任务信息 | 未验证 |
 | G4 Reliability | 同时区间是否 non-vacuous 且降低错误干预 | 未验证 |
 | G5 Behavior | actual-history、sequential、跨 planner 是否有净收益 | 未验证 |

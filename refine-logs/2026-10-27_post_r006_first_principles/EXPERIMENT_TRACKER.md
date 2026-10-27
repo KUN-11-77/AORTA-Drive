@@ -2,9 +2,9 @@
 
 | Run ID | Milestone | Purpose | System/Variant | Split | Priority | Status | Notes |
 |---|---|---|---|---|---|---|---|
-| R007A0 | M0 | 服务器资产与SHA核验 | DINOv3-H+ / Constant Eye / LTF | N/A | MUST | TODO | 只读；不启动训练 |
-| R007V0S | M0 | factorial swap机械smoke | 2 anchors, C3/C4 | source discovery | MUST | TODO | exact/full-cut/finite |
-| R007V0D | M1 | 接口有限干预发现 | native×DINO factorial | 28 discovery groups | MUST | HOLD | 等R007V0S |
+| R007A0 | M0 | 服务器资产与SHA核验 | DINOv3-H+ / Constant Eye implementations | N/A | MUST | PARTIAL_HOLD | DINO/source verified；trained Constant Eye checkpoint未定位 |
+| R007V0S | M0 | topology audit +合法swap机械smoke | 2 anchors, real DINO stages | source discovery | MUST | IN_PROGRESS | source/DINO hashes verified；Constant Eye TransFuser checkpoint待定位 |
+| R007V0D | M1 | 接口有限干预发现 | topology-legal sequential/factorial audit | 28 discovery groups | MUST | HOLD | 等trained checkpoint与R007V0S real forward |
 | R007V0P | M2 | full/compressed/skip probe smoke | correct/mismatch/removed | 1 fold | MUST | HOLD | 等R007V0D |
 | R007V0F | M2 | 正式6-fold probe | matched readers, 3 seeds | 28/7 | MUST | HOLD | outer不可读 |
 | R007V0C | M2 | 一次性确认 | frozen audit and labels | 7 outer-confirmation | MUST | HOLD | 只允许一次 |

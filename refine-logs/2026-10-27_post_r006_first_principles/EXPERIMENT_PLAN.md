@@ -27,8 +27,10 @@ Anti-claims：增益只来自 DINOv3-H+、更多参数、额外数据、普通 o
 - **Claim tested**：C1。
 - **Dataset/split**：既有 source-fit 42 recording groups 沿冻结 28/7/7 角色使用；28 discovery、7 selection，最后 7 outer-confirmation 只允许一次前瞻裁决。development/calibration/test/NavDream/target 不访问。
 - **Backbone**：唯一 DINOv3-H+ 权重、预处理、分辨率、token 顺序和精度；先锁 SHA 与缓存 provenance。
-- **接口**：优先 LTF C3/C4 已登记完整切口；第二 planner 只在相同机械资格闭合后加入。
-- **因子化条件**：
+- **接口**：先用源码与checkpoint判定真实拓扑。Constant Eye TransFuser-DINO候选为DINO-only，
+  依次审计raw tokens、projector、CNN compression、decoder query与trajectory output；只有真实hybrid
+  planner才使用native×DINO因子设计。第二planner只在同样拓扑资格闭合后加入。
+- **hybrid因子化条件（不适用于DINO-only）**：
   1. native-shift + DINO-shift；
   2. native-shift + DINO-clean；
   3. native-clean + DINO-shift；
@@ -55,7 +57,8 @@ Anti-claims：增益只来自 DINOv3-H+、更多参数、额外数据、普通 o
   4. frozen planner + matched residual adapter；
   5. same structure + ordinary output consistency；
   6. direct-output residual；
-  7. mechanism-derived single method（只 compression→full-token bridge；只 amplification→functional constraint；both→FQB）。
+  7. mechanism-derived single method（只 compression→full-token bridge；只 amplification→functional constraint；
+     both→组合一个最小 task-conditioned DINO evidence interface，不继承旧 FQB 结构）。
 - **Control**：所有 frozen-interface arms 共享 DINO tokens、训练样本、optimizer steps、seed、参数/FLOPs tolerance；3 seeds，统计单位仍是 group。
 - **Metrics**：group-held-out functional restoration、official source utility、clean non-inferiority、correct-minus-mismatch、干预能量、参数/FLOPs、batch-1 P50/P95。
 - **Success criterion**：Proposed 对 strongest matched simple arm 的组级 paired CI 下界超过预冻结最小有意义效应；clean utility 满足非劣界；不是全拒判。
@@ -86,8 +89,8 @@ Anti-claims：增益只来自 DINOv3-H+、更多参数、额外数据、普通 o
 
 ## First Three Runs
 
-1. `R007V0S`：2-anchor DINO/native factorial swap + full-cut exactness，不读取封存角色；
-2. `R007V0D`：28 discovery groups 的无训练接口交换与 stage ledger；
+1. `R007V0S`：源码/checkpoint拓扑审计 + 2-anchor topology-legal swaps + full-cut exactness，不读取封存角色；
+2. `R007V0D`：28 discovery groups 的无训练顺序stage或hybrid因子交换与 stage ledger；
 3. `R007V0P`：单折 full/compressed/skip correct-mismatch-removed probe，验证实现与容量匹配后再冻结正式 6-fold。
 
 ## Risks and Mitigations
@@ -96,7 +99,7 @@ Anti-claims：增益只来自 DINOv3-H+、更多参数、额外数据、普通 o
 - **mismatch/removed OOD**：只与正确图像差、任务误差和 full-token probe联合解释，不单独做信息论结论。
 - **原生与DINO路径混淆**：使用完整2×2因子化交换与joint swap。
 - **反复使用42组**：它们只作 discovery/selection；outer 7一次确认，之后需要新的独立确认单位。
-- **简单方法已经足够**：视为成功的科学收缩，删除FQB/VJP而非继续堆模块。
+- **简单方法已经足够**：视为成功的科学收缩，删除复杂接口/VJP而非继续堆模块。
 
 ## Final Checklist
 

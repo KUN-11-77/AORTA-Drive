@@ -1706,13 +1706,26 @@ the current open-ended geometry certificate iteration remains STOP.
 - **Decision:** `STOP_FIXED_PROJECTOR_MAINLINE__GO_DINO_INTERFACE_AUDIT__HOLD_METHOD_TRAINING`。
 - **Reason:** DINOv3-H+已有Constant Eye与项目既有正向依据；R006V0/R006V0F连续否定固定最小rank与
   当前estimator资格。继续Fantope只会诊断旧接口，不能回答稳定DINO证据如何进入冻结planner。
-- **Design:** 后续正式实验统一冻结同一DINOv3-H+，先做native path×DINO path因子化交换与
-  full/compressed/skip-token组外probe，允许`AMPLIFICATION/COMPRESSION/MIXED/UNRESOLVED`。
+- **Design:** 后续正式实验统一冻结同一DINOv3-H+，先审计每个planner的真实接口拓扑。DINO-only
+  系统做顺序stage interchange，真实hybrid系统才做native path×DINO path因子化交换，并配合
+  full/compressed/skip-token组外probe；允许`AMPLIFICATION/COMPRESSION/MIXED/UNRESOLVED`。
   只对信息保持外观要求功能保持；信息损失外观评价风险与拒判。
-- **Consequence:** FQB、VJP与新adapter训练HOLD。只发现compression先比较full-token bridge；只发现
+- **Consequence:** 所有新 DINO 接口、VJP与新adapter训练HOLD。只发现compression先比较full-token bridge；只发现
   amplification先比较ordinary functional consistency；二者均有不可替代证据才允许组合。简单方法
   等效则删除复杂结构。
 - **Record:** `docs/AORTA_DINO_INTERFACE_FIRST_PRINCIPLES_V1_CN.md`；
   `experiments/R007/R007V0_DINO_INTERFACE_CAUSAL_AUDIT_PREREGISTRATION.md`；
   `refine-logs/2026-10-27_post_r006_first_principles/FINAL_PROPOSAL.md`；
   `refine-logs/2026-10-27_post_r006_first_principles/EXPERIMENT_PLAN.md`。
+
+## ADR-0116：DINOv3-H+ 是新理论起点，不继承旧 AORTA 架构
+
+- **Decision:** `DINO_FOUNDATION_FIRST__OLD_METHODS_HAVE_NO_INHERITED_AUTHORIZATION`。
+- **Reason:** Constant Eye 与项目既有结果已经给出 DINOv3-H+ 的正向线索；相反，固定低秩、旧
+  Differential Query、CPTR 与若干场表示路线已经被失败证据收缩或停止。继续把 DINO 作为旧体系的
+  一个输入，会让实验围绕实现假设自证，而不是解释 DINO 的任务证据为何有效。
+- **Design:** 新主线只保留条件充分性、appearance-orbit 功能保持与接口可实现性三个第一性对象。
+  R007 先估计真实拓扑中的证据损失与功能漂移；任何网络结构、loss 和切口必须由组外机制结果唯一授权。
+- **Consequence:** FQB 名称与结构不再是预设候选。cross-attention、低秩、VJP、旧 loss 或内部切口均
+  只能作为可淘汰实现；若 simple matched arm 等效，复杂结构必须删除。历史文件保留用于追溯，不拥有
+  当前训练资格。

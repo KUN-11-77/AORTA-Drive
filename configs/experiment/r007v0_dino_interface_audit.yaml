@@ -1,0 +1,88 @@
+experiment_id: R007V0-dino-interface-causal-audit-v1
+date: 2026-10-27
+status: preregistration_draft_method_training_hold
+claim_ids: [C38]
+scope: source_fit_dino_interface_mechanism_topology_conditioned
+backbone:
+  name: dinov3_vith16plus
+  checkpoint_sha256: 7c1da9a54b3bdb333f5ebc42e404b7f19b1b5bed504877623c9dc87397f41488
+  frozen: true
+  resize_hw: [288, 512]
+  patch_size: 16
+  embed_dimension: 1280
+  feature: normalized_last_4_layer_mean
+planner:
+  frozen: true
+  first_interface: topology_audit_required
+  supported_topologies: [DINO_ONLY, HYBRID_NATIVE_DINO]
+  first_verified_source_candidate: constant_eye_transfuser_dino
+  method_training_allowed: false
+data:
+  independent_unit: recording_group
+  source_fit_groups: 42
+  discovery_groups: 28
+  selection_groups: 7
+  outer_confirmation_groups: 7
+  outer_confirmation_reads_allowed: 1
+  forbidden_roles: [development, calibration, test, NavDream, target]
+appearances:
+  information_preserving_source_controls:
+    - low_exposure
+    - low_contrast
+    - cool_cast
+topology_conditioned_interventions:
+  DINO_ONLY:
+    - raw_dino_tokens
+    - projected_dino_tokens
+    - compressed_dino_tokens
+    - decoder_trajectory_query
+  HYBRID_NATIVE_DINO:
+    - shift_shift
+    - shift_clean
+    - clean_shift
+    - clean_clean
+controls:
+  - geometry_matched_mismatch
+  - removed
+  - identity
+  - joint_full_cut
+probe_arms:
+  - native_history_only
+  - full_correct_dino
+  - compressed_correct_dino
+  - compressed_plus_full_skip
+  - full_mismatch_dino
+  - full_removed_dino
+mechanical_gates:
+  source_and_checkpoint_topology_agree: true
+  factorial_path_fingerprints_exact: when_hybrid_native_dino
+  sequential_stage_order_and_cut_complete: when_dino_only
+  identity_intervention_exact: true
+  joint_full_cut_exact: true
+  donor_derangement_valid: true
+  primary_replay_exact: true
+  finite_values: true
+  scientific_metrics_before_complete: false
+  sealed_roles_accessed: false
+statistics:
+  group_equal: true
+  seeds_are_not_independent_units: true
+  minimum_meaningful_effect: freeze_after_discovery_before_selection
+  equivalence_margin: freeze_after_discovery_before_selection
+  outer_confirmation_is_single_use: true
+decision_labels:
+  - AMPLIFICATION
+  - COMPRESSION
+  - MIXED
+  - SCENE_PRIOR
+  - UNRESOLVED
+  - CURRENT_INTERFACE_UNRECOVERABLE
+stopped_routes:
+  - fixed_global_low_rank
+  - fantope
+  - cptr
+conditional_hold:
+  - any_new_dino_interface_training
+  - vjp_training
+  - differential_query_training
+
